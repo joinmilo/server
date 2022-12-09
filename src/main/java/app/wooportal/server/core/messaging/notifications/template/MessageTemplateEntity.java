@@ -1,0 +1,35 @@
+package app.wooportal.server.core.messaging.notifications.template;
+
+import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import app.wooportal.server.core.base.BaseEntity;
+import app.wooportal.server.core.messaging.notifications.definition.MessageDefinitionEntity;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
+@AllArgsConstructor
+@Entity
+@Table(name = "message_templates")
+public class MessageTemplateEntity extends BaseEntity {
+
+  private static final long serialVersionUID = 1L;
+
+  private String content;
+
+  @Column(nullable = false)
+  private String name;
+
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "template")
+  private Set<MessageDefinitionEntity> definitions;
+  
+}

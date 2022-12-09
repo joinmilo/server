@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+  - changeSet:
+      id: test-data
+      author: codeschluss
+      changes:
+        - sqlFile:
+            encoding: utf8
+            endDelimiter: \nGO
+            path: test-data.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            stripComments: true

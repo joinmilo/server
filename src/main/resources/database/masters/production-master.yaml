@@ -1,0 +1,6 @@
+databaseChangeLog:
+    - logicalFilePath: path_independent
+    - include:
+        file: database/seeds/seed.yaml
+    - include:
+        file: database/datasets/seed-data.yaml      

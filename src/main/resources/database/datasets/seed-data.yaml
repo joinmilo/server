@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+  - changeSet:
+      id: seed-data
+      author: codeschluss
+      changes:
+        - sqlFile:
+            encoding: utf8
+            endDelimiter: \nGO
+            path: seed-data.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            stripComments: true

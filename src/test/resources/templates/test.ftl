@@ -1,0 +1,9 @@
+<html>
+	<body>	
+		<p>
+			<b>test:</b><br>
+			<pre>${param1}</pre>
+			<pre>${param2}</pre>
+		</p>
+	</body>
+</html>
