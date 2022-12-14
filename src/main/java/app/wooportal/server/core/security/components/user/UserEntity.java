@@ -16,17 +16,15 @@ import javax.persistence.UniqueConstraint;
 import org.hibernate.annotations.CollectionId;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
-import app.wooportal.server.components.bloggers.BloggerEntity;
-import app.wooportal.server.components.events.base.EventEntity;
-import app.wooportal.server.components.feedbacks.comment.CommentEntity;
-import app.wooportal.server.components.feedbacks.rating.RatingEntity;
+import app.wooportal.server.base.userContexts.base.UserContextEntity;
 import app.wooportal.server.core.base.BaseEntity;
-import app.wooportal.server.core.media.base.MediaEntity;
 import app.wooportal.server.core.messaging.notifications.base.NotificationEntity;
 import app.wooportal.server.core.push.subscription.SubscriptionEntity;
-import app.wooportal.server.core.security.components.passwordReset.PasswordResetEntity;
 import app.wooportal.server.core.security.components.role.RoleEntity;
-import app.wooportal.server.core.security.components.verification.VerificationEntity;
+import app.wooportal.server.core.security.components.user.emailVerification.VerificationEntity;
+import app.wooportal.server.core.security.components.user.passwordReset.PasswordResetEntity;
+import app.wooportal.server.features.feedbacks.comment.CommentEntity;
+import app.wooportal.server.features.feedbacks.rating.RatingEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -46,18 +44,8 @@ public class UserEntity extends BaseEntity {
 
   private Boolean approved;
 
-  @OneToOne(fetch = FetchType.LAZY)
-  private BloggerEntity blogger;
-
   @Column(unique = true, nullable = false)
   private String email;
-
-  @ManyToMany(fetch = FetchType.LAZY)
-  @JoinTable(name = "favorite_events", joinColumns = @JoinColumn(name = "user_id"),
-      inverseJoinColumns = @JoinColumn(name = "event_id"),
-      uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "event_id"})})
-  @CollectionId(column = @Column(name = "id"), type = @Type(type = "uuid-char"), generator = "UUID")
-  private List<EventEntity> favoriteEvents = new ArrayList<>();
 
   private String fullname;
 
@@ -72,9 +60,6 @@ public class UserEntity extends BaseEntity {
 
   @Column(unique = true)
   private String phone;
-
-  @OneToOne(fetch = FetchType.LAZY)
-  private MediaEntity profilePicture;
 
   @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
   private Set<RatingEntity> rating;
@@ -92,17 +77,11 @@ public class UserEntity extends BaseEntity {
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
   private Set<SubscriptionEntity> subscriptions;
 
-  @ManyToMany(fetch = FetchType.LAZY)
-  @JoinTable(name = "user_media", joinColumns = @JoinColumn(name = "user_id"),
-      inverseJoinColumns = @JoinColumn(name = "media_id"),
-      uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "media_id"})})
-  @CollectionId(column = @Column(name = "id"), type = @Type(type = "uuid-char"), generator = "UUID")
-  private List<MediaEntity> uploads = new ArrayList<>();
+  @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
+  private UserContextEntity userContext;
 
   @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
   private Set<VerificationEntity> verifications;
 
   private Boolean verified;
-
-
 }

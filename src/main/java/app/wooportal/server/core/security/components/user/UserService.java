@@ -16,37 +16,32 @@ import app.wooportal.server.core.media.base.MediaEntity;
 import app.wooportal.server.core.media.base.MediaService;
 import app.wooportal.server.core.push.subscription.SubscriptionService;
 import app.wooportal.server.core.repository.DataRepository;
-import app.wooportal.server.core.security.components.passwordReset.PasswordResetEntity;
-import app.wooportal.server.core.security.components.passwordReset.PasswordResetService;
-import app.wooportal.server.core.security.components.verification.VerificationEntity;
-import app.wooportal.server.core.security.components.verification.VerificationService;
+import app.wooportal.server.core.security.components.user.emailVerification.VerificationEntity;
+import app.wooportal.server.core.security.components.user.emailVerification.VerificationService;
+import app.wooportal.server.core.security.components.user.passwordReset.PasswordResetEntity;
+import app.wooportal.server.core.security.components.user.passwordReset.PasswordResetService;
 import app.wooportal.server.core.security.services.AuthenticationService;
 import app.wooportal.server.core.utils.ReflectionUtils;
 
 @Service
 public class UserService extends DataService<UserEntity, UserPredicateBuilder> {
-  
+
   private final AuthenticationService authService;
-  
+
   private final BCryptPasswordEncoder bcryptPasswordEncoder;
-  
+
   private final MediaService mediaService;
-  
-  public UserService(
-      DataRepository<UserEntity> repo,
-      UserPredicateBuilder predicate,
-      AuthenticationService authService,
-      BCryptPasswordEncoder bcryptPasswordEncoder,
-      MediaService mediaService,
-      PasswordResetService passwordResetService,
-      SubscriptionService subscriptionService,
-      VerificationService verificationService) {
+
+  public UserService(DataRepository<UserEntity> repo, UserPredicateBuilder predicate,
+      AuthenticationService authService, BCryptPasswordEncoder bcryptPasswordEncoder,
+      MediaService mediaService, PasswordResetService passwordResetService,
+      SubscriptionService subscriptionService, VerificationService verificationService) {
     super(repo, predicate);
 
     this.authService = authService;
     this.bcryptPasswordEncoder = bcryptPasswordEncoder;
     this.mediaService = mediaService;
-    
+
     addService("passwordResets", passwordResetService);
     addService("profilePicture", mediaService);
     addService("subscriptions", subscriptionService);
@@ -57,7 +52,7 @@ public class UserService extends DataService<UserEntity, UserPredicateBuilder> {
   public Optional<UserEntity> getByMail(String name) {
     return repo.findOne(singleQuery(predicate.withMail(name)));
   }
-  
+
   public Optional<UserEntity> me() {
     var currentUser = authService.getAuthenticatedUser();
     if (currentUser.isPresent()) {
@@ -75,15 +70,15 @@ public class UserService extends DataService<UserEntity, UserPredicateBuilder> {
     if (entity.getId() == null || entity.getId().isBlank()) {
       newEntity.setVerifications(new HashSet<>(List.of(new VerificationEntity())));
       setContext("verification", context);
-      
+
       newEntity.setApproved(false);
       setContext("approved", context);
-      
+
       newEntity.setVerified(false);
       setContext("verified", context);
     }
   }
-  
+
   public Optional<UserEntity> saveMe(UserEntity entity) {
     var currentUser = authService.getAuthenticatedUser();
     if (currentUser.isPresent()) {
@@ -92,17 +87,17 @@ public class UserService extends DataService<UserEntity, UserPredicateBuilder> {
     }
     return currentUser;
   }
-  
+
   public Optional<UserEntity> addUploads(List<MediaEntity> uploads) {
     var currentUser = authService.getAuthenticatedUser();
     if (currentUser.isPresent()) {
-      repo.findOne(singleQuery(predicate.withId(currentUser.get().getId()))).get().getUploads().addAll(
-          mediaService.saveAll(uploads));
+      repo.findOne(singleQuery(predicate.withId(currentUser.get().getId()))).get().getUserContext()
+          .getUploads().addAll(mediaService.saveAll(uploads));
       return Optional.of(repo.save(currentUser.get()));
     }
     return currentUser;
   }
-  
+
   public Optional<UserEntity> deleteUpload(List<String> uploads) {
     var currentUser = authService.getAuthenticatedUser();
     if (currentUser.isPresent()) {
