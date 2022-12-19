@@ -26,7 +26,7 @@ public class ScheduleEntity extends BaseEntity {
   private static final long serialVersionUID = 1L;
 
   @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(nullable = false, name = "event_id")
+  @JoinColumn(nullable = false)
   private EventEntity event;
 
 }

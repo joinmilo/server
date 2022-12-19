@@ -28,10 +28,10 @@ public class ArticleCategoryEntity extends BaseEntity {
   private static final long serialVersionUID = 1L;
 
   @Column(nullable = false)
-  private String icon;
+  private String color;
 
   @Column(nullable = false)
-  private String color;
+  private String icon;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
   private Set<ArticleEntity> articles;

@@ -2,6 +2,7 @@ package app.wooportal.server.base.cms.translations;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import app.wooportal.server.base.cms.menues.MenuEntity;
@@ -27,8 +28,10 @@ public class MenuTranslatableEntity extends TranslatableEntity<EventEntity> {
   private String name;
 
   @ManyToOne(fetch = FetchType.LAZY)
-  private MenuEntity parent;
+  @JoinColumn(nullable = false)
+  private LanguageEntity language;
 
   @ManyToOne(fetch = FetchType.LAZY)
-  private LanguageEntity language;
+  @JoinColumn(nullable = false)
+  private MenuEntity parent;
 }

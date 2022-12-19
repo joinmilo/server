@@ -8,6 +8,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.messaging.notifications.definition.MessageDefinitionEntity;
+import app.wooportal.server.core.messaging.translations.MessageTemplateTranslatableEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,12 +25,15 @@ public class MessageTemplateEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
 
-  private String content;
-
   @Column(nullable = false)
   private String name;
+  
+  private String content;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "template")
   private Set<MessageDefinitionEntity> definitions;
-  
+
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "template")
+  private Set<MessageTemplateTranslatableEntity> translatables;
+
 }

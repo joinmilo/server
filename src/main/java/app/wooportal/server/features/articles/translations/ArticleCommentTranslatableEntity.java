@@ -27,10 +27,10 @@ public class ArticleCommentTranslatableEntity extends TranslatableEntity<EventEn
 
   @Column(nullable = false)
   private String content;
+  
+  @ManyToOne(fetch = FetchType.LAZY)
+  private LanguageEntity language;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private ArticleCommentEntity parent;
-
-  @ManyToOne(fetch = FetchType.LAZY)
-  private LanguageEntity language;
 }

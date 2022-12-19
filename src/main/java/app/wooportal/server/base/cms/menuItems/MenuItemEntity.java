@@ -1,14 +1,15 @@
 package app.wooportal.server.base.cms.menuItems;
 
-import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
+import app.wooportal.server.base.cms.features.FeatureEntity;
+import app.wooportal.server.base.cms.menues.MenuEntity;
+import app.wooportal.server.base.cms.pages.PageEntity;
 import app.wooportal.server.core.base.BaseEntity;
-import app.wooportal.server.features.contests.base.ContestEntity;
-import app.wooportal.server.features.contests.translations.ContestTypeTranslatableEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,11 +27,18 @@ public class MenuItemEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
 
-  private String key;
+  private Integer order;
 
-  @OneToMany(fetch = FetchType.LAZY, mappedBy = "type")
-  private Set<ContestEntity> contests;
+  @ManyToOne(fetch = FetchType.LAZY)
+  private FeatureEntity module;
+
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(nullable = false)
+  private MenuEntity parent;
   
-  @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
-  private Set<ContestTypeTranslatableEntity> translatable;
+  @ManyToOne(fetch = FetchType.LAZY)
+  private PageEntity page;
+
+  @ManyToOne(fetch = FetchType.LAZY)
+  private MenuEntity subMenu;
 }

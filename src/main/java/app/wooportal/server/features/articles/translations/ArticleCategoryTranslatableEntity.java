@@ -27,10 +27,10 @@ public class ArticleCategoryTranslatableEntity extends TranslatableEntity<EventE
 
   @Column(nullable = false)
   private String name;
+  
+  @ManyToOne(fetch = FetchType.LAZY)
+  private LanguageEntity language;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private ArticleCategoryEntity parent;
-
-  @ManyToOne(fetch = FetchType.LAZY)
-  private LanguageEntity language;
 }

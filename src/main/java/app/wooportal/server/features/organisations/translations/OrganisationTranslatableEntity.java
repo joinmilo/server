@@ -3,6 +3,7 @@ package app.wooportal.server.features.organisations.translations;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import app.wooportal.server.core.i18n.language.LanguageEntity;
@@ -29,9 +30,11 @@ public class OrganisationTranslatableEntity extends TranslatableEntity<EventEnti
   private String description;
 
   @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(nullable = false)
   private OrganisationEntity parent;
 
   @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(nullable = false)
   private LanguageEntity language;
 
 }

@@ -25,10 +25,10 @@ public class ContestTranslatableEntity extends TranslatableEntity<EventEntity> {
   private static final long serialVersionUID = 1L;
 
   private String content;
+  
+  @ManyToOne(fetch = FetchType.LAZY)
+  private LanguageEntity language;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private ContestEntity parent;
-
-  @ManyToOne(fetch = FetchType.LAZY)
-  private LanguageEntity language;
 }

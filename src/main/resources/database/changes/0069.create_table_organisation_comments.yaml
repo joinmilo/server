@@ -1,0 +1,93 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+  - changeSet:
+      id: 0069.create_table_organisation_comments.1
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: organisation_comments_primary_key
+                  name: id
+                  type: CHAR(36)
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  name: created
+                  type: TIMESTAMP WITH TIME ZONE
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  name: modified
+                  type: TIMESTAMP WITH TIME ZONE
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueBoolean: false
+                  name: approved
+                  type: boolean    
+              - column:
+                  constraints:
+                    nullable: false
+                  name: organisation_id
+                  type: CHAR(36)  
+              - column:
+                  constraints:
+                    nullable: false
+                  name: user_context_id
+                  type: CHAR(36)                                                                   
+            tableName: organisation_comments
+
+  - changeSet:
+      id: 0069.create_table_organisation_comments.2
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: user_context_id
+            indexName: idx_fkfrcho5s8rkfdv5zzwil4zww41
+            tableName: organisation_comments
+  - changeSet:
+      id: 0069.create_table_organisation_comments.3
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: user_context_id
+            baseTableName: organisation_comments
+            constraintName: fkfrcho5s8rkfdv5zzwil4zww41
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: user_contexts
+            validate: true            
+
+  - changeSet:
+      id: 0069.create_table_organisation_comments.4
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: organisation_id
+            indexName: idx_fk73apj5zb839gerledrugmqnmj
+            tableName: organisation_comments
+  - changeSet:
+      id: 0069.create_table_organisation_comments.5
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: organisation_id
+            baseTableName: organisation_comments
+            constraintName: fk73apj5zb839gerledrugmqnmj
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: organisations
+            validate: true                            
+          
+            

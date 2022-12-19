@@ -1,0 +1,92 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+  - changeSet:
+      id: 0033.create_table_event_visitors.1
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: event_visitors_primary_key
+                  name: id
+                  type: CHAR(36)
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  name: created
+                  type: TIMESTAMP WITH TIME ZONE
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  name: modified
+                  type: TIMESTAMP WITH TIME ZONE
+              - column:
+                  constraints:
+                    nullable: false
+                  name: visits
+                  type: INTEGER
+              - column:
+                  constraints:
+                    nullable: false
+                  name: visitor_id
+                  type: CHAR(36)  
+              - column:
+                  constraints:
+                    nullable: false
+                  name: parent_id
+                  type: CHAR(36)                                                                                     
+            tableName: event_visitors
+
+  - changeSet:
+      id: 0033.create_table_event_visitors.2
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: visitor_id
+            indexName: idx_fkn8h7ypc8cy1hdw986i620zuv6
+            tableName: event_visitors
+  - changeSet:
+      id: 0033.create_table_event_visitors.3
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: visitor_id
+            baseTableName: event_visitors
+            constraintName: fkn8h7ypc8cy1hdw986i620zuv6
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: visitors
+            validate: true   
+
+  - changeSet:
+      id: 0033.create_table_event_visitors.4
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: parent_id
+            indexName: idx_fksf6q8206l59ymhykd3aktfm3u
+            tableName: event_visitors
+  - changeSet:
+      id: 0033.create_table_event_visitors.5
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: parent_id
+            baseTableName: event_visitors
+            constraintName: fksf6q8206l59ymhykd3aktfm3u
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: events
+            validate: true                                    
+          
+            

@@ -1,5 +1,6 @@
 package app.wooportal.server.features.organisations.organisationVisitor;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
@@ -24,12 +25,13 @@ import lombok.Setter;
 public class OrganisationVisitorEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
+  
+  @Column(nullable = false)
+  private Integer visits;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private OrganisationEntity parent;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private VisitorEntity visitor;
-
-  private Integer visits;
 }

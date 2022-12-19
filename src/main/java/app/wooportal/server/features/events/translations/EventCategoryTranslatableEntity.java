@@ -1,5 +1,6 @@
 package app.wooportal.server.features.events.translations;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
@@ -24,6 +25,7 @@ public class EventCategoryTranslatableEntity extends TranslatableEntity<EventEnt
 
   private static final long serialVersionUID = 1L;
 
+  @Column(nullable = false)
   private String name;
 
   @ManyToOne(fetch = FetchType.LAZY)

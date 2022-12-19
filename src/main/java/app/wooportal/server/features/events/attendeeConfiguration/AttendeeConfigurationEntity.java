@@ -26,10 +26,9 @@ public class AttendeeConfigurationEntity extends BaseEntity {
   private static final long serialVersionUID = 1L;
 
   private Boolean approved;
-
-  private Integer maxAttendees;
-
+  
   @OneToMany(mappedBy = "attendeeConfiguration", fetch = FetchType.LAZY)
   private Set<EventEntity> events;
 
+  private Integer maxAttendees;
 }

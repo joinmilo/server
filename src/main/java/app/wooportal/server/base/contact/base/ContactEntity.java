@@ -29,20 +29,19 @@ public class ContactEntity extends BaseEntity {
 
   @Column(nullable = false)
   private String email;
+  
+  private String first_name;
+  
+  private String last_name;
 
   @Column(nullable = false)
   private String password;
 
-  private String first_name;
-
-  private String last_name;
-
   private String phone;
-
-  @OneToMany(fetch = FetchType.LAZY, mappedBy = "contact")
-  private Set<OrganisationEntity> organisations;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "contact")
   private Set<DealEntity> deals;
 
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "contact")
+  private Set<OrganisationEntity> organisations;
 }

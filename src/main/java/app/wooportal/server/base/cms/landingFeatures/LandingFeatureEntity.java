@@ -2,6 +2,7 @@ package app.wooportal.server.base.cms.landingFeatures;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
@@ -26,10 +27,12 @@ public class LandingFeatureEntity extends BaseEntity {
   private static final long serialVersionUID = 1L;
 
   private Integer order;
-
+  
   @ManyToOne(fetch = FetchType.LAZY)
-  private LandingEntity landing;
-
-  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(nullable = false)
   private FeatureEntity feature;
+
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(nullable = false)
+  private LandingEntity landing;
 }

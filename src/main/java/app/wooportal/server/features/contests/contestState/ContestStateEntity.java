@@ -29,5 +29,4 @@ public class ContestStateEntity extends BaseEntity {
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "state")
   private Set<ContestEntity> contests;
-
 }

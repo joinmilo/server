@@ -12,6 +12,7 @@ import org.hibernate.annotations.GenericGenerator;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.features.contests.contestParticipations.ContestParticipationEntity;
 import app.wooportal.server.features.contests.contestState.ContestStateEntity;
+import app.wooportal.server.features.contests.contestTypes.ContestTypeEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,6 +29,8 @@ import lombok.Setter;
 public class ContestEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
+  
+  private Date dueDate;
 
   private String seoDescription;
 
@@ -48,12 +51,12 @@ public class ContestEntity extends BaseEntity {
   @Column(nullable = false)
   private Boolean offer;
 
-  private Date dueDate;
-
   @ManyToOne(fetch = FetchType.LAZY)
   private ContestStateEntity state;
 
+  @ManyToOne(fetch = FetchType.LAZY)
+  private ContestTypeEntity type;
+
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "contest")
   private Set<ContestParticipationEntity> contestParticipation;
-
 }

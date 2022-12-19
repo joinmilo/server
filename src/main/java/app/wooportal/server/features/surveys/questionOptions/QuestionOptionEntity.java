@@ -1,7 +1,9 @@
 package app.wooportal.server.features.surveys.questionOptions;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
@@ -24,9 +26,10 @@ public class QuestionOptionEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
 
-  @ManyToOne(fetch = FetchType.LAZY)
-  private QuestionEntity question;
-
+  @Column(nullable = false)
   private Integer order;
 
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(nullable = false)
+  private QuestionEntity question;
 }

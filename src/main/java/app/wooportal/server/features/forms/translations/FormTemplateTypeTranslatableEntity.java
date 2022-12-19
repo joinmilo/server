@@ -3,6 +3,7 @@ package app.wooportal.server.features.forms.translations;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import app.wooportal.server.core.i18n.language.LanguageEntity;
@@ -29,8 +30,10 @@ public class FormTemplateTypeTranslatableEntity extends TranslatableEntity<Event
   private String name;
 
   @ManyToOne(fetch = FetchType.LAZY)
-  private FormTemplateTypeEntity formTemplateType;
+  @JoinColumn(nullable = false)
+  private FormTemplateTypeEntity parent;
 
   @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(nullable = false)
   private LanguageEntity language;
 }

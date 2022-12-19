@@ -9,6 +9,7 @@ import javax.persistence.Table;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.features.events.eventVisitors.EventVisitorEntity;
 import app.wooportal.server.features.organisations.organisationVisitor.OrganisationVisitorEntity;
+import app.wooportal.server.features.surveys.surveyVisitors.SurveyVisitorEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -31,4 +32,8 @@ public class VisitorEntity extends BaseEntity {
 
   @OneToMany(mappedBy = "visitor", fetch = FetchType.LAZY)
   private Set<OrganisationVisitorEntity> organisationVisitor;
+
+
+  @OneToMany(mappedBy = "visitor", fetch = FetchType.LAZY)
+  private Set<SurveyVisitorEntity> surveyVisitor;
 }

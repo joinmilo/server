@@ -28,8 +28,8 @@ public class LandingEntity extends BaseEntity {
 
   private String url;
 
-  @OneToMany(fetch = FetchType.LAZY, mappedBy = "type")
-  private Set<LandingFeatureEntity> contests;
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "landing")
+  private Set<LandingFeatureEntity> landingFeatures;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
   private Set<LandingTranslatableEntity> translatable;

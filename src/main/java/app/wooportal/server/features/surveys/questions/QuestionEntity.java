@@ -1,8 +1,10 @@
 package app.wooportal.server.features.surveys.questions;
 
 import java.util.Set;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -11,7 +13,6 @@ import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.features.surveys.answers.AnswerEntity;
 import app.wooportal.server.features.surveys.questionOptions.QuestionOptionEntity;
 import app.wooportal.server.features.surveys.questionType.QuestionTypeEntity;
-import app.wooportal.server.features.surveys.surveyResult.SurveyResultEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,16 +30,16 @@ public class QuestionEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
 
-  @ManyToOne(fetch = FetchType.LAZY)
-  private SurveyResultEntity result;
+  @Column(nullable = false)
+  private Integer order;
 
-  @OneToMany(mappedBy = "question", fetch = FetchType.LAZY)
-  private QuestionOptionEntity questionOptions;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(nullable = false)
+  private QuestionTypeEntity type;
 
   @OneToMany(mappedBy = "question", fetch = FetchType.LAZY)
   private Set<AnswerEntity> answers;
 
-  @ManyToOne(fetch = FetchType.LAZY)
-  private QuestionTypeEntity type;
-
+  @OneToMany(mappedBy = "question", fetch = FetchType.LAZY)
+  private Set<QuestionOptionEntity> questionOptions;
 }

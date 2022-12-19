@@ -1,0 +1,91 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+  - changeSet:
+      id: 0047.create_table_contest_translatables.1
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: contest_translatables_primary_key
+                  name: id
+                  type: CHAR(36)
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  name: created
+                  type: TIMESTAMP WITH TIME ZONE
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  name: modified
+                  type: TIMESTAMP WITH TIME ZONE
+              - column:
+                  constraints:
+                    nullable: false
+                  name: name
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: parent_id
+                  type: CHAR(36)         
+              - column:
+                  constraints:
+                    nullable: false
+                  name: language_id
+                  type: CHAR(36)                                                                               
+            tableName: contest_translatables
+
+  - changeSet:
+      id: 0047.create_table_contest_translatables.2
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: parent_id
+            indexName: idx_fk1qab5hj60b05proa52kamyki7
+            tableName: contest_translatables
+  - changeSet:
+      id: 0047.create_table_contest_translatables.3
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: parent_id
+            baseTableName: contest_translatables
+            constraintName: fk1qab5hj60b05proa52kamyki7
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: contests
+            validate: true   
+            
+  - changeSet:
+      id: 0047.create_table_contest_translatables.4
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: language_id
+            indexName: idx_fkn54xq3ovh5d1vdawpqqidrmxm
+            tableName: contest_translatables
+  - changeSet:
+      id: 0047.create_table_contest_translatables.5
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: language_id
+            baseTableName: contest_translatables
+            constraintName: fkn54xq3ovh5d1vdawpqqidrmxm
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: languages
+            validate: true                     
+            
