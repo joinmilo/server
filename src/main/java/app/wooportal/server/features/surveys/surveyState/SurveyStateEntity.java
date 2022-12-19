@@ -1,6 +1,7 @@
 package app.wooportal.server.features.surveys.surveyState;
 
 import java.util.Set;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
@@ -25,9 +26,9 @@ public class SurveyStateEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
 
+  @Column(nullable = false)
   private String key;
 
   @OneToMany(mappedBy = "state", fetch = FetchType.LAZY)
   private Set<SurveyEntity> survey;
-
 }

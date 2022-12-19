@@ -2,6 +2,7 @@ package app.wooportal.server.features.articles.base;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -19,6 +20,7 @@ import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.media.base.MediaEntity;
 import app.wooportal.server.features.articles.articleCategories.ArticleCategoryEntity;
 import app.wooportal.server.features.articles.articleComments.ArticleCommentEntity;
+import app.wooportal.server.features.articles.articleRatings.ArticleRatingEntity;
 import app.wooportal.server.features.articles.articleVisitors.ArticleVisitorEntity;
 import app.wooportal.server.features.articles.publicAuthors.PublicAuthorEntity;
 import lombok.AccessLevel;
@@ -37,34 +39,37 @@ import lombok.Setter;
 public class ArticleEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
-
-  @ManyToOne(fetch = FetchType.LAZY)
-  private PublicAuthorEntity pulbicAuthor;
-
-  @ManyToOne(fetch = FetchType.LAZY)
-  private ArticleCategoryEntity category;
-
-  @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
-  private ArticleVisitorEntity articleVisitors;
-
-  @OneToMany(fetch = FetchType.LAZY, mappedBy = "article")
-  private ArticleCommentEntity articleComments;
-
-  private String seoDescription;
-
-  private String slug;
-
+  
   @Column(nullable = false)
   private Boolean approved;
 
+  private String seoDescription;
+  
+  private String slug;
+  
   @Column(nullable = false)
   private Boolean sponsored;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private MediaEntity cardImage;
-
+  
+  @ManyToOne(fetch = FetchType.LAZY)
+  private ArticleCategoryEntity category;
+  
+  @ManyToOne(fetch = FetchType.LAZY)
+  private PublicAuthorEntity pulbicAuthor;
+  
   @ManyToOne(fetch = FetchType.LAZY)
   private MediaEntity titleImage;
+
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "article")
+  private Set<ArticleCommentEntity> articleComments;
+
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "article")
+  private Set<ArticleRatingEntity> articleRating;
+  
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
+  private Set<ArticleVisitorEntity> articleVisitors;
 
   @ManyToMany(fetch = FetchType.LAZY)
   @JoinTable(name = "article_media", joinColumns = @JoinColumn(name = "article_id"),
@@ -72,5 +77,4 @@ public class ArticleEntity extends BaseEntity {
       uniqueConstraints = {@UniqueConstraint(columnNames = {"article_id", "media_id"})})
   @CollectionId(column = @Column(name = "id"), type = @Type(type = "uuid-char"), generator = "UUID")
   private List<MediaEntity> media = new ArrayList<>();
-
 }

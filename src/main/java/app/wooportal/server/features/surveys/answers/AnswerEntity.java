@@ -36,9 +36,11 @@ public class AnswerEntity extends BaseEntity {
   private static final long serialVersionUID = 1L;
 
   @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(nullable = false)
   private SurveyResultEntity result;
 
   @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(nullable = false)
   private QuestionEntity question;
 
   @ManyToMany(fetch = FetchType.LAZY)
@@ -47,6 +49,5 @@ public class AnswerEntity extends BaseEntity {
       uniqueConstraints = {@UniqueConstraint(columnNames = {"answer_id", "question_option_id"})})
   @CollectionId(column = @Column(name = "id"), type = @Type(type = "uuid-char"), generator = "UUID")
   private List<QuestionOptionEntity> selectedOptions = new ArrayList<>();
-  
   
 }

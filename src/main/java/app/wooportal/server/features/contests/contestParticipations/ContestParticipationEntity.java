@@ -1,13 +1,21 @@
 package app.wooportal.server.features.contests.contestParticipations;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+import org.hibernate.annotations.CollectionId;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 import app.wooportal.server.base.userContexts.base.UserContextEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.media.base.MediaEntity;
@@ -33,20 +41,23 @@ public class ContestParticipationEntity extends BaseEntity {
 
   @Column(nullable = false)
   private Boolean winner;
-
-  @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
-  private Set<ContestParticipationTranslatableEntity> translatable;
-
-  @OneToMany(fetch = FetchType.LAZY, mappedBy = "contestParticipation")
-  private Set<ContestVoteEntity> contestVotes;
-
+  
   @ManyToOne(fetch = FetchType.LAZY)
-  private MediaEntity mediaSubmissions;
+  private ContestEntity contest;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private UserContextEntity userContext;
 
-  @ManyToOne(fetch = FetchType.LAZY)
-  private ContestEntity contest;
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "contestParticipation")
+  private Set<ContestVoteEntity> contestVotes;
 
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
+  private Set<ContestParticipationTranslatableEntity> translatable;
+  
+  @ManyToMany(fetch = FetchType.LAZY)
+  @JoinTable(name = "contest_participation_media", joinColumns = @JoinColumn(name = "contest_participation_id"),
+      inverseJoinColumns = @JoinColumn(name = "media_id"),
+      uniqueConstraints = {@UniqueConstraint(columnNames = {"contest_participation_id", "media_id"})})
+  @CollectionId(column = @Column(name = "id"), type = @Type(type = "uuid-char"), generator = "UUID")
+  private List<MediaEntity> media = new ArrayList<>();
 }

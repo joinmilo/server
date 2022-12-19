@@ -28,30 +28,31 @@ public class AddressEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
 
+  @Column(nullable = false)
+  private String houseNumber;
+  
+  @Column(nullable = false)
+  private float latitude;
+  
+  @Column(nullable = false)
+  private float longitude;
+  
+  @Column(nullable = false)
+  private String place;
+  
+  @Column(nullable = false)
+  private String postalCode;
+  
+  @Column(nullable = false)
+  private String street;
+  
   @OneToMany(mappedBy = "address", fetch = FetchType.LAZY)
   private Set<EventEntity> events;
+  
+  @OneToMany(mappedBy = "address", fetch = FetchType.LAZY)
+  private Set<DealEntity> deals;
 
   @OneToMany(mappedBy = "address", fetch = FetchType.LAZY)
   private Set<OrganisationEntity> organisations;
 
-  @OneToMany(mappedBy = "address", fetch = FetchType.LAZY)
-  private Set<DealEntity> deals;
-
-  @Column(nullable = false)
-  private String houseNumber;
-
-  @Column(nullable = false)
-  private float latitude;
-
-  @Column(nullable = false)
-  private float longitude;
-
-  @Column(nullable = false)
-  private String place;
-
-  @Column(nullable = false)
-  private String postalCode;
-
-  @Column(nullable = false)
-  private String street;
 }

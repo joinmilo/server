@@ -1,5 +1,6 @@
 package app.wooportal.server.features.deals.translations;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
@@ -24,11 +25,12 @@ public class DealCategoryTranslatableEntity extends TranslatableEntity<EventEnti
 
   private static final long serialVersionUID = 1L;
 
+  @Column(nullable = false)
   private String name;
 
   @ManyToOne(fetch = FetchType.LAZY)
-  private EventCategoryEntity parent;
+  private LanguageEntity language;
 
   @ManyToOne(fetch = FetchType.LAZY)
-  private LanguageEntity language;
+  private EventCategoryEntity parent;
 }

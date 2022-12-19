@@ -1,0 +1,91 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+  - changeSet:
+      id: 0024.create_table_event_category_translatables.1
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: event_category_translatables_primary_key
+                  name: id
+                  type: CHAR(36)
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  name: created
+                  type: TIMESTAMP WITH TIME ZONE
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  name: modified
+                  type: TIMESTAMP WITH TIME ZONE
+              - column:
+                  constraints:
+                    nullable: false
+                  name: name
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: parent_id
+                  type: CHAR(36)         
+              - column:
+                  constraints:
+                    nullable: false
+                  name: language_id
+                  type: CHAR(36)                                                                               
+            tableName: event_category_translatables
+
+  - changeSet:
+      id: 0024.create_table_event_category_translatables.2
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: parent_id
+            indexName: idx_fkm5xk8jprkzreaf3grvq6fypd9
+            tableName: event_category_translatables
+  - changeSet:
+      id: 0024.create_table_event_category_translatables.3
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: parent_id
+            baseTableName: event_category_translatables
+            constraintName: fkm5xk8jprkzreaf3grvq6fypd9
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: event_categories
+            validate: true   
+            
+  - changeSet:
+      id: 0024.create_table_event_category_translatables.4
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: language_id
+            indexName: idx_fky3c54ibxb8tqo7olaik1k5hdx
+            tableName: event_category_translatables
+  - changeSet:
+      id: 0024.create_table_event_category_translatables.5
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: language_id
+            baseTableName: event_category_translatables
+            constraintName: fky3c54ibxb8tqo7olaik1k5hdx
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: languages
+            validate: true   
+            

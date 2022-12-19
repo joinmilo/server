@@ -1,0 +1,65 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+  - changeSet:
+    id: 0029.add_column_favorite_events.1
+    author: codeschluss
+    changes:
+    - addColumn:
+        columns:
+              - column:
+                  constraints:
+                    nullable: false
+                  name: event_id
+                  type: CHAR(36)  
+        tableName: user_contexts
+        
+  - changeSet:
+      id: 0029.add_column_favorite_events.2
+      author: codeschluss
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: event_id
+            indexName: idx_fkt0dawfxvo9je41nk5zw9a6p7q
+            tableName: favorite_events
+  - changeSet:
+      id: 0029.add_column_favorite_events.3
+      author: codeschluss
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: media_id
+            indexName: idx_fk9296ucsbtt4e5slrs2he8xbyn
+            tableName: favorite_events
+  - changeSet:
+      id: 0029.add_column_favorite_events.4
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: event_id
+            baseTableName: favorite_events
+            constraintName: fkt0dawfxvo9je41nk5zw9a6p7q
+            initiallyDeferred: false
+            onDelete: CASCADE
+            onUpdate: CASCADE
+            referencedColumnNames: id
+            referencedTableName: events
+            validate: true
+  - changeSet:
+      id: 0029.add_column_favorite_events.5
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: media_id
+            baseTableName: favorite_events
+            constraintName: fk9296ucsbtt4e5slrs2he8xbyn
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: CASCADE
+            onUpdate: CASCADE
+            referencedColumnNames: id
+            referencedTableName: media
+            validate: true         
+            

@@ -3,6 +3,7 @@ package app.wooportal.server.features.surveys.surveyResult;
 import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -28,12 +29,11 @@ public class SurveyResultEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
 
-  private Boolean accepted;
-
   @ManyToOne(fetch = FetchType.LAZY)
   private UserContextEntity userContext;
 
   @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(nullable = false)
   private SurveyEntity survey;
 
   @OneToMany(mappedBy = "result", fetch = FetchType.LAZY)

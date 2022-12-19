@@ -1,13 +1,15 @@
 package app.wooportal.server.features.forms.translations;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import app.wooportal.server.core.i18n.language.LanguageEntity;
 import app.wooportal.server.core.i18n.language.entities.TranslatableEntity;
 import app.wooportal.server.features.events.base.EventEntity;
-import app.wooportal.server.features.events.eventComments.EventCommentEntity;
+import app.wooportal.server.features.forms.userFormTemplate.UserFormTemplateEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,11 +26,14 @@ public class UserFormTemplateTranslatableEntity extends TranslatableEntity<Event
 
   private static final long serialVersionUID = 1L;
 
+  @Column(nullable = false)
   private String content;
 
   @ManyToOne(fetch = FetchType.LAZY)
-  private EventCommentEntity parent;
+  @JoinColumn(nullable = false)
+  private UserFormTemplateEntity parent;
 
   @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(nullable = false)
   private LanguageEntity language;
 }

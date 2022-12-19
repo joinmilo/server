@@ -7,6 +7,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import app.wooportal.server.base.cms.landingFeatures.LandingFeatureEntity;
+import app.wooportal.server.base.cms.menuItems.MenuItemEntity;
 import app.wooportal.server.base.cms.translations.FeatureTranslatableEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import lombok.AccessLevel;
@@ -30,6 +31,9 @@ public class FeatureEntity extends BaseEntity {
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "feature")
   private Set<LandingFeatureEntity> landingFeatures;
+
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "module")
+  private Set<MenuItemEntity> menuItem;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
   private Set<FeatureTranslatableEntity> translatable;

@@ -30,5 +30,4 @@ public class ContestVoteEntity extends BaseEntity {
 
   @ManyToOne(fetch = FetchType.LAZY)
   private UserContextEntity userContext;
-
 }

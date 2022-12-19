@@ -21,6 +21,7 @@ import app.wooportal.server.base.contact.base.ContactEntity;
 import app.wooportal.server.base.userContexts.base.UserContextEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.media.base.MediaEntity;
+import app.wooportal.server.features.deals.category.DealCategoryEntity;
 import app.wooportal.server.features.deals.dealVisitors.DealVisitorEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -42,11 +43,11 @@ public class DealEntity extends BaseEntity {
   private String seoDescription;
 
   private String slug;
+  
+  private double price;
 
   @Column(nullable = false)
   private Boolean sponsored;
-
-  private double price;
 
   @Column(nullable = false)
   private Boolean offer;
@@ -56,15 +57,23 @@ public class DealEntity extends BaseEntity {
 
   @ManyToOne(fetch = FetchType.LAZY)
   private AddressEntity address;
-
-  @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
-  private Set<DealVisitorEntity> dealVisitors;
-
+  
   @ManyToOne(fetch = FetchType.LAZY)
   private MediaEntity cardImage;
 
   @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(nullable = false)
+  private DealCategoryEntity category;
+  
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(nullable = false)
+  private ContactEntity contact;
+  
+  @ManyToOne(fetch = FetchType.LAZY)
   private MediaEntity titleImage;
+
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
+  private Set<DealVisitorEntity> dealVisitors;
 
   @ManyToMany(fetch = FetchType.LAZY)
   @JoinTable(name = "deal_media", joinColumns = @JoinColumn(name = "deal_id"),
@@ -72,7 +81,4 @@ public class DealEntity extends BaseEntity {
       uniqueConstraints = {@UniqueConstraint(columnNames = {"deal_id", "media_id"})})
   @CollectionId(column = @Column(name = "id"), type = @Type(type = "uuid-char"), generator = "UUID")
   private List<MediaEntity> media = new ArrayList<>();
-
-  @ManyToOne(fetch = FetchType.LAZY)
-  private ContactEntity contact;
 }

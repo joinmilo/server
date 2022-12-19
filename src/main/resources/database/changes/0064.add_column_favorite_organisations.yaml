@@ -1,0 +1,65 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+  - changeSet:
+    id: 0064.add_column_favorite_organisations.1
+    author: codeschluss
+    changes:
+    - addColumn:
+        columns:
+              - column:
+                  constraints:
+                    nullable: false
+                  name: organisation_id
+                  type: CHAR(36)  
+        tableName: user_contexts
+        
+  - changeSet:
+      id: 0064.add_column_favorite_organisations.2
+      author: codeschluss
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: organisation_id
+            indexName: idx_ijh7urzf90se2izu91v2qcc05
+            tableName: favorite_organisations
+  - changeSet:
+      id: 0064.add_column_favorite_organisations.3
+      author: codeschluss
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: media_id
+            indexName: idx_fkkwqc86ge3wwnjd6kb870uifot
+            tableName: favorite_organisations
+  - changeSet:
+      id: 0064.add_column_favorite_organisations.4
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: organisation_id
+            baseTableName: favorite_organisations
+            constraintName: fkijh7urzf90se2izu91v2qcc05
+            initiallyDeferred: false
+            onDelete: CASCADE
+            onUpdate: CASCADE
+            referencedColumnNames: id
+            referencedTableName: organisations
+            validate: true
+  - changeSet:
+      id: 0064.add_column_favorite_organisations.5
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: media_id
+            baseTableName: favorite_organisations
+            constraintName: fkkwqc86ge3wwnjd6kb870uifot
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: CASCADE
+            onUpdate: CASCADE
+            referencedColumnNames: id
+            referencedTableName: media
+            validate: true         
+            

@@ -1,0 +1,58 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+  - changeSet:
+      id: 0078.create_table_question_options.1
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: question_options_primary_key
+                  name: id
+                  type: CHAR(36)
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  name: created
+                  type: TIMESTAMP WITH TIME ZONE
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  name: modified
+                  type: TIMESTAMP WITH TIME ZONE
+              - column:
+                  constraints:
+                    nullable: false
+                  name: question_id
+                  type: CHAR(36)                                                                   
+            tableName: question_options
+
+  - changeSet:
+      id: 0078.create_table_question_options.2
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: question_id
+            indexName: idx_fk8l5040jfunx3nvrimk9iv928g
+            tableName: question_options
+  - changeSet:
+      id: 0078.create_table_question_options.3
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: question_id
+            baseTableName: question_options
+            constraintName: fk8l5040jfunx3nvrimk9iv928g
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: questions
+            validate: true                         
+          
+            

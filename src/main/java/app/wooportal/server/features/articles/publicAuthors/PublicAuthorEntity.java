@@ -8,8 +8,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import app.wooportal.server.core.base.BaseEntity;
-import app.wooportal.server.features.deals.base.DealEntity;
-import app.wooportal.server.features.organisations.base.OrganisationEntity;
+import app.wooportal.server.features.articles.base.ArticleEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -31,18 +30,10 @@ public class PublicAuthorEntity extends BaseEntity {
   private String email;
 
   @Column(nullable = false)
-  private String password;
-
-  private String first_name;
-
-  private String last_name;
+  private String name;
 
   private String phone;
 
-  @OneToMany(fetch = FetchType.LAZY, mappedBy = "contact")
-  private Set<OrganisationEntity> organisations;
-
-  @OneToMany(fetch = FetchType.LAZY, mappedBy = "contact")
-  private Set<DealEntity> deals;
-
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "pulbicAuthor")
+  private Set<ArticleEntity> articles;
 }

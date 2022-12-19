@@ -25,8 +25,8 @@ public class EventTargetGroupEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
 
-  private Boolean approved;
 
   @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
   private Set<EventTargetGroupTranslatableEntity> translateable;
+
 }

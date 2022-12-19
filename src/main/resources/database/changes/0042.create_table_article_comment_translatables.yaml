@@ -1,0 +1,93 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+  - changeSet:
+      id: 0042.create_table_article_comment_translatables.1
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: article_comment_translatables_primary_key
+                  name: id
+                  type: CHAR(36)
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  name: created
+                  type: TIMESTAMP WITH TIME ZONE
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  name: modified
+                  type: TIMESTAMP WITH TIME ZONE
+              - column:
+                  constraints:
+                    nullable: false
+                  name: content
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: parent_id
+                  type: CHAR(36)         
+              - column:
+                  constraints:
+                    nullable: false
+                  name: language_id
+                  type: CHAR(36)                                                                               
+            tableName: article_comment_translatables
+
+  - changeSet:
+      id: 0042.create_table_article_comment_translatables.2
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: parent_id
+            indexName: idx_fksudfb0vg8mjsxc90bqwu8x0nm
+            tableName: article_comment_translatables
+  - changeSet:
+      id: 0042.create_table_article_comment_translatables.3
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: parent_id
+            baseTableName: article_comment_translatables
+            constraintName: fksudfb0vg8mjsxc90bqwu8x0nm
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: article_comments
+            validate: true   
+            
+  - changeSet:
+      id: 0042.create_table_article_comment_translatables.4
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: language_id
+            indexName: idx_fks1re763sxvk7zx671j7pfwp3y
+            tableName: article_comment_translatables
+  - changeSet:
+      id: 0042.create_table_article_comment_translatables.5
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: language_id
+            baseTableName: article_comment_translatables
+            constraintName: fks1re763sxvk7zx671j7pfwp3y
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: languages
+            validate: true   
+
+                     
+            

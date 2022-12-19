@@ -4,6 +4,7 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -36,6 +37,7 @@ public class ArticleCommentEntity extends BaseEntity {
   private UserContextEntity userContext;
 
   @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(nullable = false)
   private ArticleEntity article;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")

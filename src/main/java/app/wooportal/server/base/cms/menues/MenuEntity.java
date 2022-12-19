@@ -26,11 +26,11 @@ public class MenuEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
 
-  @OneToMany(fetch = FetchType.LAZY, mappedBy = "subMenu")
-  private Set<MenuItemEntity> subMenuItems;
-
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
   private Set<MenuItemEntity> menuItems;
+
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "subMenu")
+  private Set<MenuItemEntity> subMenuItems;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
   private Set<MenuTranslatableEntity> translatable;

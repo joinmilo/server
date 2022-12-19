@@ -24,12 +24,14 @@ public class NotificationEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
 
+  @Column(nullable = false)
   private String content;
 
   @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(nullable = false, name = "user_id")
+  @JoinColumn(nullable = false)
   private UserEntity user;
 
+  @Column(nullable = false)
   private Boolean read;
 
   @Column(nullable = false)

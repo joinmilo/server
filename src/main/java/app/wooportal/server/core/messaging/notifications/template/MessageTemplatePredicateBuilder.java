@@ -14,11 +14,14 @@ public class MessageTemplatePredicateBuilder
 
   @Override
   public BooleanExpression freeSearch(String term) {
-    return query.name.likeIgnoreCase(term).or(query.id.likeIgnoreCase(term))
-        .or(query.definitions.any().name.likeIgnoreCase(term));
+    return query.name.likeIgnoreCase(term)
+        .or(query.id.likeIgnoreCase(term))
+        .or(query.definitions.any().name.likeIgnoreCase(term))
+        .or(query.translatables.any().content.likeIgnoreCase(term));
   }
 
   public BooleanExpression withName(String name) {
     return query.name.eq(name);
   }
+  
 }

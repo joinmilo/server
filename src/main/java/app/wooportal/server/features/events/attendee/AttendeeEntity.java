@@ -32,5 +32,4 @@ public class AttendeeEntity extends BaseEntity {
 
   @ManyToOne(fetch = FetchType.LAZY)
   private UserContextEntity userContext;
-
 }

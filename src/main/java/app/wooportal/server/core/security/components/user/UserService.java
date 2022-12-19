@@ -43,9 +43,7 @@ public class UserService extends DataService<UserEntity, UserPredicateBuilder> {
     this.mediaService = mediaService;
 
     addService("passwordResets", passwordResetService);
-    addService("profilePicture", mediaService);
     addService("subscriptions", subscriptionService);
-    addService("uploads", mediaService);
     addService("verifications", verificationService);
   }
 

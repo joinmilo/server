@@ -1,6 +1,7 @@
 package app.wooportal.server.features.contests.contestTypes;
 
 import java.util.Set;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
@@ -26,11 +27,12 @@ public class ContestTypeEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
 
+  @Column(nullable = false)
   private String key;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "type")
   private Set<ContestEntity> contests;
-  
+
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
   private Set<ContestTypeTranslatableEntity> translatable;
 }

@@ -3,6 +3,7 @@ package app.wooportal.server.base.cms.translations;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import app.wooportal.server.base.cms.pages.PageEntity;
@@ -32,8 +33,10 @@ public class PageTranslatableEntity extends TranslatableEntity<EventEntity> {
   private String content;
   
   @ManyToOne(fetch = FetchType.LAZY)
-  private PageEntity parent;
+  @JoinColumn(nullable = false)
+  private LanguageEntity language;
   
   @ManyToOne(fetch = FetchType.LAZY)
-  private LanguageEntity language;
+  @JoinColumn(nullable = false)
+  private PageEntity parent;
 }

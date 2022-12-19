@@ -33,5 +33,4 @@ public class EventCategoryEntity extends BaseEntity {
 
   @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
   private Set<EventCategoryTranslatableEntity> translateable;
-
 }

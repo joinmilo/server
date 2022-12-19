@@ -1,6 +1,7 @@
 package app.wooportal.server.features.organisations.organisationComments;
 
 import java.util.Set;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
@@ -27,10 +28,11 @@ public class OrganisationCommentEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
 
+  @Column(nullable = false)
+  private Boolean approved;
+
   @ManyToOne(fetch = FetchType.LAZY)
   private OrganisationEntity organisation;
-
-  private Boolean approved;
 
   @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
   private Set<OrganisationCommentTranslatableEntity> translateable;

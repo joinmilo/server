@@ -13,7 +13,6 @@ public class ChannelPredicateBuilder extends PredicateBuilder<QChannelEntity, Ch
 
   @Override
   public BooleanExpression freeSearch(String term) {
-    return query.name.likeIgnoreCase(term)
-        .or(query.notificationDefinitions.any().name.likeIgnoreCase(term));
+    return query.name.likeIgnoreCase(term);
   }
 }

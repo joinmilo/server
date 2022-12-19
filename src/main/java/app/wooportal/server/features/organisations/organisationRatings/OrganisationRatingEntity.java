@@ -1,5 +1,6 @@
 package app.wooportal.server.features.organisations.organisationRatings;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
@@ -25,11 +26,12 @@ public class OrganisationRatingEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
 
+  @Column(nullable = false)
+  private Integer score;
+
   @ManyToOne(fetch = FetchType.LAZY)
   private OrganisationEntity organisation;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private UserContextEntity userContext;
-  
-  private Integer score;
 }

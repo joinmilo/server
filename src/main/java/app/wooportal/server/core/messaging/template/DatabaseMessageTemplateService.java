@@ -23,13 +23,13 @@ public class DatabaseMessageTemplateService implements TemplateService {
 
   @Override
   public String createMessage(String templateName, Map<String, String> model) throws Exception {
-    var notificationTemplate =
+    var messageTemplate =
         service.readOne(service.singleQuery(service.getPredicate().withName(templateName)));
-    if (notificationTemplate.isEmpty()) {
+    if (messageTemplate.isEmpty()) {
       throw new IllegalArgumentException("Template with " + templateName + " does not exist");
     }
 
-    var message = notificationTemplate.get().getContent();
+    var message = messageTemplate.get().getContent();
     if (message != null && !message.isBlank()) {
 
       for (var entry : model.entrySet()) {
@@ -40,17 +40,15 @@ public class DatabaseMessageTemplateService implements TemplateService {
     return message;
   }
 
-  public Map<String, String> createMessageModel(
-      MessageDefinitionEntity notificationDef, Object entity) {
+  public Map<String, String> createMessageModel(MessageDefinitionEntity notificationDef,
+      Object entity) {
     var result = new HashMap<String, String>();
-    
-    if (entity != null 
-        && notificationDef != null
-        && notificationDef.getTemplate() != null
+
+    if (entity != null && notificationDef != null && notificationDef.getTemplate() != null
         && notificationDef.getTemplate().getContent() != null) {
       var matcher =
           Pattern.compile("\\$\\{(.*?)\\}").matcher(notificationDef.getTemplate().getContent());
-    
+
       while (matcher.find()) {
         var fields = Arrays.asList(matcher.group(1).split("\\."));
         var current = entity;

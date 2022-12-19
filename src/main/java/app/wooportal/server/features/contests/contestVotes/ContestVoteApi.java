@@ -39,7 +39,7 @@ public class ContestVoteApi extends CrudApi<ContestVoteEntity, ContestVoteServic
   }
 
   @Override
-  @GraphQLMutation(name = "saveContestTypes")
+  @GraphQLMutation(name = "saveContestVotes")
   @AdminPermission
   public List<ContestVoteEntity> saveAll(
       @GraphQLArgument(name = CrudApi.entities) List<ContestVoteEntity> entities) {
@@ -47,21 +47,21 @@ public class ContestVoteApi extends CrudApi<ContestVoteEntity, ContestVoteServic
   }
 
   @Override
-  @GraphQLMutation(name = "saveContestType")
+  @GraphQLMutation(name = "saveContestVote")
   public ContestVoteEntity saveOne(
       @GraphQLArgument(name = CrudApi.entity) ContestVoteEntity entity) {
     return super.saveOne(entity);
   }
-
+  
   @Override
-  @GraphQLMutation(name = "deleteContestTypes")
+  @GraphQLMutation(name = "deleteContestVotes")
   @AdminPermission
   public Boolean deleteAll(@GraphQLArgument(name = CrudApi.ids) List<String> ids) {
     return super.deleteAll(ids);
   }
 
   @Override
-  @GraphQLMutation(name = "deleteContestType")
+  @GraphQLMutation(name = "deleteContestVote")
   @AdminPermission
   public Boolean deleteOne(@GraphQLArgument(name = CrudApi.id) String id) {
     return super.deleteOne(id);

@@ -1,0 +1,249 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+  - changeSet:
+      id: 0059.create_table_deals.1
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: deals_primary_key
+                  name: id
+                  type: CHAR(36)
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  name: created
+                  type: TIMESTAMP WITH TIME ZONE
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  name: modified
+                  type: TIMESTAMP WITH TIME ZONE
+              - column:
+                  name: slug
+                  type: VARCHAR(255)  
+              - column:
+                  name: seo_description
+                  type: VARCHAR(255)                                   
+              - column:
+                  name: price
+                  type: DOUBLE
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueBoolean: false
+                  name: sponsored
+                  type: boolean        
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueBoolean: false
+                  name: offer
+                  type: boolean                               
+              - column:
+                  constraints:
+                    nullable: false
+                  name: creator_id
+                  type: CHAR(36)            
+              - column:
+                  constraints:
+                    nullable: false
+                  name: address_id
+                  type: CHAR(36)                   
+              - column:
+                  constraints:
+                    nullable: false
+                  name: contact_id
+                  type: CHAR(36)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: category_id
+                  type: CHAR(36)   
+              - column:
+                  constraints:
+                    nullable: false
+                  name: title_image_id
+                  type: CHAR(36)  
+              - column:
+                  constraints:
+                    nullable: false
+                  name: card_image_id
+                  type: CHAR(36)                                                                                                                                    
+            tableName: deals
+
+  - changeSet:
+      id: 0059.create_table_deals.2
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: address_id
+            indexName: idx_fk3dkjv9b6jbcip6ycvdciwhv78
+            tableName: deals
+  - changeSet:
+      id: 0059.create_table_deals.3
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: address_id
+            baseTableName: deals
+            constraintName: fk3dkjv9b6jbcip6ycvdciwhv78
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: SET NULL
+            referencedColumnNames: id
+            referencedTableName: addresss
+            validate: true   
+            
+  - changeSet:
+      id: 0059.create_table_deals.4
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: category_id
+            indexName: idx_fkv0epticilsssccj6ha3whrfms
+            tableName: deals
+  - changeSet:
+      id: 0059.create_table_deals.5
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: category_id
+            baseTableName: deals
+            constraintName: fkv0epticilsssccj6ha3whrfms
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: categories
+            validate: true           
+            
+  - changeSet:
+      id: 0059.create_table_deals.6
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: creator_id
+            indexName: idx_fkv7sbh1wsiw3net4z19to9ppzu
+            tableName: deals
+  - changeSet:
+      id: 0059.create_table_deals.7
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: creator_id
+            baseTableName: deals
+            constraintName: fkv7sbh1wsiw3net4z19to9ppzu
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: user_contexts
+            validate: true                                              
+            
+  - changeSet:
+      id: 0059.create_table_deals.8
+      author: codeschluss
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: deal_id
+            indexName: idx_fk919eqmz4y2cjuuv7o2vbk0ca6
+            tableName: deal_media
+  - changeSet:
+      id: 0059.create_table_deals.9
+      author: codeschluss
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: media_id
+            indexName: idx_fkbbzuht86jplhlvcm2fe5bcmi4
+            tableName: deal_media
+  - changeSet:
+      id: 0059.create_table_deals.10
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: deal_id
+            baseTableName: deal_media
+            constraintName: fk919eqmz4y2cjuuv7o2vbk0ca6
+            initiallyDeferred: false
+            onDelete: CASCADE
+            onUpdate: CASCADE
+            referencedColumnNames: id
+            referencedTableName: deals
+            validate: true
+  - changeSet:
+      id: 0059.create_table_deals.11
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: media_id
+            baseTableName: deal_media
+            constraintName: fkbbzuht86jplhlvcm2fe5bcmi4
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: CASCADE
+            onUpdate: CASCADE
+            referencedColumnNames: id
+            referencedTableName: media
+            validate: true            
+             
+  - changeSet:
+      id: 0059.create_table_deals.12
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: title_image_id
+            indexName: idx_fkn65k7hwckl05q4ka30ff7tcpc
+            tableName: deals
+  - changeSet:
+      id: 0059.create_table_deals.13
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: title_image_id
+            baseTableName: deals
+            constraintName: fkn65k7hwckl05q4ka30ff7tcpc
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: media
+            validate: true    
+
+  - changeSet:
+      id: 0059.create_table_deals.14
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: card_image_id
+            indexName: idx_fk3uw4qg2bbfww5t97lq7qu3xnt
+            tableName: deals
+  - changeSet:
+      id: 0059.create_table_deals.15
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: card_image_id
+            baseTableName: deals
+            constraintName: fk3uw4qg2bbfww5t97lq7qu3xnt
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: media
+            validate: true                 
+                      

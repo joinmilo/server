@@ -26,19 +26,18 @@ public class MemberEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
 
+  @Column(nullable = false)
+  private Boolean approved;
+  
+  @Column(nullable = false)
+  private Boolean admin;
+  
+  @Column(nullable = false)
+  private Boolean isPublic;
+
   @ManyToOne(fetch = FetchType.LAZY)
   private OrganisationEntity organisation;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private UserContextEntity user;
-
-  @Column(nullable = false)
-  private Boolean approved;
-
-  @Column(nullable = false)
-  private Boolean admin;
-
-  @Column(nullable = false)
-  private Boolean isPublic;
-
 }

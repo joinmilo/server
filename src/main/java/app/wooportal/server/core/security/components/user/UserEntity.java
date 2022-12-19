@@ -23,8 +23,6 @@ import app.wooportal.server.core.push.subscription.SubscriptionEntity;
 import app.wooportal.server.core.security.components.role.RoleEntity;
 import app.wooportal.server.core.security.components.user.emailVerification.VerificationEntity;
 import app.wooportal.server.core.security.components.user.passwordReset.PasswordResetEntity;
-import app.wooportal.server.features.feedbacks.comment.CommentEntity;
-import app.wooportal.server.features.feedbacks.rating.RatingEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -60,12 +58,6 @@ public class UserEntity extends BaseEntity {
 
   @Column(unique = true)
   private String phone;
-
-  @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-  private Set<RatingEntity> rating;
-
-  @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-  private Set<CommentEntity> feedback;
 
   @ManyToMany(fetch = FetchType.LAZY)
   @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),

@@ -1,0 +1,39 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+  - changeSet:
+    id: 0065.add_column_organisation_to_events.1
+    author: codeschluss
+    changes:
+    - addColumn:
+        columns:
+              - column:
+                  constraints:
+                    nullable: false
+                  name: organisation_id
+                  type: CHAR(36)  
+        tableName: events
+        
+  - changeSet:
+      id: 0065.add_column_organisation_to_events.2
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: organisation_id
+            indexName: idx_fk4n02dx9mhd9xp68ir9mlpee2g
+            tableName: events
+  - changeSet:
+      id: 0065.add_column_organisation_to_events.3
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: organisation_id
+            baseTableName: events
+            constraintName: fk4n02dx9mhd9xp68ir9mlpee2g
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: organisations
+            validate: true          
+            
