@@ -1,9 +1,9 @@
 package app.wooportal.server.base.cms.landings;
 
 import java.util.Set;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -32,7 +32,7 @@ public class LandingEntity extends BaseEntity {
   private String url;
 
   @ManyToOne(fetch = FetchType.LAZY)
-  @Column(nullable = false)
+  @JoinColumn(nullable = false)
   private MediaEntity titleImage;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "landing")
