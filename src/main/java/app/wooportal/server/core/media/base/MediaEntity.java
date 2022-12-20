@@ -11,11 +11,11 @@ import javax.persistence.Transient;
 import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import app.wooportal.server.base.cms.landings.LandingEntity;
 import app.wooportal.server.base.cms.pages.PageEntity;
 import app.wooportal.server.base.userContexts.base.UserContextEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.features.articles.base.ArticleEntity;
-import app.wooportal.server.features.contests.contestParticipations.ContestParticipationEntity;
 import app.wooportal.server.features.events.base.EventEntity;
 import app.wooportal.server.features.organisations.base.OrganisationEntity;
 import lombok.AccessLevel;
@@ -73,4 +73,7 @@ public class MediaEntity extends BaseEntity {
 
   @OneToMany(mappedBy = "titleImage", fetch = FetchType.LAZY)
   private Set<PageEntity> pageTitleImages;
+
+  @OneToMany(mappedBy = "titleImage", fetch = FetchType.LAZY)
+  private Set<LandingEntity> landingTitleImages;
 }
