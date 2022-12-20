@@ -41,6 +41,7 @@
 		<jakarta.xml>4.0.0</jakarta.xml>
 		<java.version>17</java.version>
 		<jsoup.version>1.14.3</jsoup.version>
+		<maven-model.version>3.8.6</maven-model.version>
 		<oauth.version>3.8.1</oauth.version>
 		<openhtmltopdf.version>1.0.10</openhtmltopdf.version>
 		<twelvemonkeys.imageio>3.5</twelvemonkeys.imageio>
@@ -123,6 +124,11 @@
 			<version>${graphql-starter.version}</version>
 		</dependency>
 		<dependency>
+			<groupId>org.apache.maven</groupId>
+			<artifactId>maven-model</artifactId>
+			<version>${maven-model.version}</version>
+		</dependency>
+		<dependency>
 			<groupId>org.imgscalr</groupId>
 			<artifactId>imgscalr-lib</artifactId>
 			<version>${imgscalr.version}</version>
@@ -194,7 +200,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-websocket</artifactId>
 		</dependency>
-		
+
 		<!--
 			Please do not reorder the following sections.
 			It will throw an error because of different XML bind usages.
@@ -226,7 +232,7 @@
 			<artifactId>docx4j-JAXB-ReferenceImpl</artifactId>
 			<version>${docx4j.version}</version>
 		</dependency>
-		
+
 	</dependencies>
 	<build>
 		<plugins>
