@@ -20,8 +20,8 @@ import lombok.Setter;
 public class ThemeVariableEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
-
+  
   private String key;
-
+  
   private String value;
 }
