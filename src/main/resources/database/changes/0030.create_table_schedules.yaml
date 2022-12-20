@@ -2,6 +2,7 @@ databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
       id: 0030.create_table_schedules.1
+      author: codeschluss
       changes:
         - createTable:
             columns:
@@ -43,6 +44,7 @@ databaseChangeLog:
           
   - changeSet:
       id: 0030.create_table_schedules.2
+      author: codeschluss
       changes:
         - createIndex:
             columns:
@@ -52,6 +54,7 @@ databaseChangeLog:
             tableName: schedules
   - changeSet:
       id: 0030.create_table_schedules.3
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: event_id

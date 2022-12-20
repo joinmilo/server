@@ -2,6 +2,7 @@ databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
       id: 0059.create_table_deals.1
+      author: codeschluss
       changes:
         - createTable:
             columns:
@@ -74,35 +75,38 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                   name: card_image_id
-                  type: CHAR(36)                                                                                                                                    
+                  type: CHAR(36)                                                                                                                                   
             tableName: deals
 
   - changeSet:
       id: 0059.create_table_deals.2
+      author: codeschluss
       changes:
         - createIndex:
             columns:
               - column:
                   name: address_id
-            indexName: idx_fk3dkjv9b6jbcip6ycvdciwhv78
+            indexName: idx_fk9dxavfut1kzmhtsqots8p3uk6
             tableName: deals
   - changeSet:
       id: 0059.create_table_deals.3
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: address_id
             baseTableName: deals
-            constraintName: fk3dkjv9b6jbcip6ycvdciwhv78
+            constraintName: fk9dxavfut1kzmhtsqots8p3uk6
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE
             onDelete: SET NULL
             referencedColumnNames: id
-            referencedTableName: addresss
+            referencedTableName: addresses
             validate: true   
             
   - changeSet:
       id: 0059.create_table_deals.4
+      author: codeschluss
       changes:
         - createIndex:
             columns:
@@ -112,6 +116,7 @@ databaseChangeLog:
             tableName: deals
   - changeSet:
       id: 0059.create_table_deals.5
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: category_id
@@ -122,11 +127,12 @@ databaseChangeLog:
             onUpdate: CASCADE
             onDelete: CASCADE
             referencedColumnNames: id
-            referencedTableName: categories
+            referencedTableName: deal_categories
             validate: true           
             
   - changeSet:
       id: 0059.create_table_deals.6
+      author: codeschluss
       changes:
         - createIndex:
             columns:
@@ -136,6 +142,7 @@ databaseChangeLog:
             tableName: deals
   - changeSet:
       id: 0059.create_table_deals.7
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: creator_id
@@ -148,9 +155,34 @@ databaseChangeLog:
             referencedColumnNames: id
             referencedTableName: user_contexts
             validate: true                                              
-            
+          
   - changeSet:
       id: 0059.create_table_deals.8
+      author: codeschluss
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                  name: deal_id
+                  type: CHAR(36)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: media_id
+                  type: CHAR(36)                 
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: deal_media_primary_key
+                  name: id
+                  type: CHAR(36)
+            tableName: deal_media
+                        
+  - changeSet:
+      id: 0059.create_table_deals.9
       author: codeschluss
       changes:
         - createIndex:
@@ -160,7 +192,7 @@ databaseChangeLog:
             indexName: idx_fk919eqmz4y2cjuuv7o2vbk0ca6
             tableName: deal_media
   - changeSet:
-      id: 0059.create_table_deals.9
+      id: 0059.create_table_deals.10
       author: codeschluss
       changes:
         - createIndex:
@@ -170,7 +202,7 @@ databaseChangeLog:
             indexName: idx_fkbbzuht86jplhlvcm2fe5bcmi4
             tableName: deal_media
   - changeSet:
-      id: 0059.create_table_deals.10
+      id: 0059.create_table_deals.11
       author: codeschluss
       changes:
         - addForeignKeyConstraint:
@@ -184,7 +216,7 @@ databaseChangeLog:
             referencedTableName: deals
             validate: true
   - changeSet:
-      id: 0059.create_table_deals.11
+      id: 0059.create_table_deals.12
       author: codeschluss
       changes:
         - addForeignKeyConstraint:
@@ -200,7 +232,8 @@ databaseChangeLog:
             validate: true            
              
   - changeSet:
-      id: 0059.create_table_deals.12
+      id: 0059.create_table_deals.13
+      author: codeschluss
       changes:
         - createIndex:
             columns:
@@ -209,7 +242,8 @@ databaseChangeLog:
             indexName: idx_fkn65k7hwckl05q4ka30ff7tcpc
             tableName: deals
   - changeSet:
-      id: 0059.create_table_deals.13
+      id: 0059.create_table_deals.14
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: title_image_id
@@ -224,7 +258,8 @@ databaseChangeLog:
             validate: true    
 
   - changeSet:
-      id: 0059.create_table_deals.14
+      id: 0059.create_table_deals.15
+      author: codeschluss
       changes:
         - createIndex:
             columns:
@@ -233,7 +268,8 @@ databaseChangeLog:
             indexName: idx_fk3uw4qg2bbfww5t97lq7qu3xnt
             tableName: deals
   - changeSet:
-      id: 0059.create_table_deals.15
+      id: 0059.create_table_deals.16
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: card_image_id

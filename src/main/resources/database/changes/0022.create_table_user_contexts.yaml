@@ -2,6 +2,7 @@ databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
       id: 0022.create_table_user_contexts.1
+      author: codeschluss
       changes:
         - createTable:
             columns:
@@ -48,6 +49,7 @@ databaseChangeLog:
 
   - changeSet:
       id: 0022.create_table_user_contexts.2
+      author: codeschluss
       changes:
         - createIndex:
             columns:
@@ -57,6 +59,7 @@ databaseChangeLog:
             tableName: user_contexts
   - changeSet:
       id: 0022.create_table_user_contexts.3
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: user_id
@@ -72,6 +75,7 @@ databaseChangeLog:
             
   - changeSet:
       id: 0022.create_table_user_contexts.4
+      author: codeschluss
       changes:
         - createIndex:
             columns:
@@ -81,6 +85,7 @@ databaseChangeLog:
             tableName: user_contexts
   - changeSet:
       id: 0022.create_table_user_contexts.5
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: address_id
@@ -96,6 +101,7 @@ databaseChangeLog:
 
   - changeSet:
       id: 0022.create_table_user_contexts.6
+      author: codeschluss
       changes:
         - createIndex:
             columns:
@@ -105,6 +111,7 @@ databaseChangeLog:
             tableName: user_contexts
   - changeSet:
       id: 0022.create_table_user_contexts.7
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: title_image_id
@@ -120,6 +127,7 @@ databaseChangeLog:
             
   - changeSet:
       id: 0022.create_table_user_contexts.8
+      author: codeschluss
       changes:
         - createIndex:
             columns:
@@ -129,6 +137,7 @@ databaseChangeLog:
             tableName: user_contexts
   - changeSet:
       id: 0022.create_table_user_contexts.9
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: profile_picture_id
@@ -141,9 +150,34 @@ databaseChangeLog:
             referencedColumnNames: id
             referencedTableName: media
             validate: true                 
-                            
+               
   - changeSet:
       id: 0022.create_table_user_contexts.10
+      author: codeschluss
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                  name: user_context_id
+                  type: CHAR(36)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: contact_id
+                  type: CHAR(36)                 
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: user_context_contacts_primary_key
+                  name: id
+                  type: CHAR(36)
+            tableName: user_context_contacts
+                                        
+  - changeSet:
+      id: 0022.create_table_user_contexts.11
       author: codeschluss
       changes:
         - createIndex:
@@ -153,7 +187,7 @@ databaseChangeLog:
             indexName: idx_fk07ud268l6cj9fqhpp4b5509fx
             tableName: user_context_contacts
   - changeSet:
-      id: 0022.create_table_user_contexts.11
+      id: 0022.create_table_user_contexts.12
       author: codeschluss
       changes:
         - createIndex:
@@ -163,7 +197,7 @@ databaseChangeLog:
             indexName: idx_fkyo64c3at95blgd74ae8de43go
             tableName: user_context_contacts
   - changeSet:
-      id: 0022.create_table_user_contexts.12
+      id: 0022.create_table_user_contexts.13
       author: codeschluss
       changes:
         - addForeignKeyConstraint:
@@ -177,7 +211,7 @@ databaseChangeLog:
             referencedTableName: user_contexts
             validate: true
   - changeSet:
-      id: 0022.create_table_user_contexts.13
+      id: 0022.create_table_user_contexts.14
       author: codeschluss
       changes:
         - addForeignKeyConstraint:

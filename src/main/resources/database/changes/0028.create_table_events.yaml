@@ -2,6 +2,7 @@ databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
       id: 0028.create_table_events.1
+      author: codeschluss
       changes:
         - createTable:
             columns:
@@ -66,11 +67,17 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                   name: card_image_id
-                  type: CHAR(36)                                                                                                                                    
+                  type: CHAR(36)   
+              - column:
+                  constraints:
+                    nullable: false
+                  name: event_target_group_id
+                  type: CHAR(36)                                                                                                                                                      
             tableName: events
 
   - changeSet:
       id: 0028.create_table_events.2
+      author: codeschluss
       changes:
         - createIndex:
             columns:
@@ -80,6 +87,7 @@ databaseChangeLog:
             tableName: events
   - changeSet:
       id: 0028.create_table_events.3
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: attendee_configuration_id
@@ -95,6 +103,7 @@ databaseChangeLog:
             
   - changeSet:
       id: 0028.create_table_events.4
+      author: codeschluss
       changes:
         - createIndex:
             columns:
@@ -104,6 +113,7 @@ databaseChangeLog:
             tableName: events
   - changeSet:
       id: 0028.create_table_events.5
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: event_target_group_id
@@ -119,6 +129,7 @@ databaseChangeLog:
             
   - changeSet:
       id: 0028.create_table_events.6
+      author: codeschluss
       changes:
         - createIndex:
             columns:
@@ -128,6 +139,7 @@ databaseChangeLog:
             tableName: events
   - changeSet:
       id: 0028.create_table_events.7
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: creator_id
@@ -145,12 +157,27 @@ databaseChangeLog:
       id: 0028.create_table_events.8
       author: codeschluss
       changes:
-        - createIndex:
+        - createTable:
             columns:
               - column:
+                  constraints:
+                    nullable: false
                   name: event_id
-            indexName: idx_fkvaafgc8z9cnl0jldlw0okqx5v
+                  type: CHAR(36)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: event_target_groups_id
+                  type: CHAR(36)                 
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: event_event_target_groups_primary_key
+                  name: id
+                  type: CHAR(36)
             tableName: event_event_target_groups
+            
   - changeSet:
       id: 0028.create_table_events.9
       author: codeschluss
@@ -158,17 +185,27 @@ databaseChangeLog:
         - createIndex:
             columns:
               - column:
-                  name: event_target_groups_id
-            indexName: idx_fk2zgh1jd6ssplkz5ktj41nzrso
+                  name: event_id
+            indexName: idx_fkqim1h8yerjyj1ho6uqdifrmuy
             tableName: event_event_target_groups
   - changeSet:
       id: 0028.create_table_events.10
       author: codeschluss
       changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: event_target_groups_id
+            indexName: idx_fkrl1ooilylvoitoc44ukyb6dbq
+            tableName: event_event_target_groups
+  - changeSet:
+      id: 0028.create_table_events.11
+      author: codeschluss
+      changes:
         - addForeignKeyConstraint:
             baseColumnNames: event_id
             baseTableName: event_event_target_groups
-            constraintName: fkvaafgc8z9cnl0jldlw0okqx5v
+            constraintName: fkqim1h8yerjyj1ho6uqdifrmuy
             initiallyDeferred: false
             onDelete: CASCADE
             onUpdate: CASCADE
@@ -176,13 +213,13 @@ databaseChangeLog:
             referencedTableName: events
             validate: true
   - changeSet:
-      id: 0028.create_table_events.11
+      id: 0028.create_table_events.12
       author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: event_target_groups_id
             baseTableName: event_event_target_groups
-            constraintName: fk2zgh1jd6ssplkz5ktj41nzrso
+            constraintName: fkrl1ooilylvoitoc44ukyb6dbq
             deferrable: false
             initiallyDeferred: false
             onDelete: CASCADE
@@ -190,9 +227,34 @@ databaseChangeLog:
             referencedColumnNames: id
             referencedTableName: event_target_groups
             validate: true           
-            
+           
   - changeSet:
-      id: 0028.create_table_events.12
+      id: 0028.create_table_events.13
+      author: codeschluss
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                  name: event_id
+                  type: CHAR(36)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: media_id
+                  type: CHAR(36)                 
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: event_media_primary_key
+                  name: id
+                  type: CHAR(36)
+            tableName: event_media
+                        
+  - changeSet:
+      id: 0028.create_table_events.14
       author: codeschluss
       changes:
         - createIndex:
@@ -202,7 +264,7 @@ databaseChangeLog:
             indexName: idx_fklputakfukm015kmec9e72mz0i
             tableName: event_media
   - changeSet:
-      id: 0028.create_table_events.13
+      id: 0028.create_table_events.15
       author: codeschluss
       changes:
         - createIndex:
@@ -212,7 +274,7 @@ databaseChangeLog:
             indexName: idx_fkp2lvh6q1bercpfzbegacla0xg
             tableName: event_media
   - changeSet:
-      id: 0028.create_table_events.14
+      id: 0028.create_table_events.16
       author: codeschluss
       changes:
         - addForeignKeyConstraint:
@@ -226,7 +288,7 @@ databaseChangeLog:
             referencedTableName: events
             validate: true
   - changeSet:
-      id: 0028.create_table_events.15
+      id: 0028.create_table_events.17
       author: codeschluss
       changes:
         - addForeignKeyConstraint:
@@ -242,7 +304,8 @@ databaseChangeLog:
             validate: true            
              
   - changeSet:
-      id: 0028.create_table_events.16
+      id: 0028.create_table_events.18
+      author: codeschluss
       changes:
         - createIndex:
             columns:
@@ -251,7 +314,8 @@ databaseChangeLog:
             indexName: idx_fkad2vanqc58lrydev4c71lssb1
             tableName: events
   - changeSet:
-      id: 0028.create_table_events.17
+      id: 0028.create_table_events.19
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: title_image_id
@@ -266,7 +330,8 @@ databaseChangeLog:
             validate: true    
 
   - changeSet:
-      id: 0028.create_table_events.18
+      id: 0028.create_table_events.20
+      author: codeschluss
       changes:
         - createIndex:
             columns:
@@ -275,7 +340,8 @@ databaseChangeLog:
             indexName: idx_fka9nzq41iz2negn1ipddsrtarq
             tableName: events
   - changeSet:
-      id: 0028.create_table_events.19
+      id: 0028.create_table_events.21
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: card_image_id

@@ -2,6 +2,7 @@ databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
       id: 0077.create_table_survey_results.1
+      author: codeschluss
       changes:
         - createTable:
             columns:
@@ -38,18 +39,20 @@ databaseChangeLog:
 
   - changeSet:
       id: 0077.create_table_survey_results.2
+      author: codeschluss
       changes:
         - createIndex:
             columns:
               - column:
-                  name: users_context_id
+                  name: user_context_id
             indexName: idx_fkjaoph4yxcz9c7u1t2ma0ejxpt
             tableName: survey_results
   - changeSet:
       id: 0077.create_table_survey_results.3
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
-            baseColumnNames: users_context_id
+            baseColumnNames: user_context_id
             baseTableName: survey_results
             constraintName: fkjaoph4yxcz9c7u1t2ma0ejxpt
             deferrable: false
@@ -57,12 +60,12 @@ databaseChangeLog:
             onUpdate: CASCADE
             onDelete: CASCADE
             referencedColumnNames: id
-            referencedTableName: users_contexts
+            referencedTableName: user_contexts
             validate: true                         
           
-
   - changeSet:
       id: 0077.create_table_survey_results.4
+      author: codeschluss
       changes:
         - createIndex:
             columns:
@@ -72,6 +75,7 @@ databaseChangeLog:
             tableName: survey_results
   - changeSet:
       id: 0077.create_table_survey_results.5
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: survey_id

@@ -2,6 +2,7 @@ databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
       id: 0069.create_table_organisation_comments.1
+      author: codeschluss
       changes:
         - createTable:
             columns:
@@ -44,6 +45,7 @@ databaseChangeLog:
 
   - changeSet:
       id: 0069.create_table_organisation_comments.2
+      author: codeschluss
       changes:
         - createIndex:
             columns:
@@ -53,6 +55,7 @@ databaseChangeLog:
             tableName: organisation_comments
   - changeSet:
       id: 0069.create_table_organisation_comments.3
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: user_context_id
@@ -68,6 +71,7 @@ databaseChangeLog:
 
   - changeSet:
       id: 0069.create_table_organisation_comments.4
+      author: codeschluss
       changes:
         - createIndex:
             columns:
@@ -77,6 +81,7 @@ databaseChangeLog:
             tableName: organisation_comments
   - changeSet:
       id: 0069.create_table_organisation_comments.5
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: organisation_id

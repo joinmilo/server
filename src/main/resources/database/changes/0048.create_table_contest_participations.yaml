@@ -2,6 +2,7 @@ databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
       id: 0048.create_table_contest_participations.1
+      author: codeschluss
       changes:
         - createTable:
             columns:
@@ -34,25 +35,32 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                   name: contest_id
-                  type: CHAR(36)                                                                   
+                  type: CHAR(36)    
+              - column:
+                  constraints:
+                    nullable: false
+                  name: user_context_id
+                  type: CHAR(36)                                                                                      
             tableName: contest_participations
 
   - changeSet:
       id: 0048.create_table_contest_participations.2
+      author: codeschluss
       changes:
         - createIndex:
             columns:
               - column:
                   name: contest_id
-            indexName: idx_fk9hrrwt9o60ujkee48n2l7ruod
+            indexName: idx_fkixl8yfbkk5050la5m2420q78k
             tableName: contest_participations
   - changeSet:
       id: 0048.create_table_contest_participations.3
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: contest_id
             baseTableName: contest_participations
-            constraintName: fk9hrrwt9o60ujkee48n2l7ruod
+            constraintName: fkixl8yfbkk5050la5m2420q78k
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE
@@ -63,20 +71,22 @@ databaseChangeLog:
 
   - changeSet:
       id: 0048.create_table_contest_participations.4
+      author: codeschluss
       changes:
         - createIndex:
             columns:
               - column:
                   name: user_context_id
-            indexName: idx_fk9hrrwt9o60ujkee48n2l7ruod
+            indexName: idx_fk3ovt1ab0cxma1rpmtniqgpj70
             tableName: contest_participations
   - changeSet:
       id: 0048.create_table_contest_participations.5
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: user_context_id
             baseTableName: contest_participations
-            constraintName: fk9hrrwt9o60ujkee48n2l7ruod
+            constraintName: fk3ovt1ab0cxma1rpmtniqgpj70
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE
@@ -84,9 +94,34 @@ databaseChangeLog:
             referencedColumnNames: id
             referencedTableName: user_contexts
             validate: true                         
-                    
+
   - changeSet:
       id: 0048.create_table_articles.6
+      author: codeschluss
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                  name: contest_participation_id
+                  type: CHAR(36)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: media_id
+                  type: CHAR(36)                 
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: contest_participation_media_primary_key
+                  name: id
+                  type: CHAR(36)
+            tableName: contest_participation_media
+                                
+  - changeSet:
+      id: 0048.create_table_articles.7
       author: codeschluss
       changes:
         - createIndex:
@@ -96,7 +131,7 @@ databaseChangeLog:
             indexName: idx_fku3z46shnlmufghsk8kh6nxoir
             tableName: contest_participation_media
   - changeSet:
-      id: 0048.create_table_articles.7
+      id: 0048.create_table_articles.8
       author: codeschluss
       changes:
         - createIndex:
@@ -106,7 +141,7 @@ databaseChangeLog:
             indexName: idx_fktxl9ua2kdvu84t1q5i7zxlvnn
             tableName: contest_participation_media
   - changeSet:
-      id: 0048.create_table_articles.8
+      id: 0048.create_table_articles.9
       author: codeschluss
       changes:
         - addForeignKeyConstraint:
@@ -120,7 +155,7 @@ databaseChangeLog:
             referencedTableName: contest_participations
             validate: true
   - changeSet:
-      id: 0048.create_table_articles.9
+      id: 0048.create_table_articles.10
       author: codeschluss
       changes:
         - addForeignKeyConstraint:

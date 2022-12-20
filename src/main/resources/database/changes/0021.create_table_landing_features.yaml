@@ -2,6 +2,7 @@ databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
       id: 0021.create_table_landing_features.1
+      author: codeschluss
       changes:
         - createTable:
             columns:
@@ -43,6 +44,7 @@ databaseChangeLog:
 
   - changeSet:
       id: 0021.create_table_landing_features.2
+      author: codeschluss
       changes:
         - createIndex:
             columns:
@@ -52,6 +54,7 @@ databaseChangeLog:
             tableName: landing_features
   - changeSet:
       id: 0021.create_table_landing_features.3
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: feature_id
@@ -67,6 +70,7 @@ databaseChangeLog:
 
   - changeSet:
       id: 0021.create_table_landing_features.4
+      author: codeschluss
       changes:
         - createIndex:
             columns:
@@ -76,6 +80,7 @@ databaseChangeLog:
             tableName: landing_features
   - changeSet:
       id: 0021.create_table_landing_features.5
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: landing_id

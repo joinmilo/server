@@ -1,17 +1,29 @@
 databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
-    id: 0029.add_column_favorite_events.1
-    author: codeschluss
-    changes:
-    - addColumn:
-        columns:
+      id: 0029.add_column_favorite_events.1
+      author: codeschluss
+      changes:
+        - createTable:
+            columns:
               - column:
                   constraints:
                     nullable: false
                   name: event_id
-                  type: CHAR(36)  
-        tableName: user_contexts
+                  type: CHAR(36)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: user_context_id
+                  type: CHAR(36)                 
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: favorite_events_primary_key
+                  name: id
+                  type: CHAR(36)
+            tableName: favorite_events
         
   - changeSet:
       id: 0029.add_column_favorite_events.2
@@ -30,7 +42,7 @@ databaseChangeLog:
         - createIndex:
             columns:
               - column:
-                  name: media_id
+                  name: user_context_id
             indexName: idx_fk9296ucsbtt4e5slrs2he8xbyn
             tableName: favorite_events
   - changeSet:
@@ -52,7 +64,7 @@ databaseChangeLog:
       author: codeschluss
       changes:
         - addForeignKeyConstraint:
-            baseColumnNames: media_id
+            baseColumnNames: user_context_id
             baseTableName: favorite_events
             constraintName: fk9296ucsbtt4e5slrs2he8xbyn
             deferrable: false
@@ -60,6 +72,6 @@ databaseChangeLog:
             onDelete: CASCADE
             onUpdate: CASCADE
             referencedColumnNames: id
-            referencedTableName: media
+            referencedTableName: user_contexts
             validate: true         
             

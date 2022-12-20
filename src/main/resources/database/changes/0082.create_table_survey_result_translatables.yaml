@@ -2,6 +2,7 @@ databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
       id: 0082.create_table_survey_result_translatables.1
+      author: codeschluss
       changes:
         - createTable:
             columns:
@@ -43,6 +44,7 @@ databaseChangeLog:
 
   - changeSet:
       id: 0082.create_table_survey_result_translatables.2
+      author: codeschluss
       changes:
         - createIndex:
             columns:
@@ -52,6 +54,7 @@ databaseChangeLog:
             tableName: survey_result_translatables
   - changeSet:
       id: 0082.create_table_survey_result_translatables.3
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: parent_id
@@ -67,6 +70,7 @@ databaseChangeLog:
             
   - changeSet:
       id: 0082.create_table_survey_result_translatables.4
+      author: codeschluss
       changes:
         - createIndex:
             columns:
@@ -76,6 +80,7 @@ databaseChangeLog:
             tableName: survey_result_translatables
   - changeSet:
       id: 0082.create_table_survey_result_translatables.5
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: language_id

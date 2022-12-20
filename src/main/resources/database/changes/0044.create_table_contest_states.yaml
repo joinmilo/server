@@ -2,6 +2,7 @@ databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
       id: 0044.create_table_contest_states.1
+      author: codeschluss
       changes:
         - createTable:
             columns:

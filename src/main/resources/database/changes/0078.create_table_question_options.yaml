@@ -2,6 +2,7 @@ databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
       id: 0078.create_table_question_options.1
+      author: codeschluss
       changes:
         - createTable:
             columns:
@@ -33,6 +34,7 @@ databaseChangeLog:
 
   - changeSet:
       id: 0078.create_table_question_options.2
+      author: codeschluss
       changes:
         - createIndex:
             columns:
@@ -42,6 +44,7 @@ databaseChangeLog:
             tableName: question_options
   - changeSet:
       id: 0078.create_table_question_options.3
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: question_id

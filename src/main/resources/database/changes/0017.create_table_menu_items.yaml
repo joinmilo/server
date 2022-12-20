@@ -2,6 +2,7 @@ databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
       id: 0017.create_table_menu_items.1
+      author: codeschluss
       changes:
         - createTable:
             columns:
@@ -47,6 +48,7 @@ databaseChangeLog:
 
   - changeSet:
       id: 0017.create_table_menu_items.2
+      author: codeschluss
       changes:
         - createIndex:
             columns:
@@ -56,6 +58,7 @@ databaseChangeLog:
             tableName: menu_items
   - changeSet:
       id: 0017.create_table_menu_items.3
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: parent_id
@@ -71,6 +74,7 @@ databaseChangeLog:
             
   - changeSet:
       id: 0017.create_table_menu_items.4
+      author: codeschluss
       changes:
         - createIndex:
             columns:
@@ -80,6 +84,7 @@ databaseChangeLog:
             tableName: menu_items
   - changeSet:
       id: 0017.create_table_menu_items.5
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: sub_menu_id
@@ -95,6 +100,7 @@ databaseChangeLog:
             
   - changeSet:
       id: 0017.create_table_menu_items.6
+      author: codeschluss
       changes:
         - createIndex:
             columns:
@@ -104,6 +110,7 @@ databaseChangeLog:
             tableName: menu_items
   - changeSet:
       id: 0017.create_table_menu_items.7
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: module_id
@@ -119,6 +126,7 @@ databaseChangeLog:
             
   - changeSet:
       id: 0017.create_table_menu_items.8
+      author: codeschluss
       changes:
         - createIndex:
             columns:
@@ -128,6 +136,7 @@ databaseChangeLog:
             tableName: menu_items
   - changeSet:
       id: 0017.create_table_menu_items.9
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: page_id

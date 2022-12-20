@@ -2,6 +2,7 @@ databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
       id: 0038.create_table_article_visitors.1
+      author: codeschluss
       changes:
         - createTable:
             columns:
@@ -43,6 +44,7 @@ databaseChangeLog:
 
   - changeSet:
       id: 0038.create_table_article_visitors.2
+      author: codeschluss
       changes:
         - createIndex:
             columns:
@@ -52,6 +54,7 @@ databaseChangeLog:
             tableName: article_visitors
   - changeSet:
       id: 0038.create_table_article_visitors.3
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: visitor_id
@@ -67,6 +70,7 @@ databaseChangeLog:
 
   - changeSet:
       id: 0038.create_table_article_visitors.4
+      author: codeschluss
       changes:
         - createIndex:
             columns:
@@ -76,6 +80,7 @@ databaseChangeLog:
             tableName: article_visitors
   - changeSet:
       id: 0038.create_table_article_visitors.5
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: parent_id

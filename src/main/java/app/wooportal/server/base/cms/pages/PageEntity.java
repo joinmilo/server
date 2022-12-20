@@ -55,5 +55,5 @@ public class PageEntity extends BaseEntity {
       inverseJoinColumns = @JoinColumn(name = "media_id"),
       uniqueConstraints = {@UniqueConstraint(columnNames = {"page_id", "media_id"})})
   @CollectionId(column = @Column(name = "id"), type = @Type(type = "uuid-char"), generator = "UUID")
-  private List<MediaEntity> media = new ArrayList<>();
+  private List<MediaEntity> pageMedia = new ArrayList<>();
 }
