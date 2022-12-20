@@ -38,6 +38,8 @@ public class ContactEntity extends BaseEntity {
   private String password;
 
   private String phone;
+  
+  private Boolean preferredContact;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "contact")
   private Set<DealEntity> deals;
