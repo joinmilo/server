@@ -2,6 +2,7 @@ databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
       id: 0074.create_table_assignments.1
+      author: codeschluss
       changes:
         - createTable:
             columns:
@@ -38,6 +39,7 @@ databaseChangeLog:
 
   - changeSet:
       id: 0074.create_table_assignments.2
+      author: codeschluss
       changes:
         - createIndex:
             columns:
@@ -47,6 +49,7 @@ databaseChangeLog:
             tableName: assignments
   - changeSet:
       id: 0074.create_table_assignments.3
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: survey_id
@@ -62,6 +65,7 @@ databaseChangeLog:
           
   - changeSet:
       id: 0074.create_table_assignments.4
+      author: codeschluss
       changes:
         - createIndex:
             columns:
@@ -71,6 +75,7 @@ databaseChangeLog:
             tableName: assignments
   - changeSet:
       id: 0074.create_table_assignments.5
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: user_context_id

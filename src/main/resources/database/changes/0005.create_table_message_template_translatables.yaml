@@ -2,6 +2,7 @@ databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
       id: 0005.create_table_message_template_translatables.1
+      author: codeschluss
       changes:
         - createTable:
             columns:
@@ -43,6 +44,7 @@ databaseChangeLog:
 
   - changeSet:
       id: 0005.create_table_message_template_translatables.2
+      author: codeschluss
       changes:
         - createIndex:
             columns:
@@ -52,9 +54,10 @@ databaseChangeLog:
             tableName: message_template_translatables
   - changeSet:
       id: 0005.create_table_message_template_translatables.3
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
-            baseColumnNames: user_id
+            baseColumnNames: parent_id
             baseTableName: message_template_translatables
             constraintName: fkewyspikvsx18dk8kq42994hu3
             deferrable: false
@@ -67,6 +70,7 @@ databaseChangeLog:
           
   - changeSet:
       id: 0005.create_table_message_template_translatables.4
+      author: codeschluss
       changes:
         - createIndex:
             columns:
@@ -76,6 +80,7 @@ databaseChangeLog:
             tableName: message_template_translatables
   - changeSet:
       id: 0005.create_table_message_template_translatables.5
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: language_id

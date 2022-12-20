@@ -2,6 +2,7 @@ databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
       id: 0026.create_table_event_target_group_translatables.1
+      author: codeschluss
       changes:
         - createTable:
             columns:
@@ -43,6 +44,7 @@ databaseChangeLog:
 
   - changeSet:
       id: 0026.create_table_event_target_group_translatables.2
+      author: codeschluss
       changes:
         - createIndex:
             columns:
@@ -52,6 +54,7 @@ databaseChangeLog:
             tableName: event_target_group_translatables
   - changeSet:
       id: 0026.create_table_event_target_group_translatables.3
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: parent_id
@@ -67,20 +70,22 @@ databaseChangeLog:
             
   - changeSet:
       id: 0026.create_table_event_target_group_translatables.4
+      author: codeschluss
       changes:
         - createIndex:
             columns:
               - column:
                   name: language_id
-            indexName: idx_fk8cl3894tb902wjr4mjr4ljwfn
+            indexName: idx_fkyp3ihilaj4bllezn41jfqq16y
             tableName: event_target_group_translatables
   - changeSet:
       id: 0026.create_table_event_target_group_translatables.5
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: language_id
             baseTableName: event_target_group_translatables
-            constraintName: fk8cl3894tb902wjr4mjr4ljwfn
+            constraintName: fkyp3ihilaj4bllezn41jfqq16y
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE

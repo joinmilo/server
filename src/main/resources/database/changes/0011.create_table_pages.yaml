@@ -2,6 +2,7 @@ databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
       id: 0011.create_table_pages.1
+      author: codeschluss
       changes:
         - createTable:
             columns:
@@ -37,10 +38,11 @@ databaseChangeLog:
               - column:
                   name: title_image_id
                   type: CHAR(36)                                                                   
-            tableName: pages
+            tableName: pages            
 
   - changeSet:
       id: 0011.create_table_pages.2
+      author: codeschluss
       changes:
         - createIndex:
             columns:
@@ -50,6 +52,7 @@ databaseChangeLog:
             tableName: pages
   - changeSet:
       id: 0011.create_table_pages.3
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: title_image_id
@@ -67,6 +70,31 @@ databaseChangeLog:
       id: 0011.create_table_pages.4
       author: codeschluss
       changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                  name: page_id
+                  type: CHAR(36)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: media_id
+                  type: CHAR(36)                 
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: page_media_primary_key
+                  name: id
+                  type: CHAR(36)
+            tableName: page_media
+
+  - changeSet:
+      id: 0011.create_table_pages.5
+      author: codeschluss
+      changes:
         - createIndex:
             columns:
               - column:
@@ -74,7 +102,7 @@ databaseChangeLog:
             indexName: idx_fkvaafgc8z9cnl0jldlw0okqx5v
             tableName: page_media
   - changeSet:
-      id: 0011.create_table_pages.5
+      id: 0011.create_table_pages.6
       author: codeschluss
       changes:
         - createIndex:
@@ -84,7 +112,7 @@ databaseChangeLog:
             indexName: idx_fk2zgh1jd6ssplkz5ktj41nzrso
             tableName: page_media
   - changeSet:
-      id: 0011.create_table_pages.6
+      id: 0011.create_table_pages.7
       author: codeschluss
       changes:
         - addForeignKeyConstraint:
@@ -98,7 +126,7 @@ databaseChangeLog:
             referencedTableName: pages
             validate: true
   - changeSet:
-      id: 0011.create_table_pages.7
+      id: 0011.create_table_pages.8
       author: codeschluss
       changes:
         - addForeignKeyConstraint:

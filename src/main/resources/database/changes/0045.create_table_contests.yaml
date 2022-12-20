@@ -2,6 +2,7 @@ databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
       id: 0045.create_table_contests.1
+      author: codeschluss
       changes:
         - createTable:
             columns:
@@ -71,6 +72,7 @@ databaseChangeLog:
 
   - changeSet:
       id: 0045.create_table_contests.2
+      author: codeschluss
       changes:
         - createIndex:
             columns:
@@ -80,6 +82,7 @@ databaseChangeLog:
             tableName: contests
   - changeSet:
       id: 0045.create_table_contests.3
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: type_id
@@ -95,6 +98,7 @@ databaseChangeLog:
             
   - changeSet:
       id: 0045.create_table_contests.4
+      author: codeschluss
       changes:
         - createIndex:
             columns:
@@ -104,6 +108,7 @@ databaseChangeLog:
             tableName: contests
   - changeSet:
       id: 0045.create_table_contests.5
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: state_id

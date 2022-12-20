@@ -2,6 +2,7 @@ databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
       id: 0052.create_table_form_templates.1
+      author: codeschluss
       changes:
         - createTable:
             columns:
@@ -33,6 +34,7 @@ databaseChangeLog:
 
   - changeSet:
       id: 0052.create_table_form_templates.2
+      author: codeschluss
       changes:
         - createIndex:
             columns:
@@ -42,6 +44,7 @@ databaseChangeLog:
             tableName: form_templates
   - changeSet:
       id: 0052.create_table_form_templates.3
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: type_id
@@ -52,7 +55,7 @@ databaseChangeLog:
             onUpdate: CASCADE
             onDelete: CASCADE
             referencedColumnNames: id
-            referencedTableName: types
+            referencedTableName: form_template_types
             validate: true                         
           
             

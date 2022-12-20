@@ -2,6 +2,7 @@ databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
       id: 0060.create_table_deal_translatables.1
+      author: codeschluss
       changes:
         - createTable:
             columns:
@@ -48,6 +49,7 @@ databaseChangeLog:
 
   - changeSet:
       id: 0060.create_table_deal_translatables.2
+      author: codeschluss
       changes:
         - createIndex:
             columns:
@@ -57,6 +59,7 @@ databaseChangeLog:
             tableName: deal_translatables
   - changeSet:
       id: 0060.create_table_deal_translatables.3
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: parent_id
@@ -72,6 +75,7 @@ databaseChangeLog:
             
   - changeSet:
       id: 0060.create_table_deal_translatables.4
+      author: codeschluss
       changes:
         - createIndex:
             columns:
@@ -81,6 +85,7 @@ databaseChangeLog:
             tableName: deal_translatables
   - changeSet:
       id: 0060.create_table_deal_translatables.5
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: language_id

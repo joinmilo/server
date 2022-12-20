@@ -2,6 +2,7 @@ databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
       id: 0063.create_table_organisations.1
+      author: codeschluss
       changes:
         - createTable:
             columns:
@@ -65,6 +66,7 @@ databaseChangeLog:
 
   - changeSet:
       id: 0063.create_table_organisations.2
+      author: codeschluss
       changes:
         - createIndex:
             columns:
@@ -74,6 +76,7 @@ databaseChangeLog:
             tableName: organisations
   - changeSet:
       id: 0063.create_table_organisations.3
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: address_id
@@ -89,6 +92,7 @@ databaseChangeLog:
             
   - changeSet:
       id: 0063.create_table_organisations.4
+      author: codeschluss
       changes:
         - createIndex:
             columns:
@@ -98,6 +102,7 @@ databaseChangeLog:
             tableName: organisations
   - changeSet:
       id: 0063.create_table_organisations.5
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: contact_id
@@ -110,9 +115,34 @@ databaseChangeLog:
             referencedColumnNames: id
             referencedTableName: contacts
             validate: true                                  
-            
+     
   - changeSet:
-      id: 0063.create_table_organisations.8
+      id: 0063.create_table_organisations.6
+      author: codeschluss
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                  name: organisation_id
+                  type: CHAR(36)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: media_id
+                  type: CHAR(36)                 
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: organisation_media_primary_key
+                  name: id
+                  type: CHAR(36)
+            tableName: organisation_media
+                        
+  - changeSet:
+      id: 0063.create_table_organisations.7
       author: codeschluss
       changes:
         - createIndex:
@@ -122,7 +152,7 @@ databaseChangeLog:
             indexName: idx_fkk03u57ustzsusivaylxkrg8mg
             tableName: organisation_media
   - changeSet:
-      id: 0063.create_table_organisations.9
+      id: 0063.create_table_organisations.8
       author: codeschluss
       changes:
         - createIndex:
@@ -132,7 +162,7 @@ databaseChangeLog:
             indexName: idx_fk0o1p1dpbh4u1edbozo5j33xow
             tableName: organisation_media
   - changeSet:
-      id: 0063.create_table_organisations.10
+      id: 0063.create_table_organisations.9
       author: codeschluss
       changes:
         - addForeignKeyConstraint:
@@ -146,7 +176,7 @@ databaseChangeLog:
             referencedTableName: organisations
             validate: true
   - changeSet:
-      id: 0063.create_table_organisations.11
+      id: 0063.create_table_organisations.10
       author: codeschluss
       changes:
         - addForeignKeyConstraint:
@@ -162,7 +192,8 @@ databaseChangeLog:
             validate: true            
              
   - changeSet:
-      id: 0063.create_table_organisations.12
+      id: 0063.create_table_organisations.11
+      author: codeschluss
       changes:
         - createIndex:
             columns:
@@ -171,7 +202,8 @@ databaseChangeLog:
             indexName: idx_fkooekr9ysa69w3n3n3lnx5hq7q
             tableName: organisations
   - changeSet:
-      id: 0063.create_table_organisations.13
+      id: 0063.create_table_organisations.12
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: title_image_id
@@ -186,7 +218,8 @@ databaseChangeLog:
             validate: true    
 
   - changeSet:
-      id: 0063.create_table_organisations.14
+      id: 0063.create_table_organisations.13
+      author: codeschluss
       changes:
         - createIndex:
             columns:
@@ -195,7 +228,8 @@ databaseChangeLog:
             indexName: idx_mxdh60arligtewewp66ag2vdc
             tableName: organisations
   - changeSet:
-      id: 0063.create_table_organisations.15
+      id: 0063.create_table_organisations.14
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: card_image_id

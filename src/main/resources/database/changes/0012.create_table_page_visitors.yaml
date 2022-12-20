@@ -2,6 +2,7 @@ databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
       id: 0012.create_table_page_visitors.1
+      author: codeschluss
       changes:
         - createTable:
             columns:
@@ -43,20 +44,22 @@ databaseChangeLog:
 
   - changeSet:
       id: 0012.create_table_page_visitors.2
+      author: codeschluss
       changes:
         - createIndex:
             columns:
               - column:
                   name: visitor_id
-            indexName: idx_fkad2vanqc58lrydev4c71lssb1
+            indexName: idx_fkb8gnfydufk5xe53azbusarfxy
             tableName: page_visitors
   - changeSet:
       id: 0012.create_table_page_visitors.3
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: visitor_id
             baseTableName: page_visitors
-            constraintName: fkad2vanqc58lrydev4c71lssb1
+            constraintName: fkb8gnfydufk5xe53azbusarfxy
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE
@@ -67,6 +70,7 @@ databaseChangeLog:
 
   - changeSet:
       id: 0012.create_table_page_visitors.4
+      author: codeschluss
       changes:
         - createIndex:
             columns:
@@ -76,6 +80,7 @@ databaseChangeLog:
             tableName: page_visitors
   - changeSet:
       id: 0012.create_table_page_visitors.5
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: parent_id

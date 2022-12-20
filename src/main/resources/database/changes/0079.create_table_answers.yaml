@@ -2,6 +2,7 @@ databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
       id: 0079.create_table_answers.1
+      author: codeschluss
       changes:
         - createTable:
             columns:
@@ -37,24 +38,26 @@ databaseChangeLog:
               - column:
                   constraints:
                     nullable: false
-                  name: selected_question_id
+                  name: selected_option_id
                   type: CHAR(36)                                                                                               
             tableName: answers
 
   - changeSet:
       id: 0079.create_table_answers.2
+      author: codeschluss
       changes:
         - createIndex:
             columns:
               - column:
-                  name: selected_question_id
+                  name: selected_option_id
             indexName: idx_fkujeor1waml9esrnoxp6lojyj0
             tableName: answers
   - changeSet:
       id: 0079.create_table_answers.3
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
-            baseColumnNames: selected_question_id
+            baseColumnNames: selected_option_id
             baseTableName: answers
             constraintName: fkujeor1waml9esrnoxp6lojyj01
             deferrable: false
@@ -62,12 +65,12 @@ databaseChangeLog:
             onUpdate: CASCADE
             onDelete: CASCADE
             referencedColumnNames: id
-            referencedTableName: selected_questions
+            referencedTableName: question_options
             validate: true                         
           
-
   - changeSet:
       id: 0079.create_table_answers.4
+      author: codeschluss
       changes:
         - createIndex:
             columns:
@@ -77,6 +80,7 @@ databaseChangeLog:
             tableName: answers
   - changeSet:
       id: 0079.create_table_answers.5
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: result_id
@@ -87,11 +91,12 @@ databaseChangeLog:
             onUpdate: CASCADE
             onDelete: CASCADE
             referencedColumnNames: id
-            referencedTableName: result_surveys
+            referencedTableName: survey_results
             validate: true                                   
             
   - changeSet:
       id: 0079.create_table_answers.6
+      author: codeschluss
       changes:
         - createIndex:
             columns:
@@ -101,6 +106,7 @@ databaseChangeLog:
             tableName: answers
   - changeSet:
       id: 0079.create_table_answers.7
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: question_id

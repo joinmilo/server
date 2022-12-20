@@ -2,6 +2,7 @@ databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
       id: 0034.create_table_public_authors.1
+      author: codeschluss
       changes:
         - createTable:
             columns:

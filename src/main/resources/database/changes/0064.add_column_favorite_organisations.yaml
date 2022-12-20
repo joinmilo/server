@@ -1,17 +1,29 @@
 databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
-    id: 0064.add_column_favorite_organisations.1
-    author: codeschluss
-    changes:
-    - addColumn:
-        columns:
+      id: 0064.add_column_favorite_organisations.1
+      author: codeschluss
+      changes:
+        - createTable:
+            columns:
               - column:
                   constraints:
                     nullable: false
                   name: organisation_id
-                  type: CHAR(36)  
-        tableName: user_contexts
+                  type: CHAR(36)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: user_context_id
+                  type: CHAR(36)                 
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: favorite_organisations_primary_key
+                  name: id
+                  type: CHAR(36)
+            tableName: favorite_organisations
         
   - changeSet:
       id: 0064.add_column_favorite_organisations.2
@@ -30,7 +42,7 @@ databaseChangeLog:
         - createIndex:
             columns:
               - column:
-                  name: media_id
+                  name: user_context_id
             indexName: idx_fkkwqc86ge3wwnjd6kb870uifot
             tableName: favorite_organisations
   - changeSet:
@@ -52,7 +64,7 @@ databaseChangeLog:
       author: codeschluss
       changes:
         - addForeignKeyConstraint:
-            baseColumnNames: media_id
+            baseColumnNames: user_context_id
             baseTableName: favorite_organisations
             constraintName: fkkwqc86ge3wwnjd6kb870uifot
             deferrable: false
@@ -60,6 +72,6 @@ databaseChangeLog:
             onDelete: CASCADE
             onUpdate: CASCADE
             referencedColumnNames: id
-            referencedTableName: media
+            referencedTableName: user_contexts
             validate: true         
             

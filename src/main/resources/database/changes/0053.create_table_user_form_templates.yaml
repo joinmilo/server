@@ -2,6 +2,7 @@ databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
       id: 0053.create_table_user_form_templates.1
+      author: codeschluss
       changes:
         - createTable:
             columns:
@@ -32,7 +33,7 @@ databaseChangeLog:
               - column:
                   constraints:
                     nullable: false
-                  name: user_context_context_id
+                  name: user_context_id
                   type: CHAR(36)          
               - column:
                   constraints:
@@ -43,20 +44,22 @@ databaseChangeLog:
 
   - changeSet:
       id: 0053.create_table_user_form_templates.2
+      author: codeschluss
       changes:
         - createIndex:
             columns:
               - column:
                   name: user_context_id
-            indexName: idx_fk4tz7pf09et55crjtr3ko6opx2
+            indexName: idx_fkbg1my0rfsu3g5ugs3o59gwz2o
             tableName: user_form_templates
   - changeSet:
       id: 0053.create_table_user_form_templates.3
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: user_context_id
             baseTableName: user_form_templates
-            constraintName: fk4tz7pf09et55crjtr3ko6opx2
+            constraintName: fkbg1my0rfsu3g5ugs3o59gwz2o
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE
@@ -67,6 +70,7 @@ databaseChangeLog:
           
   - changeSet:
       id: 0053.create_table_user_form_templates.4
+      author: codeschluss
       changes:
         - createIndex:
             columns:
@@ -76,6 +80,7 @@ databaseChangeLog:
             tableName: user_form_templates
   - changeSet:
       id: 0053.create_table_user_form_templates.5
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: type_id

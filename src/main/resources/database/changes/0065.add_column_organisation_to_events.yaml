@@ -1,20 +1,21 @@
 databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
-    id: 0065.add_column_organisation_to_events.1
-    author: codeschluss
-    changes:
-    - addColumn:
-        columns:
+      id: 0065.add_column_organisation_to_events.1
+      author: codeschluss
+      changes:
+      - addColumn:
+           columns:
               - column:
                   constraints:
                     nullable: false
                   name: organisation_id
                   type: CHAR(36)  
-        tableName: events
+           tableName: events
         
   - changeSet:
       id: 0065.add_column_organisation_to_events.2
+      author: codeschluss
       changes:
         - createIndex:
             columns:
@@ -24,6 +25,7 @@ databaseChangeLog:
             tableName: events
   - changeSet:
       id: 0065.add_column_organisation_to_events.3
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: organisation_id

@@ -2,6 +2,7 @@ databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
       id: 0002.create_table_subscriptions.1
+      author: codeschluss
       changes:
         - createTable:
             columns:
@@ -38,6 +39,7 @@ databaseChangeLog:
 
   - changeSet:
       id: 0002.create_table_subscriptions.2
+      author: codeschluss
       changes:
         - createIndex:
             columns:
@@ -47,6 +49,7 @@ databaseChangeLog:
             tableName: subscriptions
   - changeSet:
       id: 0002.create_table_subscriptions.3
+      author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: user_id
