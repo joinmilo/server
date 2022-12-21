@@ -46,18 +46,23 @@ public class UserEntity extends BaseEntity {
   private String email;
 
   private String fullname;
+  
+   @Column(nullable = false)
+  private String password;
+   
+  @Column(unique = true)
+  private String phone;
+  
+  private Boolean verified;
+  
+  @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
+  private UserContextEntity userContext;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
   private Set<NotificationEntity> notifications;
 
-  @Column(nullable = false)
-  private String password;
-
   @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
   private Set<PasswordResetEntity> passwordResets;
-
-  @Column(unique = true)
-  private String phone;
 
   @ManyToMany(fetch = FetchType.LAZY)
   @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),
@@ -69,11 +74,7 @@ public class UserEntity extends BaseEntity {
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
   private Set<SubscriptionEntity> subscriptions;
 
-  @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
-  private UserContextEntity userContext;
-
   @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
   private Set<VerificationEntity> verifications;
-
-  private Boolean verified;
+  
 }
