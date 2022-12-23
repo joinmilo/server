@@ -36,12 +36,12 @@ public class ChannelEntity extends BaseEntity {
   private String key;
   
   @ManyToMany(fetch = FetchType.LAZY)
-  @JoinTable(name = "notification_definition_channels",
+  @JoinTable(name = "message_definition_channels",
       joinColumns = @JoinColumn(name = "channel_id"),
-      inverseJoinColumns = @JoinColumn(name = "notification_definition_id"),
+      inverseJoinColumns = @JoinColumn(name = "message_definition_id"),
       uniqueConstraints = {
-          @UniqueConstraint(columnNames = {"notification_definition_id", "channel_id"})})
+          @UniqueConstraint(columnNames = {"message_definition_id", "channel_id"})})
   @CollectionId(column = @Column(name = "id"), type = @Type(type = "uuid-char"), generator = "UUID")
-  private List<MessageDefinitionEntity> notificationDefinitions;
+  private List<MessageDefinitionEntity> messageDefinitions;
 
 }

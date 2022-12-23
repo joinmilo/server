@@ -48,11 +48,13 @@ public abstract class CrudApi<E extends BaseEntity, S extends DataService<E, ?>>
       throw new BadParamsException("entities is missing", entities);
     }
     
-    // TODO: parallel streaming not possible due to null security context 
+//    // TODO: parallel streaming not possible due to null security context 
 //    return entities.parallelStream().map(this::saveOne)
 //        .distinct()
 //        .collect(Collectors.toList());
     
+//  TODO: This does not work with context! saveWithContext is looking for singleContext but we're
+//  passing multi context. This should therefore get the proper context before passing it to saveOne
     return entities.stream().map(this::saveOne)
       .distinct()
       .collect(Collectors.toList());
