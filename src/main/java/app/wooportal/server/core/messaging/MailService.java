@@ -9,40 +9,34 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import app.wooportal.server.core.i18n.language.LanguageEntity;
 import app.wooportal.server.core.messaging.template.TemplateService;
 
 @Service
 public class MailService {
 
   private final JavaMailSender sender;
-  
+
   private final MailConfiguration mailConfig;
-  
+
   private final TemplateService templateService;
 
-  public MailService(
-      JavaMailSender sender, 
-      MailConfiguration mailConfig,
+  public MailService(JavaMailSender sender, MailConfiguration mailConfig,
       TemplateService templateService) {
     this.sender = sender;
     this.mailConfig = mailConfig;
     this.templateService = templateService;
   }
-  
+
   @Async
-  public CompletableFuture<Boolean> sendEmail(
-      String subject, 
-      String template,
-      Map<String, String> templateModel,
-      String... to) {
+  public CompletableFuture<Boolean> sendEmail(String subject, String template,
+      Map<String, String> templateModel, String... to) throws Throwable {
     try {
       var model = new HashMap<String, String>(templateModel);
       model.put("portalName", mailConfig.getPortalName());
-      return sendEmail(
-          subject, 
-          templateService.createMessage(template, model),
-          to);
-      
+      return sendEmail(subject,
+          templateService.createMessage(template, model, new LanguageEntity()), to);
+
     } catch (Exception e) {
       e.printStackTrace();
       return CompletableFuture.completedFuture(false);
@@ -53,13 +47,13 @@ public class MailService {
   public CompletableFuture<Boolean> sendEmail(String subject, String content, String... to)
       throws MessagingException {
     try {
-      sendEmail(mailConfig.getFromAddress(), subject, content, true, 
-          to == null || to.length == 0 ? new String[] { mailConfig.getToAddress() } : to);
+      sendEmail(mailConfig.getFromAddress(), subject, content, true,
+          to == null || to.length == 0 ? new String[] {mailConfig.getToAddress()} : to);
       return CompletableFuture.completedFuture(true);
     } catch (Exception e) {
       return CompletableFuture.completedFuture(false);
     }
-    
+
   }
 
   public void sendEmail(String fromAddress, String subject, String content, boolean html,
@@ -73,5 +67,5 @@ public class MailService {
     helper.setText(content, html);
     sender.send(message);
   }
-  
+
 }

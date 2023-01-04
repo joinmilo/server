@@ -1,4 +1,4 @@
-package app.wooportal.server.core.push.subscriptionType;
+package app.wooportal.server.core.messaging.channels;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,15 +15,15 @@ import lombok.Setter;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @AllArgsConstructor
 @Entity
-@Table(name = "subscription_types")
-public class SubscriptionTypeEntity extends BaseEntity {
+@Table(name = "channels")
+public class ChannelEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
 
-  @Column(nullable = false)
-  private String description;
-
   @Column(unique = true, nullable = false)
   private String name;
+  
+  @Column(unique = true, nullable = false)
+  private String key;
 
 }

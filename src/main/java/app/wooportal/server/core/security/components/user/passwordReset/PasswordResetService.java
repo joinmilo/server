@@ -14,18 +14,15 @@ import app.wooportal.server.core.utils.StringUtils;
 
 @Service
 public class PasswordResetService extends DataService<PasswordResetEntity, PasswordResetBuilder> {
-  
+
   private final GeneralConfiguration config;
-  
+
   private final MailService mailService;
 
-  public PasswordResetService(
-      DataRepository<PasswordResetEntity> repo,
-      PasswordResetBuilder predicate,
-      GeneralConfiguration config,
-      MailService mailService) {
+  public PasswordResetService(DataRepository<PasswordResetEntity> repo,
+      PasswordResetBuilder predicate, GeneralConfiguration config, MailService mailService) {
     super(repo, predicate);
-    
+
     this.config = config;
     this.mailService = mailService;
   }
@@ -33,33 +30,29 @@ public class PasswordResetService extends DataService<PasswordResetEntity, Passw
   public Optional<PasswordResetEntity> getByKey(String name) {
     return repo.findOne(singleQuery(predicate.withKey(name)));
   }
-  
+
   public List<PasswordResetEntity> getCreatedBefore(OffsetDateTime date) {
-    return repo.findAll(collectionQuery(false)
-        .and(predicate.createdBefore(date)))
-        .getList();
+    return repo.findAll(collectionQuery(false).and(predicate.createdBefore(date))).getList();
   }
-  
+
   @Override
-  public void preSave(
-      PasswordResetEntity entity,
-      PasswordResetEntity newEntity, 
-      JsonNode context) {
-    if(newEntity.getKey() == null || newEntity.getKey().isBlank()) {      
+  public void preSave(PasswordResetEntity entity, PasswordResetEntity newEntity, JsonNode context) {
+    if (newEntity.getKey() == null || newEntity.getKey().isBlank()) {
       newEntity.setKey(generateNewKey());
       setContext("key", context);
-      mailService.sendEmail(
-          "Passwort zurücksetzen",
-          "password_reset.ftl",
-          Map.of(
-              "portalName", config.getPortalName(),
-              "link", createPasswordResetLink(newEntity)),
-          newEntity.getUser().getEmail());
+      try {
+        mailService.sendEmail(
+            "Passwort zurücksetzen", "password_reset.ftl", Map.of("portalName",
+                config.getPortalName(), "link", createPasswordResetLink(newEntity)),
+            newEntity.getUser().getEmail());
+      } catch (Throwable e) {
+        e.printStackTrace();
+      }
     }
   }
-  
+
   private String generateNewKey() {
-    while(true) {
+    while (true) {
       var key = StringUtils.randomAlphanumeric(255);
       if (getByKey(key).isEmpty()) {
         return key;
@@ -70,5 +63,5 @@ public class PasswordResetService extends DataService<PasswordResetEntity, Passw
   private String createPasswordResetLink(PasswordResetEntity saved) {
     return config.getHost() + "/reset-password/password/" + saved.getKey();
   }
-  
+
 }

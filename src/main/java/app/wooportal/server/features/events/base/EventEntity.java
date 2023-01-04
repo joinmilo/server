@@ -17,7 +17,7 @@ import javax.persistence.UniqueConstraint;
 import org.hibernate.annotations.CollectionId;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
-import app.wooportal.server.base.addresses.AddressEntity;
+import app.wooportal.server.base.addresses.base.AddressEntity;
 import app.wooportal.server.base.contact.base.ContactEntity;
 import app.wooportal.server.base.userContexts.base.UserContextEntity;
 import app.wooportal.server.core.base.BaseEntity;

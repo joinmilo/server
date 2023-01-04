@@ -1,4 +1,4 @@
-package app.wooportal.server.core.messaging.notifications.channel;
+package app.wooportal.server.core.messaging.channels;
 
 import org.springframework.stereotype.Service;
 import app.wooportal.server.core.base.DataService;

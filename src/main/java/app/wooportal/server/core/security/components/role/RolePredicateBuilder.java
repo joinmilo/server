@@ -13,7 +13,7 @@ public class RolePredicateBuilder extends PredicateBuilder<QRoleEntity, RoleEnti
 
   @Override
   public BooleanExpression freeSearch(String term) {
-    return query.name.likeIgnoreCase(term);
+    return query.translatables.any().name.likeIgnoreCase(term);
   }
 
   public BooleanExpression withUserId(String userId) {

@@ -1,4 +1,4 @@
-package app.wooportal.server.base.addresses;
+package app.wooportal.server.base.addresses.base;
 
 import org.springframework.stereotype.Service;
 import app.wooportal.server.core.base.DataService;

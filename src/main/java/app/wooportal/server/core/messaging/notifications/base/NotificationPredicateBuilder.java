@@ -14,6 +14,6 @@ public class NotificationPredicateBuilder
 
   @Override
   public BooleanExpression freeSearch(String term) {
-    return query.title.likeIgnoreCase(term);
+    return null;
   }
 }

@@ -5,6 +5,7 @@ import java.util.Map;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
+import app.wooportal.server.core.i18n.language.LanguageEntity;
 import app.wooportal.server.core.messaging.MailConfiguration;
 import freemarker.template.Configuration;
 import freemarker.template.TemplateException;
@@ -17,7 +18,9 @@ public class FreemarkerTemplateService implements TemplateService {
 
   private final MailConfiguration mailConfig;
 
-  public FreemarkerTemplateService(Configuration freemarkerConfig, MailConfiguration mailConfig) {
+  public FreemarkerTemplateService(
+      Configuration freemarkerConfig,
+      MailConfiguration mailConfig) {
     this.freemarkerConfig = freemarkerConfig;
     this.mailConfig = mailConfig;
 
@@ -25,7 +28,7 @@ public class FreemarkerTemplateService implements TemplateService {
         this.mailConfig.getTemplateLocation());
   }
 
-  public String createMessage(String templateName, Map<String, String> model)
+  public String createMessage(String templateName, Map<String, String> model, LanguageEntity language)
       throws TemplateException, IOException {
     return FreeMarkerTemplateUtils.processTemplateIntoString(
         freemarkerConfig.getTemplate(templateName),

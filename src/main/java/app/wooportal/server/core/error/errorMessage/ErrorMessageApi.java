@@ -15,13 +15,11 @@ import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 @Component
 @GraphQLApi
 public class ErrorMessageApi extends CrudApi<ErrorMessageEntity, ErrorMessageService> {
-  
-  public ErrorMessageApi(
-      ErrorMessageService service,
-      ErrorMailService errorMailService) {
+
+  public ErrorMessageApi(ErrorMessageService service, ErrorMailService errorMailService) {
     super(service);
   }
-  
+
   @Override
   @GraphQLQuery(name = "getErrorMessages")
   public PageableList<ErrorMessageEntity> readAll(
@@ -45,7 +43,8 @@ public class ErrorMessageApi extends CrudApi<ErrorMessageEntity, ErrorMessageSer
 
   @Override
   @GraphQLMutation(name = "saveErrorMessage")
-  public ErrorMessageEntity saveOne(@GraphQLArgument(name = CrudApi.entity) ErrorMessageEntity entity) {
+  public ErrorMessageEntity saveOne(
+      @GraphQLArgument(name = CrudApi.entity) ErrorMessageEntity entity) {
     return super.saveOne(entity);
   }
 
@@ -60,10 +59,10 @@ public class ErrorMessageApi extends CrudApi<ErrorMessageEntity, ErrorMessageSer
   public Boolean deleteOne(@GraphQLArgument(name = CrudApi.id) String id) {
     return super.deleteOne(id);
   }
-  
+
   @GraphQLMutation(name = "sendError")
-  public Boolean sendError(String stackTrace) {
+  public Boolean sendError(String stackTrace) throws Throwable {
     return service.sendErrorMail(stackTrace);
   }
-  
+
 }

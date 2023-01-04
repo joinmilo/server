@@ -61,30 +61,6 @@ databaseChangeLog:
                   type: CHAR(36)
             tableName: user_media
   - changeSet:
-      id: seed.3
-      author: codeschluss
-      changes:
-        - createTable:
-            columns:
-              - column:
-                  constraints:
-                    nullable: false
-                  name: user_id
-                  type: CHAR(36)
-              - column:
-                  constraints:
-                    nullable: false
-                  name: role_id
-                  type: CHAR(36)
-              - column:
-                  constraints:
-                    nullable: false
-                    primaryKey: true
-                    primaryKeyName: user_roles_primary_key
-                  name: id
-                  type: CHAR(36)
-            tableName: user_roles
-  - changeSet:
       id: seed.4
       author: codeschluss
       changes:
@@ -328,39 +304,6 @@ databaseChangeLog:
                   name: chat_active
                   type: boolean
             tableName: settings
-  - changeSet:
-      id: seed.10
-      author: codeschluss
-      changes:
-        - createIndex:
-            columns:
-              - column:
-                  name: role_id
-            indexName: idx_fkh8ciramu9cc9q3qcqiv4ue8a6
-            tableName: user_roles
-  - changeSet:
-      id: seed.11
-      author: codeschluss
-      changes:
-        - createIndex:
-            columns:
-              - column:
-                  name: user_id
-            indexName: idx_fkhfh9dx7w3ubf1co1vdev94g3f
-            tableName: user_roles
-  - changeSet:
-      id: seed.12
-      author: codeschluss
-      changes:
-        - createIndex:
-            columns:
-              - column:
-                  name: user_id
-              - column:
-                  name: role_id
-            indexName: idx_uka9dydk3dj4qb8cvmjijqnrg5t
-            tableName: user_roles
-            unique: true
 
   - changeSet:
       id: seed.13
@@ -382,19 +325,6 @@ databaseChangeLog:
                   name: user_id
             indexName: idx_fkbbo8cgtgin9ne04nbz9v02j50
             tableName: user_media
-  - changeSet:
-      id: seed.15
-      author: codeschluss
-      changes:
-        - createIndex:
-            columns:
-              - column:
-                  name: user_id
-              - column:
-                  name: role_id
-            indexName: idx_ukvwrio8lp2qhth16q025411bbg
-            tableName: user_roles
-            unique: true
   - changeSet:
       id: seed.16
       author: codeschluss
@@ -425,36 +355,6 @@ databaseChangeLog:
                   name: language_id
             indexName: idx_fknmk3g0k09vpinfvqknl76kfmt
             tableName: error_messages
-  - changeSet:
-      id: seed.19
-      author: codeschluss
-      changes:
-        - addForeignKeyConstraint:
-            baseColumnNames: role_id
-            baseTableName: user_roles
-            constraintName: fkh8ciramu9cc9q3qcqiv4ue8a6
-            deferrable: false
-            initiallyDeferred: false
-            onDelete: CASCADE
-            onUpdate: CASCADE
-            referencedColumnNames: id
-            referencedTableName: roles
-            validate: true
-  - changeSet:
-      id: seed.20
-      author: codeschluss
-      changes:
-        - addForeignKeyConstraint:
-            baseColumnNames: user_id
-            baseTableName: user_roles
-            constraintName: fkhfh9dx7w3ubf1co1vdev94g3f
-            deferrable: false
-            initiallyDeferred: false
-            onDelete: CASCADE
-            onUpdate: CASCADE
-            referencedColumnNames: id
-            referencedTableName: users
-            validate: true
   - changeSet:
       id: seed.21
       author: codeschluss

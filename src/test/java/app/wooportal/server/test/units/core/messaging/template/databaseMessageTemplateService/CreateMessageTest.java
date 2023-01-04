@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Optional;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import app.wooportal.server.core.i18n.language.LanguageEntity;
 import app.wooportal.server.core.messaging.notifications.template.MessageTemplateEntity;
 import app.wooportal.server.core.messaging.notifications.template.MessageTemplatePredicateBuilder;
 import app.wooportal.server.core.messaging.notifications.template.MessageTemplateRepository;
@@ -16,8 +17,9 @@ import app.wooportal.server.core.messaging.template.DatabaseMessageTemplateServi
 
 public class CreateMessageTest {
 
-  private DatabaseMessageTemplateService databaseMessageTemplateService = new DatabaseMessageTemplateService(service);
-  
+  private DatabaseMessageTemplateService databaseMessageTemplateService =
+      new DatabaseMessageTemplateService(service, null);
+
   private static MessageTemplateService service;
 
   @BeforeAll
@@ -28,48 +30,54 @@ public class CreateMessageTest {
   }
 
   @Test
-  public void checkCreatedMessage() throws Exception {
+  public void checkCreatedMessage() throws Throwable {
 
     when(service.readOne(any())).thenReturn(Optional.of(newMessageTemplateEntity("1",
         "Hey, this child has been created on ${child.created} and was modified on ${child.modified}.",
         "TestTemplate1")));
 
-    var map = Map.of(
-        "child.created", "03.12.2007 10:15",
-        "child.modified", "08.12.2007 10:17");
+    var map = Map.of("child.created", "03.12.2007 10:15", "child.modified", "08.12.2007 10:17");
 
-    var result = databaseMessageTemplateService.createMessage("TestTemplate1", map);
+    var language = new LanguageEntity();
+    language.setLocale("en");
+    language.setName("english");
+
+    var result = databaseMessageTemplateService.createMessage("TestTemplate1", map, language);
 
     assertThat(result).isEqualTo(
         "Hey, this child has been created on 03.12.2007 10:15 and was modified on 08.12.2007 10:17.");
   }
 
   @Test
-  public void checkMessageWhenInputNoMatches() throws Exception {
+  public void checkMessageWhenInputNoMatches() throws Throwable {
 
-    when(service.readOne(any())).thenReturn(
-        Optional.of(newMessageTemplateEntity("2", "Hello World", "TestTemplate2")));
+    when(service.readOne(any()))
+        .thenReturn(Optional.of(newMessageTemplateEntity("2", "Hello World", "TestTemplate2")));
 
-    var map = Map.of(
-        "child.created", "03.12.2007 10:15",
-        "child.modified", "08.12.2007 10:17");
+    var map = Map.of("child.created", "03.12.2007 10:15", "child.modified", "08.12.2007 10:17");
 
-    var result = databaseMessageTemplateService.createMessage("TestTemplate2", map);
+    var language = new LanguageEntity();
+    language.setLocale("en");
+    language.setName("english");
+
+    var result = databaseMessageTemplateService.createMessage("TestTemplate2", map, language);
 
     assertThat(result).isEqualTo("Hello World");
   }
 
   @Test
-  public void checkMessageWhenInputNull() throws Exception {
-    
+  public void checkMessageWhenInputNull() throws Throwable {
+
     when(service.readOne(any()))
         .thenReturn(Optional.of(newMessageTemplateEntity("3", null, "TestTemplate3")));
 
-    var map = Map.of(
-        "child.created", "03.12.2007 10:15",
-        "child.modified", "08.12.2007 10:17");
+    var map = Map.of("child.created", "03.12.2007 10:15", "child.modified", "08.12.2007 10:17");
 
-    var result = databaseMessageTemplateService.createMessage("TestTemplate3", map);
+    var language = new LanguageEntity();
+    language.setLocale("en");
+    language.setName("english");
+
+    var result = databaseMessageTemplateService.createMessage("TestTemplate3", map, language);
 
     assertThat(result).isNull();
   }
@@ -78,7 +86,6 @@ public class CreateMessageTest {
       String Name) {
     var messageTemplate = new MessageTemplateEntity();
     messageTemplate.setId(id);
-    messageTemplate.setContent(content);
     messageTemplate.setName(Name);
     return messageTemplate;
   }

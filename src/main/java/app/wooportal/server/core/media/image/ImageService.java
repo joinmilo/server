@@ -15,27 +15,27 @@ import app.wooportal.server.core.error.ErrorMailService;
 public class ImageService {
 
   private final ImageConfiguration config;
-  
+
   private final ErrorMailService errorService;
 
-  
-  public ImageService(
-      ImageConfiguration config,
-      ErrorMailService errorService) {
+
+  public ImageService(ImageConfiguration config, ErrorMailService errorService) {
     this.config = config;
     this.errorService = errorService;
   }
- 
+
   public byte[] resize(byte[] data, String formatType) {
     if (data != null && data.length > 0 && formatType != null && !formatType.isBlank()) {
       var inputStream = new ByteArrayInputStream(data);
       try {
         var imageBuff = ImageIO.read(inputStream);
-        return needsResize(imageBuff)
-            ? resize(imageBuff, formatType)
-            : data;
+        return needsResize(imageBuff) ? resize(imageBuff, formatType) : data;
       } catch (IOException e) {
-        errorService.sendErrorMail(e);
+        try {
+          errorService.sendErrorMail(e);
+        } catch (Throwable e1) {
+          e1.printStackTrace();
+        }
       }
     }
     return null;
@@ -48,37 +48,39 @@ public class ImageService {
     try {
       BufferedImage imageBuff = ImageIO.read(url);
       if (imageBuff != null) {
-        formatType = formatType != null && !formatType.isBlank() ? formatType : extractFormatFromUrl(url.getPath());
-        return needsResize(imageBuff)
-            ? resize(imageBuff, formatType)
+        formatType = formatType != null && !formatType.isBlank() ? formatType
+            : extractFormatFromUrl(url.getPath());
+        return needsResize(imageBuff) ? resize(imageBuff, formatType)
             : convertToByte(imageBuff, formatType);
       }
     } catch (IOException e) {
-      errorService.sendErrorMail(e);
+      try {
+        errorService.sendErrorMail(e);
+      } catch (Throwable e1) {
+        e1.printStackTrace();
+      }
     }
     return null;
   }
-  
+
   public String extractFormatFromUrl(String imageUrl) {
     String[] splitUrl = imageUrl.split("\\.");
     return splitUrl[splitUrl.length - 1];
   }
-  
+
   private boolean needsResize(BufferedImage imageBuff) {
     return imageBuff.getHeight() >= config.getMaxHeight()
         || imageBuff.getWidth() >= config.getMaxWidth();
   }
-  
-  private byte[] resize(BufferedImage imageBuff, String formatType) 
-      throws IOException {
-    BufferedImage resized = Scalr.resize(
-        imageBuff, Method.ULTRA_QUALITY, config.getMaxWidth(), config.getMaxWidth());
-    
+
+  private byte[] resize(BufferedImage imageBuff, String formatType) throws IOException {
+    BufferedImage resized =
+        Scalr.resize(imageBuff, Method.ULTRA_QUALITY, config.getMaxWidth(), config.getMaxWidth());
+
     return convertToByte(resized, formatType);
   }
-  
-  private byte[] convertToByte(BufferedImage image, String mimeType) 
-      throws IOException {
+
+  private byte[] convertToByte(BufferedImage image, String mimeType) throws IOException {
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     ImageIO.write(image, mimeType, outputStream);
     return outputStream.toByteArray();

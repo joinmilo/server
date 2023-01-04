@@ -1,0 +1,39 @@
+databaseChangeLog:
+  - changeSet:
+      id: 0011.migrate_data_subscriptions.1
+      author: codeschluss
+      changes:
+        - addColumn:
+            tableName: subscriptions
+            columns:
+            - column:
+                name: language_id
+                type: varchar(50)
+              
+  - changeSet:
+      id: 0011.migrate_data_subscriptions.2
+      author: codeschluss
+      changes:
+      - renameColumn:
+          columnDataType: VARCHAR(255)
+          newColumnName: device_token
+          oldColumnName: auth_secret
+          remarks: change in names
+          schemaName: wooportal
+          tableName: subscriptions
+  
+  - changeSet:
+      id: 0011.migrate_data_subscriptions.3
+      author: codeschluss
+      changes:
+        - sql:
+            comment: subscription translatables
+            splitStatements: true
+            sql:
+                /*!40101 SET character_set_client = utf8 */;
+                
+                insert into subscriptions (id, language_id)
+                select uuid(), , l.id, "0be85779-405d-4833-85d1-c682c996bb40", 
+                from subscriptions s
+                WHERE s.locale = "ar";
+                

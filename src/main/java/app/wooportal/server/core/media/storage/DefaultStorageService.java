@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import org.springframework.stereotype.Service;
-import app.wooportal.server.core.config.GeneralConfiguration;
 import app.wooportal.server.core.error.exception.NotFoundException;
 
 @Service
@@ -14,7 +13,6 @@ public class DefaultStorageService implements StorageService {
   private final StorageConfiguration storageConfig;
   
   public DefaultStorageService(
-      GeneralConfiguration generalConfig,
       StorageConfiguration storageConfig) {
     this.storageConfig = storageConfig;
   }

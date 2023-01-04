@@ -27,13 +27,11 @@ public class MessageTemplateEntity extends BaseEntity {
 
   @Column(nullable = false)
   private String name;
-  
-  private String content;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "template")
   private Set<MessageDefinitionEntity> definitions;
 
-  @OneToMany(fetch = FetchType.LAZY, mappedBy = "template")
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
   private Set<MessageTemplateTranslatableEntity> translatables;
 
 }

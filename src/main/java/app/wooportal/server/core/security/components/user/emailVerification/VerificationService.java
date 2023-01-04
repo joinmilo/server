@@ -11,19 +11,18 @@ import app.wooportal.server.core.repository.DataRepository;
 import app.wooportal.server.core.utils.StringUtils;
 
 @Service
-public class VerificationService extends DataService<VerificationEntity, VerificationPredicateBuilder> {
-  
+public class VerificationService
+    extends DataService<VerificationEntity, VerificationPredicateBuilder> {
+
   private final GeneralConfiguration config;
-  
+
   private final MailService mailService;
 
-  public VerificationService(
-      DataRepository<VerificationEntity> repo,
-      VerificationPredicateBuilder predicate,
-      GeneralConfiguration config,
+  public VerificationService(DataRepository<VerificationEntity> repo,
+      VerificationPredicateBuilder predicate, GeneralConfiguration config,
       MailService mailService) {
     super(repo, predicate);
-    
+
     this.config = config;
     this.mailService = mailService;
   }
@@ -31,28 +30,25 @@ public class VerificationService extends DataService<VerificationEntity, Verific
   public Optional<VerificationEntity> getByKey(String name) {
     return repo.findOne(singleQuery(predicate.withKey(name)));
   }
-  
+
   @Override
-  public void preSave(
-      VerificationEntity entity,
-      VerificationEntity newEntity, 
-      JsonNode context) {
-    if(newEntity.getKey() == null || newEntity.getKey().isBlank()) {      
+  public void preSave(VerificationEntity entity, VerificationEntity newEntity, JsonNode context) {
+    if (newEntity.getKey() == null || newEntity.getKey().isBlank()) {
       newEntity.setKey(generateNewKey());
       setContext("key", context);
-      mailService.sendEmail(
-          "Email verifizieren",
-          "verification.ftl", 
-          Map.of(
-              "fullname", newEntity.getUser().getFullname(),
-              "portalName", config.getPortalName(),
-              "link", createVerifcationLink(newEntity)),
-          newEntity.getUser().getEmail());
+      try {
+        mailService.sendEmail("Email verifizieren", "verification.ftl",
+            Map.of("fullname", newEntity.getUser().getFullname(), "portalName",
+                config.getPortalName(), "link", createVerifcationLink(newEntity)),
+            newEntity.getUser().getEmail());
+      } catch (Throwable e) {
+        e.printStackTrace();
+      }
     }
   }
-  
+
   private String generateNewKey() {
-    while(true) {
+    while (true) {
       var key = StringUtils.randomAlphanumeric(255);
       if (getByKey(key).isEmpty()) {
         return key;
@@ -63,5 +59,5 @@ public class VerificationService extends DataService<VerificationEntity, Verific
   private String createVerifcationLink(VerificationEntity saved) {
     return config.getHost() + "/verification/" + saved.getKey();
   }
-  
+
 }

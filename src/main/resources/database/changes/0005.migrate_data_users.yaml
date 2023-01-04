@@ -1,0 +1,50 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+  - changeSet:
+      id: 0005.add_columns_to_users.1
+      author: codeschluss
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: first_name
+                  type: VARCHAR(255)
+              - column:
+                  name: last_name
+                  type: VARCHAR(255)                                    
+            tableName: users   
+                        
+  - changeSet:
+      id: 0005.add_columns_to_users.2
+      author: codeschluss
+      changes:
+        - sql:
+            comment: split name 
+            splitStatements: true
+            sql:
+                /*!40101 SET character_set_client = utf8 */;
+                
+                update users set
+                    first_name = SUBSTRING_INDEX(name, ' ', 1),
+                    last_name = SUBSTRING_INDEX(name, ' ', -1);
+                
+  - changeSet:
+      id: 0005.add_columns_to_users.3
+      author: codeschluss
+      changes:
+      - dropColumn:
+          columnName: name
+          tableName: users    
+          
+  - changeSet:
+      id: 0005.add_columns_to_users.4
+      author: codeschluss
+      changes:
+      - renameColumn:
+          columnDataType: VARCHAR(255)
+          newColumnName: email
+          oldColumnName: username
+          remarks: change in names
+          schemaName: wooportal
+          tableName: users                 
+                

@@ -10,11 +10,10 @@ import io.leangen.graphql.execution.ResolverInterceptor;
 
 @Service
 public class ExceptionResolverInterceptor implements ResolverInterceptor {
-  
+
   private ErrorMessageService errorMessageService;
-  
-  public ExceptionResolverInterceptor(
-      ErrorMessageService errorMessageService) {
+
+  public ExceptionResolverInterceptor(ErrorMessageService errorMessageService) {
     this.errorMessageService = errorMessageService;
   }
 
@@ -25,23 +24,23 @@ public class ExceptionResolverInterceptor implements ResolverInterceptor {
       return continuation.proceed(context);
     } catch (Exception e) {
       e.printStackTrace();
-      return createErrorObject(context, e);
+      try {
+        return createErrorObject(context, e);
+      } catch (Throwable e1) {
+        e1.printStackTrace();
+      }
     }
+    return continuation;
   }
-  
-  public Object createErrorObject(
-      InvocationContext context, 
-      Exception e) {
+
+  public Object createErrorObject(InvocationContext context, Exception e) throws Throwable {
     return DataFetcherResult.newResult()
-        .error(GraphqlErrorBuilder
-            .newError(context.getResolutionEnvironment().dataFetchingEnvironment)
-            .message(errorMessageService.getLocalizedMessageByException(e))
-            .extensions(Map.of(
-                "exception", e.getClass().getSimpleName(),
-                "originalMessage", e.getMessage() != null 
-                  ? e.getMessage()
-                  : ""))
-            .build())
+        .error(
+            GraphqlErrorBuilder.newError(context.getResolutionEnvironment().dataFetchingEnvironment)
+                .message(errorMessageService.getLocalizedMessageByException(e))
+                .extensions(Map.of("exception", e.getClass().getSimpleName(), "originalMessage",
+                    e.getMessage() != null ? e.getMessage() : ""))
+                .build())
         .build();
   }
 }

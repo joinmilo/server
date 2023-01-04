@@ -1,4 +1,4 @@
-package app.wooportal.server.core.i18n.language.entities;
+package app.wooportal.server.core.i18n.entities;
 
 import java.util.Map;
 

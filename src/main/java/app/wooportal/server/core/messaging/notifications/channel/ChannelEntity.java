@@ -30,7 +30,7 @@ public class ChannelEntity extends BaseEntity {
   @JoinTable(name = "message_definition_channels",
       joinColumns = @JoinColumn(name = "channel_id"),
       inverseJoinColumns = @JoinColumn(name = "message_definition_id"),
-      uniqueConstraints = {
+      uniqueConstraints = { 
           @UniqueConstraint(columnNames = {"message_definition_id", "channel_id"})})
   @CollectionId(column = @Column(name = "id"), type = @Type(type = "uuid-char"), generator = "UUID")
   private List<MessageDefinitionEntity> messageDefinitions;

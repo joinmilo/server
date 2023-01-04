@@ -13,6 +13,7 @@ import app.wooportal.server.base.cms.translations.PageTranslatableEntity;
 import app.wooportal.server.base.userContexts.translations.UserContextTranslatableEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.messaging.translations.MessageTemplateTranslatableEntity;
+import app.wooportal.server.core.security.components.role.translation.RoleTranslatableEntity;
 import app.wooportal.server.features.articles.translations.ArticleCategoryTranslatableEntity;
 import app.wooportal.server.features.articles.translations.ArticleCommentTranslatableEntity;
 import app.wooportal.server.features.contests.translations.ContestParticipationTranslatableEntity;
@@ -108,4 +109,8 @@ public class LanguageEntity extends BaseEntity {
 
   @OneToMany(mappedBy = "language", fetch = FetchType.LAZY)
   private Set<MessageTemplateTranslatableEntity> messageTemplates;
+
+  @OneToMany(mappedBy = "language", fetch = FetchType.LAZY)
+  private Set<RoleTranslatableEntity> roles;
+
 }

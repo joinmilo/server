@@ -22,7 +22,7 @@ public class ErrorServiceTest {
   }
   
   @Test
-  public void sendErrorMailWithException() throws MessagingException {   
+  public void sendErrorMailWithException() throws Throwable {   
     var test = new Exception("test");
     
     errorService.sendErrorMail(test);

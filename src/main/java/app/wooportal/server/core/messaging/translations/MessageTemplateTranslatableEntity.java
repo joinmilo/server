@@ -5,8 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import app.wooportal.server.core.i18n.entities.TranslatableEntity;
 import app.wooportal.server.core.i18n.language.LanguageEntity;
-import app.wooportal.server.core.i18n.language.entities.TranslatableEntity;
 import app.wooportal.server.core.messaging.notifications.template.MessageTemplateEntity;
 import app.wooportal.server.features.events.base.EventEntity;
 import lombok.AccessLevel;
@@ -20,8 +20,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @AllArgsConstructor
 @Entity
-@Table(name = "message_template_translatables")
-public class MessageTemplateTranslatableEntity extends TranslatableEntity<EventEntity> {
+@Table(name = "message_definition_translatables")
+public class MessageTemplateTranslatableEntity extends TranslatableEntity<MessageTemplateEntity> {
 
   private static final long serialVersionUID = 1L;
 
@@ -29,7 +29,7 @@ public class MessageTemplateTranslatableEntity extends TranslatableEntity<EventE
   private String content;
 
   @ManyToOne(fetch = FetchType.LAZY)
-  private MessageTemplateEntity template;
+  private MessageTemplateEntity parent;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private LanguageEntity language;

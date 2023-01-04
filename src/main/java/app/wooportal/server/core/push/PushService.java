@@ -16,13 +16,10 @@ public class PushService {
   private final GraphQlPushService graphQLPushService;
   private final UserService userService;
 
-  public PushService(
-      FirebasePushService firebasePushService,
-      NotificationService notificationService,
-      GraphQlPushService graphQlPushService,
-      UserService userService)
-      throws IOException {
-    
+  public PushService(FirebasePushService firebasePushService,
+      NotificationService notificationService, GraphQlPushService graphQlPushService,
+      UserService userService) throws IOException {
+
     this.firebasePushService = firebasePushService;
     this.notificationService = notificationService;
     this.graphQLPushService = graphQlPushService;
@@ -42,20 +39,18 @@ public class PushService {
   public void sendPush(UserEntity user, MessageDto message) {
     saveNotification(user, message);
     graphQLPushService.sendPush(user, message);
-  
+
     firebasePushService.sendPush(user, message);
   }
 
   private void saveNotification(UserEntity user, MessageDto message) {
-    switch(message.getType()) {
+    switch (message.getType()) {
       case evaluation:
       case event:
       case deletedUser:
       case global:
       case jobAd:
         var notification = new NotificationEntity();
-        notification.setTitle(message.getTitle());
-        notification.setContent(message.getContent());
         notification.setUser(user);
         notification.setRead(false);
         notificationService.save(notification);

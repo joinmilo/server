@@ -16,7 +16,7 @@ import javax.persistence.UniqueConstraint;
 import org.hibernate.annotations.CollectionId;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
-import app.wooportal.server.base.addresses.AddressEntity;
+import app.wooportal.server.base.addresses.base.AddressEntity;
 import app.wooportal.server.base.contact.base.ContactEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.media.base.MediaEntity;
@@ -42,32 +42,32 @@ import lombok.Setter;
 public class OrganisationEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
-  
+
   private String seoDescription;
-  
+
   private String slug;
-  
+
   @Column(nullable = false)
   private Boolean approved;
-  
+
   @Column(nullable = false)
   private String name;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private AddressEntity address;
-  
+
   @ManyToOne(fetch = FetchType.LAZY)
   private MediaEntity cardImage;
-  
+
   @ManyToOne(fetch = FetchType.LAZY)
   private ContactEntity contact;
-  
+
   @ManyToOne(fetch = FetchType.LAZY)
   private MediaEntity titleImage;
-  
+
   @OneToMany(mappedBy = "organisation", fetch = FetchType.LAZY)
   private Set<EventEntity> events;
-  
+
   @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
   private Set<OrganisationVisitorEntity> organisationVisitors;
 
@@ -89,6 +89,6 @@ public class OrganisationEntity extends BaseEntity {
       uniqueConstraints = {@UniqueConstraint(columnNames = {"organisation_id", "media_id"})})
   @CollectionId(column = @Column(name = "id"), type = @Type(type = "uuid-char"), generator = "UUID")
   private List<MediaEntity> media = new ArrayList<>();
-  
+
 
 }

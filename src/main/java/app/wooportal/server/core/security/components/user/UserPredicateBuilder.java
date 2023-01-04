@@ -14,7 +14,7 @@ public class UserPredicateBuilder extends PredicateBuilder<QUserEntity, UserEnti
 
   @Override
   public BooleanExpression freeSearch(String term) {
-    return query.email.likeIgnoreCase(term).or(query.roles.any().name.likeIgnoreCase(term));
+    return query.email.likeIgnoreCase(term).or(query.roles.any().translatables.any().name.likeIgnoreCase(term));
   }
 
   public BooleanExpression withMail(String loginName) {
@@ -23,7 +23,9 @@ public class UserPredicateBuilder extends PredicateBuilder<QUserEntity, UserEnti
   }
 
   public BooleanExpression withRole(String name) {
-    return name != null && !name.isBlank() ? query.roles.any().name.equalsIgnoreCase(name) : null;
+    return name != null && !name.isBlank()
+        ? query.roles.any().translatables.any().name.equalsIgnoreCase(name)
+        : null;
   }
 
   public BooleanExpression createdBefore(OffsetDateTime date) {

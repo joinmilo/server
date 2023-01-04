@@ -1,0 +1,125 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+  - changeSet:
+      id: 0004.add_data_user_roles.1
+      author: codeschluss
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: user_roles_primary_key
+                  name: id
+                  type: CHAR(36)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: user_id
+                  type: CHAR(36)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: role_id
+                  type: CHAR(36)
+            tableName: user_roles
+        - sql:
+            comment: set char set for mysql
+            dbms: mysql
+            endDelimiter: \nGO
+            splitStatements: true
+            sql: ALTER TABLE user_roles CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;              
+            
+  - changeSet:
+      id: 0004.add_data_user_roles.2
+      author: codeschluss
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: role_id
+            indexName: idx_fkqjfvo9dkcg6ecd4c64j7iksjt
+            tableName: user_roles
+            
+  - changeSet:
+      id: 0004.add_data_user_roles.3
+      author: codeschluss
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: user_id
+            indexName: idx_fkalu4y1a3wjsvyljzgsvisbtw7
+            tableName: user_roles 
+            
+  - changeSet:
+      id: 0004.add_data_user_roles.4
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: role_id
+            baseTableName: user_roles
+            constraintName: fkqjfvo9dkcg6ecd4c64j7iksjt
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: CASCADE
+            onUpdate: CASCADE
+            referencedColumnNames: id
+            referencedTableName: roles
+            validate: true
+  - changeSet:
+      id: 0004.add_data_user_roles.5
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: user_id
+            baseTableName: user_roles
+            constraintName: fkalu4y1a3wjsvyljzgsvisbtw7
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: CASCADE
+            onUpdate: CASCADE
+            referencedColumnNames: id
+            referencedTableName: users
+            validate: true
+                        
+  - changeSet:
+      id: 0004.add_data_user_roles.6
+      author: codeschluss
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: user_id
+              - column:
+                  name: role_id
+            indexName: idx_ukc8uysexawf7i37tkjzgmtrl93
+            tableName: user_roles
+            unique: true    
+                               
+  - changeSet:
+      id: 0004.add_data_user_roles.7
+      author: codeschluss
+      changes:
+        - sql:
+            comment: add default translations for roles
+            splitStatements: true
+            sql:
+                /*!40101 SET character_set_client = utf8 */;
+                
+                insert into user_roles (id, user_id, role_id)
+                select uuid(), u.id, "0b8e5964-7687-4cc3-9519-3c570420bb22"
+                from users u
+                WHERE u.superuser = true;
+                
+                insert into user_roles (id, user_id, role_id)
+                select uuid(), u.id, "1f222bdd-b241-4c7d-8adb-c3b11e366a2b"
+                from users u
+                WHERE u.translator = true;
+                                
+                insert into user_roles (id, user_id, role_id)
+                select uuid(), u.id, "1485fce0-9814-4981-bab5-cb1daf009675"
+                from users u
+                WHERE u.blogger_id != null;                                
+                
