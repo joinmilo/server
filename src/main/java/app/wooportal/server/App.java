@@ -27,6 +27,7 @@ import io.leangen.graphql.ExtensionProvider;
 import io.leangen.graphql.GeneratorConfiguration;
 import io.leangen.graphql.execution.ResolverInterceptorFactory;
 import io.leangen.graphql.metadata.strategy.value.ValueMapperFactory;
+import io.leangen.graphql.metadata.strategy.value.jackson.JacksonValueMapper;
 import io.leangen.graphql.metadata.strategy.value.jackson.JacksonValueMapperFactory;
 
 @SpringBootApplication
@@ -64,7 +65,7 @@ public class App {
   }
 
   @Bean
-  public ValueMapperFactory valueMapperFactory() {
+  public ValueMapperFactory<JacksonValueMapper> valueMapperFactory() {
     return (abstractTypes, environment) -> JacksonValueMapperFactory.builder().withPrototype(mapper)
         .build().getValueMapper(abstractTypes, environment);
   }

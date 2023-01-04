@@ -15,7 +15,7 @@ import javax.persistence.UniqueConstraint;
 import org.hibernate.annotations.CollectionId;
 import org.hibernate.annotations.Type;
 import app.wooportal.server.core.base.BaseEntity;
-import app.wooportal.server.core.messaging.notifications.channels.ChannelEntity;
+import app.wooportal.server.core.messaging.channels.ChannelEntity;
 import app.wooportal.server.core.messaging.notifications.template.MessageTemplateEntity;
 import app.wooportal.server.core.messaging.translations.MessageDefinitionTranslatableEntity;
 import app.wooportal.server.core.security.components.user.UserEntity;

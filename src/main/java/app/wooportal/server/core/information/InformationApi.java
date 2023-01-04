@@ -1,8 +1,5 @@
 package app.wooportal.server.core.information;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
 import org.springframework.stereotype.Component;
 import io.leangen.graphql.annotations.GraphQLQuery;
 import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
@@ -11,16 +8,14 @@ import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 @Component
 public class InformationApi {
 
-  private final InformationService versionService;
+  private final InformationService infoService;
 
-  public InformationApi(InformationService versionService) {
-
-    this.versionService = versionService;
+  public InformationApi(InformationService infoService) {
+    this.infoService = infoService;
   }
 
-  @GraphQLQuery(name = "getVersion")
-  public InformationDto version()
-      throws FileNotFoundException, IOException, XmlPullParserException {
-    return versionService.getVersion();
+  @GraphQLQuery(name = "getInformation")
+  public InformationDto info() {
+    return infoService.getInfo();
   }
 }
