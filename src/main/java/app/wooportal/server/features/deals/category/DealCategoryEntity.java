@@ -8,7 +8,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.features.deals.base.DealEntity;
-import app.wooportal.server.features.deals.translations.DealCategoryTranslatableEntity;
+import app.wooportal.server.features.deals.category.translations.DealCategoryTranslatableEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

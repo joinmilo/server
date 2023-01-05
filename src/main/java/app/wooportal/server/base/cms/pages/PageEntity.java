@@ -16,8 +16,8 @@ import javax.persistence.UniqueConstraint;
 import org.hibernate.annotations.CollectionId;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
-import app.wooportal.server.base.cms.pageVisitors.PageVisitorEntity;
-import app.wooportal.server.base.cms.translations.PageTranslatableEntity;
+import app.wooportal.server.base.cms.pages.translations.PageTranslatableEntity;
+import app.wooportal.server.base.cms.pages.visitors.PageVisitorEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.media.base.MediaEntity;
 import lombok.AccessLevel;
@@ -40,7 +40,7 @@ public class PageEntity extends BaseEntity {
   private String seoDescription;
 
   private String slug;
-  
+
   @ManyToOne(fetch = FetchType.LAZY)
   private MediaEntity titleImage;
   

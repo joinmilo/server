@@ -13,6 +13,7 @@ import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.features.surveys.answers.AnswerEntity;
 import app.wooportal.server.features.surveys.questionOptions.QuestionOptionEntity;
 import app.wooportal.server.features.surveys.questionType.QuestionTypeEntity;
+import app.wooportal.server.features.surveys.questions.translations.QuestionTranslatableEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -42,4 +43,7 @@ public class QuestionEntity extends BaseEntity {
 
   @OneToMany(mappedBy = "question", fetch = FetchType.LAZY)
   private Set<QuestionOptionEntity> questionOptions;
+
+  @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
+  private Set<QuestionTranslatableEntity> translatables;
 }

@@ -12,8 +12,9 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.features.surveys.assignments.AssignmentEntity;
+import app.wooportal.server.features.surveys.base.translations.SurveyTranslatableEntity;
+import app.wooportal.server.features.surveys.base.visitors.SurveyVisitorEntity;
 import app.wooportal.server.features.surveys.surveyState.SurveyStateEntity;
-import app.wooportal.server.features.surveys.surveyVisitors.SurveyVisitorEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -51,5 +52,8 @@ public class SurveyEntity extends BaseEntity {
 
   @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
   private Set<SurveyVisitorEntity> surveyVisitors;
+
+  @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
+  private Set<SurveyTranslatableEntity> translatables;
 
 }

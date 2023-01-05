@@ -8,8 +8,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.features.events.eventVisitors.EventVisitorEntity;
-import app.wooportal.server.features.organisations.organisationVisitor.OrganisationVisitorEntity;
-import app.wooportal.server.features.surveys.surveyVisitors.SurveyVisitorEntity;
+import app.wooportal.server.features.organisations.base.visitors.OrganisationVisitorEntity;
+import app.wooportal.server.features.surveys.base.visitors.SurveyVisitorEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

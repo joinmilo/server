@@ -9,7 +9,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import app.wooportal.server.core.base.BaseEntity;
-import app.wooportal.server.core.messaging.translations.NotificationTranslatableEntity;
+import app.wooportal.server.core.messaging.notifications.translations.NotificationTranslatableEntity;
 import app.wooportal.server.core.security.components.user.UserEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

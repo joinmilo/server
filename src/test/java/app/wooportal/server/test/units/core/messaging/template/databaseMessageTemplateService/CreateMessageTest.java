@@ -9,11 +9,11 @@ import java.util.Optional;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import app.wooportal.server.core.i18n.language.LanguageEntity;
-import app.wooportal.server.core.messaging.notifications.template.MessageTemplateEntity;
-import app.wooportal.server.core.messaging.notifications.template.MessageTemplatePredicateBuilder;
-import app.wooportal.server.core.messaging.notifications.template.MessageTemplateRepository;
-import app.wooportal.server.core.messaging.notifications.template.MessageTemplateService;
-import app.wooportal.server.core.messaging.template.DatabaseMessageTemplateService;
+import app.wooportal.server.core.messaging.services.DatabaseMessageTemplateService;
+import app.wooportal.server.core.messaging.templates.MessageTemplateEntity;
+import app.wooportal.server.core.messaging.templates.MessageTemplatePredicateBuilder;
+import app.wooportal.server.core.messaging.templates.MessageTemplateRepository;
+import app.wooportal.server.core.messaging.templates.MessageTemplateService;
 
 public class CreateMessageTest {
 

@@ -12,6 +12,7 @@ import app.wooportal.server.base.userContexts.base.UserContextEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.features.surveys.answers.AnswerEntity;
 import app.wooportal.server.features.surveys.base.SurveyEntity;
+import app.wooportal.server.features.surveys.surveyResult.translations.SurveyResultTranslatableEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -38,4 +39,7 @@ public class SurveyResultEntity extends BaseEntity {
 
   @OneToMany(mappedBy = "result", fetch = FetchType.LAZY)
   private Set<AnswerEntity> answer;
+
+  @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
+  private Set<SurveyResultTranslatableEntity> translatables;
 }

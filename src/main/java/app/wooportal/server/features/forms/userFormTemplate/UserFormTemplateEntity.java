@@ -12,7 +12,7 @@ import org.hibernate.annotations.GenericGenerator;
 import app.wooportal.server.base.userContexts.base.UserContextEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.features.forms.formTemplateType.FormTemplateTypeEntity;
-import app.wooportal.server.features.forms.translations.UserFormTemplateTranslatableEntity;
+import app.wooportal.server.features.forms.userFormTemplate.translations.UserFormTemplateTranslatableEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

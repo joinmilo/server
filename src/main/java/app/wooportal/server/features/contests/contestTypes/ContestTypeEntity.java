@@ -9,7 +9,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.features.contests.base.ContestEntity;
-import app.wooportal.server.features.contests.translations.ContestTypeTranslatableEntity;
+import app.wooportal.server.features.contests.contestTypes.translations.ContestTypeTranslatableEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

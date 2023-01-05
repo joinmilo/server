@@ -7,7 +7,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import app.wooportal.server.base.cms.menuItems.MenuItemEntity;
-import app.wooportal.server.base.cms.translations.MenuTranslatableEntity;
+import app.wooportal.server.base.cms.menues.translations.MenuTranslatableEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

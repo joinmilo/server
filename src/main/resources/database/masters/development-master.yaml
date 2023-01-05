@@ -21,7 +21,16 @@ databaseChangeLog:
     - include:
         file: database/changes/0010.create_table_message_definition_translatables.yaml      
     - include:
-        file: database/changes/0011.migrate_data_subscriptions.yaml                                    
+        file: database/changes/0011.migrate_data_subscriptions.yaml
+    - include:
+        file: database/changes/0012.create_table_contacts.yaml   
+    - include:
+        file: database/changes/0013.create_table_developers.yaml
+    - include:
+        file: database/changes/0014.create_table_developer_translatables.yaml
+    - include:
+        file: database/changes/0015.migrate_data_pages.yaml
+                                
         
 
       

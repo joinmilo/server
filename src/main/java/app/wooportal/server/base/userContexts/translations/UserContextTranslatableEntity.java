@@ -7,7 +7,6 @@ import javax.persistence.Table;
 import app.wooportal.server.base.userContexts.base.UserContextEntity;
 import app.wooportal.server.core.i18n.entities.TranslatableEntity;
 import app.wooportal.server.core.i18n.language.LanguageEntity;
-import app.wooportal.server.features.events.base.EventEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,7 +19,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table(name = "event_category_translatables")
-public class UserContextTranslatableEntity extends TranslatableEntity<EventEntity> {
+public class UserContextTranslatableEntity extends TranslatableEntity<UserContextEntity> {
 
   private static final long serialVersionUID = 1L;
 

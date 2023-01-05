@@ -31,9 +31,31 @@ databaseChangeLog:
             splitStatements: true
             sql:
                 /*!40101 SET character_set_client = utf8 */;
-                
-                insert into subscriptions (id, language_id)
-                select uuid(), , l.id, "0be85779-405d-4833-85d1-c682c996bb40", 
-                from subscriptions s
-                WHERE s.locale = "ar";
-                
+                    
+                UPDATE
+                subscriptions s,
+                languages l 
+                SET 
+                s.language_id = l.id
+                WHERE
+                l.locale = s.locale;
+              
+  - changeSet:
+      id: 0011.migrate_data_subscriptions.4
+      author: codeschluss
+      changes:
+      - dropColumn:
+          columnName: locale
+          tableName: subscriptions        
+
+  - changeSet:
+      id: 0011.migrate_data_subscriptions.5
+      author: codeschluss
+      changes:
+      - addColumn:
+          columns:
+          - column:
+              name: user_id
+              type: VARCHAR(255)
+          tableName: subscriptions
+                                

@@ -5,8 +5,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
+import app.wooportal.server.base.developers.DeveloperEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.features.deals.base.DealEntity;
 import app.wooportal.server.features.organisations.base.OrganisationEntity;
@@ -29,16 +31,16 @@ public class ContactEntity extends BaseEntity {
 
   @Column(nullable = false)
   private String email;
-  
+
   private String first_name;
-  
+
   private String last_name;
 
   @Column(nullable = false)
   private String password;
 
   private String phone;
-  
+
   private Boolean preferredContact;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "contact")
@@ -46,4 +48,7 @@ public class ContactEntity extends BaseEntity {
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "contact")
   private Set<OrganisationEntity> organisations;
+
+  @OneToOne(mappedBy = "contact", fetch = FetchType.LAZY)
+  private DeveloperEntity developer;
 }

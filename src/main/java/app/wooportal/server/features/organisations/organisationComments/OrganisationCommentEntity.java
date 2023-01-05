@@ -10,7 +10,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.features.organisations.base.OrganisationEntity;
-import app.wooportal.server.features.organisations.translations.OrganisationCommentTranslatableEntity;
+import app.wooportal.server.features.organisations.organisationComments.translations.OrganisationCommentTranslatableEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

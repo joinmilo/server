@@ -9,7 +9,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import app.wooportal.server.base.cms.landingFeatures.LandingFeatureEntity;
-import app.wooportal.server.base.cms.translations.LandingTranslatableEntity;
+import app.wooportal.server.base.cms.landings.translations.LandingTranslatableEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.media.base.MediaEntity;
 import lombok.AccessLevel;

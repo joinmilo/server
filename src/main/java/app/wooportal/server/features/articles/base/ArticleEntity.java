@@ -21,7 +21,7 @@ import app.wooportal.server.core.media.base.MediaEntity;
 import app.wooportal.server.features.articles.articleCategories.ArticleCategoryEntity;
 import app.wooportal.server.features.articles.articleComments.ArticleCommentEntity;
 import app.wooportal.server.features.articles.articleRatings.ArticleRatingEntity;
-import app.wooportal.server.features.articles.articleVisitors.ArticleVisitorEntity;
+import app.wooportal.server.features.articles.base.visitors.ArticleVisitorEntity;
 import app.wooportal.server.features.articles.publicAuthors.PublicAuthorEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -39,26 +39,26 @@ import lombok.Setter;
 public class ArticleEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
-  
+
   @Column(nullable = false)
   private Boolean approved;
 
   private String seoDescription;
-  
+
   private String slug;
-  
+
   @Column(nullable = false)
   private Boolean sponsored;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private MediaEntity cardImage;
-  
+
   @ManyToOne(fetch = FetchType.LAZY)
   private ArticleCategoryEntity category;
-  
+
   @ManyToOne(fetch = FetchType.LAZY)
   private PublicAuthorEntity pulbicAuthor;
-  
+
   @ManyToOne(fetch = FetchType.LAZY)
   private MediaEntity titleImage;
 
@@ -67,7 +67,7 @@ public class ArticleEntity extends BaseEntity {
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "article")
   private Set<ArticleRatingEntity> articleRating;
-  
+
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
   private Set<ArticleVisitorEntity> articleVisitors;
 
