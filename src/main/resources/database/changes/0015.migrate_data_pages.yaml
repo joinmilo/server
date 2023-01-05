@@ -76,6 +76,12 @@ databaseChangeLog:
                   name: id
                   type: CHAR(36)
             tableName: page_media
+        - sql:
+            comment: set char set for mysql
+            dbms: mysql
+            endDelimiter: \nGO
+            splitStatements: true
+            sql: ALTER TABLE page_media CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;            
 
   - changeSet:
       id: 0015.create_table_pages.5

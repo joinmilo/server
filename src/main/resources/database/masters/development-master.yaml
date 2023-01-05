@@ -1,6 +1,8 @@
 databaseChangeLog:
     - logicalFilePath: path_independent
     - include:
+        file: database/changes/0000.migrate_data_seed.yaml    
+    - include:
         file: database/changes/0001.create_table_roles.yaml
     - include:
         file: database/changes/0002.create_table_roles_translatables.yaml
