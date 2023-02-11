@@ -11,9 +11,10 @@ import org.hibernate.Hibernate;
 import org.springframework.stereotype.Service;
 import app.wooportal.server.core.i18n.language.LanguageEntity;
 import app.wooportal.server.core.i18n.translation.TranslationService;
-import app.wooportal.server.core.messaging.notifications.definition.MessageDefinitionEntity;
-import app.wooportal.server.core.messaging.notifications.template.MessageTemplateService;
-import app.wooportal.server.core.messaging.translations.MessageTemplateTranslatableEntity;
+import app.wooportal.server.core.messaging.definitions.MessageDefinitionEntity;
+import app.wooportal.server.core.messaging.services.TemplateService;
+import app.wooportal.server.core.messaging.templates.MessageTemplateService;
+import app.wooportal.server.core.messaging.templates.translations.MessageTemplateTranslatableEntity;
 import app.wooportal.server.core.utils.ReflectionUtils;
 
 @Service
