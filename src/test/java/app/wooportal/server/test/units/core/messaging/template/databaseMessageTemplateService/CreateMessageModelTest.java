@@ -15,8 +15,7 @@ import app.wooportal.server.test.units.core.setup.services.ObjectFactory;
 
 public class CreateMessageModelTest {
 
-  private DatabaseMessageTemplateService databaseMessageTemplateService =
-      new DatabaseMessageTemplateService(null, null);
+  private DatabaseMessageTemplateService service = new DatabaseMessageTemplateService(null, null);
 
   @Test
   public void checkCreatedMessageModel() throws Throwable {
@@ -44,7 +43,7 @@ public class CreateMessageModelTest {
     language.setLocale("en");
     language.setName("english");
     var result =
-        databaseMessageTemplateService.createMessageModel(messageDefinition, entity, language);
+        service.createMessageModel(messageDefinition, entity, language);
 
     assertThat(result).isEqualTo(map);
   }
@@ -68,7 +67,7 @@ public class CreateMessageModelTest {
     language.setLocale("en");
     language.setName("english");
 
-    assertThat(databaseMessageTemplateService.createMessageModel(messageDefinitiOn, inspectionItem,
+    assertThat(service.createMessageModel(messageDefinitiOn, inspectionItem,
         language)).isEqualTo(map);
   }
 
@@ -90,7 +89,7 @@ public class CreateMessageModelTest {
     language.setLocale("en");
     language.setName("english");
 
-    assertThat(databaseMessageTemplateService.createMessageModel(notificationDefinition,
+    assertThat(service.createMessageModel(notificationDefinition,
         inspectionItem, language)).isEqualTo(map);
   }
 }
