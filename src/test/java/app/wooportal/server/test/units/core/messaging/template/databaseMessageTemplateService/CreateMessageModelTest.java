@@ -7,7 +7,7 @@ import java.util.Map;
 import org.junit.jupiter.api.Test;
 import app.wooportal.server.core.i18n.language.LanguageEntity;
 import app.wooportal.server.core.messaging.definitions.MessageDefinitionEntity;
-import app.wooportal.server.core.messaging.services.DatabaseMessageTemplateService;
+import app.wooportal.server.core.messaging.template.DatabaseMessageTemplateService;
 import app.wooportal.server.core.messaging.templates.MessageTemplateEntity;
 import app.wooportal.server.test.units.core.setup.entities.base.TestEntity;
 import app.wooportal.server.test.units.core.setup.entities.child.TestChildEntity;
