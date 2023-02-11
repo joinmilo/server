@@ -36,9 +36,6 @@ public class MessageDefinitionEntity extends BaseEntity {
   private static final long serialVersionUID = 1L;
 
   @ManyToOne(fetch = FetchType.LAZY)
-  private UserEntity user;
-
-  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "message_template_id")
   private MessageTemplateEntity template;
 
@@ -53,6 +50,13 @@ public class MessageDefinitionEntity extends BaseEntity {
           @UniqueConstraint(columnNames = {"message_definition_id", "channel_id"})})
   @CollectionId(column = @Column(name = "id"), type = @Type(type = "uuid-char"), generator = "UUID")
   private List<ChannelEntity> channels;
-
-
+  
+  @ManyToMany(fetch = FetchType.LAZY)
+  @JoinTable(name = "message_definition_users",
+      joinColumns = @JoinColumn(name = "message_definition_id"),
+      inverseJoinColumns = @JoinColumn(name = "user_id"),
+      uniqueConstraints = {
+          @UniqueConstraint(columnNames = {"message_definition_id", "user_id"})})
+  @CollectionId(column = @Column(name = "id"), type = @Type(type = "uuid-char"), generator = "UUID")
+  private List<UserEntity> users;
 }

@@ -1,0 +1,19 @@
+databaseChangeLog:
+  - changeSet:
+      id: 0024.migrate_data_event_categories.1
+      author: codeschluss
+      changes:
+      - renameTable:
+          newTableName: event_categories
+          oldTableName: categories
+          remarks: change in names
+          schemaName: wooportal
+
+  - changeSet:
+      id: 0024.migrate_data_event_categories.2
+      author: codeschluss
+      changes:
+      - dropColumn:
+          columnName: description
+          tableName: event_categories
+                

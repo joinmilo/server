@@ -1,0 +1,24 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+  - changeSet:
+      id: 0016.migrate_data_page_translatables.1
+      author: codeschluss
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: short_description
+                  type: VARCHAR(255)
+            tableName: markup_translatables    
+
+  - changeSet:
+      id: 0016.migrate_data_page_translatables.2
+      author: codeschluss
+      changes:
+      - renameColumn:
+          columnDataType: VARCHAR(255)
+          newColumnName: name
+          oldColumnName: title
+          remarks: change in names
+          schemaName: wooportal
+          tableName: markup_translatables

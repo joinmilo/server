@@ -14,7 +14,7 @@ public class MessageDefinitionPredicateBuilder
 
   @Override
   public BooleanExpression freeSearch(String term) {
-    return query.user.email.likeIgnoreCase(term).or(query.channels.any().name.likeIgnoreCase(term))
+    return query.users.any().email.likeIgnoreCase(term).or(query.channels.any().name.likeIgnoreCase(term))
         .or(query.template.name.likeIgnoreCase(term));
   }
 }

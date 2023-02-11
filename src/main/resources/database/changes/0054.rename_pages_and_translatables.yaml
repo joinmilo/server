@@ -1,0 +1,44 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent                  
+  - changeSet:
+      id: 0054.rename_pages_and_translatables.1
+      author: codeschluss
+      changes:
+      - renameTable:
+          newTableName: page_translatables
+          oldTableName: markup_translatables
+          remarks: change in names
+          schemaName: wooportal      
+
+  - changeSet:
+      id: 0054.rename_pages_and_translatables.2
+      author: codeschluss
+      changes:
+      - renameTable:
+          newTableName: pages
+          oldTableName: markups
+          remarks: change in names
+          schemaName: wooportal      
+
+  - changeSet:
+      id: 0054.rename_pages_and_translatables.3
+      author: codeschluss
+      changes:
+      - renameTable:
+          newTableName: feature_visitors
+          oldTableName: page_visitors
+          remarks: change in names
+          schemaName: wooportal           
+
+  - changeSet:
+      id: 0054.rename_pages_and_translatables.4
+      author: codeschluss
+      changes:
+      - renameTable:
+          newTableName: page_visitors
+          oldTableName: markup_visitors
+          remarks: change in names
+          schemaName: wooportal      
+                  
+                      
+            

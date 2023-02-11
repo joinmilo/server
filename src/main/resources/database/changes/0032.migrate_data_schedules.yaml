@@ -1,0 +1,19 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent                    
+  - changeSet:
+      id: 0032.migrate_data_schedules.2
+      author: codeschluss
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: schedules
+            constraintName: CONSTRAINT_8EE3E8C9
+
+  - changeSet:
+      id: 0032.migrate_data_schedules.3
+      author: codeschluss
+      changes:
+        - renameColumn:
+            newColumnName: event_id
+            oldColumnName: activity_id
+            columnDataType: char(50)
+            tableName: schedules              

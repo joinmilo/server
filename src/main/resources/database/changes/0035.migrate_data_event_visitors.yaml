@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+  - changeSet:
+      id: 0035.migrate_data_event_visitors.1
+      author: codeschluss
+      changes:
+      - renameTable:
+          newTableName: event_visitors
+          oldTableName: activity_visitors
+          remarks: change in names
+          schemaName: wooportal            

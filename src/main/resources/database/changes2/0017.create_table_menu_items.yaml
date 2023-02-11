@@ -18,7 +18,7 @@ databaseChangeLog:
                     nullable: false
                   defaultValueComputed: CURRENT_TIMESTAMP
                   name: created
-                  type: TIMESTAMP WITH TIME ZONE
+                  type: datte
               - column:
                   constraints:
                     nullable: false

@@ -1,0 +1,47 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+  - changeSet:
+      id: 0027.create_table_attendee_configurations.1
+      author: codeschluss
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: attendee_configurations_primary_key
+                  name: id
+                  type: CHAR(36)
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  name: created
+                  type: datetime
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  name: modified
+                  type: datetime
+              - column:
+                  constraints:
+                    nullable: false
+                  name: max_attendees
+                  type: INTEGER
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueBoolean: false
+                  name: approval
+                  type: boolean                                                                
+            tableName: attendee_configurations 
+        - sql:
+            comment: set char set for mysql
+            dbms: mysql
+            endDelimiter: \nGO
+            splitStatements: true
+            sql: ALTER TABLE attendee_configurations CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+            
+            

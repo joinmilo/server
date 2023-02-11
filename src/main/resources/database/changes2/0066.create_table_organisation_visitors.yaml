@@ -24,7 +24,7 @@ databaseChangeLog:
                     nullable: false
                   defaultValueComputed: CURRENT_TIMESTAMP
                   name: modified
-                  type: TIMESTAMP WITH TIME ZONE
+                  type: datetim
               - column:
                   constraints:
                     nullable: false

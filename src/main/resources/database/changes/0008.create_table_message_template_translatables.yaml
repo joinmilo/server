@@ -1,7 +1,7 @@
 databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
-      id: 0007.create_table_message_template_translatables.1
+      id: 0008.create_table_message_template_translatables.1
       author: codeschluss
       changes:
         - createTable:
@@ -49,7 +49,7 @@ databaseChangeLog:
             sql: ALTER TABLE message_template_translatables CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;              
 
   - changeSet:
-      id: 0007.create_table_message_template_translatables.2
+      id: 0008.create_table_message_template_translatables.2
       author: codeschluss
       changes:
         - createIndex:
@@ -59,7 +59,7 @@ databaseChangeLog:
             indexName: idx_fkewyspikvsx18dk8kq42994hu3
             tableName: message_template_translatables
   - changeSet:
-      id: 0007.create_table_message_template_translatables.3
+      id: 0008.create_table_message_template_translatables.3
       author: codeschluss
       changes:
         - addForeignKeyConstraint:
@@ -75,7 +75,7 @@ databaseChangeLog:
             validate: true                         
           
   - changeSet:
-      id: 0007.create_table_message_template_translatables.4
+      id: 0008.create_table_message_template_translatables.4
       author: codeschluss
       changes:
         - createIndex:
@@ -85,7 +85,7 @@ databaseChangeLog:
             indexName: idx_fk5x7y8z23o5h5mihteutc1dx5y
             tableName: message_template_translatables
   - changeSet:
-      id: 0007.create_table_message_template_translatables.5
+      id: 0008.create_table_message_template_translatables.5
       author: codeschluss
       changes:
         - addForeignKeyConstraint:
@@ -98,6 +98,7 @@ databaseChangeLog:
             onDelete: CASCADE
             referencedColumnNames: id
             referencedTableName: languages
-            validate: true                         
+            validate: true      
+                             
                     
             

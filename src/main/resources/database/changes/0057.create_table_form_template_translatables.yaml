@@ -1,0 +1,107 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+  - changeSet:
+      id: 0057.create_table_form_template_translatables.1
+      author: codeschluss
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: form_template_translatables_primary_key
+                  name: id
+                  type: CHAR(36)
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  name: created
+                  type: datetime
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  name: modified
+                  type: datetime
+              - column:
+                  constraints:
+                    nullable: false              
+                  name: name
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false              
+                  name: content
+                  type: VARCHAR(255)                  
+              - column:
+                  constraints:
+                    nullable: false
+                  name: parent_id
+                  type: CHAR(36)         
+              - column:
+                  constraints:
+                    nullable: false
+                  name: language_id
+                  type: CHAR(36)                                                                               
+            tableName: form_template_translatables
+        - sql:
+            comment: set char set for mysql
+            dbms: mysql
+            endDelimiter: \nGO
+            splitStatements: true
+            sql: ALTER TABLE form_template_translatables CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;             
+
+  - changeSet:
+      id: 0057.create_table_form_template_translatables.2
+      author: codeschluss
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: parent_id
+            indexName: idx_fkrqfx4w4wmlx32ltwnu1xc3ok4
+            tableName: form_template_translatables
+  - changeSet:
+      id: 0057.create_table_form_template_translatables.3
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: parent_id
+            baseTableName: form_template_translatables
+            constraintName: fkrqfx4w4wmlx32ltwnu1xc3ok4
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: form_templates
+            validate: true   
+            
+  - changeSet:
+      id: 0057.create_table_form_template_translatables.4
+      author: codeschluss
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: language_id
+            indexName: idx_fkz7pxzww8p14mc24nsbulsjsa8
+            tableName: form_template_translatables
+  - changeSet:
+      id: 0057.create_table_form_template_translatables.5
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: language_id
+            baseTableName: form_template_translatables
+            constraintName: fkz7pxzww8p14mc24nsbulsjsa8
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: languages
+            validate: true                     
+            

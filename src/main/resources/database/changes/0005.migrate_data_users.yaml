@@ -1,7 +1,7 @@
 databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
-      id: 0005.add_columns_to_users.1
+      id: 0005.migrate_data_users.1
       author: codeschluss
       changes:
         - addColumn:
@@ -11,11 +11,14 @@ databaseChangeLog:
                   type: VARCHAR(255)
               - column:
                   name: last_name
-                  type: VARCHAR(255)                                    
+                  type: VARCHAR(255)    
+              - column:
+                  name: language_id
+                  type: char(50)                                                   
             tableName: users   
                         
   - changeSet:
-      id: 0005.add_columns_to_users.2
+      id: 0005.migrate_data_users.2
       author: codeschluss
       changes:
         - sql:
@@ -29,15 +32,21 @@ databaseChangeLog:
                     last_name = SUBSTRING_INDEX(name, ' ', -1);
                 
   - changeSet:
-      id: 0005.add_columns_to_users.3
+      id: 0005.migrate_data_users.3
       author: codeschluss
       changes:
       - dropColumn:
-          columnName: name
+          columns:
+            - column:
+                name: name
+            - column:
+                name: superuser
+            - column:
+                name: translator                               
           tableName: users    
           
   - changeSet:
-      id: 0005.add_columns_to_users.4
+      id: 0005.migrate_data_users.4
       author: codeschluss
       changes:
       - renameColumn:
@@ -46,5 +55,31 @@ databaseChangeLog:
           oldColumnName: username
           remarks: change in names
           schemaName: wooportal
-          tableName: users                 
+          tableName: users       
+          
+  - changeSet:
+      id: 0005.migrate_data_users.5
+      author: codeschluss
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: language_id
+            indexName: idx_fkqyd469n2y85es2ptacjwlksld
+            tableName: users
+  - changeSet:
+      id: 0005.migrate_data_users.6
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: language_id
+            baseTableName: users
+            constraintName: fkqyd469n2y85es2ptacjwlksld
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: languages
+            validate: true                      
                 

@@ -1,7 +1,7 @@
 databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
-      id: 0009.create_table_message_definition_translatables.1
+      id: 00010.create_table_message_definition_translatables.1
       author: codeschluss
       changes:
         - createTable:
@@ -49,7 +49,7 @@ databaseChangeLog:
             sql: ALTER TABLE message_definition_translatables CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;              
 
   - changeSet:
-      id: 0009.create_table_message_definition_translatables.2
+      id: 00010.create_table_message_definition_translatables.2
       author: codeschluss
       changes:
         - createIndex:
@@ -59,7 +59,7 @@ databaseChangeLog:
             indexName: idx_fk0qs23p1tzjwx0soccpepaemyf
             tableName: message_definition_translatables
   - changeSet:
-      id: 0009.create_table_message_definition_translatables.3
+      id: 00010.create_table_message_definition_translatables.3
       author: codeschluss
       changes:
         - addForeignKeyConstraint:
@@ -75,7 +75,7 @@ databaseChangeLog:
             validate: true                         
           
   - changeSet:
-      id: 0009.create_table_message_definition_translatables.4
+      id: 00010.create_table_message_definition_translatables.4
       author: codeschluss
       changes:
         - createIndex:
@@ -85,7 +85,7 @@ databaseChangeLog:
             indexName: idx_fkj6q2kv8nde5n69drlrz5jqp3s
             tableName: message_definition_translatables
   - changeSet:
-      id: 0009.create_table_message_definition_translatables.5
+      id: 00010.create_table_message_definition_translatables.5
       author: codeschluss
       changes:
         - addForeignKeyConstraint:

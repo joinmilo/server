@@ -26,10 +26,13 @@ public class PageTranslatableEntity extends TranslatableEntity<PageEntity> {
   private static final long serialVersionUID = 1L;
   
   @Column(nullable = false)
+  private String content;
+  
+  @Column(nullable = false)
   private String name;
   
   @Column(nullable = false)
-  private String content;
+  private String shortDescription;
   
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(nullable = false)

@@ -7,11 +7,12 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import app.wooportal.server.base.cms.features.translations.FeatureTranslatableEntity;
-import app.wooportal.server.base.cms.landings.translations.LandingTranslatableEntity;
 import app.wooportal.server.base.cms.menues.translations.MenuTranslatableEntity;
 import app.wooportal.server.base.cms.pages.translations.PageTranslatableEntity;
+import app.wooportal.server.base.inquiry.translations.InquiryCategoryTranslatableEntity;
 import app.wooportal.server.base.userContexts.translations.UserContextTranslatableEntity;
 import app.wooportal.server.core.base.BaseEntity;
+import app.wooportal.server.core.messaging.definitions.translations.MessageDefinitionTranslatableEntity;
 import app.wooportal.server.core.messaging.templates.translations.MessageTemplateTranslatableEntity;
 import app.wooportal.server.core.security.components.role.translation.RoleTranslatableEntity;
 import app.wooportal.server.features.articles.articleCategories.translations.ArticleCategoryTranslatableEntity;
@@ -91,13 +92,13 @@ public class LanguageEntity extends BaseEntity {
   private Set<FormTemplateTranslatableEntity> formTemplates;
 
   @OneToMany(mappedBy = "language", fetch = FetchType.LAZY)
-  private Set<LandingTranslatableEntity> landings;
-
-  @OneToMany(mappedBy = "language", fetch = FetchType.LAZY)
   private Set<MenuTranslatableEntity> menues;
 
   @OneToMany(mappedBy = "language", fetch = FetchType.LAZY)
   private Set<MessageTemplateTranslatableEntity> messageTemplates;
+
+  @OneToMany(mappedBy = "language", fetch = FetchType.LAZY)
+  private Set<MessageDefinitionTranslatableEntity> messageDefinitions;
 
   @OneToMany(mappedBy = "language", fetch = FetchType.LAZY)
   private Set<OrganisationTranslatableEntity> organisations;
@@ -115,5 +116,8 @@ public class LanguageEntity extends BaseEntity {
   private Set<UserContextTranslatableEntity> userContexts;
 
   @OneToMany(mappedBy = "language", fetch = FetchType.LAZY)
-  private Set<UserFormTemplateTranslatableEntity> UserFormTemplate;
+  private Set<UserFormTemplateTranslatableEntity> UserFormTemplates;
+
+  @OneToMany(mappedBy = "language", fetch = FetchType.LAZY)
+  private Set<InquiryCategoryTranslatableEntity> inquiryCategory;
 }

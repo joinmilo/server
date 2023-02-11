@@ -1,0 +1,29 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+  - changeSet:
+      id: 0037.migrate_data_article_categories.1
+      author: codeschluss
+      changes:
+      - renameTable:
+          newTableName: article_categories
+          oldTableName: topics
+          remarks: change in names
+          schemaName: wooportal     
+  
+  - changeSet:
+      id: 0037.migrate_data_article_categories.2
+      author: codeschluss
+      changes:
+        - addColumn:
+            tableName: article_categories
+            columns:
+            - column:
+                name: icon
+                type: VARCHAR(255)   
+            - column:
+                name: color
+                type: VARCHAR(255)      
+                
+                            
+  
+            

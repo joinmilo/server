@@ -1,0 +1,91 @@
+databaseChangeLog:
+  - changeSet:
+      id: 0064.migrate_data_organisations.1
+      author: codeschluss
+      changes:
+        - addColumn:
+            tableName: organisations
+            columns:                                                       
+            - column:
+                name: slug
+                type: varchar(255)
+            - column:
+                name: seo_description
+                type: varchar(255) 
+            - column:
+                name: contact_id               
+                type: char(50) 
+                
+  - changeSet:
+      id: 0064.migrate_data_organisations.2
+      author: codeschluss
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: contact_id
+            indexName: idx_fk307r0o15615cc4o5aupzeqk72
+            tableName: organisations
+  - changeSet:
+      id: 0064.migrate_data_organisations.3
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: contact_id
+            baseTableName: organisations
+            constraintName: fk307r0o15615cc4o5aupzeqk72
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: contacts
+            validate: true  
+            
+  - changeSet:
+      id: 0064.migrate_data_organisations.4
+      author: codeschluss
+      changes:
+        - sql:
+            comment: add contact_id data
+            splitStatements: true
+            sql:
+                /*!40101 SET character_set_client = utf8 */;
+                
+                insert into contacts (id, email, name, phone, website)
+                select uuid(), o.mail, o.name, o.phone, o.website
+                from organisations o;
+                                
+                delete c from contacts c
+                inner join contacts c2
+                where 
+                c.id < c2.id AND
+                c.email = c2.email AND
+                c.phone = c2.phone AND
+                c.website = c.website AND
+                c.name = c2.name;
+                
+                update organisations o
+                inner join contacts c
+                on (o.phone = c.phone OR (o.phone IS NULL AND c.phone IS NULL)) AND
+                (o.mail = c.email OR (o.mail IS NULL AND c.email IS NULL)) AND
+                (o.website = c.website OR (o.website IS NULL AND c.website IS NULL)) AND
+                (o.name = c.name OR (o.name IS NULL AND c.name IS NULL))
+                set o.contact_id = c.id;
+                
+  - changeSet:
+      id: 0064.migrate_data_organisations.5
+      author: codeschluss
+      changes:
+        - dropColumn:
+            tableName: organisations
+            columns:
+            - column:
+                name: phone
+            - column:
+                name: name
+            - column:
+                name: website
+            - column:
+                name: mail                                              
+                                                           

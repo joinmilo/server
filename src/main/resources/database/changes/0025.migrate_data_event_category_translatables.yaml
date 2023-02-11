@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - changeSet:
+      id: 0025.migrate_data_event_category_translatables.1
+      author: codeschluss
+      changes:
+      - renameTable:
+          newTableName: event_category_translatables
+          oldTableName: category_translatables
+          remarks: change in names
+          schemaName: wooportal

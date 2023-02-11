@@ -11,7 +11,6 @@ import javax.persistence.Transient;
 import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import app.wooportal.server.base.cms.landings.LandingEntity;
 import app.wooportal.server.base.cms.pages.PageEntity;
 import app.wooportal.server.base.userContexts.base.UserContextEntity;
 import app.wooportal.server.core.base.BaseEntity;
@@ -73,7 +72,4 @@ public class MediaEntity extends BaseEntity {
 
   @OneToMany(mappedBy = "titleImage", fetch = FetchType.LAZY)
   private Set<PageEntity> pageTitleImages;
-
-  @OneToMany(mappedBy = "titleImage", fetch = FetchType.LAZY)
-  private Set<LandingEntity> landingTitleImages;
 }

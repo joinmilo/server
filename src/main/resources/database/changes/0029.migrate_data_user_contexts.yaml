@@ -1,0 +1,16 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent                                                    
+  - changeSet:
+      id: 0029.migrate_data_user_contexts.1
+      author: codeschluss
+      changes:
+        - sql:
+            comment: add user data
+            splitStatements: true
+            sql:
+                /*!40101 SET character_set_client = utf8 */;
+                
+                insert into user_contexts (id, user_id)
+                select uuid(), u.id
+                from users u                             
+                

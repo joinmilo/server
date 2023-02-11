@@ -1,0 +1,47 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+  - changeSet:
+      id: 0058.create_table_deal_categories.1
+      author: codeschluss
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: deal_categories_primary_key
+                  name: id
+                  type: CHAR(36)
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  name: created
+                  type: datetime
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  name: modified
+                  type: datetime
+              - column:
+                  constraints:
+                    nullable: false
+                  name: color
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: icon
+                  type: VARCHAR(255)                                                                   
+            tableName: deal_categories
+        - sql:
+            comment: set char set for mysql
+            dbms: mysql
+            endDelimiter: \nGO
+            splitStatements: true
+            sql: ALTER TABLE deal_categories CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;             
+                       
+          
+            

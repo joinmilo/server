@@ -1,0 +1,259 @@
+databaseChangeLog:
+  - changeSet:
+      id: 0030.migrate_data_events.1
+      author: codeschluss
+      changes:
+      - renameTable:
+          newTableName: events
+          oldTableName: activities
+          remarks: change in names
+          schemaName: wooportal
+
+  - changeSet:
+      id: 0030.migrate_data_events.2
+      author: codeschluss
+      changes:
+        - addColumn:
+            tableName: events
+            columns:
+            - column:
+                name: creator_id
+                type: char(50)
+            - column:
+                name: contact_id               
+                type: char(50)                
+            - column:
+                name: attendee_configuration_id
+                type: char(50)        
+            - column:
+                name: organisation_id
+                type: char(50)                                                         
+            - column:
+                name: slug
+                type: varchar(255)
+            - column:
+                name: seo_description
+                type: varchar(255) 
+            - column:
+                name: video_chat_link
+                type: varchar(250)       
+            - column:
+                constraints:
+                  nullable: false
+                defaultValueBoolean: false
+                name: sponsored
+                type: boolean                                                                               
+          
+  - changeSet:
+      id: 0030.migrate_data_events.3
+      author: codeschluss
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: creator_id
+            indexName: idx_fkg9rmit5mdulaxru5ozompfqdc
+            tableName: events
+  - changeSet:
+      id: 0030.migrate_data_events.4
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: creator_id
+            baseTableName: events
+            constraintName: fkg9rmit5mdulaxru5ozompfqdc
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: user_contexts
+            validate: true               
+
+  - changeSet:
+      id: 0030.migrate_data_events.5
+      author: codeschluss
+      changes:
+        - sql:
+            comment: add creator_id data
+            splitStatements: true
+            sql:
+                /*!40101 SET character_set_client = utf8 */;
+                
+                UPDATE
+                events e
+                left join providers p
+                ON p.id = e.provider_id
+                left join user_contexts u
+                ON u.user_id = p.user_id
+                SET
+                e.creator_id = u.id;
+                
+  - changeSet:
+      id: 0030.migrate_data_events.6
+      author: codeschluss
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: attendee_configuration_id
+            indexName: idx_fkwt3fzjzvfc3nfi2xfxsbamoyt
+            tableName: events
+  - changeSet:
+      id: 0030.migrate_data_events.7
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: attendee_configuration_id
+            baseTableName: events
+            constraintName: fkwt3fzjzvfc3nfi2xfxsbamoyt
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: SET NULL
+            referencedColumnNames: id
+            referencedTableName: attendee_configurations
+            validate: true   
+
+  - changeSet:
+      id: 0030.migrate_data_events.13
+      author: codeschluss
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: contact_id
+            indexName: idx_fkc82ojuh39tmzr2uswjyd7mti3
+            tableName: events
+  - changeSet:
+      id: 0030.migrate_data_events.14
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: contact_id
+            baseTableName: events
+            constraintName: fkc82ojuh39tmzr2uswjyd7mti3
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: SET NULL
+            referencedColumnNames: id
+            referencedTableName: contacts
+            validate: true
+            
+  - changeSet:
+      id: 0030.migrate_data_events.15
+      author: codeschluss
+      changes:
+        - sql:
+            comment: add contact_id data
+            splitStatements: true
+            sql:
+                /*!40101 SET character_set_client = utf8 */;
+                
+                insert into contacts (id, email, name, phone)
+                select uuid(), e.mail, e.contact_name, e.phone
+                from events e;
+                                
+                delete c from contacts c
+                inner join contacts c2
+                where 
+                c.id < c2.id AND
+                c.name = c2.name AND
+                c.email = c2.email AND
+                c.phone = c2.phone;
+                
+                update events e
+                inner join contacts c
+                on (e.phone = c.phone OR (e.phone IS NULL AND c.phone IS NULL)) AND
+                (e.mail = c.email OR (e.mail IS NULL AND c.email IS NULL)) AND
+                (e.contact_name = c.name OR (e.contact_name IS NULL AND c.name IS NULL))
+                set e.contact_id = c.id;
+
+  - changeSet:
+      id: 0030.migrate_data_events.16
+      author: codeschluss
+      changes:
+      - dropColumn:
+          columnName: phone
+          tableName: events
+          
+  - changeSet:
+      id: 0030.migrate_data_events.17
+      author: codeschluss
+      changes:
+      - dropColumn:
+          columnName: contact_name
+          tableName: events
+          
+  - changeSet:
+      id: 0030.migrate_data_events.18
+      author: codeschluss
+      changes:
+      - dropColumn:
+          columnName: mail
+          tableName: events                    
+                                  
+  - changeSet:
+      id: 0030.migrate_data_events.19
+      author: codeschluss
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: organisation_id
+            indexName: idx_fklmz8twfy3gqp1ezz0qkihjgie
+            tableName: events
+  - changeSet:
+      id: 0030.migrate_data_events.20
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: organisation_id
+            baseTableName: events
+            constraintName: fklmz8twfy3gqp1ezz0qkihjgie
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: SET NULL
+            referencedColumnNames: id
+            referencedTableName: organisations
+            validate: true                 
+                
+  - changeSet:
+      id: 0030.migrate_data_events.21
+      author: codeschluss
+      changes:
+        - sql:
+            comment: add organisation_id data
+            splitStatements: true
+            sql:
+                /*!40101 SET character_set_client = utf8 */;
+                
+                UPDATE
+                events e
+                left join providers p
+                ON p.id = e.provider_id
+                SET
+                e.organisation_id = p.organisation_id;                
+            
+  - changeSet:
+      id: 0030.migrate_data_events.22
+      author: codeschluss
+      changes:
+      - dropColumn:
+          columnName: likes
+          tableName: events  
+          
+  - changeSet:
+      id: 0030.migrate_data_events.23
+      author: codeschluss
+      changes:
+      - renameColumn:
+          columnDataType: double
+          newColumnName: entry_fee
+          oldColumnName: admission_fee
+          remarks: change in names
+          schemaName: wooportal
+          tableName: events              
+            

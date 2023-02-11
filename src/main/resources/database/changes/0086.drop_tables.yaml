@@ -1,0 +1,19 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+  - changeSet:
+      id: 0068.drop_tables.1
+      author: codeschluss
+      changes:
+        - dropTable:
+            cascadeConstraints: true
+            tableName: activity_likes
+            schemaName: wooportal
+            
+  - changeSet:
+      id: 0068.drop_tables.2
+      author: codeschluss
+      changes:
+        - dropTable:
+            cascadeConstraints: true
+            tableName: activity_subscriptions
+            schemaName: wooportal            

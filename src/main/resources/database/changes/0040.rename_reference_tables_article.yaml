@@ -1,0 +1,21 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+  - changeSet:
+      id: 0040.rename_reference_table_article.1
+      author: codeschluss
+      changes:
+      - renameTable:
+          newTableName: article_visitors
+          oldTableName: blog_visitors
+          remarks: change in names
+          schemaName: wooportal      
+
+  - changeSet:
+      id: 0040.rename_reference_table_article.2
+      author: codeschluss
+      changes:
+      - renameTable:
+          newTableName: article_translatables
+          oldTableName: blog_translatables
+          remarks: change in names
+          schemaName: wooportal           

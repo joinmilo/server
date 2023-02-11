@@ -1,0 +1,24 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent                   
+  - changeSet:
+      id: 0019.migrate_data_features.1
+      author: codeschluss
+      changes:
+      - renameTable:
+          newTableName: features
+          oldTableName: pages
+          remarks: change in names
+          schemaName: wooportal        
+
+  - changeSet:
+      id: 0019.migrate_data_features.2
+      author: codeschluss
+      changes:
+      - renameColumn:
+          columnDataType: VARCHAR(255)      
+          newColumnName: key
+          oldColumnName: name
+          remarks: change in names
+          tableName: features
+          schemaName: wooportal                      
+            

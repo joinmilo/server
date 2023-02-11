@@ -26,20 +26,13 @@ databaseChangeLog:
                   name: modified
                   type: datetime
               - column:
-                  constraints:
-                    nullable: false
                   name: email
-                  type: VARCHAR(255)
+                  type: VARCHAR(255)    
               - column:
-                  constraints:
-                    nullable: false
-                  name: password
-                  type: VARCHAR(255)          
-              - column:
-                  name: first_name
+                  name: website
                   type: VARCHAR(255)       
               - column:
-                  name: last_name
+                  name: name
                   type: VARCHAR(255) 
               - column:
                   name: phone

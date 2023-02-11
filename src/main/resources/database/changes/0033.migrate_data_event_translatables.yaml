@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+  - changeSet:
+      id: 0035.migrate_data_event_translatables.1
+      author: codeschluss
+      changes:
+      - renameTable:
+          newTableName: event_translatables
+          oldTableName: activity_translatables
+          remarks: change in names
+          schemaName: wooportal   
+
+  - changeSet:
+      id: 0035.migrate_data_event_translatables.2
+      author: codeschluss
+      changes:
+        - addColumn:
+            tableName: event_translatables
+            columns:
+            - column:
+                name: short_description
+                type: VARCHAR(255)          
+            
