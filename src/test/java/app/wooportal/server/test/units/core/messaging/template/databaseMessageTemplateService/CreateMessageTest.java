@@ -17,7 +17,7 @@ import app.wooportal.server.core.messaging.templates.MessageTemplateService;
 
 public class CreateMessageTest {
 
-  private DatabaseMessageTemplateService databaseMessageTemplateService =
+  private DatabaseMessageTemplateService templateService =
       new DatabaseMessageTemplateService(service, null);
 
   private static MessageTemplateService service;
@@ -42,7 +42,7 @@ public class CreateMessageTest {
     language.setLocale("en");
     language.setName("english");
 
-    var result = databaseMessageTemplateService.createMessage("TestTemplate1", map, language);
+    var result = templateService.createMessage("TestTemplate1", map, language);
 
     assertThat(result).isEqualTo(
         "Hey, this child has been created on 03.12.2007 10:15 and was modified on 08.12.2007 10:17.");
@@ -60,7 +60,7 @@ public class CreateMessageTest {
     language.setLocale("en");
     language.setName("english");
 
-    var result = databaseMessageTemplateService.createMessage("TestTemplate2", map, language);
+    var result = templateService.createMessage("TestTemplate2", map, language);
 
     assertThat(result).isEqualTo("Hello World");
   }
@@ -77,7 +77,7 @@ public class CreateMessageTest {
     language.setLocale("en");
     language.setName("english");
 
-    var result = databaseMessageTemplateService.createMessage("TestTemplate3", map, language);
+    var result = templateService.createMessage("TestTemplate3", map, language);
 
     assertThat(result).isNull();
   }
