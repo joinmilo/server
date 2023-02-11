@@ -9,8 +9,7 @@ import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import graphql.language.Field;
-import graphql.language.OperationDefinition;
-import graphql.language.OperationDefinition.Operation;
+import graphql.language.SelectionSetContainer;
 import graphql.parser.Parser;
 import lombok.Getter;
 import lombok.Setter;
@@ -59,18 +58,15 @@ public class GraphQlContextAdapter implements ApiContextAdapter {
   
   public List<Field> getReadContext() {
     try {
-      var context = getContext("query");
-      if (context != null) {
-        var parser = new Parser();
-        var test = parser.parseDocument(context.asText());
-        for (var def : test.getDefinitions()) {
-          if (def instanceof OperationDefinition
-              && ((OperationDefinition) def).getOperation().equals(Operation.QUERY)) {
-            return ((OperationDefinition) def).getSelectionSet().getSelectionsOfType(Field.class);
-          }
+      var parser = new Parser();
+      var document = parser.parseDocument(getContext("query").asText());
+      for (var def : document.getDefinitions()) {
+        if (def instanceof SelectionSetContainer) {
+          return ((SelectionSetContainer<?>) def).getSelectionSet().getSelectionsOfType(Field.class);
         }
       }
     } catch (IOException e) {
+      // TODO Auto-generated catch block
       e.printStackTrace();
     }
     return null;
