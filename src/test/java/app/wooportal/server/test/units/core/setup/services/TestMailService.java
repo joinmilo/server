@@ -8,7 +8,7 @@ import javax.mail.internet.MimeMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import app.wooportal.server.core.messaging.MailConfiguration;
 import app.wooportal.server.core.messaging.MailService;
-import app.wooportal.server.core.messaging.services.FreemarkerTemplateService;
+import app.wooportal.server.core.messaging.template.FreemarkerTemplateService;
 import freemarker.template.Configuration;
 import lombok.Getter;
 import lombok.Setter;

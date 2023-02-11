@@ -10,7 +10,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import app.wooportal.server.core.i18n.language.LanguageEntity;
-import app.wooportal.server.core.messaging.services.TemplateService;
+import app.wooportal.server.core.messaging.template.TemplateService;
 
 @Service
 public class MailService {

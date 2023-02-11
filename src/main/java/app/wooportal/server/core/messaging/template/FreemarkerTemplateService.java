@@ -1,4 +1,4 @@
-package app.wooportal.server.core.messaging.services;
+package app.wooportal.server.core.messaging.template;
 
 import java.io.IOException;
 import java.util.Map;
