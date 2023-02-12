@@ -1,7 +1,7 @@
 databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
-      id: 0091.create_table_inquiry_categories.1
+      id: 0091.create_table_inquiry_categories
       author: codeschluss
       changes:
         - createTable:

@@ -165,17 +165,31 @@ databaseChangeLog:
     - include:
         file: database/changes/0079.create_table_answers.yaml
     - include:
-        file: database/changes/0080.create_table_answer_translatables.yaml
+        file: database/changes/0080.create_table_answer_translatables.yaml   
     - include:
-        file: database/changes/0081.create_table_survey_translatables.yaml
+        file: database/changes/0081.create_table_survey_translatables.yaml   
     - include:
         file: database/changes/0082.create_table_survey_result_translatables.yaml
     - include:
-        file: database/changes/0083.create_table_question_translatables.yaml
+        file: database/changes/0083.create_table_question_translatables.yaml   
     - include:
-        file: database/changes/0084.create_table_question_option_translatables.yaml   
+        file: database/changes/0084.create_table_question_option_translatables.yaml
     - include:
-        file: database/changes/0085.create_table_organisation_translatables.yaml                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+        file: database/changes/0085.create_table_theme_variables.yaml  
+    - include:
+        file: database/changes/0086.drop_tables.yaml      
+    - include:
+        file: database/changes/0089.create_table_verifications.yaml   
+    - include:
+        file: database/changes/0090.create_table_password_resets.yaml
+    - include:
+        file: database/changes/0091.create_table_inquiry_category.yaml
+    - include:
+        file: database/changes/0092.create_table_inquiry.yaml
+    - include:
+        file: database/changes/0093.create_table_inquiry_category_translatables.yaml
+    - include:
+        file: database/changes/0094.create_table_error_messages.yaml                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
                                                                                                                                           
            
                       

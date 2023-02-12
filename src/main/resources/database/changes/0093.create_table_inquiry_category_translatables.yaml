@@ -71,9 +71,8 @@ databaseChangeLog:
             onUpdate: CASCADE
             onDelete: CASCADE
             referencedColumnNames: id
-            referencedTableName: inquiry_categorys
+            referencedTableName: inquiry_categories
             validate: true   
-            
   - changeSet:
       id: 0093.create_table_inquiry_category_translatables.4
       author: codeschluss
