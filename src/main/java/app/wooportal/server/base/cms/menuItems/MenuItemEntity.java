@@ -1,9 +1,11 @@
 package app.wooportal.server.base.cms.menuItems;
 
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import app.wooportal.server.base.cms.features.FeatureEntity;
@@ -33,12 +35,15 @@ public class MenuItemEntity extends BaseEntity {
   private FeatureEntity module;
 
   @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(nullable = false)
-  private MenuEntity parent;
-  
-  @ManyToOne(fetch = FetchType.LAZY)
   private PageEntity page;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private MenuEntity subMenu;
+
+ @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(nullable = false)
+  private MenuEntity parent;
+  
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
+  private Set<MenuItemEntity> subMenues;
 }

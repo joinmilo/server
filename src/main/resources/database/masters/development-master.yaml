@@ -169,7 +169,7 @@ databaseChangeLog:
     - include:
         file: database/changes/0084.create_table_question_option_translatables.yaml
     - include:
-        file: database/changes/0085.create_table_theme_variables.yaml  
+        file: database/changes/0085.create_tables_theme_variables_and_themes.yaml  
     - include:
         file: database/changes/0086.drop_tables.yaml      
     - include:
@@ -184,6 +184,8 @@ databaseChangeLog:
         file: database/changes/0093.create_table_inquiry_category_translatables.yaml
     - include:
         file: database/changes/0094.create_table_error_messages.yaml
+    - include:
+        file: database/changes/0095.add_data_menues.yaml        
                                 
         
 

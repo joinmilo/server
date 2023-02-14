@@ -24,7 +24,25 @@ databaseChangeLog:
                     nullable: false
                   defaultValueComputed: CURRENT_TIMESTAMP
                   name: modified
-                  type: datetime                                                               
+                  type: datetime    
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueBoolean: false
+                  name: header
+                  type: boolean
+              - column:
+                  name: order
+                  type: int      
+              - column:
+                  name: module_id
+                  type: CHAR(36) 
+              - column:
+                  name: page_id
+                  type: CHAR(36)       
+              - column:
+                  name: parent_id
+                  type: CHAR(36)                                                                                                                                                             
             tableName: menues
         - sql:
             comment: set char set for mysql
@@ -32,4 +50,30 @@ databaseChangeLog:
             endDelimiter: \nGO
             splitStatements: true
             sql: ALTER TABLE menues CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+            
+  - changeSet:
+      id: 0017.create_table_menues.2
+      author: codeschluss
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: page_id
+            indexName: idx_fk1zgmhzmin1xk0jfgx0azhps4u
+            tableName: menues
+  - changeSet:
+      id: 0017.create_table_menues.3
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: page_id
+            baseTableName: menues
+            constraintName: fk1zgmhzmin1xk0jfgx0azhps4u
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: pages
+            validate: true               
             

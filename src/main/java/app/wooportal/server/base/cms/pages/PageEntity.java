@@ -16,6 +16,7 @@ import javax.persistence.UniqueConstraint;
 import org.hibernate.annotations.CollectionId;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
+import app.wooportal.server.base.cms.menues.MenuEntity;
 import app.wooportal.server.base.cms.pageFeatures.PageFeatureEntity;
 import app.wooportal.server.base.cms.pages.translations.PageTranslatableEntity;
 import app.wooportal.server.base.cms.pages.visitors.PageVisitorEntity;
@@ -47,6 +48,9 @@ public class PageEntity extends BaseEntity {
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "page")
   private Set<PageFeatureEntity> pageFeatures;
+
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "page")
+  private Set<MenuEntity> menues;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
   private Set<PageTranslatableEntity> pageTrabslatables;

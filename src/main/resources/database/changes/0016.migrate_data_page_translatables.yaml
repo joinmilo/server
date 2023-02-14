@@ -9,6 +9,9 @@ databaseChangeLog:
               - column:
                   name: short_description
                   type: VARCHAR(255)
+              - column:
+                  name: call_text
+                  type: VARCHAR(255)                  
             tableName: markup_translatables    
 
   - changeSet:

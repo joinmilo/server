@@ -56,7 +56,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: parent_id
-            indexName: idx_fkxd5rkohrhe4c7xhyy561koa2i
+            indexName: idx_fktys8dy6gwqsb9ca4ch17dbdss
             tableName: menu_translatables
   - changeSet:
       id: 0018.create_table_menu_translatables.3
@@ -65,7 +65,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: parent_id
             baseTableName: menu_translatables
-            constraintName: fkxd5rkohrhe4c7xhyy561koa2i
+            constraintName: fktys8dy6gwqsb9ca4ch17dbdss
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE

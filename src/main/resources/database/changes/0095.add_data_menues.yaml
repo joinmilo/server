@@ -1,0 +1,98 @@
+  databaseChangeLog:
+  - logicalFilePath: path_independent
+  - changeSet:
+      id: 0095.add_data_menues.1
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add Features
+            splitStatements: true
+            sql: insert into features (id, `key`) values
+              ('c673842c-ac29-44c7-b6bb-6bd4e06f0677', 'event'),
+              ('e00c9ff3-fa3d-4bf3-9ba7-fe40cd29017e', 'organisation'),
+              ('0085aea9-3202-4dcf-9a05-0f8c7004641b', 'article'),
+              ('cf2b4b5d-df3a-4f79-9cfd-61679c57bd16', 'author'),
+              ('b93928cc-ec57-4848-96af-26d8284ffcd1', 'map'),
+              ('41cdbfa8-e751-41d4-b893-5c7215ec55e9', 'calendar'),
+              ('909d5070-f915-4891-b78b-1ef83690fddf', 'survey'),
+              ('492fa827-9fb4-4294-906d-b85e5bdb6890', 'contest'),
+              ('0633fd36-707a-42ee-878f-21e43f458aa9', 'own_article'),
+              ('909fca09-78bb-42dd-95d0-164ceb1d9192', 'media'),
+              ('8f1faa18-3204-4ab1-9f71-18317d1a3d89', 'search_offer'),
+              ('17d083d2-3bf0-4efb-97ef-17d08cba37f4', 'forms');
+                    
+        - sql:
+            comment: Add Feature_translatables
+            splitStatements: true
+            sql: insert into feature_translatables (id, name, language_id, parent_id) values
+              ('f78b887c-2278-47ec-b297-35f0c8127285', 'Event', 'a506297b-8706-4583-877b-3efa334ee83b', '559ccaf6-21af-4116-a2c0-5823bf465ba2'),
+              ('ee5f9f65-a078-43ab-9579-8a9604472fd9', 'Organisation', 'a506297b-8706-4583-877b-3efa334ee83b', '32d99f7b-53c9-4a00-8528-a8506c4bc4da'),
+              ('10f01a69-ab00-4660-a55f-88f46fc07edb', 'Article', 'a506297b-8706-4583-877b-3efa334ee83b', '0085aea9-3202-4dcf-9a05-0f8c7004641b'),
+              ('7c7c69b7-6f9d-4084-8b14-ab04a13e08f0', 'Author', 'a506297b-8706-4583-877b-3efa334ee83b', '3c8b4c01-1ef7-4a55-9e4f-c5ac09a11ce9'),
+              ('ebd2bc56-6ce0-40fc-9033-70cc6b036e5c', 'Map', 'a506297b-8706-4583-877b-3efa334ee83b', 'b93928cc-ec57-4848-96af-26d8284ffcd1'),
+              ('f3d30e4d-aab0-4c3d-9c17-4f4ff8177e94', 'Calendar', 'a506297b-8706-4583-877b-3efa334ee83b', '41cdbfa8-e751-41d4-b893-5c7215ec55e9'),
+              ('e431f03f-01a9-429d-b6ca-6412fe6348f6', 'Survey', 'a506297b-8706-4583-877b-3efa334ee83b', '909d5070-f915-4891-b78b-1ef83690fddf'),
+              ('9e52cf3f-9b49-4c18-95df-0cfa4855e76b', 'Contest', 'a506297b-8706-4583-877b-3efa334ee83b', '492fa827-9fb4-4294-906d-b85e5bdb6890'),
+              ('c3cb472a-06ed-4198-9715-e40b37cd4500', 'Own_Article', 'a506297b-8706-4583-877b-3efa334ee83b', '0633fd36-707a-42ee-878f-21e43f458aa9'),
+              ('cb9bc41f-07b2-4077-be27-f2c02867f15a', 'Media', 'a506297b-8706-4583-877b-3efa334ee83b', '909fca09-78bb-42dd-95d0-164ceb1d9192'),
+              ('bed2bdaf-6b15-4451-8f2c-f1f392a73a3a', 'Search_offer', 'a506297b-8706-4583-877b-3efa334ee83b', '8f1faa18-3204-4ab1-9f71-18317d1a3d89'),
+              ('abbc3e54-cd11-4a89-b194-faeb48baa68b', 'Forms', 'a506297b-8706-4583-877b-3efa334ee83b', '17d083d2-3bf0-4efb-97ef-17d08cba37f4'),
+              ('68421724-81d7-4de2-b629-59cef3ff6c98', 'Aktivität', 'a801abb3-9662-46e2-b56f-c04700712d71', '559ccaf6-21af-4116-a2c0-5823bf465ba2'),
+              ('7c078b77-d096-458a-a31d-de7eceb525de', 'Organisation', 'a801abb3-9662-46e2-b56f-c04700712d71', '32d99f7b-53c9-4a00-8528-a8506c4bc4da'),
+              ('1759b0b5-ca06-463b-9804-2d046a1c0a88', 'Artikel', 'a801abb3-9662-46e2-b56f-c04700712d71', '0085aea9-3202-4dcf-9a05-0f8c7004641b'),
+              ('1ad602f7-5996-481a-a787-04c35130cb02', 'Publizierende', 'a801abb3-9662-46e2-b56f-c04700712d71', '3c8b4c01-1ef7-4a55-9e4f-c5ac09a11ce9'),
+              ('a5bb8b89-dfda-4476-8b0b-a036076375d6', 'Karte', 'a801abb3-9662-46e2-b56f-c04700712d71', 'b93928cc-ec57-4848-96af-26d8284ffcd1'),
+              ('bbd8eb02-9c82-478d-8875-0e59e7aa10d3', 'Kalender', 'a801abb3-9662-46e2-b56f-c04700712d71', '41cdbfa8-e751-41d4-b893-5c7215ec55e9'),
+              ('e4ae4f4b-1145-4e0d-a1ef-801020f771ac', 'Umfrage', 'a801abb3-9662-46e2-b56f-c04700712d71', '909d5070-f915-4891-b78b-1ef83690fddf'),
+              ('fbbfa7ae-f1a3-4e01-b5ae-078e4c10396b', 'Wettbewerb', 'a801abb3-9662-46e2-b56f-c04700712d71', '492fa827-9fb4-4294-906d-b85e5bdb6890'),
+              ('f82a1770-b2db-4b32-a641-5078f6b37ae9', 'Eigener_Artikel', 'a801abb3-9662-46e2-b56f-c04700712d71', '0633fd36-707a-42ee-878f-21e43f458aa9'),
+              ('554c50cf-6e90-4220-9fdd-5dbe816def28', 'Media', 'a801abb3-9662-46e2-b56f-c04700712d71', '909fca09-78bb-42dd-95d0-164ceb1d9192'),
+              ('a4e0c72d-5605-45c3-83e0-7ec247af911c', 'Suche_Biete', 'a801abb3-9662-46e2-b56f-c04700712d71', '8f1faa18-3204-4ab1-9f71-18317d1a3d89'),
+              ('91ba6a27-c564-4961-8b6a-348d3606cf5c', 'Formulare', 'a801abb3-9662-46e2-b56f-c04700712d71', '17d083d2-3bf0-4efb-97ef-17d08cba37f4');
+
+        - sql:
+            comment: Add Menu Data
+            splitStatements: true
+            sql: insert into menues (id, header, `order`, parent_id, module_id, page_id) values
+              ('0115fe46-3a7e-4377-abe5-f56f720bf3d9', true, 0, null, null, null),
+              ('f1dfe272-9124-466f-a40e-cc32dafabf06', true, 1, '0115fe46-3a7e-4377-abe5-f56f720bf3d9', '559ccaf6-21af-4116-a2c0-5823bf465ba2', null),
+              ('fd1b9ad1-b2ec-4a9f-b389-3d57cccb1f4c', true, 2, '0115fe46-3a7e-4377-abe5-f56f720bf3d9', '32d99f7b-53c9-4a00-8528-a8506c4bc4da', null),
+              ('8804707f-f80d-4987-bb86-42d16ba570dd', true, 3, '0115fe46-3a7e-4377-abe5-f56f720bf3d9', '8f1faa18-3204-4ab1-9f71-18317d1a3d89', null),
+              ('d443f235-fe72-41a6-b7d2-1554047048d5', true, 4, '0115fe46-3a7e-4377-abe5-f56f720bf3d9', 'b93928cc-ec57-4848-96af-26d8284ffcd1', null),  
+              ('7a8cc14b-49e4-4f53-a86f-11aa6e2db95e', true, 0, null, null, null),
+              ('4e7c64dc-58c6-4a1b-9db7-95edb6181bdd', true, 1, '7a8cc14b-49e4-4f53-a86f-11aa6e2db95e', '0085aea9-3202-4dcf-9a05-0f8c7004641b', null),
+              ('fa345abe-b311-451e-abe2-9583fc6fb000', true, 2, '7a8cc14b-49e4-4f53-a86f-11aa6e2db95e', '3c8b4c01-1ef7-4a55-9e4f-c5ac09a11ce9', null),
+              ('e5441241-dbc1-4410-9a93-3d0a921c9eee', true, 3, '7a8cc14b-49e4-4f53-a86f-11aa6e2db95e', '909fca09-78bb-42dd-95d0-164ceb1d9192', null),            
+              ('b1d9d0ba-7f07-4ccc-acf0-aa96052e85e8', true, 0, null, null, null),
+              ('1c919ec0-8d29-4bb6-8d52-6db881a1d3ea', true, 1, 'b1d9d0ba-7f07-4ccc-acf0-aa96052e85e8', '909d5070-f915-4891-b78b-1ef83690fddf', null),
+              ('947b7507-d10b-477a-99eb-d8510c4b12e2', true, 2, 'b1d9d0ba-7f07-4ccc-acf0-aa96052e85e8', '32d99f7b-53c9-4a00-8528-a8506c4bc4da', null),
+              ('555d678d-954f-43c9-ae63-5329df968da2', true, 3, 'b1d9d0ba-7f07-4ccc-acf0-aa96052e85e8', '0633fd36-707a-42ee-878f-21e43f458aa9', null);                                                                                                    
+              
+              
+             
+              
+                                                        
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+
+                          
