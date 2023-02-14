@@ -1,4 +1,4 @@
-package app.wooportal.server.base.cms.themeVariable;
+package app.wooportal.server.base.cms.themes;
 
 import app.wooportal.server.core.repository.DataRepository;
 import org.springframework.stereotype.Repository;
