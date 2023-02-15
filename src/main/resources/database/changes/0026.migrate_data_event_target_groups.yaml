@@ -26,5 +26,6 @@ databaseChangeLog:
           oldTableName: activities_target_groups
           remarks: change in names
           schemaName: wooportal   
+         
 
                                     

@@ -129,5 +129,24 @@ databaseChangeLog:
             onDelete: CASCADE
             referencedColumnNames: id
             referencedTableName: article_categories
-            validate: true                 
+            validate: true    
+            
+  - changeSet:
+      id: 0039.migrate_data_events.13
+      author: codeschluss
+      changes:
+        - sql:
+            comment: add creator_id data
+            splitStatements: true
+            sql:
+                /*!40101 SET character_set_client = utf8 */;
+                
+                UPDATE
+                articles a
+                left join bloggers b
+                ON b.id = a.blogger_id
+                left join user_contexts u
+                ON u.user_id = b.user_id
+                SET
+                a.author_id = u.id;                         
             

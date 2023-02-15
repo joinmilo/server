@@ -1,7 +1,7 @@
 databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
-      id: 0068.drop_tables.1
+      id: 0086.drop_tables.1
       author: codeschluss
       changes:
         - dropTable:
@@ -10,10 +10,10 @@ databaseChangeLog:
             schemaName: wooportal
             
   - changeSet:
-      id: 0068.drop_tables.2
+      id: 0086.drop_tables.2
       author: codeschluss
       changes:
         - dropTable:
             cascadeConstraints: true
             tableName: activity_subscriptions
-            schemaName: wooportal            
+            schemaName: wooportal                                   

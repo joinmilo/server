@@ -12,5 +12,4 @@ databaseChangeLog:
                 
                 insert into user_contexts (id, user_id)
                 select uuid(), u.id
-                from users u                             
-                
+                from users u                               

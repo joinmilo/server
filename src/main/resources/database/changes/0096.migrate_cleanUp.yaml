@@ -1,0 +1,85 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+  - changeSet:
+      id: 0096.migrate_cleanUp.1
+      author: codeschluss
+      changes:
+        - sql:  
+            ALTER TABLE users DROP FOREIGN KEY CONSTRAINT_FFFD621E;
+        - sql:  
+            ALTER TABLE events DROP FOREIGN KEY CONSTRAINT_E66193E8; 
+        - sql:  
+            ALTER TABLE articles DROP FOREIGN KEY CONSTRAINT_LWCH48H6;                        
+            
+  - changeSet:
+      id: 0096.migrate_cleanUp.2
+      author: codeschluss
+      changes:
+      - dropColumn:
+          columnName: blogger_id
+          tableName: users
+      - dropColumn:
+          columnName: language_id
+          tableName: subscriptions      
+      - dropColumn:
+          columnName: provider_id
+          tableName: events        
+      - dropColumn:
+          columnName: likes
+          tableName: articles                    
+      - dropColumn:
+          columnName: author
+          tableName: articles  
+      - dropColumn:
+          columnName: mail_address
+          tableName: articles 
+      - dropColumn:
+          columnName: blogger_id
+          tableName: articles         
+      - dropColumn:
+          columnName: likes
+          tableName: organisations                                            
+
+  - changeSet:
+      id: 0096.migrate_cleanUp.3
+      author: codeschluss
+      changes:
+        - dropTable:
+            cascadeConstraints: true
+            tableName: subscribed_types
+            schemaName: wooportal      
+        - dropTable:
+            cascadeConstraints: true
+            tableName: subscription_type_translatables
+            schemaName: wooportal 
+        - dropTable:
+            cascadeConstraints: true
+            tableName: subscription_types
+            schemaName: wooportal 
+        - dropTable:
+            cascadeConstraints: true
+            tableName: providers
+            schemaName: wooportal             
+             
+  - changeSet:
+      id: 0096.migrate_cleanUp.4
+      author: codeschluss
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: event_event_target_groups
+            constraintName: CONSTRAINT_8C7DC395             
+                                                                
+  - changeSet:
+      id: 0096.migrate_cleanUp.5
+      author: codeschluss
+      changes:
+        - renameColumn:
+            newColumnName: event_id
+            oldColumnName: activity_id
+            columnDataType: char(50)
+            tableName: event_event_target_groups
+            
+            
+                
+
+          

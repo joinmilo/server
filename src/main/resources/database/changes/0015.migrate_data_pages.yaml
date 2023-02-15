@@ -30,6 +30,8 @@ databaseChangeLog:
             columns:
               - column:
                   name: tag_id
-            tableName: markups                
+            tableName: markups
+            
+                            
                          
                 
