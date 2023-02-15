@@ -46,9 +46,6 @@ public class MediaEntity extends BaseEntity {
   @Column(nullable = false)
   private String name;
 
-  @OneToMany(mappedBy = "cardImage", fetch = FetchType.LAZY)
-  private Set<EventEntity> eventCards;
-
   @OneToMany(mappedBy = "titleImage", fetch = FetchType.LAZY)
   private Set<EventEntity> eventTitleImages;
 

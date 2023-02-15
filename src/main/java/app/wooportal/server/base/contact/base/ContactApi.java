@@ -1,4 +1,4 @@
-package app.wooportal.server.features.events.base;
+package app.wooportal.server.base.contact.base;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,47 +15,53 @@ import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 
 @GraphQLApi
 @Component
-public class EventApi extends CrudApi<EventEntity, EventService> {
+public class ContactApi extends CrudApi<ContactEntity, ContactService> {
 
 
-  public EventApi(EventService userService) {
+  public ContactApi(ContactService userService) {
     super(userService);
   }
 
   @Override
-  @GraphQLQuery(name = "getEvents")
-  public PageableList<EventEntity> readAll(
+  @GraphQLQuery(name = "getContacts")
+  @ApprovedAndVerifiedPermission
+  public PageableList<ContactEntity> readAll(
       @GraphQLArgument(name = CrudApi.params) FilterSortPaginate params) {
     return super.readAll(params);
   }
 
   @Override
-  @GraphQLQuery(name = "getEvent")
-  public Optional<EventEntity> readOne(@GraphQLArgument(name = CrudApi.entity) EventEntity entity) {
+  @GraphQLQuery(name = "getContact")
+  @ApprovedAndVerifiedPermission
+  public Optional<ContactEntity> readOne(
+      @GraphQLArgument(name = CrudApi.entity) ContactEntity entity) {
     return super.readOne(entity);
   }
 
   @Override
-  @GraphQLMutation(name = "saveEvents")
-  public List<EventEntity> saveAll(
-      @GraphQLArgument(name = CrudApi.entities) List<EventEntity> entities) {
+  @GraphQLMutation(name = "saveContacts")
+  @AdminPermission
+  public List<ContactEntity> saveAll(
+      @GraphQLArgument(name = CrudApi.entities) List<ContactEntity> entities) {
     return super.saveAll(entities);
   }
 
   @Override
-  @GraphQLMutation(name = "saveEvent")
-  public EventEntity saveOne(@GraphQLArgument(name = CrudApi.entity) EventEntity entity) {
+  @GraphQLMutation(name = "saveContact")
+  public ContactEntity saveOne(@GraphQLArgument(name = CrudApi.entity) ContactEntity entity) {
     return super.saveOne(entity);
   }
 
   @Override
-  @GraphQLMutation(name = "deleteEvents")
+  @GraphQLMutation(name = "deleteContacts")
+  @AdminPermission
   public Boolean deleteAll(@GraphQLArgument(name = CrudApi.ids) List<String> ids) {
     return super.deleteAll(ids);
   }
 
   @Override
-  @GraphQLMutation(name = "deleteEvent")
+  @GraphQLMutation(name = "deleteContact")
+  @AdminPermission
   public Boolean deleteOne(@GraphQLArgument(name = CrudApi.id) String id) {
     return super.deleteOne(id);
   }

@@ -11,7 +11,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import org.hibernate.annotations.CollectionId;
@@ -48,7 +47,7 @@ public class EventEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
 
-  private double entryFee;
+  private Double entryFee;
 
   private String seoDescription;
 
@@ -66,15 +65,12 @@ public class EventEntity extends BaseEntity {
   private AttendeeConfigurationEntity attendeeConfiguration;
 
   @ManyToOne(fetch = FetchType.LAZY)
-  private MediaEntity cardImage;
-
-  @ManyToOne(fetch = FetchType.LAZY)
   private EventCategoryEntity category;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private UserContextEntity creator;
 
-  @OneToOne(fetch = FetchType.LAZY)
+  @ManyToOne(fetch = FetchType.LAZY)
   private ContactEntity contact;
 
   @ManyToOne(fetch = FetchType.LAZY)

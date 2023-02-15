@@ -33,7 +33,7 @@ databaseChangeLog:
                   type: VARCHAR(255)       
               - column:
                   name: name
-                  type: VARCHAR(255) 
+                  type: VARCHAR(255)                                
               - column:
                   name: phone
                   type: VARCHAR(255)    

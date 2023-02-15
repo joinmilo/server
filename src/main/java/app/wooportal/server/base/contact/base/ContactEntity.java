@@ -1,7 +1,6 @@
 package app.wooportal.server.base.contact.base;
 
 import java.util.Set;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
@@ -11,6 +10,7 @@ import org.hibernate.annotations.GenericGenerator;
 import app.wooportal.server.base.developers.DeveloperEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.features.deals.base.DealEntity;
+import app.wooportal.server.features.events.base.EventEntity;
 import app.wooportal.server.features.organisations.base.OrganisationEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -29,19 +29,17 @@ public class ContactEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
 
-  @Column(nullable = false)
   private String email;
 
-  private String first_name;
+  private String name;
 
-  private String last_name;
-
-  @Column(nullable = false)
-  private String password;
-
+  
   private String phone;
 
   private Boolean preferredContact;
+
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "contact")
+  private Set<EventEntity> events;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "contact")
   private Set<DealEntity> deals;

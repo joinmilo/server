@@ -83,8 +83,6 @@ databaseChangeLog:
             - column:
                 name: phone
             - column:
-                name: name
-            - column:
                 name: website
             - column:
                 name: mail                                              
