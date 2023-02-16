@@ -1,4 +1,4 @@
-package app.wooportal.server.features.events.base;
+package app.wooportal.server.features.events.eventTargetGroups;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,47 +13,49 @@ import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 
 @GraphQLApi
 @Component
-public class EventApi extends CrudApi<EventEntity, EventService> {
+public class EventTargetGroupApi extends CrudApi<EventTargetGroupEntity, EventTargetGroupService> {
 
 
-  public EventApi(EventService userService) {
+  public EventTargetGroupApi(EventTargetGroupService userService) {
     super(userService);
   }
 
   @Override
-  @GraphQLQuery(name = "getEvents")
-  public PageableList<EventEntity> readAll(
+  @GraphQLQuery(name = "getEventTargetGroups")
+  public PageableList<EventTargetGroupEntity> readAll(
       @GraphQLArgument(name = CrudApi.params) FilterSortPaginate params) {
     return super.readAll(params);
   }
 
   @Override
-  @GraphQLQuery(name = "getEvent")
-  public Optional<EventEntity> readOne(@GraphQLArgument(name = CrudApi.entity) EventEntity entity) {
+  @GraphQLQuery(name = "getEventTargetGroup")
+  public Optional<EventTargetGroupEntity> readOne(
+      @GraphQLArgument(name = CrudApi.entity) EventTargetGroupEntity entity) {
     return super.readOne(entity);
   }
 
   @Override
-  @GraphQLMutation(name = "saveEvents")
-  public List<EventEntity> saveAll(
-      @GraphQLArgument(name = CrudApi.entities) List<EventEntity> entities) {
+  @GraphQLMutation(name = "saveEventTargetGroups")
+  public List<EventTargetGroupEntity> saveAll(
+      @GraphQLArgument(name = CrudApi.entities) List<EventTargetGroupEntity> entities) {
     return super.saveAll(entities);
   }
 
   @Override
-  @GraphQLMutation(name = "saveEvent")
-  public EventEntity saveOne(@GraphQLArgument(name = CrudApi.entity) EventEntity entity) {
+  @GraphQLMutation(name = "saveEventTargetGroup")
+  public EventTargetGroupEntity saveOne(
+      @GraphQLArgument(name = CrudApi.entity) EventTargetGroupEntity entity) {
     return super.saveOne(entity);
   }
 
   @Override
-  @GraphQLMutation(name = "deleteEvents")
+  @GraphQLMutation(name = "deleteEventTargetGroups")
   public Boolean deleteAll(@GraphQLArgument(name = CrudApi.ids) List<String> ids) {
     return super.deleteAll(ids);
   }
 
   @Override
-  @GraphQLMutation(name = "deleteEvent")
+  @GraphQLMutation(name = "deleteEventTargetGroup")
   public Boolean deleteOne(@GraphQLArgument(name = CrudApi.id) String id) {
     return super.deleteOne(id);
   }
