@@ -1,4 +1,4 @@
-package app.wooportal.server.base.cms.menues.translations;
+package app.wooportal.server.base.cms.menuItems.translations;
 
 
 import org.springframework.stereotype.Repository;

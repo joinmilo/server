@@ -35,15 +35,13 @@ databaseChangeLog:
     - include:
         file: database/changes/0016.migrate_data_page_translatables.yaml
     - include:
-        file: database/changes/0017.create_table_menues.yaml
+        file: database/changes/0017.create_table_menu_items.yaml
     - include:
-        file: database/changes/0018.create_table_menu_translatables.yaml
+        file: database/changes/0018.create_table_menu_item_translatables.yaml
     - include:
         file: database/changes/0019.migrate_data_features.yaml
     - include:
         file: database/changes/0020.create_table_feature_translatables.yaml
-    - include:
-        file: database/changes/0021.create_table_menu_items.yaml
     - include:
         file: database/changes/0022.create_table_page_features.yaml
     - include:
@@ -184,8 +182,8 @@ databaseChangeLog:
         file: database/changes/0093.create_table_inquiry_category_translatables.yaml
     - include:
         file: database/changes/0094.create_table_error_messages.yaml
-    - include:
-        file: database/changes/0095.add_data_menues.yaml    
+#    - include:
+#        file: database/changes/0095.add_data_menu_items.yaml    
     - include:
         file: database/changes/0096.migrate_cleanUp.yaml                  
                                 

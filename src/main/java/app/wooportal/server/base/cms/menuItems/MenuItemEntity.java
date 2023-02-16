@@ -3,13 +3,11 @@ package app.wooportal.server.base.cms.menuItems;
 import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import org.hibernate.annotations.GenericGenerator;
 import app.wooportal.server.base.cms.features.FeatureEntity;
-import app.wooportal.server.base.cms.menues.MenuEntity;
+import app.wooportal.server.base.cms.menuItems.translations.MenuTranslatableEntity;
 import app.wooportal.server.base.cms.pages.PageEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import lombok.AccessLevel;
@@ -24,11 +22,12 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Table(name = "menu_items")
-@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
 public class MenuItemEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
 
+  private Boolean header;
+  
   private Integer order;
 
   @ManyToOne(fetch = FetchType.LAZY)
@@ -36,14 +35,10 @@ public class MenuItemEntity extends BaseEntity {
 
   @ManyToOne(fetch = FetchType.LAZY)
   private PageEntity page;
-
-  @ManyToOne(fetch = FetchType.LAZY)
-  private MenuEntity subMenu;
-
- @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(nullable = false)
-  private MenuEntity parent;
   
+  @ManyToOne(fetch = FetchType.LAZY)
+  private MenuItemEntity parent;
+
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
-  private Set<MenuItemEntity> subMenues;
+  private Set<MenuTranslatableEntity> translatable;
 }

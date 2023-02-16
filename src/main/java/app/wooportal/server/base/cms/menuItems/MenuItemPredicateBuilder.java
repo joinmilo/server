@@ -3,18 +3,16 @@ package app.wooportal.server.base.cms.menuItems;
 import org.springframework.stereotype.Service;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import app.wooportal.server.core.base.PredicateBuilder;
-import app.wooportal.server.features.contests.contestTypes.QContestTypeEntity;
 
 @Service
-public class MenuItemPredicateBuilder
-    extends PredicateBuilder<QContestTypeEntity, MenuItemEntity> {
+public class MenuItemPredicateBuilder extends PredicateBuilder<QMenuItemEntity, MenuItemEntity> {
 
   public MenuItemPredicateBuilder() {
-    super(QContestTypeEntity.contestTypeEntity);
+    super(QMenuItemEntity.menuItemEntity);
   }
 
   @Override
   public BooleanExpression freeSearch(String term) {
-    return query.key.likeIgnoreCase(term).or(query.translatable.any().name.likeIgnoreCase(term));
+    return query.translatable.any().name.likeIgnoreCase(term);
   }
 }

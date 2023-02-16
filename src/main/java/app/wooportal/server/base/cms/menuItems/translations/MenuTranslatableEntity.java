@@ -1,11 +1,11 @@
-package app.wooportal.server.base.cms.menues.translations;
+package app.wooportal.server.base.cms.menuItems.translations;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import app.wooportal.server.base.cms.menues.MenuEntity;
+import app.wooportal.server.base.cms.menuItems.MenuItemEntity;
 import app.wooportal.server.core.i18n.entities.TranslatableEntity;
 import app.wooportal.server.core.i18n.language.LanguageEntity;
 import lombok.AccessLevel;
@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table(name = "menu_translatables")
-public class MenuTranslatableEntity extends TranslatableEntity<MenuEntity> {
+public class MenuTranslatableEntity extends TranslatableEntity<MenuItemEntity> {
 
   private static final long serialVersionUID = 1L;
 
@@ -32,5 +32,5 @@ public class MenuTranslatableEntity extends TranslatableEntity<MenuEntity> {
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(nullable = false)
-  private MenuEntity parent;
+  private MenuItemEntity parent;
 }

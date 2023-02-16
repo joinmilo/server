@@ -41,7 +41,7 @@ databaseChangeLog:
     - include:
         file: database/changes/0017.create_table_menu_items.yaml
     - include:
-        file: database/changes/0018.create_table_feature_translatables.yaml
+        file: database/changes/0018.create_table_menu_item_translatables.yaml
     - include:
         file: database/changes/0019.create_table_landings.yaml
     - include:
@@ -189,7 +189,8 @@ databaseChangeLog:
     - include:
         file: database/changes/0093.create_table_inquiry_category_translatables.yaml
     - include:
-        file: database/changes/0094.create_table_error_messages.yaml                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
-                                                                                                                                          
+        file: database/changes/0094.create_table_error_messages.yaml
+#    - include:
+#        file: database/changes/0095.add_data_menu_items.yaml
            
                       

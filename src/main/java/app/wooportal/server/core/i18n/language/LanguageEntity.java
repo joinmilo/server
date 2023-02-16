@@ -7,7 +7,7 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import app.wooportal.server.base.cms.features.translations.FeatureTranslatableEntity;
-import app.wooportal.server.base.cms.menues.translations.MenuTranslatableEntity;
+import app.wooportal.server.base.cms.menuItems.translations.MenuTranslatableEntity;
 import app.wooportal.server.base.cms.pages.translations.PageTranslatableEntity;
 import app.wooportal.server.base.inquiry.translations.InquiryCategoryTranslatableEntity;
 import app.wooportal.server.base.userContexts.translations.UserContextTranslatableEntity;

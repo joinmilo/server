@@ -6,7 +6,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
-import app.wooportal.server.base.cms.menues.MenuEntity;
+import app.wooportal.server.base.cms.menuItems.MenuItemEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -31,5 +31,5 @@ public class ThemeVariableEntity extends BaseEntity {
   
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(nullable = false)
-  private MenuEntity theme;
+  private MenuItemEntity theme;
 }
