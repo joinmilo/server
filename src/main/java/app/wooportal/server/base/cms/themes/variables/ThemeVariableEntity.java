@@ -1,7 +1,11 @@
 package app.wooportal.server.base.cms.themes.variables;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import app.wooportal.server.base.cms.themes.base.ThemeEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -22,5 +26,9 @@ public class ThemeVariableEntity extends BaseEntity {
   private String key;
   
   private String value;
+  
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(nullable = false)
+  private ThemeEntity theme;
   
 }
