@@ -2,12 +2,8 @@ package app.wooportal.server.features.surveys.result.translations;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import app.wooportal.server.core.i18n.entities.TranslatableEntity;
-import app.wooportal.server.core.i18n.language.LanguageEntity;
 import app.wooportal.server.features.surveys.result.SurveyResultEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

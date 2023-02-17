@@ -7,7 +7,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import org.hibernate.annotations.GenericGenerator;
 import app.wooportal.server.base.userContexts.base.UserContextEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.features.surveys.answers.AnswerEntity;
@@ -25,7 +24,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Table(name = "survey_results")
-@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
 public class SurveyResultEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;

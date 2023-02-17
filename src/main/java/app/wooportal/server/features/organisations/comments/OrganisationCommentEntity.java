@@ -7,7 +7,6 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import org.hibernate.annotations.GenericGenerator;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.features.organisations.base.OrganisationEntity;
 import app.wooportal.server.features.organisations.comments.translations.OrganisationCommentTranslatableEntity;
