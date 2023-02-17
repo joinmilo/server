@@ -17,11 +17,14 @@
               ('909fca09-78bb-42dd-95d0-164ceb1d9192', 'media'),
               ('8f1faa18-3204-4ab1-9f71-18317d1a3d89', 'search_offer'),
               ('17d083d2-3bf0-4efb-97ef-17d08cba37f4', 'forms');
-
+  - changeSet:
+      id: 0095.add_data_menu_items.2
+      author: codeschluss
+      changes:
         - sql:
             comment: Add Menu Data
             splitStatements: true
-            sql: insert into menu_items (id, header, `order`, parent_id, module_id, page_id) values
+            sql: insert into menu_items (id, header, `order`, parent_id, feature_id, page_id) values
               ('0115fe46-3a7e-4377-abe5-f56f720bf3d9', true, 0, null, null, null),
               ('f1dfe272-9124-466f-a40e-cc32dafabf06', true, 1, '0115fe46-3a7e-4377-abe5-f56f720bf3d9', '559ccaf6-21af-4116-a2c0-5823bf465ba2', null),
               ('fd1b9ad1-b2ec-4a9f-b389-3d57cccb1f4c', true, 2, '0115fe46-3a7e-4377-abe5-f56f720bf3d9', '32d99f7b-53c9-4a00-8528-a8506c4bc4da', null),
@@ -39,7 +42,7 @@
               ('555d678d-954f-43c9-ae63-5329df968da2', true, 3, 'b1d9d0ba-7f07-4ccc-acf0-aa96052e85e8', '0633fd36-707a-42ee-878f-21e43f458aa9', null);                                                                                                    
              
   - changeSet:
-      id: 0095.add_data_menu_items.2
+      id: 0095.add_data_menu_items.3
       author: codeschluss
       changes:
         - sql:
@@ -112,7 +115,7 @@
                 WHERE l.locale = "de";
                 
   - changeSet:
-      id: 0095.add_data_menu_items.3
+      id: 0095.add_data_menu_items.4
       author: codeschluss                
       changes:
         - sql:
@@ -136,7 +139,7 @@
                 f.key = "blogposts";                
                      
   - changeSet:
-      id: 0095.add_data_menu_items.4
+      id: 0095.add_data_menu_items.5
       author: codeschluss
       changes:
         - sql:
@@ -286,18 +289,3 @@
                 from languages l, features f
                 WHERE l.locale = "en" AND
                 f.key = "forms";                                                                                                    
-                                
-                
-              
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                

@@ -31,13 +31,16 @@ public class MenuItemEntity extends BaseEntity {
   private Integer order;
 
   @ManyToOne(fetch = FetchType.LAZY)
-  private FeatureEntity module;
+  private FeatureEntity feature;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private PageEntity page;
   
   @ManyToOne(fetch = FetchType.LAZY)
   private MenuItemEntity parent;
+  
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
+  private Set<MenuItemEntity> subMenuItems;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
   private Set<MenuItemTranslatableEntity> translatables;

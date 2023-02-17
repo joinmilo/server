@@ -1,7 +1,7 @@
 databaseChangeLog:
   - logicalFilePath: path_independent                   
   - changeSet:
-      id: 0019.migrate_data_features.1
+      id: 0017.migrate_data_features.1
       author: codeschluss
       changes:
       - renameTable:
@@ -11,7 +11,7 @@ databaseChangeLog:
           schemaName: wooportal        
 
   - changeSet:
-      id: 0019.migrate_data_features.2
+      id: 0017.migrate_data_features.2
       author: codeschluss
       changes:
       - renameColumn:

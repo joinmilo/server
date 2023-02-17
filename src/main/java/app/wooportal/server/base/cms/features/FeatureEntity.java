@@ -30,8 +30,8 @@ public class FeatureEntity extends BaseEntity {
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "feature")
   private Set<PageFeatureEntity> landingFeatures;
 
-  @OneToMany(fetch = FetchType.LAZY, mappedBy = "module")
-  private Set<MenuItemEntity> menu;
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "feature")
+  private Set<MenuItemEntity> menuItem;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
   private Set<FeatureTranslatableEntity> translatables;

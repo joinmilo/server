@@ -1,7 +1,7 @@
 databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
-      id: 0018.create_table_menu_item_translatables.1
+      id: 0019.create_table_menu_item_translatables.1
       author: codeschluss
       changes:
         - createTable:
@@ -49,7 +49,7 @@ databaseChangeLog:
             sql: ALTER TABLE menu_item_translatables CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;            
 
   - changeSet:
-      id: 0018.create_table_menu_item_translatables.2
+      id: 0019.create_table_menu_item_translatables.2
       author: codeschluss
       changes:
         - createIndex:
@@ -59,7 +59,7 @@ databaseChangeLog:
             indexName: idx_fktys8dy6gwqsb9ca4ch17dbdss
             tableName: menu_item_translatables
   - changeSet:
-      id: 0018.create_table_menu_item_translatables.3
+      id: 0019.create_table_menu_item_translatables.3
       author: codeschluss
       changes:
         - addForeignKeyConstraint:
@@ -75,7 +75,7 @@ databaseChangeLog:
             validate: true   
             
   - changeSet:
-      id: 0018.create_table_menu_item_translatables.4
+      id: 0019.create_table_menu_item_translatables.4
       author: codeschluss
       changes:
         - createIndex:
@@ -85,7 +85,7 @@ databaseChangeLog:
             indexName: idx_fkwnuh7z6th2azqieh7ggwsu07f
             tableName: menu_item_translatables
   - changeSet:
-      id: 0018.create_table_menu_item_translatables.5
+      id: 0019.create_table_menu_item_translatables.5
       author: codeschluss
       changes:
         - addForeignKeyConstraint:
@@ -98,6 +98,6 @@ databaseChangeLog:
             onDelete: CASCADE
             referencedColumnNames: id
             referencedTableName: languages
-            validate: true                                    
+            validate: true
           
             

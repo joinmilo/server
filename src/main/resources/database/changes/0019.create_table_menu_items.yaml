@@ -1,7 +1,7 @@
 databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
-      id: 0017.create_table_menu_items.1
+      id: 0019.create_table_menu_items.1
       author: codeschluss
       changes:
         - createTable:
@@ -35,11 +35,11 @@ databaseChangeLog:
                   name: order
                   type: int      
               - column:
-                  name: module_id
-                  type: CHAR(36) 
+                  name: feature_id
+                  type: CHAR(36)
               - column:
                   name: page_id
-                  type: CHAR(36)       
+                  type: CHAR(36)
               - column:
                   name: parent_id
                   type: CHAR(36)
@@ -49,10 +49,9 @@ databaseChangeLog:
             dbms: mysql
             endDelimiter: \nGO
             splitStatements: true
-            sql: ALTER TABLE menu_items CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-            
+            sql: ALTER TABLE menu_items CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;   
   - changeSet:
-      id: 0017.create_table_menu_items.2
+      id: 0019.create_table_menu_items.2
       author: codeschluss
       changes:
         - createIndex:
@@ -62,7 +61,7 @@ databaseChangeLog:
             indexName: idx_fk1zgmhzmin1xk0jfgx0azhps4u
             tableName: menu_items
   - changeSet:
-      id: 0017.create_table_menu_items.3
+      id: 0019.create_table_menu_items.3
       author: codeschluss
       changes:
         - addForeignKeyConstraint:
@@ -75,5 +74,55 @@ databaseChangeLog:
             onDelete: CASCADE
             referencedColumnNames: id
             referencedTableName: pages
-            validate: true               
+            validate: true
+  - changeSet:
+      id: 0019.create_table_menu_items.4
+      author: codeschluss
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: feature_id
+            indexName: idx_fk1iukxg935zemz3ggl7bm5ns3i
+            tableName: menu_items
+  - changeSet:
+      id: 0019.create_table_menu_items.5
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: feature_id
+            baseTableName: menu_items
+            constraintName: fk1iukxg935zemz3ggl7bm5ns3i
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: features
+            validate: true
+  - changeSet:
+      id: 0019.create_table_menu_items.6
+      author: codeschluss
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: parent_id
+            indexName: idx_fkw3050mb7c42bc235bf9clhkpv
+            tableName: menu_items
+  - changeSet:
+      id: 0019.create_table_menu_items.7
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: parent_id
+            baseTableName: menu_items
+            constraintName: fkw3050mb7c42bc235bf9clhkpv
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: menu_items
+            validate: true
             

@@ -97,7 +97,7 @@ databaseChangeLog:
             onUpdate: CASCADE
             onDelete: CASCADE
             referencedColumnNames: id
-            referencedTableName: markups
+            referencedTableName: pages
             validate: true                        
           
             

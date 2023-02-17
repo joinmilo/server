@@ -50,7 +50,7 @@ public class PageEntity extends BaseEntity {
   private Set<PageFeatureEntity> pageFeatures;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "page")
-  private Set<MenuItemEntity> menues;
+  private Set<MenuItemEntity> menuItems;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
   private Set<PageTranslatableEntity> translatables;

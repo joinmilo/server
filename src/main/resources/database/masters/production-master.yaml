@@ -39,13 +39,15 @@ databaseChangeLog:
     - include:
         file: database/changes/0016.create_table_features.yaml
     - include:
-        file: database/changes/0017.create_table_menu_items.yaml
+        file: database/changes/0017.migrate_data_features.yaml
     - include:
-        file: database/changes/0018.create_table_menu_item_translatables.yaml
+        file: database/changes/0018.rename_pages_and_translatables.yaml
     - include:
-        file: database/changes/0019.create_table_landings.yaml
+        file: database/changes/0019.create_table_menu_items.yaml
     - include:
-        file: database/changes/0020.create_table_landing_translatables.yaml
+        file: database/changes/0020.create_table_menu_item_translatables.yaml
+    - include:
+        file: database/changes/0020.create_table_feature_translatables.yaml
     - include:
         file: database/changes/0021.create_table_landing_features.yaml
     - include:
@@ -112,8 +114,6 @@ databaseChangeLog:
         file: database/changes/0052.create_table_form_templates.yaml
     - include:
         file: database/changes/0053.create_table_user_form_templates.yaml
-    - include:
-        file: database/changes/0054.create_table_user_form_template_translatables.yaml
     - include:
         file: database/changes/0055.create_table_form_template_type_translatables.yaml
     - include:
