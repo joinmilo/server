@@ -17,7 +17,6 @@ import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 @Component
 public class UserContextApi extends CrudApi<UserContextEntity, UserContextService> {
 
-
   public UserContextApi(UserContextService userService) {
     super(userService);
   }

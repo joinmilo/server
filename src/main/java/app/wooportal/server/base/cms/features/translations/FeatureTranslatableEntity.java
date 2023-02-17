@@ -1,13 +1,9 @@
 package app.wooportal.server.base.cms.features.translations;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import app.wooportal.server.base.cms.features.FeatureEntity;
 import app.wooportal.server.core.i18n.entities.TranslatableEntity;
-import app.wooportal.server.core.i18n.language.LanguageEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,12 +21,4 @@ public class FeatureTranslatableEntity extends TranslatableEntity<FeatureEntity>
   private static final long serialVersionUID = 1L;
 
   private String name;
-
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(nullable = false)
-  private LanguageEntity language;
-
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(nullable = false)
-  private FeatureEntity parent;
 }

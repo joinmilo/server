@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import org.hibernate.annotations.GenericGenerator;
 import app.wooportal.server.base.addresses.base.AddressEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import lombok.AccessLevel;
@@ -21,7 +20,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Table(name = "address")
-@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
 public class SuburbEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;

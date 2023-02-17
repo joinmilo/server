@@ -13,6 +13,6 @@ public class MenuItemPredicateBuilder extends PredicateBuilder<QMenuItemEntity, 
 
   @Override
   public BooleanExpression freeSearch(String term) {
-    return query.translatable.any().name.likeIgnoreCase(term);
+    return query.translatables.any().name.likeIgnoreCase(term);
   }
 }

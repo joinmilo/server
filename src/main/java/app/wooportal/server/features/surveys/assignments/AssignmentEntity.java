@@ -21,7 +21,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Table(name = "assignments")
-@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
 public class AssignmentEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;

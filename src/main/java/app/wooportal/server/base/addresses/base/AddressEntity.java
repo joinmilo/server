@@ -1,18 +1,12 @@
 package app.wooportal.server.base.addresses.base;
 
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import org.hibernate.annotations.GenericGenerator;
 import app.wooportal.server.base.addresses.suburbs.SuburbEntity;
 import app.wooportal.server.core.base.BaseEntity;
-import app.wooportal.server.features.deals.base.DealEntity;
-import app.wooportal.server.features.events.base.EventEntity;
-import app.wooportal.server.features.organisations.base.OrganisationEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,7 +19,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Table(name = "address")
-@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
 public class AddressEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
@@ -47,15 +40,6 @@ public class AddressEntity extends BaseEntity {
 
   @Column(nullable = false)
   private String street;
-
-  @OneToMany(mappedBy = "address", fetch = FetchType.LAZY)
-  private Set<EventEntity> events;
-
-  @OneToMany(mappedBy = "address", fetch = FetchType.LAZY)
-  private Set<DealEntity> deals;
-
-  @OneToMany(mappedBy = "address", fetch = FetchType.LAZY)
-  private Set<OrganisationEntity> organisations;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private SuburbEntity suburb;

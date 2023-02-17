@@ -53,15 +53,15 @@ public class PageEntity extends BaseEntity {
   private Set<MenuItemEntity> menues;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
-  private Set<PageTranslatableEntity> pageTrabslatables;
+  private Set<PageTranslatableEntity> translatables;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
-  private Set<PageVisitorEntity> pageVisitor;
+  private Set<PageVisitorEntity> visitors;
 
   @ManyToMany(fetch = FetchType.LAZY)
   @JoinTable(name = "page_media", joinColumns = @JoinColumn(name = "page_id"),
       inverseJoinColumns = @JoinColumn(name = "media_id"),
       uniqueConstraints = {@UniqueConstraint(columnNames = {"page_id", "media_id"})})
   @CollectionId(column = @Column(name = "id"), type = @Type(type = "uuid-char"), generator = "UUID")
-  private List<MediaEntity> pageMedia = new ArrayList<>();
+  private List<MediaEntity> media = new ArrayList<>();
 }

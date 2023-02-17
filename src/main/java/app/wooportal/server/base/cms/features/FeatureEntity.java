@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import org.hibernate.annotations.GenericGenerator;
 import app.wooportal.server.base.cms.features.translations.FeatureTranslatableEntity;
 import app.wooportal.server.base.cms.menuItems.MenuItemEntity;
 import app.wooportal.server.base.cms.pageFeatures.PageFeatureEntity;
@@ -22,7 +21,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Table(name = "features")
-@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
 public class FeatureEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
@@ -36,5 +34,5 @@ public class FeatureEntity extends BaseEntity {
   private Set<MenuItemEntity> menu;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
-  private Set<FeatureTranslatableEntity> translatable;
+  private Set<FeatureTranslatableEntity> translatables;
 }

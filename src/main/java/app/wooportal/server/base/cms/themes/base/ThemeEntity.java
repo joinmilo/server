@@ -5,8 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import org.hibernate.annotations.GenericGenerator;
-import app.wooportal.server.base.cms.themes.ThemeVariableEntity;
+import app.wooportal.server.base.cms.themes.variables.ThemeVariableEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -19,8 +18,7 @@ import lombok.Setter;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @AllArgsConstructor
 @Entity
-@Table(name = "theme_variables")
-@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+@Table(name = "themes")
 public class ThemeEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;

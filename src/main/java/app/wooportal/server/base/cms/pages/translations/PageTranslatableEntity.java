@@ -2,13 +2,9 @@ package app.wooportal.server.base.cms.pages.translations;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import app.wooportal.server.base.cms.pages.PageEntity;
 import app.wooportal.server.core.i18n.entities.TranslatableEntity;
-import app.wooportal.server.core.i18n.language.LanguageEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -34,11 +30,4 @@ public class PageTranslatableEntity extends TranslatableEntity<PageEntity> {
   @Column(nullable = false)
   private String shortDescription;
   
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(nullable = false)
-  private LanguageEntity language;
-  
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(nullable = false)
-  private PageEntity parent;
 }

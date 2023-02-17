@@ -31,12 +31,12 @@ public class GraphQlContextAdapter implements ApiContextAdapter {
   
   @Override
   public JsonNode getSingleSaveContext() {
-    return getSaveContext("entity");
+    return getSaveContext();
   }
   
   @Override
   public JsonNode getMultiSaveContext() {
-    return getSaveContext("entities");
+    return getSaveContext();
   }
   
   public List<Field> getSingleReadContext() {
@@ -72,9 +72,9 @@ public class GraphQlContextAdapter implements ApiContextAdapter {
     return null;
   }
   
-  private JsonNode getSaveContext(String objectKey) {
+  private JsonNode getSaveContext() {
     try {
-      return getContext("variables").get(objectKey); 
+      return getContext("variables").fields().next().getValue(); 
     } catch (Exception ignored) { }
     return null;
   }

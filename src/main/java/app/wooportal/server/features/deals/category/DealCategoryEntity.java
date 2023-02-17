@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import org.hibernate.annotations.GenericGenerator;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.features.deals.base.DealEntity;
 import app.wooportal.server.features.deals.category.translations.DealCategoryTranslatableEntity;
@@ -21,7 +20,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Table(name = "deal_categories")
-@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
 public class DealCategoryEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
@@ -34,6 +32,6 @@ public class DealCategoryEntity extends BaseEntity {
   private Set<DealEntity> deals;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
-  private Set<DealCategoryTranslatableEntity> categoryTranslatable;
+  private Set<DealCategoryTranslatableEntity> translatables;
 
 }
