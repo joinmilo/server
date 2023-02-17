@@ -1,7 +1,6 @@
 package app.wooportal.server.core.i18n.translation;
 
 import java.lang.reflect.Method;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import app.wooportal.server.core.i18n.entities.TranslatableEntity;
 import app.wooportal.server.core.i18n.language.LanguageEntity;
@@ -11,10 +10,8 @@ import app.wooportal.server.core.repository.RepositoryService;
 @Service
 public class TranslationService {
 
-  @Autowired
   private final RepositoryService repoService;
 
-  @Autowired
   public TranslationService(RepositoryService repoService) {
     this.repoService = repoService;
   }

@@ -8,11 +8,10 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import org.hibernate.annotations.GenericGenerator;
 import app.wooportal.server.core.base.BaseEntity;
-import app.wooportal.server.features.contests.contestParticipations.ContestParticipationEntity;
-import app.wooportal.server.features.contests.contestState.ContestStateEntity;
-import app.wooportal.server.features.contests.contestTypes.ContestTypeEntity;
+import app.wooportal.server.features.contests.participations.ContestParticipationEntity;
+import app.wooportal.server.features.contests.state.ContestStateEntity;
+import app.wooportal.server.features.contests.types.ContestTypeEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,7 +24,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Table(name = "contests")
-@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
 public class ContestEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
@@ -58,5 +56,5 @@ public class ContestEntity extends BaseEntity {
   private ContestTypeEntity type;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "contest")
-  private Set<ContestParticipationEntity> contestParticipation;
+  private Set<ContestParticipationEntity> participation;
 }

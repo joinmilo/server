@@ -20,7 +20,7 @@ import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.features.surveys.answers.translations.AnswerTranslatableEntity;
 import app.wooportal.server.features.surveys.questionOptions.QuestionOptionEntity;
 import app.wooportal.server.features.surveys.questions.QuestionEntity;
-import app.wooportal.server.features.surveys.surveyResult.SurveyResultEntity;
+import app.wooportal.server.features.surveys.result.SurveyResultEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

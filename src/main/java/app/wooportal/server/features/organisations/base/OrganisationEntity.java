@@ -17,15 +17,15 @@ import org.hibernate.annotations.CollectionId;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 import app.wooportal.server.base.addresses.base.AddressEntity;
-import app.wooportal.server.base.contact.base.ContactEntity;
+import app.wooportal.server.base.contacts.ContactEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.media.base.MediaEntity;
 import app.wooportal.server.features.events.base.EventEntity;
 import app.wooportal.server.features.organisations.base.translations.OrganisationTranslatableEntity;
 import app.wooportal.server.features.organisations.base.visitors.OrganisationVisitorEntity;
+import app.wooportal.server.features.organisations.comments.OrganisationCommentEntity;
 import app.wooportal.server.features.organisations.members.MemberEntity;
-import app.wooportal.server.features.organisations.organisationComments.OrganisationCommentEntity;
-import app.wooportal.server.features.organisations.organisationRatings.OrganisationRatingEntity;
+import app.wooportal.server.features.organisations.ratings.OrganisationRatingEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -68,20 +68,20 @@ public class OrganisationEntity extends BaseEntity {
   @OneToMany(mappedBy = "organisation", fetch = FetchType.LAZY)
   private Set<EventEntity> events;
 
-  @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
-  private Set<OrganisationVisitorEntity> organisationVisitors;
-
   @OneToMany(mappedBy = "organisation", fetch = FetchType.LAZY)
-  private Set<OrganisationCommentEntity> organisationComments;
+  private Set<OrganisationCommentEntity> comments;
 
   @OneToMany(mappedBy = "organisation", fetch = FetchType.LAZY)
   private Set<MemberEntity> members;
 
   @OneToMany(mappedBy = "organisation", fetch = FetchType.LAZY)
-  private Set<OrganisationRatingEntity> organisationRatings;
+  private Set<OrganisationRatingEntity> ratings;
 
   @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
-  private Set<OrganisationTranslatableEntity> organisationTranslatable;
+  private Set<OrganisationTranslatableEntity> translatables;
+  
+  @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
+  private Set<OrganisationVisitorEntity> visitors;
 
   @ManyToMany(fetch = FetchType.LAZY)
   @JoinTable(name = "organisation_media", joinColumns = @JoinColumn(name = "organisation_id"),

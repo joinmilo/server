@@ -7,7 +7,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import app.wooportal.server.base.cms.features.FeatureEntity;
-import app.wooportal.server.base.cms.menuItems.translations.MenuTranslatableEntity;
+import app.wooportal.server.base.cms.menuItems.translations.MenuItemTranslatableEntity;
 import app.wooportal.server.base.cms.pages.PageEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import lombok.AccessLevel;
@@ -40,5 +40,5 @@ public class MenuItemEntity extends BaseEntity {
   private MenuItemEntity parent;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
-  private Set<MenuTranslatableEntity> translatable;
+  private Set<MenuItemTranslatableEntity> translatables;
 }

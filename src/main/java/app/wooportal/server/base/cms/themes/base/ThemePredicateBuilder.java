@@ -3,19 +3,17 @@ package app.wooportal.server.base.cms.themes.base;
 import org.springframework.stereotype.Service;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import app.wooportal.server.core.base.PredicateBuilder;
-import app.wooportal.server.features.contests.contestTypes.QContestTypeEntity;
 
 @Service
 public class ThemePredicateBuilder
-    extends PredicateBuilder<QContestTypeEntity, ThemeEntity> {
+    extends PredicateBuilder<QThemeEntity, ThemeEntity> {
 
   public ThemePredicateBuilder() {
-    super(QContestTypeEntity.contestTypeEntity);
+    super(QThemeEntity.themeEntity);
   }
 
   @Override
   public BooleanExpression freeSearch(String term) {
-    return query.key.likeIgnoreCase(term)
-        .or(query.translatable.any().name.likeIgnoreCase(term));
+    return query.name.likeIgnoreCase(term);
   }
 }

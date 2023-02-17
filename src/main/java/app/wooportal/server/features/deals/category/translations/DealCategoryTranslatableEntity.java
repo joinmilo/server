@@ -2,13 +2,9 @@ package app.wooportal.server.features.deals.category.translations;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import app.wooportal.server.core.i18n.entities.TranslatableEntity;
-import app.wooportal.server.core.i18n.language.LanguageEntity;
-import app.wooportal.server.features.events.base.EventEntity;
-import app.wooportal.server.features.events.eventCategories.EventCategoryEntity;
+import app.wooportal.server.features.deals.category.DealCategoryEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,16 +17,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table(name = "deal_category_translatables")
-public class DealCategoryTranslatableEntity extends TranslatableEntity<EventEntity> {
+public class DealCategoryTranslatableEntity extends TranslatableEntity<DealCategoryEntity> {
 
   private static final long serialVersionUID = 1L;
 
   @Column(nullable = false)
   private String name;
 
-  @ManyToOne(fetch = FetchType.LAZY)
-  private LanguageEntity language;
-
-  @ManyToOne(fetch = FetchType.LAZY)
-  private EventCategoryEntity parent;
 }

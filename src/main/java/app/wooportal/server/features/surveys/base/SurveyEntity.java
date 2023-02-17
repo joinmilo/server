@@ -14,7 +14,7 @@ import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.features.surveys.assignments.AssignmentEntity;
 import app.wooportal.server.features.surveys.base.translations.SurveyTranslatableEntity;
 import app.wooportal.server.features.surveys.base.visitors.SurveyVisitorEntity;
-import app.wooportal.server.features.surveys.surveyState.SurveyStateEntity;
+import app.wooportal.server.features.surveys.state.SurveyStateEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

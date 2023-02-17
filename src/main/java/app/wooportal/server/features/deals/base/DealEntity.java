@@ -17,7 +17,7 @@ import org.hibernate.annotations.CollectionId;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 import app.wooportal.server.base.addresses.suburbs.SuburbEntity;
-import app.wooportal.server.base.contact.base.ContactEntity;
+import app.wooportal.server.base.contacts.ContactEntity;
 import app.wooportal.server.base.userContexts.base.UserContextEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.media.base.MediaEntity;
@@ -73,7 +73,7 @@ public class DealEntity extends BaseEntity {
   private MediaEntity titleImage;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
-  private Set<DealVisitorEntity> dealVisitors;
+  private Set<DealVisitorEntity> visitors;
 
   @ManyToMany(fetch = FetchType.LAZY)
   @JoinTable(name = "deal_media", joinColumns = @JoinColumn(name = "deal_id"),

@@ -7,7 +7,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
-import app.wooportal.server.base.contact.base.ContactEntity;
+import app.wooportal.server.base.contacts.ContactEntity;
 import app.wooportal.server.base.developers.translations.DeveloperTranslatableEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import lombok.AccessLevel;

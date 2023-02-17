@@ -17,19 +17,19 @@ import org.hibernate.annotations.CollectionId;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 import app.wooportal.server.base.addresses.base.AddressEntity;
-import app.wooportal.server.base.contact.base.ContactEntity;
+import app.wooportal.server.base.contacts.ContactEntity;
 import app.wooportal.server.base.userContexts.base.UserContextEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.media.base.MediaEntity;
 import app.wooportal.server.features.events.attendee.AttendeeEntity;
 import app.wooportal.server.features.events.attendeeConfiguration.AttendeeConfigurationEntity;
-import app.wooportal.server.features.events.eventCategories.EventCategoryEntity;
-import app.wooportal.server.features.events.eventRatings.EventRatingEntity;
-import app.wooportal.server.features.events.eventTargetGroups.EventTargetGroupEntity;
-import app.wooportal.server.features.events.eventVisitors.EventVisitorEntity;
-import app.wooportal.server.features.events.translations.EventTranslatableEntity;
+import app.wooportal.server.features.events.base.translations.EventTranslatableEntity;
+import app.wooportal.server.features.events.base.visitors.EventVisitorEntity;
+import app.wooportal.server.features.events.categories.EventCategoryEntity;
+import app.wooportal.server.features.events.ratings.EventRatingEntity;
+import app.wooportal.server.features.events.schedules.ScheduleEntity;
+import app.wooportal.server.features.events.targetGroups.EventTargetGroupEntity;
 import app.wooportal.server.features.organisations.base.OrganisationEntity;
-import app.wooportal.server.features.schedules.ScheduleEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -80,13 +80,13 @@ public class EventEntity extends BaseEntity {
   private OrganisationEntity organisation;
 
   @OneToMany(mappedBy = "event", fetch = FetchType.LAZY)
-  private Set<AttendeeEntity> attendee;
+  private Set<AttendeeEntity> attendees;
 
   @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
-  private Set<EventVisitorEntity> visitor;
+  private Set<EventVisitorEntity> visitors;
 
   @OneToMany(mappedBy = "event", fetch = FetchType.LAZY)
-  private Set<EventRatingEntity> rating;
+  private Set<EventRatingEntity> ratings;
 
   @OneToMany(mappedBy = "event", fetch = FetchType.LAZY)
   private Set<ScheduleEntity> schedules;
@@ -106,6 +106,6 @@ public class EventEntity extends BaseEntity {
       inverseJoinColumns = @JoinColumn(name = "event_target_group_id"),
       uniqueConstraints = {@UniqueConstraint(columnNames = {"event_id", "event_target_group_id"})})
   @CollectionId(column = @Column(name = "id"), type = @Type(type = "uuid-char"), generator = "UUID")
-  private List<EventTargetGroupEntity> eventEventTargetGroups = new ArrayList<>();
+  private List<EventTargetGroupEntity> targetGroups = new ArrayList<>();
 
 }

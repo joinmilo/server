@@ -1,15 +1,9 @@
 package app.wooportal.server.core.visit.visitor;
 
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import app.wooportal.server.core.base.BaseEntity;
-import app.wooportal.server.features.events.eventVisitors.EventVisitorEntity;
-import app.wooportal.server.features.organisations.base.visitors.OrganisationVisitorEntity;
-import app.wooportal.server.features.surveys.base.visitors.SurveyVisitorEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -27,13 +21,4 @@ public class VisitorEntity extends BaseEntity {
   @Column(nullable = false)
   private String userAgent;
 
-  @OneToMany(mappedBy = "visitor", fetch = FetchType.LAZY)
-  private Set<EventVisitorEntity> eventVisitor;
-
-  @OneToMany(mappedBy = "visitor", fetch = FetchType.LAZY)
-  private Set<OrganisationVisitorEntity> organisationVisitor;
-
-
-  @OneToMany(mappedBy = "visitor", fetch = FetchType.LAZY)
-  private Set<SurveyVisitorEntity> surveyVisitor;
 }

@@ -18,11 +18,11 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.media.base.MediaEntity;
-import app.wooportal.server.features.articles.articleCategories.ArticleCategoryEntity;
-import app.wooportal.server.features.articles.articleComments.ArticleCommentEntity;
-import app.wooportal.server.features.articles.articleRatings.ArticleRatingEntity;
 import app.wooportal.server.features.articles.base.visitors.ArticleVisitorEntity;
+import app.wooportal.server.features.articles.categories.ArticleCategoryEntity;
+import app.wooportal.server.features.articles.comments.ArticleCommentEntity;
 import app.wooportal.server.features.articles.publicAuthors.PublicAuthorEntity;
+import app.wooportal.server.features.articles.ratings.ArticleRatingEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -63,13 +63,13 @@ public class ArticleEntity extends BaseEntity {
   private MediaEntity titleImage;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "article")
-  private Set<ArticleCommentEntity> articleComments;
+  private Set<ArticleCommentEntity> comments;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "article")
-  private Set<ArticleRatingEntity> articleRating;
+  private Set<ArticleRatingEntity> ratings;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
-  private Set<ArticleVisitorEntity> articleVisitors;
+  private Set<ArticleVisitorEntity> visitors;
 
   @ManyToMany(fetch = FetchType.LAZY)
   @JoinTable(name = "article_media", joinColumns = @JoinColumn(name = "article_id"),
