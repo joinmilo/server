@@ -239,7 +239,11 @@
                 select uuid(), true, 0, '7a8cc14b-49e4-4f53-a86f-11aa6e2db95e', f.id, null
                 from features f
                 WHERE f.key = "articles";
-                              
+                
+                insert into menu_items (id, header, `order`, parent_id, feature_id, page_id)
+                select uuid(), true, 3, '7a8cc14b-49e4-4f53-a86f-11aa6e2db95e', null, p.parent_id
+                from page_translatables p
+                WHERE p.name = "Über uns";                
               
   - changeSet:
       id: 0095.add_data_menu_items.6
@@ -289,7 +293,21 @@
                 from languages l, menu_items m
                 WHERE l.locale = "en" AND
                 m.order = 0 AND
-                m.parent_id = "7a8cc14b-49e4-4f53-a86f-11aa6e2db95e";                 
+                m.parent_id = "7a8cc14b-49e4-4f53-a86f-11aa6e2db95e";  
+                
+                insert into menu_item_translatables (id, `name`, parent_id, language_id)
+                select uuid(), "Über uns", m.id, l.id
+                from languages l, menu_items m
+                WHERE l.locale = "de" AND
+                m.order = 3 AND
+                m.parent_id = "7a8cc14b-49e4-4f53-a86f-11aa6e2db95e"; 
+                
+                insert into menu_item_translatables (id, `name`, parent_id, language_id)
+                select uuid(), "About us", m.id, l.id
+                from languages l, menu_items m
+                WHERE l.locale = "en" AND
+                m.order = 3 AND
+                m.parent_id = "7a8cc14b-49e4-4f53-a86f-11aa6e2db95e";                                                
                                                           
                 insert into menu_item_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Entdecken", "0115fe46-3a7e-4377-abe5-f56f720bf3d9", l.id
@@ -389,8 +407,27 @@
                 insert into menu_item_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Own Articles", "555d678d-954f-43c9-ae63-5329df968da2",l.id
                 from languages l
-                WHERE l.locale = "en";                                
+                WHERE l.locale = "en";            
                 
+  - changeSet:
+      id: 0095.add_data_menu_items.7
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add Landing Page and translatable
+            splitStatements: true
+            sql:           
+                insert into pages (id, slug, seo_description, islanding, call_url)
+                select uuid(), "LandingPage", null, true, null;
+                
+                insert into page_translatables (id, `name`, content, short_description, call_text, parent_id, language_id)
+                select uuid(), "LandingPage", "Lorem ipsum dolor sit amet, consectetur", "Portal Name", "DiscoverMore",  p.id, l.id
+                from pages p, languages l
+                WHERE p.slug = "LandingPage" AND
+                l.locale = "en";                 
+                
+                                 
+                                   
             
               
                                                                                                                
