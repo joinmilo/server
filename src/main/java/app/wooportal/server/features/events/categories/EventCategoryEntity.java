@@ -24,7 +24,9 @@ public class EventCategoryEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
 
-  private Boolean approved;
+  private String color;
+  
+  private String icon;
 
   @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
   private Set<EventEntity> events;

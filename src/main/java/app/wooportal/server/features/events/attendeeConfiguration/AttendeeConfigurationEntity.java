@@ -23,7 +23,7 @@ public class AttendeeConfigurationEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
 
-  private Boolean approved;
+  private Boolean approval;
   
   private Integer maxAttendees;
   

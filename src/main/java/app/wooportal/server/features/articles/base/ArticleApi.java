@@ -32,7 +32,6 @@ public class ArticleApi extends CrudApi<ArticleEntity, ArticleService> {
 
   @Override
   @GraphQLQuery(name = "getArticle")
-  @ApprovedAndVerifiedPermission
   public Optional<ArticleEntity> readOne(
       @GraphQLArgument(name = CrudApi.entity) ArticleEntity entity) {
     return super.readOne(entity);

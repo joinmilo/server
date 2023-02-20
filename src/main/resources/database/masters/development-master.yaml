@@ -185,7 +185,8 @@ databaseChangeLog:
     - include:
        file: database/changes/0095.add_data_menu_items.yaml    
     - include:
-        file: database/changes/0096.migrate_cleanUp.yaml                  
+        file: database/changes/0096.migrate_cleanUp.yaml        
+                   
                                 
         
 

@@ -32,7 +32,6 @@ public class SurveyApi extends CrudApi<SurveyEntity, SurveyService> {
 
   @Override
   @GraphQLQuery(name = "getSurvey")
-  @ApprovedAndVerifiedPermission
   public Optional<SurveyEntity> readOne(
       @GraphQLArgument(name = CrudApi.entity) SurveyEntity entity) {
     return super.readOne(entity);

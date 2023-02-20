@@ -16,6 +16,7 @@ import javax.persistence.UniqueConstraint;
 import org.hibernate.annotations.CollectionId;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
+import app.wooportal.server.base.userContexts.base.UserContextEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.media.base.MediaEntity;
 import app.wooportal.server.features.articles.base.visitors.ArticleVisitorEntity;
@@ -57,7 +58,10 @@ public class ArticleEntity extends BaseEntity {
   private ArticleCategoryEntity category;
 
   @ManyToOne(fetch = FetchType.LAZY)
-  private PublicAuthorEntity pulbicAuthor;
+  private PublicAuthorEntity publicAuthor;
+
+  @ManyToOne(fetch = FetchType.LAZY)
+  private UserContextEntity author;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private MediaEntity titleImage;

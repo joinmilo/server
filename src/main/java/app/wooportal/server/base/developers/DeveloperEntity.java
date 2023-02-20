@@ -21,7 +21,7 @@ import lombok.Setter;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @AllArgsConstructor
 @Entity
-@Table(name = "developer")
+@Table(name = "developers")
 @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
 public class DeveloperEntity extends BaseEntity {
 
@@ -32,5 +32,4 @@ public class DeveloperEntity extends BaseEntity {
 
   @OneToOne(fetch = FetchType.LAZY)
   private ContactEntity contact;
-
 }

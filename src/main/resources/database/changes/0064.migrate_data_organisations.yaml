@@ -15,6 +15,12 @@ databaseChangeLog:
             - column:
                 name: contact_id               
                 type: char(50) 
+            - column:
+                name: card_image_id               
+                type: char(50)   
+            - column:
+                name: title_image_id               
+                type: char(50)                                 
                 
   - changeSet:
       id: 0064.migrate_data_organisations.2
@@ -85,5 +91,5 @@ databaseChangeLog:
             - column:
                 name: website
             - column:
-                name: mail                                              
+                name: mail                     
                                                            

@@ -47,17 +47,15 @@ databaseChangeLog:
                   name: offer
                   type: boolean                               
               - column:
-                  constraints:
-                    nullable: false
                   name: creator_id
                   type: CHAR(36)            
               - column:
                   name: address_id
                   type: CHAR(36)                   
               - column:
-                  constraints:
-                    nullable: false
                   name: contact_id
+                  constraints:
+                    nullable: false                  
                   type: CHAR(36)
               - column:
                   constraints:
@@ -65,13 +63,9 @@ databaseChangeLog:
                   name: category_id
                   type: CHAR(36)   
               - column:
-                  constraints:
-                    nullable: false
                   name: title_image_id
                   type: CHAR(36)  
               - column:
-                  constraints:
-                    nullable: false
                   name: card_image_id
                   type: CHAR(36)                                                                                                                                   
             tableName: deals

@@ -24,7 +24,6 @@ public class OrganisationApi extends CrudApi<OrganisationEntity, OrganisationSer
 
   @Override
   @GraphQLQuery(name = "getOrganisations")
-  @ApprovedAndVerifiedPermission
   public PageableList<OrganisationEntity> readAll(
       @GraphQLArgument(name = CrudApi.params) FilterSortPaginate params) {
     return super.readAll(params);
@@ -32,7 +31,6 @@ public class OrganisationApi extends CrudApi<OrganisationEntity, OrganisationSer
 
   @Override
   @GraphQLQuery(name = "getOrganisation")
-  @ApprovedAndVerifiedPermission
   public Optional<OrganisationEntity> readOne(@GraphQLArgument(name = CrudApi.entity) OrganisationEntity entity) {
     return super.readOne(entity);
   }

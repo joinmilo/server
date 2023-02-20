@@ -34,6 +34,6 @@ public class PublicAuthorEntity extends BaseEntity {
 
   private String phone;
 
-  @OneToMany(fetch = FetchType.LAZY, mappedBy = "pulbicAuthor")
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "publicAuthor")
   private Set<ArticleEntity> articles;
 }

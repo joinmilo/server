@@ -16,7 +16,7 @@ import javax.persistence.UniqueConstraint;
 import org.hibernate.annotations.CollectionId;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
-import app.wooportal.server.base.addresses.suburbs.SuburbEntity;
+import app.wooportal.server.base.addresses.base.AddressEntity;
 import app.wooportal.server.base.contacts.ContactEntity;
 import app.wooportal.server.base.userContexts.base.UserContextEntity;
 import app.wooportal.server.core.base.BaseEntity;
@@ -56,7 +56,7 @@ public class DealEntity extends BaseEntity {
   private UserContextEntity creator;
 
   @ManyToOne(fetch = FetchType.LAZY)
-  private SuburbEntity address;
+  private AddressEntity address;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private MediaEntity cardImage;

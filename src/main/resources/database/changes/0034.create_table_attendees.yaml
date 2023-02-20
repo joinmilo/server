@@ -35,7 +35,12 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                   name: event_id
-                  type: CHAR(36)                                                                   
+                  type: CHAR(36)   
+              - column:
+                  constraints:
+                    nullable: false
+                  name: user_context_id
+                  type: CHAR(36)                                                                                       
             tableName: attendees
         - sql:
             comment: set char set for mysql
@@ -70,4 +75,29 @@ databaseChangeLog:
             referencedTableName: events
             validate: true                         
           
+  - changeSet:
+      id: 0034.create_table_attendees.4
+      author: codeschluss
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: user_context_id
+            indexName: idx_fkyl69iohfpfem75tbu40fi9ok3
+            tableName: attendees
+  - changeSet:
+      id: 0034.create_table_attendees.5
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: user_context_id
+            baseTableName: attendees
+            constraintName: fkyl69iohfpfem75tbu40fi9ok3
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: user_contexts
+            validate: true           
             

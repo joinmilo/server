@@ -20,7 +20,7 @@ import lombok.Setter;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @AllArgsConstructor
 @Entity
-@Table(name = "survey_state")
+@Table(name = "survey_states")
 @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
 public class SurveyStateEntity extends BaseEntity {
 

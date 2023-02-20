@@ -32,7 +32,6 @@ public class DealApi extends CrudApi<DealEntity, DealService> {
 
   @Override
   @GraphQLQuery(name = "getDeal")
-  @ApprovedAndVerifiedPermission
   public Optional<DealEntity> readOne(@GraphQLArgument(name = CrudApi.entity) DealEntity entity) {
     return super.readOne(entity);
   }
