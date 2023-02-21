@@ -15,7 +15,7 @@
               ('492fa827-9fb4-4294-906d-b85e5bdb6890', 'contest'),
               ('0633fd36-707a-42ee-878f-21e43f458aa9', 'own_article'),
               ('909fca09-78bb-42dd-95d0-164ceb1d9192', 'media'),
-              ('8f1faa18-3204-4ab1-9f71-18317d1a3d89', 'search_offer'),
+              ('8f1faa18-3204-4ab1-9f71-18317d1a3d89', 'deal'),
               ('17d083d2-3bf0-4efb-97ef-17d08cba37f4', 'forms');
                 
   - changeSet:
@@ -31,14 +31,14 @@
                 UPDATE
                 features f
                 SET 
-                f.key = "events"
+                f.key = "event"
                 WHERE
                 f.key = "activities";
                 
                 UPDATE
                 features f
                 SET 
-                f.key = "articles"
+                f.key = "article"
                 WHERE
                 f.key = "blogposts";                
                      
@@ -60,13 +60,13 @@
                 select uuid(), "Artikel", f.id, l.id
                 from languages l, features f
                 WHERE l.locale = "de" AND
-                f.key = "articles";
+                f.key = "article";
                 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Veranstaltung", f.id, l.id
                 from languages l, features f
                 WHERE l.locale = "de" AND
-                f.key = "events";     
+                f.key = "event";     
 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Organisation", f.id, l.id
@@ -78,13 +78,13 @@
                 select uuid(), "Article", f.id, l.id
                 from languages l, features f
                 WHERE l.locale = "en" AND
-                f.key = "articles";
+                f.key = "article";
                 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Event", f.id, l.id
                 from languages l, features f
                 WHERE l.locale = "en" AND
-                f.key = "events";             
+                f.key = "event";             
 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Publizierende", f.id, l.id
@@ -174,13 +174,13 @@
                 select uuid(), "Suche_Biete", f.id, l.id
                 from languages l, features f
                 WHERE l.locale = "de" AND
-                f.key = "search_offer";
+                f.key = "deal";
                 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Search_Offer", f.id, l.id
                 from languages l, features f
                 WHERE l.locale = "en" AND
-                f.key = "search_offer";    
+                f.key = "deal";    
 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Formulare", f.id, l.id
@@ -209,12 +209,12 @@
               ('d443f235-fe72-41a6-b7d2-1554047048d5', true, 3, '0115fe46-3a7e-4377-abe5-f56f720bf3d9', 'b93928cc-ec57-4848-96af-26d8284ffcd1', null),  
               
               ('7a8cc14b-49e4-4f53-a86f-11aa6e2db95e', true, 1, null, null, null),
-              ('fa345abe-b311-451e-abe2-9583fc6fb000', true, 1, '7a8cc14b-49e4-4f53-a86f-11aa6e2db95e', '3c8b4c01-1ef7-4a55-9e4f-c5ac09a11ce9', null),
+              ('fa345abe-b311-451e-abe2-9583fc6fb000', true, 1, '7a8cc14b-49e4-4f53-a86f-11aa6e2db95e', 'cf2b4b5d-df3a-4f79-9cfd-61679c57bd16', null),
               ('e5441241-dbc1-4410-9a93-3d0a921c9eee', true, 2, '7a8cc14b-49e4-4f53-a86f-11aa6e2db95e', '909fca09-78bb-42dd-95d0-164ceb1d9192', null),
                                    
               ('b1d9d0ba-7f07-4ccc-acf0-aa96052e85e8', true, 2, null, null, null),
               ('1c919ec0-8d29-4bb6-8d52-6db881a1d3ea', true, 0, 'b1d9d0ba-7f07-4ccc-acf0-aa96052e85e8', '909d5070-f915-4891-b78b-1ef83690fddf', null),
-              ('947b7507-d10b-477a-99eb-d8510c4b12e2', true, 1, 'b1d9d0ba-7f07-4ccc-acf0-aa96052e85e8', '32d99f7b-53c9-4a00-8528-a8506c4bc4da', null),
+              ('947b7507-d10b-477a-99eb-d8510c4b12e2', true, 1, 'b1d9d0ba-7f07-4ccc-acf0-aa96052e85e8', '492fa827-9fb4-4294-906d-b85e5bdb6890', null),
               ('555d678d-954f-43c9-ae63-5329df968da2', true, 2, 'b1d9d0ba-7f07-4ccc-acf0-aa96052e85e8', '0633fd36-707a-42ee-878f-21e43f458aa9', null);   
               
   - changeSet:
@@ -228,7 +228,7 @@
                 insert into menu_items (id, header, `order`, parent_id, feature_id, page_id)
                 select uuid(), true, 0, '0115fe46-3a7e-4377-abe5-f56f720bf3d9', f.id, null
                 from features f
-                WHERE f.key = "events";
+                WHERE f.key = "event";
                 
                 insert into menu_items (id, header, `order`, parent_id, feature_id, page_id)
                 select uuid(), true, 1, '0115fe46-3a7e-4377-abe5-f56f720bf3d9', f.id, null
@@ -238,7 +238,7 @@
                 insert into menu_items (id, header, `order`, parent_id, feature_id, page_id)
                 select uuid(), true, 0, '7a8cc14b-49e4-4f53-a86f-11aa6e2db95e', f.id, null
                 from features f
-                WHERE f.key = "articles";
+                WHERE f.key = "article";
                 
                 insert into menu_items (id, header, `order`, parent_id, feature_id, page_id)
                 select uuid(), true, 3, '7a8cc14b-49e4-4f53-a86f-11aa6e2db95e', null, p.parent_id
@@ -417,17 +417,44 @@
             comment: Add Landing Page and translatable
             splitStatements: true
             sql:           
-                insert into pages (id, slug, seo_description, islanding, call_url)
-                select uuid(), "LandingPage", null, true, null;
+                insert into pages (id, slug, seo_description, is_landing, call_url)
+                select "7cefc60c-8325-4861-90c7-97f1e8eeb290", "landing", null, true, null;
                 
                 insert into page_translatables (id, `name`, content, short_description, call_text, parent_id, language_id)
-                select uuid(), "LandingPage", "Lorem ipsum dolor sit amet, consectetur", "Portal Name", "DiscoverMore",  p.id, l.id
+                select uuid(), "landing", "Here you will find all event and news from your city", "Wooportal", "Discover more",  p.id, l.id
                 from pages p, languages l
-                WHERE p.slug = "LandingPage" AND
-                l.locale = "en";                 
+                WHERE p.slug = "landing" AND
+                l.locale = "en";
                 
-                                 
-                                   
-            
-              
-                                                                                                               
+                insert into page_translatables (id, `name`, content, short_description, call_text, parent_id, language_id)
+                select uuid(), "landing", "Hier findest du alle Events und Neuigkeiten aus deiner Stadt", "Wooportal", "Entdecke mehr",  p.id, l.id
+                from pages p, languages l
+                WHERE p.slug = "landing" AND
+                l.locale = "de";
+  - changeSet:
+      id: 0095.add_data_menu_items.8
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add Landing Page features
+            splitStatements: true
+            sql:           
+                insert into page_features (id, `order`, feature_id, page_id)
+                select uuid(), 0, f.id, '7cefc60c-8325-4861-90c7-97f1e8eeb290'
+                from features f
+                WHERE f.key = "event";
+                
+                insert into page_features (id, `order`, feature_id, page_id)
+                select uuid(), 1, f.id, '7cefc60c-8325-4861-90c7-97f1e8eeb290'
+                from features f
+                WHERE f.key = "article";
+                
+                insert into page_features (id, `order`, feature_id, page_id)
+                select uuid(), 2, f.id, '7cefc60c-8325-4861-90c7-97f1e8eeb290'
+                from features f
+                WHERE f.key = "survey";
+                
+                insert into page_features (id, `order`, feature_id, page_id)
+                select uuid(), 3, f.id, '7cefc60c-8325-4861-90c7-97f1e8eeb290'
+                from features f
+                WHERE f.key = "contest";

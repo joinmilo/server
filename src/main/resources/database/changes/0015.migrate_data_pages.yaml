@@ -11,17 +11,17 @@ databaseChangeLog:
                   type: VARCHAR(255)
               - column:
                   name: seo_description
-                  type: VARCHAR(255)      
+                  type: VARCHAR(255)
               - column:
                   name: call_url
-                  type: VARCHAR(255)       
+                  type: VARCHAR(255)
               - column:
                   constraints:
                     nullable: false
                   defaultValueBoolean: false
-                  name: islanding
-                  type: boolean                                                                             
-            tableName: markups     
+                  name: is_landing
+                  type: boolean
+            tableName: markups
   - changeSet:
       id: 0015.migrate_data_markups.2
       author: codeschluss
@@ -31,7 +31,84 @@ databaseChangeLog:
               - column:
                   name: tag_id
             tableName: markups
-            
-                            
-                         
-                
+
+  - changeSet:
+      id: 0015.migrate_data_markups.3
+      author: codeschluss
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                  name: page_id
+                  type: CHAR(36)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: media_id
+                  type: CHAR(36)                 
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: page_media_primary_key
+                  name: id
+                  type: CHAR(36)
+            tableName: page_media
+        - sql:
+            comment: set char set for mysql
+            dbms: mysql
+            endDelimiter: \nGO
+            splitStatements: true
+            sql: ALTER TABLE page_media CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;   
+
+  - changeSet:
+      id: 0015.migrate_data_markups.4
+      author: codeschluss
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: page_id
+            indexName: idx_fkvaafgc8z9cnl0jldlw0okqx5v
+            tableName: page_media
+  - changeSet:
+      id: 0015.migrate_data_markups.5
+      author: codeschluss
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: media_id
+            indexName: idx_fk2zgh1jd6ssplkz5ktj41nzrso
+            tableName: page_media
+  - changeSet:
+      id: 0015.migrate_data_markups.6
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: page_id
+            baseTableName: page_media
+            constraintName: fkvaafgc8z9cnl0jldlw0okqx5v
+            initiallyDeferred: false
+            onDelete: CASCADE
+            onUpdate: CASCADE
+            referencedColumnNames: id
+            referencedTableName: markups
+            validate: true
+  - changeSet:
+      id: 0015.migrate_data_markups.7
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: media_id
+            baseTableName: page_media
+            constraintName: fk2zgh1jd6ssplkz5ktj41nzrso
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: CASCADE
+            onUpdate: CASCADE
+            referencedColumnNames: id
+            referencedTableName: media
+            validate: true

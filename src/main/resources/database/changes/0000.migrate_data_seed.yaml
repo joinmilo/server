@@ -217,5 +217,76 @@ databaseChangeLog:
             onDelete: CASCADE
             referencedColumnNames: id
             referencedTableName: languages
-            validate: true                            
-            
+            validate: true
+  - changeSet:
+      id: seed.10
+      author: codeschluss
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: markup_videos
+            constraintName: CONSTRAINT_B3VWWOLP
+        - dropForeignKeyConstraint:
+            baseTableName: markup_translatables
+            constraintName: CONSTRAINT_FD6PDQ4
+        - dropForeignKeyConstraint:
+            baseTableName: markup_visitors
+            constraintName: CONSTRAINT_HKS468K
+        - dropForeignKeyConstraint:
+            baseTableName: markup_images
+            constraintName: CONSTRAINT_KD873B63
+  - changeSet:
+      id: seed.11
+      author: codeschluss
+      changes:
+        - modifyDataType:
+            columnName: id
+            newDataType: CHAR(36)
+            tableName: markups
+  - changeSet:
+       id: seed.12
+       author: codeschluss
+       changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: markup_id
+            baseTableName: markup_videos
+            constraintName: CONSTRAINT_B3VWWOLP
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: CASCADE
+            onUpdate: CASCADE
+            referencedColumnNames: id
+            referencedTableName: markups
+            validate: true
+        - addForeignKeyConstraint:
+            baseColumnNames: parent_id
+            baseTableName: markup_translatables
+            constraintName: CONSTRAINT_FD6PDQ4
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: CASCADE
+            onUpdate: CASCADE
+            referencedColumnNames: id
+            referencedTableName: markups
+            validate: true
+        - addForeignKeyConstraint:
+            baseColumnNames: parent_id
+            baseTableName: markup_visitors
+            constraintName: CONSTRAINT_HKS468K
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: CASCADE
+            onUpdate: CASCADE
+            referencedColumnNames: id
+            referencedTableName: markups
+            validate: true
+        - addForeignKeyConstraint:
+            baseColumnNames: markup_id
+            baseTableName: markup_images
+            constraintName: CONSTRAINT_KD873B63
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: CASCADE
+            onUpdate: CASCADE
+            referencedColumnNames: id
+            referencedTableName: markups
+            validate: true

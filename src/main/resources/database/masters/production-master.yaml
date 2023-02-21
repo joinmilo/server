@@ -190,8 +190,8 @@ databaseChangeLog:
         file: database/changes/0093.create_table_inquiry_category_translatables.yaml
     - include:
         file: database/changes/0094.create_table_error_messages.yaml
-#    - include:
-#        file: database/changes/0095.add_data_menu_items.yaml
+    - include:
+        file: database/changes/0095.add_data_menu_items.yaml
     - include:
         file: database/changes/0096.migrate_cleanUp.yaml
                       

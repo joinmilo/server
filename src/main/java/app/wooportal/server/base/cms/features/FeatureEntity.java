@@ -28,7 +28,7 @@ public class FeatureEntity extends BaseEntity {
   private String key;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "feature")
-  private Set<PageFeatureEntity> landingFeatures;
+  private Set<PageFeatureEntity> pageFeatures;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "feature")
   private Set<MenuItemEntity> menuItem;

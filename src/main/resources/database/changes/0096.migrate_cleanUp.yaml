@@ -76,7 +76,7 @@ databaseChangeLog:
         - dropForeignKeyConstraint:
             baseTableName: event_event_target_groups
             constraintName: CONSTRAINT_8C7DC395             
-                                                                
+
   - changeSet:
       id: 0096.migrate_cleanUp.5
       author: codeschluss
@@ -86,33 +86,7 @@ databaseChangeLog:
             oldColumnName: activity_id
             columnDataType: char(50)
             tableName: event_event_target_groups
-
-  - changeSet:
-      id: 0096.migrate_cleanUp.6
-      author: codeschluss
-      changes:
-        - sql:
-            comment: Add Deal Data
-            splitStatements: true
-            sql: insert into deal_categories (id, color, icon ) values
-                 ('708957ca-6909-45d1-b308-613c59a25792', 'blue', 'blueIcon');
-                 
-                 insert into deals (id, contact_id, address_id, category_id, price) values
-                 ('7ae3b112-695a-4281-879a-456fa40d0873', '7457f56e-af8e-11ed-bf44-0242ac190004',
-                 '00924085-fc95-41d0-832d-872fe746803e', '708957ca-6909-45d1-b308-613c59a25792', 5);
-                 
-  - changeSet:
-      id: 0096.migrate_cleanUp.7
-      author: codeschluss
-      changes:
-        - sql:
-            comment: Add Survey Data
-            splitStatements: true
-            sql: insert into survey_states (id, `key` ) values
-                 ('a2834821-ca77-4d3d-81bd-7e410cfa24d5', 'ExampleState');
-            
-                 insert into surveys (id, slug, seo_description,state_id) values
-                 ('59ed6ae7-52b1-4cd6-aa8e-624576e5b7c5', 'ExampleSlug', 'ExampleSEO', 'a2834821-ca77-4d3d-81bd-7e410cfa24d5');            
+           
                  
                  
 

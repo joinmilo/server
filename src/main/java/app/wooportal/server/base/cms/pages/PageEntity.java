@@ -38,6 +38,8 @@ import lombok.Setter;
 public class PageEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
+  
+  private Boolean isLanding;
 
   private String seoDescription;
 
