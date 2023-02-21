@@ -243,7 +243,7 @@
                 insert into menu_items (id, header, `order`, parent_id, feature_id, page_id)
                 select uuid(), true, 3, '7a8cc14b-49e4-4f53-a86f-11aa6e2db95e', null, p.parent_id
                 from page_translatables p
-                WHERE p.name = "Über uns";                
+                WHERE p.name = "Über uns";
               
   - changeSet:
       id: 0095.add_data_menu_items.6
