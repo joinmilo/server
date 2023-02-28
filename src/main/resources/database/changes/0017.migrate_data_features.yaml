@@ -20,5 +20,5 @@ databaseChangeLog:
           oldColumnName: name
           remarks: change in names
           tableName: features
-          schemaName: wooportal                      
+          schemaName: wooportal
             

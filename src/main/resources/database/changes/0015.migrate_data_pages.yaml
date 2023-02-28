@@ -14,7 +14,7 @@ databaseChangeLog:
                   type: VARCHAR(255)
               - column:
                   name: call_url
-                  type: VARCHAR(255)
+                  type: VARCHAR(1024)
               - column:
                   constraints:
                     nullable: false
