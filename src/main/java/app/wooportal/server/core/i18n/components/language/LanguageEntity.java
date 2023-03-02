@@ -1,4 +1,4 @@
-package app.wooportal.server.core.i18n.language;
+package app.wooportal.server.core.i18n.components.language;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

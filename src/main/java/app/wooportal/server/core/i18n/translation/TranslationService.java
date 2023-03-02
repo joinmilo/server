@@ -2,8 +2,8 @@ package app.wooportal.server.core.i18n.translation;
 
 import java.lang.reflect.Method;
 import org.springframework.stereotype.Service;
+import app.wooportal.server.core.i18n.components.language.LanguageEntity;
 import app.wooportal.server.core.i18n.entities.TranslatableEntity;
-import app.wooportal.server.core.i18n.language.LanguageEntity;
 import app.wooportal.server.core.repository.DataRepository;
 import app.wooportal.server.core.repository.RepositoryService;
 

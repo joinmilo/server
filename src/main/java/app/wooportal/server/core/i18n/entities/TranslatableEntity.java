@@ -6,7 +6,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import app.wooportal.server.core.base.BaseEntity;
-import app.wooportal.server.core.i18n.language.LanguageEntity;
+import app.wooportal.server.core.i18n.components.language.LanguageEntity;
 
 @MappedSuperclass
 public abstract class TranslatableEntity<P extends BaseEntity> extends BaseEntity {
