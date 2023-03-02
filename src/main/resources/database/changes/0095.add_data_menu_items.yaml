@@ -8,14 +8,14 @@
             comment: Add Features
             splitStatements: true
             sql: insert into features (id, `key`) values
-              ('cf2b4b5d-df3a-4f79-9cfd-61679c57bd16', 'author'),
+              ('cf2b4b5d-df3a-4f79-9cfd-61679c57bd16', 'authors'),
               ('b93928cc-ec57-4848-96af-26d8284ffcd1', 'map'),
               ('41cdbfa8-e751-41d4-b893-5c7215ec55e9', 'calendar'),
-              ('909d5070-f915-4891-b78b-1ef83690fddf', 'survey'),
-              ('492fa827-9fb4-4294-906d-b85e5bdb6890', 'contest'),
+              ('909d5070-f915-4891-b78b-1ef83690fddf', 'surveys'),
+              ('492fa827-9fb4-4294-906d-b85e5bdb6890', 'contests'),
               ('0633fd36-707a-42ee-878f-21e43f458aa9', 'own_article'),
               ('909fca09-78bb-42dd-95d0-164ceb1d9192', 'media'),
-              ('8f1faa18-3204-4ab1-9f71-18317d1a3d89', 'deal'),
+              ('8f1faa18-3204-4ab1-9f71-18317d1a3d89', 'deals'),
               ('17d083d2-3bf0-4efb-97ef-17d08cba37f4', 'forms');
                 
   - changeSet:
@@ -31,14 +31,14 @@
                 UPDATE
                 features f
                 SET 
-                f.key = "event"
+                f.key = "events"
                 WHERE
                 f.key = "activities";
                 
                 UPDATE
                 features f
                 SET 
-                f.key = "article"
+                f.key = "articles"
                 WHERE
                 f.key = "blogposts";                
                      
@@ -60,13 +60,13 @@
                 select uuid(), "Artikel", f.id, l.id
                 from languages l, features f
                 WHERE l.locale = "de" AND
-                f.key = "article";
+                f.key = "articles";
                 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Veranstaltung", f.id, l.id
                 from languages l, features f
                 WHERE l.locale = "de" AND
-                f.key = "event";     
+                f.key = "events";     
 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Organisation", f.id, l.id
@@ -78,13 +78,13 @@
                 select uuid(), "Article", f.id, l.id
                 from languages l, features f
                 WHERE l.locale = "en" AND
-                f.key = "article";
+                f.key = "articles";
                 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Event", f.id, l.id
                 from languages l, features f
                 WHERE l.locale = "en" AND
-                f.key = "event";             
+                f.key = "events";             
 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Publizierende", f.id, l.id
@@ -126,25 +126,25 @@
                 select uuid(), "Umfrage", f.id, l.id
                 from languages l, features f
                 WHERE l.locale = "de" AND
-                f.key = "survey";
+                f.key = "surveys";
                 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Survey", f.id, l.id
                 from languages l, features f
                 WHERE l.locale = "en" AND
-                f.key = "survey";    
+                f.key = "surveys";    
 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Wettbewerb", f.id, l.id
                 from languages l, features f
                 WHERE l.locale = "de" AND
-                f.key = "contest";
+                f.key = "contests";
                 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Contest", f.id, l.id
                 from languages l, features f
                 WHERE l.locale = "en" AND
-                f.key = "contest";
+                f.key = "contests";
                 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Eigener_Artikel", f.id, l.id
@@ -228,17 +228,17 @@
                 insert into menu_items (id, header, `order`, parent_id, feature_id, page_id)
                 select uuid(), true, 0, '0115fe46-3a7e-4377-abe5-f56f720bf3d9', f.id, null
                 from features f
-                WHERE f.key = "event";
+                WHERE f.key = "events";
                 
                 insert into menu_items (id, header, `order`, parent_id, feature_id, page_id)
                 select uuid(), true, 1, '0115fe46-3a7e-4377-abe5-f56f720bf3d9', f.id, null
                 from features f
-                WHERE f.key = "organisation";
+                WHERE f.key = "organisations";
                 
                 insert into menu_items (id, header, `order`, parent_id, feature_id, page_id)
                 select uuid(), true, 0, '7a8cc14b-49e4-4f53-a86f-11aa6e2db95e', f.id, null
                 from features f
-                WHERE f.key = "article";
+                WHERE f.key = "articles";
                 
                 insert into menu_items (id, header, `order`, parent_id, feature_id, page_id)
                 select uuid(), true, 3, '7a8cc14b-49e4-4f53-a86f-11aa6e2db95e', null, p.parent_id
@@ -442,19 +442,19 @@
                 insert into page_features (id, `order`, feature_id, page_id)
                 select uuid(), 0, f.id, '7cefc60c-8325-4861-90c7-97f1e8eeb290'
                 from features f
-                WHERE f.key = "event";
+                WHERE f.key = "events";
                 
                 insert into page_features (id, `order`, feature_id, page_id)
                 select uuid(), 1, f.id, '7cefc60c-8325-4861-90c7-97f1e8eeb290'
                 from features f
-                WHERE f.key = "article";
+                WHERE f.key = "articles";
                 
                 insert into page_features (id, `order`, feature_id, page_id)
                 select uuid(), 2, f.id, '7cefc60c-8325-4861-90c7-97f1e8eeb290'
                 from features f
-                WHERE f.key = "survey";
+                WHERE f.key = "surveys";
                 
                 insert into page_features (id, `order`, feature_id, page_id)
                 select uuid(), 3, f.id, '7cefc60c-8325-4861-90c7-97f1e8eeb290'
                 from features f
-                WHERE f.key = "contest";
+                WHERE f.key = "contests";

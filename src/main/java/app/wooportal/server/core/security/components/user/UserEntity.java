@@ -16,7 +16,7 @@ import javax.persistence.UniqueConstraint;
 import org.hibernate.annotations.CollectionId;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
-import app.wooportal.server.base.userContexts.base.UserContextEntity;
+import app.wooportal.server.base.userContext.base.UserContextEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.messaging.notifications.base.NotificationEntity;
 import app.wooportal.server.core.push.subscription.SubscriptionEntity;
