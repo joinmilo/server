@@ -1,4 +1,4 @@
-package app.wooportal.server.base.external.appStore;
+package app.wooportal.server.base.external.appPlatform;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,49 +14,49 @@ import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 
 @GraphQLApi
 @Component
-public class AppStoreApi extends CrudApi<AppStoreEntity, AppStoreService> {
+public class AppPlatformApi extends CrudApi<AppPlatformEntity, AppPlatformService> {
 
-  public AppStoreApi(AppStoreService userService) {
+  public AppPlatformApi(AppPlatformService userService) {
     super(userService);
   }
 
   @Override
-  @GraphQLQuery(name = "getAppStores")
-  public PageableList<AppStoreEntity> readAll(
+  @GraphQLQuery(name = "getAppPlatforms")
+  public PageableList<AppPlatformEntity> readAll(
       @GraphQLArgument(name = CrudApi.params) FilterSortPaginate params) {
     return super.readAll(params);
   }
 
   @Override
-  @GraphQLQuery(name = "getAppStore")
-  public Optional<AppStoreEntity> readOne(
-      @GraphQLArgument(name = CrudApi.entity) AppStoreEntity entity) {
+  @GraphQLQuery(name = "getAppPlatform")
+  public Optional<AppPlatformEntity> readOne(
+      @GraphQLArgument(name = CrudApi.entity) AppPlatformEntity entity) {
     return super.readOne(entity);
   }
 
   @Override
-  @GraphQLMutation(name = "saveAppStores")
+  @GraphQLMutation(name = "saveAppPlatforms")
   @AdminPermission
-  public List<AppStoreEntity> saveAll(
-      @GraphQLArgument(name = CrudApi.entities) List<AppStoreEntity> entities) {
+  public List<AppPlatformEntity> saveAll(
+      @GraphQLArgument(name = CrudApi.entities) List<AppPlatformEntity> entities) {
     return super.saveAll(entities);
   }
 
   @Override
-  @GraphQLMutation(name = "saveAppStore")
-  public AppStoreEntity saveOne(@GraphQLArgument(name = CrudApi.entity) AppStoreEntity entity) {
+  @GraphQLMutation(name = "saveAppPlatform")
+  public AppPlatformEntity saveOne(@GraphQLArgument(name = CrudApi.entity) AppPlatformEntity entity) {
     return super.saveOne(entity);
   }
 
   @Override
-  @GraphQLMutation(name = "deleteAppStores")
+  @GraphQLMutation(name = "deleteAppPlatforms")
   @AdminPermission
   public Boolean deleteAll(@GraphQLArgument(name = CrudApi.ids) List<String> ids) {
     return super.deleteAll(ids);
   }
 
   @Override
-  @GraphQLMutation(name = "deleteAppStore")
+  @GraphQLMutation(name = "deleteAppPlatform")
   @AdminPermission
   public Boolean deleteOne(@GraphQLArgument(name = CrudApi.id) String id) {
     return super.deleteOne(id);

@@ -1,0 +1,12 @@
+  databaseChangeLog:
+  - logicalFilePath: path_independent
+  - changeSet:
+      id: 0098.add_data_apps.1
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add App platforms
+            splitStatements: true
+            sql: insert into app_platforms (id, `key`, `name`) values
+              ('9fc24c85-0ca6-4e20-a551-e77b58aff4f4', 'apple', 'Apple App Store'),
+              ('ab7a5460-2833-4d97-a36e-c00542d3e201', 'google', 'Google Play Store');

@@ -187,4 +187,6 @@ databaseChangeLog:
     - include:
         file: database/changes/0096.migrate_cleanUp.yaml
     - include:
-        file: database/changes/0097.create_table_app_stores.yaml
+        file: database/changes/0097.create_table_apps.yaml
+    - include:
+        file: database/changes/0098.add_data_apps.yaml
