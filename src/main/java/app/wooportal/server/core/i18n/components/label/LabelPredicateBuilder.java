@@ -13,6 +13,7 @@ public class LabelPredicateBuilder extends PredicateBuilder<QLabelEntity, LabelE
 
   @Override
   public BooleanExpression freeSearch(String term) {
-    return null;
+    return query.tagId.likeIgnoreCase(term)
+        .or(query.translatables.any().content.likeIgnoreCase(term));
   }
 }
