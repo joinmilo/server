@@ -20,6 +20,7 @@ import app.wooportal.server.base.address.base.AddressEntity;
 import app.wooportal.server.base.contact.ContactEntity;
 import app.wooportal.server.base.userContext.base.UserContextEntity;
 import app.wooportal.server.core.base.BaseEntity;
+import app.wooportal.server.core.i18n.annotations.Translatable;
 import app.wooportal.server.core.media.base.MediaEntity;
 import app.wooportal.server.features.event.attendee.AttendeeEntity;
 import app.wooportal.server.features.event.attendeeConfiguration.AttendeeConfigurationEntity;
@@ -57,6 +58,15 @@ public class EventEntity extends BaseEntity {
   private Boolean sponsored;
 
   private String videoChatLink;
+  
+  @Translatable
+  private String description;
+
+  @Translatable
+  private String name;
+
+  @Translatable
+  private String shortDescription;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private AddressEntity address;
@@ -91,7 +101,7 @@ public class EventEntity extends BaseEntity {
   @OneToMany(mappedBy = "event", fetch = FetchType.LAZY)
   private Set<ScheduleEntity> schedules;
 
-  @OneToMany(fetch = FetchType.EAGER, mappedBy = "parent")
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
   protected Set<EventTranslatableEntity> translatables;
 
   @ManyToMany(fetch = FetchType.LAZY)

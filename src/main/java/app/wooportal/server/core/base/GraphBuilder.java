@@ -15,6 +15,8 @@ import org.hibernate.graph.EntityGraphs;
 import org.hibernate.graph.Graph;
 import org.hibernate.graph.RootGraph;
 import org.springframework.stereotype.Service;
+import app.wooportal.server.core.i18n.annotations.Translatable;
+import app.wooportal.server.core.i18n.entities.TranslatableEntity;
 import app.wooportal.server.core.utils.ReflectionUtils;
 import graphql.language.Field;
 import lombok.AllArgsConstructor;
@@ -34,18 +36,9 @@ public class GraphBuilder<E extends BaseEntity> {
   
   @SuppressWarnings("unchecked")
   public RootGraph<E> create(Class<E> entityClass, List<Field> context) {
-    return entityClass != null && context != null && hasSubgraphs(context)
-        ? (RootGraph<E>) create(entityClass, context, (Graph<E>) entityManager.createEntityGraph(entityClass), false)
+    return entityClass != null && context != null
+        ? (RootGraph<E>) create(entityClass, context, (Graph<E>) entityManager.createEntityGraph(entityClass), false, false)
         : null;
-  }
-
-  private boolean hasSubgraphs(List<Field> context) {
-    for (Field field : context) {
-      if (hasSubgraphs(field)) {
-        return true;
-      }
-    }
-    return false;
   }
 
   /**
@@ -53,35 +46,82 @@ public class GraphBuilder<E extends BaseEntity> {
    * @param entityClass
    * @param context
    * @param graph
-   * @param collectionAlreadyAdded This flag prevents MultipleBagFetchException when multiple sub
+   * @param collectionAdded This flag prevents MultipleBagFetchException when multiple sub
    *        collections are added. Strategy now is fetch join one collection and load rest lazy. In
    *        future another strategy needs to be found. something like:
    *        https://stackoverflow.com/questions/4334970/hibernate-throws-multiplebagfetchexception-cannot-simultaneously-fetch-multipl/51055523?stw=2#51055523
    * @return
    */
   public Graph<E> create(
-      Class<?> entityClass,
+      Class<E> entityClass,
       List<Field> context,
       Graph<E> graph,
-      boolean collectionAlreadyAdded) {
+      boolean collectionAdded,
+      boolean translatablesAdded) {
     
     for (var field : context) {
-      var fieldType = getEntityType(entityClass, field.getName());
-      if (fieldType.isPresent() 
-          && isValidField(entityClass, field.getName())
-          && hasSubgraphs(field)
-          && !collectionAlreadyAdded) {
-        collectionAlreadyAdded = ReflectionUtils.getAnnotation(
-            ReflectionUtils.getField(entityClass, field.getName()).get(), OneToMany.class).isPresent();
-        
-        create(
-            fieldType.get(), 
-            field.getSelectionSet().getSelectionsOfType(Field.class), 
-            graph.addSubGraph(field.getName()),
-            collectionAlreadyAdded);
+      if (!translatablesAdded && isTranslatable(entityClass, field.getName())) {
+        translatablesAdded = true;
+        addTranslatable(entityClass, graph);
+      } else {
+        addSubgraph(entityClass, context, graph, collectionAdded, translatablesAdded, field);
       }
     }
     return graph;
+  }
+
+  private void addTranslatable(
+      Class<E> entityClass,
+      Graph<E> graph) {
+    var translatableField = getTranslatableField(entityClass);
+    if (translatableField.isPresent()) {
+      create(entityClass, graph, translatableField.get() + ".language");
+    }
+  }
+
+  private Optional<String> getTranslatableField(Class<?> entityClass) {
+    for (var field: ReflectionUtils.getFields(entityClass)) {
+      if (ReflectionUtils.isFieldTypeOfClass(entityClass, field.getName(), Collection.class)) {
+        var collectionType = ReflectionUtils.getField(entityClass, field.getName()).map(collectionField ->
+          (Class<?>) ((ParameterizedType) collectionField
+            .getGenericType()).getActualTypeArguments()[0]);
+        
+        if (collectionType.isPresent() && TranslatableEntity.class.isAssignableFrom(collectionType.get())) {
+          return Optional.of(field.getName());
+        }
+      }
+    }
+    return Optional.empty();
+  }
+
+  @SuppressWarnings("unchecked")
+  private void addSubgraph(
+      Class<?> entityClass,
+      List<Field> context,
+      Graph<E> graph,
+      boolean collectionAlreadyAdded,
+      boolean translatablesAdded,
+      Field field) {
+    var fieldType = getEntityType(entityClass, field.getName());
+    
+    if (fieldType.isPresent() 
+        && isValidField(entityClass, field.getName())
+        && hasSubgraphs(field)
+        && !collectionAlreadyAdded) {
+      collectionAlreadyAdded = ReflectionUtils.getAnnotation(
+          ReflectionUtils.getField(entityClass, field.getName()).get(), OneToMany.class).isPresent();
+      
+      create(
+          (Class<E>) fieldType.get(), 
+          field.getSelectionSet().getSelectionsOfType(Field.class), 
+          graph.addSubGraph(field.getName()),
+          collectionAlreadyAdded,
+          translatablesAdded);
+    }
+  }
+
+  private boolean isTranslatable(Class<?> entityClass, String fieldName) {
+    return ReflectionUtils.getAnnotation(entityClass, fieldName, Translatable.class).isPresent();
   }
 
   protected boolean isValidField(Class<?> entityClass, String fieldName) {

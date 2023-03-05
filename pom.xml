@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.7.8</version>
+		<version>2.7.9</version>
 		<relativePath />
 	</parent>
 
@@ -22,12 +22,12 @@
 
 	<scm>
 		<tag>master</tag>
-		<url>https://github.com/codeschluss/jugendwerkstatt.server</url>
+		<url>https://github.com/wooportal/server-next</url>
 	</scm>
 
 	<issueManagement>
 		<system>GitHub</system>
-		<url>https://github.com/codeschluss/jugendwerkstatt.server/issues</url>
+		<url>https://github.com/wooportal/server-next/issues</url>
 	</issueManagement>
 
 	<properties>
@@ -40,9 +40,11 @@
 		<jakarta.activation>2.1.0</jakarta.activation>
 		<jakarta.xml>4.0.0</jakarta.xml>
 		<java.version>17</java.version>
+		<javassist.version>3.29.2-GA</javassist.version>
 		<jsoup.version>1.14.3</jsoup.version>
 		<oauth.version>3.8.1</oauth.version>
 		<openhtmltopdf.version>1.0.10</openhtmltopdf.version>
+		<reflection.version>0.10.2</reflection.version>
 		<twelvemonkeys.imageio>3.5</twelvemonkeys.imageio>
 	</properties>
 
@@ -123,9 +125,18 @@
 			<version>${graphql-starter.version}</version>
 		</dependency>
 		<dependency>
+			<groupId>net.bytebuddy</groupId>
+			<artifactId>byte-buddy-agent</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.imgscalr</groupId>
 			<artifactId>imgscalr-lib</artifactId>
 			<version>${imgscalr.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.javassist</groupId>
+			<artifactId>javassist</artifactId>
+			<version>${javassist.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.jsoup</groupId>
@@ -149,6 +160,11 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.reflections</groupId>
+			<artifactId>reflections</artifactId>
+			<version>${reflection.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

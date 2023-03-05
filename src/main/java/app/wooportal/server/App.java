@@ -1,5 +1,6 @@
 package app.wooportal.server;
 
+import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -22,6 +23,7 @@ import org.springframework.web.socket.server.standard.ServletServerContainerFact
 import com.fasterxml.jackson.databind.ObjectMapper;
 import app.wooportal.server.core.error.ExceptionResolverInterceptor;
 import app.wooportal.server.core.error.errorMessage.ErrorMessageService;
+import app.wooportal.server.core.i18n.TranslationPreprocessor;
 import app.wooportal.server.core.repository.CustomRepositoryFactoryBean;
 import io.leangen.graphql.ExtensionProvider;
 import io.leangen.graphql.GeneratorConfiguration;
@@ -29,6 +31,8 @@ import io.leangen.graphql.execution.ResolverInterceptorFactory;
 import io.leangen.graphql.metadata.strategy.value.ValueMapperFactory;
 import io.leangen.graphql.metadata.strategy.value.jackson.JacksonValueMapper;
 import io.leangen.graphql.metadata.strategy.value.jackson.JacksonValueMapperFactory;
+import javassist.CannotCompileException;
+import javassist.NotFoundException;
 
 @SpringBootApplication
 @EnableScheduling
@@ -45,7 +49,8 @@ public class App {
   @Autowired
   private ErrorMessageService errorMessageService;
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws NotFoundException, IOException, CannotCompileException {
+    TranslationPreprocessor.preprocess(App.class.getPackage().getName());
     SpringApplication.run(App.class, args);
   }
 
