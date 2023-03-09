@@ -1,20 +1,18 @@
 package app.wooportal.server.core.base;
 
-import com.sun.istack.NotNull;
-import app.wooportal.server.core.utils.ReflectionUtils;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.OffsetDateTime;
 import java.util.Objects;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.EntityListeners;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import com.sun.istack.NotNull;
+import app.wooportal.server.core.utils.ReflectionUtils;
 import io.leangen.graphql.annotations.types.GraphQLType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -41,13 +39,11 @@ public abstract class BaseEntity implements Serializable, Comparable<BaseEntity>
 
   @LastModifiedDate
   @Column(columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP")
-  @Basic(fetch = FetchType.LAZY)
   protected OffsetDateTime modified;
 
   @CreatedDate
   @Column(columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP", 
       updatable = false)
-  @Basic(fetch = FetchType.LAZY)
   protected OffsetDateTime created;
   
   @Override

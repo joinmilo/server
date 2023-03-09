@@ -1,5 +1,7 @@
 package app.wooportal.server.features.event.schedule;
 
+import java.time.OffsetDateTime;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -22,6 +24,12 @@ import lombok.Setter;
 public class ScheduleEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
+  
+  @Column(name = "end_date")
+  private OffsetDateTime endDate;
+
+  @Column(name = "start_date")
+  private OffsetDateTime startDate;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(nullable = false)
