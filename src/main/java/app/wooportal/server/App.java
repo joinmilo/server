@@ -50,7 +50,7 @@ public class App {
   private ErrorMessageService errorMessageService;
 
   public static void main(String[] args) throws NotFoundException, IOException, CannotCompileException {
-    TranslationPreprocessor.preprocess(App.class.getPackage().getName());
+    TranslationPreprocessor.preprocess();
     SpringApplication.run(App.class, args);
   }
 

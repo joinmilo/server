@@ -41,7 +41,7 @@
 		<jakarta.xml>4.0.0</jakarta.xml>
 		<java.version>17</java.version>
 		<javassist.version>3.29.2-GA</javassist.version>
-		<jsoup.version>1.14.3</jsoup.version>
+		<jsoup.version>1.15.4</jsoup.version>
 		<oauth.version>3.8.1</oauth.version>
 		<openhtmltopdf.version>1.0.10</openhtmltopdf.version>
 		<reflection.version>0.10.2</reflection.version>
