@@ -4,6 +4,7 @@ import java.io.IOException;
 import javax.persistence.Entity;
 import javax.persistence.Transient;
 import org.reflections.Reflections;
+import org.reflections.util.ClasspathHelper;
 import org.reflections.util.ConfigurationBuilder;
 import app.wooportal.server.App;
 import app.wooportal.server.core.i18n.annotations.Translatable;
@@ -16,8 +17,8 @@ public class TranslationPreprocessor {
 
   public static void preprocess() throws NotFoundException, IOException, CannotCompileException {
 //    var reflections = new Reflections(packageName);
-    var reflections =
-        new Reflections(new ConfigurationBuilder().forPackages(App.class.getPackageName()));
+    var reflections = new Reflections(new ConfigurationBuilder()
+        .setUrls(ClasspathHelper.forPackage(App.class.getPackageName())));
     
     var annotated = reflections.getTypesAnnotatedWith(Entity.class);
     
