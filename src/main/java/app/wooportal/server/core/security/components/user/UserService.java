@@ -69,9 +69,6 @@ public class UserService extends DataService<UserEntity, UserPredicateBuilder> {
       newEntity.setVerifications(new HashSet<>(List.of(new VerificationEntity())));
       setContext("verification", context);
 
-      newEntity.setApproved(false);
-      setContext("approved", context);
-
       newEntity.setVerified(false);
       setContext("verified", context);
     }

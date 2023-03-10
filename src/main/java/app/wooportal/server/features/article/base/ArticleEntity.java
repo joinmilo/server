@@ -19,6 +19,7 @@ import org.hibernate.annotations.Type;
 import app.wooportal.server.base.userContext.base.UserContextEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.media.base.MediaEntity;
+import app.wooportal.server.features.article.base.translations.ArticleTranslatableEntity;
 import app.wooportal.server.features.article.base.visitors.ArticleVisitorEntity;
 import app.wooportal.server.features.article.category.ArticleCategoryEntity;
 import app.wooportal.server.features.article.comment.ArticleCommentEntity;
@@ -71,6 +72,9 @@ public class ArticleEntity extends BaseEntity {
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "article")
   private Set<ArticleRatingEntity> ratings;
+  
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
+  protected Set<ArticleTranslatableEntity> translatables;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
   private Set<ArticleVisitorEntity> visitors;

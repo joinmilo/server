@@ -40,14 +40,14 @@ public class UserEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
 
-  private Boolean approved;
-
   @Column(unique = true, nullable = false)
   private String email;
-
-  private String fullname;
   
-   @Column(nullable = false)
+  private String firstName;
+  
+  private String lastName;
+  
+  @Column(nullable = false)
   private String password;
    
   @Column(unique = true)

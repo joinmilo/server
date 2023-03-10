@@ -39,10 +39,6 @@ public class JwtUserDetails extends User {
     return roles.stream().anyMatch(role -> role.getKey().equalsIgnoreCase(RoleService.admin));
   }
   
-  public boolean isApproved() {
-    return user.getApproved();
-  }
-  
   public boolean isVerified() {
     return user.getVerified();
   }

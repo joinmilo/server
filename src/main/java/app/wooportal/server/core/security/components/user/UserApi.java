@@ -94,7 +94,10 @@ public class UserApi extends CrudApi<UserEntity, UserService> {
     if (deletedUser.isPresent()) {
       var message = new MessageDto(
           "Benutzer gelöscht",
-          "Benutzer mit dem Namen: " + deletedUser.get().getFullname() + " hat soeben das Benutzerkonto gelöscht",
+          "Benutzer mit dem Namen: "
+              + deletedUser.get().getFirstName() + " " 
+              + deletedUser.get().getFirstName() + " " 
+              + "hat soeben das Benutzerkonto gelöscht",
           NotificationType.deletedUser);
 
       pushService.sendPush(

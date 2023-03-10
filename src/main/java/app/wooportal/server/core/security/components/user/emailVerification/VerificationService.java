@@ -38,7 +38,7 @@ public class VerificationService
       setContext("key", context);
       try {
         mailService.sendEmail("Email verifizieren", "verification.ftl",
-            Map.of("fullname", newEntity.getUser().getFullname(), "portalName",
+            Map.of("fullname", newEntity.getUser().getFirstName(), "portalName",
                 config.getPortalName(), "link", createVerifcationLink(newEntity)),
             newEntity.getUser().getEmail());
       } catch (Throwable e) {

@@ -21,7 +21,6 @@ public class TokenService {
 
   public String createAccessToken(JwtUserDetails jwtUserDetails) {
     return JWT.create().withSubject(jwtUserDetails.getUsername())
-        .withClaim(securityConfig.getClaimApproved(), jwtUserDetails.isApproved())
         .withClaim(securityConfig.getClaimUserid(), jwtUserDetails.getUser().getId())
         .withClaim(securityConfig.getClaimVerified(), jwtUserDetails.isVerified())
         .withArrayClaim(securityConfig.getClaimRoles(), jwtUserDetails.getRoles())
@@ -36,7 +35,7 @@ public class TokenService {
   public String createRefreshToken(JwtUserDetails jwtUserDetails) {
     return JWT.create().withSubject(jwtUserDetails.getUsername())
         .withArrayClaim(securityConfig.getClaimScopes(), 
-            new String[] {securityConfig.getScopeRefresh()})
+            new String[] {securityConfig.getScopeRefresh()})    
         .withExpiresAt(
             new Date(
                 System.currentTimeMillis() + securityConfig.getExpirationTimeRefresh().toMillis()))
