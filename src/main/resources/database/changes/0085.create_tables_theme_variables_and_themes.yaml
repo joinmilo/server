@@ -141,7 +141,7 @@ databaseChangeLog:
             onUpdate: CASCADE
             onDelete: CASCADE
             referencedColumnNames: id
-            referencedTableName: media
+            referencedTableName: images
             validate: true                         
 
             

@@ -138,6 +138,13 @@ databaseChangeLog:
                   name: media_id
             indexName: idx_fk0o1p1dpbh4u1edbozo5j33xow
             tableName: organisation_media
+        - sql:
+            comment: set char set for mysql
+            dbms: mysql
+            endDelimiter: \nGO
+            splitStatements: true
+            sql: ALTER TABLE organisation_media CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;  
+                        
   - changeSet:
       id: 0064.create_table_organisations.9
       author: codeschluss
@@ -165,7 +172,7 @@ databaseChangeLog:
             onDelete: CASCADE
             onUpdate: CASCADE
             referencedColumnNames: id
-            referencedTableName: media
+            referencedTableName: images
             validate: true            
              
   - changeSet:
@@ -191,7 +198,7 @@ databaseChangeLog:
             onUpdate: CASCADE
             onDelete: CASCADE
             referencedColumnNames: id
-            referencedTableName: media
+            referencedTableName: images
             validate: true    
 
   - changeSet:
@@ -217,5 +224,5 @@ databaseChangeLog:
             onUpdate: CASCADE
             onDelete: CASCADE
             referencedColumnNames: id
-            referencedTableName: media
+            referencedTableName: images
             validate: true                                                             
