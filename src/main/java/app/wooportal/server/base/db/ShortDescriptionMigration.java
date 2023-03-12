@@ -45,7 +45,7 @@ public class ShortDescriptionMigration implements CustomTaskChange {
       migrate("event_translatables");
       migrate("article_translatables");
     } catch (Exception e) {
-      StringWriter sw = new StringWriter();
+      var sw = new StringWriter();
       e.printStackTrace(new PrintWriter(sw));
       errors.addError("something went wrong: " + sw.toString());
       throw new CustomChangeException(sw.toString());
@@ -83,7 +83,7 @@ public class ShortDescriptionMigration implements CustomTaskChange {
   
   private String prepareShortDescription(String content) {
     var result = Jsoup.parse(content).body().text();
-    return result.substring(0, Math.min(result.length(), 100)).strip();
+    return result.substring(0, Math.min(result.length(), 100)).strip().stripIndent();
   }
 
 }

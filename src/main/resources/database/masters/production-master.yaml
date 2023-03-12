@@ -200,3 +200,5 @@ databaseChangeLog:
         file: database/changes/0098.add_data_apps.yaml
     - include:
         file: database/changes/0100.transform_short_descriptions.yaml
+    - include:
+        file: database/changes/0101.transform_images.yaml

@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+  - changeSet:
+      id: 0101.drop_column_images
+      author: codeschluss
+      changes:
+      - dropColumn:
+          columnName: image
+          tableName: images
