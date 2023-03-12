@@ -15,5 +15,5 @@ databaseChangeLog:
         - renameColumn:
             newColumnName: event_id
             oldColumnName: activity_id
-            columnDataType: char(50)
+            columnDataType: char(36)
             tableName: schedules              

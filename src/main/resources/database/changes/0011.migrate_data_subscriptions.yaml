@@ -8,7 +8,7 @@ databaseChangeLog:
             columns:
             - column:
                 name: language_id
-                type: varchar(50)
+                type: char(36)
               
   - changeSet:
       id: 0011.migrate_data_subscriptions.2

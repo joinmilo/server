@@ -29,6 +29,8 @@ public class MediaEntity extends BaseEntity {
   @JsonSerialize
   @JsonDeserialize
   private String base64;
+  
+  private String credits;
 
   @Column(name = "mime_type", nullable = false)
   private String mimeType;

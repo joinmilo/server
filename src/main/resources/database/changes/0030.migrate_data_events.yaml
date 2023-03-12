@@ -17,17 +17,20 @@ databaseChangeLog:
             tableName: events
             columns:
             - column:
+                name: card_image_id
+                type: char(36)
+            - column:
                 name: creator_id
-                type: char(50)
+                type: char(36)
             - column:
                 name: contact_id               
-                type: char(50)                
+                type: char(36)                
             - column:
                 name: attendee_configuration_id
-                type: char(50)        
+                type: char(36)        
             - column:
                 name: organisation_id
-                type: char(50)                                                         
+                type: char(36)
             - column:
                 name: slug
                 type: varchar(255)
@@ -255,5 +258,41 @@ databaseChangeLog:
           oldColumnName: admission_fee
           remarks: change in names
           schemaName: wooportal
-          tableName: events              
+          tableName: events
+  - changeSet:
+      id: 0030.migrate_data_events.24
+      author: codeschluss
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: card_image_id
+            indexName: idx_fkc5hirc7e16dupcfros04pwxri
+            tableName: events
+  - changeSet:
+      id: 0030.migrate_data_events.25
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: card_image_id
+            baseTableName: events
+            constraintName: fkc5hirc7e16dupcfros04pwxri
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: images
+            validate: true
+  - changeSet:
+      id: 0030.migrate_data_events.26
+      author: codeschluss
+      changes:
+        - sql:
+            comment: set title image to card image 
+            splitStatements: true
+            sql:
+                /*!40101 SET character_set_client = utf8 */;
+                
+                UPDATE events SET card_image_id = title_image_id;
             

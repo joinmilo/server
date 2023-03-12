@@ -10,50 +10,6 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                     primaryKey: true
-                    primaryKeyName: media_primary_key
-                  name: id
-                  type: CHAR(36)
-              - column:
-                  constraints:
-                    nullable: false
-                  defaultValueComputed: CURRENT_TIMESTAMP
-                  name: created
-                  type: datetime
-              - column:
-                  constraints:
-                    nullable: false
-                  defaultValueComputed: CURRENT_TIMESTAMP
-                  name: modified
-                  type: datetime
-              - column:
-                  constraints:
-                    nullable: false
-                  name: mime_type
-                  type: VARCHAR(255)
-              - column:
-                  constraints:
-                    nullable: false
-                  name: name
-                  type: VARCHAR(255)
-            tableName: media
-        - sql:
-            comment: set char set for mysql
-            dbms: mysql
-            endDelimiter: \nGO
-            splitStatements: true
-            sql: ALTER TABLE media CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-            
-
-  - changeSet:
-      id: seed.2
-      author: codeschluss
-      changes:
-        - createTable:
-            columns:
-              - column:
-                  constraints:
-                    nullable: false
-                    primaryKey: true
                     primaryKeyName: notifications_primary_key
                   name: id
                   type: CHAR(36)
@@ -73,7 +29,7 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                   name: user_id
-                  type: char(50) 
+                  type: char(36)
               - column:
                   constraints:
                     nullable: false
@@ -89,7 +45,7 @@ databaseChangeLog:
             sql: ALTER TABLE notifications CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;              
             
   - changeSet:
-      id: seed.3
+      id: seed.2
       author: codeschluss
       changes:
         - createIndex:
@@ -99,7 +55,7 @@ databaseChangeLog:
             indexName: idx_fkhffk5jb3y99b478fk1d94dnox
             tableName: notifications
   - changeSet:
-      id: seed.4
+      id: seed.3
       author: codeschluss
       changes:
         - addForeignKeyConstraint:
@@ -115,7 +71,7 @@ databaseChangeLog:
             validate: true     
             
   - changeSet:
-      id: seed.5
+      id: seed.4
       author: codeschluss
       changes:
         - createTable:
@@ -168,7 +124,7 @@ databaseChangeLog:
             sql: ALTER TABLE notification_translatables CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;              
 
   - changeSet:
-      id: seed.6
+      id: seed.5
       author: codeschluss
       changes:
         - createIndex:
@@ -178,7 +134,7 @@ databaseChangeLog:
             indexName: idx_fkklosp8nttg3add1b4mmfpmll9
             tableName: notification_translatables
   - changeSet:
-      id: seed.7
+      id: seed.6
       author: codeschluss
       changes:
         - addForeignKeyConstraint:
@@ -194,7 +150,7 @@ databaseChangeLog:
             validate: true                         
           
   - changeSet:
-      id: seed.8
+      id: seed.7
       author: codeschluss
       changes:
         - createIndex:
@@ -204,7 +160,7 @@ databaseChangeLog:
             indexName: idx_fke82k30lai2hgjxl2ptb58c0f9
             tableName: notification_translatables
   - changeSet:
-      id: seed.9
+      id: seed.8
       author: codeschluss
       changes:
         - addForeignKeyConstraint:
@@ -219,7 +175,7 @@ databaseChangeLog:
             referencedTableName: languages
             validate: true
   - changeSet:
-      id: seed.10
+      id: seed.9
       author: codeschluss
       changes:
         - dropForeignKeyConstraint:
@@ -235,7 +191,7 @@ databaseChangeLog:
             baseTableName: markup_images
             constraintName: CONSTRAINT_KD873B63
   - changeSet:
-      id: seed.11
+      id: seed.10
       author: codeschluss
       changes:
         - modifyDataType:
@@ -243,7 +199,7 @@ databaseChangeLog:
             newDataType: CHAR(36)
             tableName: markups
   - changeSet:
-       id: seed.12
+       id: seed.11
        author: codeschluss
        changes:
         - addForeignKeyConstraint:

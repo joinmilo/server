@@ -67,6 +67,9 @@ public class EventEntity extends BaseEntity {
 
   @Translatable
   private String shortDescription;
+  
+  @ManyToOne(fetch = FetchType.LAZY)
+  private MediaEntity cardImage;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private AddressEntity address;

@@ -14,13 +14,13 @@ databaseChangeLog:
                 type: varchar(255) 
             - column:
                 name: contact_id               
-                type: char(50) 
+                type: char(36) 
             - column:
                 name: card_image_id               
-                type: char(50)   
+                type: char(36)   
             - column:
                 name: title_image_id               
-                type: char(50)                                 
+                type: char(36)                                 
                 
   - changeSet:
       id: 0064.migrate_data_organisations.2

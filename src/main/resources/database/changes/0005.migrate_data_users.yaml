@@ -18,7 +18,7 @@ databaseChangeLog:
                   type: VARCHAR(255)    
               - column:
                   name: language_id
-                  type: char(50)                                                   
+                  type: char(36)                                                   
             tableName: users   
                         
   - changeSet:

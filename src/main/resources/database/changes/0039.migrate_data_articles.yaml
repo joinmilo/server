@@ -18,13 +18,13 @@ databaseChangeLog:
             columns:
             - column:
                 name: author_id
-                type: char(50)              
+                type: char(36)              
             - column:
                 name: public_author_id
-                type: char(50)       
+                type: char(36)       
             - column:
                 name: card_image_id
-                type: char(50)                                                                                     
+                type: char(36)                                                                                     
             - column:
                 name: slug
                 type: varchar(255)
@@ -105,7 +105,7 @@ databaseChangeLog:
         - renameColumn:
             newColumnName: category_id
             oldColumnName: topic_id
-            columnDataType: char(50)
+            columnDataType: char(36)
             tableName: articles       
             
   - changeSet:
@@ -152,4 +152,40 @@ databaseChangeLog:
                 ON u.user_id = b.user_id
                 SET
                 a.author_id = u.id;
+  - changeSet:
+      id: 0039.migrate_data_articles.14
+      author: codeschluss
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: card_image_id
+            indexName: idx_fkqwnw74ocwnp01jr4e10wzb8fi
+            tableName: articles
+  - changeSet:
+      id: 0039.migrate_data_articles.15
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: card_image_id
+            baseTableName: articles
+            constraintName: fkqwnw74ocwnp01jr4e10wzb8fi
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: SET NULL
+            referencedColumnNames: id
+            referencedTableName: images
+            validate: true  
+  - changeSet:
+      id: 0039.migrate_data_articles.16
+      author: codeschluss
+      changes:
+        - sql:
+            comment: set title image to card image 
+            splitStatements: true
+            sql:
+                /*!40101 SET character_set_client = utf8 */;
+                
+                UPDATE articles SET card_image_id = title_image_id;
             

@@ -123,7 +123,7 @@ databaseChangeLog:
             onUpdate: CASCADE
             onDelete: SET NULL
             referencedColumnNames: id
-            referencedTableName: media
+            referencedTableName: images
             validate: true              
             
   - changeSet:
@@ -149,7 +149,7 @@ databaseChangeLog:
             onUpdate: CASCADE
             onDelete: SET NULL
             referencedColumnNames: id
-            referencedTableName: media
+            referencedTableName: images
             validate: true                 
                
   - changeSet:
