@@ -204,3 +204,8 @@ databaseChangeLog:
         file: database/changes/0101.transform_images.yaml
     - include:
         file: database/changes/0102.migrate_table_images.yaml
+    - include:
+        file: database/changes/0103.migrate_table_feedback_types.yaml
+    - include:
+        file: database/changes/0104.migrate_table_feedbacks.yaml                
+        
