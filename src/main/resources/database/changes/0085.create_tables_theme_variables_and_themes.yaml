@@ -116,6 +116,32 @@ databaseChangeLog:
             onDelete: CASCADE
             referencedColumnNames: id
             referencedTableName: themes
-            validate: true                      
+            validate: true            
+            
+  - changeSet:
+      id: 0085.create_tables_theme_variables_and_themes.5
+      author: codeschluss
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: logo_id
+            indexName: idx_fka7nb9jogi9dtlzu4r9p4hjipl
+            tableName: themes
+  - changeSet:
+      id: 0085.create_tables_theme_variables_and_themes.6
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: logo_id
+            baseTableName: themes
+            constraintName: fka7nb9jogi9dtlzu4r9p4hjipl
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: media
+            validate: true                         
 
             

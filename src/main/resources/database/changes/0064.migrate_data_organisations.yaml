@@ -92,4 +92,130 @@ databaseChangeLog:
                 name: website
             - column:
                 name: mail                     
-                                                           
+                                 
+  - changeSet:
+      id: 0064.create_table_organisations.6
+      author: codeschluss
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                  name: organisation_id
+                  type: CHAR(36)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: media_id
+                  type: CHAR(36)                 
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: organisation_media_primary_key
+                  name: id
+                  type: CHAR(36)
+            tableName: organisation_media
+                        
+  - changeSet:
+      id: 0064.create_table_organisations.7
+      author: codeschluss
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: organisation_id
+            indexName: idx_fkk03u57ustzsusivaylxkrg8mg
+            tableName: organisation_media
+  - changeSet:
+      id: 0064.create_table_organisations.8
+      author: codeschluss
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: media_id
+            indexName: idx_fk0o1p1dpbh4u1edbozo5j33xow
+            tableName: organisation_media
+  - changeSet:
+      id: 0064.create_table_organisations.9
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: organisation_id
+            baseTableName: organisation_media
+            constraintName: fkk03u57ustzsusivaylxkrg8mg
+            initiallyDeferred: false
+            onDelete: CASCADE
+            onUpdate: CASCADE
+            referencedColumnNames: id
+            referencedTableName: organisations
+            validate: true
+  - changeSet:
+      id: 0064.create_table_organisations.10
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: media_id
+            baseTableName: organisation_media
+            constraintName: fk0o1p1dpbh4u1edbozo5j33xow
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: CASCADE
+            onUpdate: CASCADE
+            referencedColumnNames: id
+            referencedTableName: media
+            validate: true            
+             
+  - changeSet:
+      id: 0064.create_table_organisations.11
+      author: codeschluss
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: title_image_id
+            indexName: idx_fkooekr9ysa69w3n3n3lnx5hq7q
+            tableName: organisations
+  - changeSet:
+      id: 0064.create_table_organisations.12
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: title_image_id
+            baseTableName: organisations
+            constraintName: fkooekr9ysa69w3n3n3lnx5hq7q
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: media
+            validate: true    
+
+  - changeSet:
+      id: 0064.create_table_organisations.13
+      author: codeschluss
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: card_image_id
+            indexName: idx_mxdh60arligtewewp66ag2vdc
+            tableName: organisations
+  - changeSet:
+      id: 0064.create_table_organisations.14
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: card_image_id
+            baseTableName: organisations
+            constraintName: fkmxdh60arligtewewp66ag2vdc
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: media
+            validate: true                                                             

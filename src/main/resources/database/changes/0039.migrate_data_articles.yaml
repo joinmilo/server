@@ -188,4 +188,85 @@ databaseChangeLog:
                 /*!40101 SET character_set_client = utf8 */;
                 
                 UPDATE articles SET card_image_id = title_image_id;
+
+  - changeSet:
+      id: 0039.migrate_data_articles.17
+      author: codeschluss
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                  name: article_id
+                  type: CHAR(36)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: media_id
+                  type: CHAR(36)                 
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: article_media_primary_key
+                  name: id
+                  type: CHAR(36)
+            tableName: article_media
+        - sql:
+            comment: set char set for mysql
+            dbms: mysql
+            endDelimiter: \nGO
+            splitStatements: true
+            sql: ALTER TABLE article_media CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;             
+                        
+  - changeSet:
+      id: 0028.create_table_events.14
+      author: codeschluss
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: article_id
+            indexName: idx_fkavvq3md00xfb1ounjfokg6eue
+            tableName: article_media
+  - changeSet:
+      id: 0028.create_table_events.15
+      author: codeschluss
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: media_id
+            indexName: idx_fkg7xjc37a9lw2042ou6uahqkbb
+            tableName: article_media
+  - changeSet:
+      id: 0028.create_table_events.16
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: article_id
+            baseTableName: article_media
+            constraintName: fkavvq3md00xfb1ounjfokg6eue
+            initiallyDeferred: false
+            onDelete: CASCADE
+            onUpdate: CASCADE
+            referencedColumnNames: id
+            referencedTableName: articles
+            validate: true
+  - changeSet:
+      id: 0028.create_table_events.17
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: media_id
+            baseTableName: article_media
+            constraintName: fkg7xjc37a9lw2042ou6uahqkbb
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: CASCADE
+            onUpdate: CASCADE
+            referencedColumnNames: id
+            referencedTableName: media
+            validate: true                  
             
