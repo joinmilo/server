@@ -19,7 +19,11 @@ import lombok.NoArgsConstructor;
 public class ContestTranslatableEntity extends TranslatableEntity<ContestEntity> {
 
   private static final long serialVersionUID = 1L;
-
-  private String content;
+  
+  private String description;
+  
+  private String name;
+  
+  private String shortDescription;
 
 }

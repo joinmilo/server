@@ -198,3 +198,5 @@ databaseChangeLog:
         file: database/changes/0097.create_table_apps.yaml
     - include:
         file: database/changes/0098.add_data_apps.yaml
+    - include:
+        file: database/changes/0100.transform_short_descriptions.yaml

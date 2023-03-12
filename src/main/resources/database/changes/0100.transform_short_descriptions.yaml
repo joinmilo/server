@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+  - changeSet:
+      id: 0100.transform_short_descriptions
+      author: mia
+      changes:
+        - customChange:
+            { "class": "app.wooportal.server.base.db.ShortDescriptionMigration" }

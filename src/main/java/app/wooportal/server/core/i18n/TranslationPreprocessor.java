@@ -16,7 +16,6 @@ import javassist.NotFoundException;
 public class TranslationPreprocessor {
 
   public static void preprocess() throws NotFoundException, IOException, CannotCompileException {
-//    var reflections = new Reflections(packageName);
     var reflections = new Reflections(new ConfigurationBuilder()
         .setUrls(ClasspathHelper.forPackage(App.class.getPackageName())));
     

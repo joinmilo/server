@@ -18,4 +18,14 @@ databaseChangeLog:
           newTableName: article_translatables
           oldTableName: blog_translatables
           remarks: change in names
-          schemaName: wooportal           
+          schemaName: wooportal
+  - changeSet:
+      id: 0040.rename_reference_table_article.3
+      author: codeschluss
+      changes:
+        - addColumn:
+            tableName: article_translatables
+            columns:
+            - column:
+                name: short_description
+                type: VARCHAR(255)
