@@ -295,4 +295,79 @@ databaseChangeLog:
                 /*!40101 SET character_set_client = utf8 */;
                 
                 UPDATE events SET card_image_id = title_image_id;
+                
+  - changeSet:
+      id: 0030.migrate_data_events.27
+      author: codeschluss
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                  name: event_id
+                  type: CHAR(36)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: media_id
+                  type: CHAR(36)                 
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: event_media_primary_key
+                  name: id
+                  type: CHAR(36)
+            tableName: event_media
+                        
+  - changeSet:
+      id: 0030.migrate_data_events.28
+      author: codeschluss
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: event_id
+            indexName: idx_fklputakfukm015kmec9e72mz0i
+            tableName: event_media
+  - changeSet:
+      id: 0030.migrate_data_events.29
+      author: codeschluss
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: media_id
+            indexName: idx_fkp2lvh6q1bercpfzbegacla0xg
+            tableName: event_media
+  - changeSet:
+      id: 0030.migrate_data_events.30
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: event_id
+            baseTableName: event_media
+            constraintName: fklputakfukm015kmec9e72mz0i
+            initiallyDeferred: false
+            onDelete: CASCADE
+            onUpdate: CASCADE
+            referencedColumnNames: id
+            referencedTableName: events
+            validate: true
+  - changeSet:
+      id: 0030.migrate_data_events.31
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: media_id
+            baseTableName: event_media
+            constraintName: fkp2lvh6q1bercpfzbegacla0xg
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: CASCADE
+            onUpdate: CASCADE
+            referencedColumnNames: id
+            referencedTableName: media
+            validate: true                  
             
