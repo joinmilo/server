@@ -83,7 +83,7 @@ public class ShortDescriptionMigration implements CustomTaskChange {
   
   private String prepareShortDescription(String content) {
     var result = Jsoup.parse(content).body().text();
-    return result.substring(0, Math.min(result.length(), 100)).strip().stripIndent();
+    return result.substring(0, Math.min(result.length(), 200)).strip().stripIndent();
   }
 
 }
