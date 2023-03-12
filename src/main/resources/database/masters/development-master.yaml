@@ -201,4 +201,8 @@ databaseChangeLog:
     - include:
         file: database/changes/0103.create_table_feedback_types.yaml          
     - include:
-        file: database/changes/0104.create_table_feedbacks.yaml                
+        file: database/changes/0104.create_table_feedbacks.yaml     
+    - include:
+        file: database/changes/0105.create_table_feedback_translatables.yaml    
+    - include:
+        file: database/changes/0106.create_table_feedback_type_translatables.yaml                               

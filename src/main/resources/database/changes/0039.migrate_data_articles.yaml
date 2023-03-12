@@ -209,7 +209,7 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                     primaryKey: true
-                    primaryKeyName: article_media_primary_key
+                    primaryKeyName: article_images_primary_key
                   name: id
                   type: CHAR(36)
             tableName: article_media
@@ -267,6 +267,6 @@ databaseChangeLog:
             onDelete: CASCADE
             onUpdate: CASCADE
             referencedColumnNames: id
-            referencedTableName: media
+            referencedTableName: images
             validate: true                  
             

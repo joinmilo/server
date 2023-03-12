@@ -232,7 +232,7 @@ databaseChangeLog:
             onDelete: CASCADE
             onUpdate: CASCADE
             referencedColumnNames: id
-            referencedTableName: media
+            referencedTableName: images
             validate: true         
                          
   - changeSet:
@@ -258,7 +258,7 @@ databaseChangeLog:
             onUpdate: CASCADE
             onDelete: CASCADE
             referencedColumnNames: id
-            referencedTableName: media
+            referencedTableName: images
             validate: true    
 
   - changeSet:
@@ -284,7 +284,7 @@ databaseChangeLog:
             onUpdate: CASCADE
             onDelete: CASCADE
             referencedColumnNames: id
-            referencedTableName: media
+            referencedTableName: images
             validate: true                            
                                                        
                       
