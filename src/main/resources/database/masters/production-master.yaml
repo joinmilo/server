@@ -1,43 +1,39 @@
 databaseChangeLog:
     - logicalFilePath: path_independent
     - include:
-        file: database/seeds/seed.yaml
+        file: database/changes/0000.migrate_data_seed.yaml    
     - include:
-        file: database/datasets/seed-data.yaml
+        file: database/changes/0001.create_table_roles.yaml
     - include:
-        file: database/datasets/test-data.yaml
+        file: database/changes/0002.create_table_roles_translatables.yaml
     - include:
-        file: database/changes/0001.create_table_notifications.yaml
+        file: database/changes/0003.migrate_data_roles.yaml
     - include:
-        file: database/changes/0002.create_table_subscriptions.yaml
+        file: database/changes/0004.migrate_data_user_roles.yaml
     - include:
-        file: database/changes/0003.create_table_channels.yaml
+        file: database/changes/0005.migrate_data_users.yaml
     - include:
-        file: database/changes/0004.create_table_message_templates.yaml
+        file: database/changes/0006.create_table_channels.yaml        
     - include:
-        file: database/changes/0005.create_table_message_template_translatables.yaml      
+        file: database/changes/0007.create_table_message_templates.yaml
     - include:
-        file: database/changes/0006.create_table_message_definitions.yaml
+        file: database/changes/0008.create_table_message_template_translatables.yaml
     - include:
-        file: database/changes/0007.create_table_visitors.yaml
+        file: database/changes/0009.create_table_message_definitions.yaml
     - include:
-        file: database/changes/0008.create_table_addresses.yaml
+        file: database/changes/0010.create_table_message_definition_translatables.yaml      
     - include:
-        file: database/changes/0009.create_table_contacts.yaml
+        file: database/changes/0011.migrate_data_subscriptions.yaml
     - include:
-        file: database/changes/0010.create_table_social_media.yaml
+        file: database/changes/0012.create_table_contacts.yaml   
     - include:
-        file: database/changes/0011.create_table_pages.yaml
+        file: database/changes/0013.create_table_developers.yaml
     - include:
-        file: database/changes/0012.create_table_page_visitors.yaml
+        file: database/changes/0014.create_table_developer_translatables.yaml
     - include:
-        file: database/changes/0013.create_table_page_translatables.yaml
+        file: database/changes/0015.migrate_data_pages.yaml
     - include:
-        file: database/changes/0014.create_table_menues.yaml
-    - include:
-        file: database/changes/0015.create_table_menu_translatables.yaml
-    - include:
-        file: database/changes/0016.create_table_features.yaml
+        file: database/changes/0016.migrate_data_page_translatables.yaml
     - include:
         file: database/changes/0017.migrate_data_features.yaml
     - include:
@@ -49,97 +45,93 @@ databaseChangeLog:
     - include:
         file: database/changes/0020.create_table_feature_translatables.yaml
     - include:
-        file: database/changes/0021.create_table_landing_features.yaml
+        file: database/changes/0022.create_table_page_features.yaml
     - include:
-        file: database/changes/0022.create_table_user_contexts.yaml
+        file: database/changes/0023.create_table_user_contexts.yaml  
     - include:
-        file: database/changes/0023.create_table_event_categories.yaml
+        file: database/changes/0024.migrate_data_event_categories.yaml  
     - include:
-        file: database/changes/0024.create_table_event_category_translatables.yaml
+        file: database/changes/0025.migrate_data_event_category_translatables.yaml       
     - include:
-        file: database/changes/0025.create_table_event_target_groups.yaml
+        file: database/changes/0026.migrate_data_event_target_groups.yaml  
     - include:
-        file: database/changes/0026.create_table_target_group_translatables.yaml
+        file: database/changes/0027.migrate_data_event_target_group_translatables.yaml     
     - include:
-        file: database/changes/0027.create_table_attendee_configurations.yaml
+        file: database/changes/0028.create_table_attendee_configurations.yaml  
     - include:
-        file: database/changes/0028.create_table_events.yaml
+        file: database/changes/0029.migrate_data_user_contexts.yaml 
     - include:
-        file: database/changes/0029.add_column_favorite_events.yaml
+        file: database/changes/0030.migrate_data_events.yaml          
     - include:
-        file: database/changes/0030.create_table_schedules.yaml
+        file: database/changes/0031.add_column_favorite_events.yaml    
     - include:
-        file: database/changes/0031.create_table_event_translatables.yaml
+        file: database/changes/0032.migrate_data_schedules.yaml    
     - include:
-        file: database/changes/0032.create_table_attendees.yaml
+        file: database/changes/0033.migrate_data_event_translatables.yaml  
     - include:
-        file: database/changes/0033.create_table_event_visitors.yaml
+        file: database/changes/0034.create_table_attendees.yaml  
     - include:
-        file: database/changes/0034.create_table_public_authors.yaml
+        file: database/changes/0035.migrate_data_event_visitors.yaml       
     - include:
-        file: database/changes/0035.create_table_article_categories.yaml
+        file: database/changes/0036.create_table_public_authors.yaml
     - include:
-        file: database/changes/0036.create_table_article_category_translatables.yaml
+        file: database/changes/0037.migrate_data_article_categories.yaml
     - include:
-        file: database/changes/0037.create_table_articles.yaml
+        file: database/changes/0038.migrate_data_article_category_translatables.yaml     
     - include:
-        file: database/changes/0038.create_table_article_visitors.yaml
+        file: database/changes/0039.migrate_data_articles.yaml     
     - include:
-        file: database/changes/0039.create_table_article_translatables.yaml
+        file: database/changes/0040.rename_reference_tables_article.yaml
     - include:
-        file: database/changes/0040.create_table_article_ratings.yaml
+        file: database/changes/0041.create_table_article_ratings.yaml      
     - include:
-        file: database/changes/0041.create_table_article_comments.yaml
+        file: database/changes/0042.create_table_article_comments.yaml     
     - include:
-        file: database/changes/0042.create_table_article_comment_translatables.yaml
+        file: database/changes/0043.create_table_article_comment_translatables.yaml  
     - include:
-        file: database/changes/0043.create_table_contest_types.yaml
+        file: database/changes/0044.create_table_contest_types.yaml
     - include:
-        file: database/changes/0044.create_table_contest_states.yaml
+        file: database/changes/0045.create_table_contest_states.yaml                      
     - include:
-        file: database/changes/0045.create_table_contests.yaml
+        file: database/changes/0046.create_table_contests.yaml
     - include:
-        file: database/changes/0046.create_table_contest_type_translatables.yaml
+        file: database/changes/0047.create_table_contest_type_translatables.yaml   
     - include:
-        file: database/changes/0047.create_table_contest_translatables.yaml
+        file: database/changes/0048.create_table_contest_translatables.yaml
     - include:
-        file: database/changes/0048.create_table_contest_participations.yaml
+        file: database/changes/0049.create_table_contest_participations.yaml
     - include:
-        file: database/changes/0049.create_table_contest_participation_translatables.yaml
+        file: database/changes/0050.create_table_contest_participation_translatables.yaml
     - include:
-        file: database/changes/0050.create_table_contest_votes.yaml
+        file: database/changes/0051.create_table_contest_votes.yaml
     - include:
-        file: database/changes/0051.create_table_form_template_types.yaml 
+        file: database/changes/0052.create_table_form_template_types.yaml
     - include:
-        file: database/changes/0052.create_table_form_templates.yaml
+        file: database/changes/0053.create_table_form_templates.yaml
     - include:
-        file: database/changes/0053.create_table_user_form_templates.yaml
+        file: database/changes/0055.create_table_user_form_templates.yaml   
     - include:
-        file: database/changes/0055.create_table_form_template_type_translatables.yaml
+        file: database/changes/0056.create_table_form_template_type_translatables.yaml       
     - include:
-        file: database/changes/0056.create_table_form_template_translatables.yaml
+        file: database/changes/0057.create_table_form_template_translatables.yaml   
     - include:
-        file: database/changes/0057.create_table_deal_categories.yaml
+        file: database/changes/0058.create_table_deal_categories.yaml
     - include:
-        file: database/changes/0058.create_table_deal_category_translatables.yaml
+        file: database/changes/0059.create_table_deal_category_translatables.yaml
     - include:
-        file: database/changes/0059.create_table_deals.yaml
+        file: database/changes/0060.create_table_deals.yaml   
     - include:
-        file: database/changes/0060.create_table_deal_translatables.yaml
+        file: database/changes/0061.create_table_deal_translatables.yaml     
     - include:
-        file: database/changes/0061.create_table_deal_visitors.yaml 
+        file: database/changes/0062.create_table_deal_visitors.yaml
     - include:
-        file: database/changes/0062.add_column_favorite_deals.yaml
+        file: database/changes/0063.add_column_favorite_deals.yaml   
     - include:
-        file: database/changes/0063.create_table_organisations.yaml
+        file: database/changes/0064.migrate_data_organisations.yaml    
     - include:
-        file: database/changes/0064.add_column_favorite_organisations.yaml
+        file: database/changes/0065.add_column_favorite_organisations.yaml        
     - include:
-        file: database/changes/0065.add_column_organisation_to_events.yaml
-    - include:
-        file: database/changes/0066.create_table_organisation_visitors.yaml
-    - include:
-        file: database/changes/0067.create_table_members.yaml
+        file: database/changes/0067.create_table_members.yaml  
     - include:
         file: database/changes/0068.create_table_organisation_ratings.yaml
     - include:
@@ -147,23 +139,23 @@ databaseChangeLog:
     - include:
         file: database/changes/0070.create_table_organisation_comment_translatables.yaml
     - include:
-        file: database/changes/0071.create_table_survey_states.yaml
+        file: database/changes/0071.create_table_survey_states.yaml   
     - include:
-        file: database/changes/0072.create_table_surveys.yaml
+        file: database/changes/0072.create_table_surveys.yaml   
     - include:
-        file: database/changes/0073.create_table_survey_visitors.yaml
+        file: database/changes/0073.create_table_survey_visitors.yaml   
     - include:
-        file: database/changes/0074.create_table_assignments.yaml
+        file: database/changes/0074.create_table_assignments.yaml   
     - include:
-        file: database/changes/0075.create_table_question_types.yaml
+        file: database/changes/0075.create_table_question_types.yaml   
     - include:
-        file: database/changes/0076.create_table_questions.yaml
+        file: database/changes/0076.create_table_questions.yaml   
     - include:
-        file: database/changes/0077.create_table_survey_results.yaml
+        file: database/changes/0077.create_table_survey_results.yaml   
     - include:
         file: database/changes/0078.create_table_question_options.yaml
     - include:
-        file: database/changes/0079.create_table_answers.yaml
+        file: database/changes/0079.create_table_answers.yaml   
     - include:
         file: database/changes/0080.create_table_answer_translatables.yaml   
     - include:
@@ -175,7 +167,7 @@ databaseChangeLog:
     - include:
         file: database/changes/0084.create_table_question_option_translatables.yaml
     - include:
-        file: database/changes/0085.create_table_theme_variables.yaml  
+        file: database/changes/0085.create_tables_theme_variables_and_themes.yaml  
     - include:
         file: database/changes/0086.drop_tables.yaml      
     - include:
@@ -191,7 +183,7 @@ databaseChangeLog:
     - include:
         file: database/changes/0094.create_table_error_messages.yaml
     - include:
-        file: database/changes/0095.add_data_menu_items.yaml
+       file: database/changes/0095.add_data_menu_items.yaml    
     - include:
         file: database/changes/0096.migrate_cleanUp.yaml
     - include:
@@ -199,13 +191,21 @@ databaseChangeLog:
     - include:
         file: database/changes/0098.add_data_apps.yaml
     - include:
-        file: database/changes/0100.transform_short_descriptions.yaml
+        file: database/changes/0099.transform_short_descriptions.yaml
     - include:
-        file: database/changes/0101.transform_images.yaml
+        file: database/changes/0100.transform_images.yaml
+    - include:
+        file: database/changes/0101.drop_column_images.yaml
     - include:
         file: database/changes/0102.migrate_table_images.yaml
     - include:
-        file: database/changes/0103.migrate_table_feedback_types.yaml
+        file: database/changes/0103.create_table_feedback_types.yaml          
     - include:
-        file: database/changes/0104.migrate_table_feedbacks.yaml                
-        
+        file: database/changes/0104.create_table_feedbacks.yaml     
+    - include:
+        file: database/changes/0105.create_table_feedback_translatables.yaml    
+    - include:
+        file: database/changes/0106.create_table_feedback_type_translatables.yaml
+    - include:
+        file: database/changes/0107.add_data_feedbacks_feedback_types.yaml
+         
