@@ -8,7 +8,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: short_description
-                  type: VARCHAR(255)
+                  type: VARCHAR(1024)
               - column:
                   name: call_text
                   type: VARCHAR(255)                  
