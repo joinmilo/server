@@ -14,6 +14,6 @@ public class FeedbackTypePredicateBuilder
 
   @Override
   public BooleanExpression freeSearch(String term) {
-    return null;
+    return query.translatables.any().name.likeIgnoreCase(term);
   }
 }
