@@ -7,7 +7,6 @@ import app.wooportal.server.core.base.CrudApi;
 import app.wooportal.server.core.base.dto.listing.FilterSortPaginate;
 import app.wooportal.server.core.base.dto.listing.PageableList;
 import app.wooportal.server.core.security.permissions.AdminPermission;
-import app.wooportal.server.core.security.permissions.ApprovedAndVerifiedPermission;
 import io.leangen.graphql.annotations.GraphQLArgument;
 import io.leangen.graphql.annotations.GraphQLMutation;
 import io.leangen.graphql.annotations.GraphQLQuery;
@@ -25,7 +24,6 @@ public class OrganisationRatingApi
 
   @Override
   @GraphQLQuery(name = "getOrganisationRatings")
-  @ApprovedAndVerifiedPermission
   public PageableList<OrganisationRatingEntity> readAll(
       @GraphQLArgument(name = CrudApi.params) FilterSortPaginate params) {
     return super.readAll(params);
@@ -33,7 +31,6 @@ public class OrganisationRatingApi
 
   @Override
   @GraphQLQuery(name = "getOrganisationRating")
-  @ApprovedAndVerifiedPermission
   public Optional<OrganisationRatingEntity> readOne(
       @GraphQLArgument(name = CrudApi.entity) OrganisationRatingEntity entity) {
     return super.readOne(entity);

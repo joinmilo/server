@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import app.wooportal.server.core.security.permissions.ApprovedAndVerifiedPermission;
 
 @RestController
 public class MediaController {
@@ -29,7 +28,6 @@ public class MediaController {
   }
 
   @PostMapping(value = "/media/export")
-  @ApprovedAndVerifiedPermission
   public ResponseEntity<byte[]> export(@RequestBody MediaHtmlDto content) throws Exception {
     return service.export(content);
   }

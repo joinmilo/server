@@ -7,7 +7,6 @@ import app.wooportal.server.core.base.CrudApi;
 import app.wooportal.server.core.base.dto.listing.FilterSortPaginate;
 import app.wooportal.server.core.base.dto.listing.PageableList;
 import app.wooportal.server.core.security.permissions.AdminPermission;
-import app.wooportal.server.core.security.permissions.ApprovedAndVerifiedPermission;
 import io.leangen.graphql.annotations.GraphQLArgument;
 import io.leangen.graphql.annotations.GraphQLMutation;
 import io.leangen.graphql.annotations.GraphQLQuery;
@@ -24,7 +23,6 @@ public class ContestStateApi extends CrudApi<ContestStateEntity, ContestStateSer
 
   @Override
   @GraphQLQuery(name = "getContestStates")
-  @ApprovedAndVerifiedPermission
   public PageableList<ContestStateEntity> readAll(
       @GraphQLArgument(name = CrudApi.params) FilterSortPaginate params) {
     return super.readAll(params);
@@ -32,7 +30,6 @@ public class ContestStateApi extends CrudApi<ContestStateEntity, ContestStateSer
 
   @Override
   @GraphQLQuery(name = "getContestState")
-  @ApprovedAndVerifiedPermission
   public Optional<ContestStateEntity> readOne(
       @GraphQLArgument(name = CrudApi.entity) ContestStateEntity entity) {
     return super.readOne(entity);

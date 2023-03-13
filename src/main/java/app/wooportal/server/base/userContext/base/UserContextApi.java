@@ -7,7 +7,6 @@ import app.wooportal.server.core.base.CrudApi;
 import app.wooportal.server.core.base.dto.listing.FilterSortPaginate;
 import app.wooportal.server.core.base.dto.listing.PageableList;
 import app.wooportal.server.core.security.permissions.AdminPermission;
-import app.wooportal.server.core.security.permissions.ApprovedAndVerifiedPermission;
 import io.leangen.graphql.annotations.GraphQLArgument;
 import io.leangen.graphql.annotations.GraphQLMutation;
 import io.leangen.graphql.annotations.GraphQLQuery;
@@ -23,7 +22,6 @@ public class UserContextApi extends CrudApi<UserContextEntity, UserContextServic
 
   @Override
   @GraphQLQuery(name = "getUserContexts")
-  @ApprovedAndVerifiedPermission
   public PageableList<UserContextEntity> readAll(
       @GraphQLArgument(name = CrudApi.params) FilterSortPaginate params) {
     return super.readAll(params);
@@ -31,7 +29,6 @@ public class UserContextApi extends CrudApi<UserContextEntity, UserContextServic
 
   @Override
   @GraphQLQuery(name = "getUserContext")
-  @ApprovedAndVerifiedPermission
   public Optional<UserContextEntity> readOne(@GraphQLArgument(name = CrudApi.entity) UserContextEntity entity) {
     return super.readOne(entity);
   }

@@ -13,7 +13,6 @@ import app.wooportal.server.core.push.NotificationType;
 import app.wooportal.server.core.push.PushService;
 import app.wooportal.server.core.security.components.role.RoleService;
 import app.wooportal.server.core.security.permissions.AdminPermission;
-import app.wooportal.server.core.security.permissions.ApprovedAndVerifiedPermission;
 import io.leangen.graphql.annotations.GraphQLArgument;
 import io.leangen.graphql.annotations.GraphQLMutation;
 import io.leangen.graphql.annotations.GraphQLQuery;
@@ -33,7 +32,6 @@ public class UserApi extends CrudApi<UserEntity, UserService> {
 
   @Override
   @GraphQLQuery(name = "getUsers")
-  @ApprovedAndVerifiedPermission
   public PageableList<UserEntity> readAll(
       @GraphQLArgument(name = CrudApi.params) FilterSortPaginate params) {
     return super.readAll(params);
@@ -41,13 +39,11 @@ public class UserApi extends CrudApi<UserEntity, UserService> {
 
   @Override
   @GraphQLQuery(name = "getUser")
-  @ApprovedAndVerifiedPermission
   public Optional<UserEntity> readOne(@GraphQLArgument(name = CrudApi.entity) UserEntity entity) {
     return super.readOne(entity);
   }
 
   @GraphQLQuery(name = "me")
-  @ApprovedAndVerifiedPermission
   public Optional<UserEntity> me() {
     return service.me();
   }
@@ -67,7 +63,6 @@ public class UserApi extends CrudApi<UserEntity, UserService> {
   }
 
   @GraphQLMutation(name = "saveMe")
-  @ApprovedAndVerifiedPermission
   public Optional<UserEntity> saveMe(@GraphQLArgument(name = CrudApi.entity) UserEntity entity) {
     return service.saveMe(entity);
   }
@@ -87,7 +82,6 @@ public class UserApi extends CrudApi<UserEntity, UserService> {
   }
 
   @GraphQLMutation(name = "deleteMe")
-  @ApprovedAndVerifiedPermission
   public Boolean deleteMe(String password) {
     var deletedUser = service.deleteMe(password);
 
@@ -110,13 +104,11 @@ public class UserApi extends CrudApi<UserEntity, UserService> {
   }
 
   @GraphQLMutation(name = "addUploads")
-  @ApprovedAndVerifiedPermission
   public Optional<UserEntity> addUploads(List<MediaEntity> uploads) {
     return service.addUploads(uploads);
   }
 
   @GraphQLMutation(name = "deleteUploads")
-  @ApprovedAndVerifiedPermission
   public Optional<UserEntity> deleteUpload(List<String> uploadIds) {
     return service.deleteUpload(uploadIds);
   }
@@ -154,7 +146,6 @@ public class UserApi extends CrudApi<UserEntity, UserService> {
   }
   
   @GraphQLMutation(name = "changePassword")
-  @ApprovedAndVerifiedPermission
   public Boolean changePassword(String newPassword) {
     if (newPassword == null || newPassword.isBlank()) {
       throw new BadParamsException("New password is null or empty");

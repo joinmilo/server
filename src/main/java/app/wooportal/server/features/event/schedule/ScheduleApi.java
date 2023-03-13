@@ -7,7 +7,6 @@ import app.wooportal.server.core.base.CrudApi;
 import app.wooportal.server.core.base.dto.listing.FilterSortPaginate;
 import app.wooportal.server.core.base.dto.listing.PageableList;
 import app.wooportal.server.core.security.permissions.AdminPermission;
-import app.wooportal.server.core.security.permissions.ApprovedAndVerifiedPermission;
 import io.leangen.graphql.annotations.GraphQLArgument;
 import io.leangen.graphql.annotations.GraphQLMutation;
 import io.leangen.graphql.annotations.GraphQLQuery;
@@ -24,7 +23,6 @@ public class ScheduleApi extends CrudApi<ScheduleEntity, ScheduleService> {
 
   @Override
   @GraphQLQuery(name = "getSchedules")
-  @ApprovedAndVerifiedPermission
   public PageableList<ScheduleEntity> readAll(
       @GraphQLArgument(name = CrudApi.params) FilterSortPaginate params) {
     return super.readAll(params);
@@ -32,7 +30,6 @@ public class ScheduleApi extends CrudApi<ScheduleEntity, ScheduleService> {
 
   @Override
   @GraphQLQuery(name = "getSchedule")
-  @ApprovedAndVerifiedPermission
   public Optional<ScheduleEntity> readOne(
       @GraphQLArgument(name = CrudApi.entity) ScheduleEntity entity) {
     return super.readOne(entity);
