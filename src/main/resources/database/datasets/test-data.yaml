@@ -22,18 +22,3 @@ databaseChangeLog:
                  select uuid(), "29c9ebf0-ac66-4752-a123-82f691cd8d72", l.id, "Alles gut, arbeite weiter!"
                  from languages l
                  WHERE l.locale = "de";              
-              
-  - changeSet:
-      id: test-data.4
-      author: codeschluss
-      changes:
-        - sql:
-            comment: Add data apps
-            splitStatements: true
-            sql: insert into apps (id, platform_id, url) values
-              ('bcf6800f-d49f-4857-bd38-339b2cbad3f5', '9fc24c85-0ca6-4e20-a551-e77b58aff4f4', 'android.com'),
-              ('7bacd58e-1824-492a-937c-5ec36b104d04', 'ab7a5460-2833-4d97-a36e-c00542d3e201', 'google.com');                    
-                                       
-              
- 
-              
