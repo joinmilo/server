@@ -76,8 +76,14 @@ databaseChangeLog:
               - column:
                   constraints:
                     nullable: false
+                    unique: true
                   name: name
-                  type: VARCHAR(255)                                                                       
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: is_default
+                  type: BOOLEAN                                                                       
             tableName: themes
         - sql:
             comment: set char set for mysql

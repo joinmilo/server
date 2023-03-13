@@ -246,3 +246,12 @@ databaseChangeLog:
             referencedColumnNames: id
             referencedTableName: markups
             validate: true
+  - changeSet:
+      id: seed.12
+      author: codeschluss
+      changes:
+       - renameColumn:
+           newColumnName: key
+           oldColumnName: item
+           tableName: configurations
+           columnDataType: VARCHAR(255)

@@ -1,12 +1,8 @@
-package app.wooportal.server.base.cms.theme;
+package app.wooportal.server.base.configuration;
 
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import app.wooportal.server.base.cms.themeVariable.ThemeVariableEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -19,19 +15,17 @@ import lombok.Setter;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @AllArgsConstructor
 @Entity
-@Table(name = "themes")
-public class ThemeEntity extends BaseEntity {
+@Table(name = "configurations")
+public class ConfigurationEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
-  
-  @Column(nullable = false)
-  private Boolean isDefault;
 
   @Column(
       nullable = false,
       unique = true)
-  private String name;
+  private String key;
+  
+  @Column(nullable = false)
+  private String value;
 
-  @OneToMany(fetch = FetchType.LAZY, mappedBy = "theme")
-  private Set<ThemeVariableEntity> variables;
 }
