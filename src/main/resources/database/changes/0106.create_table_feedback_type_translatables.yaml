@@ -98,5 +98,6 @@ databaseChangeLog:
             onDelete: CASCADE
             referencedColumnNames: id
             referencedTableName: languages
-            validate: true                     
+            validate: true
+                                 
             

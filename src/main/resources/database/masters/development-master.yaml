@@ -205,4 +205,9 @@ databaseChangeLog:
     - include:
         file: database/changes/0105.create_table_feedback_translatables.yaml    
     - include:
-        file: database/changes/0106.create_table_feedback_type_translatables.yaml                               
+        file: database/changes/0106.create_table_feedback_type_translatables.yaml
+    - include:
+        file: database/changes/0107.add_data_feedbacks_feedback_types.yaml
+    - include:
+        file: database/datasets/test-data.yaml    
+                                         
