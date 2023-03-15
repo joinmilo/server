@@ -19,7 +19,7 @@ import lombok.Setter;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @AllArgsConstructor
 @Entity
-@Table(name = "address")
+@Table(name = "suburbs")
 public class SuburbEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
