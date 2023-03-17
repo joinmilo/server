@@ -31,5 +31,5 @@ public class LabelEntity extends BaseEntity {
       fetch = FetchType.LAZY, 
       mappedBy = "parent")
   protected Set<LabelTranslatablesEntity> translatables;
-
 }
+

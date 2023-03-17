@@ -1,4 +1,4 @@
-package app.wooportal.server.base.feedback.type.translations;
+package app.wooportal.server.base.report.type.translations;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,8 +16,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @AllArgsConstructor
 @Entity
-@Table(name = "feedback_type_translatables")
-public class FeedbackTypeTranslatableEntity extends TranslatableEntity<DeveloperEntity> {
+@Table(name = "report_type_translatables")
+public class ReportTypeTranslatableEntity extends TranslatableEntity<DeveloperEntity> {
 
   private static final long serialVersionUID = 1L;
 

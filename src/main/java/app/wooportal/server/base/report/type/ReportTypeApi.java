@@ -1,4 +1,4 @@
-package app.wooportal.server.base.feedback.base;
+package app.wooportal.server.base.report.type;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,49 +14,50 @@ import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 
 @GraphQLApi
 @Component
-public class FeedbackApi extends CrudApi<FeedbackEntity, FeedbackService> {
+public class ReportTypeApi extends CrudApi<ReportTypeEntity, ReportTypeService> {
 
-  public FeedbackApi(FeedbackService userService) {
+
+  public ReportTypeApi(ReportTypeService userService) {
     super(userService);
   }
 
   @Override
-  @GraphQLQuery(name = "getFeedbacks")
-  public PageableList<FeedbackEntity> readAll(
+  @GraphQLQuery(name = "getReportTypes")
+  public PageableList<ReportTypeEntity> readAll(
       @GraphQLArgument(name = CrudApi.params) FilterSortPaginate params) {
     return super.readAll(params);
   }
 
   @Override
-  @GraphQLQuery(name = "getFeedback")
-  public Optional<FeedbackEntity> readOne(
-      @GraphQLArgument(name = CrudApi.entity) FeedbackEntity entity) {
+  @GraphQLQuery(name = "getReportType")
+  public Optional<ReportTypeEntity> readOne(
+      @GraphQLArgument(name = CrudApi.entity) ReportTypeEntity entity) {
     return super.readOne(entity);
   }
 
   @Override
-  @GraphQLMutation(name = "saveFeedbacks")
+  @GraphQLMutation(name = "saveReportTypes")
   @AdminPermission
-  public List<FeedbackEntity> saveAll(
-      @GraphQLArgument(name = CrudApi.entities) List<FeedbackEntity> entities) {
+  public List<ReportTypeEntity> saveAll(
+      @GraphQLArgument(name = CrudApi.entities) List<ReportTypeEntity> entities) {
     return super.saveAll(entities);
   }
 
   @Override
-  @GraphQLMutation(name = "saveFeedback")
-  public FeedbackEntity saveOne(@GraphQLArgument(name = CrudApi.entity) FeedbackEntity entity) {
+  @GraphQLMutation(name = "saveReportType")
+  public ReportTypeEntity saveOne(@GraphQLArgument(name = CrudApi.entity) ReportTypeEntity entity) {
     return super.saveOne(entity);
   }
 
   @Override
-  @GraphQLMutation(name = "deleteFeedbacks")
+  @GraphQLMutation(name = "deleteReportTypes")
   @AdminPermission
   public Boolean deleteAll(@GraphQLArgument(name = CrudApi.ids) List<String> ids) {
     return super.deleteAll(ids);
   }
 
   @Override
-  @GraphQLMutation(name = "deleteFeedback")
+  @GraphQLMutation(name = "deleteReportType")
   @AdminPermission
   public Boolean deleteOne(@GraphQLArgument(name = CrudApi.id) String id) {
     return super.deleteOne(id);

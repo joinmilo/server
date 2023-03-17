@@ -1,14 +1,14 @@
-package app.wooportal.server.base.feedback.base;
+package app.wooportal.server.base.report.base;
 
 import org.springframework.stereotype.Service;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import app.wooportal.server.core.base.PredicateBuilder;
 
 @Service
-public class FeedbackPredicateBuilder extends PredicateBuilder<QFeedbackEntity, FeedbackEntity> {
+public class ReportPredicateBuilder extends PredicateBuilder<QReportEntity, ReportEntity> {
 
-  public FeedbackPredicateBuilder() {
-    super(QFeedbackEntity.feedbackEntity);
+  public ReportPredicateBuilder() {
+    super(QReportEntity.reportEntity);
   }
 
   @Override
