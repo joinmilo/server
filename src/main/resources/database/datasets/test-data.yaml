@@ -5,9 +5,9 @@ databaseChangeLog:
       author: codeschluss
       changes:
         - sql:
-            comment: Add data feedbacks
+            comment: Add data reports
             splitStatements: true
-            sql: insert into feedbacks (id, `name`, email, type_id) values
+            sql: insert into reports (id, `name`, email, type_id) values
               ('29c9ebf0-ac66-4752-a123-82f691cd8d72', 'TestFeedback', 'Feedback@example.com', '29c9ebf0-ac66-4752-a123-82f691cd8d72');
               
               
@@ -16,9 +16,9 @@ databaseChangeLog:
       author: codeschluss
       changes:
         - sql:
-            comment: Add data feedback_translatables
+            comment: Add data report_translatables
             splitStatements: true
-            sql: insert into feedback_translatables (id, parent_id, language_id, content)
+            sql: insert into report_translatables (id, parent_id, language_id, content)
                  select uuid(), "29c9ebf0-ac66-4752-a123-82f691cd8d72", l.id, "Alles gut, arbeite weiter!"
                  from languages l
                  WHERE l.locale = "de";              

@@ -1,7 +1,7 @@
 databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
-      id: 0106.create_feedback_type_translatables.1
+      id: 0105.create_report_translatables.1
       author: codeschluss
       changes:
         - createTable:
@@ -10,7 +10,7 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                     primaryKey: true
-                    primaryKeyName: feedback_type_translatables_primary_key
+                    primaryKeyName: report_translatables_primary_key
                   name: id
                   type: CHAR(36)
               - column:
@@ -28,7 +28,7 @@ databaseChangeLog:
               - column:
                   constraints:
                     nullable: false              
-                  name: name
+                  name: content
                   type: VARCHAR(255)        
               - column:
                   constraints:
@@ -40,64 +40,63 @@ databaseChangeLog:
                     nullable: false
                   name: language_id
                   type: CHAR(36)                                                                               
-            tableName: feedback_type_translatables
+            tableName: report_translatables
         - sql:
             comment: set char set for mysql
             dbms: mysql
             endDelimiter: \nGO
             splitStatements: true
-            sql: ALTER TABLE feedback_type_translatables CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;             
+            sql: ALTER TABLE report_translatables CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;             
 
   - changeSet:
-      id: 0106.create_feedback_type_translatables.2
+      id: 0105.create_report_translatables.2
       author: codeschluss
       changes:
         - createIndex:
             columns:
               - column:
                   name: parent_id
-            indexName: idx_fkco8ezm177xyn23t2g07p04que
-            tableName: feedback_type_translatables
+            indexName: idx_fkzm0ru2irfsavq7o5m5c2b9vjy
+            tableName: report_translatables
   - changeSet:
-      id: 0106.create_feedback_type_translatables.3
+      id: 0105.create_report_translatables.3
       author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: parent_id
-            baseTableName: feedback_type_translatables
-            constraintName: fkco8ezm177xyn23t2g07p04que
+            baseTableName: report_translatables
+            constraintName: fkzm0ru2irfsavq7o5m5c2b9vjy
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE
             onDelete: CASCADE
             referencedColumnNames: id
-            referencedTableName: feedback_types
+            referencedTableName: reports
             validate: true   
             
   - changeSet:
-      id: 0106.create_feedback_type_translatables.4
+      id: 0105.create_report_translatables.4
       author: codeschluss
       changes:
         - createIndex:
             columns:
               - column:
                   name: language_id
-            indexName: idx_fkuh5u42nn6qqk2cf8swilpj65x
-            tableName: feedback_type_translatables
+            indexName: idx_fk8uu3kd4vnxxuxjdd2dnzy2erk
+            tableName: report_translatables
   - changeSet:
-      id: 0106.create_feedback_type_translatables.5
+      id: 0105.create_report_translatables.5
       author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: language_id
-            baseTableName: feedback_type_translatables
-            constraintName: fkuh5u42nn6qqk2cf8swilpj65x
+            baseTableName: report_translatables
+            constraintName: fk8uu3kd4vnxxuxjdd2dnzy2erk
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE
             onDelete: CASCADE
             referencedColumnNames: id
             referencedTableName: languages
-            validate: true
-                                 
+            validate: true                     
             

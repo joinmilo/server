@@ -199,15 +199,15 @@ databaseChangeLog:
     - include:
         file: database/changes/0102.migrate_table_images.yaml
     - include:
-        file: database/changes/0103.create_table_feedback_types.yaml          
+        file: database/changes/0103.create_table_report_types.yaml          
     - include:
-        file: database/changes/0104.create_table_feedbacks.yaml     
+        file: database/changes/0104.create_table_reports.yaml     
     - include:
-        file: database/changes/0105.create_table_feedback_translatables.yaml    
+        file: database/changes/0105.create_table_report_translatables.yaml    
     - include:
-        file: database/changes/0106.create_table_feedback_type_translatables.yaml
+        file: database/changes/0106.create_table_report_type_translatables.yaml
     - include:
-        file: database/changes/0107.add_data_feedbacks_feedback_types.yaml
+        file: database/changes/0107.add_data_reports_report_types.yaml
     - include:
         file: database/datasets/test-data.yaml    
                                          

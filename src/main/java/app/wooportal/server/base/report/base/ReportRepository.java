@@ -1,9 +1,9 @@
-package app.wooportal.server.base.feedback.base;
+package app.wooportal.server.base.report.base;
 
 import org.springframework.stereotype.Repository;
 import app.wooportal.server.core.repository.DataRepository;
 
 @Repository
-public interface FeedbackRepository extends DataRepository<FeedbackEntity> {
+public interface ReportRepository extends DataRepository<ReportEntity> {
 
 }
