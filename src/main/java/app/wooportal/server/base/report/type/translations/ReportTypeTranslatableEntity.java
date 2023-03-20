@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import app.wooportal.server.base.developer.DeveloperEntity;
+import app.wooportal.server.base.report.type.ReportTypeEntity;
 import app.wooportal.server.core.i18n.entities.TranslatableEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -17,7 +18,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table(name = "report_type_translatables")
-public class ReportTypeTranslatableEntity extends TranslatableEntity<DeveloperEntity> {
+public class ReportTypeTranslatableEntity extends TranslatableEntity<ReportTypeEntity> {
 
   private static final long serialVersionUID = 1L;
 
