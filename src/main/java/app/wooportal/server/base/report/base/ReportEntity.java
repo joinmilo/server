@@ -12,6 +12,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 import org.hibernate.annotations.CollectionId;
 import org.hibernate.annotations.GenericGenerator;
@@ -36,6 +37,9 @@ import lombok.Setter;
 public class ReportEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
+
+  @Transient
+  private String captcha;
 
   @Column(nullable = false)
   private String email;

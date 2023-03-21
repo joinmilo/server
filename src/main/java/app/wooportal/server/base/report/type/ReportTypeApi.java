@@ -17,8 +17,8 @@ import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 public class ReportTypeApi extends CrudApi<ReportTypeEntity, ReportTypeService> {
 
 
-  public ReportTypeApi(ReportTypeService userService) {
-    super(userService);
+  public ReportTypeApi(ReportTypeService service) {
+    super(service);
   }
 
   @Override

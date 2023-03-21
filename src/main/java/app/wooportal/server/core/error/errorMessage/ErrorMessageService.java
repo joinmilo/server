@@ -8,6 +8,7 @@ import app.wooportal.server.core.error.ErrorMailService;
 import app.wooportal.server.core.error.exception.AlreadyVerifiedException;
 import app.wooportal.server.core.error.exception.BadParamsException;
 import app.wooportal.server.core.error.exception.DuplicateException;
+import app.wooportal.server.core.error.exception.InvalidCaptchaException;
 import app.wooportal.server.core.error.exception.InvalidPasswordResetException;
 import app.wooportal.server.core.error.exception.InvalidTokenException;
 import app.wooportal.server.core.error.exception.InvalidVerificationException;
@@ -58,6 +59,10 @@ public class ErrorMessageService
 
     if (e instanceof BadCredentialsException) {
       return "Benutzername und Passwort falsch";
+    }
+
+    if (e instanceof InvalidCaptchaException) {
+      return "Zusendung fehlgeschlagen. Bitte probieren Sie es erneut.";
     }
 
     if (e instanceof InvalidVerificationException) {
