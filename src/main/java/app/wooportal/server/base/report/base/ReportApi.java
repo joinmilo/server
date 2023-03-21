@@ -17,8 +17,8 @@ import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 public class ReportApi extends CrudApi<ReportEntity, ReportService> {
 
 
-  public ReportApi(ReportService userService) {
-    super(userService);
+  public ReportApi(ReportService service) {
+    super(service);
   }
 
   @Override
@@ -46,6 +46,7 @@ public class ReportApi extends CrudApi<ReportEntity, ReportService> {
   @Override
   @GraphQLMutation(name = "saveReport")
   public ReportEntity saveOne(@GraphQLArgument(name = CrudApi.entity) ReportEntity entity) {
+    service.preSave(entity, entity, null);
     return super.saveOne(entity);
   }
 
