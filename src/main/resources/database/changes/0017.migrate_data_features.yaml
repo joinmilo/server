@@ -8,7 +8,6 @@ databaseChangeLog:
           newTableName: features
           oldTableName: pages
           remarks: change in names
-          schemaName: wooportal        
 
   - changeSet:
       id: 0017.migrate_data_features.2
@@ -20,5 +19,3 @@ databaseChangeLog:
           oldColumnName: name
           remarks: change in names
           tableName: features
-          schemaName: wooportal
-            

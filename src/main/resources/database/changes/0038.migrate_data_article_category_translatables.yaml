@@ -7,6 +7,4 @@ databaseChangeLog:
           newTableName: article_category_translatables
           oldTableName: topic_translatables
           remarks: change in names
-          schemaName: wooportal
-
           

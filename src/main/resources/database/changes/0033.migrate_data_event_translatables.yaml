@@ -8,7 +8,6 @@ databaseChangeLog:
           newTableName: event_translatables
           oldTableName: activity_translatables
           remarks: change in names
-          schemaName: wooportal   
 
   - changeSet:
       id: 0035.migrate_data_event_translatables.2

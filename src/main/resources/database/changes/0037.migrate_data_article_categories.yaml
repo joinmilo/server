@@ -8,8 +8,7 @@ databaseChangeLog:
           newTableName: article_categories
           oldTableName: topics
           remarks: change in names
-          schemaName: wooportal     
-  
+
   - changeSet:
       id: 0037.migrate_data_article_categories.2
       author: codeschluss

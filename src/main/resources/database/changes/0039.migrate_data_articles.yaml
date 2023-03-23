@@ -7,7 +7,6 @@ databaseChangeLog:
           newTableName: articles
           oldTableName: blogs
           remarks: change in names
-          schemaName: wooportal
 
   - changeSet:
       id: 0039.migrate_data_articles.2

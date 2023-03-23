@@ -8,7 +8,6 @@ databaseChangeLog:
           newTableName: article_visitors
           oldTableName: blog_visitors
           remarks: change in names
-          schemaName: wooportal      
 
   - changeSet:
       id: 0040.rename_reference_table_article.2
@@ -18,7 +17,6 @@ databaseChangeLog:
           newTableName: article_translatables
           oldTableName: blog_translatables
           remarks: change in names
-          schemaName: wooportal
   - changeSet:
       id: 0040.rename_reference_table_article.3
       author: codeschluss

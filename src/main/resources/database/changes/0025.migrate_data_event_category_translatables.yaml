@@ -7,4 +7,3 @@ databaseChangeLog:
           newTableName: event_category_translatables
           oldTableName: category_translatables
           remarks: change in names
-          schemaName: wooportal

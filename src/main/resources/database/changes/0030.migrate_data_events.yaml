@@ -7,7 +7,6 @@ databaseChangeLog:
           newTableName: events
           oldTableName: activities
           remarks: change in names
-          schemaName: wooportal
 
   - changeSet:
       id: 0030.migrate_data_events.2
@@ -257,7 +256,6 @@ databaseChangeLog:
           newColumnName: entry_fee
           oldColumnName: admission_fee
           remarks: change in names
-          schemaName: wooportal
           tableName: events
   - changeSet:
       id: 0030.migrate_data_events.24

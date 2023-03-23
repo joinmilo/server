@@ -47,28 +47,23 @@ databaseChangeLog:
         - dropTable:
             cascadeConstraints: true
             tableName: subscribed_types
-            schemaName: wooportal      
+
         - dropTable:
             cascadeConstraints: true
             tableName: subscription_type_translatables
-            schemaName: wooportal 
         - dropTable:
             cascadeConstraints: true
             tableName: subscription_types
-            schemaName: wooportal 
         - dropTable:
             cascadeConstraints: true
             tableName: providers
-            schemaName: wooportal  
         - dropTable:
             cascadeConstraints: true
             tableName: blogger_subscriptions
-            schemaName: wooportal           
         - dropTable:
             cascadeConstraints: true
             tableName: blog_likes
-            schemaName: wooportal                                                      
-             
+
   - changeSet:
       id: 0096.migrate_cleanUp.4
       author: codeschluss

@@ -7,7 +7,6 @@ databaseChangeLog:
         - dropTable:
             cascadeConstraints: true
             tableName: activity_likes
-            schemaName: wooportal
             
   - changeSet:
       id: 0086.drop_tables.2
@@ -16,4 +15,4 @@ databaseChangeLog:
         - dropTable:
             cascadeConstraints: true
             tableName: activity_subscriptions
-            schemaName: wooportal                                   
+                          

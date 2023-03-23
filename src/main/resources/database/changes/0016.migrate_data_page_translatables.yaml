@@ -23,5 +23,4 @@ databaseChangeLog:
           newColumnName: name
           oldColumnName: title
           remarks: change in names
-          schemaName: wooportal
           tableName: markup_translatables

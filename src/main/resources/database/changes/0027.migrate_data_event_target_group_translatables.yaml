@@ -7,6 +7,4 @@ databaseChangeLog:
           newTableName: event_target_group_translatables
           oldTableName: target_group_translatables
           remarks: change in names
-          schemaName: wooportal
-          
   

@@ -19,7 +19,6 @@ databaseChangeLog:
           newColumnName: device_token
           oldColumnName: auth_secret
           remarks: change in names
-          schemaName: wooportal
           tableName: subscriptions
   
   - changeSet:

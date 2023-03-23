@@ -7,7 +7,6 @@ databaseChangeLog:
           newTableName: event_target_groups
           oldTableName: target_groups
           remarks: change in names
-          schemaName: wooportal
 
   - changeSet:
       id: 0026.migrate_data_event_target_groups.2
@@ -24,8 +23,5 @@ databaseChangeLog:
       - renameTable:
           newTableName: event_event_target_groups
           oldTableName: activities_target_groups
-          remarks: change in names
-          schemaName: wooportal   
-         
-
+          remarks: change in names   
                                     

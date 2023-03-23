@@ -7,8 +7,5 @@ databaseChangeLog:
       - renameTable:
           newTableName: event_visitors
           oldTableName: activity_visitors
-          remarks: change in names
-          schemaName: wooportal
-          
-                    
+          remarks: change in names                    
                       

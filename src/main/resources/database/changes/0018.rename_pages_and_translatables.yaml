@@ -8,7 +8,6 @@ databaseChangeLog:
           newTableName: page_translatables
           oldTableName: markup_translatables
           remarks: change in names
-          schemaName: wooportal
 
   - changeSet:
       id: 0018.rename_pages_and_translatables.2
@@ -18,7 +17,6 @@ databaseChangeLog:
           newTableName: pages
           oldTableName: markups
           remarks: change in names
-          schemaName: wooportal
 
   - changeSet:
       id: 0018.rename_pages_and_translatables.3
@@ -28,7 +26,6 @@ databaseChangeLog:
           newTableName: feature_visitors
           oldTableName: page_visitors
           remarks: change in names
-          schemaName: wooportal
 
   - changeSet:
       id: 0018.rename_pages_and_translatables.4
@@ -38,7 +35,6 @@ databaseChangeLog:
           newTableName: page_visitors
           oldTableName: markup_visitors
           remarks: change in names
-          schemaName: wooportal
                   
                       
             
