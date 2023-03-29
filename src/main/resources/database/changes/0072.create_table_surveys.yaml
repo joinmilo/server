@@ -50,7 +50,12 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                   name: state_id
-                  type: CHAR(36)                                                                                                                                         
+                  type: CHAR(36)   
+              - column:
+                  constraints:
+                    nullable: false
+                  name: card_image_id
+                  type: CHAR(36)                                                                                                                                                         
             tableName: surveys
         - sql:
             comment: set char set for mysql
@@ -84,4 +89,30 @@ databaseChangeLog:
             referencedColumnNames: id
             referencedTableName: survey_states
             validate: true   
+
+  - changeSet:
+      id: 0072.create_table_surveys.4
+      author: codeschluss
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: card_image_id
+            indexName: idx_fkvbl1zkcwbxmimqwz3epumonk0
+            tableName: surveys
+  - changeSet:
+      id: 0072.create_table_surveys.5
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: card_image_id
+            baseTableName: surveys
+            constraintName: fkvbl1zkcwbxmimqwz3epumonk0
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: images
+            validate: true              
             

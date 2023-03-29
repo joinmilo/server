@@ -41,6 +41,12 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                   defaultValueBoolean: false
+                  name: offer
+                  type: boolean                  
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueBoolean: false
                   name: multi_submission
                   type: boolean           
               - column:
@@ -67,7 +73,12 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                   name: state_id
-                  type: CHAR(36)                  
+                  type: CHAR(36)         
+              - column:
+                  constraints:
+                    nullable: false
+                  name: card_image_id
+                  type: CHAR(36)                             
             tableName: contests
         - sql:
             comment: set char set for mysql
@@ -126,5 +137,31 @@ databaseChangeLog:
             onDelete: CASCADE
             referencedColumnNames: id
             referencedTableName: contest_states
-            validate: true              
+            validate: true    
+            
+  - changeSet:
+      id: 0046.create_table_surveys.6
+      author: codeschluss
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: card_image_id
+            indexName: idx_fkd1obldvmrq2q0c8ywu18soyry
+            tableName: contests
+  - changeSet:
+      id: 0046.create_table_surveys.7
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: card_image_id
+            baseTableName: contests
+            constraintName: fkd1obldvmrq2q0c8ywu18soyry
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: images
+            validate: true                         
             

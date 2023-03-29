@@ -14,10 +14,7 @@ databaseChangeLog:
                 type: varchar(255) 
             - column:
                 name: contact_id               
-                type: char(36) 
-            - column:
-                name: card_image_id               
-                type: char(36)   
+                type: char(36)  
             - column:
                 name: title_image_id               
                 type: char(36)                                 
@@ -199,30 +196,4 @@ databaseChangeLog:
             onDelete: CASCADE
             referencedColumnNames: id
             referencedTableName: images
-            validate: true    
-
-  - changeSet:
-      id: 0064.create_table_organisations.13
-      author: codeschluss
-      changes:
-        - createIndex:
-            columns:
-              - column:
-                  name: card_image_id
-            indexName: idx_mxdh60arligtewewp66ag2vdc
-            tableName: organisations
-  - changeSet:
-      id: 0064.create_table_organisations.14
-      author: codeschluss
-      changes:
-        - addForeignKeyConstraint:
-            baseColumnNames: card_image_id
-            baseTableName: organisations
-            constraintName: fkmxdh60arligtewewp66ag2vdc
-            deferrable: false
-            initiallyDeferred: false
-            onUpdate: CASCADE
-            onDelete: CASCADE
-            referencedColumnNames: id
-            referencedTableName: images
-            validate: true                                                             
+            validate: true                                                               

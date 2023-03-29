@@ -105,6 +105,8 @@ databaseChangeLog:
     - include:
         file: database/changes/0053.create_table_form_templates.yaml
     - include:
+        file: database/changes/0054.create_table_user_context_translatables.yaml        
+    - include:
         file: database/changes/0055.create_table_user_form_templates.yaml   
     - include:
         file: database/changes/0056.create_table_form_template_type_translatables.yaml       

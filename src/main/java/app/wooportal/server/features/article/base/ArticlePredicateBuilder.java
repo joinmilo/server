@@ -13,7 +13,10 @@ public class ArticlePredicateBuilder extends PredicateBuilder<QArticleEntity, Ar
 
   @Override
   public BooleanExpression freeSearch(String term) {
-    return query.slug.likeIgnoreCase(term).or(query.publicAuthor.id.likeIgnoreCase(term))
-        .or(query.seoDescription.likeIgnoreCase(term));
+    return  query.publicAuthor.name.likeIgnoreCase(term)
+        .or(query.author.id.likeIgnoreCase(term))
+        .or(query.publicAuthor.phone.likeIgnoreCase(term))
+        .or(query.seoDescription.likeIgnoreCase(term))
+        .or(query.slug.likeIgnoreCase(term));
   }
 }

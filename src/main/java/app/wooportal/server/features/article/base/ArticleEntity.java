@@ -76,7 +76,7 @@ public class ArticleEntity extends BaseEntity {
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "article")
   private Set<ArticleRatingEntity> ratings;
-  
+
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
   protected Set<ArticleTranslatableEntity> translatables;
 

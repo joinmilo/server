@@ -13,6 +13,11 @@ public class DealPredicateBuilder extends PredicateBuilder<QDealEntity, DealEnti
 
   @Override
   public BooleanExpression freeSearch(String term) {
-    return query.seoDescription.likeIgnoreCase(term).or(query.slug.likeIgnoreCase(term));
+    return query.seoDescription.likeIgnoreCase(term)
+        .or(query.slug.likeIgnoreCase(term))
+        .or(query.contact.name.likeIgnoreCase(term))
+        .or(query.contact.email.likeIgnoreCase(term))
+        .or(query.translatables.any().shortDescription.likeIgnoreCase(term))
+        .or(query.translatables.any().name.likeIgnoreCase(term));
   }
 }

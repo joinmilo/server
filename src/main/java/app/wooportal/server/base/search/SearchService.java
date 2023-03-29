@@ -50,7 +50,7 @@ public class SearchService {
     this.surveyService = surveyService;
     this.userContextService = userContextService;
     this.featureService = featureService;
-    
+
   }
 
   public List<SearchDto> search(FilterSortPaginate params) {
@@ -65,7 +65,7 @@ public class SearchService {
     entities.addAll(dealService.readAll(params).getList());
     entities.addAll(surveyService.readAll(params).getList());
     entities.addAll(userContextService.readAll(params).getList());
-    
+
     var features = featureService.readAll().getList();
 
     // TODO Translatable names etc
@@ -133,8 +133,9 @@ public class SearchService {
         ? list.subList(0, params.getSize())
         : list;
   }
+
   private FeatureEntity getFeature(String key, List<FeatureEntity> features) {
-    for(var feature : features) {
+    for (var feature : features) {
       if (feature.getKey() == key) {
         return feature;
       }

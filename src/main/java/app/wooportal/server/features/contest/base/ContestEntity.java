@@ -9,6 +9,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import app.wooportal.server.core.base.BaseEntity;
+import app.wooportal.server.core.media.base.MediaEntity;
+import app.wooportal.server.features.contest.base.translations.ContestTranslatableEntity;
 import app.wooportal.server.features.contest.participation.ContestParticipationEntity;
 import app.wooportal.server.features.contest.state.ContestStateEntity;
 import app.wooportal.server.features.contest.type.ContestTypeEntity;
@@ -27,7 +29,7 @@ import lombok.Setter;
 public class ContestEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
-  
+
   private Date dueDate;
 
   private String seoDescription;
@@ -38,7 +40,7 @@ public class ContestEntity extends BaseEntity {
   private Boolean sponsored;
 
   @Column(nullable = false)
-  private Boolean votable;
+  private Boolean voteable;
 
   @Column(nullable = false)
   private Boolean multiVote;
@@ -50,10 +52,16 @@ public class ContestEntity extends BaseEntity {
   private Boolean offer;
 
   @ManyToOne(fetch = FetchType.LAZY)
+  private MediaEntity cardImage;
+  
+  @ManyToOne(fetch = FetchType.LAZY)
   private ContestStateEntity state;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private ContestTypeEntity type;
+
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
+  protected Set<ContestTranslatableEntity> translatables;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "contest")
   private Set<ContestParticipationEntity> participation;

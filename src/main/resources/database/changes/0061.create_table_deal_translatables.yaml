@@ -29,11 +29,14 @@ databaseChangeLog:
                   constraints:
                     nullable: false              
                   name: name
-                  type: VARCHAR(255)            
+                  type: VARCHAR(255)    
+              - column:           
+                  name: description
+                  type: VARCHAR(255)                           
               - column:
                   constraints:
                     nullable: false              
-                  name: content
+                  name: short_description
                   type: VARCHAR(255)                             
               - column:
                   constraints:
