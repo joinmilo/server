@@ -11,6 +11,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import app.wooportal.server.core.base.BaseEntity;
+import app.wooportal.server.core.media.base.MediaEntity;
 import app.wooportal.server.features.survey.assignment.AssignmentEntity;
 import app.wooportal.server.features.survey.base.translations.SurveyTranslatableEntity;
 import app.wooportal.server.features.survey.base.visitors.SurveyVisitorEntity;
@@ -42,6 +43,9 @@ public class SurveyEntity extends BaseEntity {
   private String slug;
   @Column(nullable = false)
   private Boolean sponsored;
+  
+  @ManyToOne(fetch = FetchType.LAZY)
+  private MediaEntity cardImage;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(nullable = false)

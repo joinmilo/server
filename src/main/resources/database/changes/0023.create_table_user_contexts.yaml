@@ -37,7 +37,7 @@ databaseChangeLog:
                   name: title_image_id
                   type: CHAR(36)      
               - column:
-                  name: profile_picture_id
+                  name: avatar_id
                   type: CHAR(36)                                                                                                                                                            
             tableName: user_contexts
         - sql:
@@ -133,7 +133,7 @@ databaseChangeLog:
         - createIndex:
             columns:
               - column:
-                  name: profile_picture_id
+                  name: avatar_id
             indexName: idx_fk950l3wuodg981lcqv0fohemj2
             tableName: user_contexts
   - changeSet:
@@ -141,7 +141,7 @@ databaseChangeLog:
       author: codeschluss
       changes:
         - addForeignKeyConstraint:
-            baseColumnNames: profile_picture_id
+            baseColumnNames: avatar_id
             baseTableName: user_contexts
             constraintName: fk950l3wuodg981lcqv0fohemj2
             deferrable: false

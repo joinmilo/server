@@ -57,7 +57,6 @@ public class LabelApi extends CrudApi<LabelEntity, LabelService> {
 
   @Override
   @GraphQLMutation(name = "deleteLabel")
-  @AdminPermission
   public Boolean deleteOne(@GraphQLArgument(name = CrudApi.id) String id) {
     return super.deleteOne(id);
   }

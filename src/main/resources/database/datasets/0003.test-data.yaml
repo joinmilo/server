@@ -125,3 +125,87 @@ databaseChangeLog:
                ('701de29d-0170-48fa-aa71-12e899500de6', 'logo', null, '3e791600-8e00-4069-a060-4862c44da93b'),
                ('458f85bb-ee49-44fa-8bc8-538b52c7b5e4', 'logoText', null, '6c92cfcd-d65d-47d9-bdc5-b8004afe916c'),
                ('0ad29ce1-a519-417c-91c5-28a346185542', 'favicon', null, 'fc8a64b5-7335-4309-a5c1-e9d2de53c338');
+
+  - changeSet:
+      id: 0003.test-data.9
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add data deal-category
+            splitStatements: true
+            sql: insert into deal_categories (id, color, icon) values
+              ('bcec76dd-d269-4081-af08-e3a9a72e9e00', '9#0000FF', 'icon');     
+              
+  - changeSet:
+      id: 0003.test-data.10
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add data contacts
+            splitStatements: true
+            sql: insert into contacts (id, name, email) values
+              ('3916b414-c2bf-4808-a401-284ac62df73d', 'guenther', 'guenther@example.com');                    
+              
+  - changeSet:
+      id: 0003.test-data.11
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add data deals
+            splitStatements: true
+            sql: insert into deals (id, price, contact_id, category_id) values
+              ('69f29c5f-5713-4549-902b-7157cb62b999', 5, '3916b414-c2bf-4808-a401-284ac62df73d', 'bcec76dd-d269-4081-af08-e3a9a72e9e00');    
+              
+  - changeSet:
+      id: 0003.test-data.12
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add data deal_translatables
+            splitStatements: true
+            sql: insert into deal_translatables (id, parent_id, language_id, short_description, name)
+                 select uuid(), "69f29c5f-5713-4549-902b-7157cb62b999", l.id, "GuterDeal!", "DealOne"
+                 from languages l
+                 WHERE l.locale = "de";     
+                 
+  - changeSet:
+      id: 0003.test-data.13
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add data contest_type
+            splitStatements: true
+            sql: insert into contest_types (id, `key`) values
+              ('112a561f-5d96-42dd-b851-62365e79147b', 'drawing');    
+              
+  - changeSet:
+      id: 0003.test-data.14
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add data contest_state
+            splitStatements: true
+            sql: insert into contest_states (id, `key`) values
+              ('41a73da0-6c95-4bfe-85a7-342c8dcf7da9', 'started');                             
+
+  - changeSet:
+      id: 0003.test-data.15
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add data contest
+            splitStatements: true
+            sql: insert into contests (id, due_date, card_image_id, type_id, state_id) values
+              ('5dc59462-91f6-402d-82ae-a8fd65fbfa42', '2020-02-13 10:39:28', '08157b8b-b7db-437b-a210-017c9f50ba03', '112a561f-5d96-42dd-b851-62365e79147b', '41a73da0-6c95-4bfe-85a7-342c8dcf7da9');    
+              
+  - changeSet:
+      id: 0003.test-data.16
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add data contest_translatables
+            splitStatements: true
+            sql: insert into contest_translatables (id, parent_id, language_id, short_description, name, description)
+                 select uuid(), "5dc59462-91f6-402d-82ae-a8fd65fbfa42", l.id, "Feel free to join the very first art contest!", "DrawABike", "no description"
+                 from languages l
+                 WHERE l.locale = "de";

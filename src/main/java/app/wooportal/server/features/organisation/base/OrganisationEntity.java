@@ -57,7 +57,7 @@ public class OrganisationEntity extends BaseEntity {
   private AddressEntity address;
 
   @ManyToOne(fetch = FetchType.LAZY)
-  private MediaEntity cardImage;
+  private MediaEntity avatar;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private ContactEntity contact;

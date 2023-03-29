@@ -21,6 +21,7 @@ import app.wooportal.server.base.contact.ContactEntity;
 import app.wooportal.server.base.userContext.base.UserContextEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.media.base.MediaEntity;
+import app.wooportal.server.features.deal.base.translations.DealTranslatableEntity;
 import app.wooportal.server.features.deal.base.visitors.DealVisitorEntity;
 import app.wooportal.server.features.deal.category.DealCategoryEntity;
 import lombok.AccessLevel;
@@ -74,6 +75,9 @@ public class DealEntity extends BaseEntity {
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
   private Set<DealVisitorEntity> visitors;
+
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
+  protected Set<DealTranslatableEntity> translatables;
 
   @ManyToMany(fetch = FetchType.LAZY)
   @JoinTable(name = "deal_media", joinColumns = @JoinColumn(name = "deal_id"),
