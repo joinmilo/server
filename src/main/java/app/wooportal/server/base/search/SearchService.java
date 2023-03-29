@@ -50,7 +50,6 @@ public class SearchService {
     this.surveyService = surveyService;
     this.userContextService = userContextService;
     this.featureService = featureService;
-
   }
 
   public List<SearchDto> search(FilterSortPaginate params) {

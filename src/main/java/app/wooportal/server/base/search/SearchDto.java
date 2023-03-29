@@ -15,10 +15,6 @@ public class SearchDto {
 
   private String id;
 
-<<<<<<< Upstream, based on main
   private FeatureEntity feature;
-=======
-  private SearchResultType type;
->>>>>>> 21479ea #498 searchApi and testData
 
 }
