@@ -31,7 +31,7 @@ databaseChangeLog:
             splitStatements: true
             sql:           
                 insert into pages (id, slug, seo_description, is_landing, call_url)
-                select "7cefc60c-8325-4861-90c7-97f1e8eeb290", "landing", null, true, null;
+                select "7cefc60c-8325-4861-90c7-97f1e8eeb290", "landing", null, true, "http://localhost:8010";
                 
                 insert into page_translatables (id, `name`, short_description, call_text, parent_id, language_id)
                 select uuid(), "Wooportal", "Here you will find all event and news from your city", "Discover more", p.id, l.id

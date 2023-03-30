@@ -16,8 +16,8 @@ import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 @Component
 public class MenuItemApi extends CrudApi<MenuItemEntity, MenuItemService> {
 
-  public MenuItemApi(MenuItemService userService) {
-    super(userService);
+  public MenuItemApi(MenuItemService menuItemService) {
+    super(menuItemService);
   }
 
   @Override
