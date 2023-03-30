@@ -1,4 +1,4 @@
-package app.wooportal.server.core.hcaptcha;
+package app.wooportal.server.core.captcha;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
@@ -17,4 +17,6 @@ import lombok.Setter;
 public class CaptchaConfiguration {
   
   private String secret;
+  
+  private String verificationUrl;
 }
