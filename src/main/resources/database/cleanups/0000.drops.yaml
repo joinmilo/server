@@ -1,7 +1,7 @@
 databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
-      id: 0096.migrate_cleanUp.1
+      id: 0000.drops.1
       author: codeschluss
       changes:
         - sql:  
@@ -12,7 +12,7 @@ databaseChangeLog:
             ALTER TABLE articles DROP FOREIGN KEY CONSTRAINT_LWCH48H6;                        
             
   - changeSet:
-      id: 0096.migrate_cleanUp.2
+      id: 0000.drops.2
       author: codeschluss
       changes:
       - dropColumn:
@@ -41,7 +41,7 @@ databaseChangeLog:
           tableName: organisations                                            
 
   - changeSet:
-      id: 0096.migrate_cleanUp.3
+      id: 0000.drops.3
       author: codeschluss
       changes:
         - dropTable:
@@ -65,7 +65,7 @@ databaseChangeLog:
             tableName: blog_likes
 
   - changeSet:
-      id: 0096.migrate_cleanUp.4
+      id: 0000.drops.4
       author: codeschluss
       changes:
         - dropForeignKeyConstraint:
@@ -73,7 +73,7 @@ databaseChangeLog:
             constraintName: CONSTRAINT_8C7DC395             
 
   - changeSet:
-      id: 0096.migrate_cleanUp.5
+      id: 0000.drops.5
       author: codeschluss
       changes:
         - renameColumn:
@@ -81,8 +81,44 @@ databaseChangeLog:
             oldColumnName: activity_id
             columnDataType: char(36)
             tableName: event_event_target_groups
-           
-                 
+
+  - changeSet:
+      id: 0000.drops.6
+      author: codeschluss
+      changes:
+        - dropTable:
+            cascadeConstraints: true
+            tableName: activity_likes
+            
+  - changeSet:
+      id: 0000.drops.7
+      author: codeschluss
+      changes:
+        - dropTable:
+            cascadeConstraints: true
+            tableName: activity_subscriptions
+
+  - changeSet:
+      id: 0000.drops.8
+      author: codeschluss
+      changes:
+      - dropColumn:
+          columns:
+            - column:
+                name: name
+            - column:
+                name: superuser
+            - column:
+                name: translator                               
+          tableName: users
+
+  - changeSet:
+      id: 0000.drops.9
+      author: codeschluss
+      changes:
+      - dropColumn:
+          columnName: image
+          tableName: media
                  
 
           

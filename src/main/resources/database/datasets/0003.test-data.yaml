@@ -1,7 +1,7 @@
 databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
-      id: test-data.1
+      id: 0003.test-data.1
       author: codeschluss
       changes:
         - sql:
@@ -12,7 +12,7 @@ databaseChangeLog:
               
               
   - changeSet:
-      id: test-data.2
+      id: 0003.test-data.2
       author: codeschluss
       changes:
         - sql:
@@ -23,7 +23,7 @@ databaseChangeLog:
                  from languages l
                  WHERE l.locale = "de";              
   - changeSet:
-      id: test-data.3
+      id: 0003.test-data.3
       author: codeschluss
       changes:
         - sql:
@@ -45,7 +45,7 @@ databaseChangeLog:
                 WHERE p.slug = "landing" AND
                 l.locale = "de";
   - changeSet:
-      id: test-data.4
+      id: 0003.test-data.4
       author: codeschluss
       changes:
         - sql:
@@ -73,7 +73,7 @@ databaseChangeLog:
                 WHERE f.key = "contests";
                 
   - changeSet:
-      id: test-data.5
+      id: 0003.test-data.5
       author: codeschluss
       changes:
         - sql:
@@ -84,12 +84,12 @@ databaseChangeLog:
               ('7bacd58e-1824-492a-937c-5ec36b104d04', 'ab7a5460-2833-4d97-a36e-c00542d3e201', 'google.com');
               
   - changeSet:
-      id: test-data.6
+      id: 0003.test-data.6
       author: codeschluss
       changes:
         - sql:
             comment: Update captcha sitekey to test key
             splitStatements: true
             sql: update configurations
-                 set value = '20000000-ffff-ffff-ffff-000000000002'
+                 set value = '20000000-ffff-ffff-ffff-000000000003'
                  where `key` = 'sitekey';

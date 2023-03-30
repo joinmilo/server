@@ -34,21 +34,7 @@ databaseChangeLog:
                 update users set
                     verified = true,
                     first_name = SUBSTRING_INDEX(name, ' ', 1),
-                    last_name = SUBSTRING_INDEX(name, ' ', -1);
-                
-  - changeSet:
-      id: 0005.migrate_data_users.3
-      author: codeschluss
-      changes:
-      - dropColumn:
-          columns:
-            - column:
-                name: name
-            - column:
-                name: superuser
-            - column:
-                name: translator                               
-          tableName: users    
+                    last_name = SUBSTRING_INDEX(name, ' ', -1); 
           
   - changeSet:
       id: 0005.migrate_data_users.4

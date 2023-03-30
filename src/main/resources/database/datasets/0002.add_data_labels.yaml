@@ -1,0 +1,25 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent                
+  - changeSet:
+      id: 0002.add_data_labels.1
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add labels for giveUsFeedback
+            splitStatements: true
+            sql:           
+                
+                insert into labels (`id`, `tag_id`) values
+                (uuid(), "giveUsFeedback");
+                
+                insert into label_translatables (`id`, `content`, parent_id, language_id)
+                select uuid(), "Gib uns dein Feedback!", p.id, l.id
+                from labels p, languages l
+                WHERE p.tag_id = "giveUsFeedback"
+                AND l.locale = "de";
+                
+                insert into label_translatables (`id`, `content`, parent_id, language_id)
+                select uuid(), "Give us your feedback!", p.id, l.id
+                from labels p, languages l
+                WHERE p.tag_id = "giveUsFeedback"
+                AND l.locale = "en";

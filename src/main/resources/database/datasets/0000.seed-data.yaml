@@ -1,0 +1,161 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+  - changeSet:
+      id: 0000.seed-data.1
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add initial role data
+            splitStatements: true
+            sql: insert into `roles` (id, `key`) values
+              ("1f222bdd-b241-4c7d-8adb-c3b11e366a2b", "translator"),
+              ("0b8e5964-7687-4cc3-9519-3c570420bb22", "admin"),
+              ("1485fce0-9814-4981-bab5-cb1daf009675", "author"),
+              ("661fe5a9-b6cb-434c-90f7-d6013c78a4dc", "organizer");
+  - changeSet:
+      id: 0000.seed-data.2
+      author: codeschluss
+      changes:
+        - sql:
+            comment: add default translations for roles
+            splitStatements: true
+            sql:
+                /*!40101 SET character_set_client = utf8 */;
+                
+                insert into user_roles (id, user_id, role_id)
+                select uuid(), u.id, "0b8e5964-7687-4cc3-9519-3c570420bb22"
+                from users u
+                WHERE u.superuser = true;
+                
+                insert into user_roles (id, user_id, role_id)
+                select uuid(), u.id, "1f222bdd-b241-4c7d-8adb-c3b11e366a2b"
+                from users u
+                WHERE u.translator = true;
+                                
+                insert into user_roles (id, user_id, role_id)
+                select uuid(), u.id, "1485fce0-9814-4981-bab5-cb1daf009675"
+                from users u
+                WHERE u.blogger_id != null;
+  - changeSet:
+      id: 0000.seed-data.3
+      author: codeschluss
+      changes:
+        - sql:
+            comment: add default translations for roles
+            splitStatements: true
+            sql:
+                /*!40101 SET character_set_client = utf8 */;
+                
+                insert into role_translatables (id, parent_id, language_id, `name`)
+                select uuid(), "1f222bdd-b241-4c7d-8adb-c3b11e366a2b", l.id, "Übersetzer"
+                from languages l
+                WHERE l.locale = "de";
+                
+                insert into role_translatables (id, parent_id, language_id, `name`)
+                select uuid(), "1f222bdd-b241-4c7d-8adb-c3b11e366a2b", l.id, "Translator"
+                from languages l
+                WHERE l.locale = "en";
+                
+                insert into role_translatables (id, parent_id, language_id, `name`)
+                select uuid(), "0b8e5964-7687-4cc3-9519-3c570420bb22", l.id, "Administrator"
+                from languages l
+                WHERE l.locale = "de";
+                
+                insert into role_translatables (id, parent_id, language_id, `name`)
+                select uuid(), "0b8e5964-7687-4cc3-9519-3c570420bb22", l.id, "Admin"
+                from languages l
+                WHERE l.locale = "en";
+                
+                insert into role_translatables (id, parent_id, language_id, `name`)
+                select uuid(), "1485fce0-9814-4981-bab5-cb1daf009675", l.id, "Blogger"
+                from languages l
+                WHERE l.locale = "de";
+                
+                insert into role_translatables (id, parent_id, language_id, `name`)
+                select uuid(), "1485fce0-9814-4981-bab5-cb1daf009675", l.id, "Blogger"
+                from languages l
+                WHERE l.locale = "en";
+                
+                insert into role_translatables (id, parent_id, language_id, `name`)
+                select uuid(), "661fe5a9-b6cb-434c-90f7-d6013c78a4dc", l.id, "Veranstalter"
+                from languages l
+                WHERE l.locale = "de";
+                
+                insert into role_translatables (id, parent_id, language_id, `name`)
+                select uuid(), "661fe5a9-b6cb-434c-90f7-d6013c78a4dc", l.id, "Organizer"
+                from languages l
+                WHERE l.locale = "en";
+  - changeSet:
+      id: 0000.seed-data.4
+      author: codeschluss
+      changes:
+        - sql:
+            comment: add user context data for every user
+            splitStatements: true
+            sql:
+                /*!40101 SET character_set_client = utf8 */;
+                
+                insert into user_contexts (id, user_id)
+                select uuid(), u.id
+                from users u 
+
+  - changeSet:
+      id: 0000.seed-data.5
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add data report_types
+            splitStatements: true
+            sql: insert into report_types (id) values
+              ('29c9ebf0-ac66-4752-a123-82f691cd8d72'),
+              ('53ec6fb9-e452-44fb-b4f6-d090414bcd5b'),
+              ('e1f8a1b3-30f7-40f2-bb55-b59b70e80862'),
+              ('c3273703-e588-445d-a57d-0abce6b9e58f');
+              
+  - changeSet:
+      id: 0000.seed-data.6
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add data report_type_translatables
+            splitStatements: true
+            sql: insert into report_type_translatables (id, parent_id, language_id, `name`)
+                 select uuid(), "29c9ebf0-ac66-4752-a123-82f691cd8d72", l.id, "Verbesserungsvorschläge"
+                 from languages l
+                 WHERE l.locale = "de";
+                 
+                 insert into report_type_translatables (id, parent_id, language_id, `name`)
+                 select uuid(), "53ec6fb9-e452-44fb-b4f6-d090414bcd5b", l.id, "Fehler"
+                 from languages l
+                 WHERE l.locale = "de";  
+                 
+                 insert into report_type_translatables (id, parent_id, language_id, `name`)
+                 select uuid(), "e1f8a1b3-30f7-40f2-bb55-b59b70e80862", l.id, "Fragen"
+                 from languages l
+                 WHERE l.locale = "de";      
+                 
+                 insert into report_type_translatables (id, parent_id, language_id, `name`)
+                 select uuid(), "c3273703-e588-445d-a57d-0abce6b9e58f", l.id, "Sonstiges"
+                 from languages l
+                 WHERE l.locale = "de";
+
+  - changeSet:
+      id: 0000.seed-data.7
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add data hcaptcha to config
+            splitStatements: true
+            sql: insert into configurations (id, `key`, `value`) values
+              ('ad024a93-6f72-408f-992f-00c6639b0752', 'sitekey', '8d4dfccc-7457-46ce-8bc6-1646b7f637dd');
+              
+  - changeSet:
+      id: 0000.seed-data.8
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add App platforms
+            splitStatements: true
+            sql: insert into app_platforms (id, `key`, `name`) values
+              ('9fc24c85-0ca6-4e20-a551-e77b58aff4f4', 'apple', 'Apple App Store'),
+              ('ab7a5460-2833-4d97-a36e-c00542d3e201', 'google', 'Google Play Store');

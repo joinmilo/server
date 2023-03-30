@@ -96,30 +96,4 @@ databaseChangeLog:
                   name: role_id
             indexName: idx_ukc8uysexawf7i37tkjzgmtrl93
             tableName: user_roles
-            unique: true    
-                               
-  - changeSet:
-      id: 0004.add_data_user_roles.7
-      author: codeschluss
-      changes:
-        - sql:
-            comment: add default translations for roles
-            splitStatements: true
-            sql:
-                /*!40101 SET character_set_client = utf8 */;
-                
-                insert into user_roles (id, user_id, role_id)
-                select uuid(), u.id, "0b8e5964-7687-4cc3-9519-3c570420bb22"
-                from users u
-                WHERE u.superuser = true;
-                
-                insert into user_roles (id, user_id, role_id)
-                select uuid(), u.id, "1f222bdd-b241-4c7d-8adb-c3b11e366a2b"
-                from users u
-                WHERE u.translator = true;
-                                
-                insert into user_roles (id, user_id, role_id)
-                select uuid(), u.id, "1485fce0-9814-4981-bab5-cb1daf009675"
-                from users u
-                WHERE u.blogger_id != null;                                
-                
+            unique: true                                

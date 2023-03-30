@@ -7,8 +7,6 @@ databaseChangeLog:
     - include:
         file: database/changes/0002.create_table_roles_translatables.yaml
     - include:
-        file: database/changes/0003.migrate_data_roles.yaml
-    - include:
         file: database/changes/0004.migrate_data_user_roles.yaml
     - include:
         file: database/changes/0005.migrate_data_users.yaml
@@ -58,8 +56,6 @@ databaseChangeLog:
         file: database/changes/0027.migrate_data_event_target_group_translatables.yaml     
     - include:
         file: database/changes/0028.create_table_attendee_configurations.yaml  
-    - include:
-        file: database/changes/0029.migrate_data_user_contexts.yaml 
     - include:
         file: database/changes/0030.migrate_data_events.yaml          
     - include:
@@ -169,8 +165,6 @@ databaseChangeLog:
     - include:
         file: database/changes/0085.create_tables_theme_variables_and_themes.yaml  
     - include:
-        file: database/changes/0086.drop_tables.yaml      
-    - include:
         file: database/changes/0089.create_table_verifications.yaml   
     - include:
         file: database/changes/0090.create_table_password_resets.yaml
@@ -183,19 +177,11 @@ databaseChangeLog:
     - include:
         file: database/changes/0094.create_table_error_messages.yaml
     - include:
-       file: database/changes/0095.add_data_menu_items.yaml    
-    - include:
-        file: database/changes/0096.migrate_cleanUp.yaml
-    - include:
         file: database/changes/0097.create_table_apps.yaml
-    - include:
-        file: database/changes/0098.add_data_apps.yaml
     - include:
         file: database/changes/0099.transform_short_descriptions.yaml
     - include:
         file: database/changes/0100.transform_images.yaml
-    - include:
-        file: database/changes/0101.drop_column_images.yaml
     - include:
         file: database/changes/0102.migrate_table_images.yaml
     - include:
@@ -206,10 +192,17 @@ databaseChangeLog:
         file: database/changes/0105.create_table_report_translatables.yaml    
     - include:
         file: database/changes/0106.create_table_report_type_translatables.yaml
+        
+    #Data section
     - include:
-        file: database/changes/0107.add_data_reports_report_types.yaml
+        file: database/datasets/0000.seed-data.yaml
     - include:
-        file: database/changes/0108.insert_sitekey_hcaptcha.yaml        
+        file: database/datasets/0001.add_data_menu_items.yaml
     - include:
-        file: database/datasets/test-data.yaml    
-                                         
+        file: database/datasets/0002.add_data_labels.yaml
+    - include:
+        file: database/datasets/0003.test-data.yaml
+        
+     #Cleanups
+    - include:
+        file: database/cleanups/0000.drops.yaml

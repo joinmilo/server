@@ -1,7 +1,7 @@
   databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
-      id: 0095.add_data_menu_items.1
+      id: 0001.add_data_menu_items.1
       author: codeschluss
       changes:
         - sql:
@@ -16,10 +16,11 @@
               ('0633fd36-707a-42ee-878f-21e43f458aa9', 'own_article'),
               ('909fca09-78bb-42dd-95d0-164ceb1d9192', 'media'),
               ('8f1faa18-3204-4ab1-9f71-18317d1a3d89', 'deals'),
-              ('17d083d2-3bf0-4efb-97ef-17d08cba37f4', 'forms');
+              ('17d083d2-3bf0-4efb-97ef-17d08cba37f4', 'forms'),
+              ('bc1e70f7-5e83-484a-8f44-2a6485727ce9', 'reports');
                 
   - changeSet:
-      id: 0095.add_data_menu_items.2
+      id: 0001.add_data_menu_items.2
       author: codeschluss                
       changes:
         - sql:
@@ -43,7 +44,7 @@
                 f.key = "blogposts";                
                      
   - changeSet:
-      id: 0095.add_data_menu_items.3
+      id: 0001.add_data_menu_items.3
       author: codeschluss
       changes:
         - sql:
@@ -195,7 +196,7 @@
                 f.key = "forms";                                                                                                    
 
   - changeSet:
-      id: 0095.add_data_menu_items.4
+      id: 0001.add_data_menu_items.4
       author: codeschluss
       changes:
         - sql:
@@ -217,10 +218,11 @@
               ('b1d9d0ba-7f07-4ccc-acf0-aa96052e85e8', true, 2, null, null, null),
               ('1c919ec0-8d29-4bb6-8d52-6db881a1d3ea', true, 0, 'b1d9d0ba-7f07-4ccc-acf0-aa96052e85e8', '909d5070-f915-4891-b78b-1ef83690fddf', null),
               ('947b7507-d10b-477a-99eb-d8510c4b12e2', true, 1, 'b1d9d0ba-7f07-4ccc-acf0-aa96052e85e8', '492fa827-9fb4-4294-906d-b85e5bdb6890', null),
-              ('555d678d-954f-43c9-ae63-5329df968da2', true, 2, 'b1d9d0ba-7f07-4ccc-acf0-aa96052e85e8', '0633fd36-707a-42ee-878f-21e43f458aa9', null);   
+              ('555d678d-954f-43c9-ae63-5329df968da2', true, 2, 'b1d9d0ba-7f07-4ccc-acf0-aa96052e85e8', '0633fd36-707a-42ee-878f-21e43f458aa9', null),
+              ('cd16fa6f-8a80-42d9-9174-0b981ed028c2', true, 3, 'b1d9d0ba-7f07-4ccc-acf0-aa96052e85e8', 'bc1e70f7-5e83-484a-8f44-2a6485727ce9', null);   
               
   - changeSet:
-      id: 0095.add_data_menu_items.5
+      id: 0001.add_data_menu_items.5
       author: codeschluss
       changes:
         - sql:
@@ -248,7 +250,7 @@
                 WHERE p.name = "Über uns";
               
   - changeSet:
-      id: 0095.add_data_menu_items.6
+      id: 0001.add_data_menu_items.6
       author: codeschluss
       changes:
         - sql:
@@ -409,4 +411,14 @@
                 insert into menu_item_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Own Articles", "555d678d-954f-43c9-ae63-5329df968da2",l.id
                 from languages l
-                WHERE l.locale = "en";            
+                WHERE l.locale = "en";
+                
+                insert into menu_item_translatables (id, `name`, parent_id, language_id)
+                select uuid(), "Feedback", "cd16fa6f-8a80-42d9-9174-0b981ed028c2", l.id
+                from languages l
+                WHERE l.locale = "de";
+                
+                insert into menu_item_translatables (id, `name`, parent_id, language_id)
+                select uuid(), "Feedback", "cd16fa6f-8a80-42d9-9174-0b981ed028c2", l.id
+                from languages l
+                WHERE l.locale = "en";
