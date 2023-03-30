@@ -25,8 +25,8 @@ public class ReportService extends DataService<ReportEntity, ReportPredicateBuil
   public void preSave(ReportEntity entity, ReportEntity newEntity, JsonNode context) {
 
     //TODO: Make an hook for specific validations
-    if (entity.getCaptchaToken() != null && !entity.getCaptchaToken().isEmpty()) {
-      captchaService.verifyToken(entity.getCaptchaToken());
+    if (newEntity.getCaptchaToken() != null && !newEntity.getCaptchaToken().isEmpty()) {
+      captchaService.verifyToken(newEntity.getCaptchaToken());
     } else {
       throw new BadParamsException("Captcha token empty or null", null);
     }

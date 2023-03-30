@@ -46,7 +46,6 @@ public class ReportApi extends CrudApi<ReportEntity, ReportService> {
   @Override
   @GraphQLMutation(name = "saveReport")
   public ReportEntity saveOne(@GraphQLArgument(name = CrudApi.entity) ReportEntity entity) {
-    service.preSave(entity, entity, null);
     return super.saveOne(entity);
   }
 

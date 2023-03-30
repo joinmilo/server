@@ -8,6 +8,7 @@ import java.net.http.HttpRequest.BodyPublishers;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.net.http.HttpTimeoutException;
 import java.time.Duration;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import app.wooportal.server.core.error.exception.InvalidCaptchaException;
@@ -30,7 +31,7 @@ public class CaptchaService {
     try {
       var request = HttpRequest.newBuilder()
           .uri(URI.create(config.getVerificationUrl()))
-          .header("Content-Type", "application/x-www-form-urlencoded")
+          .header("Content-Type", MediaType.APPLICATION_FORM_URLENCODED_VALUE)
           .timeout(Duration.ofSeconds(10))
           .POST(BodyPublishers.ofString(createBody(captchaToken))).build();
       
