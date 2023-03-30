@@ -39,7 +39,7 @@ public class ReportEntity extends BaseEntity {
   private static final long serialVersionUID = 1L;
 
   @Transient
-  private String captcha;
+  private String captchaToken;
 
   @Column(nullable = false)
   private String email;
