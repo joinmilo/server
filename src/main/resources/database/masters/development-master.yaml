@@ -209,5 +209,7 @@ databaseChangeLog:
     - include:
         file: database/changes/0107.add_data_reports_report_types.yaml
     - include:
+        file: database/changes/0108.insert_sitekey_hcaptcha.yaml        
+    - include:
         file: database/datasets/test-data.yaml    
                                          
