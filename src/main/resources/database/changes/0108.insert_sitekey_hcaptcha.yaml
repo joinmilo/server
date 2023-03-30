@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+  - changeSet:
+      id: insert_sitekey_hcaptcha.1
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add data hcaptcha to config
+            splitStatements: true
+            sql: insert into configurations (id, `key`, `value`) values
+              ('ad024a93-6f72-408f-992f-00c6639b0752', 'sitekey', '8d4dfccc-7457-46ce-8bc6-1646b7f637dd');
