@@ -16,4 +16,8 @@ public class LabelPredicateBuilder extends PredicateBuilder<QLabelEntity, LabelE
     return query.tagId.likeIgnoreCase(term)
         .or(query.translatables.any().content.likeIgnoreCase(term));
   }
+
+  public BooleanExpression withTagId(String tagId) {
+    return query.tagId.eq(tagId);
+  }
 }
