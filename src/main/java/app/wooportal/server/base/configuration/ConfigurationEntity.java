@@ -2,8 +2,11 @@ package app.wooportal.server.base.configuration;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import app.wooportal.server.core.base.BaseEntity;
+import app.wooportal.server.core.media.base.MediaEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,7 +28,9 @@ public class ConfigurationEntity extends BaseEntity {
       unique = true)
   private String key;
   
-  @Column(nullable = false)
   private String value;
+  
+  @ManyToOne(fetch = FetchType.LAZY)
+  private MediaEntity media;
 
 }

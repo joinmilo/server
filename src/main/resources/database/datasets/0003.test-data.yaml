@@ -1,7 +1,21 @@
 databaseChangeLog:
   - logicalFilePath: path_independent
+
   - changeSet:
       id: 0003.test-data.1
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add media
+            splitStatements: true
+            sql:                           
+               insert into media (`id`, `name`, `mime_type`) values
+               ('3e791600-8e00-4069-a060-4862c44da93b', 'logo', 'image/png'),
+               ('1774bd91-1698-4c4a-8f16-3a0a98fdef32', 'landing', 'image/jpeg'),
+               ('fc8a64b5-7335-4309-a5c1-e9d2de53c338', 'favicon', 'image/x-icon');
+
+  - changeSet:
+      id: 0003.test-data.2
       author: codeschluss
       changes:
         - sql:
@@ -10,9 +24,8 @@ databaseChangeLog:
             sql: insert into reports (id, `name`, email, type_id) values
               ('29c9ebf0-ac66-4752-a123-82f691cd8d72', 'TestFeedback', 'Feedback@example.com', '29c9ebf0-ac66-4752-a123-82f691cd8d72');
               
-              
   - changeSet:
-      id: 0003.test-data.2
+      id: 0003.test-data.3
       author: codeschluss
       changes:
         - sql:
@@ -23,15 +36,15 @@ databaseChangeLog:
                  from languages l
                  WHERE l.locale = "de";              
   - changeSet:
-      id: 0003.test-data.3
+      id: 0003.test-data.4
       author: codeschluss
       changes:
         - sql:
             comment: Add Landing Page and translatable
             splitStatements: true
             sql:           
-                insert into pages (id, slug, seo_description, is_landing, call_url)
-                select "7cefc60c-8325-4861-90c7-97f1e8eeb290", "landing", null, true, "http://localhost:8010";
+                insert into pages (id, title_image_id, slug, seo_description, is_landing, call_url)
+                select "7cefc60c-8325-4861-90c7-97f1e8eeb290", "1774bd91-1698-4c4a-8f16-3a0a98fdef32", "landing", null, true, "http://localhost:8010";
                 
                 insert into page_translatables (id, `name`, short_description, call_text, parent_id, language_id)
                 select uuid(), "Wooportal", "Here you will find all event and news from your city", "Discover more", p.id, l.id
@@ -45,7 +58,7 @@ databaseChangeLog:
                 WHERE p.slug = "landing" AND
                 l.locale = "de";
   - changeSet:
-      id: 0003.test-data.4
+      id: 0003.test-data.5
       author: codeschluss
       changes:
         - sql:
@@ -73,18 +86,18 @@ databaseChangeLog:
                 WHERE f.key = "contests";
                 
   - changeSet:
-      id: 0003.test-data.5
+      id: 0003.test-data.6
       author: codeschluss
       changes:
         - sql:
             comment: Add data apps
             splitStatements: true
             sql: insert into apps (id, platform_id, url) values
-              ('bcf6800f-d49f-4857-bd38-339b2cbad3f5', '9fc24c85-0ca6-4e20-a551-e77b58aff4f4', 'android.com'),
-              ('7bacd58e-1824-492a-937c-5ec36b104d04', 'ab7a5460-2833-4d97-a36e-c00542d3e201', 'google.com');
+              ('bcf6800f-d49f-4857-bd38-339b2cbad3f5', '9fc24c85-0ca6-4e20-a551-e77b58aff4f4', 'https://www.apple.com/app-store/'),
+              ('7bacd58e-1824-492a-937c-5ec36b104d04', 'ab7a5460-2833-4d97-a36e-c00542d3e201', 'https://play.google.com');
               
   - changeSet:
-      id: 0003.test-data.6
+      id: 0003.test-data.7
       author: codeschluss
       changes:
         - sql:
@@ -93,3 +106,15 @@ databaseChangeLog:
             sql: update configurations
                  set value = '20000000-ffff-ffff-ffff-000000000003'
                  where `key` = 'sitekey';
+                 
+  - changeSet:
+      id: 0003.test-data.8
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Update captcha sitekey to test key
+            splitStatements: true
+            sql:
+               insert into configurations (`id`, `key`, `value`, `media_id`) values
+               ('701de29d-0170-48fa-aa71-12e899500de6', 'logo', null, '3e791600-8e00-4069-a060-4862c44da93b'),
+               ('0ad29ce1-a519-417c-91c5-28a346185542', 'favicon', null, 'fc8a64b5-7335-4309-a5c1-e9d2de53c338');

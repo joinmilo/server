@@ -192,6 +192,8 @@ databaseChangeLog:
         file: database/changes/0105.create_table_report_translatables.yaml    
     - include:
         file: database/changes/0106.create_table_report_type_translatables.yaml
+    - include:
+        file: database/changes/0107.add_column_configurations_media.yaml
         
     #Data section        
     - include:
