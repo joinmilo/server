@@ -144,10 +144,11 @@ databaseChangeLog:
       author: codeschluss
       changes:
         - sql:
-            comment: Add data hcaptcha to config
+            comment: Add new configs
             splitStatements: true
-            sql: insert into configurations (id, `key`, `value`) values
-              ('ad024a93-6f72-408f-992f-00c6639b0752', 'hCaptchaSitekey', '8d4dfccc-7457-46ce-8bc6-1646b7f637dd');
+            sql: insert into configurations (`id`, `key`, `value`) values
+              ('ad024a93-6f72-408f-992f-00c6639b0752', 'hCaptchaSitekey', '8d4dfccc-7457-46ce-8bc6-1646b7f637dd'),
+              ('8a5e5a03-7c9f-4bcc-820c-514bb5cc618f', 'defaultLocale', 'de');
               
   - changeSet:
       id: 0000.seed-data.8

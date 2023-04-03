@@ -11,7 +11,7 @@ databaseChangeLog:
             sql:                           
                insert into media (`id`, `name`, `mime_type`) values
                ('3e791600-8e00-4069-a060-4862c44da93b', 'logo', 'image/png'),
-               ('1774bd91-1698-4c4a-8f16-3a0a98fdef32', 'landing', 'image/jpeg'),
+               ('1774bd91-1698-4c4a-8f16-3a0a98fdef32', 'landing', 'image/jpg'),
                ('fc8a64b5-7335-4309-a5c1-e9d2de53c338', 'favicon', 'image/x-icon'),
                ('6c92cfcd-d65d-47d9-bdc5-b8004afe916c', 'logoText', 'image/png');
 
