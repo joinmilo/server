@@ -13,7 +13,7 @@
               ('41cdbfa8-e751-41d4-b893-5c7215ec55e9', 'calendar'),
               ('909d5070-f915-4891-b78b-1ef83690fddf', 'surveys'),
               ('492fa827-9fb4-4294-906d-b85e5bdb6890', 'contests'),
-              ('0633fd36-707a-42ee-878f-21e43f458aa9', 'own_article'),
+              ('0633fd36-707a-42ee-878f-21e43f458aa9', 'guestarticle'),
               ('909fca09-78bb-42dd-95d0-164ceb1d9192', 'media'),
               ('8f1faa18-3204-4ab1-9f71-18317d1a3d89', 'deals'),
               ('17d083d2-3bf0-4efb-97ef-17d08cba37f4', 'forms'),
@@ -151,13 +151,13 @@
                 select uuid(), "Eigener_Artikel", f.id, l.id
                 from languages l, features f
                 WHERE l.locale = "de" AND
-                f.key = "own_article";
+                f.key = "guestarticle";
                 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Own_Article", f.id, l.id
                 from languages l, features f
                 WHERE l.locale = "en" AND
-                f.key = "own_article";      
+                f.key = "guestarticle";      
                 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Media", f.id, l.id

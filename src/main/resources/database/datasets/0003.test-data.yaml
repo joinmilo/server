@@ -105,7 +105,7 @@ databaseChangeLog:
             comment: Update captcha sitekey to test key
             splitStatements: true
             sql: update configurations
-                 set value = '20000000-ffff-ffff-ffff-000000000003'
+                 set value = '10000000-ffff-ffff-ffff-000000000001'
                  where `key` = 'hCaptchaSitekey';
                  
   - changeSet:
