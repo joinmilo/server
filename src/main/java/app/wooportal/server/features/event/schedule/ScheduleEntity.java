@@ -8,6 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import app.wooportal.server.core.base.BaseEntity;
+import app.wooportal.server.core.config.DefaultSort;
 import app.wooportal.server.features.event.base.EventEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -29,6 +30,7 @@ public class ScheduleEntity extends BaseEntity {
   private OffsetDateTime endDate;
 
   @Column(name = "start_date")
+  @DefaultSort
   private OffsetDateTime startDate;
 
   @ManyToOne(fetch = FetchType.LAZY)

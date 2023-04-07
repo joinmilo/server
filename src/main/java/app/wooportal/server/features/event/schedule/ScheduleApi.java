@@ -17,8 +17,8 @@ import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 public class ScheduleApi extends CrudApi<ScheduleEntity, ScheduleService> {
 
 
-  public ScheduleApi(ScheduleService userService) {
-    super(userService);
+  public ScheduleApi(ScheduleService scheduleService) {
+    super(scheduleService);
   }
 
   @Override

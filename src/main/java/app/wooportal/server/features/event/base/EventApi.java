@@ -1,12 +1,16 @@
 package app.wooportal.server.features.event.base;
 
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Component;
 import app.wooportal.server.core.base.CrudApi;
 import app.wooportal.server.core.base.dto.listing.FilterSortPaginate;
 import app.wooportal.server.core.base.dto.listing.PageableList;
+import app.wooportal.server.features.event.schedule.ScheduleEntity;
+import app.wooportal.server.features.event.schedule.ScheduleService;
 import io.leangen.graphql.annotations.GraphQLArgument;
+import io.leangen.graphql.annotations.GraphQLContext;
 import io.leangen.graphql.annotations.GraphQLMutation;
 import io.leangen.graphql.annotations.GraphQLQuery;
 import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
@@ -14,10 +18,15 @@ import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 @GraphQLApi
 @Component
 public class EventApi extends CrudApi<EventEntity, EventService> {
+  
+  private final ScheduleService scheduleService;
 
-
-  public EventApi(EventService userService) {
-    super(userService);
+  public EventApi(
+      EventService service,
+      ScheduleService scheduleService) {
+    super(service);
+    
+    this.scheduleService = scheduleService;
   }
 
   @Override
@@ -56,5 +65,16 @@ public class EventApi extends CrudApi<EventEntity, EventService> {
   @GraphQLMutation(name = "deleteEvent")
   public Boolean deleteOne(@GraphQLArgument(name = CrudApi.id) String id) {
     return super.deleteOne(id);
+  }
+  
+  @GraphQLQuery(name = "schedule")
+  public Optional<ScheduleEntity> getSchedule(
+      @GraphQLContext EventEntity event,
+      OffsetDateTime begin,
+      OffsetDateTime end) {
+    
+    return begin != null && end != null
+        ? scheduleService.getByEventAndBetween(event.getId(), begin, end)
+        : scheduleService.getMostRecentByEvent(event.getId());
   }
 }
