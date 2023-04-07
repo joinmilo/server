@@ -4,9 +4,6 @@ import java.io.Serial;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import javax.persistence.Transient;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import app.wooportal.server.core.base.BaseEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -24,11 +21,6 @@ public class MediaEntity extends BaseEntity {
 
   @Serial
   private static final long serialVersionUID = 1L;
-
-  @Transient
-  @JsonSerialize
-  @JsonDeserialize
-  private String base64;
   
   private String credits;
 

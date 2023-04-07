@@ -2,7 +2,6 @@ package app.wooportal.server.core.media.base;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.Base64;
 import java.util.List;
 import org.docx4j.convert.in.xhtml.XHTMLImporterImpl;
 import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
@@ -42,22 +41,23 @@ public class MediaService extends DataService<MediaEntity, MediaPredicateBuilder
 
   @Override
   public void postSave(MediaEntity entity, MediaEntity newEntity, JsonNode context) {
-    if (newEntity.getBase64() != null && !newEntity.getBase64().isBlank()) {
-      byte[] data = Base64.getDecoder().decode(newEntity.getBase64());
-      var formatType = MediaHelper.extractFormatFromMimeType(newEntity.getMimeType());
-      if (isImage(newEntity.getMimeType())) {
-        data = imageService.resize(data, formatType);
-      }
-
-      if (entity.getId() != null && !entity.getId().isBlank()) {
-        storageService.delete(entity.getId(), formatType);
-      }
-      try {
-        storageService.store(entity.getId(), formatType, data);
-      } catch (IOException e) {
-
-      }
-    }
+    //TODO: Save images 
+//    if (newEntity.getBase64() != null && !newEntity.getBase64().isBlank()) {
+//      byte[] data = Base64.getDecoder().decode(newEntity.getBase64());
+//      var formatType = MediaHelper.extractFormatFromMimeType(newEntity.getMimeType());
+//      if (isImage(newEntity.getMimeType())) {
+//        data = imageService.resize(data, formatType);
+//      }
+//
+//      if (entity.getId() != null && !entity.getId().isBlank()) {
+//        storageService.delete(entity.getId(), formatType);
+//      }
+//      try {
+//        storageService.store(entity.getId(), formatType, data);
+//      } catch (IOException e) {
+//
+//      }
+//    }
   }
 
   private boolean isImage(String mimeType) {
