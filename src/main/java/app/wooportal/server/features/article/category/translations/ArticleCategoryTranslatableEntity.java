@@ -2,10 +2,7 @@ package app.wooportal.server.features.article.category.translations;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import app.wooportal.server.core.i18n.components.language.LanguageEntity;
 import app.wooportal.server.core.i18n.entities.TranslatableEntity;
 import app.wooportal.server.features.article.category.ArticleCategoryEntity;
 import lombok.AccessLevel;
@@ -26,10 +23,4 @@ public class ArticleCategoryTranslatableEntity extends TranslatableEntity<Articl
 
   @Column(nullable = false)
   private String name;
-  
-  @ManyToOne(fetch = FetchType.LAZY)
-  private LanguageEntity language;
-
-  @ManyToOne(fetch = FetchType.LAZY)
-  private ArticleCategoryEntity parent;
 }

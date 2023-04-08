@@ -14,6 +14,8 @@ import lombok.Setter;
 public class SearchDto {
 
   private String id;
+  
+  private String name;
 
   private FeatureEntity feature;
 
