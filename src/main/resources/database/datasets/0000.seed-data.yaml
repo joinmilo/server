@@ -110,7 +110,8 @@ databaseChangeLog:
               ('29c9ebf0-ac66-4752-a123-82f691cd8d72'),
               ('53ec6fb9-e452-44fb-b4f6-d090414bcd5b'),
               ('e1f8a1b3-30f7-40f2-bb55-b59b70e80862'),
-              ('c3273703-e588-445d-a57d-0abce6b9e58f');
+              ('c3273703-e588-445d-a57d-0abce6b9e58f'),
+              ('206e4249-d36c-49df-a02e-28b189d4b0dd');
               
   - changeSet:
       id: 0000.seed-data.6
@@ -136,6 +137,11 @@ databaseChangeLog:
                  
                  insert into report_type_translatables (id, parent_id, language_id, `name`)
                  select uuid(), "c3273703-e588-445d-a57d-0abce6b9e58f", l.id, "Sonstiges"
+                 from languages l
+                 WHERE l.locale = "de";
+                 
+                 insert into report_type_translatables (id, parent_id, language_id, `name`)
+                 select uuid(), "206e4249-d36c-49df-a02e-28b189d4b0dd", l.id, "Kontakt zu den Entwicklern"
                  from languages l
                  WHERE l.locale = "de";
 

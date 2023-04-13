@@ -92,6 +92,11 @@ databaseChangeLog:
                 from features f
                 WHERE f.key = "calendar";
                 
+                insert into page_features (id, `order`, feature_id, page_id)
+                select uuid(), 5, f.id, '7cefc60c-8325-4861-90c7-97f1e8eeb290'
+                from features f
+                WHERE f.key = "reports";
+                
   - changeSet:
       id: 0003.test-data.6
       author: codeschluss
