@@ -14,12 +14,12 @@ public class PasswordResetBuilder extends PredicateBuilder<QPasswordResetEntity,
   
   @Override
   public BooleanExpression freeSearch(String term) {
-    return query.key.likeIgnoreCase(term);
+    return query.token.likeIgnoreCase(term);
   }
   
-  public BooleanExpression withKey(String key) {
-    return key != null && !key.isBlank()
-        ? query.key.eq(key)
+  public BooleanExpression withToken(String token) {
+    return token != null && !token.isBlank()
+        ? query.token.eq(token)
         : null;
   }
 
@@ -31,7 +31,7 @@ public class PasswordResetBuilder extends PredicateBuilder<QPasswordResetEntity,
 
   public BooleanExpression withUser(String userId) {
     return userId != null
-        ? query.key.eq(userId)
+        ? query.token.eq(userId)
         : null;
   }
 

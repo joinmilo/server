@@ -24,7 +24,7 @@ public class VerificationEntity extends BaseEntity {
   private static final long serialVersionUID = 1L;
 
   @Column(nullable = false, unique = true)
-  private String key;
+  private String token;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private UserEntity user;

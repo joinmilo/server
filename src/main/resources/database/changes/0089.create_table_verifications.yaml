@@ -28,8 +28,8 @@ databaseChangeLog:
               - column:
                   constraints:
                     nullable: false
-                  name: url
-                  type: VARCHAR(255)
+                  name: token
+                  type: VARCHAR(1024)
               - column:
                   constraints:
                     nullable: false
