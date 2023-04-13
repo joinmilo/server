@@ -14,15 +14,15 @@ public class VerificationPredicateBuilder
 
   @Override
   public BooleanExpression freeSearch(String term) {
-    return query.key.likeIgnoreCase(term);
+    return query.token.likeIgnoreCase(term);
   }
 
   public BooleanExpression withKey(String key) {
-    return key != null ? query.key.eq(key) : null;
+    return key != null ? query.token.eq(key) : null;
   }
 
   public BooleanExpression withUser(String userId) {
-    return userId != null ? query.key.eq(userId) : null;
+    return userId != null ? query.token.eq(userId) : null;
   }
 
 }

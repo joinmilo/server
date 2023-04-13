@@ -12,6 +12,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 import org.hibernate.annotations.CollectionId;
 import org.hibernate.annotations.GenericGenerator;
@@ -40,6 +41,9 @@ public class UserEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
 
+  @Transient
+  private String captchaToken;
+  
   @Column(unique = true, nullable = false)
   private String email;
   

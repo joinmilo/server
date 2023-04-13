@@ -27,8 +27,8 @@ public class PasswordResetService extends DataService<PasswordResetEntity, Passw
     this.mailService = mailService;
   }
 
-  public Optional<PasswordResetEntity> getByKey(String name) {
-    return repo.findOne(singleQuery(predicate.withKey(name)));
+  public Optional<PasswordResetEntity> getByToken(String name) {
+    return repo.findOne(singleQuery(predicate.withToken(name)));
   }
 
   public List<PasswordResetEntity> getCreatedBefore(OffsetDateTime date) {
@@ -37,8 +37,8 @@ public class PasswordResetService extends DataService<PasswordResetEntity, Passw
 
   @Override
   public void preSave(PasswordResetEntity entity, PasswordResetEntity newEntity, JsonNode context) {
-    if (newEntity.getKey() == null || newEntity.getKey().isBlank()) {
-      newEntity.setKey(generateNewKey());
+    if (newEntity.getToken() == null || newEntity.getToken().isBlank()) {
+      newEntity.setToken(generateNewToken());
       setContext("key", context);
       try {
         mailService.sendEmail(
@@ -51,17 +51,17 @@ public class PasswordResetService extends DataService<PasswordResetEntity, Passw
     }
   }
 
-  private String generateNewKey() {
+  private String generateNewToken() {
     while (true) {
       var key = StringUtils.randomAlphanumeric(255);
-      if (getByKey(key).isEmpty()) {
+      if (getByToken(key).isEmpty()) {
         return key;
       }
     }
   }
 
   private String createPasswordResetLink(PasswordResetEntity saved) {
-    return config.getHost() + "/reset-password/password/" + saved.getKey();
+    return config.getHost() + "/reset-password/password/" + saved.getToken();
   }
 
 }

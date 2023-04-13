@@ -33,13 +33,15 @@ public class VerificationService
 
   @Override
   public void preSave(VerificationEntity entity, VerificationEntity newEntity, JsonNode context) {
-    if (newEntity.getKey() == null || newEntity.getKey().isBlank()) {
-      newEntity.setKey(generateNewKey());
+    if (newEntity.getToken() == null || newEntity.getToken().isBlank()) {
+      newEntity.setToken(generateTokenKey());
       setContext("key", context);
       try {
         mailService.sendEmail("Email verifizieren", "verification.ftl",
-            Map.of("fullname", newEntity.getUser().getFirstName(), "portalName",
-                config.getPortalName(), "link", createVerifcationLink(newEntity)),
+            Map.of(
+                "fullname", newEntity.getUser().getFirstName(),
+                "portalName", config.getPortalName(),
+                "link", createVerifcationLink(newEntity)),
             newEntity.getUser().getEmail());
       } catch (Throwable e) {
         e.printStackTrace();
@@ -47,17 +49,17 @@ public class VerificationService
     }
   }
 
-  private String generateNewKey() {
+  private String generateTokenKey() {
     while (true) {
-      var key = StringUtils.randomAlphanumeric(255);
-      if (getByKey(key).isEmpty()) {
-        return key;
+      var token = StringUtils.randomAlphanumeric(255);
+      if (getByKey(token).isEmpty()) {
+        return token;
       }
     }
   }
 
   private String createVerifcationLink(VerificationEntity saved) {
-    return config.getHost() + "/verification/" + saved.getKey();
+    return config.getHost() + "/verification/" + saved.getToken();
   }
 
 }

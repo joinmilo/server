@@ -64,11 +64,9 @@ public class UserService extends DataService<UserEntity, UserPredicateBuilder> {
     if (newEntity.getPassword() != null && newEntity.getId() == null) {
       newEntity.setPassword(bcryptPasswordEncoder.encode(newEntity.getPassword()));
     }
-
     if (entity.getId() == null || entity.getId().isBlank()) {
       newEntity.setVerifications(new HashSet<>(List.of(new VerificationEntity())));
-      setContext("verification", context);
-
+      setContext("verifications", context);
       newEntity.setVerified(false);
       setContext("verified", context);
     }
@@ -120,7 +118,7 @@ public class UserService extends DataService<UserEntity, UserPredicateBuilder> {
   }
 
   public Boolean resetPassword(String key, String password) {
-    var passwordReset = getService(PasswordResetService.class).getByKey(key);
+    var passwordReset = getService(PasswordResetService.class).getByToken(key);
     if (passwordReset.isEmpty()) {
       throw new InvalidPasswordResetException("Password reset not requested", key);
     }
@@ -153,8 +151,8 @@ public class UserService extends DataService<UserEntity, UserPredicateBuilder> {
     return true;
   }
 
-  public UserEntity verify(String key) {
-    var verification = getService(VerificationService.class).getByKey(key);
+  public UserEntity verify(String token) {
+    var verification = getService(VerificationService.class).getByKey(token);
     if (verification.isPresent()) {
       var user = verification.get().getUser();
       user.setVerified(true);
@@ -162,7 +160,7 @@ public class UserService extends DataService<UserEntity, UserPredicateBuilder> {
       service.deleteAll(service.collectionQuery(service.getPredicate().withUser(user.getId())));
       return repo.save(user);
     }
-    throw new InvalidVerificationException("Verification invalid", key);
+    throw new InvalidVerificationException("Verification invalid", token);
   }
 
   public Optional<UserEntity> deleteMe(String password) {

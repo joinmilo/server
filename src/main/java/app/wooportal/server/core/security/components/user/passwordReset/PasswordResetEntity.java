@@ -27,7 +27,7 @@ public class PasswordResetEntity extends BaseEntity {
   @Column(
       nullable = false,
       unique = true)
-  private String key;
+  private String token;
   
   @OneToOne(fetch = FetchType.LAZY)
   @JoinColumn(nullable = false)

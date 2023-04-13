@@ -202,7 +202,7 @@ databaseChangeLog:
             comment: Add data contest
             splitStatements: true
             sql: insert into contests (id, due_date, card_image_id, type_id, state_id) values
-              ('5dc59462-91f6-402d-82ae-a8fd65fbfa42', '2020-02-13 10:39:28', '0c7ad542-6aed-4613-8739-e4cd0db2ce2f', '112a561f-5d96-42dd-b851-62365e79147b', '41a73da0-6c95-4bfe-85a7-342c8dcf7da9');    
+              ('5dc59462-91f6-402d-82ae-a8fd65fbfa42', '2020-02-13 10:39:28', '0c7ad542-6aed-4613-8739-e4cd0db2ce2f', '112a561f-5d96-42dd-b851-62365e79147b', '41a73da0-6c95-4bfe-85a7-342c8dcf7da9');       
               
   - changeSet:
       id: 0003.test-data.16

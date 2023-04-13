@@ -33,7 +33,7 @@ public class MailService {
       Map<String, String> templateModel, String... to) throws Throwable {
     try {
       var model = new HashMap<String, String>(templateModel);
-      model.put("portalName", mailConfig.getPortalName());
+//      model.put("portalName", mailConfig.getPortalName()); //TODO: Mailconfig?
       return sendEmail(subject,
           templateService.createMessage(template, model, new LanguageEntity()), to);
 
