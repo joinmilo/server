@@ -14,7 +14,7 @@ databaseChangeLog:
                ('1774bd91-1698-4c4a-8f16-3a0a98fdef32', 'landing', 'image/jpg'),
                ('fc8a64b5-7335-4309-a5c1-e9d2de53c338', 'favicon', 'image/ico'),
                ('6c92cfcd-d65d-47d9-bdc5-b8004afe916c', 'logoText', 'image/png'),
-               ('08157b8b-b7db-437b-a210-017c9f50ba03', 'contest', 'image/jpg');
+               ('0c7ad542-6aed-4613-8739-e4cd0db2ce2f', 'contest', 'image/jpg');
 
   - changeSet:
       id: 0003.test-data.2
@@ -202,7 +202,7 @@ databaseChangeLog:
             comment: Add data contest
             splitStatements: true
             sql: insert into contests (id, due_date, card_image_id, type_id, state_id) values
-              ('5dc59462-91f6-402d-82ae-a8fd65fbfa42', '2020-02-13 10:39:28', '08157b8b-b7db-437b-a210-017c9f50ba03', '112a561f-5d96-42dd-b851-62365e79147b', '41a73da0-6c95-4bfe-85a7-342c8dcf7da9');    
+              ('5dc59462-91f6-402d-82ae-a8fd65fbfa42', '2020-02-13 10:39:28', '0c7ad542-6aed-4613-8739-e4cd0db2ce2f', '112a561f-5d96-42dd-b851-62365e79147b', '41a73da0-6c95-4bfe-85a7-342c8dcf7da9');    
               
   - changeSet:
       id: 0003.test-data.16
