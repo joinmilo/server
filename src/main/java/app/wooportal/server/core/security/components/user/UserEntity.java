@@ -57,6 +57,9 @@ public class UserEntity extends BaseEntity {
   @Column(unique = true)
   private String phone;
   
+  @Transient
+  private Boolean termsAccepted;
+  
   private Boolean verified;
   
   @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)

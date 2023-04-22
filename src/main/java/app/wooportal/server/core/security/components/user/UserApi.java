@@ -114,27 +114,27 @@ public class UserApi extends CrudApi<UserEntity, UserService> {
   }
 
   @GraphQLMutation(name = "sendPasswordReset")
-  public Boolean forgetPassword(String mailAddress) {
-    if (mailAddress == null || mailAddress.isBlank()) {
+  public Boolean forgetPassword(String email) {
+    if (email == null || email.isBlank()) {
       throw new BadParamsException("Mail address is null or empty");
     }
-    return service.createPasswordReset(mailAddress);
+    return service.createPasswordReset(email);
   }
 
   @GraphQLMutation(name = "resetPassword")
-  public Boolean resetPassword(String key, String password) {
-    if (key == null || key.isBlank() || password == null || password.isBlank()) {
+  public Boolean resetPassword(String token, String password) {
+    if (token == null || token.isBlank() || password == null || password.isBlank()) {
       throw new BadParamsException("key or password are null or empty");
     }
-    return service.resetPassword(key, password);
+    return service.resetPassword(token, password);
   }
 
   @GraphQLMutation(name = "sendVerification")
-  public Boolean sendVerification(String mailAddress) {
-    if (mailAddress == null || mailAddress.isBlank()) {
+  public Boolean sendVerification(String email) {
+    if (email == null || email.isBlank()) {
       throw new BadParamsException("Mail address is null or empty");
     }
-    return service.createVerification(mailAddress);
+    return service.createVerification(email);
   }
 
   @GraphQLMutation(name = "verify")
@@ -151,5 +151,12 @@ public class UserApi extends CrudApi<UserEntity, UserService> {
       throw new BadParamsException("New password is null or empty");
     }
     return service.changePassword(newPassword);
+  }
+  
+  @GraphQLMutation(name = "checkPassword")
+  public Double checkPassword(String password) {
+    return password == null
+        ? 0
+        : service.checkPassword(password);
   }
 }
