@@ -167,3 +167,22 @@ databaseChangeLog:
             sql: insert into app_platforms (id, `key`, `name`) values
               ('9fc24c85-0ca6-4e20-a551-e77b58aff4f4', 'apple', 'Apple App Store'),
               ('ab7a5460-2833-4d97-a36e-c00542d3e201', 'google', 'Google Play Store');
+              
+  - changeSet:
+      id: 0000.seed-data.9
+      author: codeschluss
+      changes:
+        - sql:
+            comment: add creator_id data
+            splitStatements: true
+            sql:
+                /*!40101 SET character_set_client = utf8 */;
+                
+                UPDATE
+                articles a
+                left join bloggers b
+                ON b.id = a.blogger_id
+                left join user_contexts u
+                ON u.user_id = b.user_id
+                SET
+                a.author_id = u.id;              

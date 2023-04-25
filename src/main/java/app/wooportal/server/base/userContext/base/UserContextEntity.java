@@ -54,6 +54,8 @@ public class UserContextEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
 
+  private String description;
+  
   @ManyToOne(fetch = FetchType.LAZY)
   private AddressEntity address;
 

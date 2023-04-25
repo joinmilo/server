@@ -37,6 +37,9 @@ databaseChangeLog:
                   name: title_image_id
                   type: CHAR(36)      
               - column:
+                  name: description
+                  type: VARCHAR(255)                   
+              - column:
                   name: avatar_id
                   type: CHAR(36)                                                                                                                                                            
             tableName: user_contexts
