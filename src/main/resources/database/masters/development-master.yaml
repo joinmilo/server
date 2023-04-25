@@ -196,6 +196,10 @@ databaseChangeLog:
         file: database/changes/0106.create_table_report_type_translatables.yaml
     - include:
         file: database/changes/0107.add_column_configurations_media.yaml
+    - include:
+        file: database/changes/0108.create_table_event_comments.yaml
+    - include:
+        file: database/changes/0109.create_table_event_comment_translatables.yaml                
         
     #Data section
     - include:

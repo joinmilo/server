@@ -23,5 +23,5 @@ public class EventCommentTranslatableEntity extends TranslatableEntity<EventComm
 
   @Column(nullable = false)
   private String content;
-
+  
 }

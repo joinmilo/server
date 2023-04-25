@@ -215,3 +215,96 @@ databaseChangeLog:
                  select uuid(), "5dc59462-91f6-402d-82ae-a8fd65fbfa42", l.id, "Feel free to join the very first art contest!", "DrawABike", "no description"
                  from languages l
                  WHERE l.locale = "de";
+                 
+  - changeSet:
+      id: 0003.test-data.17
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add a test user
+            splitStatements: true
+            sql:
+               insert into users (id, email, first_name, last_name, password) values
+               ('83c0ce85-c808-43eb-a72d-62a228db2979', 'Fiona@gmail.com', 'Fiona', 'Haug', '1234');
+                                
+  - changeSet:
+      id: 0003.test-data.18
+      author: codeschluss
+      changes:
+        - sql:
+            comment: add user_context
+            splitStatements: true
+            sql:
+               insert into user_contexts (id, user_id, avatar_id) values
+               ('5737ee58-9f88-43d1-baf4-a34dd85f0219', '83c0ce85-c808-43eb-a72d-62a228db2979', '1774bd91-1698-4c4a-8f16-3a0a98fdef32');
+            
+  - changeSet:
+      id: 0003.test-data.19
+      author: codeschluss
+      changes:
+        - sql:
+            comment: add event category
+            splitStatements: true
+            sql:
+               insert into event_categories (id, color, icon) values
+               ('ca429c83-ae27-4ce5-af45-1219bacab2a0', '#066016', 'icons');  
+                              
+  - changeSet:
+      id: 0003.test-data.20
+      author: codeschluss
+      changes:
+        - sql:
+            comment: add event
+            splitStatements: true
+            sql:
+               insert into events (id, creator_id, category_id) values
+               ('0c3cf6f6-8337-492b-90e6-4db0bbc14aa9', '5737ee58-9f88-43d1-baf4-a34dd85f0219', 'ca429c83-ae27-4ce5-af45-1219bacab2a0');               
+                                
+  - changeSet:
+      id: 0003.test-data.21
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add comments
+            splitStatements: true
+            sql:
+               insert into event_comments (id, event_id, user_context_id) values
+               ('be8eb3ec-717a-4743-b633-0346b4062413', '0c3cf6f6-8337-492b-90e6-4db0bbc14aa9', '5737ee58-9f88-43d1-baf4-a34dd85f0219'),
+               ('6afa57bb-6e95-4b8f-9ee5-34b221241d59', '0c3cf6f6-8337-492b-90e6-4db0bbc14aa9', '5737ee58-9f88-43d1-baf4-a34dd85f0219'),
+               ('1ff0c22c-f9f9-400f-922b-f142b146621f', '0c3cf6f6-8337-492b-90e6-4db0bbc14aa9', '5737ee58-9f88-43d1-baf4-a34dd85f0219');                    
+                     
+  - changeSet:
+      id: 0003.test-data.22
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add data event_comment_translatables
+            splitStatements: true
+            sql: insert into event_comment_translatables (id, parent_id, language_id, content)
+                 select uuid(), "be8eb3ec-717a-4743-b633-0346b4062413", l.id, "Good event! I really liked it!"
+                 from languages l
+                 WHERE l.locale = "de"; 
+                 
+  - changeSet:
+      id: 0003.test-data.23
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add data event_comment_translatables
+            splitStatements: true
+            sql: insert into event_comment_translatables (id, parent_id, language_id, content)
+                 select uuid(), "6afa57bb-6e95-4b8f-9ee5-34b221241d59", l.id, "Tolles Event! Vielen Dank an die Organisatoren"
+                 from languages l
+                 WHERE l.locale = "de";    
+                 
+  - changeSet:
+      id: 0003.test-data.24
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add data event_comment_translatables
+            splitStatements: true
+            sql: insert into event_comment_translatables (id, parent_id, language_id, content)
+                 select uuid(), "1ff0c22c-f9f9-400f-922b-f142b146621f", l.id, "Timon did an amazing job!"
+                 from languages l
+                 WHERE l.locale = "de";                                                                 
