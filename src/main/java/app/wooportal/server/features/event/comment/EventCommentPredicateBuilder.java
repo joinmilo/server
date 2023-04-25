@@ -14,6 +14,7 @@ public class EventCommentPredicateBuilder
 
   @Override
   public BooleanExpression freeSearch(String term) {
-    return null;
+    return query.userContext.id.likeIgnoreCase(term)
+        .or(query.event.id.likeIgnoreCase(term));
   }
 }

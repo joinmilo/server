@@ -31,10 +31,16 @@ databaseChangeLog:
             sql:
                 /*!40101 SET character_set_client = utf8 */;
                 
-                update users set
-                    verified = true,
-                    first_name = SUBSTRING_INDEX(name, ' ', 1),
-                    last_name = SUBSTRING_INDEX(name, ' ', -1); 
+               UPDATE users SET
+                      verified = true,
+                      first_name = CASE
+                      WHEN name LIKE '% %' THEN SUBSTRING_INDEX(name, ' ', 1)
+                      ELSE ''
+                  END,
+                      last_name = CASE
+                      WHEN name LIKE '% %' THEN SUBSTRING_INDEX(name, ' ', -1)
+                      ELSE name
+                  END;
           
   - changeSet:
       id: 0005.migrate_data_users.4
