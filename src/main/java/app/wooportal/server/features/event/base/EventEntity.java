@@ -27,6 +27,7 @@ import app.wooportal.server.features.event.attendeeConfiguration.AttendeeConfigu
 import app.wooportal.server.features.event.base.translations.EventTranslatableEntity;
 import app.wooportal.server.features.event.base.visitors.EventVisitorEntity;
 import app.wooportal.server.features.event.category.EventCategoryEntity;
+import app.wooportal.server.features.event.comment.EventCommentEntity;
 import app.wooportal.server.features.event.rating.EventRatingEntity;
 import app.wooportal.server.features.event.schedule.ScheduleEntity;
 import app.wooportal.server.features.event.targetGroup.EventTargetGroupEntity;
@@ -58,7 +59,7 @@ public class EventEntity extends BaseEntity {
   private Boolean sponsored;
 
   private String videoChatLink;
-  
+
   @Translatable
   private String description;
 
@@ -67,7 +68,7 @@ public class EventEntity extends BaseEntity {
 
   @Translatable
   private String shortDescription;
-  
+
   @ManyToOne(fetch = FetchType.LAZY)
   private MediaEntity cardImage;
 
@@ -94,6 +95,9 @@ public class EventEntity extends BaseEntity {
 
   @OneToMany(mappedBy = "event", fetch = FetchType.LAZY)
   private Set<AttendeeEntity> attendees;
+  
+  @OneToMany(mappedBy = "event", fetch = FetchType.LAZY)
+  private Set<EventCommentEntity> comments;
 
   @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
   private Set<EventVisitorEntity> visitors;
