@@ -210,9 +210,11 @@ databaseChangeLog:
         file: database/datasets/0002.add_data_labels.yaml
     - include:
         file: database/datasets/0003.add_data_labels_2.yaml
-    - include:
-        file: database/datasets/0003.test-data.yaml
         
      #Cleanups
     - include:
         file: database/cleanups/0000.drops.yaml
+        
+     #Testdata   
+    - include:
+        file: database/datasets/0003.test-data.yaml        
