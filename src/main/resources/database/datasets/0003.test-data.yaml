@@ -307,14 +307,19 @@ databaseChangeLog:
             sql: insert into event_comment_translatables (id, parent_id, language_id, content)
                  select uuid(), "1ff0c22c-f9f9-400f-922b-f142b146621f", l.id, "Timon did an amazing job!"
                  from languages l
-                 WHERE l.locale = "de";                                                                 
+                 WHERE l.locale = "de";  
+                 
+  - changeSet:
+      id: 0003.test-data.25
+      author: codeschluss
+      changes:                                                                                
             comment: Add test user
             splitStatements: true
             sql: insert into users (id, email, password, first_name, last_name)
                  select "86db5071-55c6-4871-bab6-e94a40e914ff", "test@example.cpm", "1234", "Doomed2", "Test";   
                  
   - changeSet:
-      id: 0003.test-data.25
+      id: 0003.test-data.26
       author: codeschluss
       changes:
         - sql:
@@ -327,19 +332,19 @@ databaseChangeLog:
                    "86db5071-55c6-4871-bab6-e94a40e914ff", '1774bd91-1698-4c4a-8f16-3a0a98fdef32', '1774bd91-1698-4c4a-8f16-3a0a98fdef32' ;      
                    
   - changeSet:
-      id: 0003.test-data.26
+      id: 0003.test-data.27
       author: codeschluss
       changes:
         - sql:
             comment: Add articles
             splitStatements: true
             sql:
-               insert into articles (id, card_image_id, author_id, likes) values
-               ('640f4663-7e49-4727-8208-e5f5f5b078ed', '1774bd91-1698-4c4a-8f16-3a0a98fdef32', '20ab2295-4d4f-4524-893d-f3b09f1e885a', '1'),
-               ('b0ba555d-b378-4c32-b115-17be6e2a5eff', '1774bd91-1698-4c4a-8f16-3a0a98fdef32', '20ab2295-4d4f-4524-893d-f3b09f1e885a', '2'),
-               ('c28e12c7-ff99-4885-8fd0-de6806023c71', '1774bd91-1698-4c4a-8f16-3a0a98fdef32', '20ab2295-4d4f-4524-893d-f3b09f1e885a', '2'),
-               ('f164a12c-fe78-4773-9c8b-27c5bf939c6a', '1774bd91-1698-4c4a-8f16-3a0a98fdef32', '20ab2295-4d4f-4524-893d-f3b09f1e885a', '2'),
-               ('1729e341-d9c9-4a4c-b05b-80a369ced20e', '1774bd91-1698-4c4a-8f16-3a0a98fdef32', '20ab2295-4d4f-4524-893d-f3b09f1e885a', '2'),                                             
-               ('21ffbd6a-af52-4ede-9f10-8f9220d6e4b3', '1774bd91-1698-4c4a-8f16-3a0a98fdef32', '20ab2295-4d4f-4524-893d-f3b09f1e885a', '3');   
+               insert into articles (id, card_image_id, author_id) values
+               ('640f4663-7e49-4727-8208-e5f5f5b078ed', '1774bd91-1698-4c4a-8f16-3a0a98fdef32', '20ab2295-4d4f-4524-893d-f3b09f1e885a'),
+               ('b0ba555d-b378-4c32-b115-17be6e2a5eff', '1774bd91-1698-4c4a-8f16-3a0a98fdef32', '20ab2295-4d4f-4524-893d-f3b09f1e885a'),
+               ('c28e12c7-ff99-4885-8fd0-de6806023c71', '1774bd91-1698-4c4a-8f16-3a0a98fdef32', '20ab2295-4d4f-4524-893d-f3b09f1e885a'),
+               ('f164a12c-fe78-4773-9c8b-27c5bf939c6a', '1774bd91-1698-4c4a-8f16-3a0a98fdef32', '20ab2295-4d4f-4524-893d-f3b09f1e885a'),
+               ('1729e341-d9c9-4a4c-b05b-80a369ced20e', '1774bd91-1698-4c4a-8f16-3a0a98fdef32', '20ab2295-4d4f-4524-893d-f3b09f1e885a'),                                             
+               ('21ffbd6a-af52-4ede-9f10-8f9220d6e4b3', '1774bd91-1698-4c4a-8f16-3a0a98fdef32', '20ab2295-4d4f-4524-893d-f3b09f1e885a');   
                
                                                        
