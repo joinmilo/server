@@ -155,8 +155,8 @@ public class UserApi extends CrudApi<UserEntity, UserService> {
   
   @GraphQLMutation(name = "checkPassword")
   public Double checkPassword(String password) {
-    return password == null
-        ? 0
-        : service.checkPassword(password);
+    return password != null
+        ? service.calculatePasswordEntropy(password)
+        : 0;
   }
 }
