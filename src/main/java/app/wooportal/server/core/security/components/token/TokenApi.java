@@ -26,9 +26,9 @@ public class TokenApi {
   }
 
   @GraphQLMutation(name = "createToken")
-  public TokenDto createToken(String email, String password) {
+  public TokenDto createToken(String username, String password) {
     try {
-      var jwtUserDetails = authService.authenticate(email, password);
+      var jwtUserDetails = authService.authenticate(username, password);
 
       if (jwtUserDetails.isPresent()) {
         return new TokenDto(
@@ -36,7 +36,7 @@ public class TokenApi {
             tokenService.createRefreshToken(jwtUserDetails.get()));
       }
     } catch (Exception ignored) { }
-    throw new BadCredentialsException(email);
+    throw new BadCredentialsException(username);
   }
 
   @GraphQLMutation(name = "refreshToken")
