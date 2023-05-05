@@ -63,16 +63,20 @@ public class UserService extends DataService<UserEntity, UserPredicateBuilder> {
 
   @Override
   public void preSave(UserEntity entity, UserEntity newEntity, JsonNode context) {
-//todo terms accepted
-      if (newEntity.getPassword() != null && newEntity.getId() == null) {
-        newEntity.setPassword(bcryptPasswordEncoder.encode(newEntity.getPassword()));
-      }
-      if (entity.getId() == null || entity.getId().isBlank()) {
-        newEntity.setVerifications(new HashSet<>(List.of(new VerificationEntity())));
-        setContext("verifications", context);
-        newEntity.setVerified(false);
-        setContext("verified", context);
-      }
+    if (newEntity.getId() == null && !newEntity.getTermsAccepted()) {
+      throw new BadParamsException("Terms were not accepted", newEntity);
+    }
+    
+    if (newEntity.getPassword() != null && newEntity.getId() == null) {
+      newEntity.setPassword(bcryptPasswordEncoder.encode(newEntity.getPassword()));
+    }
+    
+    if (entity.getId() == null || entity.getId().isBlank()) {
+      newEntity.setVerifications(new HashSet<>(List.of(new VerificationEntity())));
+      setContext("verifications", context);
+      newEntity.setVerified(false);
+      setContext("verified", context);
+    }
   }
 
   public Optional<UserEntity> saveMe(UserEntity entity) {
@@ -186,33 +190,27 @@ public class UserService extends DataService<UserEntity, UserPredicateBuilder> {
   }
 
 
-  public double checkPassword(String password) {
-
-    var entropy = calculateEntropy(password);
-    return entropy;
-  }
-
-  public static double calculateEntropy(String password) {
+  public double calculatePasswordEntropy(String password) {
     var possibleCombinations = Math.pow(getCharacterSpaceSize(password), password.length());
     return (Math.log(possibleCombinations) / Math.log(2) + 1e-10);
   }
 
-  public static int getCharacterSpaceSize(String password) {
+  public int getCharacterSpaceSize(String password) {
     var characterSpaceSize = 0;
-    
+
     if (Pattern.compile("\\p{Lower}").matcher(password).find()) {
-      characterSpaceSize += 26; 
-  }
-  if (Pattern.compile("\\p{Upper}").matcher(password).find()) {
-      characterSpaceSize += 26; 
-  }
-  if (Pattern.compile("\\p{Digit}").matcher(password).find()) {
-      characterSpaceSize += 10; 
-  }
-  if (Pattern.compile("\\W").matcher(password).find()) {
-      characterSpaceSize += 40; 
-  }
-  return characterSpaceSize;
+      characterSpaceSize += 26;
+    }
+    if (Pattern.compile("\\p{Upper}").matcher(password).find()) {
+      characterSpaceSize += 26;
+    }
+    if (Pattern.compile("\\p{Digit}").matcher(password).find()) {
+      characterSpaceSize += 10;
+    }
+    if (Pattern.compile("\\W").matcher(password).find()) {
+      characterSpaceSize += 40;
+    }
+    return characterSpaceSize;
 
   }
 }
