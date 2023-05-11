@@ -28,11 +28,4 @@ public class QuestionOptionTranslatableEntity extends TranslatableEntity<Questio
   @Column(nullable = false)
   private String label;
 
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(nullable = false)
-  private QuestionOptionEntity parent;
-
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(nullable = false)
-  private LanguageEntity language;
 }

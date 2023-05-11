@@ -7,6 +7,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import app.wooportal.server.core.base.BaseEntity;
+import app.wooportal.server.core.i18n.annotations.Translatable;
 import app.wooportal.server.features.form.templateType.translations.FormTemplateTypeTranslatableEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -24,6 +25,9 @@ import lombok.Setter;
 public class FormTemplateTypeEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
+  
+  @Translatable
+  private String name;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
   private Set<FormTemplateTypeTranslatableEntity> translatables;

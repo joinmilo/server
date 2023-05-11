@@ -6,6 +6,7 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import app.wooportal.server.core.base.BaseEntity;
+import app.wooportal.server.core.i18n.annotations.Translatable;
 import app.wooportal.server.features.deal.base.DealEntity;
 import app.wooportal.server.features.deal.category.translations.DealCategoryTranslatableEntity;
 import lombok.AccessLevel;
@@ -27,6 +28,9 @@ public class DealCategoryEntity extends BaseEntity {
   private String color;
 
   private String icon;
+  
+  @Translatable
+  private String name;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
   private Set<DealEntity> deals;

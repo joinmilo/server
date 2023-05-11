@@ -28,7 +28,7 @@ databaseChangeLog:
               - column:
                   constraints:
                     nullable: false              
-                  name: result
+                  name: content
                   type: VARCHAR(255)                  
               - column:
                   constraints:

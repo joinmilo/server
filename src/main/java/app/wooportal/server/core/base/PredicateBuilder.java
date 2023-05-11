@@ -2,6 +2,7 @@ package app.wooportal.server.core.base;
 
 import java.util.Collection;
 import org.hibernate.Hibernate;
+import org.springframework.beans.factory.annotation.Autowired;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Expression;
 import com.querydsl.core.types.Predicate;
@@ -18,6 +19,9 @@ import app.wooportal.server.core.base.dto.listing.FilterSortPaginate;
 import app.wooportal.server.core.base.dto.query.QueryExpression;
 import app.wooportal.server.core.base.dto.query.QueryOperator;
 import app.wooportal.server.core.error.exception.BadParamsException;
+import app.wooportal.server.core.i18n.annotations.Translatable;
+import app.wooportal.server.core.i18n.translation.LocaleService;
+import app.wooportal.server.core.i18n.translation.TranslationUtils;
 import app.wooportal.server.core.utils.DateUtils;
 import app.wooportal.server.core.utils.PersistenceUtils;
 import app.wooportal.server.core.utils.ReflectionUtils;
@@ -25,6 +29,9 @@ import app.wooportal.server.core.utils.ReflectionUtils;
 public abstract class PredicateBuilder<T extends EntityPathBase<?>, E extends BaseEntity> {
   
   protected T query;
+  
+  @Autowired
+  protected LocaleService localeService;
   
   public PredicateBuilder(T query) {
     this.query = query;
@@ -49,27 +56,61 @@ public abstract class PredicateBuilder<T extends EntityPathBase<?>, E extends Ba
     return builder;
   }
 
-  @SuppressWarnings("unchecked")
   public void matchEntity(E entity, T currentQuery, BooleanBuilder builder) {
     for (var entityField : ReflectionUtils.getFields(entity.getClass())) {
       if (PersistenceUtils.isValidField(entityField)) {
-        ReflectionUtils.get(entityField.getName(), entity).ifPresent(value ->
-            ReflectionUtils.get(entityField.getName(), currentQuery).ifPresent(path -> {
-              var fieldValue = Hibernate.unproxy(value);
-              if (PersistenceUtils.isValidEntity(fieldValue)) {
-                matchEntity((E) fieldValue,(T) path, builder);
-              } else if (PersistenceUtils.isValidCollection(fieldValue)) {
-                for (E subEntity : (Collection<E>) fieldValue) {
-                  matchEntity(subEntity, (T) ((CollectionPathBase<?, ?, ?>) path).any(), builder);
-                }
-              } else {
-                builder.and(createExpression((Expression<?>) path, QueryOperator.EQUAL, fieldValue));
-              }
-         }));
+        
+        ReflectionUtils.get(entityField.getName(), entity).ifPresent(value -> {
+          if (ReflectionUtils.getAnnotation(entityField, Translatable.class).isPresent()) {
+            matchTranslatable(entity, entityField.getName(), currentQuery, value, builder);
+          } else {
+            matchSubFields(entityField.getName(), currentQuery, value, builder);
+          }
+        });
       }
     }
   }
   
+  private void matchTranslatable(
+      E entity,
+      String entityField,
+      T currentQuery,
+      Object value,
+      BooleanBuilder builder) {
+    var translatableField = TranslationUtils.getTranslatableField(entity);
+    
+    if (translatableField.isPresent()) {
+      ReflectionUtils
+        .get(translatableField.get().getName(), currentQuery)
+        .ifPresent(collectionPath -> {
+          var translatablePath = ((CollectionPathBase<?, ?, ?>) collectionPath).any();
+          ReflectionUtils.get(entityField, translatablePath).ifPresent(path -> {
+            builder.and(createExpression((Expression<?>) path, QueryOperator.EQUAL, value));
+          });
+      });
+    }
+  }
+
+  @SuppressWarnings("unchecked")
+  private void matchSubFields(
+      String entityField,
+      T currentQuery,
+      Object value,
+      BooleanBuilder builder) {
+    ReflectionUtils.get(entityField, currentQuery).ifPresent(path -> {
+      var fieldValue = Hibernate.unproxy(value);
+      if (PersistenceUtils.isValidEntity(fieldValue)) {
+        matchEntity((E) fieldValue,(T) path, builder);
+      } else if (PersistenceUtils.isValidCollection(fieldValue)) {
+        for (E subEntity : (Collection<E>) fieldValue) {
+          matchEntity(subEntity, (T) ((CollectionPathBase<?, ?, ?>) path).any(), builder);
+        }
+      } else {
+        builder.and(createExpression((Expression<?>) path, QueryOperator.EQUAL, fieldValue));
+      }
+    });
+  }
+
   protected Predicate create(FilterSortPaginate params) {
     if (params == null 
         || params.getExpression() == null && (
@@ -119,19 +160,47 @@ public abstract class PredicateBuilder<T extends EntityPathBase<?>, E extends Ba
         throw new BadParamsException(
             "Field does not exist on " + queryPath.getClass().getName(), field);
       }
-      var fieldPath = ReflectionUtils.get(field, queryPath);
       
-      if (fieldPath.isPresent()) {
-        queryPath = fieldPath.get(); 
-      }
-      
-      if (queryPath instanceof CollectionPathBase<?, ?, ?>) {
-        queryPath = ((CollectionPathBase<?, ?, ?>) queryPath).any();
+      if (isTranslatableExpression(field)) {
+        return createTranslatablePath(field, queryPath);
+      } else {
+        var fieldPath = ReflectionUtils.get(field, queryPath);
+        
+        if (fieldPath.isPresent()) {
+          queryPath = fieldPath.get();
+        }
+        
+        if (queryPath instanceof CollectionPathBase<?, ?, ?>) {
+          queryPath = ((CollectionPathBase<?, ?, ?>) queryPath).any();
+        }
       }
     }
     return (Expression<?>) queryPath;
   }
   
+  @SuppressWarnings("unchecked")
+  private Expression<?> createTranslatablePath(String field, Object queryPath) {
+    var translatablesPath = ReflectionUtils.get(TranslationUtils.getTranslatableField((Class<E>) ReflectionUtils.getGenericTypes(getClass()).get(1)).get().getName(), queryPath);
+    
+    if (translatablesPath.isPresent()) {
+      var expression = ReflectionUtils.get(field, ((CollectionPathBase<?, ?, ?>) translatablesPath.get()).any());
+      if (expression.isPresent()) {
+        return (Expression<?>) expression.get();
+      }
+    }
+    return (Expression<?>) queryPath;
+  }
+
+  @SuppressWarnings("unchecked")
+  private boolean isTranslatableExpression(String field) {
+    var translatables = ReflectionUtils.getFieldsWithAnnotation(
+        (Class<E>) ReflectionUtils.getGenericTypes(getClass()).get(1),
+        Translatable.class);
+    return translatables != null
+        && !translatables.isEmpty()
+        && translatables.stream().anyMatch(translatable -> translatable.getName().equals(field));
+  }
+
   @SuppressWarnings("unchecked")
   protected BooleanExpression createExpression(Expression<?> queryPath, QueryOperator operator, Object value) {
     value = DateUtils.parseToDateType(value, queryPath.getType());

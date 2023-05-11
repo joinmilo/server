@@ -2,11 +2,7 @@ package app.wooportal.server.features.survey.question.translations;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import app.wooportal.server.core.i18n.components.language.LanguageEntity;
 import app.wooportal.server.core.i18n.entities.TranslatableEntity;
 import app.wooportal.server.features.survey.question.QuestionEntity;
 import lombok.AccessLevel;
@@ -28,11 +24,4 @@ public class QuestionTranslatableEntity extends TranslatableEntity<QuestionEntit
   @Column(nullable = false)
   private String subject;
 
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(nullable = false)
-  private QuestionEntity parent;
-
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(nullable = false)
-  private LanguageEntity language;
 }

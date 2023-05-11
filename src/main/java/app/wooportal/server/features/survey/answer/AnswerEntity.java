@@ -17,6 +17,7 @@ import org.hibernate.annotations.CollectionId;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 import app.wooportal.server.core.base.BaseEntity;
+import app.wooportal.server.core.i18n.annotations.Translatable;
 import app.wooportal.server.features.survey.answer.translations.AnswerTranslatableEntity;
 import app.wooportal.server.features.survey.question.QuestionEntity;
 import app.wooportal.server.features.survey.questionOption.QuestionOptionEntity;
@@ -37,6 +38,9 @@ import lombok.Setter;
 public class AnswerEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
+  
+  @Translatable
+  private String content;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(nullable = false)

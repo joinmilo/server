@@ -16,13 +16,15 @@ import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 import org.hibernate.Hibernate;
 import app.wooportal.server.core.base.BaseEntity;
+import app.wooportal.server.core.i18n.annotations.Translatable;
 
 public class PersistenceUtils {
 
   public static boolean isValidField(Field field) {
     return field != null
         && !isIgnoredField(field.getName())
-        && ReflectionUtils.getAnnotation(field, Transient.class).isEmpty();
+        && (ReflectionUtils.getAnnotation(field, Transient.class).isEmpty()
+            || ReflectionUtils.getAnnotation(field, Translatable.class).isPresent());
   }
   
   public static boolean isIgnoredField(Field field) {

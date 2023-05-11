@@ -9,6 +9,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import app.wooportal.server.base.userContext.base.UserContextEntity;
 import app.wooportal.server.core.base.BaseEntity;
+import app.wooportal.server.core.i18n.annotations.Translatable;
 import app.wooportal.server.features.survey.answer.AnswerEntity;
 import app.wooportal.server.features.survey.base.SurveyEntity;
 import app.wooportal.server.features.survey.result.translations.SurveyResultTranslatableEntity;
@@ -27,6 +28,9 @@ import lombok.Setter;
 public class SurveyResultEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
+  
+  @Translatable
+  private String comment;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private UserContextEntity userContext;

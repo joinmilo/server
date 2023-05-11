@@ -20,6 +20,7 @@ import app.wooportal.server.base.address.base.AddressEntity;
 import app.wooportal.server.base.contact.ContactEntity;
 import app.wooportal.server.base.userContext.base.UserContextEntity;
 import app.wooportal.server.core.base.BaseEntity;
+import app.wooportal.server.core.i18n.annotations.Translatable;
 import app.wooportal.server.core.media.base.MediaEntity;
 import app.wooportal.server.features.deal.base.translations.DealTranslatableEntity;
 import app.wooportal.server.features.deal.base.visitors.DealVisitorEntity;
@@ -40,6 +41,15 @@ import lombok.Setter;
 public class DealEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
+  
+  @Translatable
+  private String description;
+  
+  @Translatable
+  private String name;
+  
+  @Translatable
+  private String shortDescription;
 
   private String seoDescription;
 

@@ -18,6 +18,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 import app.wooportal.server.base.userContext.base.UserContextEntity;
 import app.wooportal.server.core.base.BaseEntity;
+import app.wooportal.server.core.i18n.annotations.Translatable;
 import app.wooportal.server.core.media.base.MediaEntity;
 import app.wooportal.server.features.contest.base.ContestEntity;
 import app.wooportal.server.features.contest.participation.translations.ContestParticipationTranslatableEntity;
@@ -38,6 +39,9 @@ import lombok.Setter;
 public class ContestParticipationEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
+  
+  @Translatable
+  private String textSubmission;
 
   @Column(nullable = false)
   private Boolean winner;

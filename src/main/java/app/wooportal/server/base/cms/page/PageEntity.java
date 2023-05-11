@@ -21,6 +21,7 @@ import app.wooportal.server.base.cms.page.translations.PageTranslatableEntity;
 import app.wooportal.server.base.cms.page.visitors.PageVisitorEntity;
 import app.wooportal.server.base.cms.pageFeature.PageFeatureEntity;
 import app.wooportal.server.core.base.BaseEntity;
+import app.wooportal.server.core.i18n.annotations.Translatable;
 import app.wooportal.server.core.media.base.MediaEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -39,13 +40,25 @@ public class PageEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
   
+  @Translatable
+  private String callText;
+  
   private String callUrl;
+  
+  @Translatable
+  private String content;
   
   private Boolean isLanding;
 
+  @Translatable
+  private String name;
+  
   private String seoDescription;
 
   private String slug;
+  
+  @Translatable
+  private String shortDescription;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private MediaEntity titleImage;

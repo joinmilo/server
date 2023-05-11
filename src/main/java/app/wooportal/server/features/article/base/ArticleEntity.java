@@ -19,6 +19,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 import app.wooportal.server.base.userContext.base.UserContextEntity;
 import app.wooportal.server.core.base.BaseEntity;
+import app.wooportal.server.core.i18n.annotations.Translatable;
 import app.wooportal.server.core.media.base.MediaEntity;
 import app.wooportal.server.features.article.base.translations.ArticleTranslatableEntity;
 import app.wooportal.server.features.article.base.visitors.ArticleVisitorEntity;
@@ -41,13 +42,19 @@ import lombok.Setter;
 @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
 public class ArticleEntity extends BaseEntity {
 
-  private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L; 
+
+  @Column(nullable = false)
+  private Boolean approved;
 
   @Transient
   private String captchaToken;
   
-  @Column(nullable = false)
-  private Boolean approved;
+  @Translatable
+  private String content;
+  
+  @Translatable
+  private String shortDescription;
 
   private String seoDescription;
 
@@ -55,6 +62,9 @@ public class ArticleEntity extends BaseEntity {
 
   @Column(nullable = false)
   private Boolean sponsored;
+  
+  @Translatable
+  private String title;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private MediaEntity cardImage;

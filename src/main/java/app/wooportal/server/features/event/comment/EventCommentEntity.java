@@ -9,6 +9,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import app.wooportal.server.base.userContext.base.UserContextEntity;
 import app.wooportal.server.core.base.BaseEntity;
+import app.wooportal.server.core.i18n.annotations.Translatable;
 import app.wooportal.server.features.event.base.EventEntity;
 import app.wooportal.server.features.event.comment.translations.EventCommentTranslatableEntity;
 import lombok.AccessLevel;
@@ -29,6 +30,9 @@ public class EventCommentEntity extends BaseEntity {
 
   @Column(nullable = false)
   private Boolean approved;
+  
+  @Translatable
+  private String content;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private EventEntity event;

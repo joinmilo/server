@@ -224,45 +224,59 @@ public abstract class DataService<E extends BaseEntity, P extends PredicateBuild
 
   public E save(E newEntity, JsonNode context) {
     if (newEntity != null) {
-      return repo.findOne(singleQuery(predicate.withId(newEntity.getId()))).map(Optional::of).orElseGet(() -> getExisting(newEntity))
+      return getExistingWithId(newEntity) 
           .map(entity -> persist(entity, newEntity, context))
           .orElseGet(() -> persist(ReflectionUtils.newInstance(newEntity), newEntity, context));
     }
     return newEntity;
   }
 
+  @SuppressWarnings("unchecked")
   public E persist(E entity, E newEntity, JsonNode context) {
-    preSave(entity, newEntity, context);
-    prepare(entity, newEntity);
+    entity = (E) Hibernate.unproxy(entity);
+    newEntity = (E) Hibernate.unproxy(newEntity);
+    var copy = createCopy(entity);
+    
+    performPreSave(entity, newEntity, context);
+    
     validate(entity, newEntity);
-    List<String> postFieldNames = saveFields(entity, newEntity, context);
-    var persisted = repo.save(entity);
-    savePostSaveFields(persisted, newEntity, postFieldNames, context);
-    postSave(persisted, newEntity, context);
-    return persisted;
+    
+    var postFieldNames = saveFields(entity, newEntity, context);
+    var saved = persist(entity);
+    savePostSaveFields(saved, newEntity, postFieldNames, context);
+    
+    performPostSave(copy, saved, context);
+    return saved;
+  }
+
+  private E createCopy(E entity) {
+    var existing = getExistingWithId(entity);
+    
+    return existing.isPresent()
+        ? existing.get()
+        : ReflectionUtils.newInstance(entity);
+  }
+
+  private Optional<E> getExistingWithId(E newEntity) {
+    return repo.findOne(singleQuery(predicate.withId(newEntity.getId())))
+        .map(Optional::of)
+        .orElseGet(() -> getExisting(newEntity));
   }
   
-  private void prepare(E entity, E newEntity) {
-    var id = getId(newEntity);
-    prepare(entity, id);
-    prepare(newEntity, id);
-  }
-
-  private String getId(E newEntity) {
-    return newEntity.getId() != null && !newEntity.getId().isBlank()
-        ? newEntity.getId()
-        : UUID.randomUUID().toString();
-  }
-
-  @SuppressWarnings("unchecked")
-  protected E prepare(E entity, String uuid) {
-    entity = (E) Hibernate.unproxy(entity);
-    var id = entity.getId();
-    if (id == null || id.isEmpty() || id.isBlank()) {
-      entity.setId(uuid);
+  private void performPreSave(E entity, E newEntity, JsonNode context) {
+    if (entity.getId() != null) {
+      preUpdate(entity, newEntity, context);
+    } else {
+      preCreate(entity, newEntity, context);
     }
-    return entity;
+    preSave(entity, newEntity, context);
   }
+  
+  protected void preUpdate(E entity, E newEntity, JsonNode context) {}
+  
+  protected void preCreate(E entity, E newEntity, JsonNode context) {}
+
+  protected void preSave(E entity, E newEntity, JsonNode context) {}
 
   public void validate(E entity, E newEntity) {
     var uniqueFields = new HashMap<String, Object>();
@@ -301,10 +315,29 @@ public abstract class DataService<E extends BaseEntity, P extends PredicateBuild
       });
     }
   }
-
-  protected void preSave(E entity, E newEntity, JsonNode context) { }
   
-  protected void postSave(E saved, E newEntity, JsonNode context) { }
+  private E persist(E entity) {
+    var id = entity.getId();
+    if (id == null || id.isEmpty() || id.isBlank()) {
+      entity.setId(UUID.randomUUID().toString());
+    }
+    return repo.save(entity);
+  }
+  
+  private void performPostSave(E entity, E saved, JsonNode context) {
+    if (entity.getId() != null) {
+      postUpdate(entity, saved, context);
+    } else {
+      postCreate(entity, saved, context);
+    }
+    postSave(entity, saved, context);
+  }
+  
+  protected void postUpdate(E entity, E saved, JsonNode context) { }
+  
+  protected void postCreate(E entity, E saved, JsonNode context) { }
+  
+  protected void postSave(E entity, E saved, JsonNode context) { }
 
   protected List<String> saveFields(E entity, E newEntity, JsonNode context) {    
     return context != null && !context.isNull()

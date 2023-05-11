@@ -17,9 +17,10 @@ import javax.persistence.UniqueConstraint;
 import org.hibernate.annotations.CollectionId;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
-import app.wooportal.server.base.report.translations.ReportTranslatableEntity;
+import app.wooportal.server.base.report.base.translations.ReportTranslatableEntity;
 import app.wooportal.server.base.report.type.ReportTypeEntity;
 import app.wooportal.server.core.base.BaseEntity;
+import app.wooportal.server.core.i18n.annotations.Translatable;
 import app.wooportal.server.core.media.base.MediaEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -40,6 +41,9 @@ public class ReportEntity extends BaseEntity {
 
   @Transient
   private String captchaToken;
+  
+  @Translatable
+  private String content;
 
   @Column(nullable = false)
   private String email;

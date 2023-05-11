@@ -11,6 +11,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import app.wooportal.server.core.base.BaseEntity;
+import app.wooportal.server.core.i18n.annotations.Translatable;
 import app.wooportal.server.core.media.base.MediaEntity;
 import app.wooportal.server.features.survey.assignment.AssignmentEntity;
 import app.wooportal.server.features.survey.base.translations.SurveyTranslatableEntity;
@@ -32,11 +33,17 @@ import lombok.Setter;
 public class SurveyEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
+  
+  @Translatable
+  private String description; 
 
   private Date due_date;
 
   @Column(nullable = false)
   private Boolean mandatory;
+  
+  @Translatable
+  private String name;
 
   private String seoDescription;
 

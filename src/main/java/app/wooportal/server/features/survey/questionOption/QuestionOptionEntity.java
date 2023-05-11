@@ -10,6 +10,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import app.wooportal.server.core.base.BaseEntity;
+import app.wooportal.server.core.i18n.annotations.Translatable;
 import app.wooportal.server.features.survey.question.QuestionEntity;
 import app.wooportal.server.features.survey.questionOption.translations.QuestionOptionTranslatableEntity;
 import lombok.AccessLevel;
@@ -28,6 +29,9 @@ import lombok.Setter;
 public class QuestionOptionEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
+  
+  @Translatable
+  private String label;
 
   @Column(nullable = false)
   private Integer order;
