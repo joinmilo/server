@@ -21,6 +21,7 @@ import app.wooportal.server.base.contact.ContactEntity;
 import app.wooportal.server.base.userContext.base.translations.UserContextTranslatableEntity;
 import app.wooportal.server.base.userContext.friend.FriendEntity;
 import app.wooportal.server.core.base.BaseEntity;
+import app.wooportal.server.core.i18n.annotations.Translatable;
 import app.wooportal.server.core.media.base.MediaEntity;
 import app.wooportal.server.core.security.components.user.UserEntity;
 import app.wooportal.server.features.article.base.ArticleEntity;
@@ -53,14 +54,15 @@ import lombok.Setter;
 public class UserContextEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
-
-  private String description;
   
   @ManyToOne(fetch = FetchType.LAZY)
   private AddressEntity address;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private MediaEntity avatar;
+  
+  @Translatable
+  private String description;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private MediaEntity titleImage;

@@ -6,6 +6,7 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import app.wooportal.server.core.base.BaseEntity;
+import app.wooportal.server.core.i18n.annotations.Translatable;
 import app.wooportal.server.features.event.base.EventEntity;
 import app.wooportal.server.features.event.category.translations.EventCategoryTranslatableEntity;
 import lombok.AccessLevel;
@@ -27,6 +28,9 @@ public class EventCategoryEntity extends BaseEntity {
   private String color;
   
   private String icon;
+  
+  @Translatable
+  private String name;
 
   @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
   private Set<EventEntity> events;

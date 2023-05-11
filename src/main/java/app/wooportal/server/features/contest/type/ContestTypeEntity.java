@@ -8,6 +8,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import app.wooportal.server.core.base.BaseEntity;
+import app.wooportal.server.core.i18n.annotations.Translatable;
 import app.wooportal.server.features.contest.base.ContestEntity;
 import app.wooportal.server.features.contest.type.translations.ContestTypeTranslatableEntity;
 import lombok.AccessLevel;
@@ -29,6 +30,9 @@ public class ContestTypeEntity extends BaseEntity {
 
   @Column(nullable = false)
   private String key;
+  
+  @Translatable
+  private String name;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "type")
   private Set<ContestEntity> contests;

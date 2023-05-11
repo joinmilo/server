@@ -9,6 +9,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import app.wooportal.server.core.base.BaseEntity;
+import app.wooportal.server.core.i18n.annotations.Translatable;
 import app.wooportal.server.core.media.base.MediaEntity;
 import app.wooportal.server.features.contest.base.translations.ContestTranslatableEntity;
 import app.wooportal.server.features.contest.participation.ContestParticipationEntity;
@@ -29,8 +30,17 @@ import lombok.Setter;
 public class ContestEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
+  
+  @Translatable
+  private String description;
 
   private Date dueDate;
+  
+  @Translatable
+  private String name;
+  
+  @Translatable
+  private String shortDescription;
 
   private String seoDescription;
 

@@ -1,4 +1,4 @@
-package app.wooportal.server.base.report.translations;
+package app.wooportal.server.base.report.base.translations;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

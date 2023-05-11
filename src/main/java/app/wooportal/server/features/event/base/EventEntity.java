@@ -48,8 +48,17 @@ import lombok.Setter;
 public class EventEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
+  
+  @Translatable
+  private String description;
 
   private Double entryFee;
+  
+  @Translatable
+  private String name;
+  
+  @Translatable
+  private String shortDescription;
 
   private String seoDescription;
 
@@ -59,15 +68,6 @@ public class EventEntity extends BaseEntity {
   private Boolean sponsored;
 
   private String videoChatLink;
-
-  @Translatable
-  private String description;
-
-  @Translatable
-  private String name;
-
-  @Translatable
-  private String shortDescription;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private MediaEntity cardImage;

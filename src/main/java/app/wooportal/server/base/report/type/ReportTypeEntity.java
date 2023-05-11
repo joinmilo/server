@@ -9,6 +9,7 @@ import org.hibernate.annotations.GenericGenerator;
 import app.wooportal.server.base.report.base.ReportEntity;
 import app.wooportal.server.base.report.type.translations.ReportTypeTranslatableEntity;
 import app.wooportal.server.core.base.BaseEntity;
+import app.wooportal.server.core.i18n.annotations.Translatable;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,6 +26,9 @@ import lombok.Setter;
 public class ReportTypeEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
+  
+  @Translatable
+  private String name;
 
   @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
   private Set<ReportTypeTranslatableEntity> translatables;

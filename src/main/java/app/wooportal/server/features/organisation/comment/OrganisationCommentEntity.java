@@ -8,6 +8,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import app.wooportal.server.core.base.BaseEntity;
+import app.wooportal.server.core.i18n.annotations.Translatable;
 import app.wooportal.server.features.organisation.base.OrganisationEntity;
 import app.wooportal.server.features.organisation.comment.translations.OrganisationCommentTranslatableEntity;
 import lombok.AccessLevel;
@@ -28,6 +29,9 @@ public class OrganisationCommentEntity extends BaseEntity {
 
   @Column(nullable = false)
   private Boolean approved;
+  
+  @Translatable
+  private String content;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private OrganisationEntity organisation;

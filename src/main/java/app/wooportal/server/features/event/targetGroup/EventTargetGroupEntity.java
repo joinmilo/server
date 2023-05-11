@@ -6,6 +6,7 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import app.wooportal.server.core.base.BaseEntity;
+import app.wooportal.server.core.i18n.annotations.Translatable;
 import app.wooportal.server.features.event.targetGroup.translations.EventTargetGroupTranslatableEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -22,6 +23,9 @@ import lombok.Setter;
 public class EventTargetGroupEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
+  
+  @Translatable
+  private String name;
 
   @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
   private Set<EventTargetGroupTranslatableEntity> translatables;

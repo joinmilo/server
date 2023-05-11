@@ -10,4 +10,5 @@ public class EventService extends DataService<EventEntity, EventPredicateBuilder
   public EventService(DataRepository<EventEntity> repo, EventPredicateBuilder predicate) {
     super(repo, predicate);
   }
+  
 }

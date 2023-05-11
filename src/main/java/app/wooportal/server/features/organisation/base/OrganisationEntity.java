@@ -19,6 +19,7 @@ import org.hibernate.annotations.Type;
 import app.wooportal.server.base.address.base.AddressEntity;
 import app.wooportal.server.base.contact.ContactEntity;
 import app.wooportal.server.core.base.BaseEntity;
+import app.wooportal.server.core.i18n.annotations.Translatable;
 import app.wooportal.server.core.media.base.MediaEntity;
 import app.wooportal.server.features.event.base.EventEntity;
 import app.wooportal.server.features.organisation.base.translations.OrganisationTranslatableEntity;
@@ -42,16 +43,19 @@ import lombok.Setter;
 public class OrganisationEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
+  
+  @Column(nullable = false)
+  private Boolean approved;
+  
+  @Translatable
+  private String description;
+  
+  @Column(nullable = false)
+  private String name;
 
   private String seoDescription;
 
   private String slug;
-
-  @Column(nullable = false)
-  private Boolean approved;
-
-  @Column(nullable = false)
-  private String name;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private AddressEntity address;

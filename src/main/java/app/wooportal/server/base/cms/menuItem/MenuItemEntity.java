@@ -10,6 +10,7 @@ import app.wooportal.server.base.cms.feature.FeatureEntity;
 import app.wooportal.server.base.cms.menuItem.translations.MenuItemTranslatableEntity;
 import app.wooportal.server.base.cms.page.PageEntity;
 import app.wooportal.server.core.base.BaseEntity;
+import app.wooportal.server.core.i18n.annotations.Translatable;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,6 +28,9 @@ public class MenuItemEntity extends BaseEntity {
   private static final long serialVersionUID = 1L;
 
   private Boolean header;
+  
+  @Translatable
+  private String name;
   
   private Integer order;
 

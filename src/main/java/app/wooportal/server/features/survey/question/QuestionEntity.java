@@ -30,6 +30,9 @@ import lombok.Setter;
 public class QuestionEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
+  
+  @Column
+  private String subject;
 
   @Column(nullable = false)
   private Integer order;

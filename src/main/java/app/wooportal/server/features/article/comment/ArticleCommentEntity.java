@@ -11,6 +11,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import app.wooportal.server.base.userContext.base.UserContextEntity;
 import app.wooportal.server.core.base.BaseEntity;
+import app.wooportal.server.core.i18n.annotations.Translatable;
 import app.wooportal.server.features.article.base.ArticleEntity;
 import app.wooportal.server.features.article.comment.translations.ArticleCommentTranslatableEntity;
 import lombok.AccessLevel;
@@ -32,6 +33,9 @@ public class ArticleCommentEntity extends BaseEntity {
 
   @Column(nullable = false)
   private Boolean approved;
+  
+  @Translatable
+  private String content;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private UserContextEntity userContext;

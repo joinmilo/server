@@ -22,6 +22,6 @@ public class AnswerTranslatableEntity extends TranslatableEntity<AnswerEntity> {
   private static final long serialVersionUID = 1L;
 
   @Column(nullable = false)
-  private String result;
+  private String content;
 
 }

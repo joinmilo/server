@@ -9,6 +9,7 @@ import app.wooportal.server.base.cms.feature.translations.FeatureTranslatableEnt
 import app.wooportal.server.base.cms.menuItem.MenuItemEntity;
 import app.wooportal.server.base.cms.pageFeature.PageFeatureEntity;
 import app.wooportal.server.core.base.BaseEntity;
+import app.wooportal.server.core.i18n.annotations.Translatable;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,6 +25,9 @@ import lombok.Setter;
 public class FeatureEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
+  
+  @Translatable
+  private String name;
 
   private String key;
 
