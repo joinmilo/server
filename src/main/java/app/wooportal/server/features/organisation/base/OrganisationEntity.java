@@ -53,7 +53,7 @@ public class OrganisationEntity extends BaseEntity {
   @Column(nullable = false)
   private String name;
 
-  private String seoDescription;
+  private String metaDescription;
 
   private String slug;
 

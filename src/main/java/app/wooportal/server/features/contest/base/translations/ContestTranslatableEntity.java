@@ -26,12 +26,11 @@ public class ContestTranslatableEntity extends TranslatableEntity<ContestEntity>
   private static final long serialVersionUID = 1L;
 
   @Column(nullable = false)
-  private String description;
+  private String content;
 
   @Column(nullable = false)
   private String name;
 
-  @Column(nullable = false)
   private String shortDescription;
 
 }

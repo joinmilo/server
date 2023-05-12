@@ -30,12 +30,12 @@ databaseChangeLog:
                     nullable: false              
                   name: name
                   type: VARCHAR(255)    
-              - column:           
-                  name: description
+              - column:     
+                  constraints:
+                    nullable: false                    
+                  name: content
                   type: VARCHAR(255)                           
               - column:
-                  constraints:
-                    nullable: false              
                   name: short_description
                   type: VARCHAR(255)                             
               - column:

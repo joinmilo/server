@@ -42,8 +42,9 @@ public class ContestEntity extends BaseEntity {
   @Translatable
   private String shortDescription;
 
-  private String seoDescription;
+  private String metaDescription;
 
+  @Column(nullable = false, unique= true)
   private String slug;
 
   @Column(nullable = false)

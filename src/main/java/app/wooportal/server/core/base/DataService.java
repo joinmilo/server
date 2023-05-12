@@ -34,6 +34,7 @@ import app.wooportal.server.core.error.exception.NotNullableException;
 import app.wooportal.server.core.repository.BaseRepositoryQuery;
 import app.wooportal.server.core.repository.CollectionRepositoryQuery;
 import app.wooportal.server.core.repository.DataRepository;
+import app.wooportal.server.core.seo.annotations.Slug;
 import app.wooportal.server.core.utils.PersistenceUtils;
 import app.wooportal.server.core.utils.ReflectionUtils;
 import app.wooportal.server.core.utils.SortPageUtils;
@@ -375,6 +376,10 @@ public abstract class DataService<E extends BaseEntity, P extends PredicateBuild
   protected Optional<String> saveField(E entity, E newEntity, String fieldName, JsonNode context) {
     if (ReflectionUtils.getAnnotation(entity, fieldName, OneToMany.class).isPresent()
         || PersistenceUtils.mappedBy(entity, fieldName, OneToOne.class).isPresent()) {
+      return Optional.of(fieldName);
+    }
+    
+    if (ReflectionUtils.getAnnotation(entity, fieldName, Slug.class).isPresent()) {
       return Optional.of(fieldName);
     }
     

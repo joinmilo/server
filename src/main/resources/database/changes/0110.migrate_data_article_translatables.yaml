@@ -1,0 +1,20 @@
+databaseChangeLog:                               
+  - changeSet:
+      id: 0110.migrate_data_article_translatables.1
+      author: codeschluss
+      changes:
+        - renameColumn:
+            newColumnName: name
+            oldColumnName: title
+            columnDataType: varchar(255)
+            tableName: article_translatables  
+            
+  - changeSet:
+      id: 0111.migrate_data_article_translatables.3
+      author: codeschluss
+      changes:
+        - addNotNullConstraint:
+            tableName: article_translatables
+            columnName: name
+            columnDataType: varchar(255)                
+            

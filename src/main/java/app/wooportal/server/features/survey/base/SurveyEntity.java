@@ -45,7 +45,7 @@ public class SurveyEntity extends BaseEntity {
   @Translatable
   private String name;
 
-  private String seoDescription;
+  private String metaDescription;
 
   private String slug;
   @Column(nullable = false)

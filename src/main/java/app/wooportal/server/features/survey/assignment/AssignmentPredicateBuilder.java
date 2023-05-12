@@ -15,6 +15,6 @@ public class AssignmentPredicateBuilder
   @Override
   public BooleanExpression freeSearch(String term) {
     return query.survey.slug.likeIgnoreCase(term)
-        .or(query.survey.seoDescription.likeIgnoreCase(term));
+        .or(query.survey.metaDescription.likeIgnoreCase(term));
   }
 }

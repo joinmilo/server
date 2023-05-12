@@ -26,6 +26,9 @@ databaseChangeLog:
                   name: modified
                   type: datetime
               - column:
+                  constraints:
+                    nullable: false
+                    unique: true              
                   name: slug
                   type: VARCHAR(255)  
               - column:

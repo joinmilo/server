@@ -25,6 +25,8 @@ databaseChangeLog:
                 name: card_image_id
                 type: char(36)                                                                                     
             - column:
+                constraints:
+                  nullable: false           
                 name: slug
                 type: varchar(255)
             - column:

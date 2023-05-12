@@ -29,9 +29,8 @@ public class ArticleTranslatableEntity extends TranslatableEntity<ArticleEntity>
   private String content;
 
   @Column(nullable = false)
-  private String title;
+  private String name;
   
-  @Column(nullable = false)
   private String shortDescription;
 
 }

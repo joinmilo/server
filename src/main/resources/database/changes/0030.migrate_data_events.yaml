@@ -31,10 +31,12 @@ databaseChangeLog:
                 name: organisation_id
                 type: char(36)
             - column:
+                constraints:
+                  nullable: false          
                 name: slug
                 type: varchar(255)
-            - column:
-                name: seo_description
+            - column:            
+                name: meta_description
                 type: varchar(255) 
             - column:
                 name: video_chat_link
