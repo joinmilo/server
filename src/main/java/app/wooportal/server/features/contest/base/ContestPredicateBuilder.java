@@ -15,8 +15,8 @@ public class ContestPredicateBuilder extends PredicateBuilder<QContestEntity, Co
   public BooleanExpression freeSearch(String term) {
     return query.type.translatables.any().name.likeIgnoreCase(term)
         .or(query.translatables.any().name.likeIgnoreCase(term))
-        .or(query.translatables.any().description.likeIgnoreCase(term))
-        .or(query.seoDescription.likeIgnoreCase(term))
+        .or(query.translatables.any().content.likeIgnoreCase(term))
+        .or(query.metaDescription.likeIgnoreCase(term))
         .or(query.slug.likeIgnoreCase(term));
   }
 }

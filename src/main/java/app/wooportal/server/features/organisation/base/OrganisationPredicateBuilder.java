@@ -16,6 +16,6 @@ public class OrganisationPredicateBuilder
   public BooleanExpression freeSearch(String term) {
     return query.name.likeIgnoreCase(term)
         .or(query.slug.likeIgnoreCase(term))
-        .or(query.seoDescription.likeIgnoreCase(term));
+        .or(query.metaDescription.likeIgnoreCase(term));
   }
 }

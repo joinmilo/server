@@ -199,7 +199,11 @@ databaseChangeLog:
     - include:
         file: database/changes/0108.create_table_event_comments.yaml
     - include:
-        file: database/changes/0109.create_table_event_comment_translatables.yaml          
+        file: database/changes/0109.create_table_event_comment_translatables.yaml  
+    - include:
+        file: database/changes/0110.migrate_data_article_translatables.yaml     
+    - include:
+        file: database/changes/0111.transform_slugs.yaml                  
         
     #Data section        
     - include:

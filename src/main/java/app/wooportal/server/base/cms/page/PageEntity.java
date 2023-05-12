@@ -3,6 +3,7 @@ package app.wooportal.server.base.cms.page;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,9 +14,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+
 import org.hibernate.annotations.CollectionId;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
+
 import app.wooportal.server.base.cms.menuItem.MenuItemEntity;
 import app.wooportal.server.base.cms.page.translations.PageTranslatableEntity;
 import app.wooportal.server.base.cms.page.visitors.PageVisitorEntity;
@@ -50,11 +53,9 @@ public class PageEntity extends BaseEntity {
   
   private Boolean isLanding;
 
-  @Translatable
-  private String name;
-  
-  private String seoDescription;
+  private String metaDescription;
 
+  @Column(unique = true, nullable = false)
   private String slug;
   
   @Translatable

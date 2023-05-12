@@ -23,11 +23,12 @@ public class EventTranslatableEntity extends TranslatableEntity<EventEntity> {
 
   private static final long serialVersionUID = 1L;
 
-  private String description;
+  @Column(nullable = false)
+  private String content;
 
   @Column(nullable = false)
   private String name;
-
+  
   private String shortDescription;
 
 }

@@ -4,7 +4,6 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import org.jsoup.Jsoup;
 import liquibase.change.custom.CustomTaskChange;
 import liquibase.database.Database;
 import liquibase.database.jvm.JdbcConnection;
@@ -14,7 +13,7 @@ import liquibase.exception.SetupException;
 import liquibase.exception.ValidationErrors;
 import liquibase.resource.ResourceAccessor;
 
-public class ShortDescriptionMigration implements CustomTaskChange {
+public class MetaDescriptionMigration implements CustomTaskChange {
 
   private ValidationErrors errors = new ValidationErrors();
 
@@ -22,7 +21,7 @@ public class ShortDescriptionMigration implements CustomTaskChange {
 
   @Override
   public String getConfirmationMessage() {
-    return "Successfully migrated short descriptions for events and articles";
+    return "Successfully migrated Slugs";
   }
 
   @Override
@@ -40,8 +39,7 @@ public class ShortDescriptionMigration implements CustomTaskChange {
   public void execute(Database database) throws CustomChangeException {
     connection = (JdbcConnection) database.getConnection();
     try {
-      migrate("event_translatables");
-      migrate("article_translatables");
+      migrate("event_translatables", "events");
     } catch (Exception e) {
       var sw = new StringWriter();
       e.printStackTrace(new PrintWriter(sw));
@@ -50,38 +48,34 @@ public class ShortDescriptionMigration implements CustomTaskChange {
     }
   }
 
-  private void migrate(String tableName) throws DatabaseException, SQLException {
+  private void migrate(String tableNameData, String tableName)
+      throws DatabaseException, SQLException {
     var idField = "id";
-    var descriptionField = "content";
+    var content = "short_description";
 
-    var translatables = retrieveData(tableName, idField, descriptionField);
+    var translatables = retrieveData(tableNameData, idField, content, tableName);
 
     var statement =
         connection.prepareStatement(String.format("update %1$s set %2$s = trim(?) where %3$s = ?",
-            tableName, "short_description", idField));
+            tableName, "meta_description", idField));
     connection.setAutoCommit(false);
     while (translatables.next()) {
-      statement.setString(1,
-          prepareShortDescription((String) translatables.getObject(descriptionField)));
+      statement.setString(1, ((String) translatables.getObject(content)));
       statement.setObject(2, (String) translatables.getObject(idField));
       statement.addBatch();
     }
-
     statement.executeBatch();
     connection.commit();
   }
 
-  private ResultSet retrieveData(String tableName, String idField, String descriptionField)
-      throws DatabaseException, SQLException {
+  private ResultSet retrieveData(String tableNameData, String idField, String name,
+      String tableName) throws DatabaseException, SQLException {
     var statement = connection.createStatement();
 
-    return statement.executeQuery(
-        String.format("select %1$s, %2$s from %3$s", idField, descriptionField, tableName));
+    return statement.executeQuery(String.format(
+        "SELECT feature.%1$s, translatable.%2$s FROM %4$s feature "
+            + "JOIN %3$s translatable ON feature.id = translatable.parent_id "
+            + "JOIN languages l ON translatable.language_id = l.id " + "WHERE l.locale = 'en'",
+        idField, name, tableNameData, tableName));
   }
-
-  private String prepareShortDescription(String content) {
-    var result = Jsoup.parse(content).body().text();
-    return result.substring(0, Math.min(result.length(), 200)).strip().stripIndent();
-  }
-
 }

@@ -13,7 +13,7 @@ public class SurveyPredicateBuilder extends PredicateBuilder<QSurveyEntity, Surv
 
   @Override
   public BooleanExpression freeSearch(String term) {
-    return query.seoDescription.likeIgnoreCase(term)
+    return query.metaDescription.likeIgnoreCase(term)
         .or(query.slug.likeIgnoreCase(term));
   }
 }

@@ -7,7 +7,7 @@ databaseChangeLog:
       - renameTable:
           newTableName: event_translatables
           oldTableName: activity_translatables
-          remarks: change in names
+          remarks: change in names        
 
   - changeSet:
       id: 0035.migrate_data_event_translatables.2
@@ -19,4 +19,14 @@ databaseChangeLog:
             - column:
                 name: short_description
                 type: VARCHAR(255)
+                
+  - changeSet:
+      id: 0035.migrate_data_event_translatables.3
+      author: codeschluss
+      changes:
+        - renameColumn:
+            newColumnName: content
+            oldColumnName: description
+            columnDataType: mediumtext
+            tableName: event_translatables                  
             

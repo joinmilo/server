@@ -45,6 +45,7 @@
 		<oauth.version>3.8.1</oauth.version>
 		<openhtmltopdf.version>1.0.10</openhtmltopdf.version>
 		<reflection.version>0.10.2</reflection.version>
+		<slugify.version>3.0.4</slugify.version>
 		<twelvemonkeys.imageio>3.5</twelvemonkeys.imageio>
 	</properties>
 
@@ -166,6 +167,11 @@
 			<artifactId>reflections</artifactId>
 			<version>${reflection.version}</version>
 		</dependency>
+		<dependency>
+    		<groupId>com.github.slugify</groupId>
+    		<artifactId>slugify</artifactId>
+    		<version>${slugify.version}</version>
+		</dependency>			
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>

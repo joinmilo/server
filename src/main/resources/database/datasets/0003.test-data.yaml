@@ -45,7 +45,7 @@ databaseChangeLog:
             comment: Add Landing Page and translatable
             splitStatements: true
             sql:           
-                insert into pages (id, title_image_id, slug, seo_description, is_landing, call_url)
+                insert into pages (id, title_image_id, slug, meta_description, is_landing, call_url)
                 select "7cefc60c-8325-4861-90c7-97f1e8eeb290", "1774bd91-1698-4c4a-8f16-3a0a98fdef32", "landing", null, true, "http://localhost:8010";
                 
                 insert into page_translatables (id, `name`, short_description, call_text, parent_id, language_id)
@@ -159,8 +159,8 @@ databaseChangeLog:
         - sql:
             comment: Add data deals
             splitStatements: true
-            sql: insert into deals (id, price, contact_id, category_id) values
-              ('69f29c5f-5713-4549-902b-7157cb62b999', 5, '3916b414-c2bf-4808-a401-284ac62df73d', 'bcec76dd-d269-4081-af08-e3a9a72e9e00');    
+            sql: insert into deals (id, price, contact_id, category_id, slug) values
+              ('69f29c5f-5713-4549-902b-7157cb62b999', 5, '3916b414-c2bf-4808-a401-284ac62df73d', 'bcec76dd-d269-4081-af08-e3a9a72e9e00', 'slug');    
               
   - changeSet:
       id: 0003.test-data.12
@@ -169,8 +169,8 @@ databaseChangeLog:
         - sql:
             comment: Add data deal_translatables
             splitStatements: true
-            sql: insert into deal_translatables (id, parent_id, language_id, short_description, name)
-                 select uuid(), "69f29c5f-5713-4549-902b-7157cb62b999", l.id, "GuterDeal!", "DealOne"
+            sql: insert into deal_translatables (id, parent_id, language_id, short_description, name, content)
+                 select uuid(), "69f29c5f-5713-4549-902b-7157cb62b999", l.id, "GuterDeal!", "DealOne", "content"
                  from languages l
                  WHERE l.locale = "de";     
                  
@@ -201,8 +201,8 @@ databaseChangeLog:
         - sql:
             comment: Add data contest
             splitStatements: true
-            sql: insert into contests (id, due_date, card_image_id, type_id, state_id) values
-              ('5dc59462-91f6-402d-82ae-a8fd65fbfa42', '2020-02-13 10:39:28', '0c7ad542-6aed-4613-8739-e4cd0db2ce2f', '112a561f-5d96-42dd-b851-62365e79147b', '41a73da0-6c95-4bfe-85a7-342c8dcf7da9');       
+            sql: insert into contests (id, due_date, card_image_id, type_id, state_id, slug) values
+              ('5dc59462-91f6-402d-82ae-a8fd65fbfa42', '2020-02-13 10:39:28', '0c7ad542-6aed-4613-8739-e4cd0db2ce2f', '112a561f-5d96-42dd-b851-62365e79147b', '41a73da0-6c95-4bfe-85a7-342c8dcf7da9', 'slug');       
               
   - changeSet:
       id: 0003.test-data.16
@@ -211,8 +211,8 @@ databaseChangeLog:
         - sql:
             comment: Add data contest_translatables
             splitStatements: true
-            sql: insert into contest_translatables (id, parent_id, language_id, short_description, name, description)
-                 select uuid(), "5dc59462-91f6-402d-82ae-a8fd65fbfa42", l.id, "Feel free to join the very first art contest!", "DrawABike", "no description"
+            sql: insert into contest_translatables (id, parent_id, language_id, short_description, name, content)
+                 select uuid(), "5dc59462-91f6-402d-82ae-a8fd65fbfa42", l.id, "Feel free to join the very first art contest!", "DrawABike", "no content"
                  from languages l
                  WHERE l.locale = "de";
                  
@@ -257,8 +257,8 @@ databaseChangeLog:
             comment: add event
             splitStatements: true
             sql:
-               insert into events (id, creator_id, category_id) values
-               ('0c3cf6f6-8337-492b-90e6-4db0bbc14aa9', '5737ee58-9f88-43d1-baf4-a34dd85f0219', 'ca429c83-ae27-4ce5-af45-1219bacab2a0');               
+               insert into events (id, creator_id, category_id, slug) values
+               ('0c3cf6f6-8337-492b-90e6-4db0bbc14aa9', '5737ee58-9f88-43d1-baf4-a34dd85f0219', 'ca429c83-ae27-4ce5-af45-1219bacab2a0', 'slug');               
                                 
   - changeSet:
       id: 0003.test-data.21
@@ -339,12 +339,12 @@ databaseChangeLog:
             comment: Add articles
             splitStatements: true
             sql:
-               insert into articles (id, card_image_id, author_id) values
-               ('640f4663-7e49-4727-8208-e5f5f5b078ed', '1774bd91-1698-4c4a-8f16-3a0a98fdef32', '20ab2295-4d4f-4524-893d-f3b09f1e885a'),
-               ('b0ba555d-b378-4c32-b115-17be6e2a5eff', '1774bd91-1698-4c4a-8f16-3a0a98fdef32', '20ab2295-4d4f-4524-893d-f3b09f1e885a'),
-               ('c28e12c7-ff99-4885-8fd0-de6806023c71', '1774bd91-1698-4c4a-8f16-3a0a98fdef32', '20ab2295-4d4f-4524-893d-f3b09f1e885a'),
-               ('f164a12c-fe78-4773-9c8b-27c5bf939c6a', '1774bd91-1698-4c4a-8f16-3a0a98fdef32', '20ab2295-4d4f-4524-893d-f3b09f1e885a'),
-               ('1729e341-d9c9-4a4c-b05b-80a369ced20e', '1774bd91-1698-4c4a-8f16-3a0a98fdef32', '20ab2295-4d4f-4524-893d-f3b09f1e885a'),                                             
-               ('21ffbd6a-af52-4ede-9f10-8f9220d6e4b3', '1774bd91-1698-4c4a-8f16-3a0a98fdef32', '20ab2295-4d4f-4524-893d-f3b09f1e885a');   
+               insert into articles (id, card_image_id, author_id, slug) values
+               ('640f4663-7e49-4727-8208-e5f5f5b078ed', '1774bd91-1698-4c4a-8f16-3a0a98fdef32', '20ab2295-4d4f-4524-893d-f3b09f1e885a', 'slug'),
+               ('b0ba555d-b378-4c32-b115-17be6e2a5eff', '1774bd91-1698-4c4a-8f16-3a0a98fdef32', '20ab2295-4d4f-4524-893d-f3b09f1e885a', 'slug'),
+               ('c28e12c7-ff99-4885-8fd0-de6806023c71', '1774bd91-1698-4c4a-8f16-3a0a98fdef32', '20ab2295-4d4f-4524-893d-f3b09f1e885a', 'slug'),
+               ('f164a12c-fe78-4773-9c8b-27c5bf939c6a', '1774bd91-1698-4c4a-8f16-3a0a98fdef32', '20ab2295-4d4f-4524-893d-f3b09f1e885a', 'slug'),
+               ('1729e341-d9c9-4a4c-b05b-80a369ced20e', '1774bd91-1698-4c4a-8f16-3a0a98fdef32', '20ab2295-4d4f-4524-893d-f3b09f1e885a', 'slug'),                                             
+               ('21ffbd6a-af52-4ede-9f10-8f9220d6e4b3', '1774bd91-1698-4c4a-8f16-3a0a98fdef32', '20ab2295-4d4f-4524-893d-f3b09f1e885a', 'slug');   
                
                                                        
