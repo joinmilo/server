@@ -281,7 +281,7 @@ public abstract class DataService<E extends BaseEntity, P extends PredicateBuild
   public void validate(E entity, E newEntity) {
     var uniqueFields = new HashMap<String, Object>();
     for (var field: ReflectionUtils.getFields(entity.getClass())) {
-      if (!PersistenceUtils.isIgnoredField(field)) {
+      if (!isIgnoredField(field.getName())) {
         checkNullable(entity, newEntity, field);
         
         var value = ReflectionUtils.get(field.getName(), newEntity);
@@ -291,7 +291,12 @@ public abstract class DataService<E extends BaseEntity, P extends PredicateBuild
         }
       }
     }
-    checkDuplicates(uniqueFields, entity);
+    checkDuplicates(uniqueFields, newEntity, entity);
+  }
+
+  private boolean isIgnoredField(String fieldName) {
+    return PersistenceUtils.isIgnoredField(fieldName)
+        || fieldName.equals("id");
   }
 
   private void checkNullable(E entity, E newEntity, Field field) {
@@ -304,7 +309,10 @@ public abstract class DataService<E extends BaseEntity, P extends PredicateBuild
   
   @SuppressWarnings("unchecked")
   //TODO: Check duplicates also for class constraints
-  private void checkDuplicates(Map<String, Object> uniqueFields, E entity) {
+  private void checkDuplicates(
+      Map<String, Object> uniqueFields,
+      E newEntity,
+      E entity) {
     if (uniqueFields != null && !uniqueFields.isEmpty()) {
       uniqueFields.forEach((fieldName, fieldValue) -> {
         var result = getByExample((E) ReflectionUtils.newInstance(getEntityClass())
