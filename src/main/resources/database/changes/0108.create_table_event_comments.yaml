@@ -26,13 +26,9 @@ databaseChangeLog:
                   name: modified
                   type: datetime   
               - column:
-                  constraints:
-                    nullable: false
                   name: event_id
                   type: CHAR(36)  
               - column:
-                  constraints:
-                    nullable: false
                   name: user_context_id
                   type: CHAR(36)                                                                   
             tableName: event_comments
