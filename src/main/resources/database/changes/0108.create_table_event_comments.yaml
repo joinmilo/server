@@ -24,13 +24,7 @@ databaseChangeLog:
                     nullable: false
                   defaultValueComputed: CURRENT_TIMESTAMP
                   name: modified
-                  type: datetime
-              - column:
-                  constraints:
-                    nullable: false
-                  defaultValueBoolean: false
-                  name: approved
-                  type: boolean    
+                  type: datetime   
               - column:
                   constraints:
                     nullable: false

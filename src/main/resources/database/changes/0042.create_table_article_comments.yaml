@@ -28,12 +28,6 @@ databaseChangeLog:
               - column:
                   constraints:
                     nullable: false
-                  defaultValueBoolean: false
-                  name: approved
-                  type: boolean    
-              - column:
-                  constraints:
-                    nullable: false
                   name: article_id
                   type: CHAR(36)  
               - column:
