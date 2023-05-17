@@ -80,7 +80,7 @@ public class AuthenticationService {
   }
   
   private Optional<JwtUserDetails> retrieveUserDetailsFromToken(String jwtToken) {
-    if (jwtToken != null) {
+    if (jwtToken != null && !jwtToken.contains("undefined")) {
       var username = tokenService.verifyAccess(jwtToken).getSubject();
       if (username != null) {
         return Optional.ofNullable(userDetailsService.loadUserByUsername(username));

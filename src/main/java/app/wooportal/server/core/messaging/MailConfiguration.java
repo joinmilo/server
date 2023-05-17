@@ -19,6 +19,5 @@ public class MailConfiguration {
   private String toAddress;
   private Boolean dbTemplate;
   private String templateLocation;
-  private String portalName;
   
 }

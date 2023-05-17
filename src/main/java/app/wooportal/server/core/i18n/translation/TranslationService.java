@@ -52,7 +52,9 @@ public class TranslationService {
   }
   
   public void localizeSingle(Object entity) throws Throwable {
-    localize(entity, localeService.getCurrentRequestLocales());
+    if (!ReflectionUtils.getFieldsWithAnnotation(entity.getClass(), Translatable.class).isEmpty()) {
+      localize(entity, localeService.getCurrentRequestLocales());
+    }
   }
   
   private void localize(Object entity, List<String> locales) throws Throwable {

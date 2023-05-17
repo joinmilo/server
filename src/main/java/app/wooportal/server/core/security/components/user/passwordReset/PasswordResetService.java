@@ -61,7 +61,7 @@ public class PasswordResetService extends DataService<PasswordResetEntity, Passw
   }
 
   private String createPasswordResetLink(PasswordResetEntity saved) {
-    return config.getHost() + "/reset-password/password/" + saved.getToken();
+    return config.getHost() + "/user/password/" + saved.getToken();
   }
 
 }

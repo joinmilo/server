@@ -12,7 +12,8 @@ import app.wooportal.server.core.error.exception.AlreadyVerifiedException;
 import app.wooportal.server.core.error.exception.BadParamsException;
 import app.wooportal.server.core.error.exception.InvalidPasswordResetException;
 import app.wooportal.server.core.error.exception.InvalidTokenException;
-import app.wooportal.server.core.error.exception.InvalidVerificationException;
+import app.wooportal.server.core.error.exception.VerificationInvalidException;
+import app.wooportal.server.core.error.exception.VerificationUserNotFoundException;
 import app.wooportal.server.core.error.exception.NotFoundException;
 import app.wooportal.server.core.media.base.MediaEntity;
 import app.wooportal.server.core.media.base.MediaService;
@@ -141,7 +142,7 @@ public class UserService extends DataService<UserEntity, UserPredicateBuilder> {
     var result = repo.findOne(singleQuery(predicate.withMail(mailAddress)));
 
     if (result.isEmpty()) {
-      throw new NotFoundException("User with mail does not exist", mailAddress);
+      throw new VerificationUserNotFoundException("User with mail does not exist", mailAddress);
     }
 
     if (result.get().getVerified()) {
@@ -167,7 +168,7 @@ public class UserService extends DataService<UserEntity, UserPredicateBuilder> {
       service.deleteAll(service.collectionQuery(service.getPredicate().withUser(user.getId())));
       return repo.save(user);
     }
-    throw new InvalidVerificationException("Verification invalid", token);
+    throw new VerificationInvalidException("Verification invalid", token);
   }
 
   public Optional<UserEntity> deleteMe(String password) {

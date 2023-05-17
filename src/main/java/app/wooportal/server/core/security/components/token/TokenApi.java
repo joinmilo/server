@@ -2,6 +2,7 @@ package app.wooportal.server.core.security.components.token;
 
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Component;
+import app.wooportal.server.core.error.exception.VerificationPendingException;
 import app.wooportal.server.core.security.services.AuthenticationService;
 import app.wooportal.server.core.security.services.JwtUserDetailsService;
 import io.leangen.graphql.annotations.GraphQLMutation;
@@ -27,15 +28,18 @@ public class TokenApi {
 
   @GraphQLMutation(name = "createToken")
   public TokenDto createToken(String email, String password) {
-    try {
-      var jwtUserDetails = authService.authenticate(email, password);
+    var jwtUserDetails = authService.authenticate(email, password);
 
-      if (jwtUserDetails.isPresent()) {
-        return new TokenDto(
-            tokenService.createAccessToken(jwtUserDetails.get()),
-            tokenService.createRefreshToken(jwtUserDetails.get()));
+    if (jwtUserDetails.isPresent()) {
+      
+      if (!jwtUserDetails.get().isVerified()) {
+        throw new VerificationPendingException("mail not verified");
       }
-    } catch (Exception ignored) { }
+
+      return new TokenDto(
+          tokenService.createAccessToken(jwtUserDetails.get()),
+          tokenService.createRefreshToken(jwtUserDetails.get()));
+    }
     throw new BadCredentialsException(email);
   }
 

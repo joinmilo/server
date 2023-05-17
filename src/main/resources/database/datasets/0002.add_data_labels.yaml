@@ -930,9 +930,9 @@ databaseChangeLog:
             sql:
                /*!40101 SET character_set_client = utf8 */;
                /* Set variables */
-               SET @tagId   = "passwordResetSend";
+               SET @tagId   = "mailSentSucessfully";
                SET @german  = "Die E-mail wurde erfolgreich versandt.";
-               SET @english = "he email was sent successfully.";
+               SET @english = "The email was sent successfully.";
 
                /* Insert */
                insert into labels (`id`, `tag_id`) values

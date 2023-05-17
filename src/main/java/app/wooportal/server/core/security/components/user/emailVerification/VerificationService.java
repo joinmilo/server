@@ -39,7 +39,6 @@ public class VerificationService
       try {
         mailService.sendEmail("Email verifizieren", "verification.ftl",
             Map.of(
-                "fullname", newEntity.getUser().getFirstName(),
                 "portalName", config.getPortalName(),
                 "link", createVerifcationLink(newEntity)),
             newEntity.getUser().getEmail());

@@ -9,6 +9,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import app.wooportal.server.core.config.GeneralConfiguration;
 import app.wooportal.server.core.i18n.components.language.LanguageEntity;
 import app.wooportal.server.core.messaging.template.TemplateService;
 
@@ -18,13 +19,19 @@ public class MailService {
   private final JavaMailSender sender;
 
   private final MailConfiguration mailConfig;
+  
+  private final GeneralConfiguration generalConfig;
 
   private final TemplateService templateService;
 
-  public MailService(JavaMailSender sender, MailConfiguration mailConfig,
+  public MailService(
+      JavaMailSender sender,
+      MailConfiguration mailConfig,
+      GeneralConfiguration generalConfig,
       TemplateService templateService) {
     this.sender = sender;
     this.mailConfig = mailConfig;
+    this.generalConfig = generalConfig;
     this.templateService = templateService;
   }
 
@@ -58,7 +65,7 @@ public class MailService {
 
   public void sendEmail(String fromAddress, String subject, String content, boolean html,
       String... toAddresses) throws MessagingException {
-    subject = "[" + mailConfig.getPortalName() + "] - " + subject;
+    subject = "[" + generalConfig.getPortalName() + "] - " + subject;
     MimeMessage message = sender.createMimeMessage();
     MimeMessageHelper helper = new MimeMessageHelper(message);
     helper.setFrom(fromAddress);
