@@ -28,6 +28,12 @@ databaseChangeLog:
               - column:
                   constraints:
                     nullable: false
+                  defaultValueBoolean: false
+                  name: approved
+                  type: boolean                  
+              - column:
+                  constraints:
+                    nullable: false
                   name: organisation_id
                   type: CHAR(36)  
               - column:
