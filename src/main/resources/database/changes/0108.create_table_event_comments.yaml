@@ -24,7 +24,13 @@ databaseChangeLog:
                     nullable: false
                   defaultValueComputed: CURRENT_TIMESTAMP
                   name: modified
-                  type: datetime   
+                  type: datetime  
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueBoolean: false
+                  name: approved
+                  type: boolean                  
               - column:
                   name: event_id
                   type: CHAR(36)  

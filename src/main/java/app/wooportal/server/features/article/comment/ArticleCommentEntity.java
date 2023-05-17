@@ -30,7 +30,10 @@ import lombok.Setter;
 public class ArticleCommentEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
-  
+
+  @Column(nullable = false)
+  private Boolean approved;
+
   @Translatable
   private String content;
 
