@@ -29,7 +29,7 @@ databaseChangeLog:
                   name: slug
                   type: VARCHAR(255)  
               - column:
-                  name: seo_description
+                  name: meta_description
                   type: VARCHAR(255)  
               - column:
                   name: due_date
