@@ -37,7 +37,7 @@ public class SurveyEntity extends BaseEntity {
   @Translatable
   private String description; 
 
-  private Date due_date;
+  private Date dueDate;
 
   @Column(nullable = false)
   private Boolean mandatory;
