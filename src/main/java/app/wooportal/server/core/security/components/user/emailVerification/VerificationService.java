@@ -28,7 +28,7 @@ public class VerificationService
   }
 
   public Optional<VerificationEntity> getByKey(String name) {
-    return repo.findOne(singleQuery(predicate.withKey(name)));
+    return repo.findOne(singleQuery(predicate.withToken(name)));
   }
 
   @Override
@@ -58,7 +58,7 @@ public class VerificationService
   }
 
   private String createVerifcationLink(VerificationEntity saved) {
-    return config.getHost() + "/verification/" + saved.getToken();
+    return config.getHost() + "/user/verification/" + saved.getToken();
   }
 
 }

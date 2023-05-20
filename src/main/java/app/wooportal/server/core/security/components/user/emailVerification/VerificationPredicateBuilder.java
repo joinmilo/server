@@ -17,12 +17,16 @@ public class VerificationPredicateBuilder
     return query.token.likeIgnoreCase(term);
   }
 
-  public BooleanExpression withKey(String key) {
-    return key != null ? query.token.eq(key) : null;
+  public BooleanExpression withToken(String token) {
+    return token != null
+        ? query.token.eq(token)
+        : null;
   }
 
   public BooleanExpression withUser(String userId) {
-    return userId != null ? query.token.eq(userId) : null;
+    return userId != null
+        ? query.user.id.eq(userId)
+        : null;
   }
 
 }

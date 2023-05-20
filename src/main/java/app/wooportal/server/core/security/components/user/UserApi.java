@@ -140,7 +140,7 @@ public class UserApi extends CrudApi<UserEntity, UserService> {
   @GraphQLMutation(name = "verify")
   public UserEntity verify(String token) {
     if (token == null || token.isBlank()) {
-      throw new BadParamsException("key is null or empty");
+      throw new BadParamsException("token is null or empty");
     }
     return service.verify(token);
   }

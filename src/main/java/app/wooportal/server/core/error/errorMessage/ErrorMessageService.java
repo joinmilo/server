@@ -54,7 +54,7 @@ public class ErrorMessageService
     }
 
     if (e instanceof InvalidPasswordResetException) {
-      return "Passwort zurücksetzen hat nicht geklappt. Bitte erneut prüfen.";
+      return "Passwort nicht zurück gesetzt. Generieren Sie eine neue Mail.";
     }
 
     if (e instanceof InvalidTokenException) {
@@ -75,7 +75,7 @@ public class ErrorMessageService
     }
 
     if (e instanceof VerificationInvalidException) {
-      return "Verifizierung ungültig. Bitte erneute Verifizierungsmail erzeugen.";
+      return "Verifizierung ungültig. Entweder ist Verifizierung abgelaufen oder bereits verifiziert.";
     }
     
     if (e instanceof VerificationPendingException) {

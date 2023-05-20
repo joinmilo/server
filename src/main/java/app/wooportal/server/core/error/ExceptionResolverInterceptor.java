@@ -38,8 +38,9 @@ public class ExceptionResolverInterceptor implements ResolverInterceptor {
         .error(
             GraphqlErrorBuilder.newError(context.getResolutionEnvironment().dataFetchingEnvironment)
                 .message(errorMessageService.getLocalizedMessageByException(e))
-                .extensions(Map.of("exception", e.getClass().getSimpleName(), "originalMessage",
-                    e.getMessage() != null ? e.getMessage() : ""))
+                .extensions(Map.of(
+                    "exception", e.getClass().getSimpleName(),
+                    "originalMessage", e.getMessage() != null ? e.getMessage() : ""))
                 .build())
         .build();
   }
