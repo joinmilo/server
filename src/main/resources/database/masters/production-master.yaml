@@ -203,8 +203,14 @@ databaseChangeLog:
     - include:
         file: database/changes/0110.migrate_data_article_translatables.yaml     
     - include:
-        file: database/changes/0111.transform_slugs.yaml                  
-        
+        file: database/changes/0111.add_data_user_contexts.yaml
+    - include:
+        file: database/changes/0112.transform_slugs.yaml
+    - include:
+        file: database/changes/0113.transform_meta_description.yaml
+    - include:
+        file: database/changes/0114.add_constraint_slugs.yaml
+
     #Data section        
     - include:
         file: database/datasets/0000.seed-data.yaml

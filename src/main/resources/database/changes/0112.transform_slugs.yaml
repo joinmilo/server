@@ -1,8 +1,8 @@
 databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
-      id: 0112.transform_metaDescription
+      id: 0112.transform_slugs
       author: mia
       changes:
         - customChange:
-            { "class": "app.wooportal.server.base.db.MetaDescriptionMigration" }
+            { "class": "app.wooportal.server.base.db.SlugMigration" }

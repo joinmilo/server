@@ -160,7 +160,7 @@ databaseChangeLog:
             comment: Add data deals
             splitStatements: true
             sql: insert into deals (id, price, contact_id, category_id, slug) values
-              ('69f29c5f-5713-4549-902b-7157cb62b999', 5, '3916b414-c2bf-4808-a401-284ac62df73d', 'bcec76dd-d269-4081-af08-e3a9a72e9e00', 'slug');    
+              ('69f29c5f-5713-4549-902b-7157cb62b999', 5, '3916b414-c2bf-4808-a401-284ac62df73d', 'bcec76dd-d269-4081-af08-e3a9a72e9e00', 'slug-ukm5x');    
               
   - changeSet:
       id: 0003.test-data.12
@@ -202,7 +202,7 @@ databaseChangeLog:
             comment: Add data contest
             splitStatements: true
             sql: insert into contests (id, due_date, card_image_id, type_id, state_id, slug) values
-              ('5dc59462-91f6-402d-82ae-a8fd65fbfa42', '2020-02-13 10:39:28', '0c7ad542-6aed-4613-8739-e4cd0db2ce2f', '112a561f-5d96-42dd-b851-62365e79147b', '41a73da0-6c95-4bfe-85a7-342c8dcf7da9', 'slug');       
+              ('5dc59462-91f6-402d-82ae-a8fd65fbfa42', '2020-02-13 10:39:28', '0c7ad542-6aed-4613-8739-e4cd0db2ce2f', '112a561f-5d96-42dd-b851-62365e79147b', '41a73da0-6c95-4bfe-85a7-342c8dcf7da9', 'slug-cfxx4');       
               
   - changeSet:
       id: 0003.test-data.16
@@ -235,8 +235,8 @@ databaseChangeLog:
             comment: add user_context
             splitStatements: true
             sql:
-               insert into user_contexts (id, user_id, avatar_id) values
-               ('5737ee58-9f88-43d1-baf4-a34dd85f0219', '83c0ce85-c808-43eb-a72d-62a228db2979', '1774bd91-1698-4c4a-8f16-3a0a98fdef32');
+               insert into user_contexts (id, user_id, avatar_id, slug) values
+               ('5737ee58-9f88-43d1-baf4-a34dd85f0219', '83c0ce85-c808-43eb-a72d-62a228db2979', '1774bd91-1698-4c4a-8f16-3a0a98fdef32', 'slug-wh0zc');
             
   - changeSet:
       id: 0003.test-data.19
@@ -258,7 +258,7 @@ databaseChangeLog:
             splitStatements: true
             sql:
                insert into events (id, creator_id, category_id, slug) values
-               ('0c3cf6f6-8337-492b-90e6-4db0bbc14aa9', '5737ee58-9f88-43d1-baf4-a34dd85f0219', 'ca429c83-ae27-4ce5-af45-1219bacab2a0', 'slug');               
+               ('0c3cf6f6-8337-492b-90e6-4db0bbc14aa9', '5737ee58-9f88-43d1-baf4-a34dd85f0219', 'ca429c83-ae27-4ce5-af45-1219bacab2a0', 'slug-h7z8f');               
                                 
   - changeSet:
       id: 0003.test-data.21
@@ -325,11 +325,11 @@ databaseChangeLog:
         - sql:
             comment: Add test user
             splitStatements: true
-            sql: insert into user_contexts (id, description, user_id, avatar_id, title_image_id)
+            sql: insert into user_contexts (id, description, user_id, avatar_id, title_image_id, slug)
                  select "20ab2295-4d4f-4524-893d-f3b09f1e885a",
                   "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt
                    ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et",
-                   "86db5071-55c6-4871-bab6-e94a40e914ff", '1774bd91-1698-4c4a-8f16-3a0a98fdef32', '1774bd91-1698-4c4a-8f16-3a0a98fdef32' ;      
+                   "86db5071-55c6-4871-bab6-e94a40e914ff", '1774bd91-1698-4c4a-8f16-3a0a98fdef32', '1774bd91-1698-4c4a-8f16-3a0a98fdef32', 'slug-qac77';      
                    
   - changeSet:
       id: 0003.test-data.27
@@ -340,11 +340,11 @@ databaseChangeLog:
             splitStatements: true
             sql:
                insert into articles (id, card_image_id, author_id, slug) values
-               ('640f4663-7e49-4727-8208-e5f5f5b078ed', '1774bd91-1698-4c4a-8f16-3a0a98fdef32', '20ab2295-4d4f-4524-893d-f3b09f1e885a', 'slug'),
-               ('b0ba555d-b378-4c32-b115-17be6e2a5eff', '1774bd91-1698-4c4a-8f16-3a0a98fdef32', '20ab2295-4d4f-4524-893d-f3b09f1e885a', 'slug'),
-               ('c28e12c7-ff99-4885-8fd0-de6806023c71', '1774bd91-1698-4c4a-8f16-3a0a98fdef32', '20ab2295-4d4f-4524-893d-f3b09f1e885a', 'slug'),
-               ('f164a12c-fe78-4773-9c8b-27c5bf939c6a', '1774bd91-1698-4c4a-8f16-3a0a98fdef32', '20ab2295-4d4f-4524-893d-f3b09f1e885a', 'slug'),
-               ('1729e341-d9c9-4a4c-b05b-80a369ced20e', '1774bd91-1698-4c4a-8f16-3a0a98fdef32', '20ab2295-4d4f-4524-893d-f3b09f1e885a', 'slug'),                                             
-               ('21ffbd6a-af52-4ede-9f10-8f9220d6e4b3', '1774bd91-1698-4c4a-8f16-3a0a98fdef32', '20ab2295-4d4f-4524-893d-f3b09f1e885a', 'slug');   
+               ('640f4663-7e49-4727-8208-e5f5f5b078ed', '1774bd91-1698-4c4a-8f16-3a0a98fdef32', '20ab2295-4d4f-4524-893d-f3b09f1e885a', 'slug-m1vr2'),
+               ('b0ba555d-b378-4c32-b115-17be6e2a5eff', '1774bd91-1698-4c4a-8f16-3a0a98fdef32', '20ab2295-4d4f-4524-893d-f3b09f1e885a', 'slug-3qmzb'),
+               ('c28e12c7-ff99-4885-8fd0-de6806023c71', '1774bd91-1698-4c4a-8f16-3a0a98fdef32', '20ab2295-4d4f-4524-893d-f3b09f1e885a', 'slug-zhy1p'),
+               ('f164a12c-fe78-4773-9c8b-27c5bf939c6a', '1774bd91-1698-4c4a-8f16-3a0a98fdef32', '20ab2295-4d4f-4524-893d-f3b09f1e885a', 'slug-i92zz'),
+               ('1729e341-d9c9-4a4c-b05b-80a369ced20e', '1774bd91-1698-4c4a-8f16-3a0a98fdef32', '20ab2295-4d4f-4524-893d-f3b09f1e885a', 'slug-t8avi'),                                             
+               ('21ffbd6a-af52-4ede-9f10-8f9220d6e4b3', '1774bd91-1698-4c4a-8f16-3a0a98fdef32', '20ab2295-4d4f-4524-893d-f3b09f1e885a', 'slug-c63y1');   
                
                                                        

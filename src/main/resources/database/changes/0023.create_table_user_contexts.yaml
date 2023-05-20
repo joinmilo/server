@@ -38,7 +38,10 @@ databaseChangeLog:
                   type: CHAR(36)      
               - column:
                   name: description
-                  type: VARCHAR(255)                   
+                  type: VARCHAR(255)
+              - column:
+                  name: slug
+                  type: VARCHAR(512)                   
               - column:
                   name: avatar_id
                   type: CHAR(36)                                                                                                                                                            

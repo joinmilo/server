@@ -1,0 +1,97 @@
+databaseChangeLog:                                         
+  - changeSet:
+      id: 0114.add_constraint_slugs.1
+      author: codeschluss
+      changes:
+        - addNotNullConstraint:
+            tableName: user_contexts
+            columnName: slug
+            columnDataType: varchar(512)
+        - addUniqueConstraint:
+            tableName: user_contexts
+            columnNames: slug
+            columnDataType: varchar(512)
+  - changeSet:
+      id: 0114.add_constraint_slugs.2
+      author: codeschluss
+      changes:
+        - addNotNullConstraint:
+            tableName: pages
+            columnName: slug
+            columnDataType: varchar(512)
+        - addUniqueConstraint:
+            tableName: pages
+            columnNames: slug
+            columnDataType: varchar(512)
+  - changeSet:
+      id: 0114.add_constraint_slugs.3
+      author: codeschluss
+      changes:
+        - addNotNullConstraint:
+            tableName: articles
+            columnName: slug
+            columnDataType: varchar(512)
+        - addUniqueConstraint:
+            tableName: articles
+            columnNames: slug
+            columnDataType: varchar(512)
+  - changeSet:
+      id: 0114.add_constraint_slugs.4
+      author: codeschluss
+      changes:
+        - addNotNullConstraint:
+            tableName: events
+            columnName: slug
+            columnDataType: varchar(512)
+        - addUniqueConstraint:
+            tableName: events
+            columnNames: slug
+            columnDataType: varchar(512)
+  - changeSet:
+      id: 0114.add_constraint_slugs.5
+      author: codeschluss
+      changes:
+        - addNotNullConstraint:
+            tableName: contests
+            columnName: slug
+            columnDataType: varchar(512)
+        - addUniqueConstraint:
+            tableName: contests
+            columnNames: slug
+            columnDataType: varchar(512)
+  - changeSet:
+      id: 0114.add_constraint_slugs.6
+      author: codeschluss
+      changes:
+        - addNotNullConstraint:
+            tableName: deals
+            columnName: slug
+            columnDataType: varchar(512)
+        - addUniqueConstraint:
+            tableName: deals
+            columnNames: slug
+            columnDataType: varchar(512)
+  - changeSet:
+      id: 0114.add_constraint_slugs.7
+      author: codeschluss
+      changes:
+        - addNotNullConstraint:
+            tableName: organisations
+            columnName: slug
+            columnDataType: varchar(512)
+        - addUniqueConstraint:
+            tableName: organisations
+            columnNames: slug
+            columnDataType: varchar(512)
+  - changeSet:
+      id: 0114.add_constraint_slugs.8
+      author: codeschluss
+      changes:
+        - addNotNullConstraint:
+            tableName: surveys
+            columnName: slug
+            columnDataType: varchar(512)
+        - addUniqueConstraint:
+            tableName: surveys
+            columnNames: slug
+            columnDataType: varchar(512)

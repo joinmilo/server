@@ -85,22 +85,9 @@ databaseChangeLog:
                 select uuid(), "661fe5a9-b6cb-434c-90f7-d6013c78a4dc", l.id, "Organizer"
                 from languages l
                 WHERE l.locale = "en";
-  - changeSet:
-      id: 0000.seed-data.4
-      author: codeschluss
-      changes:
-        - sql:
-            comment: add user context data for every user
-            splitStatements: true
-            sql:
-                /*!40101 SET character_set_client = utf8 */;
-                
-                insert into user_contexts (id, user_id)
-                select uuid(), u.id
-                from users u 
 
   - changeSet:
-      id: 0000.seed-data.5
+      id: 0000.seed-data.4
       author: codeschluss
       changes:
         - sql:
@@ -114,7 +101,7 @@ databaseChangeLog:
               ('206e4249-d36c-49df-a02e-28b189d4b0dd');
               
   - changeSet:
-      id: 0000.seed-data.6
+      id: 0000.seed-data.5
       author: codeschluss
       changes:
         - sql:
@@ -146,7 +133,7 @@ databaseChangeLog:
                  WHERE l.locale = "de";
 
   - changeSet:
-      id: 0000.seed-data.7
+      id: 0000.seed-data.6
       author: codeschluss
       changes:
         - sql:
@@ -158,7 +145,7 @@ databaseChangeLog:
               ('187b280d-8fe3-4129-9526-530f9c8e708b', 'pwBitStrength', '40');
               
   - changeSet:
-      id: 0000.seed-data.8
+      id: 0000.seed-data.7
       author: codeschluss
       changes:
         - sql:
@@ -169,7 +156,7 @@ databaseChangeLog:
               ('ab7a5460-2833-4d97-a36e-c00542d3e201', 'google', 'Google Play Store');
               
   - changeSet:
-      id: 0000.seed-data.9
+      id: 0000.seed-data.8
       author: codeschluss
       changes:
         - sql:

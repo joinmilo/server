@@ -2,16 +2,9 @@ package app.wooportal.server.base.db;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.Repository;
-import app.wooportal.server.core.base.PredicateBuilder;
-import app.wooportal.server.core.repository.DataRepository;
 import app.wooportal.server.core.seo.SlugService;
-import app.wooportal.server.features.event.base.EventPredicateBuilder;
-import app.wooportal.server.features.event.base.EventRepository;
 import liquibase.change.custom.CustomTaskChange;
 import liquibase.database.Database;
 import liquibase.database.jvm.JdbcConnection;
@@ -53,7 +46,13 @@ public class SlugMigration implements CustomTaskChange {
   public void execute(Database database) throws CustomChangeException {
     connection = (JdbcConnection) database.getConnection();
     try {
-      migrate("event_translatables", "events");
+      migrateFromTranslatable("article_translatables", "articles");
+      migrateFromTranslatable("event_translatables", "events");
+      migrateFromTranslatable("page_translatables", "pages");
+      
+      migrateOrganisation();
+      
+      migrateUserContext();
     } catch (Exception e) {
       var sw = new StringWriter();
       e.printStackTrace(new PrintWriter(sw));
@@ -62,45 +61,72 @@ public class SlugMigration implements CustomTaskChange {
     }
   }
 
-  private void migrate(String tableNameData, String tableName)
+  private void migrateFromTranslatable(String sourceTable, String targetTable)
       throws DatabaseException, SQLException {
-    var idField = "id";
-    var name = "name";
-
-    var translatables = retrieveData(tableNameData, idField, name, tableName);
-
-    var statement = connection.prepareStatement(
-        String.format("update %1$s set %2$s = trim(?) where %3$s = ?", tableName, "slug", idField));
-    while (translatables.next()) {
-      statement.setString(1, prepareSlug((String) translatables.getObject(name), tableName));
-      statement.setObject(2, (String) translatables.getObject(idField));
-      statement.addBatch();
-      statement.executeUpdate();
-    }
+    executeMigration(
+        targetTable,
+        retrieveTranslatables(sourceTable, targetTable),
+        "id",
+        "name");
   }
-
-  private ResultSet retrieveData(String tableNameData, String idField, String name,
+  
+  private ResultSet retrieveTranslatables(
+      String tableNameData,
       String tableName) throws DatabaseException, SQLException {
     var statement = connection.createStatement();
 
     return statement.executeQuery(String.format(
-        "SELECT feature.%1$s, translatable.%2$s FROM %4$s feature "
-            + "JOIN %3$s translatable ON feature.id = translatable.parent_id "
+        "SELECT feature.id, translatable.name FROM %2$s feature "
+            + "JOIN %1$s translatable ON feature.id = translatable.parent_id "
             + "JOIN languages l ON translatable.language_id = l.id " + "WHERE l.locale = 'de'",
-        idField, name, tableNameData, tableName));
+        tableNameData, tableName));
+  }
+  
+  private void migrateOrganisation() throws DatabaseException, SQLException {
+    var organisations = connection
+        .createStatement()
+        .executeQuery("SELECT id, name FROM organisations");
+    
+    executeMigration("organisations", organisations, "id", "name");
+  }
+  
+  private void migrateUserContext() throws DatabaseException, SQLException {
+    var users = connection
+        .createStatement()
+        .executeQuery("""
+                SELECT uc.id, u.first_name, u.last_name FROM user_contexts uc
+                left join users u on u.id = uc.user_id
+                """);
+    
+    executeMigration("user_contexts", users, "uc.id", "u.first_name", "u.last_name");
+  }
+
+  private void executeMigration(String targetTable, ResultSet source, String id, String... sourceFields)
+      throws SQLException, DatabaseException {
+    var statement = connection.prepareStatement(
+        String.format("update %1$s set slug = trim(?) where id = ?", targetTable));
+    while (source.next()) {
+      var slugSource = "";
+      for (var sourceField: sourceFields) {
+        slugSource = slugSource + " " + (String) source.getObject(sourceField);
+      }
+      statement.setString(1, prepareSlug(slugSource, targetTable));
+      statement.setObject(2, (String) source.getObject(id));
+      statement.addBatch();
+      statement.executeUpdate();
+    }
   }
 
   private String prepareSlug(String content, String tableName)
       throws DatabaseException, SQLException {
 
     var slug = slugService.slugify(content);
-    var uniqueSlug = slug;
     Integer i = 1;
 
-    while (slugExists(uniqueSlug, tableName)) {
-      uniqueSlug = slug + "-" +i++;
+    while (slugExists(slug, tableName)) {
+      slug = slug + "-" +i++;
     }
-    return uniqueSlug;
+    return slug;
   }
 
   private boolean slugExists(String slug, String tableName) throws SQLException, DatabaseException {

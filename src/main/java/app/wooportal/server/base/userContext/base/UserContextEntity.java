@@ -63,6 +63,8 @@ public class UserContextEntity extends BaseEntity {
   
   @Translatable
   private String description;
+  
+  private String slug;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private MediaEntity titleImage;
