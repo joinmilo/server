@@ -6,6 +6,7 @@ import java.util.Properties;
 import javax.mail.Session;
 import javax.mail.internet.MimeMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import app.wooportal.server.core.config.GeneralConfiguration;
 import app.wooportal.server.core.messaging.MailConfiguration;
 import app.wooportal.server.core.messaging.MailService;
 import app.wooportal.server.core.messaging.template.FreemarkerTemplateService;
@@ -19,6 +20,8 @@ public class TestMailService {
   
   private MailConfiguration mailConfig;
   
+  private GeneralConfiguration generalConfig;
+  
   private MailService service;
   
   private JavaMailSender mailSenderMock;
@@ -31,10 +34,13 @@ public class TestMailService {
     mailConfig = new MailConfiguration(
         "test@from.de", 
         "test@to.de", 
-        false, "/templates/", "portal");
+        false, "/templates/");
+    
+    generalConfig = new GeneralConfiguration("http:localhos", "portal");
     service = new MailService(
         mailSenderMock,
-        mailConfig, 
+        mailConfig,
+        generalConfig,
         new FreemarkerTemplateService(
             new Configuration(Configuration.DEFAULT_INCOMPATIBLE_IMPROVEMENTS), 
             mailConfig));

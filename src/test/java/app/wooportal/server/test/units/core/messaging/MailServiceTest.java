@@ -20,6 +20,7 @@ public class MailServiceTest {
   @BeforeAll
   public static void init() {
     mailService = new TestMailService();
+   
   }
 
   @Test
@@ -35,7 +36,7 @@ public class MailServiceTest {
       try {
         assertThat(((MimeMessage) message).getSubject()).contains(subject);
         assertThat(((MimeMessage) message).getSubject())
-            .contains(mailService.getMailConfig().getPortalName());
+            .contains(mailService.getGeneralConfig().getPortalName());
         assertThat(((MimeMessage) message).getFrom())
             .anyMatch(address -> ((InternetAddress) address).getAddress()
                 .equals(mailService.getMailConfig().getFromAddress()));
