@@ -1,7 +1,6 @@
 package app.wooportal.server.features.article.comment;
 
 import java.util.Set;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -31,14 +30,8 @@ public class ArticleCommentEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
 
-  @Column(nullable = false)
-  private Boolean approved;
-
   @Translatable
   private String content;
-
-  @ManyToOne(fetch = FetchType.LAZY)
-  private UserContextEntity userContext;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(nullable = false)
@@ -46,4 +39,7 @@ public class ArticleCommentEntity extends BaseEntity {
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
   private Set<ArticleCommentTranslatableEntity> translatables;
+  
+  @ManyToOne(fetch = FetchType.LAZY)
+  private UserContextEntity userContext;
 }

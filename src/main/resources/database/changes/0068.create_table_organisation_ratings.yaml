@@ -35,12 +35,6 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                   defaultValueBoolean: false
-                  name: approved
-                  type: boolean   
-              - column:
-                  constraints:
-                    nullable: false
-                  defaultValueBoolean: false
                   name: public
                   type: boolean                                 
               - column:
