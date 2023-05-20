@@ -126,11 +126,6 @@ databaseChangeLog:
               - column:
                   constraints:
                     nullable: false
-                  name: approved
-                  type: boolean
-              - column:
-                  constraints:
-                    nullable: false
                   name: email
                   type: VARCHAR(255)
               - column:

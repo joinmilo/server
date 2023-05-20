@@ -26,12 +26,6 @@ databaseChangeLog:
                   name: modified
                   type: datetime  
               - column:
-                  constraints:
-                    nullable: false
-                  defaultValueBoolean: false
-                  name: approved
-                  type: boolean                  
-              - column:
                   name: event_id
                   type: CHAR(36)  
               - column:
