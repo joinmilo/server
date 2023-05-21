@@ -43,7 +43,7 @@ public class DealEntity extends BaseEntity {
   private static final long serialVersionUID = 1L;
   
   @Translatable
-  private String description;
+  private String content;
   
   @Translatable
   private String name;

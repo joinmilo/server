@@ -58,6 +58,9 @@ public class ArticleEntity extends BaseEntity {
 
   private String metaDescription;
   
+  @Translatable
+  private String name;
+  
   @Column(nullable = false, unique= true)
   private String slug;
 

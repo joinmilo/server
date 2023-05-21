@@ -62,7 +62,7 @@ public class SurveyEntity extends BaseEntity {
   private Set<AssignmentEntity> assignments;
 
   @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
-  private Set<SurveyVisitorEntity> surveyVisitors;
+  private Set<SurveyVisitorEntity> visitors;
 
   @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
   private Set<SurveyTranslatableEntity> translatables;

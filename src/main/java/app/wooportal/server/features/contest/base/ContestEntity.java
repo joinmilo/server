@@ -32,7 +32,7 @@ public class ContestEntity extends BaseEntity {
   private static final long serialVersionUID = 1L;
   
   @Translatable
-  private String description;
+  private String content;
 
   private Date dueDate;
   

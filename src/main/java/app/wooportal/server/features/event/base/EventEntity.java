@@ -50,7 +50,7 @@ public class EventEntity extends BaseEntity {
   private static final long serialVersionUID = 1L;
   
   @Translatable
-  private String description;
+  private String content;
 
   private Double entryFee;
   
