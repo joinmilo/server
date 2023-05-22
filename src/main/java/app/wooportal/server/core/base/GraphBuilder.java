@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Optional;
 import javax.persistence.EntityGraph;
 import javax.persistence.EntityManager;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Transient;
@@ -58,7 +57,6 @@ public class GraphBuilder<E extends BaseEntity> {
       Graph<E> graph,
       boolean collectionAdded,
       boolean translatablesAdded) {
-    
     for (var field : context) {
       if (!translatablesAdded && isTranslatable(entityClass, field.getName())) {
         translatablesAdded = true;
@@ -126,9 +124,8 @@ public class GraphBuilder<E extends BaseEntity> {
 
   protected boolean isValidField(Class<?> entityClass, String fieldName) {
     return ReflectionUtils.getField(entityClass, fieldName).isPresent()
-        && ReflectionUtils.getAnnotation(ReflectionUtils.getField(entityClass, fieldName).get(),
-        Transient.class).isEmpty() && ReflectionUtils.getAnnotation(
-        ReflectionUtils.getField(entityClass, fieldName).get(), ManyToMany.class).isEmpty();
+        && ReflectionUtils.getAnnotation(ReflectionUtils.getField(entityClass, fieldName).get(), Transient.class).isEmpty();
+//        && ReflectionUtils.getAnnotation(ReflectionUtils.getField(entityClass, fieldName).get(), ManyToMany.class).isEmpty();
   }
 
   public boolean hasSubgraphs(Field field) {

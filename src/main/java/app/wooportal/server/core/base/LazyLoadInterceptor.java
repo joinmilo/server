@@ -1,4 +1,4 @@
-package app.wooportal.server.core.i18n;
+package app.wooportal.server.core.base;
 
 import java.util.Optional;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -7,16 +7,21 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Service;
 import app.wooportal.server.core.base.dto.listing.PageableList;
+import app.wooportal.server.core.context.DataServiceContext;
 import app.wooportal.server.core.i18n.translation.TranslationService;
 
 @Aspect
 @Service
-public class TranslationInterceptor {
+public class LazyLoadInterceptor {
   
-  private TranslationService translationService;
+  private final DataServiceContext serviceContext;
   
-  public TranslationInterceptor(
+  private final TranslationService translationService;
+  
+  public LazyLoadInterceptor(
+      DataServiceContext serviceContext,
       TranslationService translationService) {
+    this.serviceContext = serviceContext;
     this.translationService = translationService;
   }
   
@@ -44,17 +49,17 @@ public class TranslationInterceptor {
     }
     return result;
   }
-
-  @Around("findOne()")
-  public Object replaceSingleEntityWithTranslation(ProceedingJoinPoint pjp) throws Throwable {
-    Object result = pjp.proceed();
-    if (result instanceof Optional<?> && ((Optional<?>) result).isPresent()) {
-      Object entity = ((Optional<?>) result).get();
-      translationService.localizeSingle(entity);
-      return Optional.of(entity);
-    }
-    return result;
-  }
+//
+//  @Around("findOne()")
+//  public Object replaceSingleEntityWithTranslation(ProceedingJoinPoint pjp) throws Throwable {
+//    Object result = pjp.proceed();
+//    if (result instanceof Optional<?> && ((Optional<?>) result).isPresent()) {
+//      Object entity = ((Optional<?>) result).get();
+//      translationService.localizeSingle(entity);
+//      return Optional.of(entity);
+//    }
+//    return result;
+//  }
   
 //
 //  /**
