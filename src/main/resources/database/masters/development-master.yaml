@@ -25,11 +25,9 @@ databaseChangeLog:
     - include:
         file: database/changes/0012.create_table_contacts.yaml   
     - include:
-        file: database/changes/0013.create_table_developers.yaml
+        file: database/changes/0013.migrate_pages.yaml
     - include:
-        file: database/changes/0014.create_table_developer_translatables.yaml
-    - include:
-        file: database/changes/0015.migrate_data_pages.yaml
+        file: database/changes/0014.migrate_pages_images.yaml
     - include:
         file: database/changes/0016.migrate_data_page_translatables.yaml
     - include:

@@ -1,0 +1,34 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+  - changeSet:
+      id: 0013.migrate_pages.1
+      author: codeschluss
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: slug
+                  type: VARCHAR(255)
+              - column:
+                  name: meta_description
+                  type: VARCHAR(1024)
+              - column:
+                  name: call_url
+                  type: VARCHAR(1024)
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueBoolean: false
+                  name: is_landing
+                  type: boolean
+            tableName: markups
+  - changeSet:
+      id: 0013.migrate_pages.2
+      author: codeschluss
+      changes:
+        - dropColumn:
+            columns:
+              - column:
+                  name: tag_id
+            tableName: markups
+

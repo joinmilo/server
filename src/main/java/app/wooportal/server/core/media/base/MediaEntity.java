@@ -11,6 +11,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * MediaEntity should not be used as direct reference from other entities
+ * but rather be used within a proxy entity
+ *
+ */
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
