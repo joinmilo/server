@@ -43,11 +43,6 @@ public class UserApi extends CrudApi<UserEntity, UserService> {
     return super.readOne(entity);
   }
 
-  @GraphQLQuery(name = "me")
-  public Optional<UserEntity> me() {
-    return service.me();
-  }
-
   @Override
   @GraphQLMutation(name = "saveUsers")
   @AdminPermission

@@ -22,4 +22,8 @@ public class UserContextPredicateBuilder
         .or(query.user.id.likeIgnoreCase(term))
         .or(query.avatar.id.likeIgnoreCase(term));
   }
+  
+  public BooleanExpression withUser(String userId) {
+    return query.user.id.eq(userId);
+  }
 }
