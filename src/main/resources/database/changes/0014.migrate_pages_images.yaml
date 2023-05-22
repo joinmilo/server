@@ -1,0 +1,81 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+  - changeSet:
+      id: 0014.migrate_pages_images.1
+      author: codeschluss
+      changes:
+        - renameTable:
+            newTableName: page_media  
+            oldTableName: markup_images
+  - changeSet:
+      id: 0014.migrate_pages_images.2
+      author: codeschluss
+      changes:
+        - renameColumn:
+            columnDataType: CHAR(36)
+            tableName: page_media
+            newColumnName: media_id
+            oldColumnName: image_id
+  - changeSet:
+      id: 0014.migrate_pages_images.3
+      author: codeschluss
+      changes:
+        - renameColumn:
+            columnDataType: CHAR(36)
+            tableName: page_media
+            newColumnName: page_id
+            oldColumnName: markup_id
+  - changeSet:
+      id: 0014.migrate_pages_images.4
+      author: codeschluss
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  name: created
+                  type: datetime
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  name: modified
+                  type: datetime
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueBoolean: false
+                  name: title
+                  type: boolean 
+            tableName: page_media
+
+  - changeSet:
+      id: 0014.migrate_pages_images.5
+      author: codeschluss
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: markups
+            constraintName: CONSTRAINT_FD36KSD743
+  
+  - changeSet:
+      id: 0014.migrate_pages_images.6
+      author: codeschluss
+      changes:
+        - sql:
+            comment: add user context data for every user
+            splitStatements: true
+            sql:
+                /*!40101 SET character_set_client = utf8 */;
+                
+                insert into `page_media` (`id`, `media_id`, `page_id`, `title`)
+                select uuid(), m.title_image_id, m.id, true
+                from markups m where m.title_image_id IS NOT null;
+  - changeSet:
+      id: 0014.migrate_pages_images.7
+      author: codeschluss
+      changes:
+      - dropColumn:
+          columnName: title_image_id 
+          tableName: markups

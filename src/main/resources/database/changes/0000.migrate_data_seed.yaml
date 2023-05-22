@@ -190,6 +190,9 @@ databaseChangeLog:
         - dropForeignKeyConstraint:
             baseTableName: markup_images
             constraintName: CONSTRAINT_KD873B63
+        - dropForeignKeyConstraint:
+            baseTableName: markups
+            constraintName: CONSTRAINT_S284FBS3
   - changeSet:
       id: seed.10
       author: codeschluss
@@ -245,6 +248,17 @@ databaseChangeLog:
             onUpdate: CASCADE
             referencedColumnNames: id
             referencedTableName: markups
+            validate: true
+        - addForeignKeyConstraint:
+            baseColumnNames: title_image_id
+            baseTableName: blogs
+            constraintName: CONSTRAINT_S284FBS3
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: SET NULL
+            onUpdate: CASCADE
+            referencedColumnNames: id
+            referencedTableName: images
             validate: true
   - changeSet:
       id: seed.12

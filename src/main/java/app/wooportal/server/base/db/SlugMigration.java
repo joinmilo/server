@@ -110,21 +110,21 @@ public class SlugMigration implements CustomTaskChange {
       for (var sourceField: sourceFields) {
         slugSource = slugSource + " " + (String) source.getObject(sourceField);
       }
-      statement.setString(1, prepareSlug(slugSource, targetTable));
+      statement.setString(1, slugify(slugSource, targetTable));
       statement.setObject(2, (String) source.getObject(id));
       statement.addBatch();
       statement.executeUpdate();
     }
   }
 
-  private String prepareSlug(String content, String tableName)
+  private String slugify(String content, String tableName)
       throws DatabaseException, SQLException {
 
-    var slug = slugService.slugify(content);
-    Integer i = 1;
+    var slug = slugService.slugify(content == null || content.contains("null") ? tableName : content);
+    var i = 1;
 
     while (slugExists(slug, tableName)) {
-      slug = slug + "-" +i++;
+      slug = slug + "-" + i++;
     }
     return slug;
   }
@@ -132,7 +132,7 @@ public class SlugMigration implements CustomTaskChange {
   private boolean slugExists(String slug, String tableName) throws SQLException, DatabaseException {
     var statement = connection.createStatement();
 
-    ResultSet resultSet = statement.executeQuery(String
+    var resultSet = statement.executeQuery(String
         .format("SELECT EXISTS (SELECT 1 FROM %1$s WHERE slug = '%2$s')", tableName, slug));
 
     return resultSet.next() && resultSet.getBoolean(1);
