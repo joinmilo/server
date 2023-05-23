@@ -6,21 +6,15 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
-import org.hibernate.annotations.CollectionId;
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Type;
 import app.wooportal.server.base.userContext.base.UserContextEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.i18n.annotations.Translatable;
-import app.wooportal.server.core.media.base.MediaEntity;
 import app.wooportal.server.features.contest.base.ContestEntity;
+import app.wooportal.server.features.contest.participation.media.ContestParticipationMediaEntity;
 import app.wooportal.server.features.contest.participation.translations.ContestParticipationTranslatableEntity;
 import app.wooportal.server.features.contest.vote.ContestVoteEntity;
 import lombok.AccessLevel;
@@ -39,13 +33,13 @@ import lombok.Setter;
 public class ContestParticipationEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
-  
+
   @Translatable
   private String textSubmission;
 
   @Column(nullable = false)
   private Boolean winner;
-  
+
   @ManyToOne(fetch = FetchType.LAZY)
   private ContestEntity contest;
 
@@ -57,11 +51,7 @@ public class ContestParticipationEntity extends BaseEntity {
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
   private Set<ContestParticipationTranslatableEntity> translatables;
-  
-  @ManyToMany(fetch = FetchType.LAZY)
-  @JoinTable(name = "contest_participation_media", joinColumns = @JoinColumn(name = "contest_participation_id"),
-      inverseJoinColumns = @JoinColumn(name = "media_id"),
-      uniqueConstraints = {@UniqueConstraint(columnNames = {"contest_participation_id", "media_id"})})
-  @CollectionId(column = @Column(name = "id"), type = @Type(type = "uuid-char"), generator = "UUID")
-  private List<MediaEntity> media_submissions = new ArrayList<>();
+
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "contestParticipation")
+  private List<ContestParticipationMediaEntity> mediaSubmissions = new ArrayList<>();
 }

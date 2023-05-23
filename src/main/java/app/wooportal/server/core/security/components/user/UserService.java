@@ -7,16 +7,16 @@ import java.util.regex.Pattern;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.JsonNode;
+import app.wooportal.server.base.userContext.base.media.UserContextMediaEntity;
+import app.wooportal.server.base.userContext.base.media.UserContextMediaService;
 import app.wooportal.server.core.base.DataService;
 import app.wooportal.server.core.error.exception.AlreadyVerifiedException;
 import app.wooportal.server.core.error.exception.BadParamsException;
 import app.wooportal.server.core.error.exception.InvalidPasswordResetException;
 import app.wooportal.server.core.error.exception.InvalidTokenException;
+import app.wooportal.server.core.error.exception.NotFoundException;
 import app.wooportal.server.core.error.exception.VerificationInvalidException;
 import app.wooportal.server.core.error.exception.VerificationUserNotFoundException;
-import app.wooportal.server.core.error.exception.NotFoundException;
-import app.wooportal.server.core.media.base.MediaEntity;
-import app.wooportal.server.core.media.base.MediaService;
 import app.wooportal.server.core.push.subscription.SubscriptionService;
 import app.wooportal.server.core.repository.DataRepository;
 import app.wooportal.server.core.security.components.user.emailVerification.VerificationEntity;
@@ -33,11 +33,11 @@ public class UserService extends DataService<UserEntity, UserPredicateBuilder> {
 
   private final BCryptPasswordEncoder bcryptPasswordEncoder;
 
-  private final MediaService mediaService;
+  private final UserContextMediaService mediaService;
 
   public UserService(DataRepository<UserEntity> repo, UserPredicateBuilder predicate,
       AuthenticationService authService, BCryptPasswordEncoder bcryptPasswordEncoder,
-      MediaService mediaService, PasswordResetService passwordResetService,
+      UserContextMediaService mediaService, PasswordResetService passwordResetService,
       SubscriptionService subscriptionService, VerificationService verificationService) {
     super(repo, predicate);
 
@@ -67,11 +67,11 @@ public class UserService extends DataService<UserEntity, UserPredicateBuilder> {
     if (newEntity.getId() == null && !newEntity.getTermsAccepted()) {
       throw new BadParamsException("Terms were not accepted", newEntity);
     }
-    
+
     if (newEntity.getPassword() != null && newEntity.getId() == null) {
       newEntity.setPassword(bcryptPasswordEncoder.encode(newEntity.getPassword()));
     }
-    
+
     if (entity.getId() == null || entity.getId().isBlank()) {
       newEntity.setVerifications(new HashSet<>(List.of(new VerificationEntity())));
       setContext("verifications", context);
@@ -89,7 +89,7 @@ public class UserService extends DataService<UserEntity, UserPredicateBuilder> {
     return currentUser;
   }
 
-  public Optional<UserEntity> addUploads(List<MediaEntity> uploads) {
+  public Optional<UserEntity> addUploads(List<UserContextMediaEntity> uploads) {
     var currentUser = authService.getAuthenticatedUser();
     if (currentUser.isPresent()) {
       repo.findOne(singleQuery(predicate.withId(currentUser.get().getId()))).get().getUserContext()
@@ -189,7 +189,6 @@ public class UserService extends DataService<UserEntity, UserPredicateBuilder> {
     }
     throw new InvalidTokenException("Token is invalid");
   }
-
 
   public double calculatePasswordEntropy(String password) {
     var possibleCombinations = Math.pow(getCharacterSpaceSize(password), password.length());

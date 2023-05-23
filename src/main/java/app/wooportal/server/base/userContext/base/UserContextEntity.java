@@ -18,6 +18,7 @@ import org.hibernate.annotations.CollectionId;
 import org.hibernate.annotations.Type;
 import app.wooportal.server.base.address.base.AddressEntity;
 import app.wooportal.server.base.contact.ContactEntity;
+import app.wooportal.server.base.userContext.base.media.UserContextMediaEntity;
 import app.wooportal.server.base.userContext.base.translations.UserContextTranslatableEntity;
 import app.wooportal.server.base.userContext.friend.FriendEntity;
 import app.wooportal.server.core.base.BaseEntity;
@@ -65,9 +66,6 @@ public class UserContextEntity extends BaseEntity {
   private String description;
   
   private String slug;
-
-  @ManyToOne(fetch = FetchType.LAZY)
-  private MediaEntity titleImage;
 
   @OneToOne(fetch = FetchType.LAZY)
   private UserEntity user;
@@ -120,6 +118,9 @@ public class UserContextEntity extends BaseEntity {
   @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
   private Set<UserContextTranslatableEntity> translatables;
 
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "userContext")
+  private List<UserContextMediaEntity> uploads = new ArrayList<>();
+  
   @OneToMany(mappedBy = "userContext", fetch = FetchType.LAZY)
   private Set<UserFormTemplateEntity> userFormTemplate;
 
@@ -150,11 +151,4 @@ public class UserContextEntity extends BaseEntity {
       uniqueConstraints = {@UniqueConstraint(columnNames = {"user_context_id", "organisation_id"})})
   @CollectionId(column = @Column(name = "id"), type = @Type(type = "uuid-char"), generator = "UUID")
   private List<OrganisationEntity> favoriteOrganisations = new ArrayList<>();
-
-  @ManyToMany(fetch = FetchType.LAZY)
-  @JoinTable(name = "user_context_uploads", joinColumns = @JoinColumn(name = "user_context_id"),
-      inverseJoinColumns = @JoinColumn(name = "media_id"),
-      uniqueConstraints = {@UniqueConstraint(columnNames = {"user_context_id", "media_id"})})
-  @CollectionId(column = @Column(name = "id"), type = @Type(type = "uuid-char"), generator = "UUID")
-  private List<MediaEntity> uploads = new ArrayList<>();
 }

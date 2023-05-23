@@ -21,9 +21,9 @@ import app.wooportal.server.base.contact.ContactEntity;
 import app.wooportal.server.base.userContext.base.UserContextEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.i18n.annotations.Translatable;
-import app.wooportal.server.core.media.base.MediaEntity;
 import app.wooportal.server.features.event.attendee.AttendeeEntity;
 import app.wooportal.server.features.event.attendeeConfiguration.AttendeeConfigurationEntity;
+import app.wooportal.server.features.event.base.media.EventMediaEntity;
 import app.wooportal.server.features.event.base.translations.EventTranslatableEntity;
 import app.wooportal.server.features.event.base.visitors.EventVisitorEntity;
 import app.wooportal.server.features.event.category.EventCategoryEntity;
@@ -48,15 +48,15 @@ import lombok.Setter;
 public class EventEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
-  
+
   @Translatable
   private String content;
 
   private Double entryFee;
-  
+
   @Translatable
   private String name;
-  
+
   @Translatable
   private String shortDescription;
 
@@ -69,9 +69,6 @@ public class EventEntity extends BaseEntity {
   private Boolean sponsored;
 
   private String videoChatLink;
-
-  @ManyToOne(fetch = FetchType.LAZY)
-  private MediaEntity cardImage;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private AddressEntity address;
@@ -89,14 +86,11 @@ public class EventEntity extends BaseEntity {
   private ContactEntity contact;
 
   @ManyToOne(fetch = FetchType.LAZY)
-  private MediaEntity titleImage;
-
-  @ManyToOne(fetch = FetchType.LAZY)
   private OrganisationEntity organisation;
 
   @OneToMany(mappedBy = "event", fetch = FetchType.LAZY)
   private Set<AttendeeEntity> attendees;
-  
+
   @OneToMany(mappedBy = "event", fetch = FetchType.LAZY)
   private Set<EventCommentEntity> comments;
 
@@ -112,12 +106,8 @@ public class EventEntity extends BaseEntity {
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
   protected Set<EventTranslatableEntity> translatables;
 
-  @ManyToMany(fetch = FetchType.LAZY)
-  @JoinTable(name = "event_media", joinColumns = @JoinColumn(name = "event_id"),
-      inverseJoinColumns = @JoinColumn(name = "media_id"),
-      uniqueConstraints = {@UniqueConstraint(columnNames = {"event_id", "media_id"})})
-  @CollectionId(column = @Column(name = "id"), type = @Type(type = "uuid-char"), generator = "UUID")
-  private List<MediaEntity> media = new ArrayList<>();
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "event")
+  private List<EventMediaEntity> uploads = new ArrayList<>();
 
   @ManyToMany(fetch = FetchType.LAZY)
   @JoinTable(name = "event_event_target_groups", joinColumns = @JoinColumn(name = "event_id"),

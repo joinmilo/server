@@ -16,9 +16,6 @@ databaseChangeLog:
             tableName: events
             columns:
             - column:
-                name: card_image_id
-                type: char(36)
-            - column:
                 name: creator_id
                 type: char(36)
             - column:
@@ -259,122 +256,93 @@ databaseChangeLog:
           oldColumnName: admission_fee
           remarks: change in names
           tableName: events
+                
   - changeSet:
       id: 0030.migrate_data_events.24
       author: codeschluss
       changes:
-        - createIndex:
-            columns:
-              - column:
-                  name: card_image_id
-            indexName: idx_fkc5hirc7e16dupcfros04pwxri
-            tableName: events
+        - renameTable:
+            newTableName: event_media  
+            oldTableName: activities_images
   - changeSet:
       id: 0030.migrate_data_events.25
       author: codeschluss
       changes:
-        - addForeignKeyConstraint:
-            baseColumnNames: card_image_id
-            baseTableName: events
-            constraintName: fkc5hirc7e16dupcfros04pwxri
-            deferrable: false
-            initiallyDeferred: false
-            onUpdate: CASCADE
-            onDelete: CASCADE
-            referencedColumnNames: id
-            referencedTableName: images
-            validate: true
+        - renameColumn:
+            columnDataType: CHAR(36)
+            tableName: event_media
+            newColumnName: media_id
+            oldColumnName: image_id
   - changeSet:
       id: 0030.migrate_data_events.26
       author: codeschluss
       changes:
-        - sql:
-            comment: set title image to card image 
-            splitStatements: true
-            sql:
-                /*!40101 SET character_set_client = utf8 */;
-                
-                UPDATE events SET card_image_id = title_image_id;
-                
+        - renameColumn:
+            columnDataType: CHAR(36)
+            tableName: event_media
+            newColumnName: event_id
+            oldColumnName: activity_id  
   - changeSet:
       id: 0030.migrate_data_events.27
       author: codeschluss
       changes:
-        - createTable:
+        - addColumn:
             columns:
               - column:
                   constraints:
                     nullable: false
-                  name: event_id
-                  type: CHAR(36)
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  name: created
+                  type: datetime
               - column:
                   constraints:
                     nullable: false
-                  name: media_id
-                  type: CHAR(36)                 
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  name: modified
+                  type: datetime
               - column:
                   constraints:
                     nullable: false
-                    primaryKey: true
-                    primaryKeyName: event_images_primary_key
-                  name: id
-                  type: CHAR(36)
-            tableName: event_media
-        - sql:
-            comment: set char set for mysql
-            dbms: mysql
-            endDelimiter: \nGO
-            splitStatements: true
-            sql: ALTER TABLE event_media CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;             
-                        
+                  defaultValueBoolean: false
+                  name: title
+                  type: boolean 
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueBoolean: false
+                  name: card
+                  type: boolean                   
+            tableName: event_media  
+  
   - changeSet:
       id: 0030.migrate_data_events.28
       author: codeschluss
       changes:
-        - createIndex:
-            columns:
-              - column:
-                  name: event_id
-            indexName: idx_fklputakfukm015kmec9e72mz0i
-            tableName: event_media
+        - sql:
+            comment: set title boolean
+            splitStatements: true
+            sql:
+                /*!40101 SET character_set_client = utf8 */;
+                
+                insert into `event_media` (`id`, `media_id`, `event_id`, `title`, `card`)
+                select uuid(), e.title_image_id, e.id, true, true
+                from events e where e.title_image_id IS NOT null;              
+
   - changeSet:
       id: 0030.migrate_data_events.29
       author: codeschluss
       changes:
-        - createIndex:
-            columns:
-              - column:
-                  name: media_id
-            indexName: idx_fkp2lvh6q1bercpfzbegacla0xg
-            tableName: event_media
-                        
+        - dropForeignKeyConstraint:
+            baseTableName: events
+            constraintName: CONSTRAINT_58MCGAHTEG       
+            
   - changeSet:
       id: 0030.migrate_data_events.30
       author: codeschluss
       changes:
-        - addForeignKeyConstraint:
-            baseColumnNames: event_id
-            baseTableName: event_media
-            constraintName: fklputakfukm015kmec9e72mz0i
-            initiallyDeferred: false
-            onDelete: CASCADE
-            onUpdate: CASCADE
-            referencedColumnNames: id
-            referencedTableName: events
-            validate: true
-  - changeSet:
-      id: 0030.migrate_data_events.31
-      author: codeschluss
-      changes:
-        - addForeignKeyConstraint:
-            baseColumnNames: media_id
-            baseTableName: event_media
-            constraintName: fkp2lvh6q1bercpfzbegacla0xg
-            deferrable: false
-            initiallyDeferred: false
-            onDelete: CASCADE
-            onUpdate: CASCADE
-            referencedColumnNames: id
-            referencedTableName: images
-            validate: true                  
+      - dropColumn:
+          columnName: title_image_id 
+          tableName: events
+                                   
+                                         
             

@@ -208,7 +208,17 @@ databaseChangeLog:
         file: database/changes/0113.transform_meta_description.yaml
     - include:
         file: database/changes/0114.add_constraint_slugs.yaml
-        
+    - include:
+        file: database/changes/0115.create_table_contest_media.yaml 
+    - include:
+        file: database/changes/0116.create_table_contest_participation_media.yaml 
+    - include:
+        file: database/changes/0117.create_table_deal_media.yaml   
+    - include:
+        file: database/changes/0118.create_table_survey_media.yaml
+    - include:
+        file: database/changes/0119.create_table_user_context_media.yaml        
+                                   
     #Data section
     - include:
         file: database/datasets/0000.seed-data.yaml
