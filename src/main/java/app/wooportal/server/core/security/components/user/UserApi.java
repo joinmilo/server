@@ -3,11 +3,11 @@ package app.wooportal.server.core.security.components.user;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Component;
+import app.wooportal.server.base.userContext.base.media.UserContextMediaEntity;
 import app.wooportal.server.core.base.CrudApi;
 import app.wooportal.server.core.base.dto.listing.FilterSortPaginate;
 import app.wooportal.server.core.base.dto.listing.PageableList;
 import app.wooportal.server.core.error.exception.BadParamsException;
-import app.wooportal.server.core.media.base.MediaEntity;
 import app.wooportal.server.core.push.MessageDto;
 import app.wooportal.server.core.push.NotificationType;
 import app.wooportal.server.core.push.PushService;
@@ -81,25 +81,21 @@ public class UserApi extends CrudApi<UserEntity, UserService> {
     var deletedUser = service.deleteMe(password);
 
     if (deletedUser.isPresent()) {
-      var message = new MessageDto(
-          "Benutzer gelöscht",
-          "Benutzer mit dem Namen: "
-              + deletedUser.get().getFirstName() + " " 
-              + deletedUser.get().getFirstName() + " " 
-              + "hat soeben das Benutzerkonto gelöscht",
+      var message = new MessageDto("Benutzer gelöscht",
+          "Benutzer mit dem Namen: " + deletedUser.get().getFirstName() + " "
+              + deletedUser.get().getFirstName() + " " + "hat soeben das Benutzerkonto gelöscht",
           NotificationType.deletedUser);
 
-      pushService.sendPush(
-          service.readAll(service.collectionQuery(service.getPredicate().withRole(RoleService.admin)))
-              .getList(),
-          message);
+      pushService.sendPush(service
+          .readAll(service.collectionQuery(service.getPredicate().withRole(RoleService.admin)))
+          .getList(), message);
       return true;
     }
     return false;
   }
 
   @GraphQLMutation(name = "addUploads")
-  public Optional<UserEntity> addUploads(List<MediaEntity> uploads) {
+  public Optional<UserEntity> addUploads(List<UserContextMediaEntity> uploads) {
     return service.addUploads(uploads);
   }
 
@@ -139,7 +135,7 @@ public class UserApi extends CrudApi<UserEntity, UserService> {
     }
     return service.verify(token);
   }
-  
+
   @GraphQLMutation(name = "changePassword")
   public Boolean changePassword(String newPassword) {
     if (newPassword == null || newPassword.isBlank()) {
@@ -147,11 +143,9 @@ public class UserApi extends CrudApi<UserEntity, UserService> {
     }
     return service.changePassword(newPassword);
   }
-  
+
   @GraphQLMutation(name = "checkPassword")
   public Double checkPassword(String password) {
-    return password != null
-        ? service.calculatePasswordEntropy(password)
-        : 0;
+    return password != null ? service.calculatePasswordEntropy(password) : 0;
   }
 }

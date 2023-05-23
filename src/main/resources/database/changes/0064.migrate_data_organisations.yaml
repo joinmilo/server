@@ -14,10 +14,7 @@ databaseChangeLog:
                 type: varchar(255) 
             - column:
                 name: contact_id               
-                type: char(36)  
-            - column:
-                name: title_image_id               
-                type: char(36)                                 
+                type: char(36)                              
                 
   - changeSet:
       id: 0064.migrate_data_organisations.2
@@ -91,109 +88,80 @@ databaseChangeLog:
                 name: mail                     
                                  
   - changeSet:
-      id: 0064.create_table_organisations.6
+      id: 0064.migrate_data_organisations.6
       author: codeschluss
       changes:
-        - createTable:
-            columns:
-              - column:
-                  constraints:
-                    nullable: false
-                  name: organisation_id
-                  type: CHAR(36)
-              - column:
-                  constraints:
-                    nullable: false
-                  name: media_id
-                  type: CHAR(36)                 
-              - column:
-                  constraints:
-                    nullable: false
-                    primaryKey: true
-                    primaryKeyName: organisation_media_primary_key
-                  name: id
-                  type: CHAR(36)
-            tableName: organisation_media
-                        
+        - renameTable:
+            newTableName: organisation_media  
+            oldTableName: organisations_images
   - changeSet:
-      id: 0064.create_table_organisations.7
+      id: 0064.migrate_data_organisations.7
       author: codeschluss
       changes:
-        - createIndex:
-            columns:
-              - column:
-                  name: organisation_id
-            indexName: idx_fkk03u57ustzsusivaylxkrg8mg
+        - renameColumn:
+            columnDataType: CHAR(36)
             tableName: organisation_media
+            newColumnName: media_id
+            oldColumnName: image_id
+
   - changeSet:
-      id: 0064.create_table_organisations.8
+      id: 0064.migrate_data_organisations.8
       author: codeschluss
       changes:
-        - createIndex:
+        - addColumn:
             columns:
               - column:
-                  name: media_id
-            indexName: idx_fk0o1p1dpbh4u1edbozo5j33xow
-            tableName: organisation_media
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  name: created
+                  type: datetime
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  name: modified
+                  type: datetime
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueBoolean: false
+                  name: title
+                  type: boolean
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueBoolean: false
+                  name: card
+                  type: boolean                    
+            tableName: organisation_media   
+            
+  - changeSet:
+      id: 0064.migrate_data_organisations.9
+      author: codeschluss
+      changes:
         - sql:
-            comment: set char set for mysql
-            dbms: mysql
-            endDelimiter: \nGO
+            comment: add card and title boolean
             splitStatements: true
-            sql: ALTER TABLE organisation_media CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;  
-                        
-  - changeSet:
-      id: 0064.create_table_organisations.9
-      author: codeschluss
-      changes:
-        - addForeignKeyConstraint:
-            baseColumnNames: organisation_id
-            baseTableName: organisation_media
-            constraintName: fkk03u57ustzsusivaylxkrg8mg
-            initiallyDeferred: false
-            onDelete: CASCADE
-            onUpdate: CASCADE
-            referencedColumnNames: id
-            referencedTableName: organisations
-            validate: true
-  - changeSet:
-      id: 0064.create_table_organisations.10
-      author: codeschluss
-      changes:
-        - addForeignKeyConstraint:
-            baseColumnNames: media_id
-            baseTableName: organisation_media
-            constraintName: fk0o1p1dpbh4u1edbozo5j33xow
-            deferrable: false
-            initiallyDeferred: false
-            onDelete: CASCADE
-            onUpdate: CASCADE
-            referencedColumnNames: id
-            referencedTableName: images
-            validate: true            
+            sql:
+                /*!40101 SET character_set_client = utf8 */;
+                
+                insert into `organisation_media` (`id`, `media_id`, `organisation_id`, `title`, `card`)
+                select uuid(), o.avatar_id, o.id, true, true
+                from organisations o where o.avatar_id IS NOT null;                
              
   - changeSet:
-      id: 0064.create_table_organisations.11
+      id: 0064.migrate_data_organisations.10
       author: codeschluss
       changes:
-        - createIndex:
-            columns:
-              - column:
-                  name: title_image_id
-            indexName: idx_fkooekr9ysa69w3n3n3lnx5hq7q
-            tableName: organisations
-  - changeSet:
-      id: 0064.create_table_organisations.12
-      author: codeschluss
-      changes:
-        - addForeignKeyConstraint:
-            baseColumnNames: title_image_id
+        - dropForeignKeyConstraint:
             baseTableName: organisations
-            constraintName: fkooekr9ysa69w3n3n3lnx5hq7q
-            deferrable: false
-            initiallyDeferred: false
-            onUpdate: CASCADE
-            onDelete: CASCADE
-            referencedColumnNames: id
-            referencedTableName: images
-            validate: true                                                               
+            constraintName: CONSTRAINT_58WUFYXDKI    
+            
+  - changeSet:
+      id: 0064.migrate_data_organisations.11
+      author: codeschluss
+      changes:
+      - dropColumn:
+          columnName: avatar_id 
+          tableName: organisations                                                                      

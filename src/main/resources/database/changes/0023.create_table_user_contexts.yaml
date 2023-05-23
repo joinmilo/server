@@ -32,19 +32,13 @@ databaseChangeLog:
                   type: CHAR(36)                   
               - column:
                   name: address_id
-                  type: CHAR(36) 
-              - column:
-                  name: title_image_id
-                  type: CHAR(36)      
+                  type: CHAR(36)    
               - column:
                   name: description
                   type: VARCHAR(255)
               - column:
                   name: slug
-                  type: VARCHAR(512)                   
-              - column:
-                  name: avatar_id
-                  type: CHAR(36)                                                                                                                                                            
+                  type: VARCHAR(512)                                                                                                                                                                           
             tableName: user_contexts
         - sql:
             comment: set char set for mysql
@@ -53,7 +47,6 @@ databaseChangeLog:
             splitStatements: true
             sql: ALTER TABLE user_contexts CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
                         
-
   - changeSet:
       id: 0023.create_table_user_contexts.2
       author: codeschluss
@@ -104,59 +97,7 @@ databaseChangeLog:
             onDelete: SET NULL
             referencedColumnNames: id
             referencedTableName: addresses
-            validate: true  
-
-  - changeSet:
-      id: 0023.create_table_user_contexts.6
-      author: codeschluss
-      changes:
-        - createIndex:
-            columns:
-              - column:
-                  name: title_image_id
-            indexName: idx_fk75aoueiv9wxevw1li79h3org3
-            tableName: user_contexts
-  - changeSet:
-      id: 0023.create_table_user_contexts.7
-      author: codeschluss
-      changes:
-        - addForeignKeyConstraint:
-            baseColumnNames: title_image_id
-            baseTableName: user_contexts
-            constraintName: fk75aoueiv9wxevw1li79h3org3
-            deferrable: false
-            initiallyDeferred: false
-            onUpdate: CASCADE
-            onDelete: SET NULL
-            referencedColumnNames: id
-            referencedTableName: images
-            validate: true              
-            
-  - changeSet:
-      id: 0023.create_table_user_contexts.8
-      author: codeschluss
-      changes:
-        - createIndex:
-            columns:
-              - column:
-                  name: avatar_id
-            indexName: idx_fk950l3wuodg981lcqv0fohemj2
-            tableName: user_contexts
-  - changeSet:
-      id: 0023.create_table_user_contexts.9
-      author: codeschluss
-      changes:
-        - addForeignKeyConstraint:
-            baseColumnNames: avatar_id
-            baseTableName: user_contexts
-            constraintName: fk950l3wuodg981lcqv0fohemj2
-            deferrable: false
-            initiallyDeferred: false
-            onUpdate: CASCADE
-            onDelete: SET NULL
-            referencedColumnNames: id
-            referencedTableName: images
-            validate: true                 
+            validate: true                                     
                
   - changeSet:
       id: 0023.create_table_user_contexts.10
@@ -237,5 +178,7 @@ databaseChangeLog:
             onUpdate: CASCADE
             referencedColumnNames: id
             referencedTableName: contacts
-            validate: true                                                         
+            validate: true 
+            
+                                                                    
             

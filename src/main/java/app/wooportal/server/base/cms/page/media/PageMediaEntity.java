@@ -23,12 +23,13 @@ public class PageMediaEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
   
+  private Boolean title;
+  
   @ManyToOne(fetch = FetchType.LAZY)
   private PageEntity page;
   
   @ManyToOne(fetch = FetchType.LAZY)
   private MediaEntity media;
   
-  private Boolean title;
 
 }

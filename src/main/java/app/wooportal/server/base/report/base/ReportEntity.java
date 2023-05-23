@@ -6,22 +6,16 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-import javax.persistence.UniqueConstraint;
-import org.hibernate.annotations.CollectionId;
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Type;
+import app.wooportal.server.base.report.base.media.ReportMediaEntity;
 import app.wooportal.server.base.report.base.translations.ReportTranslatableEntity;
 import app.wooportal.server.base.report.type.ReportTypeEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.i18n.annotations.Translatable;
-import app.wooportal.server.core.media.base.MediaEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -41,7 +35,7 @@ public class ReportEntity extends BaseEntity {
 
   @Transient
   private String captchaToken;
-  
+
   @Translatable
   private String content;
 
@@ -50,17 +44,13 @@ public class ReportEntity extends BaseEntity {
 
   @Column(nullable = false)
   private String name;
-
+  
   @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
   private Set<ReportTranslatableEntity> translatables;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private ReportTypeEntity type;
 
-  @ManyToMany(fetch = FetchType.LAZY)
-  @JoinTable(name = "report_media", joinColumns = @JoinColumn(name = "report_id"),
-      inverseJoinColumns = @JoinColumn(name = "media_id"),
-      uniqueConstraints = {@UniqueConstraint(columnNames = {"report_id", "media_id"})})
-  @CollectionId(column = @Column(name = "id"), type = @Type(type = "uuid-char"), generator = "UUID")
-  private List<MediaEntity> media = new ArrayList<>();
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "report")
+  private List<ReportMediaEntity> uploads = new ArrayList<>();
 }
