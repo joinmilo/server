@@ -10,18 +10,28 @@ import app.wooportal.server.core.security.services.AuthenticationService;
 import app.wooportal.server.core.seo.SlugService;
 
 @Service
+<<<<<<< Upstream, based on main
 public class UserContextService extends DataService<UserContextEntity, UserContextPredicateBuilder> {
   
   private final AuthenticationService authService;
   
   private final SlugService slugService;
+=======
+public class UserContextService
+    extends DataService<UserContextEntity, UserContextPredicateBuilder> {
+>>>>>>> 3b7f4b0 testdata
 
+<<<<<<< Upstream, based on main
   public UserContextService(
       DataRepository<UserContextEntity> repo,
       UserContextPredicateBuilder predicate,
       AuthenticationService authService,
       SlugService slugService,
       UserService userService) {
+=======
+  public UserContextService(DataRepository<UserContextEntity> repo,
+      UserContextPredicateBuilder predicate) {
+>>>>>>> 3b7f4b0 testdata
     super(repo, predicate);
     
     addService("user", userService);
@@ -45,4 +55,5 @@ public class UserContextService extends DataService<UserContextEntity, UserConte
     }
     return null;
   }
+
 }
