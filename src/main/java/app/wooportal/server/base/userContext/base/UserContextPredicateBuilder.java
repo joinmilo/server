@@ -20,7 +20,7 @@ public class UserContextPredicateBuilder
         .or(query.user.firstName.likeIgnoreCase(term))
         .or(query.description.likeIgnoreCase(term))
         .or(query.user.id.likeIgnoreCase(term))
-        .or(query.avatar.id.likeIgnoreCase(term));
+        .or(query.uploads.any().media.id.likeIgnoreCase(term));
   }
   
   public BooleanExpression withUser(String userId) {

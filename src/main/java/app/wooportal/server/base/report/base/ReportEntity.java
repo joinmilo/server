@@ -44,7 +44,7 @@ public class ReportEntity extends BaseEntity {
 
   @Column(nullable = false)
   private String name;
-  
+
   @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
   private Set<ReportTranslatableEntity> translatables;
 

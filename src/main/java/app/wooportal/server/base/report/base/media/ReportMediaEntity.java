@@ -28,5 +28,4 @@ public class ReportMediaEntity extends BaseEntity {
 
   @ManyToOne(fetch = FetchType.LAZY)
   private MediaEntity media;
-
 }

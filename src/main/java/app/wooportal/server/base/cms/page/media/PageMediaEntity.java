@@ -30,6 +30,4 @@ public class PageMediaEntity extends BaseEntity {
   
   @ManyToOne(fetch = FetchType.LAZY)
   private MediaEntity media;
-  
-
 }

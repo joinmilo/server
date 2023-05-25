@@ -58,9 +58,6 @@ public class UserContextEntity extends BaseEntity {
   
   @ManyToOne(fetch = FetchType.LAZY)
   private AddressEntity address;
-
-  @ManyToOne(fetch = FetchType.LAZY)
-  private MediaEntity avatar;
   
   @Translatable
   private String description;
