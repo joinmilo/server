@@ -66,9 +66,8 @@ public class SearchService {
     entities.addAll(userContextService.readAll(params).getList());
 
     var features = featureService.readAll().getList();
-
     // TODO Translatable names etc
-
+    
     for (var entity : entities) {
       if (entity instanceof EventEntity) {
         var event = (EventEntity) entity;
