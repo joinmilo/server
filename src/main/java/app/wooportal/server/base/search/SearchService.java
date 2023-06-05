@@ -73,48 +73,48 @@ public class SearchService {
         var event = (EventEntity) entity;
         var searchResult = new SearchDto();
 
-        searchResult.setId(event.getId());
-        searchResult.setFeature(getFeature("event", features));
+        searchResult.setSlug(event.getSlug());
+        searchResult.setFeature(getFeature("events", features));
         list.add(searchResult);
 
       } else if (entity instanceof OrganisationEntity) {
         var organisation = (OrganisationEntity) entity;
         var searchResult = new SearchDto();
 
-        searchResult.setId(organisation.getId());
-        searchResult.setFeature(getFeature("organisation", features));
+        searchResult.setSlug(organisation.getSlug());
+        searchResult.setFeature(getFeature("organisations", features));
         list.add(searchResult);
 
       } else if (entity instanceof ArticleEntity) {
         var article = (ArticleEntity) entity;
         var searchResult = new SearchDto();
 
-        searchResult.setId(article.getId());
-        searchResult.setFeature(getFeature("article", features));
+        searchResult.setSlug(article.getSlug());
+        searchResult.setFeature(getFeature("articles", features));
         list.add(searchResult);
 
       } else if (entity instanceof ContestEntity) {
         var contest = (ContestEntity) entity;
         var searchResult = new SearchDto();
 
-        searchResult.setId(contest.getId());
-        searchResult.setFeature(getFeature("contest", features));
+        searchResult.setSlug(contest.getSlug());
+        searchResult.setFeature(getFeature("contests", features));
         list.add(searchResult);
 
       } else if (entity instanceof DealEntity) {
         var deal = (DealEntity) entity;
         var searchResult = new SearchDto();
 
-        searchResult.setId(deal.getId());
-        searchResult.setFeature(getFeature("deal", features));
+        searchResult.setSlug(deal.getSlug());
+        searchResult.setFeature(getFeature("deals", features));
         list.add(searchResult);
 
       } else if (entity instanceof SurveyEntity) {
         var survey = (SurveyEntity) entity;
         var searchResult = new SearchDto();
 
-        searchResult.setId(survey.getId());
-        searchResult.setFeature(getFeature("survey", features));
+        searchResult.setSlug(survey.getSlug());
+        searchResult.setFeature(getFeature("surveys", features));
         list.add(searchResult);
 
       } else if (entity instanceof UserContextEntity
@@ -122,8 +122,8 @@ public class SearchService {
         var author = (UserContextEntity) entity;
         var searchResult = new SearchDto();
 
-        searchResult.setId(author.getId());
-        searchResult.setFeature(getFeature("author", features));
+        searchResult.setSlug(author.getSlug());
+        searchResult.setFeature(getFeature("authors", features));
         list.add(searchResult);
       }
     }
@@ -134,7 +134,7 @@ public class SearchService {
 
   private FeatureEntity getFeature(String key, List<FeatureEntity> features) {
     for (var feature : features) {
-      if (feature.getKey() == key) {
+      if (feature.getKey().equals(key)) {
         return feature;
       }
     }
