@@ -29,10 +29,15 @@ public class MenuItemEntity extends BaseEntity {
 
   private Boolean header;
   
+  private String icon;
+  
   @Translatable
   private String name;
   
   private Integer order;
+  
+  @Translatable
+  private String shortDescription;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private FeatureEntity feature;

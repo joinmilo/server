@@ -31,6 +31,9 @@ databaseChangeLog:
                   name: name
                   type: VARCHAR(255)
               - column:
+                  name: short_description
+                  type: VARCHAR(512)
+              - column:
                   constraints:
                     nullable: false
                   name: parent_id

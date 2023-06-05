@@ -33,7 +33,10 @@ databaseChangeLog:
                   type: boolean
               - column:
                   name: order
-                  type: int      
+                  type: int
+              - column:
+                  name: icon
+                  type: VARCHAR(255) 
               - column:
                   name: feature_id
                   type: CHAR(36)

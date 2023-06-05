@@ -19,6 +19,8 @@ import lombok.NoArgsConstructor;
 public class MenuItemTranslatableEntity extends TranslatableEntity<MenuItemEntity> {
 
   private static final long serialVersionUID = 1L;
+  
+  private String shortDescription;
 
   private String name;
 }
