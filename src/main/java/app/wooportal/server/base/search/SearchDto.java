@@ -13,7 +13,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class SearchDto {
 
-  private String id;
+  private String slug;
   
   private String name;
 
