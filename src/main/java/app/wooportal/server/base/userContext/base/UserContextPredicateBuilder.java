@@ -18,7 +18,6 @@ public class UserContextPredicateBuilder
         .or(query.user.lastName.likeIgnoreCase(term))
         .or(query.translatables.any().description.likeIgnoreCase(term))
         .or(query.user.firstName.likeIgnoreCase(term))
-        .or(query.description.likeIgnoreCase(term))
         .or(query.user.id.likeIgnoreCase(term))
         .or(query.avatar.id.likeIgnoreCase(term));
   }
