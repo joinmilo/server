@@ -148,9 +148,8 @@ public abstract class PredicateBuilder<T extends EntityPathBase<?>, E extends Ba
       }
       return builder;
     }
-    
-    throw new BadParamsException(
-        "Both query entity and query conjunction are null or empty operands", expression);
+
+    return null;
   }
 
   protected Expression<?> createQueryPath(String entityPath) {

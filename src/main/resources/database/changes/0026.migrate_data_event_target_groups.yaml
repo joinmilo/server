@@ -23,5 +23,52 @@ databaseChangeLog:
       - renameTable:
           newTableName: event_event_target_groups
           oldTableName: activities_target_groups
-          remarks: change in names   
-                                    
+          remarks: change in names
+
+  - changeSet:
+      id: 0026.migrate_data_event_target_groups.4
+      author: codeschluss
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: event_event_target_groups
+            constraintName: CONSTRAINT_8C7DC395
+            
+  - changeSet:
+      id: 0026.migrate_data_event_target_groups.5
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Some referenced events do not exist
+            splitStatements: true
+            sql:
+                /*!40101 SET character_set_client = utf8 */;
+                
+                DELETE e from event_event_target_groups e
+                LEFT JOIN activities a ON e.activity_id = a.id
+                WHERE a.id IS NULL;
+
+  - changeSet:
+      id: 0026.migrate_data_event_target_groups.6
+      author: codeschluss
+      changes:
+        - renameColumn:
+            newColumnName: event_id
+            oldColumnName: activity_id
+            columnDataType: char(36)
+            tableName: event_event_target_groups
+            
+  - changeSet:
+      id: 0026.migrate_data_event_target_groups.7
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: event_id
+            baseTableName: event_event_target_groups
+            constraintName: CONSTRAINT_8C7DC395
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: activities
+            validate: true  

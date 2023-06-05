@@ -68,30 +68,12 @@ databaseChangeLog:
       id: 0000.drops.4
       author: codeschluss
       changes:
-        - dropForeignKeyConstraint:
-            baseTableName: event_event_target_groups
-            constraintName: CONSTRAINT_8C7DC395             
-
-  - changeSet:
-      id: 0000.drops.5
-      author: codeschluss
-      changes:
-        - renameColumn:
-            newColumnName: event_id
-            oldColumnName: activity_id
-            columnDataType: char(36)
-            tableName: event_event_target_groups
-
-  - changeSet:
-      id: 0000.drops.6
-      author: codeschluss
-      changes:
         - dropTable:
             cascadeConstraints: true
             tableName: activity_likes
             
   - changeSet:
-      id: 0000.drops.7
+      id: 0000.drops.5
       author: codeschluss
       changes:
         - dropTable:
@@ -99,7 +81,7 @@ databaseChangeLog:
             tableName: activity_subscriptions
 
   - changeSet:
-      id: 0000.drops.8
+      id: 0000.drops.6
       author: codeschluss
       changes:
       - dropColumn:
@@ -113,7 +95,7 @@ databaseChangeLog:
           tableName: users
 
   - changeSet:
-      id: 0000.drops.9
+      id: 0000.drops.7
       author: codeschluss
       changes:
       - dropColumn:
