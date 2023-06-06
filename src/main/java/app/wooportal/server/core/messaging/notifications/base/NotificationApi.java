@@ -23,7 +23,6 @@ public class NotificationApi extends CrudApi<NotificationEntity, NotificationSer
 
   @Override
   @GraphQLQuery(name = "getNotifications")
-  @Authenticated
   public PageableList<NotificationEntity> readAll(
       @GraphQLArgument(name = CrudApi.params) FilterSortPaginate params) {
     return super.readAll(params);
@@ -31,7 +30,6 @@ public class NotificationApi extends CrudApi<NotificationEntity, NotificationSer
 
   @Override
   @GraphQLQuery(name = "getNotification")
-  @Authenticated
   public Optional<NotificationEntity> readOne(
       @GraphQLArgument(name = CrudApi.entity) NotificationEntity entity) {
     return super.readOne(entity);
