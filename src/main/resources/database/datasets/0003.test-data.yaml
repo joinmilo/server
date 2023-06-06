@@ -228,7 +228,7 @@ databaseChangeLog:
             splitStatements: true
             sql:
                insert into users (id, email, first_name, last_name, password) values
-               ('83c0ce85-c808-43eb-a72d-62a228db2979', 'Fiona@gmail.com', 'Fiona', 'Haug', '1234');
+               ('83c0ce85-c808-43eb-a72d-62a228db2979', 'Fiona@gmail.com', 'Fiona', 'Haug', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm');
                                 
   - changeSet:
       id: 0003.test-data.18
@@ -363,4 +363,50 @@ databaseChangeLog:
                ('f4b76435-da01-4b06-872c-2a95a75965fe', '1774bd91-1698-4c4a-8f16-3a0a98fdef32', '20ab2295-4d4f-4524-893d-f3b09f1e885a', false, true),
                ('c28f0643-1d34-42de-bb39-3a77718a59da', '3e791600-8e00-4069-a060-4862c44da93b', '5737ee58-9f88-43d1-baf4-a34dd85f0219', true, true);             
                
+  - changeSet:
+      id: 0003.test-data.29
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add notifications to user
+            splitStatements: true
+            sql:
+               insert into notifications (id, `user_id`, `read`) values
+               ('9b90fd6b-8018-4179-976b-ce2debd729cc', '83c0ce85-c808-43eb-a72d-62a228db2979', true),
+               ('c7844cd7-009b-4761-87a6-360f15e2f79a', '83c0ce85-c808-43eb-a72d-62a228db2979', false),
+               ('958cd967-591c-4a3e-8c75-a248cd7151df', '83c0ce85-c808-43eb-a72d-62a228db2979', true),
+               ('d19d5edf-b2f7-45e2-b0b1-834c90c8a564', '83c0ce85-c808-43eb-a72d-62a228db2979', false),
+               ('1900e08e-e6e9-4362-bc50-1c6d5b2ec0f7', '83c0ce85-c808-43eb-a72d-62a228db2979', true);                                                           
+               
+  - changeSet:
+      id: 0003.test-data.30
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add notification_translatable
+            splitStatements: true
+            sql: insert into notification_translatables (id, parent_id, language_id, content, title)
+                 select uuid(), "9b90fd6b-8018-4179-976b-ce2debd729cc", l.id, "Am 16.10 um 14:00 Uhr feiern wir unsere Neueröffnung des JugendCaffee's'","JugendCaffee Neueröffnung!"
+                 from languages l
+                 WHERE l.locale = "de";  
+                 
+                 insert into notification_translatables (id, parent_id, language_id, content, title)
+                 select uuid(), "c7844cd7-009b-4761-87a6-360f15e2f79a", l.id, "Die neuen Öffnungszeiten von unserem JugendCaffee sind von 8:00 - 16:00 Uhr.","Änderung Öffnungszeiten!"
+                 from languages l
+                 WHERE l.locale = "de";       
+                 
+                 insert into notification_translatables (id, parent_id, language_id, content, title)
+                 select uuid(), "958cd967-591c-4a3e-8c75-a248cd7151df", l.id, "Eine von Ihnen favorisierte Organisation hat ein Event erstellt.","Favorite Organisation!"
+                 from languages l
+                 WHERE l.locale = "de";  
+                 
+                 insert into notification_translatables (id, parent_id, language_id, content, title)
+                 select uuid(), "d19d5edf-b2f7-45e2-b0b1-834c90c8a564", l.id, "Wir heißen einen neuen Mitarbeiter willkommen, der von nun an Ihre Kontaktperson für das JugendCaffee sein wird. Herzlich willkommen Peter Rentmieler","Neuer Mitarbeiter"
+                 from languages l
+                 WHERE l.locale = "de";  
+                 
+                 insert into notification_translatables (id, parent_id, language_id, content, title)
+                 select uuid(), "1900e08e-e6e9-4362-bc50-1c6d5b2ec0f7", l.id, "Das Event 'Jugendfussball' an dem Sie sich angemeldet haben fällt aus.","Event fällt aus!"
+                 from languages l
+                 WHERE l.locale = "de";                                                                                         
                                                        
