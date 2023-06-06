@@ -23,7 +23,6 @@ import app.wooportal.server.base.userContext.base.translations.UserContextTransl
 import app.wooportal.server.base.userContext.friend.FriendEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.i18n.annotations.Translatable;
-import app.wooportal.server.core.media.base.MediaEntity;
 import app.wooportal.server.core.security.components.user.UserEntity;
 import app.wooportal.server.features.article.base.ArticleEntity;
 import app.wooportal.server.features.article.rating.ArticleRatingEntity;
