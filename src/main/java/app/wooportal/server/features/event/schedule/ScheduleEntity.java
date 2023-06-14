@@ -7,6 +7,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import com.querydsl.core.annotations.QueryInit;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.config.DefaultSort;
 import app.wooportal.server.features.event.base.EventEntity;
@@ -35,6 +36,9 @@ public class ScheduleEntity extends BaseEntity {
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(nullable = false)
+  @QueryInit(value = {
+      "address.suburb",
+  })
   private EventEntity event;
 
 }

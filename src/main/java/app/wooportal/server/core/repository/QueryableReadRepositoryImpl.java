@@ -80,8 +80,11 @@ public class QueryableReadRepositoryImpl<T extends BaseEntity> extends QuerydslJ
     }
     
     final JPQLQuery<?> countQuery = createCountQuery(predicate).distinct();
-    JPQLQuery<T> query = querydsl.applySorting(pageable.getSort(), createQuery(
-        idPath.get().in(fetchIds(predicate, pageable, idPath.get()))).select(path));
+    JPQLQuery<T> query = querydsl
+        .applySorting(pageable.getSort(), createQuery(
+            idPath.get().in(fetchIds(predicate, pageable, idPath.get())))
+        .distinct()
+        .select(path));
     
     ((AbstractJPAQuery<?, ?>) query).setHint(QueryHints.PASS_DISTINCT_THROUGH, false);
     ((AbstractJPAQuery<?, ?>) countQuery).setHint(QueryHints.PASS_DISTINCT_THROUGH, false);
