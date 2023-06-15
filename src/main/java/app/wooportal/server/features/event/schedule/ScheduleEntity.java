@@ -37,7 +37,7 @@ public class ScheduleEntity extends BaseEntity {
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(nullable = false)
   @QueryInit(value = {
-      "address.suburb",
+      "*.*",
   })
   private EventEntity event;
 
