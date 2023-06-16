@@ -50,6 +50,9 @@ public class OrganisationEntity extends BaseEntity {
   private String metaDescription;
 
   private String slug;
+  
+  @Column(nullable = false)
+  private Boolean sponsored;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private AddressEntity address;

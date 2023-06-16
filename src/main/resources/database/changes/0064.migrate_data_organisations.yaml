@@ -14,7 +14,13 @@ databaseChangeLog:
                 type: varchar(255) 
             - column:
                 name: contact_id               
-                type: char(36)                              
+                type: char(36)
+            - column:
+                constraints:
+                  nullable: false
+                defaultValueBoolean: false
+                name: sponsored
+                type: boolean
                 
   - changeSet:
       id: 0064.migrate_data_organisations.2

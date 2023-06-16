@@ -27,10 +27,10 @@ public class AddressEntity extends BaseEntity {
   private String houseNumber;
 
   @Column(nullable = false)
-  private float latitude;
+  private Float latitude;
 
   @Column(nullable = false)
-  private float longitude;
+  private Float longitude;
 
   @Column(nullable = false)
   private String place;
