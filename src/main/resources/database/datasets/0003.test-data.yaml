@@ -100,6 +100,41 @@ databaseChangeLog:
                 from features f
                 WHERE f.key = "reports";
                 
+                insert into page_features (id, `order`, feature_id, page_id)
+                select uuid(), 6, f.id, '7cefc60c-8325-4861-90c7-97f1e8eeb290'
+                from features f
+                WHERE f.key = "organisations";
+                
+                insert into page_features (id, `order`, feature_id, page_id)
+                select uuid(), 7, f.id, '7cefc60c-8325-4861-90c7-97f1e8eeb290'
+                from features f
+                WHERE f.key = "authors";
+                
+                insert into page_features (id, `order`, feature_id, page_id)
+                select uuid(), 8, f.id, '7cefc60c-8325-4861-90c7-97f1e8eeb290'
+                from features f
+                WHERE f.key = "forms";
+                
+                insert into page_features (id, `order`, feature_id, page_id)
+                select uuid(), 9, f.id, '7cefc60c-8325-4861-90c7-97f1e8eeb290'
+                from features f
+                WHERE f.key = "guestarticle";
+                
+                insert into page_features (id, `order`, feature_id, page_id)
+                select uuid(), 10, f.id, '7cefc60c-8325-4861-90c7-97f1e8eeb290'
+                from features f
+                WHERE f.key = "map";
+                
+                insert into page_features (id, `order`, feature_id, page_id)
+                select uuid(), 11, f.id, '7cefc60c-8325-4861-90c7-97f1e8eeb290'
+                from features f
+                WHERE f.key = "media";
+                
+                insert into page_features (id, `order`, feature_id, page_id)
+                select uuid(), 12, f.id, '7cefc60c-8325-4861-90c7-97f1e8eeb290'
+                from features f
+                WHERE f.key = "deals";
+                
   - changeSet:
       id: 0003.test-data.6
       author: codeschluss
