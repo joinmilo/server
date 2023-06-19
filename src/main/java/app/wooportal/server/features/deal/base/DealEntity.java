@@ -51,7 +51,7 @@ public class DealEntity extends BaseEntity {
   @Column(nullable = false, unique = true)
   private String slug;
 
-  private double price;
+  private Double price;
 
   @Column(nullable = false)
   private Boolean sponsored;

@@ -206,9 +206,9 @@
 
               /* Entdecken Menu */
               ('0115fe46-3a7e-4377-abe5-f56f720bf3d9', true, 0, null, null, null, null),
-              ('8804707f-f80d-4987-bb86-42d16ba570dd', true, 1, '0115fe46-3a7e-4377-abe5-f56f720bf3d9', '8f1faa18-3204-4ab1-9f71-18317d1a3d89', null, 'tags'),
-              ('d443f235-fe72-41a6-b7d2-1554047048d5', true, 2, '0115fe46-3a7e-4377-abe5-f56f720bf3d9', 'b93928cc-ec57-4848-96af-26d8284ffcd1', null, 'map-location-dot'),
-              ('ff3ae469-f496-4dd8-bf2d-213566e2a0f9', true, 3, '0115fe46-3a7e-4377-abe5-f56f720bf3d9', '41cdbfa8-e751-41d4-b893-5c7215ec55e9', null, 'calendar-days'),
+              ('8804707f-f80d-4987-bb86-42d16ba570dd', true, 2, '0115fe46-3a7e-4377-abe5-f56f720bf3d9', '8f1faa18-3204-4ab1-9f71-18317d1a3d89', null, 'tags'),
+              ('d443f235-fe72-41a6-b7d2-1554047048d5', true, 3, '0115fe46-3a7e-4377-abe5-f56f720bf3d9', 'b93928cc-ec57-4848-96af-26d8284ffcd1', null, 'map-location-dot'),
+              ('ff3ae469-f496-4dd8-bf2d-213566e2a0f9', true, 4, '0115fe46-3a7e-4377-abe5-f56f720bf3d9', '41cdbfa8-e751-41d4-b893-5c7215ec55e9', null, 'calendar-days'),
               
               /* Erfahren Menu */
               ('7a8cc14b-49e4-4f53-a86f-11aa6e2db95e', true, 1, null, null, null, null),
