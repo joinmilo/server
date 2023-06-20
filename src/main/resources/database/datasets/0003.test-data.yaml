@@ -262,8 +262,12 @@ databaseChangeLog:
             comment: Add a test user
             splitStatements: true
             sql:
-               insert into users (id, verified, email, first_name, last_name, password) values
-               ('83c0ce85-c808-43eb-a72d-62a228db2979', true, 'Fiona@gmail.com', 'Fiona', 'Haug', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm'); -- password is '1234'
+               insert into users (id, verified, email, first_name, last_name, password, verified) values
+               ('83c0ce85-c808-43eb-a72d-62a228db2979', true, 'Fiona@gmail.com', 'Fiona', 'Haug', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm', true),
+               ('c3d05f46-5c3c-4100-85d5-649ecfb42601', true, 'Hans@gmail.com', 'Hans', 'Müller', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm', true),
+               ('02785e86-0606-4eab-bbbc-6e90f35587b5', true, 'Sabine@gmail.com', 'Sabine', 'Gaille', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm', true),
+               ('f96b2b8b-6b9f-44dd-8c30-83f6c9400970', true, 'Frank@gmail.com', 'Frank', 'Martin', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm', true),
+               ('e618577b-bed0-4e19-89f3-e6ba2e9da795', true, 'Sebastian@gmail.com', 'Sebastion', 'Stern', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm', true); -- password is '1234'
                                 
   - changeSet:
       id: 0003.test-data.18
@@ -274,7 +278,12 @@ databaseChangeLog:
             splitStatements: true
             sql:
                insert into user_contexts (id, user_id, slug) values
-               ('5737ee58-9f88-43d1-baf4-a34dd85f0219', '83c0ce85-c808-43eb-a72d-62a228db2979', 'slug-wh0zc');
+               ('5737ee58-9f88-43d1-baf4-a34dd85f0219', '83c0ce85-c808-43eb-a72d-62a228db2979', 'slug-wh0zc'),
+               ('ece550e8-bc2b-43c4-8aaf-48a30e82080f', 'c3d05f46-5c3c-4100-85d5-649ecfb42601', 'slug-wh1zc'),
+               ('5102ef99-492e-476d-a6d8-357125e9f443', '02785e86-0606-4eab-bbbc-6e90f35587b5', 'slug-wh2zc'),
+               ('a9b32d23-ec3b-42ac-ab11-caf9bdc32643', 'f96b2b8b-6b9f-44dd-8c30-83f6c9400970', 'slug-wh4zc'),
+               ('bdadf02e-37df-4d3b-a639-cf9a76532904', 'e618577b-bed0-4e19-89f3-e6ba2e9da795', 'slug-wh3zc');
+               
             
   - changeSet:
       id: 0003.test-data.19
@@ -443,5 +452,77 @@ databaseChangeLog:
                  insert into notification_translatables (id, parent_id, language_id, content, title)
                  select uuid(), "1900e08e-e6e9-4362-bc50-1c6d5b2ec0f7", l.id, "Das Event 'Jugendfussball' an dem Sie sich angemeldet haben fällt aus.","Event fällt aus!"
                  from languages l
-                 WHERE l.locale = "de";                                                                                         
-                                                       
+                 WHERE l.locale = "de";      
+
+  - changeSet:
+      id: 0003.test-data.31
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add picture to event
+            splitStatements: true
+            sql:
+               insert into event_media (id, media_id, event_id, title, card) values
+               ('9f623031-9691-4fe3-b406-ed3586959579', '1774bd91-1698-4c4a-8f16-3a0a98fdef32', '0c3cf6f6-8337-492b-90e6-4db0bbc14aa9', true, true),
+               ('5af4e66a-9096-43b2-aa57-73b8f300f8ed', '3e791600-8e00-4069-a060-4862c44da93b', '0c3cf6f6-8337-492b-90e6-4db0bbc14aa9', false, false),
+               ('10f82cf9-2b88-4ead-becf-2887e377424e', 'fc8a64b5-7335-4309-a5c1-e9d2de53c338', '0c3cf6f6-8337-492b-90e6-4db0bbc14aa9', false, false);                    
+                   
+  - changeSet:
+      id: 0003.test-data.32
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add data event_category_translatables
+            splitStatements: true
+            sql: insert into event_category_translatables (id, parent_id, language_id, name)
+                 select uuid(), "ca429c83-ae27-4ce5-af45-1219bacab2a0", l.id, "Sport"
+                 from languages l
+                 WHERE l.locale = "de";         
+                 
+  - changeSet:
+      id: 0003.test-data.33
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add Friends
+            splitStatements: true
+            sql:
+               insert into friends (id, requester_id, addressee_id, accepted) values
+               ('01205866-523d-4505-883e-1996598cc6a8', 'ece550e8-bc2b-43c4-8aaf-48a30e82080f','5737ee58-9f88-43d1-baf4-a34dd85f0219', true),
+               ('42db8cb9-99fa-4877-89d2-24935b6f3cf8', '5102ef99-492e-476d-a6d8-357125e9f443','5737ee58-9f88-43d1-baf4-a34dd85f0219', true),
+               ('4cab17f5-1997-4939-a2bc-c75290346698', 'a9b32d23-ec3b-42ac-ab11-caf9bdc32643','5737ee58-9f88-43d1-baf4-a34dd85f0219', true),
+               ('34e1a393-019a-48ac-b66e-7e9646a230d1', '5737ee58-9f88-43d1-baf4-a34dd85f0219','bdadf02e-37df-4d3b-a639-cf9a76532904', true); 
+               
+  - changeSet:
+      id: 0003.test-data.34
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add Attendees
+            splitStatements: true
+            sql:
+               insert into attendees (id, event_id, user_context_id, approved) values
+               ('01205866-523d-4505-883e-1996598cc6a8', '0c3cf6f6-8337-492b-90e6-4db0bbc14aa9','ece550e8-bc2b-43c4-8aaf-48a30e82080f', true),
+               ('42db8cb9-99fa-4877-89d2-24935b6f3cf8', '0c3cf6f6-8337-492b-90e6-4db0bbc14aa9','5102ef99-492e-476d-a6d8-357125e9f443', true),
+               ('34e1a393-019a-48ac-b66e-7e9646a230d1', '0c3cf6f6-8337-492b-90e6-4db0bbc14aa9','bdadf02e-37df-4d3b-a639-cf9a76532904', true);                
+                 
+                      
+  - changeSet:
+      id: 0003.test-data.35
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add data event_translatables
+            splitStatements: true
+            sql: insert into event_translatables (id, parent_id, language_id, name, short_description, content)
+                 select uuid(), "0c3cf6f6-8337-492b-90e6-4db0bbc14aa9", l.id, "Team-Fussball", "Jeden Sonntag um 14:00 am Dettinger Fussballplatz. Jeder darf teilnehmen, wir freuen uns!",
+                 "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
+                  accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+                  sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+                  no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+                  sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.   
+                  Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit
+                  praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,"
+                 from languages l
+                 WHERE l.locale = "de";                                                                                                                   
+            

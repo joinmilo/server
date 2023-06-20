@@ -217,7 +217,11 @@ databaseChangeLog:
     - include:
         file: database/changes/0118.create_table_survey_media.yaml
     - include:
-        file: database/changes/0119.create_table_user_context_media.yaml        
+        file: database/changes/0119.create_table_user_context_media.yaml  
+    - include:
+        file: database/changes/0120.create_table_friends.yaml   
+    - include:
+        file: database/changes/0121.create_table_event_ratings.yaml                    
                                    
     #Data section
     - include:
