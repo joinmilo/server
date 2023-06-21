@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import app.wooportal.server.base.userContext.base.UserContextEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.features.event.base.EventEntity;
@@ -24,9 +23,6 @@ import lombok.Setter;
 public class EventRatingEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
-
-  @Transient
-  private String captchaToken;
   
   @Column(nullable = false)
   private Integer score;
