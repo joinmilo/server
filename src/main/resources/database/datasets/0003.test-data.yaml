@@ -262,8 +262,8 @@ databaseChangeLog:
             comment: Add a test user
             splitStatements: true
             sql:
-               insert into users (id, email, first_name, last_name, password) values
-               ('83c0ce85-c808-43eb-a72d-62a228db2979', 'Fiona@gmail.com', 'Fiona', 'Haug', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm'); -- password is '1234'
+               insert into users (id, verified, email, first_name, last_name, password) values
+               ('83c0ce85-c808-43eb-a72d-62a228db2979', true, 'Fiona@gmail.com', 'Fiona', 'Haug', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm'); -- password is '1234'
                                 
   - changeSet:
       id: 0003.test-data.18
