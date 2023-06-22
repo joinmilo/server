@@ -50,6 +50,7 @@ public class SurveyEntity extends BaseEntity {
   private String metaDescription;
 
   private String slug;
+  
   @Column(nullable = false)
   private Boolean sponsored;
   

@@ -262,12 +262,12 @@ databaseChangeLog:
             comment: Add a test user
             splitStatements: true
             sql:
-               insert into users (id, verified, email, first_name, last_name, password, verified) values
-               ('83c0ce85-c808-43eb-a72d-62a228db2979', true, 'Fiona@gmail.com', 'Fiona', 'Haug', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm', true),
-               ('c3d05f46-5c3c-4100-85d5-649ecfb42601', true, 'Hans@gmail.com', 'Hans', 'Müller', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm', true),
-               ('02785e86-0606-4eab-bbbc-6e90f35587b5', true, 'Sabine@gmail.com', 'Sabine', 'Gaille', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm', true),
-               ('f96b2b8b-6b9f-44dd-8c30-83f6c9400970', true, 'Frank@gmail.com', 'Frank', 'Martin', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm', true),
-               ('e618577b-bed0-4e19-89f3-e6ba2e9da795', true, 'Sebastian@gmail.com', 'Sebastion', 'Stern', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm', true); -- password is '1234'
+               insert into users (id, verified, email, first_name, last_name, password) values
+               ('83c0ce85-c808-43eb-a72d-62a228db2979', true, 'Fiona@gmail.com', 'Fiona', 'Haug', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm'),
+               ('c3d05f46-5c3c-4100-85d5-649ecfb42601', true, 'Hans@gmail.com', 'Hans', 'Müller', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm'),
+               ('02785e86-0606-4eab-bbbc-6e90f35587b5', true, 'Sabine@gmail.com', 'Sabine', 'Gaille', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm'),
+               ('f96b2b8b-6b9f-44dd-8c30-83f6c9400970', true, 'Frank@gmail.com', 'Frank', 'Martin', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm'),
+               ('e618577b-bed0-4e19-89f3-e6ba2e9da795', true, 'Sebastian@gmail.com', 'Sebastion', 'Stern', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm'); -- password is '1234'
                                 
   - changeSet:
       id: 0003.test-data.18
