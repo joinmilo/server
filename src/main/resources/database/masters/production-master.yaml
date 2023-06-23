@@ -230,6 +230,8 @@ databaseChangeLog:
         file: database/datasets/0002.add_data_labels.yaml
     - include:
         file: database/datasets/0003.add_data_labels_2.yaml
+    - include:
+        file: database/datasets/0004.add_data_labels_3.yaml
         
     #Cleanups
     - include:
