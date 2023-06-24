@@ -1,7 +1,5 @@
 package app.wooportal.server.base.report.base;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -52,5 +50,5 @@ public class ReportEntity extends BaseEntity {
   private ReportTypeEntity type;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "report")
-  private List<ReportMediaEntity> uploads = new ArrayList<>();
+  private Set<ReportMediaEntity> uploads;
 }

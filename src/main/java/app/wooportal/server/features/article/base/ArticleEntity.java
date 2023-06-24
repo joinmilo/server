@@ -1,7 +1,5 @@
 package app.wooportal.server.features.article.base;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -86,5 +84,5 @@ public class ArticleEntity extends BaseEntity {
   private Set<ArticleVisitorEntity> visitors;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "article")
-  private List<ArticleMediaEntity> uploads = new ArrayList<>();
+  private Set<ArticleMediaEntity> uploads;
 }

@@ -1,7 +1,5 @@
 package app.wooportal.server.features.organisation.base;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -76,7 +74,7 @@ public class OrganisationEntity extends BaseEntity {
   private Set<OrganisationTranslatableEntity> translatables;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "organisation")
-  private List<OrganisationMediaEntity> uploads = new ArrayList<>();
+  private Set<OrganisationMediaEntity> uploads;
 
   @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
   private Set<OrganisationVisitorEntity> visitors;

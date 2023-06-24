@@ -1,7 +1,5 @@
 package app.wooportal.server.base.cms.page;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -67,5 +65,5 @@ public class PageEntity extends BaseEntity {
   private Set<PageVisitorEntity> visitors;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "page")
-  private List<PageMediaEntity> uploads = new ArrayList<>();
+  private Set<PageMediaEntity> uploads;
 }

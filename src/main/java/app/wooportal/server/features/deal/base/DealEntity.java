@@ -1,7 +1,5 @@
 package app.wooportal.server.features.deal.base;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -80,5 +78,5 @@ public class DealEntity extends BaseEntity {
   protected Set<DealTranslatableEntity> translatables;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "deal")
-  private List<DealMediaEntity> uploads = new ArrayList<>();
+  private Set<DealMediaEntity> uploads;
 }

@@ -17,4 +17,8 @@ public class EventCommentPredicateBuilder
     return query.userContext.id.likeIgnoreCase(term)
         .or(query.event.id.likeIgnoreCase(term));
   }
+  
+  public BooleanExpression withEventId(String eventId) {
+    return query.event.id.eq(eventId);
+  }
 }

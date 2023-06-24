@@ -115,7 +115,7 @@ public class UserContextEntity extends BaseEntity {
   private Set<UserContextTranslatableEntity> translatables;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "userContext")
-  private List<UserContextMediaEntity> uploads = new ArrayList<>();
+  private Set<UserContextMediaEntity> uploads;
   
   @OneToMany(mappedBy = "userContext", fetch = FetchType.LAZY)
   private Set<UserFormTemplateEntity> userFormTemplate;

@@ -2,7 +2,7 @@ databaseChangeLog:
   - logicalFilePath: path_independent
 
   - changeSet:
-      id: 0003.test-data.1
+      id: 0005.test-data.1
       author: codeschluss
       changes:
         - sql:
@@ -14,10 +14,12 @@ databaseChangeLog:
                ('1774bd91-1698-4c4a-8f16-3a0a98fdef32', 'landing', 'image/jpg'),
                ('fc8a64b5-7335-4309-a5c1-e9d2de53c338', 'favicon', 'image/ico'),
                ('6c92cfcd-d65d-47d9-bdc5-b8004afe916c', 'logoText', 'image/png'),
-               ('0c7ad542-6aed-4613-8739-e4cd0db2ce2f', 'contest', 'image/jpg');
+               ('0c7ad542-6aed-4613-8739-e4cd0db2ce2f', 'contest', 'image/jpg'),
+               ('1737d307-da5f-4bb4-9148-08c13beab44a', 'testPdf', 'application/pdf'),
+               ('8ce57895-53c6-4af2-95eb-69dc8a4ee658', 'testWord', 'application/application/vnd.openxmlformats-officedocument.wordprocessingml.document');
 
   - changeSet:
-      id: 0003.test-data.2
+      id: 0005.test-data.2
       author: codeschluss
       changes:
         - sql:
@@ -27,7 +29,7 @@ databaseChangeLog:
               ('29c9ebf0-ac66-4752-a123-82f691cd8d72', 'TestFeedback', 'Feedback@example.com', '29c9ebf0-ac66-4752-a123-82f691cd8d72');
               
   - changeSet:
-      id: 0003.test-data.3
+      id: 0005.test-data.3
       author: codeschluss
       changes:
         - sql:
@@ -38,7 +40,7 @@ databaseChangeLog:
                  from languages l
                  WHERE l.locale = "de";              
   - changeSet:
-      id: 0003.test-data.4
+      id: 0005.test-data.4
       author: codeschluss
       changes:
         - sql:
@@ -63,7 +65,7 @@ databaseChangeLog:
                 WHERE p.slug = "landing" AND
                 l.locale = "de";
   - changeSet:
-      id: 0003.test-data.5
+      id: 0005.test-data.5
       author: codeschluss
       changes:
         - sql:
@@ -136,7 +138,7 @@ databaseChangeLog:
                 WHERE f.key = "deals";
                 
   - changeSet:
-      id: 0003.test-data.6
+      id: 0005.test-data.6
       author: codeschluss
       changes:
         - sql:
@@ -147,7 +149,7 @@ databaseChangeLog:
               ('7bacd58e-1824-492a-937c-5ec36b104d04', 'ab7a5460-2833-4d97-a36e-c00542d3e201', 'https://play.google.com');
               
   - changeSet:
-      id: 0003.test-data.7
+      id: 0005.test-data.7
       author: codeschluss
       changes:
         - sql:
@@ -158,7 +160,7 @@ databaseChangeLog:
                  where `key` = 'hCaptchaSitekey';
                  
   - changeSet:
-      id: 0003.test-data.8
+      id: 0005.test-data.8
       author: codeschluss
       changes:
         - sql:
@@ -171,7 +173,7 @@ databaseChangeLog:
                ('0ad29ce1-a519-417c-91c5-28a346185542', 'favicon', null, 'fc8a64b5-7335-4309-a5c1-e9d2de53c338');
 
   - changeSet:
-      id: 0003.test-data.9
+      id: 0005.test-data.9
       author: codeschluss
       changes:
         - sql:
@@ -181,7 +183,7 @@ databaseChangeLog:
               ('bcec76dd-d269-4081-af08-e3a9a72e9e00', '9#0000FF', 'icon');     
               
   - changeSet:
-      id: 0003.test-data.10
+      id: 0005.test-data.10
       author: codeschluss
       changes:
         - sql:
@@ -191,7 +193,7 @@ databaseChangeLog:
               ('3916b414-c2bf-4808-a401-284ac62df73d', 'guenther', 'guenther@example.com');                    
               
   - changeSet:
-      id: 0003.test-data.11
+      id: 0005.test-data.11
       author: codeschluss
       changes:
         - sql:
@@ -201,7 +203,7 @@ databaseChangeLog:
               ('69f29c5f-5713-4549-902b-7157cb62b999', 5, '3916b414-c2bf-4808-a401-284ac62df73d', 'bcec76dd-d269-4081-af08-e3a9a72e9e00', 'slug-ukm5x');    
               
   - changeSet:
-      id: 0003.test-data.12
+      id: 0005.test-data.12
       author: codeschluss
       changes:
         - sql:
@@ -213,7 +215,7 @@ databaseChangeLog:
                  WHERE l.locale = "de";     
                  
   - changeSet:
-      id: 0003.test-data.13
+      id: 0005.test-data.13
       author: codeschluss
       changes:
         - sql:
@@ -223,7 +225,7 @@ databaseChangeLog:
               ('112a561f-5d96-42dd-b851-62365e79147b', 'drawing');    
               
   - changeSet:
-      id: 0003.test-data.14
+      id: 0005.test-data.14
       author: codeschluss
       changes:
         - sql:
@@ -233,7 +235,7 @@ databaseChangeLog:
               ('41a73da0-6c95-4bfe-85a7-342c8dcf7da9', 'started');                             
 
   - changeSet:
-      id: 0003.test-data.15
+      id: 0005.test-data.15
       author: codeschluss
       changes:
         - sql:
@@ -243,7 +245,7 @@ databaseChangeLog:
               ('5dc59462-91f6-402d-82ae-a8fd65fbfa42', '2020-02-13 10:39:28', '112a561f-5d96-42dd-b851-62365e79147b', '41a73da0-6c95-4bfe-85a7-342c8dcf7da9', 'slug-cfxx4');       
               
   - changeSet:
-      id: 0003.test-data.16
+      id: 0005.test-data.16
       author: codeschluss
       changes:
         - sql:
@@ -255,7 +257,7 @@ databaseChangeLog:
                  WHERE l.locale = "de";
                  
   - changeSet:
-      id: 0003.test-data.17
+      id: 0005.test-data.17
       author: codeschluss
       changes:
         - sql:
@@ -270,7 +272,7 @@ databaseChangeLog:
                ('e618577b-bed0-4e19-89f3-e6ba2e9da795', true, 'Sebastian@gmail.com', 'Sebastion', 'Stern', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm'); -- password is '1234'
                                 
   - changeSet:
-      id: 0003.test-data.18
+      id: 0005.test-data.18
       author: codeschluss
       changes:
         - sql:
@@ -286,7 +288,7 @@ databaseChangeLog:
                
             
   - changeSet:
-      id: 0003.test-data.19
+      id: 0005.test-data.19
       author: codeschluss
       changes:
         - sql:
@@ -297,7 +299,7 @@ databaseChangeLog:
                ('ca429c83-ae27-4ce5-af45-1219bacab2a0', '#066016', 'icons');  
                               
   - changeSet:
-      id: 0003.test-data.20
+      id: 0005.test-data.20
       author: codeschluss
       changes:
         - sql:
@@ -308,7 +310,7 @@ databaseChangeLog:
                ('0c3cf6f6-8337-492b-90e6-4db0bbc14aa9', '5737ee58-9f88-43d1-baf4-a34dd85f0219', 'ca429c83-ae27-4ce5-af45-1219bacab2a0', 'slug-h7z8f');               
                                 
   - changeSet:
-      id: 0003.test-data.21
+      id: 0005.test-data.21
       author: codeschluss
       changes:
         - sql:
@@ -321,7 +323,7 @@ databaseChangeLog:
                ('1ff0c22c-f9f9-400f-922b-f142b146621f', '0c3cf6f6-8337-492b-90e6-4db0bbc14aa9', '5737ee58-9f88-43d1-baf4-a34dd85f0219');                    
                      
   - changeSet:
-      id: 0003.test-data.22
+      id: 0005.test-data.22
       author: codeschluss
       changes:
         - sql:
@@ -333,7 +335,7 @@ databaseChangeLog:
                  WHERE l.locale = "de"; 
                  
   - changeSet:
-      id: 0003.test-data.23
+      id: 0005.test-data.23
       author: codeschluss
       changes:
         - sql:
@@ -345,7 +347,7 @@ databaseChangeLog:
                  WHERE l.locale = "de";    
                  
   - changeSet:
-      id: 0003.test-data.24
+      id: 0005.test-data.24
       author: codeschluss
       changes:
         - sql:
@@ -357,7 +359,7 @@ databaseChangeLog:
                  WHERE l.locale = "de";  
                  
   - changeSet:
-      id: 0003.test-data.25
+      id: 0005.test-data.25
       author: codeschluss
       changes:                                                                                
             comment: Add test user
@@ -366,7 +368,7 @@ databaseChangeLog:
                  select "86db5071-55c6-4871-bab6-e94a40e914ff", "test@example.cpm", "1234", "Doomed2", "Test";   
                  
   - changeSet:
-      id: 0003.test-data.26
+      id: 0005.test-data.26
       author: codeschluss
       changes:
         - sql:
@@ -379,7 +381,7 @@ databaseChangeLog:
                    "86db5071-55c6-4871-bab6-e94a40e914ff", 'slug-qac77';      
                    
   - changeSet:
-      id: 0003.test-data.27
+      id: 0005.test-data.27
       author: codeschluss
       changes:
         - sql:
@@ -395,7 +397,7 @@ databaseChangeLog:
                ('21ffbd6a-af52-4ede-9f10-8f9220d6e4b3', '20ab2295-4d4f-4524-893d-f3b09f1e885a', 'slug-c63y1');  
                
   - changeSet:
-      id: 0003.test-data.28
+      id: 0005.test-data.28
       author: codeschluss
       changes:
         - sql:
@@ -408,7 +410,7 @@ databaseChangeLog:
                ('c28f0643-1d34-42de-bb39-3a77718a59da', '3e791600-8e00-4069-a060-4862c44da93b', '5737ee58-9f88-43d1-baf4-a34dd85f0219', true, true);             
                
   - changeSet:
-      id: 0003.test-data.29
+      id: 0005.test-data.29
       author: codeschluss
       changes:
         - sql:
@@ -423,7 +425,7 @@ databaseChangeLog:
                ('1900e08e-e6e9-4362-bc50-1c6d5b2ec0f7', '83c0ce85-c808-43eb-a72d-62a228db2979', true);                                                           
                
   - changeSet:
-      id: 0003.test-data.30
+      id: 0005.test-data.30
       author: codeschluss
       changes:
         - sql:
@@ -455,7 +457,7 @@ databaseChangeLog:
                  WHERE l.locale = "de";      
 
   - changeSet:
-      id: 0003.test-data.31
+      id: 0005.test-data.31
       author: codeschluss
       changes:
         - sql:
@@ -465,10 +467,12 @@ databaseChangeLog:
                insert into event_media (id, media_id, event_id, title, card) values
                ('9f623031-9691-4fe3-b406-ed3586959579', '1774bd91-1698-4c4a-8f16-3a0a98fdef32', '0c3cf6f6-8337-492b-90e6-4db0bbc14aa9', true, true),
                ('5af4e66a-9096-43b2-aa57-73b8f300f8ed', '3e791600-8e00-4069-a060-4862c44da93b', '0c3cf6f6-8337-492b-90e6-4db0bbc14aa9', false, false),
-               ('10f82cf9-2b88-4ead-becf-2887e377424e', 'fc8a64b5-7335-4309-a5c1-e9d2de53c338', '0c3cf6f6-8337-492b-90e6-4db0bbc14aa9', false, false);                    
-                   
+               ('10f82cf9-2b88-4ead-becf-2887e377424e', 'fc8a64b5-7335-4309-a5c1-e9d2de53c338', '0c3cf6f6-8337-492b-90e6-4db0bbc14aa9', false, false),
+               ('113e13c4-c6d7-401b-b6fe-87d3c256293d', '1737d307-da5f-4bb4-9148-08c13beab44a', '0c3cf6f6-8337-492b-90e6-4db0bbc14aa9', false, false),
+               ('8bdac738-ee51-411f-b36c-5b0556acfafe', '8ce57895-53c6-4af2-95eb-69dc8a4ee658', '0c3cf6f6-8337-492b-90e6-4db0bbc14aa9', false, false);
+
   - changeSet:
-      id: 0003.test-data.32
+      id: 0005.test-data.32
       author: codeschluss
       changes:
         - sql:
@@ -480,7 +484,7 @@ databaseChangeLog:
                  WHERE l.locale = "de";         
                  
   - changeSet:
-      id: 0003.test-data.33
+      id: 0005.test-data.33
       author: codeschluss
       changes:
         - sql:
@@ -494,7 +498,7 @@ databaseChangeLog:
                ('34e1a393-019a-48ac-b66e-7e9646a230d1', '5737ee58-9f88-43d1-baf4-a34dd85f0219','bdadf02e-37df-4d3b-a639-cf9a76532904', true); 
                
   - changeSet:
-      id: 0003.test-data.34
+      id: 0005.test-data.34
       author: codeschluss
       changes:
         - sql:
@@ -508,7 +512,7 @@ databaseChangeLog:
                  
                       
   - changeSet:
-      id: 0003.test-data.35
+      id: 0005.test-data.35
       author: codeschluss
       changes:
         - sql:
@@ -527,7 +531,7 @@ databaseChangeLog:
                  WHERE l.locale = "de";
                  
   - changeSet:
-      id: 0003.test-data.36
+      id: 0005.test-data.36
       author: codeschluss
       changes:
         - sql:
@@ -539,7 +543,7 @@ databaseChangeLog:
                ('6a16de74-ad9f-46e5-8fd0-d1bdc29546bb', 'completed');
                
   - changeSet:
-      id: 0003.test-data.37
+      id: 0005.test-data.37
       author: codeschluss
       changes:
         - sql:

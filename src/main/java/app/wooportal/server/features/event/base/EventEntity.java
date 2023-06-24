@@ -107,7 +107,7 @@ public class EventEntity extends BaseEntity {
   protected Set<EventTranslatableEntity> translatables;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "event")
-  private List<EventMediaEntity> uploads = new ArrayList<>();
+  private Set<EventMediaEntity> uploads;
 
   @ManyToMany(fetch = FetchType.LAZY)
   @JoinTable(name = "event_event_target_groups", joinColumns = @JoinColumn(name = "event_id"),

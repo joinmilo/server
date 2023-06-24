@@ -1,8 +1,6 @@
 package app.wooportal.server.features.contest.base;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -77,5 +75,5 @@ public class ContestEntity extends BaseEntity {
   private Set<ContestParticipationEntity> participation;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "contest")
-  private List<ContestMediaEntity> uploads = new ArrayList<>();
+  private Set<ContestMediaEntity> uploads;
 }
