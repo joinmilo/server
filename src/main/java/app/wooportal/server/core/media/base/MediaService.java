@@ -70,10 +70,10 @@ public class MediaService extends DataService<MediaEntity, MediaPredicateBuilder
     if (result.isEmpty()) {
       throw new NotFoundException("media does not exist", id);
     }
-    var formatType = MediaHelper.extractFormatFromMimeType(result.get().getMimeType());
-    return ResponseEntity.ok().headers(createHeader(result.get().getName(), formatType))
+  
+    return ResponseEntity.ok().headers(createHeader(result.get().getName(), result.get().getExtension()))
         .contentType(MediaType.parseMediaType(result.get().getMimeType()))
-        .body(storageService.read(id, formatType));
+        .body(storageService.read(id, result.get().getExtension()));
   }
 
   public ResponseEntity<byte[]> getMedia(String id) throws IOException {
@@ -82,9 +82,9 @@ public class MediaService extends DataService<MediaEntity, MediaPredicateBuilder
     if (result.isEmpty()) {
       throw new NotFoundException("media does not exist", id);
     }
-    var formatType = MediaHelper.extractFormatFromMimeType(result.get().getMimeType());
+    
     return ResponseEntity.ok().contentType(MediaType.parseMediaType(result.get().getMimeType()))
-        .body(storageService.read(id, formatType));
+        .body(storageService.read(id, result.get().getExtension()));
   }
 
   public ResponseEntity<byte[]> export(MediaHtmlDto content) throws Exception {

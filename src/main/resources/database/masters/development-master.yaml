@@ -181,9 +181,11 @@ databaseChangeLog:
     - include:
         file: database/changes/0099.transform_short_descriptions.yaml
     - include:
-        file: database/changes/0100.transform_images.yaml
+        file: database/changes/0100.migrate_table_images.yaml
     - include:
-        file: database/changes/0102.migrate_table_images.yaml
+        file: database/changes/0101.transform_images.yaml
+    - include:
+        file: database/changes/0102.add_constraint_media-extension.yaml
     - include:
         file: database/changes/0103.create_table_report_types.yaml          
     - include:

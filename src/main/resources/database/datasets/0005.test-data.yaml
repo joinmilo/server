@@ -9,14 +9,14 @@ databaseChangeLog:
             comment: Add media
             splitStatements: true
             sql:                           
-               insert into media (`id`, `name`, `mime_type`) values
-               ('3e791600-8e00-4069-a060-4862c44da93b', 'logo', 'image/png'),
-               ('1774bd91-1698-4c4a-8f16-3a0a98fdef32', 'landing', 'image/jpg'),
-               ('fc8a64b5-7335-4309-a5c1-e9d2de53c338', 'favicon', 'image/ico'),
-               ('6c92cfcd-d65d-47d9-bdc5-b8004afe916c', 'logoText', 'image/png'),
-               ('0c7ad542-6aed-4613-8739-e4cd0db2ce2f', 'contest', 'image/jpg'),
-               ('1737d307-da5f-4bb4-9148-08c13beab44a', 'testPdf', 'application/pdf'),
-               ('8ce57895-53c6-4af2-95eb-69dc8a4ee658', 'testWord', 'application/application/vnd.openxmlformats-officedocument.wordprocessingml.document');
+               insert into media (`id`, `extension`, `size`, `name`, `mime_type`) values
+               ('3e791600-8e00-4069-a060-4862c44da93b', 'png', 31900, 'logo', 'image/png'),
+               ('1774bd91-1698-4c4a-8f16-3a0a98fdef32', 'jpg', 83900, 'landing', 'image/jpg'),
+               ('fc8a64b5-7335-4309-a5c1-e9d2de53c338', 'ico', 1800, 'favicon', 'image/ico'),
+               ('6c92cfcd-d65d-47d9-bdc5-b8004afe916c', 'png', 15000, 'logoText', 'image/png'),
+               ('0c7ad542-6aed-4613-8739-e4cd0db2ce2f', 'jpg', 83900, 'contest', 'image/jpg'),
+               ('1737d307-da5f-4bb4-9148-08c13beab44a', 'pdf', 6500, 'test pdf', 'application/pdf'),
+               ('8ce57895-53c6-4af2-95eb-69dc8a4ee658', 'docx', 4300, 'test word', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
 
   - changeSet:
       id: 0005.test-data.2

@@ -1,14 +1,14 @@
 databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
-      id: 0102.migrate_table_images.1
+      id: 0100.migrate_table_images.1
       author: codeschluss
       changes:
        - renameTable:
            newTableName: media
            oldTableName: images
   - changeSet:
-      id: 0102.migrate_table_images.2
+      id: 0100.migrate_table_images.2
       author: codeschluss
       changes:
        - renameColumn:
@@ -17,12 +17,18 @@ databaseChangeLog:
            tableName: media
            columnDataType: VARCHAR(255)
   - changeSet:
-      id: 0102.migrate_table_images.3
+      id: 0100.migrate_table_images.3
       author: codeschluss
       changes:
         - addColumn:
             columns:
               - column:
                   name: credits
-                  type: VARCHAR(255)                                                   
+                  type: VARCHAR(255)
+              - column:
+                  name: extension
+                  type: VARCHAR(10)
+              - column:
+                  name: size
+                  type: long
             tableName: media

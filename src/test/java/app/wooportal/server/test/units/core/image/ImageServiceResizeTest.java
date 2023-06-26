@@ -3,7 +3,7 @@ package app.wooportal.server.test.units.core.image;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import app.wooportal.server.core.media.base.MediaHelper;
+import app.wooportal.server.core.media.base.MimeTypeService;
 import app.wooportal.server.core.media.image.ImageConfiguration;
 import app.wooportal.server.core.media.image.ImageService;
 import app.wooportal.server.test.units.core.setup.services.ImageReader;
@@ -13,6 +13,8 @@ public class ImageServiceResizeTest {
   private final static String basePath = "src/test/resources/pictures/";
   
   private static ImageService imageService;
+  
+  private static MimeTypeService mimeTypeService;
   
   @BeforeAll
   public static void init() {
@@ -29,7 +31,7 @@ public class ImageServiceResizeTest {
     var data = ImageReader.readFile(path);
     var mimeType = ImageReader.getMimeType(path);
     
-    var result = imageService.resize(data, MediaHelper.extractFormatFromMimeType(mimeType));
+    var result = imageService.resize(data, mimeTypeService.getFileExtension(mimeType));
     
     assertThat(result).isNotEqualTo(data);
   }
@@ -40,7 +42,7 @@ public class ImageServiceResizeTest {
     var data = ImageReader.readFile(path);
     var mimeType = ImageReader.getMimeType(path);
     
-    var result = imageService.resize(data, MediaHelper.extractFormatFromMimeType(mimeType));
+    var result = imageService.resize(data, mimeTypeService.getFileExtension(mimeType));
     
     assertThat(result).isEqualTo(data);
   }

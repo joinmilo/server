@@ -28,11 +28,16 @@ public class MediaEntity extends BaseEntity {
   private static final long serialVersionUID = 1L;
   
   private String credits;
+  
+  @Column(nullable = false)
+  private String extension;
 
   @Column(name = "mime_type", nullable = false)
   private String mimeType;
 
   @Column(nullable = false)
   private String name;
+  
+  private Long size;
   
 }

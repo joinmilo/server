@@ -1,0 +1,12 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+  - changeSet:
+      id: 0102.add_constraint_media-extension
+      author: codeschluss
+      changes:
+       - addNotNullConstraint:  
+           columnDataType: VARCHAR(10)
+           columnName: extension
+           constraintName:  media_extension_not_nullable    
+           tableName: media
+           validate: true

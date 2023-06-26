@@ -18,13 +18,13 @@ public class DefaultStorageService implements StorageService {
   }
   
   @Override
-  public void delete(String id, String formatType) {
-    createFile(id, formatType).delete();
+  public void delete(String id, String extension) {
+    createFile(id, extension).delete();
   }
   
   @Override
-  public byte[] read(String id, String formatType) throws IOException {
-    var file = createFile(id, formatType);
+  public byte[] read(String id, String extension) throws IOException {
+    var file = createFile(id, extension);
     if (!file.exists()) {
       throw new NotFoundException("Media file does not exist", file.getName());
     }
@@ -32,16 +32,19 @@ public class DefaultStorageService implements StorageService {
   }
 
   @Override
-  public void store(String id, String formatType, byte[] data) throws IOException {
+  public File store(String id, String extension, byte[] data) throws IOException {
     Files.createDirectories(Paths.get(storageConfig.getLocation()));
-    Files.write(createFile(id, formatType).toPath(), data);
+    var file = createFile(id, extension);
+    Files.write(file.toPath(), data);
+    
+    return file;
   }
   
-  private File createFile(String id, String formatType) {
+  private File createFile(String id, String extension) {
     var base = storageConfig.getLocation().endsWith("/")
         ? storageConfig.getLocation()
         : storageConfig.getLocation() + "/";
-    return new File(base + id +  "." + formatType);
+    return new File(base + id +  "." + extension);
   }
 
 }

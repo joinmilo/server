@@ -6,7 +6,7 @@ import java.io.StringWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.springframework.stereotype.Service;
-import app.wooportal.server.core.media.base.MediaHelper;
+import app.wooportal.server.core.media.base.MimeTypeService;
 import app.wooportal.server.core.media.storage.DefaultStorageService;
 import app.wooportal.server.core.media.storage.StorageConfiguration;
 import app.wooportal.server.core.media.storage.StorageService;
@@ -27,6 +27,8 @@ public class ImageStorageMigration implements CustomTaskChange {
   private StorageService storageService;
   
   private JdbcConnection connection;
+  
+  private MimeTypeService mimeTypeService = new MimeTypeService();
 
   @Override
   public String getConfirmationMessage() {
@@ -77,12 +79,25 @@ public class ImageStorageMigration implements CustomTaskChange {
     
     var images = retrieveData(idField, imageField, mimeTypeField);
     
+    var writeStatement = connection.prepareStatement("update media set size = ?, extension = ? where id = ?");
+    connection.setAutoCommit(false);
+    
     while (images.next()) {
-      storageService.store(
-          images.getString(idField),
-          MediaHelper.extractFormatFromMimeType(images.getString(mimeTypeField)),
-          images.getBytes(imageField));
+      var id = images.getString(idField);
+      var extension = mimeTypeService.getFileExtension(images.getString(mimeTypeField));
+      
+      // Write on disk
+      var file = storageService.store(id, extension, images.getBytes(imageField));
+      
+      // Save file size in table
+      writeStatement.setLong(1, file.length());
+      writeStatement.setString(2, extension);
+      writeStatement.setString(3, id);
+      writeStatement.addBatch();
     }
+    
+    writeStatement.executeBatch();
+    connection.commit();
   }
   
   private ResultSet retrieveData(
@@ -92,7 +107,7 @@ public class ImageStorageMigration implements CustomTaskChange {
     var statement = connection.createStatement();
           
     return statement.executeQuery(
-        String.format("select %1$s, %2$s, %3$s from images", idField, imageField, mimeTypeField));
+        String.format("select %1$s, %2$s, %3$s from media", idField, imageField, mimeTypeField));
   }
 
 }

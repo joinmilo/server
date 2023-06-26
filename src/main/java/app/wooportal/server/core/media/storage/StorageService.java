@@ -1,14 +1,15 @@
 package app.wooportal.server.core.media.storage;
 
+import java.io.File;
 import java.io.IOException;
 import app.wooportal.server.core.error.exception.NotFoundException;
 
 public interface StorageService {
   
-  public void delete(String id, String formatType);
+  public void delete(String id, String extension);
   
-  public byte[] read(String id, String formatType) throws IOException, NotFoundException;
+  public byte[] read(String id, String extension) throws IOException, NotFoundException;
 
-  public void store(String id, String formatType, byte[] data) throws IOException;
+  public File store(String id, String extension, byte[] data) throws IOException;
   
 }
