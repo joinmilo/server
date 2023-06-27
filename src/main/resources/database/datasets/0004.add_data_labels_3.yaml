@@ -151,7 +151,7 @@ databaseChangeLog:
                AND l.locale = "de";
 
                insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
-               select uuid(), p.id, l.id, @english COLLATE utf8mb4_unicode_ci
+               select uuid(), p.id, l.id,createGuest @english COLLATE utf8mb4_unicode_ci
                from labels p, languages l
                WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
                AND l.locale = "en";
