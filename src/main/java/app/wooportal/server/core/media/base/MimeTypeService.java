@@ -10,7 +10,10 @@ public class MimeTypeService {
   private Map<String, String> mimeTypeFileExtensions;
    
   public String getFileExtension(String mimeType) {
-    return mimeTypeFileExtensions.get(mimeType);
+    var result = mimeTypeFileExtensions.get(mimeType);
+    return result != null
+        ? result
+        : mimeType.split("/")[1];
   }
   
   public MimeTypeService() {
@@ -96,6 +99,7 @@ public class MimeTypeService {
     mimeTypeFileExtensions.put("image/jls", "jls");
     mimeTypeFileExtensions.put("image/jp2", "jp2");
     mimeTypeFileExtensions.put("image/jpeg", "jpg");
+    mimeTypeFileExtensions.put("image/jpg", "jpg");
     mimeTypeFileExtensions.put("image/jph", "jph");
     mimeTypeFileExtensions.put("image/jphc", "jhc");
     mimeTypeFileExtensions.put("image/jpm", "jpm");
