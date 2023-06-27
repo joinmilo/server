@@ -34,7 +34,7 @@ databaseChangeLog:
                   constraints:
                     nullable: false                    
                   name: content
-                  type: VARCHAR(255)                           
+                  type: TEXT                           
               - column:
                   name: short_description
                   type: VARCHAR(255)                             
