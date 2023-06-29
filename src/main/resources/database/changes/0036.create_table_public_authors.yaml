@@ -33,7 +33,7 @@ databaseChangeLog:
               - column:
                   constraints:
                     nullable: false
-                  name: mail
+                  name: email
                   type: VARCHAR(36)   
               - column:
                   name: phone
