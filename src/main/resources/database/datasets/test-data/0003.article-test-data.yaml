@@ -1,0 +1,54 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+  
+  - changeSet:
+      id: 0003.test-data.1
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add event public_authors
+            splitStatements: true
+            sql:
+               insert into public_authors (`id`, `name`, `email`) values
+               ('bd24d04e-333a-45b4-9e1b-0958b8bba58d', 'Savannah Nguyen', 'savannah.nguyen@gmail.com');
+
+  - changeSet:
+      id: 0003.test-data.2
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add articles
+            splitStatements: true
+            sql:
+               insert into articles (id, author_id, public_author_id, slug) values
+               ('640f4663-7e49-4727-8208-e5f5f5b078ed', '20ab2295-4d4f-4524-893d-f3b09f1e885a', null, 'slug-m1vr2'),
+               ('b0ba555d-b378-4c32-b115-17be6e2a5eff','20ab2295-4d4f-4524-893d-f3b09f1e885a', null, 'slug-3qmzb'),
+               ('c28e12c7-ff99-4885-8fd0-de6806023c71', '20ab2295-4d4f-4524-893d-f3b09f1e885a', null, 'slug-zhy1p'),
+               ('f164a12c-fe78-4773-9c8b-27c5bf939c6a', '20ab2295-4d4f-4524-893d-f3b09f1e885a', null, 'slug-i92zz'),
+               ('1729e341-d9c9-4a4c-b05b-80a369ced20e', '20ab2295-4d4f-4524-893d-f3b09f1e885a', null, 'slug-t8avi'),                                             
+               ('21ffbd6a-af52-4ede-9f10-8f9220d6e4b3', '20ab2295-4d4f-4524-893d-f3b09f1e885a', null, 'slug-c63y1'),
+               ('07852f7d-a9a2-478a-a3cb-5ee2a7a923e5', null, 'bd24d04e-333a-45b4-9e1b-0958b8bba58d', 'guest-article');
+               
+  - changeSet:
+      id: 0003.test-data.3
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add Article sponsored
+            splitStatements: true
+            sql:
+               insert into articles (`id`, `category_id`, `author_id`, `slug`, `sponsored`) values
+               ('7dd9abba-b253-4fb4-818d-7ef090f26b83', '08b4cbd6-fc52-4b90-874d-1837313cdffb', '5737ee58-9f88-43d1-baf4-a34dd85f0219', 'article-sponsored', true);
+               
+  - changeSet:
+      id: 0003.test-data.4
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add data article_translatables
+            splitStatements: true
+            sql: insert into article_translatables (id, parent_id, `created`, language_id, `name`,`short_description`, `content`)
+                 select uuid(), "7dd9abba-b253-4fb4-818d-7ef090f26b83", '2023-06-26 10:39:28', l.id, 'Bester Titel', "Cooler Artikel! Unbedingt lesen!", "<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>" 
+                 from languages l
+                 WHERE l.locale = "de";
+                 

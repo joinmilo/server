@@ -243,4 +243,21 @@ databaseChangeLog:
         
      #Testdata   
     - include:
-        file: database/datasets/0005.test-data.yaml
+        file: database/datasets/test-data/0000.global-test-data.yaml
+    - include:
+        file: database/datasets/test-data/0001.user-test-data.yaml
+    - include:
+        file: database/datasets/test-data/0002.organisation-test-data.yaml
+    - include:
+        file: database/datasets/test-data/0003.article-test-data.yaml
+    - include:
+        file: database/datasets/test-data/0004.event-test-data.yaml
+    - include:
+        file: database/datasets/test-data/0005.form-test-data.yaml
+    - include:
+        file: database/datasets/test-data/0006.deal-test-data.yaml
+    - include:
+        file: database/datasets/test-data/0007.contest-test-data.yaml        
+    - include:
+        file: database/datasets/test-data/0008.survey-test-data.yaml
+                                                              
