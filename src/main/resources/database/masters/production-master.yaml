@@ -221,7 +221,7 @@ databaseChangeLog:
     - include:
         file: database/changes/0119.create_table_user_context_media.yaml  
     - include:
-        file: database/changes/0120.create_table_friends.yaml                                              
+        file: database/changes/0120.create_table_friends.yaml
 
     #Data section        
     - include:
@@ -238,5 +238,6 @@ databaseChangeLog:
     #Cleanups
     - include:
         file: database/cleanups/0000.drops.yaml
-
+    - include:
+        file: database/cleanups/0001.delete_data.yaml
          

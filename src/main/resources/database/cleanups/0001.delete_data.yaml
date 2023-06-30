@@ -1,0 +1,20 @@
+databaseChangeLog:
+   - logicalFilePath: path_independent
+   - changeSet:
+      id: 0001.delete_data.1
+      author: codeschluss                
+      changes:
+        - sql:
+            comment: Delete from configurations
+            splitStatements: true
+            sql:
+                /*!40101 SET character_set_client = utf8 */;
+                    
+                delete from configurations where `key` in (
+                   'mapcenterLongitude',
+                   'mapcenterLatitude',
+                   'zoomfactor',
+                   'mapProjection',
+                   'mapCluster',
+                   'mapZoomfactor'
+                );

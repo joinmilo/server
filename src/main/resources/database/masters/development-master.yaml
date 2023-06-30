@@ -240,6 +240,8 @@ databaseChangeLog:
      #Cleanups
     - include:
         file: database/cleanups/0000.drops.yaml
+    - include:
+        file: database/cleanups/0001.delete_data.yaml
         
      #Testdata   
     - include:
