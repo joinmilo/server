@@ -1,5 +1,6 @@
 package app.wooportal.server.features.contest.base;
 
+import java.time.OffsetDateTime;
 import java.util.Date;
 import java.util.Set;
 import javax.persistence.Column;
@@ -15,7 +16,6 @@ import app.wooportal.server.core.seo.annotations.SlugTarget;
 import app.wooportal.server.features.contest.base.media.ContestMediaEntity;
 import app.wooportal.server.features.contest.base.translations.ContestTranslatableEntity;
 import app.wooportal.server.features.contest.participation.ContestParticipationEntity;
-import app.wooportal.server.features.contest.state.ContestStateEntity;
 import app.wooportal.server.features.contest.type.ContestTypeEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -36,8 +36,12 @@ public class ContestEntity extends BaseEntity {
   @Translatable
   private String content;
 
-  private Date dueDate;
-
+  private OffsetDateTime contestStartDate;
+  
+  private OffsetDateTime contestEndDate;
+  
+  private OffsetDateTime voteEndDate;
+  
   @Translatable
   @SlugSource
   private String name;
@@ -55,9 +59,6 @@ public class ContestEntity extends BaseEntity {
   private Boolean sponsored;
 
   @Column(nullable = false)
-  private Boolean voteable;
-
-  @Column(nullable = false)
   private Boolean multiVote;
 
   @Column(nullable = false)
@@ -65,9 +66,6 @@ public class ContestEntity extends BaseEntity {
 
   @Column(nullable = false)
   private Boolean offer;
-
-  @ManyToOne(fetch = FetchType.LAZY)
-  private ContestStateEntity state;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private ContestTypeEntity type;

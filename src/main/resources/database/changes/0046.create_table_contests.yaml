@@ -65,18 +65,19 @@ databaseChangeLog:
                   name: voteable
                   type: boolean                                          
               - column:
-                  name: due_date
+                  name: contest_start_date
+                  type: datetime
+              - column:
+                  name: contest_end_date
+                  type: datetime                  
+              - column:
+                  name: vote_end_date
                   type: datetime                                                                                                                                                 
               - column:
                   constraints:
                     nullable: false
                   name: type_id
-                  type: CHAR(36)
-              - column:
-                  constraints:
-                    nullable: false
-                  name: state_id
-                  type: CHAR(36)                                  
+                  type: CHAR(36)                                 
             tableName: contests
         - sql:
             comment: set char set for mysql
@@ -110,30 +111,5 @@ databaseChangeLog:
             referencedColumnNames: id
             referencedTableName: contest_types
             validate: true   
-            
-  - changeSet:
-      id: 0046.create_table_contests.4
-      author: codeschluss
-      changes:
-        - createIndex:
-            columns:
-              - column:
-                  name: state_id
-            indexName: idx_fk8mk4icuk7xkfq3n2lx50ahxao
-            tableName: contests
-  - changeSet:
-      id: 0046.create_table_contests.5
-      author: codeschluss
-      changes:
-        - addForeignKeyConstraint:
-            baseColumnNames: state_id
-            baseTableName: contests
-            constraintName: fk8mk4icuk7xkfq3n2lx50ahxao
-            deferrable: false
-            initiallyDeferred: false
-            onUpdate: CASCADE
-            onDelete: CASCADE
-            referencedColumnNames: id
-            referencedTableName: contest_states
-            validate: true                           
+                                    
             
