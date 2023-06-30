@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+  
+  - changeSet:
+      id: 0003.test-data.1
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Create test address
+            splitStatements: true
+            sql:
+               insert into addresses (`id`, `street`, `house_number`, `postal_code`, `place`) values
+               ('b47ec304-2de7-4c20-a110-fd829695c18d', 'Schillerstraße', '12', '54762', 'Portalhausen');
