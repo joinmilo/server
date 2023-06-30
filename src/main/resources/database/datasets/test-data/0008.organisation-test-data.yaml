@@ -2,7 +2,7 @@ databaseChangeLog:
   - logicalFilePath: path_independent
 
   - changeSet:
-      id: 0002.test-data.1
+      id: 0008.test-data.1
       author: codeschluss
       changes:
         - sql:
@@ -13,7 +13,7 @@ databaseChangeLog:
                ('c7356a4c-fd81-4860-b1cc-06f549067132', 'organisation-sponsored', 'organisation-sponsored', true, 'b47ec304-2de7-4c20-a110-fd829695c18d', '3916b414-c2bf-4808-a401-284ac62df73d');
                
   - changeSet:
-      id: 0002.test-data.2
+      id: 0008.test-data.2
       author: codeschluss
       changes:
         - sql:
@@ -24,7 +24,7 @@ databaseChangeLog:
                (uuid(), true, 'c7356a4c-fd81-4860-b1cc-06f549067132', '1774bd91-1698-4c4a-8f16-3a0a98fdef32');
                
   - changeSet:
-      id: 0002.test-data.3
+      id: 0008.test-data.3
       author: codeschluss
       changes:
         - sql:

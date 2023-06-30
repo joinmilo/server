@@ -3,7 +3,7 @@ databaseChangeLog:
 
   
   - changeSet:
-      id: 0004.test-data.1
+      id: 0010.test-data.1
       author: codeschluss
       changes:
         - sql:
@@ -14,7 +14,7 @@ databaseChangeLog:
                ('ca429c83-ae27-4ce5-af45-1219bacab2a0', '#066016', 'icons');
                
   - changeSet:
-      id: 0004.test-data.2
+      id: 0010.test-data.2
       author: codeschluss
       changes:
         - sql:
@@ -25,7 +25,7 @@ databaseChangeLog:
                ('0c3cf6f6-8337-492b-90e6-4db0bbc14aa9', '5737ee58-9f88-43d1-baf4-a34dd85f0219', 'ca429c83-ae27-4ce5-af45-1219bacab2a0', 'slug-h7z8f');
                
   - changeSet:
-      id: 0004.test-data.3
+      id: 0010.test-data.3
       author: codeschluss
       changes:
         - sql:
@@ -38,7 +38,7 @@ databaseChangeLog:
                ('1ff0c22c-f9f9-400f-922b-f142b146621f', '0c3cf6f6-8337-492b-90e6-4db0bbc14aa9', '5737ee58-9f88-43d1-baf4-a34dd85f0219');
                
   - changeSet:
-      id: 0004.test-data.4
+      id: 0010.test-data.4
       author: codeschluss
       changes:
         - sql:
@@ -50,7 +50,7 @@ databaseChangeLog:
                  WHERE l.locale = "de"; 
                  
   - changeSet:
-      id: 0004.test-data.5
+      id: 0010.test-data.5
       author: codeschluss
       changes:
         - sql:
@@ -62,7 +62,7 @@ databaseChangeLog:
                  WHERE l.locale = "de";    
                  
   - changeSet:
-      id: 0004.test-data.6
+      id: 0010.test-data.6
       author: codeschluss
       changes:
         - sql:
@@ -74,7 +74,7 @@ databaseChangeLog:
                  WHERE l.locale = "de"; 
                  
   - changeSet:
-      id: 0004.test-data.7
+      id: 0010.test-data.7
       author: codeschluss
       changes:
         - sql:
@@ -89,7 +89,7 @@ databaseChangeLog:
                ('8bdac738-ee51-411f-b36c-5b0556acfafe', '8ce57895-53c6-4af2-95eb-69dc8a4ee658', '0c3cf6f6-8337-492b-90e6-4db0bbc14aa9', false, false);
                
   - changeSet:
-      id: 0004.test-data.8
+      id: 0010.test-data.8
       author: codeschluss
       changes:
         - sql:
@@ -101,7 +101,7 @@ databaseChangeLog:
                  WHERE l.locale = "de";     
                  
   - changeSet:
-      id: 0004.test-data.9
+      id: 0010.test-data.9
       author: codeschluss
       changes:
         - sql:
@@ -115,7 +115,7 @@ databaseChangeLog:
                ('34e1a393-019a-48ac-b66e-7e9646a230d1', '5737ee58-9f88-43d1-baf4-a34dd85f0219','bdadf02e-37df-4d3b-a639-cf9a76532904', true); 
                
   - changeSet:
-      id: 0004.test-data.10
+      id: 0010.test-data.10
       author: codeschluss
       changes:
         - sql:
@@ -129,7 +129,7 @@ databaseChangeLog:
                  
                       
   - changeSet:
-      id: 0004.test-data.11
+      id: 0010.test-data.11
       author: codeschluss
       changes:
         - sql:
@@ -148,7 +148,7 @@ databaseChangeLog:
                  WHERE l.locale = "de";
                  
   - changeSet:
-      id: 0004.test-data.12
+      id: 0010.test-data.12
       author: codeschluss
       changes:
         - sql:
@@ -159,7 +159,7 @@ databaseChangeLog:
                ('db3d3896-d60a-4e6e-b708-b50769f3dbae', '2023-06-26 10:39:28', 'b47ec304-2de7-4c20-a110-fd829695c18d', '00000000-0000-0000-0007-300000000000', '5', '3916b414-c2bf-4808-a401-284ac62df73d', 'c7356a4c-fd81-4860-b1cc-06f549067132', 'event-sponsored', true);
                
   - changeSet:
-      id: 0004.test-data.13
+      id: 0010.test-data.13
       author: codeschluss
       changes:
         - sql:
@@ -171,7 +171,7 @@ databaseChangeLog:
                  WHERE l.locale = "de";  
                  
   - changeSet:
-      id: 0004.test-data.14
+      id: 0010.test-data.14
       author: codeschluss
       changes:
         - sql:
@@ -182,7 +182,7 @@ databaseChangeLog:
                ('1358bdf4-bc16-4f1a-af33-6ba404ad9cb9', true, "db3d3896-d60a-4e6e-b708-b50769f3dbae", "1774bd91-1698-4c4a-8f16-3a0a98fdef32");
                
   - changeSet:
-      id: 0004.test-data.15
+      id: 0010.test-data.15
       author: codeschluss
       changes:
         - sql:
