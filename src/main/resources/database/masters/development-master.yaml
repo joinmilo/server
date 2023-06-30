@@ -243,21 +243,31 @@ databaseChangeLog:
         
      #Testdata   
     - include:
-        file: database/datasets/test-data/0000.global-test-data.yaml
+        file: database/datasets/test-data/0001.media-test-data.yaml
     - include:
-        file: database/datasets/test-data/0001.user-test-data.yaml
+        file: database/datasets/test-data/0002.reports-test-data.yaml
     - include:
-        file: database/datasets/test-data/0002.organisation-test-data.yaml
+        file: database/datasets/test-data/0003.address-test-data.yaml
     - include:
-        file: database/datasets/test-data/0003.article-test-data.yaml
+        file: database/datasets/test-data/0004.pages-test-data.yaml
     - include:
-        file: database/datasets/test-data/0004.event-test-data.yaml
+        file: database/datasets/test-data/0005.apps-test-data.yaml
     - include:
-        file: database/datasets/test-data/0005.form-test-data.yaml
+        file: database/datasets/test-data/0006.configurations-test-data.yaml
     - include:
-        file: database/datasets/test-data/0006.deal-test-data.yaml
+        file: database/datasets/test-data/0007.user-test-data.yaml
     - include:
-        file: database/datasets/test-data/0007.contest-test-data.yaml        
+        file: database/datasets/test-data/0008.organisation-test-data.yaml
     - include:
-        file: database/datasets/test-data/0008.survey-test-data.yaml
+        file: database/datasets/test-data/0009.article-test-data.yaml
+    - include:
+        file: database/datasets/test-data/0010.event-test-data.yaml
+    - include:
+        file: database/datasets/test-data/0011.form-test-data.yaml
+    - include:
+        file: database/datasets/test-data/0012.deal-test-data.yaml
+    - include:
+        file: database/datasets/test-data/0013.contest-test-data.yaml        
+    - include:
+        file: database/datasets/test-data/0014.survey-test-data.yaml
                                                               

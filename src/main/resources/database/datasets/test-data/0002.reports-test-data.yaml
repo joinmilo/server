@@ -1,0 +1,27 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+  
+  - changeSet:
+      id: 0002.test-data.1
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add data reports
+            splitStatements: true
+            sql: insert into reports (id, `name`, email, type_id) values
+              ('29c9ebf0-ac66-4752-a123-82f691cd8d72', 'TestFeedback', 'Feedback@example.com', '29c9ebf0-ac66-4752-a123-82f691cd8d72');
+              
+
+               
+  - changeSet:
+      id: 0002.test-data.2
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add data report_translatables
+            splitStatements: true
+            sql: insert into report_translatables (id, parent_id, language_id, content)
+                 select uuid(), "29c9ebf0-ac66-4752-a123-82f691cd8d72", l.id, "Alles gut, arbeite weiter!"
+                 from languages l
+                 WHERE l.locale = "de";   
+                 
