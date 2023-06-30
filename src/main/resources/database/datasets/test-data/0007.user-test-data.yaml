@@ -2,7 +2,7 @@ databaseChangeLog:
   - logicalFilePath: path_independent
 
   - changeSet:
-      id: 0001.test-data.1
+      id: 0007.test-data.1
       author: codeschluss
       changes:
         - sql:
@@ -12,7 +12,7 @@ databaseChangeLog:
               ('3916b414-c2bf-4808-a401-284ac62df73d', 'guenther', 'guenther@example.com');
               
   - changeSet:
-      id: 0001.test-data.2
+      id: 0007.test-data.2
       author: codeschluss
       changes:
         - sql:
@@ -27,7 +27,7 @@ databaseChangeLog:
                ('e618577b-bed0-4e19-89f3-e6ba2e9da795', true, 'Sebastian@gmail.com', 'Sebastian', 'Stern', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm'); -- password is '1234'
                
   - changeSet:
-      id: 0001.test-data.3
+      id: 0007.test-data.3
       author: codeschluss
       changes:
         - sql:
@@ -42,7 +42,7 @@ databaseChangeLog:
                ('bdadf02e-37df-4d3b-a639-cf9a76532904', 'e618577b-bed0-4e19-89f3-e6ba2e9da795', 'slug-wh3zc');
                
   - changeSet:
-      id: 0001.test-data.4
+      id: 0007.test-data.4
       author: codeschluss
       changes:                                                                                
             comment: Add test user
@@ -51,7 +51,7 @@ databaseChangeLog:
                  select "86db5071-55c6-4871-bab6-e94a40e914ff", "test@example.cpm", "1234", "Doomed2", "Test";
                  
   - changeSet:
-      id: 0001.test-data.5
+      id: 0007.test-data.5
       author: codeschluss
       changes:
         - sql:
@@ -64,7 +64,7 @@ databaseChangeLog:
                    "86db5071-55c6-4871-bab6-e94a40e914ff", 'slug-qac77';
                    
   - changeSet:
-      id: 0001.test-data.6
+      id: 0007.test-data.6
       author: codeschluss
       changes:
         - sql:
@@ -77,7 +77,7 @@ databaseChangeLog:
                ('c28f0643-1d34-42de-bb39-3a77718a59da', '3e791600-8e00-4069-a060-4862c44da93b', '5737ee58-9f88-43d1-baf4-a34dd85f0219', true, true);
                
   - changeSet:
-      id: 0001.test-data.7
+      id: 0007.test-data.7
       author: codeschluss
       changes:
         - sql:
@@ -92,7 +92,7 @@ databaseChangeLog:
                ('1900e08e-e6e9-4362-bc50-1c6d5b2ec0f7', '83c0ce85-c808-43eb-a72d-62a228db2979', true);                                                           
                
   - changeSet:
-      id: 0001.test-data.8
+      id: 0007.test-data.8
       author: codeschluss
       changes:
         - sql:

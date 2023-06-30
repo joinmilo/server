@@ -2,7 +2,7 @@ databaseChangeLog:
   - logicalFilePath: path_independent
   
   - changeSet:
-      id: 0003.test-data.1
+      id: 0009.test-data.1
       author: codeschluss
       changes:
         - sql:
@@ -13,7 +13,7 @@ databaseChangeLog:
                ('bd24d04e-333a-45b4-9e1b-0958b8bba58d', 'Savannah Nguyen', 'savannah.nguyen@gmail.com');
 
   - changeSet:
-      id: 0003.test-data.2
+      id: 0009.test-data.2
       author: codeschluss
       changes:
         - sql:
@@ -30,7 +30,7 @@ databaseChangeLog:
                ('07852f7d-a9a2-478a-a3cb-5ee2a7a923e5', null, 'bd24d04e-333a-45b4-9e1b-0958b8bba58d', 'guest-article');
                
   - changeSet:
-      id: 0003.test-data.3
+      id: 0009.test-data.3
       author: codeschluss
       changes:
         - sql:
@@ -41,7 +41,7 @@ databaseChangeLog:
                ('7dd9abba-b253-4fb4-818d-7ef090f26b83', '08b4cbd6-fc52-4b90-874d-1837313cdffb', '5737ee58-9f88-43d1-baf4-a34dd85f0219', 'article-sponsored', true);
                
   - changeSet:
-      id: 0003.test-data.4
+      id: 0009.test-data.4
       author: codeschluss
       changes:
         - sql:

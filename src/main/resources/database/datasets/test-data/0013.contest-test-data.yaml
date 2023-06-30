@@ -2,7 +2,7 @@ databaseChangeLog:
   - logicalFilePath: path_independent
 
   - changeSet:
-      id: 0007.test-data.1
+      id: 0013.test-data.1
       author: codeschluss
       changes:
         - sql:
@@ -12,7 +12,7 @@ databaseChangeLog:
               ('112a561f-5d96-42dd-b851-62365e79147b', 'drawing');  
               
   - changeSet:
-      id: 0007.test-data.2
+      id: 0013.test-data.2
       author: codeschluss
       changes:
         - sql:
@@ -22,7 +22,7 @@ databaseChangeLog:
               ('41a73da0-6c95-4bfe-85a7-342c8dcf7da9', 'started');
               
   - changeSet:
-      id: 0007.test-data.3
+      id: 0013.test-data.3
       author: codeschluss
       changes:
         - sql:
@@ -32,7 +32,7 @@ databaseChangeLog:
               ('5dc59462-91f6-402d-82ae-a8fd65fbfa42', '2020-02-13 10:39:28', '112a561f-5d96-42dd-b851-62365e79147b', '41a73da0-6c95-4bfe-85a7-342c8dcf7da9', 'slug-cfxx4');
               
   - changeSet:
-      id: 0007.test-data.4
+      id: 0013.test-data.4
       author: codeschluss
       changes:
         - sql:
@@ -44,7 +44,7 @@ databaseChangeLog:
                  WHERE l.locale = "de";
                  
   - changeSet:
-      id: 0007.test-data.5
+      id: 0013.test-data.5
       author: codeschluss
       changes:
         - sql:
