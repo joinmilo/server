@@ -83,9 +83,7 @@ databaseChangeLog:
     - include:
         file: database/changes/0043.create_table_article_comment_translatables.yaml  
     - include:
-        file: database/changes/0044.create_table_contest_types.yaml
-    - include:
-        file: database/changes/0045.create_table_contest_states.yaml                      
+        file: database/changes/0044.create_table_contest_types.yaml                    
     - include:
         file: database/changes/0046.create_table_contests.yaml
     - include:
