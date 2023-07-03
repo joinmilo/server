@@ -405,7 +405,7 @@
                 WHERE l.locale = "en";                                                               
                 
                 insert into menu_item_translatables (id, `name`, parent_id, language_id, short_description)
-                select uuid(), "Eigene Beiträge", "555d678d-954f-43c9-ae63-5329df968da2",l.id, "Erzähl uns deine Story"
+                select uuid(), "Eigene Story", "555d678d-954f-43c9-ae63-5329df968da2",l.id, "Erzähl uns deine Story"
                 from languages l
                 WHERE l.locale = "de";   
                 
