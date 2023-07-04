@@ -1,11 +1,13 @@
 package app.wooportal.server.core.i18n;
 
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Service;
+import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.base.dto.listing.PageableList;
 import app.wooportal.server.core.i18n.translation.TranslationService;
 
@@ -56,27 +58,27 @@ public class TranslationInterceptor {
     return result;
   }
   
-//
-//  /**
-//   * Save localizable.
-//   *
-//   * @param <E>
-//   *          the element type
-//   * @param pjp
-//   *          the pjp
-//   * @return the object
-//   * @throws Throwable
-//   *           the throwable
-//   */
-//  @Around("save()")
-//  public <E extends BaseEntity> Object saveTranslation(ProceedingJoinPoint pjp)
-//      throws Throwable {
-//    pjp.proceed();
-//    Object savedEntity = pjp.getArgs()[0];
-//    if (TranslationHelper.isLocalizable(savedEntity)) {
+
+  /**
+   * Save localizable.
+   *
+   * @param <E>
+   *          the element type
+   * @param pjp
+   *          the pjp
+   * @return the object
+   * @throws Throwable
+   *           the throwable
+   */
+  @Around("save()")
+  public <E extends BaseEntity> Object saveTranslation(ProceedingJoinPoint pjp)
+      throws Throwable {
+    pjp.proceed();
+    Object savedEntity = pjp.getArgs()[0];
+    CompletableFuture.runAsync(() -> {
 //      translationService.save(savedEntity);
-//    }
-//    return savedEntity;
-//  }
+    });
+    return savedEntity;
+  }
 
 }
