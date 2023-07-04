@@ -10,17 +10,13 @@ import org.springframework.stereotype.Service;
 public class RatingService {
 
   public CompletableFuture<RatingDto> calculateRating(int[] scores) {
-    if (scores != null && scores.length > 0) {
-
       RatingDto ratingDto = new RatingDto();
 
       ratingDto.setDistribution(calculateClusteredAverages(scores));
       ratingDto.setAverage(calculateTotalAverage(scores));
-      ratingDto.setTotalReviews(scores.length);
+      ratingDto.setTotalReviews(scores.length > 0 ? scores.length : 0);
 
       return CompletableFuture.completedFuture(ratingDto);
-    }
-    return null;
   }
 
   private Map<String, Double> calculateClusteredAverages(int[] scores) {
@@ -31,9 +27,9 @@ public class RatingService {
       Integer group = i + 1;
       String groupName = group.toString();
 
-      double distribution = (double) Arrays.stream(scores)
+      double distribution = scores.length > 0 ? (double) Arrays.stream(scores)
           .filter(score -> score == group)
-          .count() / scores.length * 100;
+          .count() / scores.length * 100 : 0;
 
       groupDistribution.put(groupName, distribution);
     }
