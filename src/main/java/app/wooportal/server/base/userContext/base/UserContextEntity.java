@@ -76,7 +76,7 @@ public class UserContextEntity extends BaseEntity {
   private Set<AssignmentEntity> assignments;
 
   @OneToMany(mappedBy = "userContext", fetch = FetchType.LAZY)
-  private Set<AttendeeEntity> attendee;
+  private Set<AttendeeEntity> attendedEvents;
 
   @OneToMany(mappedBy = "userContext", fetch = FetchType.LAZY)
   private Set<ContestVoteEntity> contestVotes;

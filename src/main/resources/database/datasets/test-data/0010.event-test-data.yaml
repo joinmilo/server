@@ -18,14 +18,45 @@ databaseChangeLog:
       author: codeschluss
       changes:
         - sql:
-            comment: add event
+            comment: Add Attendee Configuration 
             splitStatements: true
             sql:
-               insert into events (id, creator_id, category_id, slug) values
-               ('0c3cf6f6-8337-492b-90e6-4db0bbc14aa9', '5737ee58-9f88-43d1-baf4-a34dd85f0219', 'ca429c83-ae27-4ce5-af45-1219bacab2a0', 'slug-h7z8f');
+               insert into attendee_configurations (id, approval, max_attendees) values
+               ('dd322834-4abd-42bf-b753-f1310e585088', true, 5),
+               ('3270df7c-3856-49e2-8595-26747e73ecb0', false , 5),
+               ('d5626116-e724-4d80-a573-a9f9c57ac510', true, null),
+               ('9aa83a12-86bc-4c6e-a967-754730e47adc', false, null);
                
   - changeSet:
       id: 0010.test-data.3
+      author: codeschluss
+      changes:
+        - sql:
+            comment: add event
+            splitStatements: true
+            sql:
+               insert into events (id, attendee_configuration_id, creator_id, category_id, slug) values
+               ('0c3cf6f6-8337-492b-90e6-4db0bbc14aa9', null, '5737ee58-9f88-43d1-baf4-a34dd85f0219', 'ca429c83-ae27-4ce5-af45-1219bacab2a0', 'slug-h7z8f'),
+               ('9aa1b7e3-2faa-4a55-b8f1-8ecbe6b4be93', 'dd322834-4abd-42bf-b753-f1310e585088', '5737ee58-9f88-43d1-baf4-a34dd85f0219', 'ca429c83-ae27-4ce5-af45-1219bacab2a0', 'slug-event1'),
+               ('b82f9cc0-05be-4d15-865a-e0a5cb5b2479', '3270df7c-3856-49e2-8595-26747e73ecb0', '5737ee58-9f88-43d1-baf4-a34dd85f0219', 'ca429c83-ae27-4ce5-af45-1219bacab2a0', 'slug-event2'),
+               ('873f7e25-cafe-4ed8-ae3d-a1a2d48b428c', 'd5626116-e724-4d80-a573-a9f9c57ac510', '5737ee58-9f88-43d1-baf4-a34dd85f0219', 'ca429c83-ae27-4ce5-af45-1219bacab2a0', 'slug-event3'),
+               ('34cfb693-48be-448f-a6f1-964dba0fc5cd', '9aa83a12-86bc-4c6e-a967-754730e47adc', '5737ee58-9f88-43d1-baf4-a34dd85f0219', 'ca429c83-ae27-4ce5-af45-1219bacab2a0', 'slug-event4');
+               
+  - changeSet:
+      id: 0010.test-data.4
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add Attendees
+            splitStatements: true
+            sql:
+               insert into attendees (id, configuration_id, user_context_id, approved) values
+               ('01205866-523d-4505-883e-1996598cc6a8', 'dd322834-4abd-42bf-b753-f1310e585088','ece550e8-bc2b-43c4-8aaf-48a30e82080f', true),
+               ('42db8cb9-99fa-4877-89d2-24935b6f3cf8', 'dd322834-4abd-42bf-b753-f1310e585088','5102ef99-492e-476d-a6d8-357125e9f443', true),
+               ('34e1a393-019a-48ac-b66e-7e9646a230d1', 'dd322834-4abd-42bf-b753-f1310e585088','bdadf02e-37df-4d3b-a639-cf9a76532904', true);
+               
+  - changeSet:
+      id: 0010.test-data.5
       author: codeschluss
       changes:
         - sql:
@@ -38,7 +69,7 @@ databaseChangeLog:
                ('1ff0c22c-f9f9-400f-922b-f142b146621f', '0c3cf6f6-8337-492b-90e6-4db0bbc14aa9', '5737ee58-9f88-43d1-baf4-a34dd85f0219');
                
   - changeSet:
-      id: 0010.test-data.4
+      id: 0010.test-data.6
       author: codeschluss
       changes:
         - sql:
@@ -50,7 +81,7 @@ databaseChangeLog:
                  WHERE l.locale = "de"; 
                  
   - changeSet:
-      id: 0010.test-data.5
+      id: 0010.test-data.7
       author: codeschluss
       changes:
         - sql:
@@ -62,7 +93,7 @@ databaseChangeLog:
                  WHERE l.locale = "de";    
                  
   - changeSet:
-      id: 0010.test-data.6
+      id: 0010.test-data.8
       author: codeschluss
       changes:
         - sql:
@@ -74,7 +105,7 @@ databaseChangeLog:
                  WHERE l.locale = "de"; 
                  
   - changeSet:
-      id: 0010.test-data.7
+      id: 0010.test-data.9
       author: codeschluss
       changes:
         - sql:
@@ -89,7 +120,7 @@ databaseChangeLog:
                ('8bdac738-ee51-411f-b36c-5b0556acfafe', '8ce57895-53c6-4af2-95eb-69dc8a4ee658', '0c3cf6f6-8337-492b-90e6-4db0bbc14aa9', false, false);
                
   - changeSet:
-      id: 0010.test-data.8
+      id: 0010.test-data.10
       author: codeschluss
       changes:
         - sql:
@@ -101,7 +132,7 @@ databaseChangeLog:
                  WHERE l.locale = "de";     
                  
   - changeSet:
-      id: 0010.test-data.9
+      id: 0010.test-data.11
       author: codeschluss
       changes:
         - sql:
@@ -112,43 +143,74 @@ databaseChangeLog:
                ('01205866-523d-4505-883e-1996598cc6a8', 'ece550e8-bc2b-43c4-8aaf-48a30e82080f','5737ee58-9f88-43d1-baf4-a34dd85f0219', true),
                ('42db8cb9-99fa-4877-89d2-24935b6f3cf8', '5102ef99-492e-476d-a6d8-357125e9f443','5737ee58-9f88-43d1-baf4-a34dd85f0219', true),
                ('4cab17f5-1997-4939-a2bc-c75290346698', 'a9b32d23-ec3b-42ac-ab11-caf9bdc32643','5737ee58-9f88-43d1-baf4-a34dd85f0219', true),
-               ('34e1a393-019a-48ac-b66e-7e9646a230d1', '5737ee58-9f88-43d1-baf4-a34dd85f0219','bdadf02e-37df-4d3b-a639-cf9a76532904', true); 
-               
-  - changeSet:
-      id: 0010.test-data.10
-      author: codeschluss
-      changes:
-        - sql:
-            comment: Add Attendees
-            splitStatements: true
-            sql:
-               insert into attendees (id, event_id, user_context_id, approved) values
-               ('01205866-523d-4505-883e-1996598cc6a8', '0c3cf6f6-8337-492b-90e6-4db0bbc14aa9','ece550e8-bc2b-43c4-8aaf-48a30e82080f', true),
-               ('42db8cb9-99fa-4877-89d2-24935b6f3cf8', '0c3cf6f6-8337-492b-90e6-4db0bbc14aa9','5102ef99-492e-476d-a6d8-357125e9f443', true),
-               ('34e1a393-019a-48ac-b66e-7e9646a230d1', '0c3cf6f6-8337-492b-90e6-4db0bbc14aa9','bdadf02e-37df-4d3b-a639-cf9a76532904', true);                
+               ('34e1a393-019a-48ac-b66e-7e9646a230d1', '5737ee58-9f88-43d1-baf4-a34dd85f0219','bdadf02e-37df-4d3b-a639-cf9a76532904', true);                 
                  
                       
   - changeSet:
-      id: 0010.test-data.11
+      id: 0010.test-data.13
       author: codeschluss
       changes:
         - sql:
             comment: Add data event_translatables
             splitStatements: true
             sql: insert into event_translatables (id, parent_id, language_id, name, short_description, content)
-                 select uuid(), "0c3cf6f6-8337-492b-90e6-4db0bbc14aa9", l.id, "Team-Fussball", "<p>Jeden Sonntag um 14:00 am Dettinger Fussballplatz. Jeder darf teilnehmen, wir freuen uns!",
+                 select uuid(), "0c3cf6f6-8337-492b-90e6-4db0bbc14aa9", l.id, "Team-Fussball", "Jeden Sonntag um 14:00 am Dettinger Fussballplatz. Jeder darf teilnehmen, wir freuen uns!",
                  "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
                   accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
                   sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
                   no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
                   sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.   
                   Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit
-                  praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,</p>"
+                  praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet"
+                 from languages l
+                 WHERE l.locale = "de";
+
+                 select uuid(), "9aa1b7e3-2faa-4a55-b8f1-8ecbe6b4be93", l.id, "Event-1", "At vero eos et accusam et justo duo dolores et ea rebum.!",
+                 "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
+                  accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+                  sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+                  no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+                  sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.   
+                  Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit
+                  praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,"
+                 from languages l
+                 WHERE l.locale = "de";
+
+                 select uuid(), "b82f9cc0-05be-4d15-865a-e0a5cb5b2479", l.id, "Event-2", "At vero eos et accusam et justo duo dolores et ea rebum.!",
+                 "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
+                  accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+                  sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+                  no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+                  sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.   
+                  Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit
+                  praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,"
+                 from languages l
+                 WHERE l.locale = "de";
+
+                 select uuid(), "873f7e25-cafe-4ed8-ae3d-a1a2d48b428c", l.id, "Event-3", "At vero eos et accusam et justo duo dolores et ea rebum.!",
+                 "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
+                  accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+                  sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+                  no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+                  sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.   
+                  Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit
+                  praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,"
+                 from languages l
+                 WHERE l.locale = "de";
+
+                 select uuid(), "34cfb693-48be-448f-a6f1-964dba0fc5cd", l.id, "Event-4", "At vero eos et accusam et justo duo dolores et ea rebum.!",
+                 "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
+                  accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+                  sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+                  no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+                  sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.   
+                  Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit
+                  praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,"
                  from languages l
                  WHERE l.locale = "de";
                  
   - changeSet:
-      id: 0010.test-data.12
+      id: 0010.test-data.14
       author: codeschluss
       changes:
         - sql:
@@ -159,7 +221,7 @@ databaseChangeLog:
                ('db3d3896-d60a-4e6e-b708-b50769f3dbae', '2023-06-26 10:39:28', 'b47ec304-2de7-4c20-a110-fd829695c18d', '00000000-0000-0000-0007-300000000000', '5', '3916b414-c2bf-4808-a401-284ac62df73d', 'c7356a4c-fd81-4860-b1cc-06f549067132', 'event-sponsored', true);
                
   - changeSet:
-      id: 0010.test-data.13
+      id: 0010.test-data.15
       author: codeschluss
       changes:
         - sql:
@@ -171,7 +233,7 @@ databaseChangeLog:
                  WHERE l.locale = "de";  
                  
   - changeSet:
-      id: 0010.test-data.14
+      id: 0010.test-data.16
       author: codeschluss
       changes:
         - sql:
@@ -182,7 +244,7 @@ databaseChangeLog:
                ('1358bdf4-bc16-4f1a-af33-6ba404ad9cb9', true, "db3d3896-d60a-4e6e-b708-b50769f3dbae", "1774bd91-1698-4c4a-8f16-3a0a98fdef32");
                
   - changeSet:
-      id: 0010.test-data.15
+      id: 0010.test-data.17
       author: codeschluss
       changes:
         - sql:

@@ -6,7 +6,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import app.wooportal.server.base.userContext.base.UserContextEntity;
 import app.wooportal.server.core.base.BaseEntity;
-import app.wooportal.server.features.event.base.EventEntity;
+import app.wooportal.server.features.event.attendeeConfiguration.AttendeeConfigurationEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,7 +26,7 @@ public class AttendeeEntity extends BaseEntity {
   private Boolean approved;
 
   @ManyToOne(fetch = FetchType.LAZY)
-  private EventEntity event;
+  private AttendeeConfigurationEntity configuration;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private UserContextEntity userContext;

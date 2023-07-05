@@ -26,8 +26,6 @@ databaseChangeLog:
                   name: modified
                   type: datetime
               - column:
-                  constraints:
-                    nullable: false
                   name: max_attendees
                   type: INTEGER
               - column:

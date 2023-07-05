@@ -21,7 +21,6 @@ import app.wooportal.server.base.contact.ContactEntity;
 import app.wooportal.server.base.userContext.base.UserContextEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.i18n.annotations.Translatable;
-import app.wooportal.server.features.event.attendee.AttendeeEntity;
 import app.wooportal.server.features.event.attendeeConfiguration.AttendeeConfigurationEntity;
 import app.wooportal.server.features.event.base.media.EventMediaEntity;
 import app.wooportal.server.features.event.base.translations.EventTranslatableEntity;
@@ -87,9 +86,6 @@ public class EventEntity extends BaseEntity {
 
   @ManyToOne(fetch = FetchType.LAZY)
   private OrganisationEntity organisation;
-
-  @OneToMany(mappedBy = "event", fetch = FetchType.LAZY)
-  private Set<AttendeeEntity> attendees;
 
   @OneToMany(mappedBy = "event", fetch = FetchType.LAZY)
   private Set<EventCommentEntity> comments;
