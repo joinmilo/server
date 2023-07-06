@@ -1,25 +1,32 @@
 package app.wooportal.server.core.i18n.translation;
 
+import java.util.HashMap;
 import java.util.List;
 import org.springframework.stereotype.Service;
+import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.i18n.annotations.Translatable;
 import app.wooportal.server.core.i18n.components.language.LanguageEntity;
+import app.wooportal.server.core.i18n.components.language.LanguageService;
 import app.wooportal.server.core.i18n.entities.TranslatableEntity;
 import app.wooportal.server.core.repository.RepositoryService;
 import app.wooportal.server.core.utils.ReflectionUtils;
 
 @Service
 public class TranslationService {
-
-  private final RepositoryService repoService;
+  
+  private final LanguageService languageService;
   
   private final LocaleService localeService;
 
+  private final RepositoryService repoService;
+
   public TranslationService(
       RepositoryService repoService,
+      LanguageService languageService,
       LocaleService localeService) {
-    this.repoService = repoService;
+    this.languageService = languageService;
     this.localeService = localeService;
+    this.repoService = repoService;    
   }
 
   @SuppressWarnings("unchecked")
@@ -79,6 +86,18 @@ public class TranslationService {
         }
       }
     }
+  }
+  
+  public <E extends BaseEntity> void save(E savedEntity) throws Throwable {
+    
+    var translatables = new HashMap<String, String>(); 
+    for (var field : ReflectionUtils.getFieldsWithAnnotation(savedEntity.getClass(),
+        Translatable.class)) {
+    }
+    
+    TranslationUtils.getTranslatableField(getClass());
+    
+//    repoService.save(translatableObject);
   }
 
 }
