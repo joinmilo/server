@@ -17,6 +17,6 @@ import lombok.Setter;
 public class TranslationsConfiguration {
   
   private String defaultLocale;
-  private String serviceUrl;
-  private String serviceSubscriptionKey;
+  private String translateUrl;
+
 }
