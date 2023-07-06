@@ -218,7 +218,7 @@ databaseChangeLog:
             splitStatements: true
             sql:
                insert into events (`id`, `created`, `address_id`, `category_id`, `entry_fee`, `contact_id`, `organisation_id`, `slug`, `sponsored`) values
-               ('db3d3896-d60a-4e6e-b708-b50769f3dbae', '2023-06-26 10:39:28', 'b47ec304-2de7-4c20-a110-fd829695c18d', '00000000-0000-0000-0007-300000000000', '5', '3916b414-c2bf-4808-a401-284ac62df73d', 'c7356a4c-fd81-4860-b1cc-06f549067132', 'event-sponsored', true);
+               ('db3d3896-d60a-4e6e-b708-b50769f3dbae', '2023-06-26 10:39:28', 'b47ec304-2de7-4c20-a110-fd829695c18d', 'ca429c83-ae27-4ce5-af45-1219bacab2a0', '5', '3916b414-c2bf-4808-a401-284ac62df73d', 'c7356a4c-fd81-4860-b1cc-06f549067132', 'event-sponsored', true);
                
   - changeSet:
       id: 0010.test-data.15

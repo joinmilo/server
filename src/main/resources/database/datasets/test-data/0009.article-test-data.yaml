@@ -11,9 +11,33 @@ databaseChangeLog:
             sql:
                insert into public_authors (`id`, `name`, `email`) values
                ('bd24d04e-333a-45b4-9e1b-0958b8bba58d', 'Savannah Nguyen', 'savannah.nguyen@gmail.com');
-
+               
   - changeSet:
       id: 0009.test-data.2
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add article category
+            splitStatements: true
+            sql:
+               insert into article_categories (`id`, `color`, `icon`) values
+               ('195dffc0-4f0f-4d7b-b266-f871dd5c8500', '#1E5945', 'icons');   
+               
+  - changeSet:
+      id: 0009.test-data.4
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add article category translatable
+            splitStatements: true
+            sql:
+               insert into article_category_translatables (id, parent_id, language_id, `name`)
+                 select uuid(), "195dffc0-4f0f-4d7b-b266-f871dd5c8500", l.id, "Beratung und Weiterbildung"
+                 from languages l
+                 WHERE l.locale = "de";                     
+               
+  - changeSet:
+      id: 0009.test-data.5
       author: codeschluss
       changes:
         - sql:
@@ -30,7 +54,7 @@ databaseChangeLog:
                ('07852f7d-a9a2-478a-a3cb-5ee2a7a923e5', null, 'bd24d04e-333a-45b4-9e1b-0958b8bba58d', 'guest-article');
                
   - changeSet:
-      id: 0009.test-data.3
+      id: 0009.test-data.6
       author: codeschluss
       changes:
         - sql:
@@ -38,10 +62,10 @@ databaseChangeLog:
             splitStatements: true
             sql:
                insert into articles (`id`, `category_id`, `author_id`, `slug`, `sponsored`) values
-               ('7dd9abba-b253-4fb4-818d-7ef090f26b83', '08b4cbd6-fc52-4b90-874d-1837313cdffb', '5737ee58-9f88-43d1-baf4-a34dd85f0219', 'article-sponsored', true);
+               ('7dd9abba-b253-4fb4-818d-7ef090f26b83', '195dffc0-4f0f-4d7b-b266-f871dd5c8500', '5737ee58-9f88-43d1-baf4-a34dd85f0219', 'article-sponsored', true);
                
   - changeSet:
-      id: 0009.test-data.4
+      id: 0009.test-data.7
       author: codeschluss
       changes:
         - sql:
