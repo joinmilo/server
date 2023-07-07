@@ -24,4 +24,10 @@ public class SchedulePredicateBuilder extends PredicateBuilder<QScheduleEntity, 
   public BooleanExpression startDateBetween(OffsetDateTime begin, OffsetDateTime end) {
     return query.startDate.between(begin, end);
   }
+
+  public BooleanExpression withStartDateLaterThanToday() {
+    return query.startDate.after(OffsetDateTime.now()
+        .withHour(0)
+        .withMinute(0));
+  }
 }

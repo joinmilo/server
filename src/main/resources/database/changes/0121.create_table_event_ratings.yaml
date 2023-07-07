@@ -39,7 +39,7 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                   name: score
-                  type: INTEGER                                                                                                                                                                        
+                  type: INTEGER
             tableName: event_ratings
         - sql:
             comment: set char set for mysql

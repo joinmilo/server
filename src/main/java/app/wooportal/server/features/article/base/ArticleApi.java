@@ -3,16 +3,14 @@ package app.wooportal.server.features.article.base;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
+import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
+import app.wooportal.server.base.rating.RatingDto;
+import app.wooportal.server.base.rating.RatingService;
 import app.wooportal.server.core.base.CrudApi;
 import app.wooportal.server.core.base.dto.listing.FilterSortPaginate;
 import app.wooportal.server.core.base.dto.listing.PageableList;
 import app.wooportal.server.core.security.permissions.AdminPermission;
-import app.wooportal.server.features.article.rating.ArticleRatingEntity;
-import app.wooportal.server.features.calculateRating.RatingDto;
-import app.wooportal.server.features.calculateRating.RatingService;
-import app.wooportal.server.features.event.base.EventEntity;
-import app.wooportal.server.features.event.rating.EventRatingEntity;
 import io.leangen.graphql.annotations.GraphQLArgument;
 import io.leangen.graphql.annotations.GraphQLContext;
 import io.leangen.graphql.annotations.GraphQLMutation;
@@ -76,8 +74,7 @@ public class ArticleApi extends CrudApi<ArticleEntity, ArticleService> {
   @GraphQLQuery(name = "calculatedRatings")
   public CompletableFuture<RatingDto> calculateAverageRating(
       @GraphQLContext ArticleEntity article) {
-    int[] scoresArray = article.getRatings().stream()
-        .mapToInt(ArticleRatingEntity::getScore).toArray();
-    return ratingService.calculateRating(scoresArray);
+    return ratingService.calculateRating(
+        article.getRatings().stream().map(rating -> rating.getScore()).collect(Collectors.toList()));
   }
 }

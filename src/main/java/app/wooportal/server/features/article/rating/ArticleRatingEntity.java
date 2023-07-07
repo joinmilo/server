@@ -35,6 +35,7 @@ public class ArticleRatingEntity extends BaseEntity {
   private ArticleEntity article;
 
   @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(nullable = false)
   private UserContextEntity userContext;
 
 }

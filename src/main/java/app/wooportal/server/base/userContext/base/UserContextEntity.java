@@ -70,7 +70,7 @@ public class UserContextEntity extends BaseEntity {
   private Set<ArticleEntity> articles;
 
   @OneToMany(mappedBy = "userContext", fetch = FetchType.LAZY)
-  private Set<ArticleRatingEntity> articleRating;
+  private Set<ArticleRatingEntity> articleRatings;
 
   @OneToMany(mappedBy = "userContext", fetch = FetchType.LAZY)
   private Set<AssignmentEntity> assignments;
@@ -94,7 +94,7 @@ public class UserContextEntity extends BaseEntity {
   private Set<EventCommentEntity> eventComment;
 
   @OneToMany(mappedBy = "userContext", fetch = FetchType.LAZY)
-  private Set<EventRatingEntity> eventRating;
+  private Set<EventRatingEntity> eventRatings;
 
   @OneToMany(mappedBy = "addressee", fetch = FetchType.LAZY)
   private Set<FriendEntity> friendAddressee;
@@ -106,7 +106,7 @@ public class UserContextEntity extends BaseEntity {
   private Set<MemberEntity> member;
 
   @OneToMany(mappedBy = "userContext", fetch = FetchType.LAZY)
-  private Set<OrganisationRatingEntity> organisationRating;
+  private Set<OrganisationRatingEntity> organisationRatings;
 
   @OneToMany(mappedBy = "userContext", fetch = FetchType.LAZY)
   private Set<SurveyResultEntity> surveyResults;

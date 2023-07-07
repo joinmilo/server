@@ -30,11 +30,16 @@ public class ScheduleService extends DataService<ScheduleEntity, SchedulePredica
   public Optional<ScheduleEntity> getMostRecentByEvent(String eventId) {
     var result = repo.findAll(
         collectionQuery(predicate.withEventId(eventId))
+          .and(predicate.withStartDateLaterThanToday())
           .setLimit(1)
-          .setSort(SortPageUtils.createSort(Direction.DESC, "startDate")));
+          .setSort(SortPageUtils.createSort(Direction.ASC, "startDate")));
     
     return result != null && !result.isEmpty()
         ? Optional.ofNullable(result.get(0))
         : Optional.empty();
+  }
+
+  public Boolean hasSchedules(String eventId) {
+    return repo.exists(predicate.withEventId(eventId));
   }
 }

@@ -40,13 +40,18 @@ databaseChangeLog:
               - column:
                   constraints:
                     nullable: false
-                  name: user_id
+                  name: user_context_id
                   type: CHAR(36)           
               - column:
                   constraints:
                     nullable: false
                   name: organisation_id
-                  type: CHAR(36)                                                                          
+                  type: CHAR(36)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: score
+                  type: INTEGER                                                                          
             tableName: organisation_ratings
         - sql:
             comment: set char set for mysql
@@ -62,7 +67,7 @@ databaseChangeLog:
         - createIndex:
             columns:
               - column:
-                  name: user_id
+                  name: user_context_id
             indexName: idx_fkz3xgwcmicx9cyrqqx8tbhy715
             tableName: organisation_ratings
   - changeSet:
@@ -70,7 +75,7 @@ databaseChangeLog:
       author: codeschluss
       changes:
         - addForeignKeyConstraint:
-            baseColumnNames: user_id
+            baseColumnNames: user_context_id
             baseTableName: organisation_ratings
             constraintName: fkz3xgwcmicx9cyrqqx8tbhy715
             deferrable: false

@@ -1,4 +1,4 @@
-package app.wooportal.server.features.calculateRating;
+package app.wooportal.server.base.rating;
 
 import java.util.Map;
 import lombok.AccessLevel;
@@ -15,7 +15,7 @@ public class RatingDto {
 
   private Double average;
 
-  private Map<String, Double> distribution;
-  
-  private Integer totalReviews;
+  private Map<Integer, Double> distribution;
+
+  private Integer total;
 }
