@@ -39,7 +39,7 @@ public class DatabaseMessageTemplateService implements TemplateService {
     }
 
     var message = translationService
-        .getTranslatableInstance(MessageTemplateTranslatableEntity.class, language, messageTemplate)
+        .getTranslatableInstance(MessageTemplateTranslatableEntity.class, language, messageTemplate.get())
         .getContent();
 
     if (message != null && !message.isBlank()) {

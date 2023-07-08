@@ -14,6 +14,8 @@ import app.wooportal.server.base.contact.ContactEntity;
 import app.wooportal.server.base.userContext.base.UserContextEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.i18n.annotations.Translatable;
+import app.wooportal.server.core.seo.annotations.SlugSource;
+import app.wooportal.server.core.seo.annotations.SlugTarget;
 import app.wooportal.server.features.deal.base.media.DealMediaEntity;
 import app.wooportal.server.features.deal.base.translations.DealTranslatableEntity;
 import app.wooportal.server.features.deal.base.visitors.DealVisitorEntity;
@@ -39,6 +41,7 @@ public class DealEntity extends BaseEntity {
   private String content;
 
   @Translatable
+  @SlugSource
   private String name;
 
   @Translatable
@@ -47,6 +50,7 @@ public class DealEntity extends BaseEntity {
   private String metaDescription;
 
   @Column(nullable = false, unique = true)
+  @SlugTarget
   private String slug;
 
   private Double price;

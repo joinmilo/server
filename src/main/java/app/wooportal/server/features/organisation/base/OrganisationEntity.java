@@ -12,6 +12,8 @@ import app.wooportal.server.base.address.base.AddressEntity;
 import app.wooportal.server.base.contact.ContactEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.i18n.annotations.Translatable;
+import app.wooportal.server.core.seo.annotations.SlugSource;
+import app.wooportal.server.core.seo.annotations.SlugTarget;
 import app.wooportal.server.features.event.base.EventEntity;
 import app.wooportal.server.features.organisation.base.media.OrganisationMediaEntity;
 import app.wooportal.server.features.organisation.base.translations.OrganisationTranslatableEntity;
@@ -43,10 +45,12 @@ public class OrganisationEntity extends BaseEntity {
   private String description;
 
   @Column(nullable = false)
+  @SlugSource
   private String name;
 
   private String metaDescription;
 
+  @SlugTarget
   private String slug;
   
   @Column(nullable = false)

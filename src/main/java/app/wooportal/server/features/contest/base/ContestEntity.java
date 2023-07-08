@@ -10,6 +10,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.i18n.annotations.Translatable;
+import app.wooportal.server.core.seo.annotations.SlugSource;
+import app.wooportal.server.core.seo.annotations.SlugTarget;
 import app.wooportal.server.features.contest.base.media.ContestMediaEntity;
 import app.wooportal.server.features.contest.base.translations.ContestTranslatableEntity;
 import app.wooportal.server.features.contest.participation.ContestParticipationEntity;
@@ -37,6 +39,7 @@ public class ContestEntity extends BaseEntity {
   private Date dueDate;
 
   @Translatable
+  @SlugSource
   private String name;
 
   @Translatable
@@ -45,6 +48,7 @@ public class ContestEntity extends BaseEntity {
   private String metaDescription;
 
   @Column(nullable = false, unique = true)
+  @SlugTarget
   private String slug;
 
   @Column(nullable = false)

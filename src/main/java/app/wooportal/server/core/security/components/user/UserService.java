@@ -74,9 +74,9 @@ public class UserService extends DataService<UserEntity, UserPredicateBuilder> {
 
     if (entity.getId() == null || entity.getId().isBlank()) {
       newEntity.setVerifications(new HashSet<>(List.of(new VerificationEntity())));
-      setContext("verifications", context);
+      addContext("verifications", context);
       newEntity.setVerified(false);
-      setContext("verified", context);
+      addContext("verified", context);
     }
   }
 

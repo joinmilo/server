@@ -35,7 +35,7 @@ public class VerificationService
   public void preSave(VerificationEntity entity, VerificationEntity newEntity, JsonNode context) {
     if (newEntity.getToken() == null || newEntity.getToken().isBlank()) {
       newEntity.setToken(generateTokenKey());
-      setContext("key", context);
+      addContext("key", context);
       try {
         mailService.sendEmail("Email verifizieren", "verification.ftl",
             Map.of(

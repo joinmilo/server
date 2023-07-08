@@ -24,13 +24,24 @@ public class ArticleService extends DataService<ArticleEntity, ArticlePredicateB
   }
 
   @Override
-  public void preSave(ArticleEntity entity, ArticleEntity newEntity, JsonNode context) {
+  public void preCreate(ArticleEntity entity, ArticleEntity newEntity, JsonNode context) {
 
     // TODO: Make an hook for specific validations
     if (newEntity.getCaptchaToken() != null && !newEntity.getCaptchaToken().isEmpty()) {
       captchaService.verifyToken(newEntity.getCaptchaToken());
     } else {
       throw new BadParamsException("Captcha token empty or null", null);
+    }
+    
+    if (newEntity.getSponsored() == null) {
+      newEntity.setSponsored(false);
+      addContext("sponsored", context);
+    }
+    
+    //TODO: This is easy to break
+    if (newEntity.getAuthor() == null) {      
+      newEntity.setApproved(false);
+      addContext("approved", context);
     }
   }
 }

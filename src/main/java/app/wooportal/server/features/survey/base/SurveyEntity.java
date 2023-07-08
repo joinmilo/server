@@ -12,6 +12,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.i18n.annotations.Translatable;
+import app.wooportal.server.core.seo.annotations.SlugSource;
+import app.wooportal.server.core.seo.annotations.SlugTarget;
 import app.wooportal.server.features.survey.assignment.AssignmentEntity;
 import app.wooportal.server.features.survey.base.media.SurveyMediaEntity;
 import app.wooportal.server.features.survey.base.translations.SurveyTranslatableEntity;
@@ -43,10 +45,12 @@ public class SurveyEntity extends BaseEntity {
   private Boolean mandatory;
   
   @Translatable
+  @SlugSource
   private String name;
 
   private String metaDescription;
 
+  @SlugTarget
   private String slug;
   
   @Column(nullable = false)

@@ -36,7 +36,7 @@ public class TestService extends DataService<TestEntity, TestPredicateBuilder> {
     removeContext("removeContextField", context);
     
     newEntity.setSetContext("test");
-    setContext("setContext", context);
+    addContext("setContext", context);
   }
   
 }

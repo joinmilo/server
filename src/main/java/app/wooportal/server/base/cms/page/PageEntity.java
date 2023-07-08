@@ -14,6 +14,8 @@ import app.wooportal.server.base.cms.page.visitors.PageVisitorEntity;
 import app.wooportal.server.base.cms.pageFeature.PageFeatureEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.i18n.annotations.Translatable;
+import app.wooportal.server.core.seo.annotations.SlugSource;
+import app.wooportal.server.core.seo.annotations.SlugTarget;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -44,9 +46,11 @@ public class PageEntity extends BaseEntity {
   private String metaDescription;
   
   @Translatable
+  @SlugSource
   private String name;
 
   @Column(unique = true, nullable = false)
+  @SlugTarget
   private String slug;
   
   @Translatable
