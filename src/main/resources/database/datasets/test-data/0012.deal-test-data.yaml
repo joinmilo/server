@@ -9,7 +9,7 @@ databaseChangeLog:
             comment: Add data deal-category
             splitStatements: true
             sql: insert into deal_categories (id, color, icon) values
-              ('bcec76dd-d269-4081-af08-e3a9a72e9e00', '9#0000FF', 'icon');  
+              ('bcec76dd-d269-4081-af08-e3a9a72e9e00', '#90000FF', 'icons');  
               
   - changeSet:
       id: 0012.test-data.2
