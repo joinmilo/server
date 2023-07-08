@@ -12,6 +12,8 @@ import org.hibernate.annotations.GenericGenerator;
 import app.wooportal.server.base.userContext.base.UserContextEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.i18n.annotations.Translatable;
+import app.wooportal.server.core.seo.annotations.SlugSource;
+import app.wooportal.server.core.seo.annotations.SlugTarget;
 import app.wooportal.server.features.article.base.media.ArticleMediaEntity;
 import app.wooportal.server.features.article.base.translations.ArticleTranslatableEntity;
 import app.wooportal.server.features.article.base.visitors.ArticleVisitorEntity;
@@ -51,9 +53,11 @@ public class ArticleEntity extends BaseEntity {
   private String metaDescription;
 
   @Translatable
+  @SlugSource
   private String name;
 
   @Column(nullable = false, unique = true)
+  @SlugTarget
   private String slug;
 
   @Column(nullable = false)

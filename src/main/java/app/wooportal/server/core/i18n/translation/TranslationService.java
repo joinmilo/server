@@ -2,6 +2,8 @@ package app.wooportal.server.core.i18n.translation;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
+import org.hibernate.Hibernate;
 import org.springframework.stereotype.Service;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.i18n.annotations.Translatable;
@@ -19,33 +21,46 @@ public class TranslationService {
   private final LocaleService localeService;
 
   private final RepositoryService repoService;
+  
+  private final TranslationApiService translationApiService;
 
   public TranslationService(
-      RepositoryService repoService,
       LanguageService languageService,
-      LocaleService localeService) {
+      LocaleService localeService,
+      RepositoryService repoService,
+      TranslationApiService translationApiService) {
     this.languageService = languageService;
     this.localeService = localeService;
-    this.repoService = repoService;    
+    this.repoService = repoService;
+    this.translationApiService = translationApiService;
   }
 
   @SuppressWarnings("unchecked")
-  public <T extends TranslatableEntity<?>> T getTranslatableInstance(
+  public <P extends BaseEntity, T extends TranslatableEntity<P>> T getTranslatableInstance(
       Class<T> translatableClass,
-      LanguageEntity currentWriteLanguage,
-      Object parent) throws Throwable {
+      LanguageEntity language,
+      P parent) throws Throwable {
     var repo = repoService.getRepository(translatableClass);
+    language = Hibernate.unproxy(language, LanguageEntity.class);
+    
     if (repo instanceof TranslationRepository<?>) {
       var translationRepo = (TranslationRepository<?>) repo;
       var findByLanguageAndParent = translationRepo.getClass().getMethod(
-          "findByLanguageAndParent", LanguageEntity.class, parent.getClass().getSuperclass());
+          "findByLanguageIdAndParentId", String.class, String.class);
 
-      var existingTranslatable = (T) findByLanguageAndParent.invoke(translationRepo,
-          currentWriteLanguage, parent);
+      var translatable = (T) findByLanguageAndParent.invoke(translationRepo, language.getId(), parent.getId());
 
-      return existingTranslatable != null
-          ? existingTranslatable
-          : (T) translatableClass.getDeclaredConstructor().newInstance();
+      if (translatable != null) {
+        return translatable;
+      }
+      
+      translatable = (T) translatableClass.getDeclaredConstructor().newInstance();
+      translatable.setLanguage(language);
+      translatable.setParent(parent);
+      
+      return translatable;
+      
+      
     }
     throw new RuntimeException(
         "Repository of Translation must inherit from " + TranslationRepository.class);
@@ -88,16 +103,47 @@ public class TranslationService {
     }
   }
   
-  public <E extends BaseEntity> void save(E savedEntity) throws Throwable {
+  public void save(BaseEntity savedEntity) throws Throwable {
     
-    var translatables = new HashMap<String, String>(); 
-    for (var field : ReflectionUtils.getFieldsWithAnnotation(savedEntity.getClass(),
-        Translatable.class)) {
+    var sourceTranslatables = new HashMap<String, String>();
+    Class<TranslatableEntity<BaseEntity>> translatableClass = null;
+    
+    for (var field : ReflectionUtils.getFields(savedEntity.getClass())) {
+      
+      if (ReflectionUtils.getAnnotation(field, Translatable.class).isPresent()) {        
+        var value = ReflectionUtils.get(field.getName(), savedEntity);
+        if (value.isPresent()) {        
+          sourceTranslatables.put(field.getName(), (String) value.get());
+        }
+      }
+      
+      var type = TranslationUtils.getTranslatableFieldType(field);
+      if (type.isPresent()) {
+        translatableClass = type.get();
+      }
+
     }
-    
-    TranslationUtils.getTranslatableField(getClass());
-    
-//    repoService.save(translatableObject);
+    if (!sourceTranslatables.isEmpty() && translatableClass != null) {      
+      for (var language : languageService.readAll().getResult()) {
+        var translatable = getTranslatableInstance(translatableClass, language, savedEntity);
+        
+        for (var source : sourceTranslatables.entrySet()) {
+          
+          // TODO: Dont translate given language because detection should be enough
+          // TODO: Use Jsoup to parse HTML since language translation service destroys HTML structure for some languages
+          var translation = translationApiService.translate(source.getValue(), translatable.getLanguage().getLocale());
+          
+          if (translation != null
+              && translation.getTranslated() != null
+              && translation.getTranslated().length > 0) {            
+            translatable.set(source.getKey(), translation.getTranslated()[0]);
+          }
+        }
+        
+        translatable.set("id", UUID.randomUUID().toString());
+        repoService.save(translatable);
+      }
+    }
   }
 
 }

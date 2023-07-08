@@ -21,6 +21,8 @@ import app.wooportal.server.base.contact.ContactEntity;
 import app.wooportal.server.base.userContext.base.UserContextEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.i18n.annotations.Translatable;
+import app.wooportal.server.core.seo.annotations.SlugSource;
+import app.wooportal.server.core.seo.annotations.SlugTarget;
 import app.wooportal.server.features.event.attendeeConfiguration.AttendeeConfigurationEntity;
 import app.wooportal.server.features.event.base.media.EventMediaEntity;
 import app.wooportal.server.features.event.base.translations.EventTranslatableEntity;
@@ -54,6 +56,7 @@ public class EventEntity extends BaseEntity {
   private Double entryFee;
 
   @Translatable
+  @SlugSource
   private String name;
 
   @Translatable
@@ -62,6 +65,7 @@ public class EventEntity extends BaseEntity {
   private String metaDescription;
 
   @Column(nullable = false, unique = true)
+  @SlugTarget
   private String slug;
 
   @Column(nullable = false)

@@ -39,7 +39,7 @@ public class PasswordResetService extends DataService<PasswordResetEntity, Passw
   public void preSave(PasswordResetEntity entity, PasswordResetEntity newEntity, JsonNode context) {
     if (newEntity.getToken() == null || newEntity.getToken().isBlank()) {
       newEntity.setToken(generateNewToken());
-      setContext("key", context);
+      addContext("key", context);
       try {
         mailService.sendEmail(
             "Passwort zurücksetzen", "password_reset.ftl", Map.of("portalName",

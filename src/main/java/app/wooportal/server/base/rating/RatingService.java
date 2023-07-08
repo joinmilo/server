@@ -23,7 +23,7 @@ public class RatingService {
   }
 
   public CompletableFuture<RatingDto> calculateRating(List<Integer> scores) {
-      RatingDto ratingDto = new RatingDto();
+      var ratingDto = new RatingDto();
 
       ratingDto.setDistribution(calculateDistribution(scores));
       ratingDto.setAverage(calculateTotalAverage(scores));
@@ -41,7 +41,6 @@ public class RatingService {
                 count -> (double) count / scores.size() * 100
                 )
             ));
-    
     
     IntStream.rangeClosed(1, maxRating)
       .forEach(i -> distribution.putIfAbsent(i, 0.0));

@@ -2,9 +2,9 @@ package app.wooportal.server.core.i18n.translation;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 import java.util.Collection;
 import java.util.Optional;
+import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.i18n.entities.TranslatableEntity;
 
 public class TranslationUtils {
@@ -31,7 +31,7 @@ public class TranslationUtils {
   
   public static Optional<Field> getTranslatableField(Class<?> objectClass) {
     for (var field : objectClass.getDeclaredFields()) {
-      if (getTranslatableType(field.getGenericType()) != null) {
+      if (getTranslatableFieldType(field).isPresent()) {
         return Optional.ofNullable(field);
       }
     }
@@ -39,14 +39,14 @@ public class TranslationUtils {
   }
   
   @SuppressWarnings("unchecked")
-  private static <T extends TranslatableEntity<?>> Class<T> getTranslatableType(Type fieldType) {
-    if (fieldType instanceof ParameterizedType) {
-      var pt = (ParameterizedType) fieldType;
+  public static <P extends BaseEntity, T extends TranslatableEntity<P>> Optional<Class<T>> getTranslatableFieldType(Field field) {
+    if (field.getGenericType() instanceof ParameterizedType) {
+      var pt = (ParameterizedType) field.getGenericType();
       var genericType = (Class<?>) pt.getActualTypeArguments()[0];
       if (TranslatableEntity.class.isAssignableFrom(genericType)) {
-        return (Class<T>) genericType;
+        return Optional.ofNullable((Class<T>) genericType);
       }
     }
-    return null;
+    return Optional.empty();
   }
 }

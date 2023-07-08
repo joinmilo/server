@@ -34,6 +34,9 @@ import app.wooportal.server.core.error.exception.NotNullableException;
 import app.wooportal.server.core.repository.BaseRepositoryQuery;
 import app.wooportal.server.core.repository.CollectionRepositoryQuery;
 import app.wooportal.server.core.repository.DataRepository;
+import app.wooportal.server.core.seo.SlugService;
+import app.wooportal.server.core.seo.annotations.SlugSource;
+import app.wooportal.server.core.seo.annotations.SlugTarget;
 import app.wooportal.server.core.utils.PersistenceUtils;
 import app.wooportal.server.core.utils.ReflectionUtils;
 import app.wooportal.server.core.utils.SortPageUtils;
@@ -60,6 +63,9 @@ public abstract class DataService<E extends BaseEntity, P extends PredicateBuild
   
   @Autowired
   protected ObjectMapper objectMapper;
+  
+  @Autowired
+  protected SlugService slugService;
 
   public DataService(DataRepository<E> repo, P predicate) {
     this.repo = repo;
@@ -186,12 +192,12 @@ public abstract class DataService<E extends BaseEntity, P extends PredicateBuild
   protected JsonNode createContext(String... fields) {
     var context = objectMapper.createObjectNode();
     for (var field : fields) {
-      setContext(field, context);
+      addContext(field, context);
     }
     return context;
   }
   
-  protected JsonNode setContext(String field, JsonNode context) {
+  protected JsonNode addContext(String field, JsonNode context) {
     if (context != null && (context.get(field) == null || context.get(field).isNull())
         && context instanceof ObjectNode) {
       ((ObjectNode) context).set(field, null);
@@ -268,10 +274,40 @@ public abstract class DataService<E extends BaseEntity, P extends PredicateBuild
       preUpdate(entity, newEntity, context);
     } else {
       preCreate(entity, newEntity, context);
+      
+      slugify(newEntity, context);
     }
     preSave(entity, newEntity, context);
   }
   
+  
+  private void slugify(E newEntity, JsonNode context) {
+    var source = ReflectionUtils.getFieldsWithAnnotation(newEntity.getClass(), SlugSource.class);
+    var targets = ReflectionUtils.getFieldsWithAnnotation(newEntity.getClass(), SlugTarget.class);
+    
+    if (!source.isEmpty() && !targets.isEmpty()) {
+      var sourceValue = ReflectionUtils.get(source.get(0).getName(), newEntity);
+
+      if (sourceValue.isPresent()) {
+        var targetField = targets.get(0).getName();
+        var slug = slugService.slugify((String) sourceValue.get());
+        var i = 1;
+        while (slugExists(slug, targetField, newEntity)) {
+          slug = slug + "-" + i++;
+        }
+        
+        newEntity.set(targetField, slug);
+        addContext(targetField, context);
+      }
+    }
+  }
+
+  @SuppressWarnings("unchecked")
+  protected boolean slugExists(String slug, String targetField, E newEntity) {
+    return getByExample((E) ReflectionUtils.newInstance(newEntity)
+        .set(targetField, slug)).isPresent();
+  }
+
   protected void preUpdate(E entity, E newEntity, JsonNode context) {}
   
   protected void preCreate(E entity, E newEntity, JsonNode context) {}

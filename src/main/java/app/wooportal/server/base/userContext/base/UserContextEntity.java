@@ -61,6 +61,8 @@ public class UserContextEntity extends BaseEntity {
   @Translatable
   private String description;
   
+  
+  //TOOD: slugify
   private String slug;
 
   @OneToOne(fetch = FetchType.LAZY)
