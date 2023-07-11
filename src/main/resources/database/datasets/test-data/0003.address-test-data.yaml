@@ -9,5 +9,7 @@ databaseChangeLog:
             comment: Create test address
             splitStatements: true
             sql:
-               insert into addresses (`id`, `street`, `house_number`, `postal_code`, `place`) values
-               ('b47ec304-2de7-4c20-a110-fd829695c18d', 'Schillerstraße', '12', '54762', 'Portalhausen');
+               insert into addresses (`id`, `street`, `house_number`, `postal_code`, `place`, `latitude`, `longitude`) values
+               ('b47ec304-2de7-4c20-a110-fd829695c18d', 'Test', '1', '42103', 'Wuppertal', '51.2863998413', '7.1653699875'),
+               ('f0cbc934-72d9-4427-b37a-a8347350500a', 'Test', '2', '42103', 'Wuppertal', '51.2856063843', '7.2379789352');
+               
