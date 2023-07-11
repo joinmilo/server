@@ -19,7 +19,7 @@ databaseChangeLog:
             comment: Add data deals
             splitStatements: true
             sql: insert into deals (id, price, contact_id, category_id, slug, `sponsored`, `created`, `address_id`) values
-              ('69f29c5f-5713-4549-902b-7157cb62b999', 5, '3916b414-c2bf-4808-a401-284ac62df73d', 'bcec76dd-d269-4081-af08-e3a9a72e9e00', 'slug-ukm5x', true, '2023-06-26 10:39:28', 'b47ec304-2de7-4c20-a110-fd829695c18d');
+              ('69f29c5f-5713-4549-902b-7157cb62b999', 5, '3916b414-c2bf-4808-a401-284ac62df73d', 'bcec76dd-d269-4081-af08-e3a9a72e9e00', 'slug-ukm5x', true, '2023-06-26 10:39:28', 'f0cbc934-72d9-4427-b37a-a8347350500a');
               
   - changeSet:
       id: 0012.test-data.3
