@@ -88,7 +88,7 @@ public class EventApi extends CrudApi<EventEntity, EventService> {
         event.getRatings().stream().map(rating -> rating.getScore()).collect(Collectors.toList()));
   }
 
-  @GraphQLQuery(name = "lastComment")
+  @GraphQLQuery(name = "lastEventComment")
   public Optional<EventCommentEntity> getLastComment(
       @GraphQLContext EventEntity event) {
     return commentService.getMostRecentByEvent(event.getId());

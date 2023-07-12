@@ -26,5 +26,7 @@ public class ContactEntity extends BaseEntity {
   private String phone;
 
   private Boolean preferredContact;
+  
+  private String website;
 
 }
