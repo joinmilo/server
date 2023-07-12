@@ -122,5 +122,17 @@ databaseChangeLog:
                  select uuid(), "1900e08e-e6e9-4362-bc50-1c6d5b2ec0f7", l.id, "Das Event 'Jugendfussball' an dem Sie sich angemeldet haben fällt aus.","Event fällt aus!"
                  from languages l
                  WHERE l.locale = "de";   
+                 
+  - changeSet:
+      id: 0007.test-data.9
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add user_context_translatable
+            splitStatements: true
+            sql: insert into user_context_translatables (id, parent_id, language_id, description)
+                 select uuid(), "20ab2295-4d4f-4524-893d-f3b09f1e885a", l.id, "Hallo iam Doomed 2 test. Iam was created to test the view in the author details and iam not happy about that!"
+                 from languages l
+                 WHERE l.locale = "de";                   
                 
                      

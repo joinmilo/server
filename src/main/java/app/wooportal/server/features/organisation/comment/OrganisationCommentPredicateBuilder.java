@@ -16,4 +16,8 @@ public class OrganisationCommentPredicateBuilder
   public BooleanExpression freeSearch(String term) {
     return null;
   }
+  
+  public BooleanExpression withOrganisationId(String organisationId) {
+    return query.organisation.id.eq(organisationId);
+  }
 }

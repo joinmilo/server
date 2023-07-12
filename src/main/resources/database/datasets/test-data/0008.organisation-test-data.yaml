@@ -20,8 +20,9 @@ databaseChangeLog:
             comment: Add Media to sponsored Organisation
             splitStatements: true
             sql:
-               insert into organisation_media (`id`, `card`, `organisation_id`, `media_id`) values
-               (uuid(), true, 'c7356a4c-fd81-4860-b1cc-06f549067132', '1774bd91-1698-4c4a-8f16-3a0a98fdef32');
+               insert into organisation_media (`id`, `card`, title, `organisation_id`, `media_id`) values
+               (uuid(), true, false, 'c7356a4c-fd81-4860-b1cc-06f549067132', '1774bd91-1698-4c4a-8f16-3a0a98fdef32'),
+               (uuid(), false, true, 'c7356a4c-fd81-4860-b1cc-06f549067132', 'b4f06e96-7271-48f6-9223-29f9b7baa1f6');
                
   - changeSet:
       id: 0008.test-data.3

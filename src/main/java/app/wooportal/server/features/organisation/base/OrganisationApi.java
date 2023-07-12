@@ -11,6 +11,8 @@ import app.wooportal.server.core.base.CrudApi;
 import app.wooportal.server.core.base.dto.listing.FilterSortPaginate;
 import app.wooportal.server.core.base.dto.listing.PageableList;
 import app.wooportal.server.core.security.permissions.AdminPermission;
+import app.wooportal.server.features.organisation.comment.OrganisationCommentEntity;
+import app.wooportal.server.features.organisation.comment.OrganisationCommentService;
 import io.leangen.graphql.annotations.GraphQLArgument;
 import io.leangen.graphql.annotations.GraphQLContext;
 import io.leangen.graphql.annotations.GraphQLMutation;
@@ -22,12 +24,15 @@ import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 public class OrganisationApi extends CrudApi<OrganisationEntity, OrganisationService> {
 
   private final RatingService ratingService;
+  private final OrganisationCommentService commentService;
 
   public OrganisationApi(OrganisationService userService,
-      RatingService ratingService) {
+      RatingService ratingService, 
+      OrganisationCommentService commentService) {
     super(userService);
 
     this.ratingService = ratingService;
+    this.commentService = commentService;
   }
 
   @Override
@@ -71,6 +76,12 @@ public class OrganisationApi extends CrudApi<OrganisationEntity, OrganisationSer
   @AdminPermission
   public Boolean deleteOne(@GraphQLArgument(name = CrudApi.id) String id) {
     return super.deleteOne(id);
+  }
+  
+  @GraphQLQuery(name = "lastOrganisationComment")
+  public Optional<OrganisationCommentEntity> getLastComment(
+      @GraphQLContext OrganisationEntity organisation) {
+    return commentService.getMostRecentByOrganisation(organisation.getId());
   }
 
   @GraphQLQuery(name = "calculatedRatings")
