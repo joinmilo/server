@@ -17,4 +17,5 @@ databaseChangeLog:
                ('0c7ad542-6aed-4613-8739-e4cd0db2ce2f', 'jpg', 83900, 'contest', 'image/jpg'),
                ('1737d307-da5f-4bb4-9148-08c13beab44a', 'pdf', 6500, 'test pdf', 'application/pdf'),
                ('b4f06e96-7271-48f6-9223-29f9b7baa1f6', 'jpg', 83900, 'organisation-title', 'image/jpg'),
-               ('8ce57895-53c6-4af2-95eb-69dc8a4ee658', 'docx', 4300, 'test word', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
+               ('8ce57895-53c6-4af2-95eb-69dc8a4ee658', 'docx', 4300, 'test word', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'),
+               ('d84b7e0b-7ff2-4001-8a0a-337852999733', 'jpg', 646800, 'guestarticle-success', 'image/jpg');
