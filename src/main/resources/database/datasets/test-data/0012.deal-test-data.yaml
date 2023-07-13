@@ -9,7 +9,7 @@ databaseChangeLog:
             comment: Add data deal-category
             splitStatements: true
             sql: insert into deal_categories (id, color, icon) values
-              ('bcec76dd-d269-4081-af08-e3a9a72e9e00', '#90000FF', 'icons');  
+              ('bcec76dd-d269-4081-af08-e3a9a72e9e00', '#ccff33', 'icons');  
               
   - changeSet:
       id: 0012.test-data.2
@@ -18,8 +18,8 @@ databaseChangeLog:
         - sql:
             comment: Add data deals
             splitStatements: true
-            sql: insert into deals (id, price, contact_id, category_id, slug, `sponsored`, `created`, `address_id`) values
-              ('69f29c5f-5713-4549-902b-7157cb62b999', 5, '3916b414-c2bf-4808-a401-284ac62df73d', 'bcec76dd-d269-4081-af08-e3a9a72e9e00', 'slug-ukm5x', true, '2023-06-26 10:39:28', 'f0cbc934-72d9-4427-b37a-a8347350500a');
+            sql: insert into deals (id, price, contact_id, category_id, slug, `sponsored`, `created`, `address_id`, creator_id) values
+              ('69f29c5f-5713-4549-902b-7157cb62b999', 5, '3916b414-c2bf-4808-a401-284ac62df73d', 'bcec76dd-d269-4081-af08-e3a9a72e9e00', 'slug-ukm5x', true, '2023-06-26 10:39:28', 'b47ec304-2de7-4c20-a110-fd829695c18d', '5737ee58-9f88-43d1-baf4-a34dd85f0219');
               
   - changeSet:
       id: 0012.test-data.3
@@ -43,3 +43,17 @@ databaseChangeLog:
             sql:
                insert into deal_media (`id`, `card`, `deal_id`, `media_id`) values
                ('1cc8107a-92ff-4f04-aa58-8ac8b2ce2c1e', true, '69f29c5f-5713-4549-902b-7157cb62b999', '1774bd91-1698-4c4a-8f16-3a0a98fdef32');
+               
+  - changeSet:
+      id: 0012.test-data.5
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add data deal_category_translatables
+            splitStatements: true
+            sql: insert into deal_category_translatables (id, parent_id, language_id, name)
+                 select uuid(), "bcec76dd-d269-4081-af08-e3a9a72e9e00", l.id,  "Fahrräder"
+                 from languages l
+                 WHERE l.locale = "de";               
+                 
+                 

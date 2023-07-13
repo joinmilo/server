@@ -2330,6 +2330,3 @@ databaseChangeLog:
                from labels p, languages l
                WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
                AND l.locale = "en";   
-
-                                                              
-                                                     
