@@ -11,6 +11,10 @@ import app.wooportal.server.core.base.CrudApi;
 import app.wooportal.server.core.base.dto.listing.FilterSortPaginate;
 import app.wooportal.server.core.base.dto.listing.PageableList;
 import app.wooportal.server.core.security.permissions.AdminPermission;
+import app.wooportal.server.features.article.comment.ArticleCommentEntity;
+import app.wooportal.server.features.article.comment.ArticleCommentService;
+import app.wooportal.server.features.event.base.EventEntity;
+import app.wooportal.server.features.event.comment.EventCommentEntity;
 import io.leangen.graphql.annotations.GraphQLArgument;
 import io.leangen.graphql.annotations.GraphQLContext;
 import io.leangen.graphql.annotations.GraphQLMutation;
@@ -22,11 +26,15 @@ import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 public class ArticleApi extends CrudApi<ArticleEntity, ArticleService> {
 
   private final RatingService ratingService;
+  private final ArticleCommentService commentService;
 
-  public ArticleApi(ArticleService userService, RatingService ratingService) {
+  public ArticleApi(ArticleService userService,
+      RatingService ratingService,
+      ArticleCommentService commentService) {
     super(userService);
     
     this.ratingService = ratingService;
+    this.commentService = commentService;
   }
   
   @Override
@@ -69,6 +77,12 @@ public class ArticleApi extends CrudApi<ArticleEntity, ArticleService> {
   @AdminPermission
   public Boolean deleteOne(@GraphQLArgument(name = CrudApi.id) String id) {
     return super.deleteOne(id);
+  }
+  
+  @GraphQLQuery(name = "lastArticleComment")
+  public Optional<ArticleCommentEntity> getLastComment(
+      @GraphQLContext ArticleEntity article) {
+    return commentService.getMostRecentByArticle(article.getId());
   }
   
   @GraphQLQuery(name = "calculatedRatings")

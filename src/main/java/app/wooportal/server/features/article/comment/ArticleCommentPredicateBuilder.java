@@ -16,4 +16,8 @@ public class ArticleCommentPredicateBuilder
   public BooleanExpression freeSearch(String term) {
     return null;
   }
+  
+  public BooleanExpression withArticleId(String articleId) {
+    return query.article.id.eq(articleId);
+  }
 }
