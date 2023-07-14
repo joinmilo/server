@@ -1,14 +1,16 @@
 package app.wooportal.server.features.contest.base;
 
 import java.time.OffsetDateTime;
-import java.util.Date;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import app.wooportal.server.base.contact.ContactEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.i18n.annotations.Translatable;
 import app.wooportal.server.core.seo.annotations.SlugSource;
@@ -66,6 +68,9 @@ public class ContestEntity extends BaseEntity {
 
   @Column(nullable = false)
   private Boolean offer;
+  
+  @ManyToOne(fetch = FetchType.LAZY)
+  private ContactEntity contact;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private ContestTypeEntity type;

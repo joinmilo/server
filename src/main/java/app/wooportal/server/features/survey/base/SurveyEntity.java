@@ -10,6 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
+import app.wooportal.server.base.contact.ContactEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.i18n.annotations.Translatable;
 import app.wooportal.server.core.seo.annotations.SlugSource;
@@ -39,6 +40,8 @@ public class SurveyEntity extends BaseEntity {
   @Translatable
   private String description; 
 
+  private OffsetDateTime startDate;
+  
   private OffsetDateTime dueDate;
 
   @Column(nullable = false)
@@ -55,6 +58,9 @@ public class SurveyEntity extends BaseEntity {
   
   @Column(nullable = false)
   private Boolean sponsored;
+  
+  @ManyToOne(fetch = FetchType.LAZY)
+  private ContactEntity contact;
   
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(nullable = false)

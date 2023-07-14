@@ -32,6 +32,9 @@ databaseChangeLog:
                   name: meta_description
                   type: VARCHAR(255)  
               - column:
+                  name: start_date
+                  type: datetime                    
+              - column:
                   name: due_date
                   type: datetime                                                  
               - column:
@@ -45,7 +48,10 @@ databaseChangeLog:
                     nullable: false
                   defaultValueBoolean: false
                   name: sponsored
-                  type: boolean                  
+                  type: boolean     
+              - column:
+                  name: contact_id
+                  type: CHAR(36)                                 
               - column:
                   constraints:
                     nullable: false
@@ -84,3 +90,29 @@ databaseChangeLog:
             referencedColumnNames: id
             referencedTableName: survey_states
             validate: true   
+            
+  - changeSet:
+      id: 0072.create_table_surveys.4
+      author: codeschluss
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: contact_id
+            indexName: idx_fkxqb28cd6xvjoy2ghgscykz7e6
+            tableName: surveys
+  - changeSet:
+      id: 0072.create_table_surveys.5
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: contact_id
+            baseTableName: surveys
+            constraintName: fkxqb28cd6xvjoy2ghgscykz7e6
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: contacts
+            validate: true             

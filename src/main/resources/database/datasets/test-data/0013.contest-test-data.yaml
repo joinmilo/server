@@ -26,25 +26,36 @@ databaseChangeLog:
       author: codeschluss
       changes:
         - sql:
-            comment: Add data contest
+            comment: Add Contact for Contest
             splitStatements: true
-            sql: insert into contests (id, due_date, type_id, state_id, slug) values
-              ('5dc59462-91f6-402d-82ae-a8fd65fbfa42', '2020-02-13 10:39:28', '112a561f-5d96-42dd-b851-62365e79147b', '41a73da0-6c95-4bfe-85a7-342c8dcf7da9', 'slug-cfxx4');
+            sql:
+               insert into contacts (`id`, `phone`, email) values
+               ('dbb9d60b-934f-483e-b5c8-c2a96fd95f49', '0176/31382904', 'Mark@example.com');                 
               
   - changeSet:
       id: 0013.test-data.4
       author: codeschluss
       changes:
         - sql:
+            comment: Add data contest
+            splitStatements: true
+            sql: insert into contests (id, start_date ,due_date, type_id, state_id, slug, contact_id) values
+              ('5dc59462-91f6-402d-82ae-a8fd65fbfa42', '2020-02-13 10:39:28', '2020-02-13 10:39:28', '112a561f-5d96-42dd-b851-62365e79147b', '41a73da0-6c95-4bfe-85a7-342c8dcf7da9', 'slug-cfxx4', 'dbb9d60b-934f-483e-b5c8-c2a96fd95f49');
+              
+  - changeSet:
+      id: 0013.test-data.5
+      author: codeschluss
+      changes:
+        - sql:
             comment: Add data contest_translatables
             splitStatements: true
             sql: insert into contest_translatables (id, parent_id, language_id, short_description, name, content)
-                 select uuid(), "5dc59462-91f6-402d-82ae-a8fd65fbfa42", l.id, "Feel free to join the very first art contest!", "DrawABike", "no content"
+                 select uuid(), "5dc59462-91f6-402d-82ae-a8fd65fbfa42", l.id, "Feel free to join the very first art contest!", "DrawABike", "Lets have a DrawingContest"
                  from languages l
                  WHERE l.locale = "de";
                  
   - changeSet:
-      id: 0013.test-data.5
+      id: 0013.test-data.6
       author: codeschluss
       changes:
         - sql:
