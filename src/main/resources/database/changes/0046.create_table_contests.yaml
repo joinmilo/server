@@ -72,7 +72,10 @@ databaseChangeLog:
                   type: datetime                  
               - column:
                   name: vote_end_date
-                  type: datetime                                                                                                                                                 
+                  type: datetime                                                                                                                                                  
+              - column:
+                  name: contact_id
+                  type: CHAR(36)                                                                                                                                                                                 
               - column:
                   constraints:
                     nullable: false
@@ -111,5 +114,60 @@ databaseChangeLog:
             referencedColumnNames: id
             referencedTableName: contest_types
             validate: true   
+<<<<<<< Upstream, based on main
                                     
+=======
+            
+  - changeSet:
+      id: 0046.create_table_contests.4
+      author: codeschluss
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: state_id
+            indexName: idx_fk8mk4icuk7xkfq3n2lx50ahxao
+            tableName: contests
+  - changeSet:
+      id: 0046.create_table_contests.5
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: state_id
+            baseTableName: contests
+            constraintName: fk8mk4icuk7xkfq3n2lx50ahxao
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: contest_states
+            validate: true    
+            
+  - changeSet:
+      id: 0046.create_table_contests.6
+      author: codeschluss
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: contact_id
+            indexName: idx_fkox1n47yolbab9h90mxqikbcdt
+            tableName: contests
+  - changeSet:
+      id: 0046.create_table_contests.7
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: contact_id
+            baseTableName: contests
+            constraintName: fkox1n47yolbab9h90mxqikbcdt
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: contacts
+            validate: true                                    
+>>>>>>> a03d266 added test-data and labels for contest
             

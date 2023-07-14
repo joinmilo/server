@@ -18,16 +18,27 @@ databaseChangeLog:
       author: codeschluss
       changes:
         - sql:
-            comment: Add Surveys
+            comment: Add Contact for Survey
             splitStatements: true
             sql:
-               insert into surveys (`id`, `modified`, `slug`, `due_date`,`sponsored`, `state_id`) values
-               ('d0757ae3-414d-4938-b52f-ab521311809c', '2023-08-11 12:42:17', 'survey-1', '2023-08-11 12:42:17', true, '5309e597-a90a-4d72-acdc-685309ea2c59'),
-               ('ee1d06d0-6a23-482a-9d19-d1aabde0d1e0', '2023-09-11 12:42:17', 'survey-2', '2023-09-11 12:42:17', false, '5309e597-a90a-4d72-acdc-685309ea2c59'),              
-               ('ceac5de7-38cd-4337-a958-09ff48271ce5', '2023-04-11 12:42:17', 'survey-3', '2023-04-11 12:42:17', false, '6a16de74-ad9f-46e5-8fd0-d1bdc29546bb');
+               insert into contacts (`id`, `phone`, email) values
+               ('5354dbae-d193-4518-950f-c0083fe5ddeb', '0176/31382904', 'fiona@example.com');               
                
   - changeSet:
       id: 0014.test-data.3
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add Surveys
+            splitStatements: true
+            sql:
+               insert into surveys (`id`, `start_date`, `slug`, `due_date`,`sponsored`, `state_id`, contact_id) values
+               ('d0757ae3-414d-4938-b52f-ab521311809c', '2023-08-11 12:42:17', 'survey-1', '2023-08-11 12:42:17', true, '5309e597-a90a-4d72-acdc-685309ea2c59', '5354dbae-d193-4518-950f-c0083fe5ddeb'),
+               ('ee1d06d0-6a23-482a-9d19-d1aabde0d1e0', '2023-09-11 12:42:17', 'survey-2', '2023-09-11 12:42:17', false, '5309e597-a90a-4d72-acdc-685309ea2c59', '5354dbae-d193-4518-950f-c0083fe5ddeb'),              
+               ('ceac5de7-38cd-4337-a958-09ff48271ce5', '2023-04-11 12:42:17', 'survey-3', '2023-04-11 12:42:17', false, '6a16de74-ad9f-46e5-8fd0-d1bdc29546bb', '5354dbae-d193-4518-950f-c0083fe5ddeb');
+               
+  - changeSet:
+      id: 0014.test-data.4
       author: codeschluss
       changes:
         - sql:
