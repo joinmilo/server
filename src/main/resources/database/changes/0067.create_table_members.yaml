@@ -41,7 +41,7 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                   defaultValueBoolean: false
-                  name: public
+                  name: is_public
                   type: boolean                                 
               - column:
                   constraints:

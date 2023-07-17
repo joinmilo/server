@@ -104,7 +104,7 @@ public class UserContextEntity extends BaseEntity {
   @OneToMany(mappedBy = "requester", fetch = FetchType.LAZY)
   private Set<FriendEntity> friendRequester;
 
-  @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+  @OneToMany(mappedBy = "userContext", fetch = FetchType.LAZY)
   private Set<MemberEntity> member;
 
   @OneToMany(mappedBy = "userContext", fetch = FetchType.LAZY)

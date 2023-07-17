@@ -39,5 +39,5 @@ public class MemberEntity extends BaseEntity {
   private OrganisationEntity organisation;
 
   @ManyToOne(fetch = FetchType.LAZY)
-  private UserContextEntity user;
+  private UserContextEntity userContext;
 }
