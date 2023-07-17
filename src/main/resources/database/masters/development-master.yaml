@@ -264,4 +264,6 @@ databaseChangeLog:
         file: database/datasets/test-data/0013.contest-test-data.yaml        
     - include:
         file: database/datasets/test-data/0014.survey-test-data.yaml
+    - include:
+        file: database/datasets/test-data/0015.favorites-test-data.yaml
                                                               
