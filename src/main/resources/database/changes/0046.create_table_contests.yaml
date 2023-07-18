@@ -63,24 +63,23 @@ databaseChangeLog:
                     nullable: false
                   defaultValueBoolean: false
                   name: voteable
-                  type: boolean                                          
+                  type: boolean
               - column:
-                  name: contest_start_date
+                  constraints:
+                    nullable: false
+                  name: participation_end_date
                   type: datetime
-              - column:
-                  name: contest_end_date
-                  type: datetime                  
               - column:
                   name: vote_end_date
                   type: datetime                                                                                                                                                  
               - column:
                   name: contact_id
-                  type: CHAR(36)                                                                                                                                                                                 
+                  type: CHAR(36)
               - column:
                   constraints:
                     nullable: false
                   name: type_id
-                  type: CHAR(36)                                 
+                  type: CHAR(36)
             tableName: contests
         - sql:
             comment: set char set for mysql

@@ -167,12 +167,6 @@ databaseChangeLog:
     - include:
         file: database/changes/0090.create_table_password_resets.yaml
     - include:
-        file: database/changes/0091.create_table_inquiry_category.yaml
-    - include:
-        file: database/changes/0092.create_table_inquiry.yaml
-    - include:
-        file: database/changes/0093.create_table_inquiry_category_translatables.yaml
-    - include:
         file: database/changes/0094.create_table_error_messages.yaml
     - include:
         file: database/changes/0097.create_table_apps.yaml

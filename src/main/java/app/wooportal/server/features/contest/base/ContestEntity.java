@@ -37,12 +37,8 @@ public class ContestEntity extends BaseEntity {
 
   @Translatable
   private String content;
-
-  private OffsetDateTime contestStartDate;
   
-  private OffsetDateTime contestEndDate;
-  
-  private OffsetDateTime voteEndDate;
+  private OffsetDateTime participationEndDate;
   
   @Translatable
   @SlugSource
@@ -68,6 +64,8 @@ public class ContestEntity extends BaseEntity {
 
   @Column(nullable = false)
   private Boolean offer;
+  
+  private OffsetDateTime voteEndDate;
   
   @ManyToOne(fetch = FetchType.LAZY)
   private ContactEntity contact;
