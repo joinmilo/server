@@ -141,7 +141,7 @@ public class UserContextEntity extends BaseEntity {
       inverseJoinColumns = @JoinColumn(name = "deal_id"),
       uniqueConstraints = {@UniqueConstraint(columnNames = {"user_context_id", "deal_id"})})
   @CollectionId(column = @Column(name = "id"), type = @Type(type = "uuid-char"), generator = "UUID")
-  private List<EventEntity> favoriteOffers = new ArrayList<>();
+  private List<DealEntity> favoriteOffers = new ArrayList<>();
 
   @ManyToMany(fetch = FetchType.LAZY)
   @JoinTable(name = "favorite_organisations", joinColumns = @JoinColumn(name = "user_context_id"),
