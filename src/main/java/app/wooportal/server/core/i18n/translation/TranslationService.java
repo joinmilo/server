@@ -100,7 +100,7 @@ public class TranslationService {
       HashMap<String, String> sourceTranslatables,
       Class<TranslatableEntity<BaseEntity>> translatableClass,
       BaseEntity savedEntity) throws Throwable {
-    if (!sourceTranslatables.isEmpty() && translatableClass != null) {      
+    if (!sourceTranslatables.isEmpty() && translatableClass != null) {
       for (var language : languageService.readAll().getResult()) {
         var translatable = getTranslatableInstance(translatableClass, language, savedEntity);
         

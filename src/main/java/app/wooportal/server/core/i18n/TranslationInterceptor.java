@@ -63,7 +63,7 @@ public class TranslationInterceptor {
   public <E extends BaseEntity> Object saveTranslation(ProceedingJoinPoint pjp)
       throws Throwable {
     pjp.proceed();
-    Object savedEntity = pjp.getArgs()[0];
+    var savedEntity = pjp.getArgs()[0];
     CompletableFuture.runAsync(() -> {
       try {
         translationService.save((E) savedEntity);
