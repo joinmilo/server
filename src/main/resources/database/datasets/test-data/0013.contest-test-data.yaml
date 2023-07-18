@@ -12,16 +12,6 @@ databaseChangeLog:
               ('112a561f-5d96-42dd-b851-62365e79147b', 'drawing');  
               
   - changeSet:
-      id: 0013.test-data.2
-      author: codeschluss
-      changes:
-        - sql:
-            comment: Add data contest_state
-            splitStatements: true
-            sql: insert into contest_states (id, `key`) values
-              ('41a73da0-6c95-4bfe-85a7-342c8dcf7da9', 'started');
-              
-  - changeSet:
       id: 0013.test-data.3
       author: codeschluss
       changes:
@@ -39,8 +29,8 @@ databaseChangeLog:
         - sql:
             comment: Add data contest
             splitStatements: true
-            sql: insert into contests (id, start_date ,due_date, type_id, state_id, slug, contact_id) values
-              ('5dc59462-91f6-402d-82ae-a8fd65fbfa42', '2020-02-13 10:39:28', '2020-02-13 10:39:28', '112a561f-5d96-42dd-b851-62365e79147b', '41a73da0-6c95-4bfe-85a7-342c8dcf7da9', 'slug-cfxx4', 'dbb9d60b-934f-483e-b5c8-c2a96fd95f49');
+            sql: insert into contests (id,type_id, slug, contact_id) values
+              ('5dc59462-91f6-402d-82ae-a8fd65fbfa42', '112a561f-5d96-42dd-b851-62365e79147b', 'slug-cfxx4', 'dbb9d60b-934f-483e-b5c8-c2a96fd95f49');
               
   - changeSet:
       id: 0013.test-data.5
@@ -62,5 +52,7 @@ databaseChangeLog:
             comment: Add Contest sponsored
             splitStatements: true
             sql:
-               insert into contests (`id`, `slug`, `sponsored`, `type_id`, `state_id`) values
-               ('ca079a47-9620-460a-bb42-192bab274df1', 'contest-sponsored', true, '112a561f-5d96-42dd-b851-62365e79147b', '41a73da0-6c95-4bfe-85a7-342c8dcf7da9');
+               insert into contests (`id`, `slug`, contest_start_date, contest_end_date, vote_end_date, `sponsored`, `type_id`) values
+               ('ca079a47-9620-460a-bb42-192bab274df1', 'contest-sponsored', '2020-02-13 10:39:28', '2020-02-13 10:39:28', '2020-02-13 10:39:28', true, '112a561f-5d96-42dd-b851-62365e79147b');
+               
+               
