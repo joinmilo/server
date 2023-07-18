@@ -34,37 +34,6 @@ public class TranslationService {
     this.repoService = repoService;
     this.translationApiService = translationApiService;
   }
-
-  @SuppressWarnings("unchecked")
-  public <P extends BaseEntity, T extends TranslatableEntity<P>> T getTranslatableInstance(
-      Class<T> translatableClass,
-      LanguageEntity language,
-      P parent) throws Throwable {
-    var repo = repoService.getRepository(translatableClass);
-    language = Hibernate.unproxy(language, LanguageEntity.class);
-    
-    if (repo instanceof TranslationRepository<?>) {
-      var translationRepo = (TranslationRepository<?>) repo;
-      var findByLanguageAndParent = translationRepo.getClass().getMethod(
-          "findByLanguageIdAndParentId", String.class, String.class);
-
-      var translatable = (T) findByLanguageAndParent.invoke(translationRepo, language.getId(), parent.getId());
-
-      if (translatable != null) {
-        return translatable;
-      }
-      
-      translatable = (T) translatableClass.getDeclaredConstructor().newInstance();
-      translatable.setLanguage(language);
-      translatable.setParent(parent);
-      
-      return translatable;
-      
-      
-    }
-    throw new RuntimeException(
-        "Repository of Translation must inherit from " + TranslationRepository.class);
-  }
   
   public void localizeList(List<?> list) throws Throwable {
     var locales = localeService.getCurrentRequestLocales();
@@ -123,9 +92,19 @@ public class TranslationService {
       }
 
     }
+    
+    translate(sourceTranslatables, translatableClass, savedEntity);
+  }
+
+  private void translate(
+      HashMap<String, String> sourceTranslatables,
+      Class<TranslatableEntity<BaseEntity>> translatableClass,
+      BaseEntity savedEntity) throws Throwable {
     if (!sourceTranslatables.isEmpty() && translatableClass != null) {      
       for (var language : languageService.readAll().getResult()) {
         var translatable = getTranslatableInstance(translatableClass, language, savedEntity);
+        
+        
         
         for (var source : sourceTranslatables.entrySet()) {
           
@@ -144,6 +123,37 @@ public class TranslationService {
         repoService.save(translatable);
       }
     }
+  }
+  
+  @SuppressWarnings("unchecked")
+  public <P extends BaseEntity, T extends TranslatableEntity<P>> T getTranslatableInstance(
+      Class<T> translatableClass,
+      LanguageEntity language,
+      P parent) throws Throwable {
+    var repo = repoService.getRepository(translatableClass);
+    language = Hibernate.unproxy(language, LanguageEntity.class);
+    
+    if (repo instanceof TranslationRepository<?>) {
+      var translationRepo = (TranslationRepository<?>) repo;
+      var findByLanguageAndParent = translationRepo.getClass().getMethod(
+          "findByLanguageIdAndParentId", String.class, String.class);
+
+      var translatable = (T) findByLanguageAndParent.invoke(translationRepo, language.getId(), parent.getId());
+
+      if (translatable != null) {
+        return translatable;
+      }
+      
+      translatable = (T) translatableClass.getDeclaredConstructor().newInstance();
+      translatable.setLanguage(language);
+      translatable.setParent(parent);
+      
+      return translatable;
+      
+      
+    }
+    throw new RuntimeException(
+        "Repository of Translation must inherit from " + TranslationRepository.class);
   }
 
 }
