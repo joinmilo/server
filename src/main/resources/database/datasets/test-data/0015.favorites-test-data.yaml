@@ -21,4 +21,15 @@ databaseChangeLog:
             splitStatements: true
             sql:
                insert into favorite_deals (`id`, `deal_id`, `user_context_id`) values
-               ('4f95cb2e-cd05-41d9-a7f1-35b7efb86778', '69f29c5f-5713-4549-902b-7157cb62b999', '5737ee58-9f88-43d1-baf4-a34dd85f0219');
+               ('b7cadba3-59a0-4ab6-9221-6f8c926f8615', '69f29c5f-5713-4549-902b-7157cb62b999', '5737ee58-9f88-43d1-baf4-a34dd85f0219');
+               
+  - changeSet:
+      id: 0015.test-data.3
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add favorite organisations
+            splitStatements: true
+            sql:
+               insert into favorite_organisations (`id`, `organisation_id`, `user_context_id`) values
+               ('d778ad66-cf31-4618-8970-7a259773c7ff', 'c7356a4c-fd81-4860-b1cc-06f549067132', '5737ee58-9f88-43d1-baf4-a34dd85f0219');
