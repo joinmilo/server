@@ -38,7 +38,7 @@ public class ContestEntity extends BaseEntity {
   @Translatable
   private String content;
   
-  private OffsetDateTime participationEndDate;
+  private String metaDescription;
   
   @Translatable
   @SlugSource
@@ -46,15 +46,6 @@ public class ContestEntity extends BaseEntity {
 
   @Translatable
   private String shortDescription;
-
-  private String metaDescription;
-
-  @Column(nullable = false, unique = true)
-  @SlugTarget
-  private String slug;
-
-  @Column(nullable = false)
-  private Boolean sponsored;
 
   @Column(nullable = false)
   private Boolean multiVote;
@@ -64,6 +55,16 @@ public class ContestEntity extends BaseEntity {
 
   @Column(nullable = false)
   private Boolean offer;
+  
+  @Column(nullable = false)
+  private OffsetDateTime participationEndDate;
+  
+  @Column(nullable = false, unique = true)
+  @SlugTarget
+  private String slug;
+
+  @Column(nullable = false)
+  private Boolean sponsored;
   
   private OffsetDateTime voteEndDate;
   
