@@ -121,6 +121,6 @@ public class EventEntity extends BaseEntity {
       inverseJoinColumns = @JoinColumn(name = "user_context_id"),
       uniqueConstraints = {@UniqueConstraint(columnNames = {"user_context_id", "event_id"})})
   @CollectionId(column = @Column(name = "id"), type = @Type(type = "uuid-char"), generator = "UUID")
-  private List<UserContextEntity> favoriteEventsUsers = new ArrayList<>();
+  private List<UserContextEntity> favoritingUsers = new ArrayList<>();
 
 }
