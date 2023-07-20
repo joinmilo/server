@@ -1,7 +1,7 @@
 databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
-      id: 0065.add_column_favorite_organisations.1
+      id: 0063.add_column_favorite_deals_users.1
       author: codeschluss
       changes:
         - createTable:
@@ -9,7 +9,7 @@ databaseChangeLog:
               - column:
                   constraints:
                     nullable: false
-                  name: organisation_id
+                  name: deal_id
                   type: CHAR(36)
               - column:
                   constraints:
@@ -20,59 +20,59 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                     primaryKey: true
-                    primaryKeyName: favorite_organisations_primary_key
+                    primaryKeyName: favorite_deals_users_primary_key
                   name: id
                   type: CHAR(36)
-            tableName: favorite_organisations
+            tableName: favorite_deals_users
         - sql:
             comment: set char set for mysql
             dbms: mysql
             endDelimiter: \nGO
             splitStatements: true
-            sql: ALTER TABLE favorite_organisations CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;             
-        
+            sql: ALTER TABLE favorite_deals_users CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+                        
   - changeSet:
-      id: 0065.add_column_favorite_organisations.2
+      id: 0063.add_column_favorite_deals_users.2
       author: codeschluss
       changes:
         - createIndex:
             columns:
               - column:
-                  name: organisation_id
-            indexName: idx_ijh7urzf90se2izu91v2qcc05
-            tableName: favorite_organisations
+                  name: deal_id
+            indexName: idx_fkra9h3xledcfypzvxlnuu84tka
+            tableName: favorite_deals_users
   - changeSet:
-      id: 0065.add_column_favorite_organisations.3
+      id: 0063.add_column_favorite_deals_users.3
       author: codeschluss
       changes:
         - createIndex:
             columns:
               - column:
                   name: user_context_id
-            indexName: idx_fkkwqc86ge3wwnjd6kb870uifot
-            tableName: favorite_organisations
+            indexName: idx_fkyork7aboj7uaj69r330hhf4sm
+            tableName: favorite_deals_users
   - changeSet:
-      id: 0065.add_column_favorite_organisations.4
+      id: 0063.add_column_favorite_deals_users.4
       author: codeschluss
       changes:
         - addForeignKeyConstraint:
-            baseColumnNames: organisation_id
-            baseTableName: favorite_organisations
-            constraintName: fkijh7urzf90se2izu91v2qcc05
+            baseColumnNames: deal_id
+            baseTableName: favorite_deals_users
+            constraintName: fkra9h3xledcfypzvxlnuu84tka
             initiallyDeferred: false
             onDelete: CASCADE
             onUpdate: CASCADE
             referencedColumnNames: id
-            referencedTableName: organisations
+            referencedTableName: deals
             validate: true
   - changeSet:
-      id: 0065.add_column_favorite_organisations.5
+      id: 0063.add_column_favorite_deals_users.5
       author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: user_context_id
-            baseTableName: favorite_organisations
-            constraintName: fkkwqc86ge3wwnjd6kb870uifot
+            baseTableName: favorite_deals_users
+            constraintName: fkyork7aboj7uaj69r330hhf4sm
             deferrable: false
             initiallyDeferred: false
             onDelete: CASCADE

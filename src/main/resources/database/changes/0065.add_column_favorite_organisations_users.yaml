@@ -1,0 +1,83 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+  - changeSet:
+      id: 0065.add_column_favorite_organisations_users.1
+      author: codeschluss
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                  name: organisation_id
+                  type: CHAR(36)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: user_context_id
+                  type: CHAR(36)                 
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: favorite_organisations_users_primary_key
+                  name: id
+                  type: CHAR(36)
+            tableName: favorite_organisations_users
+        - sql:
+            comment: set char set for mysql
+            dbms: mysql
+            endDelimiter: \nGO
+            splitStatements: true
+            sql: ALTER TABLE favorite_organisations_users CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;             
+        
+  - changeSet:
+      id: 0065.add_column_favorite_organisations_users.2
+      author: codeschluss
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: organisation_id
+            indexName: idx_ijh7urzf90se2izu91v2qcc05
+            tableName: favorite_organisations_users
+  - changeSet:
+      id: 0065.add_column_favorite_organisations_users.3
+      author: codeschluss
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: user_context_id
+            indexName: idx_fkkwqc86ge3wwnjd6kb870uifot
+            tableName: favorite_organisations_users
+  - changeSet:
+      id: 0065.add_column_favorite_organisations_users.4
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: organisation_id
+            baseTableName: favorite_organisations_users
+            constraintName: fkijh7urzf90se2izu91v2qcc05
+            initiallyDeferred: false
+            onDelete: CASCADE
+            onUpdate: CASCADE
+            referencedColumnNames: id
+            referencedTableName: organisations
+            validate: true
+  - changeSet:
+      id: 0065.add_column_favorite_organisations_users.5
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: user_context_id
+            baseTableName: favorite_organisations_users
+            constraintName: fkkwqc86ge3wwnjd6kb870uifot
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: CASCADE
+            onUpdate: CASCADE
+            referencedColumnNames: id
+            referencedTableName: user_contexts
+            validate: true         
+            

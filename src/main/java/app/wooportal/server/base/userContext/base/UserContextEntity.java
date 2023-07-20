@@ -3,6 +3,7 @@ package app.wooportal.server.base.userContext.base;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,8 +15,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+
 import org.hibernate.annotations.CollectionId;
 import org.hibernate.annotations.Type;
+
 import app.wooportal.server.base.address.base.AddressEntity;
 import app.wooportal.server.base.contact.ContactEntity;
 import app.wooportal.server.base.userContext.base.media.UserContextMediaEntity;
@@ -25,6 +28,7 @@ import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.i18n.annotations.Translatable;
 import app.wooportal.server.core.security.components.user.UserEntity;
 import app.wooportal.server.features.article.base.ArticleEntity;
+import app.wooportal.server.features.article.publicAuthor.PublicAuthorEntity;
 import app.wooportal.server.features.article.rating.ArticleRatingEntity;
 import app.wooportal.server.features.contest.participation.ContestParticipationEntity;
 import app.wooportal.server.features.contest.vote.ContestVoteEntity;
@@ -60,7 +64,6 @@ public class UserContextEntity extends BaseEntity {
   
   @Translatable
   private String description;
-  
   
   //TOOD: slugify
   private String slug;
@@ -128,25 +131,11 @@ public class UserContextEntity extends BaseEntity {
       uniqueConstraints = {@UniqueConstraint(columnNames = {"user_context_id", "contact_id"})})
   @CollectionId(column = @Column(name = "id"), type = @Type(type = "uuid-char"), generator = "UUID")
   private List<ContactEntity> contacts = new ArrayList<>();
-
+  
   @ManyToMany(fetch = FetchType.LAZY)
-  @JoinTable(name = "favorite_events", joinColumns = @JoinColumn(name = "user_context_id"),
-      inverseJoinColumns = @JoinColumn(name = "event_id"),
-      uniqueConstraints = {@UniqueConstraint(columnNames = {"user_context_id", "event_id"})})
+  @JoinTable(name = "favorite_authors_users", joinColumns = @JoinColumn(name = "user_context_id"),
+      inverseJoinColumns = @JoinColumn(name = "author_id"),
+      uniqueConstraints = {@UniqueConstraint(columnNames = {"user_context_id", "author_id"})})
   @CollectionId(column = @Column(name = "id"), type = @Type(type = "uuid-char"), generator = "UUID")
-  private List<EventEntity> favoriteEvents = new ArrayList<>();
-
-  @ManyToMany(fetch = FetchType.LAZY)
-  @JoinTable(name = "favorite_deals", joinColumns = @JoinColumn(name = "user_context_id"),
-      inverseJoinColumns = @JoinColumn(name = "deal_id"),
-      uniqueConstraints = {@UniqueConstraint(columnNames = {"user_context_id", "deal_id"})})
-  @CollectionId(column = @Column(name = "id"), type = @Type(type = "uuid-char"), generator = "UUID")
-  private List<DealEntity> favoriteOffers = new ArrayList<>();
-
-  @ManyToMany(fetch = FetchType.LAZY)
-  @JoinTable(name = "favorite_organisations", joinColumns = @JoinColumn(name = "user_context_id"),
-      inverseJoinColumns = @JoinColumn(name = "organisation_id"),
-      uniqueConstraints = {@UniqueConstraint(columnNames = {"user_context_id", "organisation_id"})})
-  @CollectionId(column = @Column(name = "id"), type = @Type(type = "uuid-char"), generator = "UUID")
-  private List<OrganisationEntity> favoriteOrganisations = new ArrayList<>();
+  private List<UserContextEntity> favoriteAuthorsUsers = new ArrayList<>();
 }
