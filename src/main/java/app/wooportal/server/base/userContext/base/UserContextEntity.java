@@ -28,7 +28,6 @@ import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.i18n.annotations.Translatable;
 import app.wooportal.server.core.security.components.user.UserEntity;
 import app.wooportal.server.features.article.base.ArticleEntity;
-import app.wooportal.server.features.article.publicAuthor.PublicAuthorEntity;
 import app.wooportal.server.features.article.rating.ArticleRatingEntity;
 import app.wooportal.server.features.contest.participation.ContestParticipationEntity;
 import app.wooportal.server.features.contest.vote.ContestVoteEntity;
@@ -133,9 +132,45 @@ public class UserContextEntity extends BaseEntity {
   private List<ContactEntity> contacts = new ArrayList<>();
   
   @ManyToMany(fetch = FetchType.LAZY)
-  @JoinTable(name = "favorite_authors_users", joinColumns = @JoinColumn(name = "user_context_id"),
+  @JoinTable(name = "favorite_articles", joinColumns = @JoinColumn(name = "user_context_id"),
+      inverseJoinColumns = @JoinColumn(name = "article_id"),
+      uniqueConstraints = {@UniqueConstraint(columnNames = {"user_context_id", "article_id"})})
+  @CollectionId(column = @Column(name = "id"), type = @Type(type = "uuid-char"), generator = "UUID")
+  private List<ArticleEntity> favoriteArticles = new ArrayList<>();
+  
+  @ManyToMany(fetch = FetchType.LAZY)
+  @JoinTable(name = "favorite_authors", joinColumns = @JoinColumn(name = "user_context_id"),
       inverseJoinColumns = @JoinColumn(name = "author_id"),
       uniqueConstraints = {@UniqueConstraint(columnNames = {"user_context_id", "author_id"})})
   @CollectionId(column = @Column(name = "id"), type = @Type(type = "uuid-char"), generator = "UUID")
-  private List<UserContextEntity> favoriteAuthorsUsers = new ArrayList<>();
+  private List<UserContextEntity> favoriteAuthors = new ArrayList<>();
+  
+  @ManyToMany(fetch = FetchType.LAZY)
+  @JoinTable(name = "favorite_authors", joinColumns = @JoinColumn(name = "author_id"),
+      inverseJoinColumns = @JoinColumn(name = "user_context_id"),
+      uniqueConstraints = {@UniqueConstraint(columnNames = {"user_context_id", "author_id"})})
+  @CollectionId(column = @Column(name = "id"), type = @Type(type = "uuid-char"), generator = "UUID")
+  private List<UserContextEntity> favoritingUsers = new ArrayList<>();
+  
+  @ManyToMany(fetch = FetchType.LAZY)
+  @JoinTable(name = "favorite_events", joinColumns = @JoinColumn(name = "user_context_id"),
+	  inverseJoinColumns = @JoinColumn(name = "event_id"),
+	  uniqueConstraints = {@UniqueConstraint(columnNames = {"user_context_id", "event_id"})})
+  @CollectionId(column = @Column(name = "id"), type = @Type(type = "uuid-char"), generator = "UUID")
+  private List<EventEntity> favoriteEvents = new ArrayList<>();
+  
+  @ManyToMany(fetch = FetchType.LAZY)
+  @JoinTable(name = "favorite_deals", joinColumns = @JoinColumn(name = "user_context_id"),
+      inverseJoinColumns = @JoinColumn(name = "deal_id"),
+      uniqueConstraints = {@UniqueConstraint(columnNames = {"user_context_id", "deal_id"})})
+  @CollectionId(column = @Column(name = "id"), type = @Type(type = "uuid-char"), generator = "UUID")
+  private List<DealEntity> favoriteDeals = new ArrayList<>();
+  
+  @ManyToMany(fetch = FetchType.LAZY)
+  @JoinTable(name = "favorite_organisations", joinColumns = @JoinColumn(name = "user_context_id"),
+      inverseJoinColumns = @JoinColumn(name = "organisation_id"),
+      uniqueConstraints = {@UniqueConstraint(columnNames = {"user_context_id", "organisation_id"})})
+  @CollectionId(column = @Column(name = "id"), type = @Type(type = "uuid-char"), generator = "UUID")
+  private List<OrganisationEntity> favoriteOrganisations = new ArrayList<>();
+
 }

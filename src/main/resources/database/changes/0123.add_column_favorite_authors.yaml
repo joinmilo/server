@@ -1,7 +1,7 @@
 databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
-      id: 0123.add_column_favorite_authors_users.1
+      id: 0123.add_column_favorite_authors.1
       author: codeschluss
       changes:
         - createTable:
@@ -10,7 +10,7 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                     primaryKey: true
-                    primaryKeyName: favorite_authors_users_primary_key
+                    primaryKeyName: favorite_authors_primary_key
                   name: id
                   type: CHAR(36)            
               - column:
@@ -23,16 +23,16 @@ databaseChangeLog:
                     nullable: false
                   name: author_id
                   type: CHAR(36)                 
-            tableName: favorite_authors_users
+            tableName: favorite_authors
         - sql:
             comment: set char set for mysql
             dbms: mysql
             endDelimiter: \nGO
             splitStatements: true
-            sql: ALTER TABLE favorite_authors_users CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;             
+            sql: ALTER TABLE favorite_authors CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;             
         
   - changeSet:
-      id: 0123.add_column_favorite_authors_users.2
+      id: 0123.add_column_favorite_authors.2
       author: codeschluss
       changes:
         - createIndex:
@@ -40,9 +40,9 @@ databaseChangeLog:
               - column:
                   name: user_context_id
             indexName: idx_fk6yta1fj16cp1o3cbxjv476ub9
-            tableName: favorite_authors_users
+            tableName: favorite_authors
   - changeSet:
-      id: 0123.add_column_favorite_authors_users.3
+      id: 0123.add_column_favorite_authors.3
       author: codeschluss
       changes:
         - createIndex:
@@ -50,14 +50,14 @@ databaseChangeLog:
               - column:
                   name: author_id
             indexName: idx_fklvt2m4bjhiw0vhgn1phc1fgok
-            tableName: favorite_authors_users
+            tableName: favorite_authors
   - changeSet:
-      id: 0123.add_column_favorite_authors_users.4
+      id: 0123.add_column_favorite_authors.4
       author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: user_context_id
-            baseTableName: favorite_authors_users
+            baseTableName: favorite_authors
             constraintName: fk6yta1fj16cp1o3cbxjv476ub9
             initiallyDeferred: false
             onDelete: CASCADE
@@ -66,12 +66,12 @@ databaseChangeLog:
             referencedTableName: user_contexts
             validate: true
   - changeSet:
-      id: 0123.add_column_favorite_authors_users.5
+      id: 0123.add_column_favorite_authors.5
       author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: author_id
-            baseTableName: favorite_authors_users
+            baseTableName: favorite_authors
             constraintName: fklvt2m4bjhiw0vhgn1phc1fgok
             deferrable: false
             initiallyDeferred: false

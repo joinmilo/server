@@ -219,7 +219,7 @@ databaseChangeLog:
     - include:
         file: database/changes/0122.add_column_favorite_articles_users.yaml
     - include:
-        file: database/changes/0123.add_column_favorite_authors_users.yaml       
+        file: database/changes/0123.add_column_favorite_authors.yaml       
 
     #Data section        
     - include:

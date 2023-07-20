@@ -98,5 +98,5 @@ public class DealEntity extends BaseEntity {
       inverseJoinColumns = @JoinColumn(name = "user_context_id"),
       uniqueConstraints = {@UniqueConstraint(columnNames = {"user_context_id", "deal_id"})})
   @CollectionId(column = @Column(name = "id"), type = @Type(type = "uuid-char"), generator = "UUID")
-  private List<UserContextEntity> favoriteDealsUsers = new ArrayList<>();
+  private List<UserContextEntity> favoritingUsers = new ArrayList<>();
 }
