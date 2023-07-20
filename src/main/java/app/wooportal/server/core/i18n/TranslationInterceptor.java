@@ -60,19 +60,24 @@ public class TranslationInterceptor {
   
   @SuppressWarnings("unchecked")
   @Around("save()")
-  public <E extends BaseEntity> Object saveTranslation(ProceedingJoinPoint pjp)
-      throws Throwable {
-    pjp.proceed();
-    var savedEntity = pjp.getArgs()[0];
-    CompletableFuture.runAsync(() -> {
-      try {
-        translationService.save((E) savedEntity);
-      } catch (Throwable e) {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
-      }
-    });
-    return savedEntity;
+  public <E extends BaseEntity> Object saveTranslation(ProceedingJoinPoint pjp) throws Throwable {
+      Object result = pjp.proceed();
+      var savedEntity = pjp.getArgs()[0];
+
+      CompletableFuture.runAsync(() -> {
+          try {
+              translationService.save((E) savedEntity);
+          } catch (Throwable e) {
+              
+              e.printStackTrace();
+          }
+      }).exceptionally(throwable -> {
+         
+          throwable.printStackTrace();
+          return null; 
+      });
+
+      return result;
   }
 
 }
