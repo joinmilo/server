@@ -1,14 +1,24 @@
 package app.wooportal.server.features.article.base;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.persistence.UniqueConstraint;
+
+import org.hibernate.annotations.CollectionId;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
+
 import app.wooportal.server.base.userContext.base.UserContextEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.i18n.annotations.Translatable;
@@ -89,4 +99,12 @@ public class ArticleEntity extends BaseEntity {
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "article")
   private Set<ArticleMediaEntity> uploads;
+  
+  @ManyToMany(fetch = FetchType.LAZY)
+  @JoinTable(name = "favorite_articles_users", joinColumns = @JoinColumn(name = "article_id"),
+      inverseJoinColumns = @JoinColumn(name = "user_context_id"),
+      uniqueConstraints = {@UniqueConstraint(columnNames = {"user_context_id", "article_id"})})
+  @CollectionId(column = @Column(name = "id"), type = @Type(type = "uuid-char"), generator = "UUID")
+  private List<UserContextEntity> favoriteArticlesUsers = new ArrayList<>();
+  
 }

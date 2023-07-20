@@ -1,7 +1,7 @@
 databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
-      id: 0031.add_column_favorite_events.1
+      id: 0031.add_column_favorite_events_users.1
       author: codeschluss
       changes:
         - createTable:
@@ -20,19 +20,19 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                     primaryKey: true
-                    primaryKeyName: favorite_events_primary_key
+                    primaryKeyName: favorite_events_users_primary_key
                   name: id
                   type: CHAR(36)
-            tableName: favorite_events
+            tableName: favorite_events_users
         - sql:
             comment: set char set for mysql
             dbms: mysql
             endDelimiter: \nGO
             splitStatements: true
-            sql: ALTER TABLE favorite_events CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+            sql: ALTER TABLE favorite_events_users CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
                         
   - changeSet:
-      id: 0031.add_column_favorite_events.2
+      id: 0031.add_column_favorite_events_users.2
       author: codeschluss
       changes:
         - createIndex:
@@ -40,9 +40,9 @@ databaseChangeLog:
               - column:
                   name: event_id
             indexName: idx_fkt0dawfxvo9je41nk5zw9a6p7q
-            tableName: favorite_events
+            tableName: favorite_events_users
   - changeSet:
-      id: 0031.add_column_favorite_events.3
+      id: 0031.add_column_favorite_events_users.3
       author: codeschluss
       changes:
         - createIndex:
@@ -50,14 +50,14 @@ databaseChangeLog:
               - column:
                   name: user_context_id
             indexName: idx_fk9296ucsbtt4e5slrs2he8xbyn
-            tableName: favorite_events
+            tableName: favorite_events_users
   - changeSet:
-      id: 0031.add_column_favorite_events.4
+      id: 0031.add_column_favorite_events_users.4
       author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: event_id
-            baseTableName: favorite_events
+            baseTableName: favorite_events_users
             constraintName: fkt0dawfxvo9je41nk5zw9a6p7q
             initiallyDeferred: false
             onDelete: CASCADE
@@ -66,12 +66,12 @@ databaseChangeLog:
             referencedTableName: events
             validate: true
   - changeSet:
-      id: 0031.add_column_favorite_events.5
+      id: 0031.add_column_favorite_events_users.5
       author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: user_context_id
-            baseTableName: favorite_events
+            baseTableName: favorite_events_users
             constraintName: fk9296ucsbtt4e5slrs2he8xbyn
             deferrable: false
             initiallyDeferred: false

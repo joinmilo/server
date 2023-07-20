@@ -57,7 +57,7 @@ databaseChangeLog:
     - include:
         file: database/changes/0030.migrate_data_events.yaml          
     - include:
-        file: database/changes/0031.add_column_favorite_events.yaml    
+        file: database/changes/0031.add_column_favorite_events_users.yaml    
     - include:
         file: database/changes/0032.migrate_data_schedules.yaml    
     - include:
@@ -119,11 +119,11 @@ databaseChangeLog:
     - include:
         file: database/changes/0062.create_table_deal_visitors.yaml
     - include:
-        file: database/changes/0063.add_column_favorite_deals.yaml   
+        file: database/changes/0063.add_column_favorite_deals_users.yaml   
     - include:
         file: database/changes/0064.migrate_data_organisations.yaml    
     - include:
-        file: database/changes/0065.add_column_favorite_organisations.yaml        
+        file: database/changes/0065.add_column_favorite_organisations_users.yaml        
     - include:
         file: database/changes/0067.create_table_members.yaml  
     - include:
@@ -216,6 +216,10 @@ databaseChangeLog:
         file: database/changes/0120.create_table_friends.yaml   
     - include:
         file: database/changes/0121.create_table_event_ratings.yaml
+    - include:
+        file: database/changes/0122.add_column_favorite_articles_users.yaml
+    - include:
+        file: database/changes/0123.add_column_favorite_authors_users.yaml       
 
     #Data section        
     - include:
