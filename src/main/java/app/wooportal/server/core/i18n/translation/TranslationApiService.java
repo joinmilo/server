@@ -28,7 +28,7 @@ public class TranslationApiService {
   }
 
   public TranslationDto translate(String text, String target, String source) {
-    return translationClient.method(HttpMethod.POST).uri(createUri())
+    return translationClient.method(HttpMethod.POST).uri(createTranslationUri())
         .bodyValue(createBody(text, target, source))
         .header("Content-Type", "application/json")
         .header("accept", "text/plain")
@@ -36,9 +36,35 @@ public class TranslationApiService {
         .bodyToMono(TranslationDto.class).block();
   }
   
-  private URI createUri() {
+  public String[] detectLanguage(String text) {
+    return translationClient.method(HttpMethod.POST).uri(createDetectionUri())
+            .bodyValue(createBody(text))
+            .header("Content-Type", "application/json")
+            .header("accept", "text/plain")
+            .retrieve()
+            .bodyToMono(String[].class).block();
+  }
+  
+  private URI createTranslationUri() {
     return UriComponentsBuilder.fromUriString(config.getTranslateUrl())
         .build().encode().toUri();
+  }
+  
+  private URI createDetectionUri() {
+    return UriComponentsBuilder.fromUriString(config.getDetectUrl())
+        .build().encode().toUri();
+  }
+  
+  private String createBody(String text) {
+    var body = new JsonObject();
+    
+    if (text != null) {
+      var textInput = new JsonArray();
+      textInput.add(text);
+      body.add("text", textInput);
+    }
+    
+    return body.toString();
   }
   
   private String createBody(String text, String target, String source) {
