@@ -71,10 +71,6 @@ public class TranslationInterceptor {
               
               e.printStackTrace();
           }
-      }).exceptionally(throwable -> {
-         
-          throwable.printStackTrace();
-          return null; 
       });
 
       return result;
