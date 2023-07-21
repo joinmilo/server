@@ -2312,8 +2312,8 @@ databaseChangeLog:
                /*!40101 SET character_set_client = utf8 */;
                /* Set variables */
                SET @tagId   = "addToFavorites";
-               SET @german  = "Zu Favoriten hinzufügen";
-               SET @english = "Add to favorites";
+               SET @german  = "zu Favoriten hinzufügen";
+               SET @english = "add to favorites";
 
                /* Insert */
                insert into labels (`id`, `tag_id`) values
