@@ -19,7 +19,12 @@ databaseChangeLog:
             comment: Add data deals
             splitStatements: true
             sql: insert into deals (id, price, contact_id, category_id, slug, `sponsored`, `created`, `address_id`, creator_id) values
-              ('69f29c5f-5713-4549-902b-7157cb62b999', 5, '3916b414-c2bf-4808-a401-284ac62df73d', 'bcec76dd-d269-4081-af08-e3a9a72e9e00', 'slug-ukm5x', true, '2023-06-26 10:39:28', 'b47ec304-2de7-4c20-a110-fd829695c18d', '5737ee58-9f88-43d1-baf4-a34dd85f0219');
+              ('69f29c5f-5713-4549-902b-7157cb62b999', 5, '3916b414-c2bf-4808-a401-284ac62df73d', 'bcec76dd-d269-4081-af08-e3a9a72e9e00', 'slug-ukm5x', true, '2023-06-26 10:39:28', 'b47ec304-2de7-4c20-a110-fd829695c18d', '5737ee58-9f88-43d1-baf4-a34dd85f0219'),
+              ('b23763c3-667b-4867-b7ff-2699c4135190', 5, '3916b414-c2bf-4808-a401-284ac62df73d', 'bcec76dd-d269-4081-af08-e3a9a72e9e00', 'slug-ukm5y', false, '2023-06-26 10:39:28', 'b47ec304-2de7-4c20-a110-fd829695c18d', '5737ee58-9f88-43d1-baf4-a34dd85f0219'),
+              ('6be9d46d-17e8-4390-b939-2795a9ad7822', 5, '3916b414-c2bf-4808-a401-284ac62df73d', 'bcec76dd-d269-4081-af08-e3a9a72e9e00', 'slug-ukm5z', false, '2023-06-26 10:39:28', 'b47ec304-2de7-4c20-a110-fd829695c18d', '5737ee58-9f88-43d1-baf4-a34dd85f0219'),
+              ('921f507d-61a7-4592-a663-342c990e3882', 5, '3916b414-c2bf-4808-a401-284ac62df73d', 'bcec76dd-d269-4081-af08-e3a9a72e9e00', 'slug-ukm5a', false, '2023-06-26 10:39:28', 'b47ec304-2de7-4c20-a110-fd829695c18d', '5737ee58-9f88-43d1-baf4-a34dd85f0219'),
+              ('03aa3459-4e4c-4ecc-a9e5-b5c5a0e8bad1', 5, '3916b414-c2bf-4808-a401-284ac62df73d', 'bcec76dd-d269-4081-af08-e3a9a72e9e00', 'slug-ukm5b', false, '2023-06-26 10:39:28', 'b47ec304-2de7-4c20-a110-fd829695c18d', '5737ee58-9f88-43d1-baf4-a34dd85f0219'),
+              ('a52b83ab-57c9-41f5-8b94-cce064498719', 5, '3916b414-c2bf-4808-a401-284ac62df73d', 'bcec76dd-d269-4081-af08-e3a9a72e9e00', 'slug-ukm5c', false, '2023-06-26 10:39:28', 'b47ec304-2de7-4c20-a110-fd829695c18d', '5737ee58-9f88-43d1-baf4-a34dd85f0219');
               
   - changeSet:
       id: 0012.test-data.3
