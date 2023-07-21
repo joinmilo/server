@@ -21,7 +21,12 @@ databaseChangeLog:
             splitStatements: true
             sql:
                insert into favorite_deals_users (`id`, `deal_id`, `user_context_id`) values
-               ('b7cadba3-59a0-4ab6-9221-6f8c926f8615', '69f29c5f-5713-4549-902b-7157cb62b999', '5737ee58-9f88-43d1-baf4-a34dd85f0219');
+               ('b7cadba3-59a0-4ab6-9221-6f8c926f8615', '69f29c5f-5713-4549-902b-7157cb62b999', '5737ee58-9f88-43d1-baf4-a34dd85f0219'),
+               ('a5cd5d89-8f0e-4d26-91f9-dcdd62e74c7e', 'b23763c3-667b-4867-b7ff-2699c4135190', '5737ee58-9f88-43d1-baf4-a34dd85f0219'),
+               ('27b3fa64-5646-4983-8c47-e6c552eb3e48', '6be9d46d-17e8-4390-b939-2795a9ad7822', '5737ee58-9f88-43d1-baf4-a34dd85f0219'),
+               ('a14f1f7d-8244-4f8e-be89-39f775bfd04e', '921f507d-61a7-4592-a663-342c990e3882', '5737ee58-9f88-43d1-baf4-a34dd85f0219'),
+               ('1431aace-3303-4ad1-b7b9-d9aa663c20f6', '03aa3459-4e4c-4ecc-a9e5-b5c5a0e8bad1', '5737ee58-9f88-43d1-baf4-a34dd85f0219'),
+               ('a6d0baae-87bc-4590-bf61-c3495015e78f', 'a52b83ab-57c9-41f5-8b94-cce064498719', '5737ee58-9f88-43d1-baf4-a34dd85f0219');                                                                        
                
   - changeSet:
       id: 0015.test-data.3
