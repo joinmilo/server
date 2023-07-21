@@ -58,7 +58,7 @@ public class VerificationService
   }
 
   private String createVerifcationLink(VerificationEntity saved) {
-    return config.getHost() + "/user/verification/" + saved.getToken();
+    return config.getHost() + "/account/verification/" + saved.getToken();
   }
 
 }
