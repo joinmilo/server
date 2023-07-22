@@ -3,10 +3,13 @@ package app.wooportal.server.core.i18n.translation;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 import org.hibernate.Hibernate;
 import org.jsoup.Jsoup;
+import org.jsoup.parser.Parser;
 import org.springframework.stereotype.Service;
 import app.wooportal.server.core.base.BaseEntity;
+import app.wooportal.server.core.error.ErrorMailService;
 import app.wooportal.server.core.i18n.annotations.Translatable;
 import app.wooportal.server.core.i18n.components.language.LanguageEntity;
 import app.wooportal.server.core.i18n.components.language.LanguageService;
@@ -24,16 +27,20 @@ public class TranslationService {
   private final RepositoryService repoService;
   
   private final TranslationApiService translationApiService;
+  
+  private final ErrorMailService errorMailService;
 
   public TranslationService(
       LanguageService languageService,
       LocaleService localeService,
       RepositoryService repoService,
-      TranslationApiService translationApiService) {
+      TranslationApiService translationApiService,
+      ErrorMailService errorMailService) {
     this.languageService = languageService;
     this.localeService = localeService;
     this.repoService = repoService;
     this.translationApiService = translationApiService;
+    this.errorMailService = errorMailService;
     
   }
   
@@ -74,63 +81,75 @@ public class TranslationService {
     }
   }
   
-  public void save(BaseEntity savedEntity ) throws Throwable {
-    
+  public void save(BaseEntity savedEntity) throws Throwable {
+
     var sourceTranslatables = new HashMap<String, String>();
     Class<TranslatableEntity<BaseEntity>> translatableClass = null;
-    
-    String[] currentLocale = {"de"};
+
+    String[] currentLocaleArray = {"de"};
     var longestFieldLength = 0;
     for (var field : ReflectionUtils.getFields(savedEntity.getClass())) {
-      
-      if (ReflectionUtils.getAnnotation(field, Translatable.class).isPresent()) {        
+
+      if (ReflectionUtils.getAnnotation(field, Translatable.class).isPresent()) {
         var value = ReflectionUtils.get(field.getName(), savedEntity);
         if (value.isPresent()) {
-          if(value.get().toString().length() > longestFieldLength) {
+          if (value.get().toString().length() > longestFieldLength) {
             longestFieldLength = value.get().toString().length();
-            currentLocale = translationApiService.detectLanguage(value.get().toString());
-          };
+            currentLocaleArray = translationApiService.detectLanguage(value.get().toString());
+          } ;
           sourceTranslatables.put(field.getName(), (String) value.get());
         }
       }
-      
       var type = TranslationUtils.getTranslatableFieldType(field);
       if (type.isPresent()) {
         translatableClass = type.get();
       }
     }
     
-    translate(sourceTranslatables, translatableClass, savedEntity, currentLocale[0]);
+    if (!sourceTranslatables.isEmpty() && translatableClass != null) {
+      var currentLocale = currentLocaleArray[0];
+      var currentLocaleTranslatable = getTranslatableInstance(translatableClass,
+          languageService.readAll().getList().stream()
+              .filter(language -> language.getLocale().equals(currentLocale)).findFirst().get(),
+          savedEntity);
+      for (var source : sourceTranslatables.entrySet()) {
+        currentLocaleTranslatable.set(source.getKey(), source.getValue());
+        currentLocaleTranslatable.set("id", UUID.randomUUID().toString());
+      }
+      repoService.save(currentLocaleTranslatable);
+      translate(sourceTranslatables, translatableClass, savedEntity, currentLocale);
+    }
   }
 
   private void translate(HashMap<String, String> sourceTranslatables,
       Class<TranslatableEntity<BaseEntity>> translatableClass, BaseEntity savedEntity,
       String currentLocale) throws Throwable {
     if (!sourceTranslatables.isEmpty() && translatableClass != null) {
-      for (var language : languageService.readAll().getResult()) {
+
+      for (var language : languageService.readAll().getList().stream()
+          .filter(language -> !language.getLocale().equals(currentLocale)).collect(Collectors.toList())) {
         var translatable = getTranslatableInstance(translatableClass, language, savedEntity);
 
         for (var source : sourceTranslatables.entrySet()) {
 
-          if (!translatable.getLanguage().getLocale().equals(currentLocale)) {
-            
-            var doc = Jsoup.parse(source.getValue()).body();
-            
-            for(var element : doc.select("*")) {
-              if (element.ownText() != null && element.ownText().length() > 0) {
-              var translation =
-                translationApiService.translate(element.ownText(),
+          var doc = Jsoup.parse(Parser.unescapeEntities((source.getValue()), true)).body();  
+
+          for (var element : doc.select("*")) {
+            if (element.ownText() != null && element.ownText().length() > 0) {
+
+              try {
+                var translation = translationApiService.translate(element.ownText(),
                     translatable.getLanguage().getLocale());
-             element.text(translation.getTranslated()[0]);
+                element.text(translation.getTranslated()[0]);
+              } catch (Exception e) {
+                errorMailService.sendErrorMail(e);
               }
             }
-           
-            if (doc.hasText()) {
-              translatable.set(source.getKey(), doc.html().toString());
+          }
 
-            }
-          } else {
-            translatable.set(source.getKey(), source.getValue());
+          if (doc.hasText()) {
+            translatable.set(source.getKey(), doc.toString());
+
           }
         }
         translatable.set("id", UUID.randomUUID().toString());

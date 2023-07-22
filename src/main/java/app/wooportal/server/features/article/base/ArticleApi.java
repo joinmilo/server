@@ -13,8 +13,6 @@ import app.wooportal.server.core.base.dto.listing.PageableList;
 import app.wooportal.server.core.security.permissions.AdminPermission;
 import app.wooportal.server.features.article.comment.ArticleCommentEntity;
 import app.wooportal.server.features.article.comment.ArticleCommentService;
-import app.wooportal.server.features.event.base.EventEntity;
-import app.wooportal.server.features.event.comment.EventCommentEntity;
 import io.leangen.graphql.annotations.GraphQLArgument;
 import io.leangen.graphql.annotations.GraphQLContext;
 import io.leangen.graphql.annotations.GraphQLMutation;
