@@ -6,6 +6,9 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 import org.hibernate.Hibernate;
 import org.jsoup.Jsoup;
+import org.jsoup.nodes.Element;
+import org.jsoup.nodes.Node;
+import org.jsoup.nodes.TextNode;
 import org.jsoup.parser.Parser;
 import org.springframework.stereotype.Service;
 import app.wooportal.server.core.base.BaseEntity;
@@ -19,44 +22,41 @@ import app.wooportal.server.core.utils.ReflectionUtils;
 
 @Service
 public class TranslationService {
-  
+
   private final LanguageService languageService;
-  
+
   private final LocaleService localeService;
 
   private final RepositoryService repoService;
-  
+
   private final TranslationApiService translationApiService;
-  
+
   private final ErrorMailService errorMailService;
 
-  public TranslationService(
-      LanguageService languageService,
-      LocaleService localeService,
-      RepositoryService repoService,
-      TranslationApiService translationApiService,
+  public TranslationService(LanguageService languageService, LocaleService localeService,
+      RepositoryService repoService, TranslationApiService translationApiService,
       ErrorMailService errorMailService) {
     this.languageService = languageService;
     this.localeService = localeService;
     this.repoService = repoService;
     this.translationApiService = translationApiService;
     this.errorMailService = errorMailService;
-    
+
   }
-  
+
   public void localizeList(List<?> list) throws Throwable {
     var locales = localeService.getCurrentRequestLocales();
     for (var entity : list) {
       localize(entity, locales);
     }
   }
-  
+
   public void localizeSingle(Object entity) throws Throwable {
     if (!ReflectionUtils.getFieldsWithAnnotation(entity.getClass(), Translatable.class).isEmpty()) {
       localize(entity, localeService.getCurrentRequestLocales());
     }
   }
-  
+
   private void localize(Object entity, List<String> locales) throws Throwable {
     fields: for (var field : ReflectionUtils.getFieldsWithAnnotation(entity.getClass(),
         Translatable.class)) {
@@ -80,7 +80,7 @@ public class TranslationService {
       }
     }
   }
-  
+
   public void save(BaseEntity savedEntity) throws Throwable {
 
     var sourceTranslatables = new HashMap<String, String>();
@@ -105,7 +105,7 @@ public class TranslationService {
         translatableClass = type.get();
       }
     }
-    
+
     if (!sourceTranslatables.isEmpty() && translatableClass != null) {
       var currentLocale = currentLocaleArray[0];
       var currentLocaleTranslatable = getTranslatableInstance(translatableClass,
@@ -127,29 +127,22 @@ public class TranslationService {
     if (!sourceTranslatables.isEmpty() && translatableClass != null) {
 
       for (var language : languageService.readAll().getList().stream()
-          .filter(language -> !language.getLocale().equals(currentLocale)).collect(Collectors.toList())) {
+          .filter(language -> !language.getLocale().equals(currentLocale))
+          .collect(Collectors.toList())) {
         var translatable = getTranslatableInstance(translatableClass, language, savedEntity);
 
         for (var source : sourceTranslatables.entrySet()) {
 
-          var doc = Jsoup.parse(Parser.unescapeEntities((source.getValue()), true)).body();  
+          var doc = Jsoup.parse(Parser.unescapeEntities((source.getValue()), true));
 
-          for (var element : doc.select("*")) {
-            if (element.ownText() != null && element.ownText().length() > 0) {
-
-              try {
-                var translation = translationApiService.translate(element.ownText(),
-                    translatable.getLanguage().getLocale());
-                element.text(translation.getTranslated()[0]);
-              } catch (Exception e) {
-                errorMailService.sendErrorMail(e);
-              }
-            }
+          Element body = doc.body();
+          if (body != null) {
+            translateElement(body, translatable.getLanguage().getLocale());
           }
 
-          if (doc.hasText()) {
-            translatable.set(source.getKey(), doc.toString());
-
+          String translatedText = doc.body().html();
+          if (!translatedText.isEmpty()) {
+            translatable.set(source.getKey(), translatedText);
           }
         }
         translatable.set("id", UUID.randomUUID().toString());
@@ -157,32 +150,50 @@ public class TranslationService {
       }
     }
   }
-  
+
+  private void translateElement(Node node, String locale) throws Throwable {
+    if (node instanceof TextNode) {
+      TextNode textNode = (TextNode) node;
+      String text = textNode.getWholeText();
+      if (!text.isEmpty()) {
+        try {
+          var translation = translationApiService.translate(text, locale);
+          textNode.text(translation.getTranslated()[0]);
+        } catch (Exception e) {
+          errorMailService.sendErrorMail(e);
+        }
+      }
+    } else if (node instanceof Element) {
+      for (var child : node.childNodes()) {
+        translateElement(child, locale);
+      }
+    }
+  }
+
   @SuppressWarnings("unchecked")
   public <P extends BaseEntity, T extends TranslatableEntity<P>> T getTranslatableInstance(
-      Class<T> translatableClass,
-      LanguageEntity language,
-      P parent) throws Throwable {
+      Class<T> translatableClass, LanguageEntity language, P parent) throws Throwable {
     var repo = repoService.getRepository(translatableClass);
     language = Hibernate.unproxy(language, LanguageEntity.class);
-    
+
     if (repo instanceof TranslationRepository<?>) {
       var translationRepo = (TranslationRepository<?>) repo;
-      var findByLanguageAndParent = translationRepo.getClass().getMethod(
-          "findByLanguageIdAndParentId", String.class, String.class);
+      var findByLanguageAndParent = translationRepo.getClass()
+          .getMethod("findByLanguageIdAndParentId", String.class, String.class);
 
-      var translatable = (T) findByLanguageAndParent.invoke(translationRepo, language.getId(), parent.getId());
+      var translatable =
+          (T) findByLanguageAndParent.invoke(translationRepo, language.getId(), parent.getId());
 
       if (translatable != null) {
         return translatable;
       }
-      
+
       translatable = (T) translatableClass.getDeclaredConstructor().newInstance();
       translatable.setLanguage(language);
       translatable.setParent(parent);
-      
+
       return translatable;
-            
+
     }
     throw new RuntimeException(
         "Repository of Translation must inherit from " + TranslationRepository.class);
