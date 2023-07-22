@@ -9,6 +9,7 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Service;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.base.dto.listing.PageableList;
+import app.wooportal.server.core.i18n.entities.TranslatableEntity;
 import app.wooportal.server.core.i18n.translation.TranslationService;
 
 @Aspect
@@ -61,19 +62,18 @@ public class TranslationInterceptor {
   @SuppressWarnings("unchecked")
   @Around("save()")
   public <E extends BaseEntity> Object saveTranslation(ProceedingJoinPoint pjp) throws Throwable {
-      Object result = pjp.proceed();
-      var savedEntity = pjp.getArgs()[0];
+    Object result = pjp.proceed();
+    var savedEntity = pjp.getArgs()[0];
 
-      CompletableFuture.runAsync(() -> {
-          try {
-              translationService.save((E) savedEntity);
-          } catch (Throwable e) {
-              
-              e.printStackTrace();
-          }
-      });
-
-      return result;
+    CompletableFuture.runAsync(() -> {
+      if (!(savedEntity instanceof TranslatableEntity)) {
+        try {
+          translationService.save((E) savedEntity);
+        } catch (Throwable e) {
+          e.printStackTrace();
+        }
+      }
+    });
+    return result;
   }
-
 }
