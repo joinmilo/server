@@ -1,14 +1,18 @@
 package app.wooportal.server.core.i18n.translation;
 
 import java.net.URI;
+import java.time.Duration;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.util.UriComponentsBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import app.wooportal.server.core.error.exception.ServiceUnavailableException;
 import app.wooportal.server.core.i18n.TranslationsConfiguration;
 import app.wooportal.server.core.i18n.entities.TranslationDto;
+import reactor.util.retry.Retry;
 
 @Service
 public class TranslationApiService {
@@ -28,13 +32,20 @@ public class TranslationApiService {
   }
 
   public TranslationDto translate(String text, String target, String source) {
-    return translationClient.method(HttpMethod.POST).uri(createTranslationUri())
+    return translationClient.method(HttpMethod.POST)
+        .uri(createTranslationUri())
         .bodyValue(createBody(text, target, source))
         .header("Content-Type", "application/json")
         .header("accept", "text/plain")
         .retrieve()
-        .bodyToMono(TranslationDto.class).block();
-  }
+        .bodyToMono(TranslationDto.class)
+        .retryWhen(Retry.backoff(2, Duration.ofSeconds(2))
+            .onRetryExhaustedThrow((retryBackoffSpec, retrySignal) -> {
+                throw new ServiceUnavailableException("External translation Service failed to process after max retries",
+                        HttpStatus.SERVICE_UNAVAILABLE.value());
+            }))
+        .block();
+}
   
   public String[] detectLanguage(String text) {
     return translationClient.method(HttpMethod.POST).uri(createDetectionUri())
