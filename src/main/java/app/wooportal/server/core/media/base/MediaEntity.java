@@ -4,6 +4,7 @@ import java.io.Serial;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import app.wooportal.server.core.base.BaseEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -23,6 +24,9 @@ import lombok.Setter;
 @Entity
 @Table(name = "media")
 public class MediaEntity extends BaseEntity {
+  
+  @Transient
+  private String base64;
 
   @Serial
   private static final long serialVersionUID = 1L;

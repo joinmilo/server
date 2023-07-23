@@ -2293,4 +2293,313 @@ databaseChangeLog:
                from labels p, languages l
                WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
                AND l.locale = "en";
-            
+               
+  - changeSet:
+      id: 0003.add_data_labels_2.75
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add labels
+            splitStatements: true
+            sql:
+               /*!40101 SET character_set_client = utf8 */;
+               /* Set variables */
+               SET @tagId   = "uploads";
+               SET @german  = "Uploads";
+               SET @english = "Uploads";
+
+
+               /* Insert */
+               insert into labels (`id`, `tag_id`) values
+               (uuid(), @tagId COLLATE utf8mb4_unicode_ci);
+                
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @german COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "de";
+
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @english COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "en";
+               
+  - changeSet:
+      id: 0003.add_data_labels_2.76
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add labels
+            splitStatements: true
+            sql:
+               /*!40101 SET character_set_client = utf8 */;
+               /* Set variables */
+               SET @tagId   = "uploadPicturesOrFiles";
+               SET @german  = "Lade Bilder oder Videos hoch";
+               SET @english = "Upload pictures or files";
+
+
+               /* Insert */
+               insert into labels (`id`, `tag_id`) values
+               (uuid(), @tagId COLLATE utf8mb4_unicode_ci);
+                
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @german COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "de";
+
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @english COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "en";
+               
+  - changeSet:
+      id: 0003.add_data_labels_2.77
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add labels
+            splitStatements: true
+            sql:
+               /*!40101 SET character_set_client = utf8 */;
+               /* Set variables */
+               SET @tagId   = "dragAndDropHere";
+               SET @german  = "Ziehe die Datei hier her";
+               SET @english = "Drag and Drop here";
+
+
+               /* Insert */
+               insert into labels (`id`, `tag_id`) values
+               (uuid(), @tagId COLLATE utf8mb4_unicode_ci);
+                
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @german COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "de";
+
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @english COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "en";
+               
+  - changeSet:
+      id: 0003.add_data_labels_2.78
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add labels
+            splitStatements: true
+            sql:
+               /*!40101 SET character_set_client = utf8 */;
+               /* Set variables */
+               SET @tagId   = "or";
+               SET @german  = "oder";
+               SET @english = "or";
+
+
+               /* Insert */
+               insert into labels (`id`, `tag_id`) values
+               (uuid(), @tagId COLLATE utf8mb4_unicode_ci);
+                
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @german COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "de";
+
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @english COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "en";
+               
+  - changeSet:
+      id: 0003.add_data_labels_2.79
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add labels
+            splitStatements: true
+            sql:
+               /*!40101 SET character_set_client = utf8 */;
+               /* Set variables */
+               SET @tagId   = "browseFiles";
+               SET @german  = "Dateien durchsuchen";
+               SET @english = "Browse files";
+
+
+               /* Insert */
+               insert into labels (`id`, `tag_id`) values
+               (uuid(), @tagId COLLATE utf8mb4_unicode_ci);
+                
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @german COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "de";
+
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @english COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "en";
+               
+  - changeSet:
+      id: 0003.add_data_labels_2.80
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add labels
+            splitStatements: true
+            sql:
+               /*!40101 SET character_set_client = utf8 */;
+               /* Set variables */
+               SET @tagId   = "files";
+               SET @german  = "Dateien";
+               SET @english = "Files";
+
+
+               /* Insert */
+               insert into labels (`id`, `tag_id`) values
+               (uuid(), @tagId COLLATE utf8mb4_unicode_ci);
+                
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @german COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "de";
+
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @english COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "en";
+               
+  - changeSet:
+      id: 0003.add_data_labels_2.81
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add labels
+            splitStatements: true
+            sql:
+               /*!40101 SET character_set_client = utf8 */;
+               /* Set variables */
+               SET @tagId   = "notMoreThanXFiles";
+               SET @german  = "Es können nicht mehr als ${maxFiles} Dateien hochgeladen werden";
+               SET @english = "Cannot upload more than ${maxFiles} files";
+
+
+               /* Insert */
+               insert into labels (`id`, `tag_id`) values
+               (uuid(), @tagId COLLATE utf8mb4_unicode_ci);
+                
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @german COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "de";
+
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @english COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "en";
+               
+  - changeSet:
+      id: 0003.add_data_labels_2.82
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add labels
+            splitStatements: true
+            sql:
+               /*!40101 SET character_set_client = utf8 */;
+               /* Set variables */
+               SET @tagId   = "filesCannotBeLargerThanX";
+               SET @german  = "Dateien dürfen nicht größer als ${maxFileSize} sein";
+               SET @english = "Files cannot be larger than ${maxFileSize}";
+
+
+               /* Insert */
+               insert into labels (`id`, `tag_id`) values
+               (uuid(), @tagId COLLATE utf8mb4_unicode_ci);
+                
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @german COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "de";
+
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @english COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "en";
+               
+  - changeSet:
+      id: 0003.add_data_labels_2.83
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add labels
+            splitStatements: true
+            sql:
+               /*!40101 SET character_set_client = utf8 */;
+               /* Set variables */
+               SET @tagId   = "chooseOtherFile";
+               SET @german  = "Bitte wähle eine andere Datei";
+               SET @english = "Please choose another file";
+
+
+               /* Insert */
+               insert into labels (`id`, `tag_id`) values
+               (uuid(), @tagId COLLATE utf8mb4_unicode_ci);
+                
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @german COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "de";
+
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @english COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "en";
+               
+  - changeSet:
+      id: 0003.add_data_labels_2.84
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add labels
+            splitStatements: true
+            sql:
+               /*!40101 SET character_set_client = utf8 */;
+               /* Set variables */
+               SET @tagId   = "chooseLessFiles";
+               SET @german  = "Bitte wähle weniger Dateien aus";
+               SET @english = "Please select fewer files";
+
+
+               /* Insert */
+               insert into labels (`id`, `tag_id`) values
+               (uuid(), @tagId COLLATE utf8mb4_unicode_ci);
+                
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @german COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "de";
+
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @english COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "en";
