@@ -57,7 +57,7 @@ public class LocaleService {
     return null;
   }
 
-  private String getDefaultLocale() {
+  public String getDefaultLocale() {
     return configurationService.readOne(
         configurationService.singleQuery(
             configurationService.getPredicate().withKey("defaultLocale")))

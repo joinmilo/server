@@ -31,8 +31,6 @@ public class TranslationService {
 
   private final TranslationApiService translationApiService;
 
-  private final ErrorMailService errorMailService;
-
   public TranslationService(LanguageService languageService, LocaleService localeService,
       RepositoryService repoService, TranslationApiService translationApiService,
       ErrorMailService errorMailService) {
@@ -40,7 +38,6 @@ public class TranslationService {
     this.localeService = localeService;
     this.repoService = repoService;
     this.translationApiService = translationApiService;
-    this.errorMailService = errorMailService;
 
   }
 
@@ -86,7 +83,7 @@ public class TranslationService {
     var sourceTranslatables = new HashMap<String, String>();
     Class<TranslatableEntity<BaseEntity>> translatableClass = null;
 
-    String[] currentLocaleArray = {"de"};
+    String[] currentLocaleArray = {};
     var longestFieldLength = 0;
     for (var field : ReflectionUtils.getFields(savedEntity.getClass())) {
 
@@ -96,7 +93,7 @@ public class TranslationService {
           if (value.get().toString().length() > longestFieldLength) {
             longestFieldLength = value.get().toString().length();
             currentLocaleArray = translationApiService.detectLanguage(value.get().toString());
-          } ;
+          } 
           sourceTranslatables.put(field.getName(), (String) value.get());
         }
       }
@@ -107,7 +104,9 @@ public class TranslationService {
     }
 
     if (!sourceTranslatables.isEmpty() && translatableClass != null) {
-      var currentLocale = currentLocaleArray[0];
+      var currentLocale = currentLocaleArray.length > 0 
+          ? currentLocaleArray[0]
+          : localeService.getDefaultLocale();
       var currentLocaleTranslatable = getTranslatableInstance(translatableClass,
           languageService.readAll().getList().stream()
               .filter(language -> language.getLocale().equals(currentLocale)).findFirst().get(),
@@ -156,12 +155,8 @@ public class TranslationService {
       TextNode textNode = (TextNode) node;
       String text = textNode.getWholeText();
       if (!text.isEmpty()) {
-        try {
           var translation = translationApiService.translate(text, locale);
-          textNode.text(translation.getTranslated()[0]);
-        } catch (Exception e) {
-          errorMailService.sendErrorMail(e);
-        }
+          textNode.text(translation.getTranslated()[0]);    
       }
     } else if (node instanceof Element) {
       for (var child : node.childNodes()) {
