@@ -9,6 +9,7 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Service;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.base.dto.listing.PageableList;
+import app.wooportal.server.core.error.ErrorMailService;
 import app.wooportal.server.core.i18n.entities.TranslatableEntity;
 import app.wooportal.server.core.i18n.translation.TranslationService;
 
@@ -16,11 +17,15 @@ import app.wooportal.server.core.i18n.translation.TranslationService;
 @Service
 public class TranslationInterceptor {
   
-  private TranslationService translationService;
+  private final TranslationService translationService;
+  
+  private final ErrorMailService errorMailService;
   
   public TranslationInterceptor(
-      TranslationService translationService) {
+      TranslationService translationService,
+      ErrorMailService errorMailService) {
     this.translationService = translationService;
+    this.errorMailService = errorMailService;
   }
   
   @Pointcut("execution(* app.wooportal.server.core.repository.DataRepository+.save(..))")
@@ -71,6 +76,13 @@ public class TranslationInterceptor {
           translationService.save((E) savedEntity);
         } catch (Throwable e) {
           e.printStackTrace();
+          try {
+            errorMailService.sendErrorMail(e.getStackTrace().toString());
+          } catch (Throwable e1) {
+            
+            e1.printStackTrace();
+          }
+          
         }
       }
     });
