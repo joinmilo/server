@@ -220,6 +220,8 @@ databaseChangeLog:
         file: database/changes/0122.add_column_favorite_articles_users.yaml
     - include:
         file: database/changes/0123.add_column_favorite_authors.yaml
+    - include:
+        file: database/changes/0124.add_column_languages_active.yaml
                                    
     #Data section
     - include:
@@ -232,6 +234,8 @@ databaseChangeLog:
         file: database/datasets/0003.add_data_labels_2.yaml
     - include:
         file: database/datasets/0004.add_data_labels_3.yaml
+    - include:
+        file: database/datasets/0005.add_available_languages.yaml
         
      #Cleanups
     - include:

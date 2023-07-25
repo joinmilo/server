@@ -19,6 +19,8 @@ import lombok.Setter;
 public class LanguageEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
+  
+  private Boolean active;
 
   @Column(nullable = false, unique = true)
   private String locale;

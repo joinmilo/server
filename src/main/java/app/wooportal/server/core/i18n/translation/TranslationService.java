@@ -1,9 +1,11 @@
 package app.wooportal.server.core.i18n.translation;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 import org.hibernate.Hibernate;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
@@ -22,6 +24,8 @@ import app.wooportal.server.core.utils.ReflectionUtils;
 
 @Service
 public class TranslationService {
+  
+  private final ErrorMailService errorMailService;
 
   private final LanguageService languageService;
 
@@ -34,6 +38,7 @@ public class TranslationService {
   public TranslationService(LanguageService languageService, LocaleService localeService,
       RepositoryService repoService, TranslationApiService translationApiService,
       ErrorMailService errorMailService) {
+    this.errorMailService = errorMailService;
     this.languageService = languageService;
     this.localeService = localeService;
     this.repoService = repoService;
@@ -80,77 +85,120 @@ public class TranslationService {
 
   public void save(BaseEntity savedEntity) throws Throwable {
 
-    var sourceTranslatables = new HashMap<String, String>();
+    var sourceFields = new HashMap<String, String>();
     Class<TranslatableEntity<BaseEntity>> translatableClass = null;
-
-    String[] currentLocaleArray = {};
-    var longestFieldLength = 0;
+    String longestContentField = null;
+    
     for (var field : ReflectionUtils.getFields(savedEntity.getClass())) {
 
       if (ReflectionUtils.getAnnotation(field, Translatable.class).isPresent()) {
         var value = ReflectionUtils.get(field.getName(), savedEntity);
         if (value.isPresent()) {
-          if (value.get().toString().length() > longestFieldLength) {
-            longestFieldLength = value.get().toString().length();
-            currentLocaleArray = translationApiService.detectLanguage(value.get().toString());
+          sourceFields.put(field.getName(), (String) value.get());
+          if (longestContentField == null || value.get().toString().length() > sourceFields.get(longestContentField).length()) {
+            longestContentField = field.getName();
           } 
-          sourceTranslatables.put(field.getName(), (String) value.get());
         }
       }
+      
       var type = TranslationUtils.getTranslatableFieldType(field);
       if (type.isPresent()) {
         translatableClass = type.get();
       }
     }
 
-    if (!sourceTranslatables.isEmpty() && translatableClass != null) {
-      var currentLocale = currentLocaleArray.length > 0 
-          ? currentLocaleArray[0]
-          : localeService.getDefaultLocale();
-      var currentLocaleTranslatable = getTranslatableInstance(translatableClass,
-          languageService.readAll().getList().stream()
-              .filter(language -> language.getLocale().equals(currentLocale)).findFirst().get(),
-          savedEntity);
-      for (var source : sourceTranslatables.entrySet()) {
-        currentLocaleTranslatable.set(source.getKey(), source.getValue());
-        currentLocaleTranslatable.set("id", UUID.randomUUID().toString());
-      }
-      repoService.save(currentLocaleTranslatable);
-      translate(sourceTranslatables, translatableClass, savedEntity, currentLocale);
+    if (!sourceFields.isEmpty() && translatableClass != null) {
+      saveTranslations(
+          savedEntity,
+          translatableClass,
+          sourceFields,
+          longestContentField
+       );
     }
   }
 
-  private void translate(HashMap<String, String> sourceTranslatables,
-      Class<TranslatableEntity<BaseEntity>> translatableClass, BaseEntity savedEntity,
-      String currentLocale) throws Throwable {
-    if (!sourceTranslatables.isEmpty() && translatableClass != null) {
+  private void saveTranslations(
+      BaseEntity savedEntity,
+      Class<TranslatableEntity<BaseEntity>> translatableClass,
+      Map<String, String> sourceFields,
+      String longestContentField) throws Throwable {
+    var translatables = new ArrayList<TranslatableEntity<BaseEntity>>();
+    var detectedLocale = detectLocale(sourceFields.get(longestContentField));
+    var defaultLocale = localeService.getDefaultLocale();
+    TranslatableEntity<BaseEntity> defaultTranslatable = null;
+    
+    for (var language : languageService.readAll(
+        languageService.collectionQuery(
+            languageService.getPredicate().withActive())).getList()) {
+      var translatable = getTranslatableInstance(translatableClass, language, savedEntity);
+      if (detectedLocale.isPresent() && language.getLocale().equals(detectedLocale.get())
+          || detectedLocale.isEmpty() && language.getLocale().equals(defaultLocale)) {
+        defaultTranslatable = translatable;
+      } else {
+        translatables.add(translatable);
+      }
+    }
 
-      for (var language : languageService.readAll().getList().stream()
-          .filter(language -> !language.getLocale().equals(currentLocale))
-          .collect(Collectors.toList())) {
-        var translatable = getTranslatableInstance(translatableClass, language, savedEntity);
+    saveDefaultTranslation(defaultTranslatable, sourceFields);
+    
+    if (detectedLocale.isPresent()) {        
+      saveAutoTranslations(translatables, sourceFields, detectedLocale.get());
+    }
+  }
 
-        for (var source : sourceTranslatables.entrySet()) {
+  private Optional<String> detectLocale(String content) {
+    try {
+    var detectedLocales = translationApiService.detectLanguage(content);
+    return detectedLocales.length > 0
+        ? Optional.of(detectedLocales[0])
+        : Optional.empty();
+    } catch(Throwable e) {
+      e.printStackTrace();
+      errorMailService.sendErrorMail(e.getStackTrace().toString());
+      return Optional.empty();
+    }
+  }
+
+  private void saveDefaultTranslation(
+      TranslatableEntity<BaseEntity> defaultTranslatable,
+      Map<String, String> sourceTranslatables) throws Throwable {
+    if (defaultTranslatable != null) {      
+      for (var source : sourceTranslatables.entrySet()) {
+        defaultTranslatable.set(source.getKey(), source.getValue());
+      }
+      repoService.save(defaultTranslatable);
+    }
+  }
+
+  private void saveAutoTranslations(
+      List<TranslatableEntity<BaseEntity>> translatables,
+      Map<String, String> sourceFields,
+      String detectedLocale) throws Throwable {
+
+    if (!sourceFields.isEmpty()) {
+      
+      for (var translatable : translatables) {
+        for (var source : sourceFields.entrySet()) {
 
           var doc = Jsoup.parse(Parser.unescapeEntities((source.getValue()), true));
 
-          Element body = doc.body();
+          var body = doc.body();
           if (body != null) {
-            translateElement(body, translatable.getLanguage().getLocale());
+            translate(body, translatable.getLanguage().getLocale());
           }
 
-          String translatedText = doc.body().html();
+          var translatedText = doc.body().html();
           if (!translatedText.isEmpty()) {
             translatable.set(source.getKey(), translatedText);
           }
         }
-        translatable.set("id", UUID.randomUUID().toString());
         repoService.save(translatable);
       }
+
     }
   }
 
-  private void translateElement(Node node, String locale) throws Throwable {
+  private void translate(Node node, String locale) throws Throwable {
     if (node instanceof TextNode) {
       TextNode textNode = (TextNode) node;
       String text = textNode.getWholeText();
@@ -160,7 +208,7 @@ public class TranslationService {
       }
     } else if (node instanceof Element) {
       for (var child : node.childNodes()) {
-        translateElement(child, locale);
+        translate(child, locale);
       }
     }
   }
@@ -186,6 +234,7 @@ public class TranslationService {
       translatable = (T) translatableClass.getDeclaredConstructor().newInstance();
       translatable.setLanguage(language);
       translatable.setParent(parent);
+      translatable.setId(UUID.randomUUID().toString());
 
       return translatable;
 
