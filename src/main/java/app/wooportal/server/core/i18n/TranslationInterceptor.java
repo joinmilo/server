@@ -76,13 +76,7 @@ public class TranslationInterceptor {
           translationService.save((E) savedEntity);
         } catch (Throwable e) {
           e.printStackTrace();
-          try {
-            errorMailService.sendErrorMail(e.getStackTrace().toString());
-          } catch (Throwable e1) {
-            
-            e1.printStackTrace();
-          }
-          
+          errorMailService.sendErrorMail(e.getStackTrace().toString());          
         }
       }
     });

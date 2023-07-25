@@ -1,0 +1,22 @@
+databaseChangeLog:  
+  - changeSet:
+      id: 0124.add_column_languages_active.1
+      author: codeschluss
+      changes:
+        - addColumn:
+            tableName: languages
+            columns:
+            - column:
+                name: active
+                type: boolean
+  - changeSet:
+      id: 0124.add_column_languages_active.2
+      author: codeschluss
+      changes:
+        - sql:
+            comment: add default active true to all existing languages
+            splitStatements: true
+            sql:
+                /*!40101 SET character_set_client = utf8 */;
+                update `languages` set active = true;
+                                   

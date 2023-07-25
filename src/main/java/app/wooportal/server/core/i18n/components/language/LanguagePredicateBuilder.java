@@ -13,6 +13,12 @@ public class LanguagePredicateBuilder extends PredicateBuilder<QLanguageEntity, 
 
   @Override
   public BooleanExpression freeSearch(String term) {
-    return null;
+    return query.locale.likeIgnoreCase(term)
+        .or(query.name.likeIgnoreCase(term));
   }
+  
+  public BooleanExpression withActive() {
+    return query.active.isTrue();
+  }
+
 }

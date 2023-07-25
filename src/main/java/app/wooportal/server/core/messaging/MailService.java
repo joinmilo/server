@@ -37,14 +37,14 @@ public class MailService {
 
   @Async
   public CompletableFuture<Boolean> sendEmail(String subject, String template,
-      Map<String, String> templateModel, String... to) throws Throwable {
+      Map<String, String> templateModel, String... to) {
     try {
       var model = new HashMap<String, String>(templateModel);
 //      model.put("portalName", mailConfig.getPortalName()); //TODO: Mailconfig?
       return sendEmail(subject,
           templateService.createMessage(template, model, new LanguageEntity()), to);
 
-    } catch (Exception e) {
+    } catch (Throwable e) {
       e.printStackTrace();
       return CompletableFuture.completedFuture(false);
     }

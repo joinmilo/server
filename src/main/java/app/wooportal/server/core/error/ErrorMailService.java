@@ -15,18 +15,18 @@ public class ErrorMailService {
     this.mailService = mailService;
   }
 
-  public void sendErrorMail(Exception e) throws Throwable {
+  public void sendErrorMail(Exception e) {
     StringWriter sw = new StringWriter();
     PrintWriter pw = new PrintWriter(sw);
     e.printStackTrace(pw);
     sendErrorMail(sw.toString());
   }
 
-  public void sendErrorMail(String stackTrace) throws Throwable {
+  public void sendErrorMail(String stackTrace) {
     sendErrorMail(stackTrace, null);
   }
 
-  public void sendErrorMail(String stackTrace, String metaInfo) throws Throwable {
+  public void sendErrorMail(String stackTrace, String metaInfo) {
     mailService.sendEmail("Error", "error.ftl",
         Map.of("error", stackTrace, "metaInfo", metaInfo != null ? metaInfo : ""));
   }
