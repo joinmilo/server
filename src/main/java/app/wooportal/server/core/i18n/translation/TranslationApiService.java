@@ -53,7 +53,13 @@ public class TranslationApiService {
             .header("Content-Type", "application/json")
             .header("accept", "text/plain")
             .retrieve()
-            .bodyToMono(String[].class).block();
+            .bodyToMono(String[].class)
+            .retryWhen(Retry.backoff(2, Duration.ofSeconds(2))
+                .onRetryExhaustedThrow((retryBackoffSpec, retrySignal) -> {
+                    throw new ServiceUnavailableException("External translation Service failed to process after max retries",
+                            HttpStatus.SERVICE_UNAVAILABLE.value());
+                }))
+            .block();
   }
   
   private URI createTranslationUri() {
