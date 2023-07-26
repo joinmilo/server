@@ -296,4 +296,6 @@ databaseChangeLog:
         file: database/datasets/test-data/0015.favorites-test-data.yaml
     - include:
         file: database/datasets/test-data/0016.info_media-test-data.yaml
+    - include:
+        file: database/datasets/test-data/0017.friends-test-data.yaml
                                                               

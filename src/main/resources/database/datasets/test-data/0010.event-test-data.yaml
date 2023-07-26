@@ -133,21 +133,7 @@ databaseChangeLog:
                  select uuid(), "ca429c83-ae27-4ce5-af45-1219bacab2a0", l.id, "Sport"
                  from languages l
                  WHERE l.locale = "de";     
-                 
-  - changeSet:
-      id: 0010.test-data.11
-      author: codeschluss
-      changes:
-        - sql:
-            comment: Add Friends
-            splitStatements: true
-            sql:
-               insert into friends (id, requester_id, addressee_id, accepted) values
-               ('01205866-523d-4505-883e-1996598cc6a8', 'ece550e8-bc2b-43c4-8aaf-48a30e82080f','5737ee58-9f88-43d1-baf4-a34dd85f0219', true),
-               ('42db8cb9-99fa-4877-89d2-24935b6f3cf8', '5102ef99-492e-476d-a6d8-357125e9f443','5737ee58-9f88-43d1-baf4-a34dd85f0219', true),
-               ('4cab17f5-1997-4939-a2bc-c75290346698', 'a9b32d23-ec3b-42ac-ab11-caf9bdc32643','5737ee58-9f88-43d1-baf4-a34dd85f0219', true),
-               ('34e1a393-019a-48ac-b66e-7e9646a230d1', '5737ee58-9f88-43d1-baf4-a34dd85f0219','bdadf02e-37df-4d3b-a639-cf9a76532904', true);                 
-                 
+                           
                       
   - changeSet:
       id: 0010.test-data.13
