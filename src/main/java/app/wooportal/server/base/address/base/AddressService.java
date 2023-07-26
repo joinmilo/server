@@ -1,6 +1,5 @@
 package app.wooportal.server.base.address.base;
 
-import java.util.UUID;
 import javax.naming.ServiceUnavailableException;
 import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.JsonNode;

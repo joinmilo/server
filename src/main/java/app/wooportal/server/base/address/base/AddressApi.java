@@ -11,7 +11,6 @@ import app.wooportal.server.core.error.exception.NotFoundException;
 import app.wooportal.server.core.location.MapService;
 import app.wooportal.server.core.security.permissions.AdminPermission;
 import io.leangen.graphql.annotations.GraphQLArgument;
-import io.leangen.graphql.annotations.GraphQLContext;
 import io.leangen.graphql.annotations.GraphQLMutation;
 import io.leangen.graphql.annotations.GraphQLQuery;
 import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
