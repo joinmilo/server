@@ -63,6 +63,8 @@ public class DealEntity extends BaseEntity {
   private String slug;
 
   private Double price;
+  
+  private Boolean isPublic; 
 
   @Column(nullable = false)
   private Boolean sponsored;

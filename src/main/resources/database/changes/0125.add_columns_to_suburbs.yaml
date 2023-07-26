@@ -1,0 +1,16 @@
+databaseChangeLog:  
+  - changeSet:
+      id: 0125.add_columns_to_suburbs.1
+      author: codeschluss
+      changes:
+        - addColumn:
+            tableName: suburbs
+            columns:
+            - column:
+                name: longitude
+                type: float
+            - column:
+                name: latitude
+                type: float                
+
+                                   
