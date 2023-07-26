@@ -42,7 +42,13 @@ databaseChangeLog:
                     nullable: false
                   defaultValueBoolean: false
                   name: sponsored
-                  type: boolean        
+                  type: boolean    
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueBoolean: true
+                  name: is_public
+                  type: boolean                        
               - column:
                   constraints:
                     nullable: false
