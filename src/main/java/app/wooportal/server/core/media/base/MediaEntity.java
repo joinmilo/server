@@ -44,4 +44,8 @@ public class MediaEntity extends BaseEntity {
   
   private Long size;
   
+//  @Column(nullable = false)
+//  private String url;
+  
+  
 }
