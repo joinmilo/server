@@ -5,9 +5,9 @@ import app.wooportal.server.core.base.DataService;
 import app.wooportal.server.core.repository.DataRepository;
 
 @Service
-public class PublicAuthorService extends DataService<PublicAuthorEntity, PublicAuthorPredicateBuilder> {
+public class ArticlePublicAuthorService extends DataService<ArticlePublicAuthorEntity, ArticlePublicAuthorPredicateBuilder> {
 
-  public PublicAuthorService(DataRepository<PublicAuthorEntity> repo, PublicAuthorPredicateBuilder predicate) {
+  public ArticlePublicAuthorService(DataRepository<ArticlePublicAuthorEntity> repo, ArticlePublicAuthorPredicateBuilder predicate) {
     super(repo, predicate);
   }
 }

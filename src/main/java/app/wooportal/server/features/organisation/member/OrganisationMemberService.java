@@ -5,9 +5,9 @@ import app.wooportal.server.core.base.DataService;
 import app.wooportal.server.core.repository.DataRepository;
 
 @Service
-public class MemberService extends DataService<MemberEntity, MemberPredicateBuilder> {
+public class OrganisationMemberService extends DataService<OrganisationMemberEntity, OrganisationMemberPredicateBuilder> {
 
-  public MemberService(DataRepository<MemberEntity> repo, MemberPredicateBuilder predicate) {
+  public OrganisationMemberService(DataRepository<OrganisationMemberEntity> repo, OrganisationMemberPredicateBuilder predicate) {
     super(repo, predicate);
   }
 }

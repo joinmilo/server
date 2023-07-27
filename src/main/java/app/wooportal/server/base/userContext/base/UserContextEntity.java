@@ -32,13 +32,13 @@ import app.wooportal.server.features.article.rating.ArticleRatingEntity;
 import app.wooportal.server.features.contest.participation.ContestParticipationEntity;
 import app.wooportal.server.features.contest.vote.ContestVoteEntity;
 import app.wooportal.server.features.deal.base.DealEntity;
-import app.wooportal.server.features.event.attendee.AttendeeEntity;
+import app.wooportal.server.features.event.attendee.EventAttendeeEntity;
 import app.wooportal.server.features.event.base.EventEntity;
 import app.wooportal.server.features.event.comment.EventCommentEntity;
 import app.wooportal.server.features.event.rating.EventRatingEntity;
 import app.wooportal.server.features.form.formTemplate.UserFormTemplateEntity;
 import app.wooportal.server.features.organisation.base.OrganisationEntity;
-import app.wooportal.server.features.organisation.member.MemberEntity;
+import app.wooportal.server.features.organisation.member.OrganisationMemberEntity;
 import app.wooportal.server.features.organisation.rating.OrganisationRatingEntity;
 import app.wooportal.server.features.survey.assignment.AssignmentEntity;
 import app.wooportal.server.features.survey.result.SurveyResultEntity;
@@ -80,7 +80,7 @@ public class UserContextEntity extends BaseEntity {
   private Set<AssignmentEntity> assignments;
 
   @OneToMany(mappedBy = "userContext", fetch = FetchType.LAZY)
-  private Set<AttendeeEntity> attendedEvents;
+  private Set<EventAttendeeEntity> attendedEvents;
 
   @OneToMany(mappedBy = "userContext", fetch = FetchType.LAZY)
   private Set<ContestVoteEntity> contestVotes;
@@ -107,7 +107,7 @@ public class UserContextEntity extends BaseEntity {
   private Set<FriendEntity> friendRequester;
 
   @OneToMany(mappedBy = "userContext", fetch = FetchType.LAZY)
-  private Set<MemberEntity> member;
+  private Set<OrganisationMemberEntity> member;
 
   @OneToMany(mappedBy = "userContext", fetch = FetchType.LAZY)
   private Set<OrganisationRatingEntity> organisationRatings;

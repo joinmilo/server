@@ -6,7 +6,7 @@ import app.wooportal.server.core.base.DataService;
 import app.wooportal.server.core.captcha.CaptchaService;
 import app.wooportal.server.core.error.exception.BadParamsException;
 import app.wooportal.server.core.repository.DataRepository;
-import app.wooportal.server.features.article.publicAuthor.PublicAuthorService;
+import app.wooportal.server.features.article.publicAuthor.ArticlePublicAuthorService;
 
 @Service
 public class ArticleService extends DataService<ArticleEntity, ArticlePredicateBuilder> {
@@ -16,7 +16,7 @@ public class ArticleService extends DataService<ArticleEntity, ArticlePredicateB
   public ArticleService(DataRepository<ArticleEntity> repo,
       ArticlePredicateBuilder predicate,
       CaptchaService captchaService,
-      PublicAuthorService publicAuthorService) {
+      ArticlePublicAuthorService publicAuthorService) {
     super(repo, predicate);
     this.captchaService = captchaService;
     

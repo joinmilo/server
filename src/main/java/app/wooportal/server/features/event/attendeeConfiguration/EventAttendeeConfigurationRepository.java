@@ -4,6 +4,6 @@ import org.springframework.stereotype.Repository;
 import app.wooportal.server.core.repository.DataRepository;
 
 @Repository
-public interface AttendeeConfigurationRepository extends DataRepository<AttendeeConfigurationEntity> {
+public interface EventAttendeeConfigurationRepository extends DataRepository<EventAttendeeConfigurationEntity> {
 
 }

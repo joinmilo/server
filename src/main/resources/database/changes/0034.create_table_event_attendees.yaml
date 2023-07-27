@@ -1,7 +1,7 @@
 databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
-      id: 0067.create_table_members.1
+      id: 0034.create_table_event_attendees.1
       author: codeschluss
       changes:
         - createTable:
@@ -10,7 +10,7 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                     primaryKey: true
-                    primaryKeyName: members_primary_key
+                    primaryKeyName: event_attendees_primary_key
                   name: id
                   type: CHAR(36)
               - column:
@@ -29,88 +29,75 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                   defaultValueBoolean: false
-                  name: admin
+                  name: approved
                   type: boolean
               - column:
                   constraints:
                     nullable: false
-                  defaultValueBoolean: false
-                  name: approved
-                  type: boolean   
-              - column:
-                  constraints:
-                    nullable: false
-                  defaultValueBoolean: false
-                  name: is_public
-                  type: boolean                                 
+                  name: configuration_id
+                  type: CHAR(36)   
               - column:
                   constraints:
                     nullable: false
                   name: user_context_id
-                  type: CHAR(36)           
-              - column:
-                  constraints:
-                    nullable: false
-                  name: organisation_id
-                  type: CHAR(36)                                                                          
-            tableName: members
+                  type: CHAR(36)                                                                                       
+            tableName: event_attendees
         - sql:
             comment: set char set for mysql
             dbms: mysql
             endDelimiter: \nGO
             splitStatements: true
-            sql: ALTER TABLE members CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;             
+            sql: ALTER TABLE event_attendees CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;            
 
   - changeSet:
-      id: 0067.create_table_members.2
+      id: 0034.create_table_event_attendees.2
+      author: codeschluss
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: configuration_id
+            indexName: idx_fkmm1o1ld21oydkr26t52fps832
+            tableName: event_attendees
+  - changeSet:
+      id: 0034.create_table_event_attendees.3
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: configuration_id
+            baseTableName: event_attendees
+            constraintName: fkmm1o1ld21oydkr26t52fps832
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: event_attendee_configurations
+            validate: true                         
+          
+  - changeSet:
+      id: 0034.create_table_event_attendees.4
       author: codeschluss
       changes:
         - createIndex:
             columns:
               - column:
                   name: user_context_id
-            indexName: idx_fkq40zei220bat4n9pj7ba1y5w2
-            tableName: members
+            indexName: idx_fkyl69iohfpfem75tbu40fi9ok3
+            tableName: event_attendees
   - changeSet:
-      id: 0067.create_table_members.3
+      id: 0034.create_table_event_attendees.5
       author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: user_context_id
-            baseTableName: members
-            constraintName: fkq40zei220bat4n9pj7ba1y5w2
+            baseTableName: event_attendees
+            constraintName: fkyl69iohfpfem75tbu40fi9ok3
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE
             onDelete: CASCADE
             referencedColumnNames: id
             referencedTableName: user_contexts
-            validate: true                
-
-  - changeSet:
-      id: 0067.create_table_members.4
-      author: codeschluss
-      changes:
-        - createIndex:
-            columns:
-              - column:
-                  name: organisation_id
-            indexName: idx_fkd1q6sett5n9kfb5ccfuyuqzct
-            tableName: members
-  - changeSet:
-      id: 0067.create_table_members.5
-      author: codeschluss
-      changes:
-        - addForeignKeyConstraint:
-            baseColumnNames: organisation_id
-            baseTableName: members
-            constraintName: fkd1q6sett5n9kfb5ccfuyuqzct
-            deferrable: false
-            initiallyDeferred: false
-            onUpdate: CASCADE
-            onDelete: CASCADE
-            referencedColumnNames: id
-            referencedTableName: organisations
-            validate: true                           
-          
+            validate: true           
             

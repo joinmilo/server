@@ -6,7 +6,7 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import app.wooportal.server.core.base.BaseEntity;
-import app.wooportal.server.features.event.attendee.AttendeeEntity;
+import app.wooportal.server.features.event.attendee.EventAttendeeEntity;
 import app.wooportal.server.features.event.base.EventEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -19,8 +19,8 @@ import lombok.Setter;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @AllArgsConstructor
 @Entity
-@Table(name = "attendee_configurations")
-public class AttendeeConfigurationEntity extends BaseEntity {
+@Table(name = "event_attendee_configurations")
+public class EventAttendeeConfigurationEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
 
@@ -32,5 +32,5 @@ public class AttendeeConfigurationEntity extends BaseEntity {
   private Set<EventEntity> events;
   
   @OneToMany(mappedBy = "configuration", fetch = FetchType.LAZY)
-  private Set<AttendeeEntity> attendees;
+  private Set<EventAttendeeEntity> attendees;
 }

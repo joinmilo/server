@@ -1,4 +1,4 @@
-package app.wooportal.server.features.event.schedule;
+package app.wooportal.server.features.organisation.member;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,50 +14,50 @@ import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 
 @GraphQLApi
 @Component
-public class ScheduleApi extends CrudApi<ScheduleEntity, ScheduleService> {
+public class OrganisationMemberApi extends CrudApi<OrganisationMemberEntity, OrganisationMemberService> {
 
 
-  public ScheduleApi(ScheduleService scheduleService) {
-    super(scheduleService);
+  public OrganisationMemberApi(OrganisationMemberService userService) {
+    super(userService);
   }
 
   @Override
-  @GraphQLQuery(name = "getSchedules")
-  public PageableList<ScheduleEntity> readAll(
+  @GraphQLQuery(name = "getOrganisationMembers")
+  public PageableList<OrganisationMemberEntity> readAll(
       @GraphQLArgument(name = CrudApi.params) FilterSortPaginate params) {
     return super.readAll(params);
   }
 
   @Override
-  @GraphQLQuery(name = "getSchedule")
-  public Optional<ScheduleEntity> readOne(
-      @GraphQLArgument(name = CrudApi.entity) ScheduleEntity entity) {
+  @GraphQLQuery(name = "getOrganisationMember")
+  public Optional<OrganisationMemberEntity> readOne(
+      @GraphQLArgument(name = CrudApi.entity) OrganisationMemberEntity entity) {
     return super.readOne(entity);
   }
 
   @Override
-  @GraphQLMutation(name = "saveSchedules")
+  @GraphQLMutation(name = "saveOrganisationMembers")
   @AdminPermission
-  public List<ScheduleEntity> saveAll(
-      @GraphQLArgument(name = CrudApi.entities) List<ScheduleEntity> entities) {
+  public List<OrganisationMemberEntity> saveAll(
+      @GraphQLArgument(name = CrudApi.entities) List<OrganisationMemberEntity> entities) {
     return super.saveAll(entities);
   }
 
   @Override
-  @GraphQLMutation(name = "saveSchedule")
-  public ScheduleEntity saveOne(@GraphQLArgument(name = CrudApi.entity) ScheduleEntity entity) {
+  @GraphQLMutation(name = "saveOrganisationMember")
+  public OrganisationMemberEntity saveOne(@GraphQLArgument(name = CrudApi.entity) OrganisationMemberEntity entity) {
     return super.saveOne(entity);
   }
 
   @Override
-  @GraphQLMutation(name = "deleteSchedules")
+  @GraphQLMutation(name = "deleteOrganisationMembers")
   @AdminPermission
   public Boolean deleteAll(@GraphQLArgument(name = CrudApi.ids) List<String> ids) {
     return super.deleteAll(ids);
   }
 
   @Override
-  @GraphQLMutation(name = "deleteSchedule")
+  @GraphQLMutation(name = "deleteOrganisationMember")
   @AdminPermission
   public Boolean deleteOne(@GraphQLArgument(name = CrudApi.id) String id) {
     return super.deleteOne(id);

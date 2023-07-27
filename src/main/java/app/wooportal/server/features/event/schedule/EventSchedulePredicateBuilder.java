@@ -6,10 +6,10 @@ import com.querydsl.core.types.dsl.BooleanExpression;
 import app.wooportal.server.core.base.PredicateBuilder;
 
 @Service
-public class SchedulePredicateBuilder extends PredicateBuilder<QScheduleEntity, ScheduleEntity> {
+public class EventSchedulePredicateBuilder extends PredicateBuilder<QEventScheduleEntity, EventScheduleEntity> {
 
-  public SchedulePredicateBuilder() {
-    super(QScheduleEntity.scheduleEntity);
+  public EventSchedulePredicateBuilder() {
+    super(QEventScheduleEntity.eventScheduleEntity);
   }
 
   @Override

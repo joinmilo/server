@@ -9,13 +9,13 @@ import app.wooportal.server.core.repository.DataRepository;
 import app.wooportal.server.core.utils.SortPageUtils;
 
 @Service
-public class ScheduleService extends DataService<ScheduleEntity, SchedulePredicateBuilder> {
+public class EventScheduleService extends DataService<EventScheduleEntity, EventSchedulePredicateBuilder> {
 
-  public ScheduleService(DataRepository<ScheduleEntity> repo, SchedulePredicateBuilder predicate) {
+  public EventScheduleService(DataRepository<EventScheduleEntity> repo, EventSchedulePredicateBuilder predicate) {
     super(repo, predicate);
   }
 
-  public Optional<ScheduleEntity> getByEventAndBetween(
+  public Optional<EventScheduleEntity> getByEventAndBetween(
       String eventId,
       OffsetDateTime begin,
       OffsetDateTime end) {
@@ -27,7 +27,7 @@ public class ScheduleService extends DataService<ScheduleEntity, SchedulePredica
         : Optional.empty();
   }
 
-  public Optional<ScheduleEntity> getMostRecentByEvent(String eventId) {
+  public Optional<EventScheduleEntity> getMostRecentByEvent(String eventId) {
     var result = repo.findAll(
         collectionQuery(predicate.withEventId(eventId))
           .and(predicate.withStartDateLaterThanToday())

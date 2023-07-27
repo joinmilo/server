@@ -5,10 +5,10 @@ import com.querydsl.core.types.dsl.BooleanExpression;
 import app.wooportal.server.core.base.PredicateBuilder;
 
 @Service
-public class MemberPredicateBuilder extends PredicateBuilder<QMemberEntity, MemberEntity> {
+public class OrganisationMemberPredicateBuilder extends PredicateBuilder<QOrganisationMemberEntity, OrganisationMemberEntity> {
 
-  public MemberPredicateBuilder() {
-    super(QMemberEntity.memberEntity);
+  public OrganisationMemberPredicateBuilder() {
+    super(QOrganisationMemberEntity.organisationMemberEntity);
   }
 
   @Override

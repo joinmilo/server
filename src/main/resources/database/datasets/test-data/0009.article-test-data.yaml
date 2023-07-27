@@ -9,7 +9,7 @@ databaseChangeLog:
             comment: Add event public_authors
             splitStatements: true
             sql:
-               insert into public_authors (`id`, `name`, `email`) values
+               insert into article_public_authors (`id`, `name`, `email`) values
                ('bd24d04e-333a-45b4-9e1b-0958b8bba58d', 'Savannah Nguyen', 'savannah.nguyen@gmail.com');
                
   - changeSet:
@@ -44,7 +44,7 @@ databaseChangeLog:
             comment: Add articles
             splitStatements: true
             sql:
-               insert into articles (id, author_id, public_author_id, slug) values
+               insert into articles (id, author_id, article_public_author_id, slug) values
                ('640f4663-7e49-4727-8208-e5f5f5b078ed', '20ab2295-4d4f-4524-893d-f3b09f1e885a', null, 'slug-m1vr2'),
                ('b0ba555d-b378-4c32-b115-17be6e2a5eff','20ab2295-4d4f-4524-893d-f3b09f1e885a', null, 'slug-3qmzb'),
                ('c28e12c7-ff99-4885-8fd0-de6806023c71', '20ab2295-4d4f-4524-893d-f3b09f1e885a', null, 'slug-zhy1p'),

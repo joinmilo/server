@@ -5,11 +5,11 @@ import com.querydsl.core.types.dsl.BooleanExpression;
 import app.wooportal.server.core.base.PredicateBuilder;
 
 @Service
-public class AttendeeConfigurationPredicateBuilder
-    extends PredicateBuilder<QAttendeeConfigurationEntity, AttendeeConfigurationEntity> {
+public class EventAttendeeConfigurationPredicateBuilder
+    extends PredicateBuilder<QEventAttendeeConfigurationEntity, EventAttendeeConfigurationEntity> {
 
-  public AttendeeConfigurationPredicateBuilder() {
-    super(QAttendeeConfigurationEntity.attendeeConfigurationEntity);
+  public EventAttendeeConfigurationPredicateBuilder() {
+    super(QEventAttendeeConfigurationEntity.eventAttendeeConfigurationEntity);
   }
 
   @Override

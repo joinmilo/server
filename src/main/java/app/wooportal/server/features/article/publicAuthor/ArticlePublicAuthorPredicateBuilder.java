@@ -5,10 +5,10 @@ import com.querydsl.core.types.dsl.BooleanExpression;
 import app.wooportal.server.core.base.PredicateBuilder;
 
 @Service
-public class PublicAuthorPredicateBuilder extends PredicateBuilder<QPublicAuthorEntity, PublicAuthorEntity> {
+public class ArticlePublicAuthorPredicateBuilder extends PredicateBuilder<QArticlePublicAuthorEntity, ArticlePublicAuthorEntity> {
 
-  public PublicAuthorPredicateBuilder() {
-    super(QPublicAuthorEntity.publicAuthorEntity);
+  public ArticlePublicAuthorPredicateBuilder() {
+    super(QArticlePublicAuthorEntity.articlePublicAuthorEntity);
   }
 
   @Override

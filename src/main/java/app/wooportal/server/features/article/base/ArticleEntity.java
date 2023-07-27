@@ -29,7 +29,7 @@ import app.wooportal.server.features.article.base.translations.ArticleTranslatab
 import app.wooportal.server.features.article.base.visitors.ArticleVisitorEntity;
 import app.wooportal.server.features.article.category.ArticleCategoryEntity;
 import app.wooportal.server.features.article.comment.ArticleCommentEntity;
-import app.wooportal.server.features.article.publicAuthor.PublicAuthorEntity;
+import app.wooportal.server.features.article.publicAuthor.ArticlePublicAuthorEntity;
 import app.wooportal.server.features.article.rating.ArticleRatingEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -80,7 +80,7 @@ public class ArticleEntity extends BaseEntity {
   private ArticleCategoryEntity category;
 
   @ManyToOne(fetch = FetchType.LAZY)
-  private PublicAuthorEntity publicAuthor;
+  private ArticlePublicAuthorEntity publicAuthor;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private UserContextEntity author;

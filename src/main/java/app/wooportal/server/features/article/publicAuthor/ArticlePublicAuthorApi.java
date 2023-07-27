@@ -1,4 +1,4 @@
-package app.wooportal.server.features.organisation.member;
+package app.wooportal.server.features.article.publicAuthor;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,50 +14,51 @@ import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 
 @GraphQLApi
 @Component
-public class MemberApi extends CrudApi<MemberEntity, MemberService> {
+public class ArticlePublicAuthorApi extends CrudApi<ArticlePublicAuthorEntity, ArticlePublicAuthorService> {
 
 
-  public MemberApi(MemberService userService) {
+  public ArticlePublicAuthorApi(ArticlePublicAuthorService userService) {
     super(userService);
   }
 
   @Override
-  @GraphQLQuery(name = "getMembers")
-  public PageableList<MemberEntity> readAll(
+  @GraphQLQuery(name = "getArticlePublicAuthors")
+  public PageableList<ArticlePublicAuthorEntity> readAll(
       @GraphQLArgument(name = CrudApi.params) FilterSortPaginate params) {
     return super.readAll(params);
   }
 
   @Override
-  @GraphQLQuery(name = "getMember")
-  public Optional<MemberEntity> readOne(
-      @GraphQLArgument(name = CrudApi.entity) MemberEntity entity) {
+  @GraphQLQuery(name = "getArticlePublicAuthor")
+  public Optional<ArticlePublicAuthorEntity> readOne(
+      @GraphQLArgument(name = CrudApi.entity) ArticlePublicAuthorEntity entity) {
     return super.readOne(entity);
   }
 
   @Override
-  @GraphQLMutation(name = "saveMembers")
+  @GraphQLMutation(name = "saveArticlePublicAuthors")
   @AdminPermission
-  public List<MemberEntity> saveAll(
-      @GraphQLArgument(name = CrudApi.entities) List<MemberEntity> entities) {
+  public List<ArticlePublicAuthorEntity> saveAll(
+      @GraphQLArgument(name = CrudApi.entities) List<ArticlePublicAuthorEntity> entities) {
     return super.saveAll(entities);
   }
 
   @Override
-  @GraphQLMutation(name = "saveMember")
-  public MemberEntity saveOne(@GraphQLArgument(name = CrudApi.entity) MemberEntity entity) {
+  @GraphQLMutation(name = "saveArticlePublicAuthor")
+  public ArticlePublicAuthorEntity saveOne(
+      @GraphQLArgument(name = CrudApi.entity) ArticlePublicAuthorEntity entity) {
     return super.saveOne(entity);
   }
 
   @Override
-  @GraphQLMutation(name = "deleteMembers")
+  @GraphQLMutation(name = "deleteArticlePublicAuthors")
   @AdminPermission
   public Boolean deleteAll(@GraphQLArgument(name = CrudApi.ids) List<String> ids) {
     return super.deleteAll(ids);
   }
 
   @Override
-  @GraphQLMutation(name = "deleteMember")
+  @GraphQLMutation(name = "deleteArticlePublicAuthor")
   @AdminPermission
   public Boolean deleteOne(@GraphQLArgument(name = CrudApi.id) String id) {
     return super.deleteOne(id);

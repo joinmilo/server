@@ -20,9 +20,9 @@ import lombok.Setter;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @AllArgsConstructor
 @Entity
-@Table(name = "public_authors")
+@Table(name = "article_public_authors")
 @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-public class PublicAuthorEntity extends BaseEntity {
+public class ArticlePublicAuthorEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
 
