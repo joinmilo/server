@@ -222,6 +222,11 @@ databaseChangeLog:
         file: database/changes/0123.add_column_favorite_authors.yaml
     - include:
         file: database/changes/0124.add_column_languages_active.yaml
+    - include:
+        file: database/changes/0125.create_table_contest_comments.yaml
+    - include:
+        file: database/changes/0126.create_table_contest_comment_translatables.yaml  
+                
     #Data section        
     - include:
         file: database/datasets/0000.seed-data.yaml
