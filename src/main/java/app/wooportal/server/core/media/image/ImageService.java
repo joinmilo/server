@@ -31,11 +31,8 @@ public class ImageService {
         var imageBuff = ImageIO.read(inputStream);
         return needsResize(imageBuff) ? resize(imageBuff, formatType) : data;
       } catch (IOException e) {
-        try {
-          errorService.sendErrorMail(e);
-        } catch (Throwable e1) {
-          e1.printStackTrace();
-        }
+        errorService.sendErrorMail(e);
+        e.printStackTrace();
       }
     }
     return null;
@@ -46,25 +43,23 @@ public class ImageService {
       throw new IllegalArgumentException("Image url must not be null");
     }
     try {
-      BufferedImage imageBuff = ImageIO.read(url);
+      var imageBuff = ImageIO.read(url);
       if (imageBuff != null) {
         formatType = formatType != null && !formatType.isBlank() ? formatType
             : extractFormatFromUrl(url.getPath());
-        return needsResize(imageBuff) ? resize(imageBuff, formatType)
+        return needsResize(imageBuff)
+            ? resize(imageBuff, formatType)
             : convertToByte(imageBuff, formatType);
       }
     } catch (IOException e) {
-      try {
-        errorService.sendErrorMail(e);
-      } catch (Throwable e1) {
-        e1.printStackTrace();
-      }
+      errorService.sendErrorMail(e);
+      e.printStackTrace();
     }
     return null;
   }
 
   public String extractFormatFromUrl(String imageUrl) {
-    String[] splitUrl = imageUrl.split("\\.");
+    var splitUrl = imageUrl.split("\\.");
     return splitUrl[splitUrl.length - 1];
   }
 
@@ -74,14 +69,13 @@ public class ImageService {
   }
 
   private byte[] resize(BufferedImage imageBuff, String formatType) throws IOException {
-    BufferedImage resized =
-        Scalr.resize(imageBuff, Method.ULTRA_QUALITY, config.getMaxWidth(), config.getMaxWidth());
-
-    return convertToByte(resized, formatType);
+    return convertToByte(
+        Scalr.resize(imageBuff, Method.ULTRA_QUALITY, config.getMaxWidth(), config.getMaxWidth()),
+        formatType);
   }
 
   private byte[] convertToByte(BufferedImage image, String mimeType) throws IOException {
-    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+    var outputStream = new ByteArrayOutputStream();
     ImageIO.write(image, mimeType, outputStream);
     return outputStream.toByteArray();
   }

@@ -123,9 +123,9 @@ public class TranslationService {
       Map<String, String> sourceFields,
       String longestContentField) throws Throwable {
     var translatables = new ArrayList<TranslatableEntity<BaseEntity>>();
+    TranslatableEntity<BaseEntity> defaultTranslatable = null;
     var detectedLocale = detectLocale(sourceFields.get(longestContentField));
     var defaultLocale = localeService.getDefaultLocale();
-    TranslatableEntity<BaseEntity> defaultTranslatable = null;
     
     for (var language : languageService.readAll(
         languageService.collectionQuery(

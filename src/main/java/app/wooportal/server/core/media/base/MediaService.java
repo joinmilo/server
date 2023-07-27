@@ -2,7 +2,7 @@ package app.wooportal.server.core.media.base;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.List;
+import java.util.Base64;
 import org.docx4j.convert.in.xhtml.XHTMLImporterImpl;
 import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
 import org.jsoup.Jsoup;
@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.openhtmltopdf.pdfboxout.PdfRendererBuilder;
 import app.wooportal.server.core.base.DataService;
+import app.wooportal.server.core.error.ErrorMailService;
 import app.wooportal.server.core.error.exception.BadParamsException;
 import app.wooportal.server.core.error.exception.NotFoundException;
 import app.wooportal.server.core.media.image.ImageService;
@@ -24,45 +25,50 @@ import app.wooportal.server.core.repository.DataRepository;
 
 @Service
 public class MediaService extends DataService<MediaEntity, MediaPredicateBuilder> {
-
-  private final List<String> imageFormats = List.of("bmp", "gif", "png", "tiff", "tiff", "jpeg");
+  
+  private final ErrorMailService errorMailService;
 
   private final ImageService imageService;
+  
+  private final MimeTypeService mimeTypeService;
 
   private final StorageService storageService;
 
-  public MediaService(DataRepository<MediaEntity> repo, MediaPredicateBuilder predicate,
-      ImageService imageService, StorageService storageService) {
+  public MediaService(
+      DataRepository<MediaEntity> repo,
+      MediaPredicateBuilder predicate,
+      ErrorMailService errorMailService,
+      ImageService imageService,
+      MimeTypeService mimeTypeService,
+      StorageService storageService) {
     super(repo, predicate);
 
+    this.errorMailService = errorMailService;
     this.imageService = imageService;
+    this.mimeTypeService = mimeTypeService;
     this.storageService = storageService;
   }
 
   @Override
   public void postSave(MediaEntity entity, MediaEntity newEntity, JsonNode context) {
-    //TODO: Save images 
-//    if (newEntity.getBase64() != null && !newEntity.getBase64().isBlank()) {
-//      byte[] data = Base64.getDecoder().decode(newEntity.getBase64());
-//      var formatType = MediaHelper.extractFormatFromMimeType(newEntity.getMimeType());
-//      if (isImage(newEntity.getMimeType())) {
-//        data = imageService.resize(data, formatType);
-//      }
-//
-//      if (entity.getId() != null && !entity.getId().isBlank()) {
-//        storageService.delete(entity.getId(), formatType);
-//      }
-//      try {
-//        storageService.store(entity.getId(), formatType, data);
-//      } catch (IOException e) {
-//
-//      }
-//    }
-  }
+    if (newEntity.getBase64() != null && !newEntity.getBase64().isBlank()) {
+      byte[] data = Base64.getDecoder().decode(newEntity.getBase64());
+      var fileExtension = mimeTypeService.getFileExtension(newEntity.getMimeType());
+      if (mimeTypeService.isImageMimeType(newEntity.getMimeType())) {
+        data = imageService.resize(data, fileExtension);
+      }
 
-//  private boolean isImage(String mimeType) {
-//    return imageFormats.stream().anyMatch(format -> mimeType.toLowerCase().contains(format));
-//  }
+      if (entity.getId() != null && !entity.getId().isBlank()) {
+        storageService.delete(entity.getId(), fileExtension);
+      }
+      try {
+        storageService.store(entity.getId(), fileExtension, data);
+      } catch (IOException e) {
+        e.printStackTrace();
+        errorMailService.sendErrorMail(e);
+      }
+    }
+  }
 
   public ResponseEntity<byte[]> download(String id) throws IOException {
     var result = repo.findOne(singleQuery(predicate.withId(id)));
