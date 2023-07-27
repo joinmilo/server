@@ -53,7 +53,7 @@ databaseChangeLog:
     - include:
         file: database/changes/0027.migrate_data_event_target_group_translatables.yaml     
     - include:
-        file: database/changes/0028.create_table_attendee_configurations.yaml  
+        file: database/changes/0028.create_table_event_attendee_configurations.yaml  
     - include:
         file: database/changes/0030.migrate_data_events.yaml          
     - include:
@@ -63,11 +63,11 @@ databaseChangeLog:
     - include:
         file: database/changes/0033.migrate_data_event_translatables.yaml  
     - include:
-        file: database/changes/0034.create_table_attendees.yaml  
+        file: database/changes/0034.create_table_event_attendees.yaml  
     - include:
         file: database/changes/0035.migrate_data_event_visitors.yaml       
     - include:
-        file: database/changes/0036.create_table_public_authors.yaml
+        file: database/changes/0036.create_table_article_public_authors.yaml
     - include:
         file: database/changes/0037.migrate_data_article_categories.yaml
     - include:
@@ -125,7 +125,7 @@ databaseChangeLog:
     - include:
         file: database/changes/0065.add_column_favorite_organisations_users.yaml        
     - include:
-        file: database/changes/0067.create_table_members.yaml  
+        file: database/changes/0067.create_table_organisation_members.yaml  
     - include:
         file: database/changes/0068.create_table_organisation_ratings.yaml
     - include:

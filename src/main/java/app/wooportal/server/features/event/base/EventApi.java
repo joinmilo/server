@@ -13,8 +13,8 @@ import app.wooportal.server.core.base.dto.listing.FilterSortPaginate;
 import app.wooportal.server.core.base.dto.listing.PageableList;
 import app.wooportal.server.features.event.comment.EventCommentEntity;
 import app.wooportal.server.features.event.comment.EventCommentService;
-import app.wooportal.server.features.event.schedule.ScheduleEntity;
-import app.wooportal.server.features.event.schedule.ScheduleService;
+import app.wooportal.server.features.event.schedule.EventScheduleEntity;
+import app.wooportal.server.features.event.schedule.EventScheduleService;
 import io.leangen.graphql.annotations.GraphQLArgument;
 import io.leangen.graphql.annotations.GraphQLContext;
 import io.leangen.graphql.annotations.GraphQLMutation;
@@ -27,14 +27,14 @@ public class EventApi extends CrudApi<EventEntity, EventService> {
   
   private final EventCommentService commentService;
   
-  private final ScheduleService scheduleService;
+  private final EventScheduleService scheduleService;
   
   private final RatingService ratingService;
 
   public EventApi(
       EventService service,
       EventCommentService commentService,
-      ScheduleService scheduleService,
+      EventScheduleService scheduleService,
       RatingService ratingService) {
     super(service);
     
@@ -95,7 +95,7 @@ public class EventApi extends CrudApi<EventEntity, EventService> {
   }
   
   @GraphQLQuery(name = "schedule")
-  public Optional<ScheduleEntity> getSchedule(
+  public Optional<EventScheduleEntity> getSchedule(
       @GraphQLContext EventEntity event,
       OffsetDateTime begin,
       OffsetDateTime end) {

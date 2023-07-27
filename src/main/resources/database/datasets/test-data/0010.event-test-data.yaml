@@ -21,7 +21,7 @@ databaseChangeLog:
             comment: Add Attendee Configuration 
             splitStatements: true
             sql:
-               insert into attendee_configurations (id, approval, max_attendees) values
+               insert into event_attendee_configurations (id, approval, max_attendees) values
                ('dd322834-4abd-42bf-b753-f1310e585088', true, 5),
                ('3270df7c-3856-49e2-8595-26747e73ecb0', false , 5),
                ('d5626116-e724-4d80-a573-a9f9c57ac510', true, null),
@@ -35,7 +35,7 @@ databaseChangeLog:
             comment: add event
             splitStatements: true
             sql:
-               insert into events (id, attendee_configuration_id, creator_id, category_id, slug) values
+               insert into events (id, event_attendee_configuration_id, creator_id, category_id, slug) values
                ('0c3cf6f6-8337-492b-90e6-4db0bbc14aa9', null, '5737ee58-9f88-43d1-baf4-a34dd85f0219', 'ca429c83-ae27-4ce5-af45-1219bacab2a0', 'slug-h7z8f'),
                ('9aa1b7e3-2faa-4a55-b8f1-8ecbe6b4be93', 'dd322834-4abd-42bf-b753-f1310e585088', '5737ee58-9f88-43d1-baf4-a34dd85f0219', 'ca429c83-ae27-4ce5-af45-1219bacab2a0', 'slug-event1'),
                ('b82f9cc0-05be-4d15-865a-e0a5cb5b2479', '3270df7c-3856-49e2-8595-26747e73ecb0', '5737ee58-9f88-43d1-baf4-a34dd85f0219', 'ca429c83-ae27-4ce5-af45-1219bacab2a0', 'slug-event2'),
@@ -50,7 +50,7 @@ databaseChangeLog:
             comment: Add Attendees
             splitStatements: true
             sql:
-               insert into attendees (id, configuration_id, user_context_id, approved) values
+               insert into event_attendees (id, configuration_id, user_context_id, approved) values
                ('01205866-523d-4505-883e-1996598cc6a8', 'dd322834-4abd-42bf-b753-f1310e585088','ece550e8-bc2b-43c4-8aaf-48a30e82080f', true),
                ('42db8cb9-99fa-4877-89d2-24935b6f3cf8', 'dd322834-4abd-42bf-b753-f1310e585088','5102ef99-492e-476d-a6d8-357125e9f443', true),
                ('34e1a393-019a-48ac-b66e-7e9646a230d1', 'dd322834-4abd-42bf-b753-f1310e585088','bdadf02e-37df-4d3b-a639-cf9a76532904', true);
@@ -250,9 +250,9 @@ databaseChangeLog:
       author: codeschluss
       changes:
         - sql:
-            comment: Add event schedules
+            comment: Add event event_schedules
             splitStatements: true
             sql:
-               insert into schedules (`id`, `end_date`, `start_date`, `event_id`) values
+               insert into event_schedules (`id`, `end_date`, `start_date`, `event_id`) values
                ('50b87045-4771-46d8-8ea8-50119ddf80bf', '2023-06-26 10:00:00', '2023-06-25 12:00:00', 'db3d3896-d60a-4e6e-b708-b50769f3dbae');
                  

@@ -22,8 +22,8 @@ import lombok.Setter;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @AllArgsConstructor
 @Entity
-@Table(name = "schedules")
-public class ScheduleEntity extends BaseEntity {
+@Table(name = "event_schedules")
+public class EventScheduleEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
   

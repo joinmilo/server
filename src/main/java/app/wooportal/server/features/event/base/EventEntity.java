@@ -23,14 +23,14 @@ import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.i18n.annotations.Translatable;
 import app.wooportal.server.core.seo.annotations.SlugSource;
 import app.wooportal.server.core.seo.annotations.SlugTarget;
-import app.wooportal.server.features.event.attendeeConfiguration.AttendeeConfigurationEntity;
+import app.wooportal.server.features.event.attendeeConfiguration.EventAttendeeConfigurationEntity;
 import app.wooportal.server.features.event.base.media.EventMediaEntity;
 import app.wooportal.server.features.event.base.translations.EventTranslatableEntity;
 import app.wooportal.server.features.event.base.visitors.EventVisitorEntity;
 import app.wooportal.server.features.event.category.EventCategoryEntity;
 import app.wooportal.server.features.event.comment.EventCommentEntity;
 import app.wooportal.server.features.event.rating.EventRatingEntity;
-import app.wooportal.server.features.event.schedule.ScheduleEntity;
+import app.wooportal.server.features.event.schedule.EventScheduleEntity;
 import app.wooportal.server.features.event.targetGroup.EventTargetGroupEntity;
 import app.wooportal.server.features.organisation.base.OrganisationEntity;
 import lombok.AccessLevel;
@@ -77,7 +77,7 @@ public class EventEntity extends BaseEntity {
   private AddressEntity address;
 
   @ManyToOne(fetch = FetchType.LAZY)
-  private AttendeeConfigurationEntity attendeeConfiguration;
+  private EventAttendeeConfigurationEntity attendeeConfiguration;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private EventCategoryEntity category;
@@ -101,7 +101,7 @@ public class EventEntity extends BaseEntity {
   private Set<EventRatingEntity> ratings;
 
   @OneToMany(mappedBy = "event", fetch = FetchType.LAZY)
-  private Set<ScheduleEntity> schedules;
+  private Set<EventScheduleEntity> schedules;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
   protected Set<EventTranslatableEntity> translatables;
