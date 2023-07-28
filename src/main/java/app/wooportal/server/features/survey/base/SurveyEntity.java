@@ -15,7 +15,7 @@ import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.i18n.annotations.Translatable;
 import app.wooportal.server.core.seo.annotations.SlugSource;
 import app.wooportal.server.core.seo.annotations.SlugTarget;
-import app.wooportal.server.features.survey.assignment.AssignmentEntity;
+import app.wooportal.server.features.survey.assignment.SurveyAssignmentEntity;
 import app.wooportal.server.features.survey.base.media.SurveyMediaEntity;
 import app.wooportal.server.features.survey.base.translations.SurveyTranslatableEntity;
 import app.wooportal.server.features.survey.base.visitors.SurveyVisitorEntity;
@@ -67,7 +67,7 @@ public class SurveyEntity extends BaseEntity {
   private SurveyStateEntity state;
 
   @OneToMany(mappedBy = "survey", fetch = FetchType.LAZY)
-  private Set<AssignmentEntity> assignments;
+  private Set<SurveyAssignmentEntity> assignments;
 
   @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
   private Set<SurveyVisitorEntity> visitors;

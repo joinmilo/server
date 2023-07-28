@@ -19,7 +19,7 @@ databaseChangeLog:
                 name: author_id
                 type: char(36)              
             - column:
-                name: article_public_author_id
+                name: public_author_id
                 type: char(36)                                                                                   
             - column:
                 constraints:
@@ -43,7 +43,7 @@ databaseChangeLog:
         - createIndex:
             columns:
               - column:
-                  name: article_public_author_id
+                  name: public_author_id
             indexName: idx_fkxslps3ku90a7z43lzxgxm1n3g
             tableName: articles
   - changeSet:
@@ -51,7 +51,7 @@ databaseChangeLog:
       author: codeschluss
       changes:
         - addForeignKeyConstraint:
-            baseColumnNames: article_public_author_id
+            baseColumnNames: public_author_id
             baseTableName: articles
             constraintName: fkxslps3ku90a7z43lzxgxm1n3g
             deferrable: false

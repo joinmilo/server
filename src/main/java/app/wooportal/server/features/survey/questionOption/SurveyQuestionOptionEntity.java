@@ -1,18 +1,18 @@
-package app.wooportal.server.features.survey.result;
+package app.wooportal.server.features.survey.questionOption;
 
 import java.util.Set;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import app.wooportal.server.base.userContext.base.UserContextEntity;
+import org.hibernate.annotations.GenericGenerator;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.i18n.annotations.Translatable;
-import app.wooportal.server.features.survey.answer.SurveyAnswerEntity;
-import app.wooportal.server.features.survey.base.SurveyEntity;
-import app.wooportal.server.features.survey.result.translations.SurveyResultTranslatableEntity;
+import app.wooportal.server.features.survey.question.SurveyQuestionEntity;
+import app.wooportal.server.features.survey.questionOption.translations.SurveyQuestionOptionTranslatableEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,24 +24,22 @@ import lombok.Setter;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @AllArgsConstructor
 @Entity
-@Table(name = "survey_results")
-public class SurveyResultEntity extends BaseEntity {
+@Table(name = "survey_question_options")
+@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+public class SurveyQuestionOptionEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
   
   @Translatable
-  private String comment;
+  private String label;
 
-  @ManyToOne(fetch = FetchType.LAZY)
-  private UserContextEntity userContext;
+  @Column(nullable = false)
+  private Integer order;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(nullable = false)
-  private SurveyEntity survey;
-
-  @OneToMany(mappedBy = "result", fetch = FetchType.LAZY)
-  private Set<SurveyAnswerEntity> answer;
+  private SurveyQuestionEntity question;
 
   @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
-  private Set<SurveyResultTranslatableEntity> translatables;
+  private Set<SurveyQuestionOptionTranslatableEntity> translatables;
 }

@@ -40,7 +40,7 @@ import app.wooportal.server.features.form.formTemplate.UserFormTemplateEntity;
 import app.wooportal.server.features.organisation.base.OrganisationEntity;
 import app.wooportal.server.features.organisation.member.OrganisationMemberEntity;
 import app.wooportal.server.features.organisation.rating.OrganisationRatingEntity;
-import app.wooportal.server.features.survey.assignment.AssignmentEntity;
+import app.wooportal.server.features.survey.assignment.SurveyAssignmentEntity;
 import app.wooportal.server.features.survey.result.SurveyResultEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -77,7 +77,7 @@ public class UserContextEntity extends BaseEntity {
   private Set<ArticleRatingEntity> articleRatings;
 
   @OneToMany(mappedBy = "userContext", fetch = FetchType.LAZY)
-  private Set<AssignmentEntity> assignments;
+  private Set<SurveyAssignmentEntity> assignments;
 
   @OneToMany(mappedBy = "userContext", fetch = FetchType.LAZY)
   private Set<EventAttendeeEntity> attendedEvents;
