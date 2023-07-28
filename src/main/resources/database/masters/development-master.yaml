@@ -139,27 +139,27 @@ databaseChangeLog:
     - include:
         file: database/changes/0073.create_table_survey_visitors.yaml   
     - include:
-        file: database/changes/0074.create_table_assignments.yaml   
+        file: database/changes/0074.create_table_survey_assignments.yaml   
     - include:
-        file: database/changes/0075.create_table_question_types.yaml   
+        file: database/changes/0075.create_table_survey_question_types.yaml   
     - include:
-        file: database/changes/0076.create_table_questions.yaml   
+        file: database/changes/0076.create_table_survey_questions.yaml   
     - include:
         file: database/changes/0077.create_table_survey_results.yaml   
     - include:
-        file: database/changes/0078.create_table_question_options.yaml
+        file: database/changes/0078.create_table_survey_question_options.yaml
     - include:
-        file: database/changes/0079.create_table_answers.yaml   
+        file: database/changes/0079.create_table_survey_answers.yaml   
     - include:
-        file: database/changes/0080.create_table_answer_translatables.yaml   
+        file: database/changes/0080.create_table_survey_answer_translatables.yaml   
     - include:
         file: database/changes/0081.create_table_survey_translatables.yaml   
     - include:
         file: database/changes/0082.create_table_survey_result_translatables.yaml
     - include:
-        file: database/changes/0083.create_table_question_translatables.yaml   
+        file: database/changes/0083.create_table_survey_question_translatables.yaml   
     - include:
-        file: database/changes/0084.create_table_question_option_translatables.yaml
+        file: database/changes/0084.create_table_survey_question_option_translatables.yaml
     - include:
         file: database/changes/0085.create_tables_theme_variables_and_themes.yaml  
     - include:

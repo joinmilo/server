@@ -35,7 +35,7 @@ databaseChangeLog:
             comment: add event
             splitStatements: true
             sql:
-               insert into events (id, event_attendee_configuration_id, creator_id, category_id, slug) values
+               insert into events (id, attendee_configuration_id, creator_id, category_id, slug) values
                ('0c3cf6f6-8337-492b-90e6-4db0bbc14aa9', null, '5737ee58-9f88-43d1-baf4-a34dd85f0219', 'ca429c83-ae27-4ce5-af45-1219bacab2a0', 'slug-h7z8f'),
                ('9aa1b7e3-2faa-4a55-b8f1-8ecbe6b4be93', 'dd322834-4abd-42bf-b753-f1310e585088', '5737ee58-9f88-43d1-baf4-a34dd85f0219', 'ca429c83-ae27-4ce5-af45-1219bacab2a0', 'slug-event1'),
                ('b82f9cc0-05be-4d15-865a-e0a5cb5b2479', '3270df7c-3856-49e2-8595-26747e73ecb0', '5737ee58-9f88-43d1-baf4-a34dd85f0219', 'ca429c83-ae27-4ce5-af45-1219bacab2a0', 'slug-event2'),

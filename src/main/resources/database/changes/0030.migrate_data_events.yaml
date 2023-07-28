@@ -22,7 +22,7 @@ databaseChangeLog:
                 name: contact_id               
                 type: char(36)                
             - column:
-                name: event_attendee_configuration_id
+                name: attendee_configuration_id
                 type: char(36)        
             - column:
                 name: organisation_id
@@ -97,7 +97,7 @@ databaseChangeLog:
         - createIndex:
             columns:
               - column:
-                  name: event_attendee_configuration_id
+                  name: attendee_configuration_id
             indexName: idx_fkwt3fzjzvfc3nfi2xfxsbamoyt
             tableName: events
   - changeSet:
@@ -105,7 +105,7 @@ databaseChangeLog:
       author: codeschluss
       changes:
         - addForeignKeyConstraint:
-            baseColumnNames: event_attendee_configuration_id
+            baseColumnNames: attendee_configuration_id
             baseTableName: events
             constraintName: fkwt3fzjzvfc3nfi2xfxsbamoyt
             deferrable: false
