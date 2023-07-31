@@ -17,4 +17,6 @@ databaseChangeLog:
                ('0c7ad542-6aed-4613-8739-e4cd0db2ce2f', 'jpg', 83900, 'contest', 'image/jpg'),
                ('1737d307-da5f-4bb4-9148-08c13beab44a', 'pdf', 6500, 'test pdf', 'application/pdf'),
                ('b4f06e96-7271-48f6-9223-29f9b7baa1f6', 'jpg', 83900, 'organisation-title', 'image/jpg'),
+               ('0b4cb5ff-1802-496a-8b18-a4e3c5608fba', 'mp4', 30000000, 'Rick Roll', 'video/mp4'),
+               ('32630107-fd88-4b82-967e-3ad3128527e5', 'mp4', 2000000, 'Subscribe', 'video/mp4'),
                ('8ce57895-53c6-4af2-95eb-69dc8a4ee658', 'docx', 4300, 'test word', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
