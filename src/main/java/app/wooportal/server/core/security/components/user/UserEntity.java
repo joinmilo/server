@@ -1,5 +1,6 @@
 package app.wooportal.server.core.security.components.user;
 
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -59,6 +60,8 @@ public class UserEntity extends BaseEntity {
   
   @Transient
   private Boolean termsAccepted;
+  
+  private OffsetDateTime lastLoggedIn;
   
   private Boolean verified;
   
