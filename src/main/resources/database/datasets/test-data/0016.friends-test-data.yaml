@@ -13,6 +13,8 @@ databaseChangeLog:
               ('01205866-523d-4505-883e-1996598cc6a8', 'ece550e8-bc2b-43c4-8aaf-48a30e82080f','5737ee58-9f88-43d1-baf4-a34dd85f0219', true),
               ('42db8cb9-99fa-4877-89d2-24935b6f3cf8', '5102ef99-492e-476d-a6d8-357125e9f443','5737ee58-9f88-43d1-baf4-a34dd85f0219', true),
               ('4cab17f5-1997-4939-a2bc-c75290346698', 'a9b32d23-ec3b-42ac-ab11-caf9bdc32643','5737ee58-9f88-43d1-baf4-a34dd85f0219', true),
+              ('9345888f-7372-4ef0-9e9e-9f3ed69bb87f', '20e6d38f-37fa-493e-92cd-8832cc0f258f','5737ee58-9f88-43d1-baf4-a34dd85f0219', true),
+              ('3cea5af3-5ca7-43db-b2ef-11cee4ed1ace', 'ec1f2c65-da94-452c-a649-11314cdc7b7f','5737ee58-9f88-43d1-baf4-a34dd85f0219', true),
               ('9c8d4c35-d45b-4dca-b6d9-920319211ebc', 'bdadf02e-37df-4d3b-a639-cf9a76532904','5737ee58-9f88-43d1-baf4-a34dd85f0219', false),
               ('cc6ab01f-cbd9-48a5-9215-4542fddffffd', '5737ee58-9f88-43d1-baf4-a34dd85f0219','75a2d0e2-638a-47f0-b47e-16360d08a897', true),
               ('34e1a393-019a-48ac-b66e-7e9646a230d1', '5737ee58-9f88-43d1-baf4-a34dd85f0219','f88e5ebf-1828-4bd6-905e-821bff9c3f64', false);
