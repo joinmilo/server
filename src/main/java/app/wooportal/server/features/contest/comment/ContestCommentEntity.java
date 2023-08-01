@@ -11,8 +11,8 @@ import org.hibernate.annotations.GenericGenerator;
 import app.wooportal.server.base.userContext.base.UserContextEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.i18n.annotations.Translatable;
-import app.wooportal.server.features.article.comment.translations.ArticleCommentTranslatableEntity;
 import app.wooportal.server.features.contest.base.ContestEntity;
+import app.wooportal.server.features.contest.comment.translations.ContestCommentTranslatableEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -38,7 +38,7 @@ public class ContestCommentEntity extends BaseEntity {
   private ContestEntity contest;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
-  private Set<ArticleCommentTranslatableEntity> translatables;
+  private Set<ContestCommentTranslatableEntity> translatables;
   
   @ManyToOne(fetch = FetchType.LAZY)
   private UserContextEntity userContext;

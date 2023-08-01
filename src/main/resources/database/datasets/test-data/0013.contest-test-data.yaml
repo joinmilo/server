@@ -137,3 +137,38 @@ databaseChangeLog:
                  select uuid(), "629c6c88-9e9e-4202-ad08-cd73858922c0", l.id, "Finished Contest!", "Finished Contest", "This contest is finished!"
                  from languages l
                  WHERE l.locale = "de";
+                 
+  - changeSet:
+      id: 0013.contest-test-data.13
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add comments
+            splitStatements: true
+            sql:
+               insert into contest_comments (id, contest_id, user_context_id) values
+               ('f97059d4-f357-42f2-bc0e-4e940a386137', '629c6c88-9e9e-4202-ad08-cd73858922c0', '5737ee58-9f88-43d1-baf4-a34dd85f0219');
+               
+  - changeSet:
+      id: 0013.contest-test-data.14
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add data contest_comment_translatables
+            splitStatements: true
+            sql: insert into contest_comment_translatables (id, parent_id, language_id, content)
+                 select uuid(), 'f97059d4-f357-42f2-bc0e-4e940a386137', l.id, 'Spannender Wettbewerb! Ich mag es sehr!'
+                 from languages l
+                 WHERE l.locale = "de";
+                 
+  - changeSet:
+      id: 0013.contest-test-data.15
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add data contest_comment_translatables
+            splitStatements: true
+            sql: insert into contest_comment_translatables (id, parent_id, language_id, content)
+                 select uuid(), 'f97059d4-f357-42f2-bc0e-4e940a386137', l.id, 'Interesting contest! I like it a lot!'
+                 from languages l
+                 WHERE l.locale = "en";
