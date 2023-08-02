@@ -571,8 +571,8 @@ databaseChangeLog:
                /*!40101 SET character_set_client = utf8 */;
                /* Set variables */
                SET @tagId   = "receivedFriendRequests";
-               SET @german  = "Erhaltene Freundschaftsanfragen";
-               SET @english = "Received friend requests";
+               SET @german  = "Erhaltene Anfragen";
+               SET @english = "Received requests";
 
 
                /* Insert */
@@ -602,8 +602,8 @@ databaseChangeLog:
                /*!40101 SET character_set_client = utf8 */;
                /* Set variables */
                SET @tagId   = "sentFriendRequests";
-               SET @german  = "Versendete Freundschaftsanfragen";
-               SET @english = "Friend requests sent";
+               SET @german  = "Versendete Anfragen";
+               SET @english = "Requests sent";
 
 
                /* Insert */
@@ -759,6 +759,68 @@ databaseChangeLog:
                SET @tagId   = "sendFriendRequest";
                SET @german  = "Freundschaftsanfrage versenden";
                SET @english = "Send friend request";
+
+
+               /* Insert */
+               insert into labels (`id`, `tag_id`) values
+               (uuid(), @tagId COLLATE utf8mb4_unicode_ci);
+                
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @german COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "de";
+
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @english COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "en";
+               
+  - changeSet:
+      id: 0004.add_data_labels_3.26
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add labels
+            splitStatements: true
+            sql:
+               /*!40101 SET character_set_client = utf8 */;
+               /* Set variables */
+               SET @tagId   = "friendRequestsSent";
+               SET @german  = "Deine Anfragen wurden erfolgreich versendet.";
+               SET @english = "Your requests have been sent successfully.";
+
+
+               /* Insert */
+               insert into labels (`id`, `tag_id`) values
+               (uuid(), @tagId COLLATE utf8mb4_unicode_ci);
+                
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @german COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "de";
+
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @english COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "en";
+               
+  - changeSet:
+      id: 0004.add_data_labels_3.27
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add labels
+            splitStatements: true
+            sql:
+               /*!40101 SET character_set_client = utf8 */;
+               /* Set variables */
+               SET @tagId   = "friendRequestSent";
+               SET @german  = "Deine Anfrage wurde erfolgreich versendet.";
+               SET @english = "Your request have been sent successfully.";
 
 
                /* Insert */
