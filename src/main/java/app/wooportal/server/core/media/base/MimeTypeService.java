@@ -17,7 +17,7 @@ public class MimeTypeService {
    
   public String getFileExtension(String mimeType) {
     
-    //Start with image because most files are images 
+    //Start with image because it's the most common MIME type 
     var result = imageMimeTypeFileExtensions.get(mimeType);
     
     if (result == null) {

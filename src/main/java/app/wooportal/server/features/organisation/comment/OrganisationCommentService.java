@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import app.wooportal.server.core.base.DataService;
 import app.wooportal.server.core.repository.DataRepository;
 import app.wooportal.server.core.utils.SortPageUtils;
-import app.wooportal.server.features.event.comment.EventCommentEntity;
 
 @Service
 public class OrganisationCommentService extends DataService<OrganisationCommentEntity, OrganisationCommentPredicateBuilder> {

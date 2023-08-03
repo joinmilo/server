@@ -19,6 +19,7 @@ import app.wooportal.server.core.base.DataService;
 import app.wooportal.server.core.error.ErrorMailService;
 import app.wooportal.server.core.error.exception.BadParamsException;
 import app.wooportal.server.core.error.exception.NotFoundException;
+import app.wooportal.server.core.media.attribution.MediaAttributionService;
 import app.wooportal.server.core.media.image.ImageService;
 import app.wooportal.server.core.media.storage.StorageService;
 import app.wooportal.server.core.repository.DataRepository;
@@ -37,11 +38,14 @@ public class MediaService extends DataService<MediaEntity, MediaPredicateBuilder
   public MediaService(
       DataRepository<MediaEntity> repo,
       MediaPredicateBuilder predicate,
+      MediaAttributionService attributionService,
       ErrorMailService errorMailService,
       ImageService imageService,
       MimeTypeService mimeTypeService,
       StorageService storageService) {
     super(repo, predicate);
+    
+    addService("attribution", attributionService);
 
     this.errorMailService = errorMailService;
     this.imageService = imageService;
@@ -150,32 +154,11 @@ public class MediaService extends DataService<MediaEntity, MediaPredicateBuilder
 
   public HttpHeaders createHeader(String name, String formatType) {
     HttpHeaders header = new HttpHeaders();
-    header.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + name + "." + getFormatType(formatType));
+    header.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + name + "." + mimeTypeService.getFileExtension(formatType));
     header.add("Cache-Control", "no-cache, no-store, must-revalidate");
     header.add("Pragma", "no-cache");
     header.add("Expires", "0");
     return header;
-  }
-
-  private String getFormatType(String formatType) {
-    return switch (formatType) {
-      case "vnd.oasis.opendocument.text" -> "odt";
-      case "vnd.oasis.opendocument.text-template" -> "ott";
-      case "vnd.oasis.opendocument.text-web" -> "oth";
-      case "vnd.oasis.opendocument.text-master" -> "odm";
-      case "vnd.oasis.opendocument.graphics" -> "odg";
-      case "vnd.oasis.opendocument.graphics-template" -> "otg";
-      case "vnd.oasis.opendocument.presentation" -> "odp";
-      case "vnd.oasis.opendocument.presentation-template" -> "otp";
-      case "vnd.oasis.opendocument.spreadsheet" -> "ods";
-      case "vnd.oasis.opendocument.spreadsheet-template" -> "ots";
-      case "vnd.oasis.opendocument.chart" -> "odc";
-      case "vnd.oasis.opendocument.formula" -> "odf";
-      case "vnd.oasis.opendocument.database" -> "odb";
-      case "vnd.oasis.opendocument.image" -> "odi";
-      case "vnd.openofficeorg.extension" -> "oxt";
-      default -> formatType;
-    };
   }
 }
 

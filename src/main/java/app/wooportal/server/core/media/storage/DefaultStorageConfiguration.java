@@ -12,9 +12,11 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Configuration
-@ConfigurationProperties(prefix = "storage")
-public class StorageConfiguration {
+@ConfigurationProperties(prefix = "media.storage")
+public class DefaultStorageConfiguration {
 
-  private String location;
+  private String readLocation;
+  
+  private String writeLocation;
 
 }

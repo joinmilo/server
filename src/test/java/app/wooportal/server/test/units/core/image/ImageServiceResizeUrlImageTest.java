@@ -9,7 +9,7 @@ import java.net.URL;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import app.wooportal.server.core.error.ErrorMailService;
-import app.wooportal.server.core.media.image.ImageConfiguration;
+import app.wooportal.server.core.media.base.MediaConfiguration;
 import app.wooportal.server.core.media.image.ImageService;
 import app.wooportal.server.test.units.core.setup.services.ImageReader;
 
@@ -21,9 +21,9 @@ public class ImageServiceResizeUrlImageTest {
   
   @BeforeAll
   public static void init() {
-    var imageConfig = new ImageConfiguration();
-    imageConfig.setMaxHeight(200);
-    imageConfig.setMaxWidth(200);
+    var imageConfig = new MediaConfiguration();
+    imageConfig.setImagesMaxHeight(200);
+    imageConfig.setImagesMaxWidth(200);
     
     var errorService = mock(ErrorMailService.class);
     imageService = new ImageService(imageConfig, errorService);

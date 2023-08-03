@@ -7,8 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.springframework.stereotype.Service;
 import app.wooportal.server.core.media.base.MimeTypeService;
+import app.wooportal.server.core.media.storage.DefaultStorageConfiguration;
 import app.wooportal.server.core.media.storage.DefaultStorageService;
-import app.wooportal.server.core.media.storage.StorageConfiguration;
 import app.wooportal.server.core.media.storage.StorageService;
 import liquibase.change.custom.CustomTaskChange;
 import liquibase.database.Database;
@@ -37,18 +37,26 @@ public class ImageStorageMigration implements CustomTaskChange {
 
   @Override
   public void setUp() throws SetupException {
+    var writeLocation = getWriteLocation();
+    
+    storageService = new DefaultStorageService(new DefaultStorageConfiguration(
+        null, writeLocation));
+  }
+
+  private String getWriteLocation() {
     var location = System.getenv("WOOPORTAL_STORAGE_LOCATION");
     
     location = location != null && !location.isBlank()
         ? location
-        : System.getProperty("storage.location");
+        : System.getProperty("storage.write-location");
     
     if (location == null || location.isBlank()) {
-      var message = "No storage location found. Set either ENV WOOPORTAL_STORAGE_LOCATION or VM argument -Dstorage.location";
+      var message = "No storage WRITE location found. Set either ENV WOOPORTAL_STORAGE_LOCATION or VM argument -Dstorage.write-location";
       errors.addError(message);
     } else {
-      storageService = new DefaultStorageService(new StorageConfiguration(location));
+      return location;
     }
+    return null;
   }
 
   @Override
@@ -87,10 +95,10 @@ public class ImageStorageMigration implements CustomTaskChange {
       var extension = mimeTypeService.getFileExtension(images.getString(mimeTypeField));
       
       // Write on disk
-      var file = storageService.store(id, extension, images.getBytes(imageField));
+      var result = storageService.store(id, extension, images.getBytes(imageField));
       
       // Save file size in table
-      writeStatement.setLong(1, file.length());
+      writeStatement.setLong(1, result.length());
       writeStatement.setString(2, extension);
       writeStatement.setString(3, id);
       writeStatement.addBatch();

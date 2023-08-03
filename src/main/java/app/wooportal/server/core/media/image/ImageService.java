@@ -10,16 +10,17 @@ import org.imgscalr.Scalr;
 import org.imgscalr.Scalr.Method;
 import org.springframework.stereotype.Service;
 import app.wooportal.server.core.error.ErrorMailService;
+import app.wooportal.server.core.media.base.MediaConfiguration;
 
 @Service
 public class ImageService {
 
-  private final ImageConfiguration config;
+  private final MediaConfiguration config;
 
   private final ErrorMailService errorService;
 
 
-  public ImageService(ImageConfiguration config, ErrorMailService errorService) {
+  public ImageService(MediaConfiguration config, ErrorMailService errorService) {
     this.config = config;
     this.errorService = errorService;
   }
@@ -64,13 +65,13 @@ public class ImageService {
   }
 
   private boolean needsResize(BufferedImage imageBuff) {
-    return imageBuff.getHeight() >= config.getMaxHeight()
-        || imageBuff.getWidth() >= config.getMaxWidth();
+    return imageBuff.getHeight() >= config.getImagesMaxHeight()
+        || imageBuff.getWidth() >= config.getImagesMaxWidth();
   }
 
   private byte[] resize(BufferedImage imageBuff, String formatType) throws IOException {
     return convertToByte(
-        Scalr.resize(imageBuff, Method.ULTRA_QUALITY, config.getMaxWidth(), config.getMaxWidth()),
+        Scalr.resize(imageBuff, Method.ULTRA_QUALITY, config.getImagesMaxWidth(), config.getImagesMaxHeight()),
         formatType);
   }
 

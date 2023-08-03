@@ -12,4 +12,6 @@ public interface StorageService {
 
   public File store(String id, String extension, byte[] data) throws IOException;
   
+  public String getReadLocation(String id);
+  
 }

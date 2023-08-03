@@ -1,8 +1,8 @@
 databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
-      id: 0101.transform_images
+      id: 0100.migrate_data_videos
       author: mia
       changes:
         - customChange:
-            { "class": "app.wooportal.server.base.db.ImageStorageMigration" }
+            { "class": "app.wooportal.server.base.db.VideoMigration" }

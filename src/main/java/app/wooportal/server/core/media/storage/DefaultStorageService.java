@@ -10,11 +10,11 @@ import app.wooportal.server.core.error.exception.NotFoundException;
 @Service
 public class DefaultStorageService implements StorageService {
   
-  private final StorageConfiguration storageConfig;
+  private final DefaultStorageConfiguration config;
   
   public DefaultStorageService(
-      StorageConfiguration storageConfig) {
-    this.storageConfig = storageConfig;
+      DefaultStorageConfiguration config) {
+    this.config = config;
   }
   
   @Override
@@ -33,7 +33,7 @@ public class DefaultStorageService implements StorageService {
 
   @Override
   public File store(String id, String extension, byte[] data) throws IOException {
-    Files.createDirectories(Paths.get(storageConfig.getLocation()));
+    Files.createDirectories(Paths.get(config.getWriteLocation()));
     var file = createFile(id, extension);
     Files.write(file.toPath(), data);
     
@@ -41,10 +41,15 @@ public class DefaultStorageService implements StorageService {
   }
   
   private File createFile(String id, String extension) {
-    var base = storageConfig.getLocation().endsWith("/")
-        ? storageConfig.getLocation()
-        : storageConfig.getLocation() + "/";
+    var base = config.getWriteLocation().endsWith("/")
+        ? config.getWriteLocation()
+        : config.getWriteLocation() + "/";
     return new File(base + id +  "." + extension);
+  }
+
+  @Override
+  public String getReadLocation(String id) {
+    return config.getReadLocation() + "/" + id;
   }
 
 }
