@@ -20,14 +20,15 @@ databaseChangeLog:
             comment: Add media
             splitStatements: true
             sql:                           
-               insert into media (`id`, `extension`, `size`, `name`, `mime_type`, `attribution_id`) values
-               ('3e791600-8e00-4069-a060-4862c44da93b', 'png', 31900, 'logo', 'image/png', 'cd229c59-eded-4ce6-bf64-4c1e119c8b2a'),
-               ('1774bd91-1698-4c4a-8f16-3a0a98fdef32', 'jpg', 83900, 'landing', 'image/jpg', null),
-               ('fc8a64b5-7335-4309-a5c1-e9d2de53c338', 'ico', 1800, 'favicon', 'image/ico', null),
-               ('6c92cfcd-d65d-47d9-bdc5-b8004afe916c', 'png', 15000, 'logoText', 'image/png', null),
-               ('0c7ad542-6aed-4613-8739-e4cd0db2ce2f', 'jpg', 83900, 'contest', 'image/jpg', null),
-               ('1737d307-da5f-4bb4-9148-08c13beab44a', 'pdf', 6500, 'test pdf', 'application/pdf', null),
-               ('b4f06e96-7271-48f6-9223-29f9b7baa1f6', 'jpg', 83900, 'organisation-title', 'image/jpg', null),
-               ('0b4cb5ff-1802-496a-8b18-a4e3c5608fba', 'mp4', 30000000, 'Rick Roll', 'video/mp4', null),
-               ('32630107-fd88-4b82-967e-3ad3128527e5', 'mp4', 2000000, 'Subscribe', 'video/mp4', null),
-               ('8ce57895-53c6-4af2-95eb-69dc8a4ee658', 'docx', 4300, 'test word', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', null);
+               insert into media (`id`, `extension`, `size`, `name`, `mime_type`, `attribution_id`, `url`) values
+               ('3e791600-8e00-4069-a060-4862c44da93b', 'png', 31900, 'logo', 'image/png', 'cd229c59-eded-4ce6-bf64-4c1e119c8b2a', null),
+               ('1774bd91-1698-4c4a-8f16-3a0a98fdef32', 'jpg', 83900, 'landing', 'image/jpg', null, null),
+               ('fc8a64b5-7335-4309-a5c1-e9d2de53c338', 'ico', 1800, 'favicon', 'image/ico', null, null),
+               ('6c92cfcd-d65d-47d9-bdc5-b8004afe916c', 'png', 15000, 'logoText', 'image/png', null, null),
+               ('0c7ad542-6aed-4613-8739-e4cd0db2ce2f', 'jpg', 83900, 'contest', 'image/jpg', null, null),
+               ('1737d307-da5f-4bb4-9148-08c13beab44a', 'pdf', 6500, 'test pdf', 'application/pdf', null, null),
+               ('b4f06e96-7271-48f6-9223-29f9b7baa1f6', 'jpg', 83900, 'organisation-title', 'image/jpg', null, null),
+               ('0b4cb5ff-1802-496a-8b18-a4e3c5608fba', 'mp4', 30000000, 'Rick Roll', 'video/mp4', null, null),
+               ('32630107-fd88-4b82-967e-3ad3128527e5', 'mp4', 2000000, 'Subscribe', 'video/mp4', null, null),
+               ('8ce57895-53c6-4af2-95eb-69dc8a4ee658', 'docx', 4300, 'test word', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', null, null),
+               ('88bd9809-b153-4de8-9158-d740a10ab810', 'mp4', null, 'Youtube Rick Roll', 'video/mp4', null, 'https://www.youtube.com/embed/dQw4w9WgXcQ');

@@ -52,6 +52,8 @@ public class MediaService extends DataService<MediaEntity, MediaPredicateBuilder
     this.mimeTypeService = mimeTypeService;
     this.storageService = storageService;
   }
+  
+  //TODO: preSave transform youtube videos to embed videos, see class VideoMigration.java (line 84)
 
   @Override
   public void postSave(MediaEntity entity, MediaEntity newEntity, JsonNode context) {

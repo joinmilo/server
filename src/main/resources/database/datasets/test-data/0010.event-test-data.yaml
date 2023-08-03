@@ -119,7 +119,8 @@ databaseChangeLog:
                ('113e13c4-c6d7-401b-b6fe-87d3c256293d', '1737d307-da5f-4bb4-9148-08c13beab44a', '0c3cf6f6-8337-492b-90e6-4db0bbc14aa9', false, false),
                ('32fd4a58-173b-4aa0-bfad-05c9c21cba5a', '0b4cb5ff-1802-496a-8b18-a4e3c5608fba', '0c3cf6f6-8337-492b-90e6-4db0bbc14aa9', false, false),
                ('2126ce88-f76c-4b5f-b1de-63d5ba9955d3', '32630107-fd88-4b82-967e-3ad3128527e5', '0c3cf6f6-8337-492b-90e6-4db0bbc14aa9', false, false),
-               ('8bdac738-ee51-411f-b36c-5b0556acfafe', '8ce57895-53c6-4af2-95eb-69dc8a4ee658', '0c3cf6f6-8337-492b-90e6-4db0bbc14aa9', false, false);
+               ('8bdac738-ee51-411f-b36c-5b0556acfafe', '8ce57895-53c6-4af2-95eb-69dc8a4ee658', '0c3cf6f6-8337-492b-90e6-4db0bbc14aa9', false, false),
+               ('779fae3c-0388-4c5a-989a-f74631055bb7', '88bd9809-b153-4de8-9158-d740a10ab810', '0c3cf6f6-8337-492b-90e6-4db0bbc14aa9', false, false);
                
   - changeSet:
       id: 0010.test-data.10

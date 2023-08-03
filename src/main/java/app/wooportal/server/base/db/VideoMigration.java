@@ -81,7 +81,7 @@ public class VideoMigration implements CustomTaskChange {
         writeMediaStatement.setString(2, result.getString("created"));
         writeMediaStatement.setString(3, result.getString("modified"));
         writeMediaStatement.setString(4, result.getString("thumbnail_id"));
-        writeMediaStatement.setString(5, url);
+        writeMediaStatement.setString(5, url.replace("watch?v=","embed/").replace("youtu.be", "youtube.com/embed"));
         
         writeMediaStatement.executeUpdate();
         
