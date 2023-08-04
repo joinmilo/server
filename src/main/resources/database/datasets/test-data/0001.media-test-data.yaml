@@ -22,7 +22,7 @@ databaseChangeLog:
             sql:                           
                insert into media (`id`, `extension`, `size`, `name`, `mime_type`, `attribution_id`, `url`) values
                ('3e791600-8e00-4069-a060-4862c44da93b', 'png', 31900, 'logo', 'image/png', 'cd229c59-eded-4ce6-bf64-4c1e119c8b2a', null),
-               ('1774bd91-1698-4c4a-8f16-3a0a98fdef32', 'jpg', 83900, 'landing', 'image/jpg', null, null),
+               ('1774bd91-1698-4c4a-8f16-3a0a98fdef32', 'jpg', 83900, 'landing', 'image/jpg', 'cd229c59-eded-4ce6-bf64-4c1e119c8b2a', null),
                ('fc8a64b5-7335-4309-a5c1-e9d2de53c338', 'ico', 1800, 'favicon', 'image/ico', null, null),
                ('6c92cfcd-d65d-47d9-bdc5-b8004afe916c', 'png', 15000, 'logoText', 'image/png', null, null),
                ('0c7ad542-6aed-4613-8739-e4cd0db2ce2f', 'jpg', 83900, 'contest', 'image/jpg', null, null),
