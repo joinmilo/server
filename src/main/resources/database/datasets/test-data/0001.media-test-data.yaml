@@ -31,4 +31,17 @@ databaseChangeLog:
                ('0b4cb5ff-1802-496a-8b18-a4e3c5608fba', 'mp4', 30000000, 'Rick Roll', 'video/mp4', null, null),
                ('32630107-fd88-4b82-967e-3ad3128527e5', 'mp4', 2000000, 'Subscribe', 'video/mp4', null, null),
                ('8ce57895-53c6-4af2-95eb-69dc8a4ee658', 'docx', 4300, 'test word', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', null, null),
-               ('88bd9809-b153-4de8-9158-d740a10ab810', 'mp4', null, 'Youtube Rick Roll', 'video/mp4', null, 'https://www.youtube.com/embed/dQw4w9WgXcQ');
+               ('88bd9809-b153-4de8-9158-d740a10ab810', 'mp4', null, 'Youtube Rick Roll', 'video/mp4', null, 'https://www.youtube.com/embed/dQw4w9WgXcQ'),
+               ('e931b0bd-021e-4252-aff5-bd9879304c4e', 'mp4', null, 'How to write', 'video/mp4', null, 'https://www.youtube.com/embed/oYigtVb3dWE'),
+               ('2a460921-3f84-4bdc-a926-b0902127ff17', 'mp4', null, 'How to cook healthy', 'video/mp4', null, 'https://www.youtube.com/embed/c1EpTfvPc84'),
+               
+               ('ea86d82b-9d7f-45ac-b99d-2360fae7d730', 'mp4', null, 'Hardest climb', 'video/mp4', null, 'https://www.youtube.com/watch?v=ZRTNHDd0gL8'),
+               ('a1d4f2ee-c67b-4ef3-963d-38f71b5f4f41', 'mp4', null, 'Good music', 'video/mp4', null, 'https://www.youtube.com/embed/dQw4w9WgXcQ'),
+               ('d6c531d8-cbb2-4bee-a9cb-823510b3085f', 'mp4', 2000000, 'Subscribe II', 'video/mp4', null, null),
+               
+               ('2ea9521b-4ac0-4b10-b883-b030cd0fa18c', 'pdf', 6500, 'Application template', 'application/pdf', null, null),
+               ('44ba1be5-d634-4b73-9330-d0783d5f409b', 'docx', 4300, 'CV template', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', null, null),
+               ('e3844f75-588f-4ec3-9fc0-ede76ad7bc0e', 'mp4', null, 'Tipps Jobs Interview', 'video/mp4', null, 'https://www.youtube.com/embed/HG68Ymazo18'),
+               
+               ('75e9cbb2-cb11-484f-8023-034b80f78588', 'jpg', 73000, 'Leute in Wuppertal', 'image/jpg', null, null),
+               ('65cae657-4feb-4210-8377-cb494b2575d2', 'jpg', 73000, 'Wuppertal Schwebebahn', 'image/jpg', null, 'https://images.pexels.com/photos/15821983/pexels-photo-15821983/free-photo-of-suspension-railway-in-wuppertal.jpeg');

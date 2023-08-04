@@ -24,10 +24,6 @@ import lombok.Setter;
 public class InfoMediaCategoryEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
-
-  private String color;
-  
-  private String icon;
   
   @Translatable
   private String name;

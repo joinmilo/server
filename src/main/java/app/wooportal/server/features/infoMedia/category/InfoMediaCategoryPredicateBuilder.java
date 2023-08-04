@@ -14,6 +14,6 @@ public class InfoMediaCategoryPredicateBuilder
 
   @Override
   public BooleanExpression freeSearch(String term) {
-    return null;
+    return query.name.likeIgnoreCase(term);
   }
 }

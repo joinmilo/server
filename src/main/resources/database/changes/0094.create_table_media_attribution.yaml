@@ -1,7 +1,7 @@
 databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
-      id: 0097.create_table_media_attribution.1
+      id: 0094.create_table_media_attribution.1
       author: codeschluss
       changes:
         - createTable:

@@ -13,12 +13,10 @@ public class InfoMediaPredicateBuilder extends PredicateBuilder<QInfoMediaEntity
 
   @Override
   public BooleanExpression freeSearch(String term) {
-    return query.videoChatLink.likeIgnoreCase(term)
-        .or(query.metaDescription.likeIgnoreCase(term))
-        .or(query.slug.likeIgnoreCase(term))
-        .or(query.translatables.any().content.likeIgnoreCase(term))
-        .or(query.translatables.any().name.likeIgnoreCase(term))
-        .or(query.translatables.any().shortDescription.likeIgnoreCase(term))
+    return query.media.name.likeIgnoreCase(term)
+        .or(query.media.extension.likeIgnoreCase(term))
+        .or(query.media.mimeType.likeIgnoreCase(term))
+        .or(query.media.url.likeIgnoreCase(term))
         .or(query.category.translatables.any().name.likeIgnoreCase(term));
   }
 }

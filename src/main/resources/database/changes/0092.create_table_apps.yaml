@@ -1,7 +1,7 @@
 databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
-      id: 0095.create_table_apps.1
+      id: 0092.create_table_apps.1
       author: codeschluss
       changes:
         - createTable:
@@ -45,7 +45,7 @@ databaseChangeLog:
             splitStatements: true
             sql: ALTER TABLE app_platforms CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
   - changeSet:
-      id: 0095.create_table_apps.2
+      id: 0092.create_table_apps.2
       author: codeschluss
       changes:
         - createTable:
@@ -89,7 +89,7 @@ databaseChangeLog:
             sql: ALTER TABLE apps CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
             
   - changeSet:
-      id: 0095.create_table_apps.3
+      id: 0092.create_table_apps.3
       author: codeschluss
       changes:
         - createIndex:
@@ -99,7 +99,7 @@ databaseChangeLog:
             indexName: idx_fkozl3n2u8tkokye3gtrxfcuboe
             tableName: apps
   - changeSet:
-      id: 0095.create_table_apps.4
+      id: 0092.create_table_apps.4
       author: codeschluss
       changes:
         - addForeignKeyConstraint:

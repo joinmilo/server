@@ -1,7 +1,7 @@
 databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
-      id: 0099.transform_images
+      id: 0096.transform_images
       author: mia
       changes:
         - customChange:

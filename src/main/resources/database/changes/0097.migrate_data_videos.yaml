@@ -1,7 +1,7 @@
 databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
-      id: 0100.migrate_data_videos
+      id: 0097.migrate_data_videos
       author: mia
       changes:
         - customChange:

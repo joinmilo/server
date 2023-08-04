@@ -167,21 +167,27 @@ databaseChangeLog:
     - include:
         file: database/changes/0090.create_table_password_resets.yaml
     - include:
-        file: database/changes/0094.create_table_error_messages.yaml
+        file: database/changes/0091.create_table_error_messages.yaml
     - include:
-        file: database/changes/0095.create_table_apps.yaml
+        file: database/changes/0092.create_table_apps.yaml
     - include:
-        file: database/changes/0096.transform_short_descriptions.yaml
+        file: database/changes/0093.transform_short_descriptions.yaml
     - include:
-        file: database/changes/0097.create_table_media_attribution.yaml
+        file: database/changes/0094.create_table_media_attribution.yaml
     - include:
-        file: database/changes/0098.migrate_table_images.yaml
+        file: database/changes/0095.migrate_table_images.yaml
     - include:
-        file: database/changes/0099.transform_images.yaml
+        file: database/changes/0096.transform_images.yaml
     - include:
-        file: database/changes/0100.migrate_data_videos.yaml
+        file: database/changes/0097.migrate_data_videos.yaml
     - include:
-        file: database/changes/0102.add_constraint_media-extension.yaml
+        file: database/changes/0098.add_constraint_media-extension.yaml
+    - include:
+        file: database/changes/0099.create_table_info_media_categories.yaml
+    - include:
+        file: database/changes/0100.create_table_info_media_category_translatables.yaml
+    - include:
+        file: database/changes/0101.create_table_info_media.yaml
     - include:
         file: database/changes/0103.create_table_report_types.yaml          
     - include:
@@ -284,4 +290,6 @@ databaseChangeLog:
         file: database/datasets/test-data/0014.survey-test-data.yaml
     - include:
         file: database/datasets/test-data/0015.favorites-test-data.yaml
+    - include:
+        file: database/datasets/test-data/0016.info_media-test-data.yaml
                                                               

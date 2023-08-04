@@ -1,7 +1,7 @@
 databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
-      id: 0094.create_table_error_messages.1
+      id: 0091.create_table_error_messages.1
       author: codeschluss
       changes:
         - createTable:
@@ -48,7 +48,7 @@ databaseChangeLog:
             splitStatements: true
             sql: ALTER TABLE error_messages CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;            
   - changeSet:
-      id: 0094.create_table_error_messages.2
+      id: 0091.create_table_error_messages.2
       author: codeschluss
       changes:
         - addForeignKeyConstraint:

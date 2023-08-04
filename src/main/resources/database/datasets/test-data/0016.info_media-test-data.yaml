@@ -1,0 +1,89 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+
+  - changeSet:
+      id: 0016.info_media-test-data.1
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add info_media_categories
+            splitStatements: true
+            sql:
+               insert into info_media_categories (`id`) values
+               ('f0455693-8df6-4a03-b8ce-04f799c7c38e'),
+               ('00b378a1-0030-4eda-91d8-eece9f609a5f'),
+               ('47a71029-cc3f-4cd0-af51-871edc8023cc'),
+               ('2c9a1bf4-5cf7-44d7-a7df-6c20aed2c5e6');
+               
+  - changeSet:
+      id: 0016.info_media-test-data.2
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add info_media_category_translatables
+            splitStatements: true
+            sql:
+               insert into info_media_category_translatables (id, parent_id, language_id, name)
+               select uuid(), "f0455693-8df6-4a03-b8ce-04f799c7c38e", l.id, "Bildung"
+               from languages l
+               WHERE l.locale = "de";
+               
+               insert into info_media_category_translatables (id, parent_id, language_id, name)
+               select uuid(), "f0455693-8df6-4a03-b8ce-04f799c7c38e", l.id, "Education"
+               from languages l
+               WHERE l.locale = "en";
+               
+               insert into info_media_category_translatables (id, parent_id, language_id, name)
+               select uuid(), "00b378a1-0030-4eda-91d8-eece9f609a5f", l.id, "Unterhaltung"
+               from languages l
+               WHERE l.locale = "de";
+               
+               insert into info_media_category_translatables (id, parent_id, language_id, name)
+               select uuid(), "00b378a1-0030-4eda-91d8-eece9f609a5f", l.id, "Entertainment"
+               from languages l
+               WHERE l.locale = "en";
+               
+               insert into info_media_category_translatables (id, parent_id, language_id, name)
+               select uuid(), "47a71029-cc3f-4cd0-af51-871edc8023cc", l.id, "Unsere Stadt"
+               from languages l
+               WHERE l.locale = "de";
+               
+               insert into info_media_category_translatables (id, parent_id, language_id, name)
+               select uuid(), "47a71029-cc3f-4cd0-af51-871edc8023cc", l.id, "Our city"
+               from languages l
+               WHERE l.locale = "en";
+               
+               insert into info_media_category_translatables (id, parent_id, language_id, name)
+               select uuid(), "2c9a1bf4-5cf7-44d7-a7df-6c20aed2c5e6", l.id, "Bewerbungen"
+               from languages l
+               WHERE l.locale = "de";
+               
+               insert into info_media_category_translatables (id, parent_id, language_id, name)
+               select uuid(), "2c9a1bf4-5cf7-44d7-a7df-6c20aed2c5e6", l.id, "Applications"
+               from languages l
+               WHERE l.locale = "en";
+               
+  - changeSet:
+      id: 0016.info_media-test-data.3
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add favorite organisations
+            splitStatements: true
+            sql:
+               insert into info_media (`id`, `category_id`, `media_id`) values
+               ('bde89a1c-284c-4917-919c-cfc804382264', 'f0455693-8df6-4a03-b8ce-04f799c7c38e', 'e931b0bd-021e-4252-aff5-bd9879304c4e'),
+               ('bd7a9b9a-b286-4e14-b063-b35bee1f8163', 'f0455693-8df6-4a03-b8ce-04f799c7c38e', '2a460921-3f84-4bdc-a926-b0902127ff17'),
+               
+               ('8cf7bd7c-58ce-47a3-802f-f3026f0a68f2', '00b378a1-0030-4eda-91d8-eece9f609a5f', 'ea86d82b-9d7f-45ac-b99d-2360fae7d730'),
+               ('323d5634-eeb0-4031-a39c-a2e0435f5a5b', '00b378a1-0030-4eda-91d8-eece9f609a5f', 'a1d4f2ee-c67b-4ef3-963d-38f71b5f4f41'),
+               ('941ce1d9-d2bc-48f1-a8c4-fe48f5f95088', '00b378a1-0030-4eda-91d8-eece9f609a5f', 'd6c531d8-cbb2-4bee-a9cb-823510b3085f'),
+               
+               ('661de2bc-3be0-4d7f-b954-acc494fb7bd4', '47a71029-cc3f-4cd0-af51-871edc8023cc', '75e9cbb2-cb11-484f-8023-034b80f78588'),
+               ('8626e571-c3e7-4e27-bb21-f685db2928ea', '00b378a1-0030-4eda-91d8-eece9f609a5f', '65cae657-4feb-4210-8377-cb494b2575d2'),
+               
+               ('db1351eb-3695-4162-bdb2-04d2a7ce916d', '00b378a1-0030-4eda-91d8-eece9f609a5f', '2ea9521b-4ac0-4b10-b883-b030cd0fa18c'),
+               ('115ad689-6aab-4caa-8957-d2e9114b3c60', '00b378a1-0030-4eda-91d8-eece9f609a5f', '44ba1be5-d634-4b73-9330-d0783d5f409b'),
+               ('c489de4a-fff7-49ba-aac1-e0a1b4b23e8f', '00b378a1-0030-4eda-91d8-eece9f609a5f', 'e3844f75-588f-4ec3-9fc0-ede76ad7bc0e');
+               
+               
