@@ -9,7 +9,7 @@ databaseChangeLog:
         - sql:  
             ALTER TABLE events DROP FOREIGN KEY CONSTRAINT_E66193E8; 
         - sql:  
-            ALTER TABLE articles DROP FOREIGN KEY CONSTRAINT_LWCH48H6;                        
+            ALTER TABLE articles DROP FOREIGN KEY CONSTRAINT_LWCH48H6;
             
   - changeSet:
       id: 0000.drops.2
@@ -20,7 +20,7 @@ databaseChangeLog:
           tableName: users
       - dropColumn:
           columnName: language_id
-          tableName: subscriptions      
+          tableName: subscriptions
       - dropColumn:
           columnName: provider_id
           tableName: events        
@@ -63,6 +63,18 @@ databaseChangeLog:
         - dropTable:
             cascadeConstraints: true
             tableName: blog_likes
+        - dropTable:
+            cascadeConstraints: true
+            tableName: bloggers
+        - dropTable:
+            cascadeConstraints: true
+            tableName: organisation_videos
+        - dropTable:
+            cascadeConstraints: true
+            tableName: markup_videos
+        - dropTable:
+            cascadeConstraints: true
+            tableName: videos
 
   - changeSet:
       id: 0000.drops.4

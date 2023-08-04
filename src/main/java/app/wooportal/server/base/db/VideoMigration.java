@@ -43,6 +43,7 @@ public class VideoMigration implements CustomTaskChange {
     connection = (JdbcConnection) database.getConnection();
     try {
       migrateOrganisationVideos();
+      migratePageVideos();
     } catch (Exception e) {
       var sw = new StringWriter();
       e.printStackTrace(new PrintWriter(sw));
@@ -95,7 +96,52 @@ public class VideoMigration implements CustomTaskChange {
       }
     }
   }
-
+  
+  private void migratePageVideos() throws DatabaseException, SQLException, IOException {    
+    var statement = connection.createStatement();
+    var result = statement.executeQuery("""
+        SELECT
+            mv.id as "mv.id",
+            v.id as "v.id",
+            mv.markup_id,
+            v.created,
+            v.modified,
+            v.thumbnail_id,
+            v.url
+        FROM wooportal.markup_videos mv
+        LEFT JOIN videos v on v.id = mv.video_id;
+      """);
+    
+    var writeMediaStatement = connection.prepareStatement(
+        "INSERT INTO media (id, created, modified, thumbnail_id, url, mime_type, extension) VALUES (?, ?, ?, ?, ?, 'video/mp4', 'mp4');");
+    var writePageMediaStatement = connection.prepareStatement(
+        "INSERT INTO page_media (id, created, modified, page_id, media_id) VALUES (?, ?, ?, ?, ?);");
+    
+    connection.setAutoCommit(true);
+    
+    while (result.next()) {
+      var url = result.getString("url");
+      
+      if (isValidYoutubeLink(url)) {
+        writeMediaStatement.setString(1, result.getString("v.id"));
+        writeMediaStatement.setString(2, result.getString("created"));
+        writeMediaStatement.setString(3, result.getString("modified"));
+        writeMediaStatement.setString(4, result.getString("thumbnail_id"));
+        writeMediaStatement.setString(5, url.replace("watch?v=","embed/").replace("youtu.be", "youtube.com/embed"));
+        
+        writeMediaStatement.executeUpdate();
+        
+        writePageMediaStatement.setString(1, result.getString("mv.id"));
+        writePageMediaStatement.setString(2, result.getString("created"));
+        writePageMediaStatement.setString(3, result.getString("modified"));
+        writePageMediaStatement.setString(4, result.getString("markup_id"));
+        writePageMediaStatement.setString(5, result.getString("v.id"));
+        
+        writePageMediaStatement.executeUpdate();
+      }
+    }
+  }
+  
   private boolean isValidYoutubeLink(String url) {
     var youtubeRegex = "^(?:https?://)?(?:www\\.)?(?:youtube\\.com|youtu\\.be)/(?:watch\\?v=|embed/|v/)?([a-zA-Z0-9_-]{11})";
     var pattern = Pattern.compile(youtubeRegex);
