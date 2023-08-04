@@ -16,8 +16,8 @@ import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 @Component
 public class LanguageApi extends CrudApi<LanguageEntity, LanguageService> {
 
-  public LanguageApi(LanguageService userService) {
-    super(userService);
+  public LanguageApi(LanguageService service) {
+    super(service);
   }
 
   @Override

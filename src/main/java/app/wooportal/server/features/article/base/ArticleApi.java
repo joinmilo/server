@@ -26,10 +26,10 @@ public class ArticleApi extends CrudApi<ArticleEntity, ArticleService> {
   private final RatingService ratingService;
   private final ArticleCommentService commentService;
 
-  public ArticleApi(ArticleService userService,
+  public ArticleApi(ArticleService service,
       RatingService ratingService,
       ArticleCommentService commentService) {
-    super(userService);
+    super(service);
     
     this.ratingService = ratingService;
     this.commentService = commentService;

@@ -16,9 +16,8 @@ import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 @Component
 public class ArticlePublicAuthorApi extends CrudApi<ArticlePublicAuthorEntity, ArticlePublicAuthorService> {
 
-
-  public ArticlePublicAuthorApi(ArticlePublicAuthorService userService) {
-    super(userService);
+  public ArticlePublicAuthorApi(ArticlePublicAuthorService service) {
+    super(service);
   }
 
   @Override

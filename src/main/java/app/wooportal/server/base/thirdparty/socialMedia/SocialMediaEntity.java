@@ -1,12 +1,8 @@
-package app.wooportal.server.base.external.app;
+package app.wooportal.server.base.thirdparty.socialMedia;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import app.wooportal.server.base.external.appPlatform.AppPlatformEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -19,16 +15,18 @@ import lombok.Setter;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @AllArgsConstructor
 @Entity
-@Table(name = "apps")
-public class AppEntity extends BaseEntity {
+@Table(name = "social_media")
+public class SocialMediaEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
-
-  @Column(nullable = false, unique = true)
-  private String url;
   
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(nullable = false)
-  private AppPlatformEntity platform;
+  @Column(nullable = false)
+  private String icon;
+
+  @Column(nullable = false)
+  private String name;
+
+  @Column(nullable = false)
+  private String url;
 
 }

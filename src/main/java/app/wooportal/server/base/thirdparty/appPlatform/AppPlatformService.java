@@ -1,4 +1,4 @@
-package app.wooportal.server.base.external.appPlatform;
+package app.wooportal.server.base.thirdparty.appPlatform;
 
 import org.springframework.stereotype.Service;
 import app.wooportal.server.core.base.DataService;

@@ -16,8 +16,8 @@ import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 @Component
 public class ContactApi extends CrudApi<ContactEntity, ContactService> {
 
-  public ContactApi(ContactService userService) {
-    super(userService);
+  public ContactApi(ContactService service) {
+    super(service);
   }
 
   @Override

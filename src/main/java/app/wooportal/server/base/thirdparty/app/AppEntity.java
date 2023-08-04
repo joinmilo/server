@@ -1,8 +1,12 @@
-package app.wooportal.server.base.external.appPlatform;
+package app.wooportal.server.base.thirdparty.app;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import app.wooportal.server.base.thirdparty.appPlatform.AppPlatformEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -15,15 +19,16 @@ import lombok.Setter;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @AllArgsConstructor
 @Entity
-@Table(name = "app_platforms")
-public class AppPlatformEntity extends BaseEntity {
+@Table(name = "apps")
+public class AppEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
-  
+
   @Column(nullable = false, unique = true)
-  private String name;
+  private String url;
   
-  @Column(nullable = false, unique = true)
-  private String key;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(nullable = false)
+  private AppPlatformEntity platform;
 
 }

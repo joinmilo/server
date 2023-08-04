@@ -16,9 +16,8 @@ import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 @Component
 public class ArticleCategoryApi extends CrudApi<ArticleCategoryEntity, ArticleCategoryService> {
 
-
-  public ArticleCategoryApi(ArticleCategoryService userService) {
-    super(userService);
+  public ArticleCategoryApi(ArticleCategoryService service) {
+    super(service);
   }
 
   @Override

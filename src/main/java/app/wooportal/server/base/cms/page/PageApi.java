@@ -16,8 +16,8 @@ import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 @Component
 public class PageApi extends CrudApi<PageEntity, PageService> {
 
-  public PageApi(PageService userService) {
-    super(userService);
+  public PageApi(PageService service) {
+    super(service);
   }
 
   @Override

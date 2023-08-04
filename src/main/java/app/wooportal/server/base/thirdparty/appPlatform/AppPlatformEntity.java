@@ -1,4 +1,4 @@
-package app.wooportal.server.base.external.socialMedia;
+package app.wooportal.server.base.thirdparty.appPlatform;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,18 +15,15 @@ import lombok.Setter;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @AllArgsConstructor
 @Entity
-@Table(name = "social_media")
-public class SocialMediaEntity extends BaseEntity {
+@Table(name = "app_platforms")
+public class AppPlatformEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
   
-  @Column(nullable = false)
-  private String icon;
-
-  @Column(nullable = false)
+  @Column(nullable = false, unique = true)
   private String name;
-
-  @Column(nullable = false)
-  private String url;
+  
+  @Column(nullable = false, unique = true)
+  private String key;
 
 }

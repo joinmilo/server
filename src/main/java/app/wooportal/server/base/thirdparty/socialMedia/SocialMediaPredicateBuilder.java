@@ -1,7 +1,8 @@
-package app.wooportal.server.base.external.socialMedia;
+package app.wooportal.server.base.thirdparty.socialMedia;
 
 import org.springframework.stereotype.Service;
 import com.querydsl.core.types.dsl.BooleanExpression;
+import app.wooportal.server.base.external.socialMedia.QSocialMediaEntity;
 import app.wooportal.server.core.base.PredicateBuilder;
 
 @Service

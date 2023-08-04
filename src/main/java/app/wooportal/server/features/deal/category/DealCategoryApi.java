@@ -16,9 +16,8 @@ import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 @Component
 public class DealCategoryApi extends CrudApi<DealCategoryEntity, DealCategoryService> {
 
-
-  public DealCategoryApi(DealCategoryService userService) {
-    super(userService);
+  public DealCategoryApi(DealCategoryService service) {
+    super(service);
   }
 
   @Override

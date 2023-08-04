@@ -16,8 +16,8 @@ import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 @Component
 public class LabelApi extends CrudApi<LabelEntity, LabelService> {
 
-  public LabelApi(LabelService userService) {
-    super(userService);
+  public LabelApi(LabelService service) {
+    super(service);
   }
 
   @Override

@@ -16,8 +16,8 @@ import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 @Component
 public class ThemeApi extends CrudApi<ThemeEntity, ThemeService> {
 
-  public ThemeApi(ThemeService userService) {
-    super(userService);
+  public ThemeApi(ThemeService service) {
+    super(service);
   }
 
   @Override

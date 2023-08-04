@@ -1,7 +1,8 @@
-package app.wooportal.server.base.external.app;
+package app.wooportal.server.base.thirdparty.app;
 
 import org.springframework.stereotype.Service;
 import com.querydsl.core.types.dsl.BooleanExpression;
+import app.wooportal.server.base.external.app.QAppEntity;
 import app.wooportal.server.core.base.PredicateBuilder;
 
 @Service

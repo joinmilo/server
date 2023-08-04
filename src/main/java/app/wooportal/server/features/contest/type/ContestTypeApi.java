@@ -16,9 +16,8 @@ import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 @Component
 public class ContestTypeApi extends CrudApi<ContestTypeEntity, ContestTypeService> {
 
-
-  public ContestTypeApi(ContestTypeService userService) {
-    super(userService);
+  public ContestTypeApi(ContestTypeService service) {
+    super(service);
   }
 
   @Override

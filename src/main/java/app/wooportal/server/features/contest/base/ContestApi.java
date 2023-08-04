@@ -21,8 +21,10 @@ public class ContestApi extends CrudApi<ContestEntity, ContestService> {
 
   private final ContestCommentService commentService;
   
-  public ContestApi(ContestService userService, ContestCommentService commentService) {
-    super(userService);
+  public ContestApi(
+      ContestService service,
+      ContestCommentService commentService) {
+    super(service);
     
     this.commentService = commentService;
   }

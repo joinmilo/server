@@ -26,10 +26,10 @@ public class OrganisationApi extends CrudApi<OrganisationEntity, OrganisationSer
   private final RatingService ratingService;
   private final OrganisationCommentService commentService;
 
-  public OrganisationApi(OrganisationService userService,
+  public OrganisationApi(OrganisationService service,
       RatingService ratingService, 
       OrganisationCommentService commentService) {
-    super(userService);
+    super(service);
 
     this.ratingService = ratingService;
     this.commentService = commentService;

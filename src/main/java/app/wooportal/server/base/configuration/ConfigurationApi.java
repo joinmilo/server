@@ -16,8 +16,8 @@ import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 @Component
 public class ConfigurationApi extends CrudApi<ConfigurationEntity, ConfigurationService> {
 
-  public ConfigurationApi(ConfigurationService userService) {
-    super(userService);
+  public ConfigurationApi(ConfigurationService service) {
+    super(service);
   }
 
   @Override

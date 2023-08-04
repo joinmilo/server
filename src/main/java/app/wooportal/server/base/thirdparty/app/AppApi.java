@@ -1,4 +1,4 @@
-package app.wooportal.server.base.external.app;
+package app.wooportal.server.base.thirdparty.app;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,8 +16,8 @@ import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 @Component
 public class AppApi extends CrudApi<AppEntity, AppService> {
 
-  public AppApi(AppService userService) {
-    super(userService);
+  public AppApi(AppService service) {
+    super(service);
   }
 
   @Override

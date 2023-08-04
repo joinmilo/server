@@ -16,9 +16,8 @@ import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 @Component
 public class AddressApi extends CrudApi<AddressEntity, AddressService> {
 
-
-  public AddressApi(AddressService userService) {
-    super(userService);
+  public AddressApi(AddressService service) {
+    super(service);
   }
 
   @Override

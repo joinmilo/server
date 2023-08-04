@@ -16,8 +16,8 @@ import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 public class ArticleCommentApi extends CrudApi<ArticleCommentEntity, ArticleCommentService> {
 
 
-  public ArticleCommentApi(ArticleCommentService userService) {
-    super(userService);
+  public ArticleCommentApi(ArticleCommentService service) {
+    super(service);
   }
 
   @Override

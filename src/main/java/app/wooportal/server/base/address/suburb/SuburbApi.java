@@ -16,9 +16,8 @@ import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 @Component
 public class SuburbApi extends CrudApi<SuburbEntity, SuburbService> {
 
-
-  public SuburbApi(SuburbService userService) {
-    super(userService);
+  public SuburbApi(SuburbService service) {
+    super(service);
   }
 
   @Override

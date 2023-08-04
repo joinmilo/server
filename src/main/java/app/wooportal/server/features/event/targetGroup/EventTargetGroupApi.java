@@ -15,9 +15,8 @@ import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 @Component
 public class EventTargetGroupApi extends CrudApi<EventTargetGroupEntity, EventTargetGroupService> {
 
-
-  public EventTargetGroupApi(EventTargetGroupService userService) {
-    super(userService);
+  public EventTargetGroupApi(EventTargetGroupService service) {
+    super(service);
   }
 
   @Override

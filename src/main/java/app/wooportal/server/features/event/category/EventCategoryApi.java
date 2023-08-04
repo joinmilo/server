@@ -16,9 +16,8 @@ import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 @Component
 public class EventCategoryApi extends CrudApi<EventCategoryEntity, EventCategoryService> {
 
-
-  public EventCategoryApi(EventCategoryService userService) {
-    super(userService);
+  public EventCategoryApi(EventCategoryService service) {
+    super(service);
   }
 
   @Override

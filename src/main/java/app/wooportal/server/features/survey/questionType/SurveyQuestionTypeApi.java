@@ -16,8 +16,8 @@ import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 @Component
 public class SurveyQuestionTypeApi extends CrudApi<SurveyQuestionTypeEntity, SurveyQuestionTypeService> {
 
-  public SurveyQuestionTypeApi(SurveyQuestionTypeService userService) {
-    super(userService);
+  public SurveyQuestionTypeApi(SurveyQuestionTypeService service) {
+    super(service);
   }
 
   @Override

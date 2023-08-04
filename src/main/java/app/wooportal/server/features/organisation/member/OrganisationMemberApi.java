@@ -16,9 +16,8 @@ import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 @Component
 public class OrganisationMemberApi extends CrudApi<OrganisationMemberEntity, OrganisationMemberService> {
 
-
-  public OrganisationMemberApi(OrganisationMemberService userService) {
-    super(userService);
+  public OrganisationMemberApi(OrganisationMemberService service) {
+    super(service);
   }
 
   @Override
