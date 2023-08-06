@@ -7,7 +7,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import app.wooportal.server.core.base.BaseEntity;
-import app.wooportal.server.core.i18n.annotations.Translatable;
 import app.wooportal.server.core.media.base.MediaEntity;
 import app.wooportal.server.features.infoMedia.category.InfoMediaCategoryEntity;
 import lombok.AccessLevel;
@@ -26,9 +25,6 @@ import lombok.Setter;
 public class InfoMediaEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
-
-  @Translatable
-  private String name;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private InfoMediaCategoryEntity category;
