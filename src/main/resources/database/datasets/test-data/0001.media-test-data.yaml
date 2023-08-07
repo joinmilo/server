@@ -35,7 +35,7 @@ databaseChangeLog:
                ('e931b0bd-021e-4252-aff5-bd9879304c4e', 'mp4', null, 'How to write', 'video/mp4', null, 'https://www.youtube.com/embed/oYigtVb3dWE'),
                ('2a460921-3f84-4bdc-a926-b0902127ff17', 'mp4', null, 'How to cook healthy', 'video/mp4', null, 'https://www.youtube.com/embed/c1EpTfvPc84'),
                
-               ('ea86d82b-9d7f-45ac-b99d-2360fae7d730', 'mp4', null, 'Hardest climb', 'video/mp4', null, 'https://www.youtube.com/watch?v=ZRTNHDd0gL8'),
+               ('ea86d82b-9d7f-45ac-b99d-2360fae7d730', 'mp4', null, 'Hardest climb', 'video/mp4', null, 'https://www.youtube.com/embed/ZRTNHDd0gL8'),
                ('a1d4f2ee-c67b-4ef3-963d-38f71b5f4f41', 'mp4', null, 'Good music', 'video/mp4', null, 'https://www.youtube.com/embed/dQw4w9WgXcQ'),
                ('d6c531d8-cbb2-4bee-a9cb-823510b3085f', 'mp4', 2000000, 'Subscribe II', 'video/mp4', null, null),
                
