@@ -9,11 +9,14 @@ databaseChangeLog:
             comment: Add Landing Page and translatable
             splitStatements: true
             sql:
-                insert into pages (id, slug, meta_description, is_landing, call_url)
-                select "7cefc60c-8325-4861-90c7-97f1e8eeb290", "landing", null, true, "http://localhost:8010";
+                insert into pages (id, slug, meta_description, is_landing, call_url) values
+                ("7cefc60c-8325-4861-90c7-97f1e8eeb290", "landing", null, true, "http://localhost:8010"),
+                ("5e3ba845-01c1-43ef-969f-640ba23ee765", "test", null, false, "http://localhost:8010/portal/test");
                 
                 insert into page_media (id, media_id, page_id, title) values
-                (uuid(), "1774bd91-1698-4c4a-8f16-3a0a98fdef32", "7cefc60c-8325-4861-90c7-97f1e8eeb290", true);
+                (uuid(), "1774bd91-1698-4c4a-8f16-3a0a98fdef32", "7cefc60c-8325-4861-90c7-97f1e8eeb290", true),
+                (uuid(), "ea86d82b-9d7f-45ac-b99d-2360fae7d730", "5e3ba845-01c1-43ef-969f-640ba23ee765", false),
+                (uuid(), "8ce57895-53c6-4af2-95eb-69dc8a4ee658", "5e3ba845-01c1-43ef-969f-640ba23ee765", false);
                        
                 insert into page_translatables (id, `name`, short_description, call_text, parent_id, language_id)
                 select uuid(), "Wooportal", "Here you will find all event and news from your city", "Discover more", p.id, l.id
