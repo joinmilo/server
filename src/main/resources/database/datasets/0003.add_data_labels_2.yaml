@@ -2646,7 +2646,7 @@ databaseChangeLog:
                /*!40101 SET character_set_client = utf8 */;
                /* Set variables */
                SET @tagId   = "byShowAcceptTermsAndCondition";
-               SET @german  = "Durch das Anzeigen der externen Inhalte akzeptieren Sie die Allgemeinen Geschäftsbedingungen von";
+               SET @german  = "Durch das Anzeigen der externen Inhalte akzeptierst du die Allgemeinen Geschäftsbedingungen von";
                SET @english = "By showing the external content you accept the terms and condition of";
 
 
