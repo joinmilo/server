@@ -2572,7 +2572,7 @@ databaseChangeLog:
                AND l.locale = "en";   
                
   - changeSet:
-      id: 0003.add_data_labels.85
+      id: 0003.add_data_labels.86
       author: codeschluss
       changes:
         - sql:
@@ -2602,7 +2602,7 @@ databaseChangeLog:
                AND l.locale = "en";  
                
   - changeSet:
-      id: 0003.add_data_labels.86
+      id: 0003.add_data_labels.87
       author: codeschluss
       changes:
         - sql:
@@ -2632,7 +2632,7 @@ databaseChangeLog:
                AND l.locale = "en";  
                
   - changeSet:
-      id: 0003.add_data_labels.87
+      id: 0003.add_data_labels.88
       author: codeschluss
       changes:
         - sql:
@@ -2662,7 +2662,7 @@ databaseChangeLog:
                AND l.locale = "en";      
                
   - changeSet:
-      id: 0003.add_data_labels.88
+      id: 0003.add_data_labels.89
       author: codeschluss
       changes:
         - sql:
@@ -2692,7 +2692,7 @@ databaseChangeLog:
                AND l.locale = "en";  
                
   - changeSet:
-      id: 0003.add_data_labels.89
+      id: 0003.add_data_labels.90
       author: codeschluss
       changes:
         - sql:
@@ -2722,7 +2722,7 @@ databaseChangeLog:
                AND l.locale = "en";    
                
   - changeSet:
-      id: 0003.add_data_labels.90
+      id: 0003.add_data_labels.91
       author: codeschluss
       changes:
         - sql:
