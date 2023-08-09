@@ -27,7 +27,7 @@ public class SurveyStateEntity extends BaseEntity {
   private static final long serialVersionUID = 1L;
 
   @Column(nullable = false)
-  private String key;
+  private String keyword;
 
   @OneToMany(mappedBy = "state", fetch = FetchType.LAZY)
   private Set<SurveyEntity> survey;

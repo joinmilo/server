@@ -19,5 +19,4 @@ public class LocationConfiguration {
   private String serviceSubscriptionKey;
   private String addressUrl;
   private String routesUrl;
-
 }

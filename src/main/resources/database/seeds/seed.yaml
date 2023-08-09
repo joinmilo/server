@@ -92,7 +92,7 @@ databaseChangeLog:
                     unique: true
                   type: VARCHAR(255)
               - column:
-                  name: key
+                  name: keyword
                   constraints:
                     nullable: false
                     unique: true
@@ -179,7 +179,7 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                     unique: true
-                  name: key
+                  name: keyword
                   type: VARCHAR(255)
               - column:
                   constraints:

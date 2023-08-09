@@ -132,9 +132,9 @@ public class SearchService {
         : list;
   }
 
-  private FeatureEntity getFeature(String key, List<FeatureEntity> features) {
+  private FeatureEntity getFeature(String keyword, List<FeatureEntity> features) {
     for (var feature : features) {
-      if (feature.getKey().equals(key)) {
+      if (feature.getKeyword().equals(keyword)) {
         return feature;
       }
     }

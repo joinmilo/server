@@ -29,7 +29,7 @@ public class FeatureEntity extends BaseEntity {
   @Translatable
   private String name;
 
-  private String key;
+  private String keyword;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "feature")
   private Set<PageFeatureEntity> pageFeatures;

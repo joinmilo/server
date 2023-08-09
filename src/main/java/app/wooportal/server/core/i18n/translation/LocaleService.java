@@ -60,7 +60,7 @@ public class LocaleService {
   public String getDefaultLocale() {
     return configurationService.readOne(
         configurationService.singleQuery(
-            configurationService.getPredicate().withKey("defaultLocale")))
+            configurationService.getPredicate().withKeyword("defaultLocale")))
     .map(config -> config.getValue())
     .orElseGet(() -> staticConfig.getDefaultLocale());
   }

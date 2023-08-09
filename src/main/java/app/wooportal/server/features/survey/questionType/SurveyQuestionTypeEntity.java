@@ -27,7 +27,7 @@ public class SurveyQuestionTypeEntity extends BaseEntity {
   private static final long serialVersionUID = 1L;
 
   @Column(nullable = false)
-  private String key;
+  private String keyword;
 
   @OneToMany(mappedBy = "type", fetch = FetchType.LAZY)
   private Set<SurveyQuestionEntity> questions;

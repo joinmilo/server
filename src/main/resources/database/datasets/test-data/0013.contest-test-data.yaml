@@ -8,7 +8,7 @@ databaseChangeLog:
         - sql:
             comment: Add data contest_types
             splitStatements: true
-            sql: insert into contest_types (id, `key`) values
+            sql: insert into contest_types (id, `keyword`) values
               ('112a561f-5d96-42dd-b851-62365e79147b', 'text'),
               ('8a0cdf4d-8815-42a7-bf80-b5e41af10ee0', 'video'),
               ('90d71a8a-43f0-4abb-be65-0bb4d7d4d48d', 'image');

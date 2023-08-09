@@ -14,6 +14,6 @@ public class ThemeVariablePredicateBuilder
 
   @Override
   public BooleanExpression freeSearch(String term) {
-    return query.key.likeIgnoreCase(term);
+    return query.keyword.likeIgnoreCase(term);
   }
 }
