@@ -20,8 +20,8 @@ public class RoleService extends DataService<RoleEntity, RolePredicateBuilder> {
   
   @Override
   public Optional<RoleEntity> getExisting(RoleEntity entity) {
-    return entity != null && entity.getKey() != null && !entity.getKey().isBlank()
-       ? repo.findOne(singleQuery(predicate.withKey(entity.getKey())))
+    return entity != null && entity.getKeyword() != null && !entity.getKeyword().isBlank()
+       ? repo.findOne(singleQuery(predicate.withKeyword(entity.getKeyword())))
        : Optional.empty();
   }
 
