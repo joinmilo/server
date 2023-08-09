@@ -2026,7 +2026,7 @@ databaseChangeLog:
                /*!40101 SET character_set_client = utf8 */;
                /* Set variables */
                SET @tagId   = "newArticles";
-               SET @german  = "neue Beiträge";
+               SET @german  = "Neue Beiträge";
                SET @english = "new articles";
 
 
