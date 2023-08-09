@@ -237,7 +237,9 @@ databaseChangeLog:
     - include:
         file: database/changes/0126.create_table_contest_comment_translatables.yaml  
     - include:        
-        file: database/changes/0127.add_columns_to_suburbs.yaml     
+        file: database/changes/0127.add_columns_to_suburbs.yaml    
+    - include:                 
+        file: database/changes/0128.create_table_role_applications.yaml            
                 
     #Data section        
     - include:

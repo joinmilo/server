@@ -19,6 +19,7 @@ import app.wooportal.server.core.error.exception.VerificationInvalidException;
 import app.wooportal.server.core.error.exception.VerificationUserNotFoundException;
 import app.wooportal.server.core.push.subscription.SubscriptionService;
 import app.wooportal.server.core.repository.DataRepository;
+import app.wooportal.server.core.security.components.role.application.RoleApplicationService;
 import app.wooportal.server.core.security.components.user.emailVerification.VerificationEntity;
 import app.wooportal.server.core.security.components.user.emailVerification.VerificationService;
 import app.wooportal.server.core.security.components.user.passwordReset.PasswordResetEntity;
@@ -38,7 +39,8 @@ public class UserService extends DataService<UserEntity, UserPredicateBuilder> {
   public UserService(DataRepository<UserEntity> repo, UserPredicateBuilder predicate,
       AuthenticationService authService, BCryptPasswordEncoder bcryptPasswordEncoder,
       UserContextMediaService mediaService, PasswordResetService passwordResetService,
-      SubscriptionService subscriptionService, VerificationService verificationService) {
+      SubscriptionService subscriptionService, VerificationService verificationService,
+      RoleApplicationService roleApplicationService) {
     super(repo, predicate);
 
     this.authService = authService;
@@ -48,6 +50,7 @@ public class UserService extends DataService<UserEntity, UserPredicateBuilder> {
     addService("passwordResets", passwordResetService);
     addService("subscriptions", subscriptionService);
     addService("verifications", verificationService);
+    addService("roleApplications", roleApplicationService);
   }
 
   public Optional<UserEntity> getByMail(String name) {

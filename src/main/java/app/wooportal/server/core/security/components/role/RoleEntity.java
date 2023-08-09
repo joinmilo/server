@@ -16,6 +16,7 @@ import javax.persistence.UniqueConstraint;
 import org.hibernate.annotations.CollectionId;
 import org.hibernate.annotations.Type;
 import app.wooportal.server.core.base.BaseEntity;
+import app.wooportal.server.core.security.components.role.application.RoleApplicationEntity;
 import app.wooportal.server.core.security.components.role.translation.RoleTranslatableEntity;
 import app.wooportal.server.core.security.components.user.UserEntity;
 import lombok.AccessLevel;
@@ -42,6 +43,9 @@ public class RoleEntity extends BaseEntity {
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
   private Set<RoleTranslatableEntity> translatables;
+  
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "role")
+  private Set<RoleApplicationEntity> roleApplications;
 
   @ManyToMany(fetch = FetchType.LAZY)
   @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "role_id"),

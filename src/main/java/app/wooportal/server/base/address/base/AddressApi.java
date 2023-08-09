@@ -2,7 +2,6 @@ package app.wooportal.server.base.address.base;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 import javax.naming.ServiceUnavailableException;
 import org.springframework.stereotype.Component;
 import app.wooportal.server.core.base.CrudApi;
@@ -11,7 +10,6 @@ import app.wooportal.server.core.base.dto.listing.PageableList;
 import app.wooportal.server.core.error.exception.NotFoundException;
 import app.wooportal.server.core.location.MapService;
 import app.wooportal.server.core.security.permissions.AdminPermission;
-import app.wooportal.server.features.event.base.EventEntity;
 import io.leangen.graphql.annotations.GraphQLArgument;
 import io.leangen.graphql.annotations.GraphQLContext;
 import io.leangen.graphql.annotations.GraphQLMutation;
@@ -72,9 +70,9 @@ public class AddressApi extends CrudApi<AddressEntity, AddressService> {
     return super.deleteOne(id);
   }
   
-  @GraphQLQuery(name = "verifyAddress")
-  public AddressEntity calculateAverageRating(
-      @GraphQLContext AddressEntity address) throws NotFoundException, ServiceUnavailableException {
-    return mapService.retrieveExternalAddress(address);
+  @GraphQLMutation(name = "verifyAddress")
+  public AddressEntity verifyAddress(
+      @GraphQLArgument(name = CrudApi.entity) AddressEntity entity) throws NotFoundException, ServiceUnavailableException {
+    return mapService.retrieveExternalAddress(entity);
   }
 }
