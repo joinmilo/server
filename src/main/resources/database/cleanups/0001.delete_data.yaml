@@ -10,7 +10,7 @@ databaseChangeLog:
             sql:
                 /*!40101 SET character_set_client = utf8 */;
                     
-                delete from configurations where `key` in (
+                delete from configurations where `keyword` in (
                    'mapcenterLongitude',
                    'mapcenterLatitude',
                    'zoomfactor',

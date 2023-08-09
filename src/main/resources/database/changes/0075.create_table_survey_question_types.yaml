@@ -33,7 +33,7 @@ databaseChangeLog:
               - column:
                   constraints:
                     nullable: false
-                  name: key
+                  name: keyword
                   type: VARCHAR(255)                                                               
             tableName: survey_question_types      
         - sql:

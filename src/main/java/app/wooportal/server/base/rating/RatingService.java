@@ -17,7 +17,7 @@ public class RatingService {
       ConfigurationService configurationService) {
     maxRating = configurationService.readOne(
         configurationService.singleQuery(
-            configurationService.getPredicate().withKey("maxRating")))
+            configurationService.getPredicate().withKeyword("maxRating")))
     .map(config -> Integer.valueOf(config.getValue()))
     .orElse(5);
   }

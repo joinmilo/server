@@ -22,7 +22,7 @@ public class RoleService extends DataService<RoleEntity, RolePredicateBuilder> {
   }
 
   public RoleEntity getAdminRole() {
-    return repo.findOne(singleQuery(predicate.withKey(admin))).get();
+    return repo.findOne(singleQuery(predicate.withKeyword(admin))).get();
   }
 
 }

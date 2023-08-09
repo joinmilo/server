@@ -26,7 +26,7 @@ public class ConfigurationEntity extends BaseEntity {
   @Column(
       nullable = false,
       unique = true)
-  private String key;
+  private String keyword;
   
   private String value;
   

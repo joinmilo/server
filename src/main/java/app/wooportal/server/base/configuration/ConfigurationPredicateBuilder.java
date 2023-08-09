@@ -13,10 +13,10 @@ public class ConfigurationPredicateBuilder extends PredicateBuilder<QConfigurati
 
   @Override
   public BooleanExpression freeSearch(String term) {
-    return query.key.likeIgnoreCase(term).or(query.value.likeIgnoreCase(term));
+    return query.keyword.likeIgnoreCase(term).or(query.value.likeIgnoreCase(term));
   }
 
-  public BooleanExpression withKey(String key) {
-    return query.key.equalsIgnoreCase(key);
+  public BooleanExpression withKeyword(String keyword) {
+    return query.keyword.equalsIgnoreCase(keyword);
   }
 }

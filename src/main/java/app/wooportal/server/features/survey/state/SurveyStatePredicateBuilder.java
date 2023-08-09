@@ -14,6 +14,6 @@ public class SurveyStatePredicateBuilder
 
   @Override
   public BooleanExpression freeSearch(String term) {
-    return null;
+    return  query.keyword.likeIgnoreCase(term);
   }
 }

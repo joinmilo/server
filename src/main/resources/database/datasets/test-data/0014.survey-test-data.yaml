@@ -9,7 +9,7 @@ databaseChangeLog:
             comment: Add Survey States
             splitStatements: true
             sql:
-               insert into survey_states (`id`, `key`) values
+               insert into survey_states (`id`, `keyword`) values
                ('5309e597-a90a-4d72-acdc-685309ea2c59', 'active'),
                ('6a16de74-ad9f-46e5-8fd0-d1bdc29546bb', 'completed');
                
