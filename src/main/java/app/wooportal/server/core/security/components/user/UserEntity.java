@@ -23,6 +23,7 @@ import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.messaging.notifications.base.NotificationEntity;
 import app.wooportal.server.core.push.subscription.SubscriptionEntity;
 import app.wooportal.server.core.security.components.role.RoleEntity;
+import app.wooportal.server.core.security.components.role.application.RoleApplicationEntity;
 import app.wooportal.server.core.security.components.user.emailVerification.VerificationEntity;
 import app.wooportal.server.core.security.components.user.passwordReset.PasswordResetEntity;
 import lombok.AccessLevel;
@@ -81,9 +82,13 @@ public class UserEntity extends BaseEntity {
   private List<RoleEntity> roles = new ArrayList<>();
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+  private Set<RoleApplicationEntity> roleApplications;
+  
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
   private Set<SubscriptionEntity> subscriptions;
 
   @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
   private Set<VerificationEntity> verifications;
+  
   
 }

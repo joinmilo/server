@@ -1,6 +1,7 @@
 package app.wooportal.server.core.security.components.role;
 
 import java.util.List;
+import java.util.Optional;
 import org.springframework.stereotype.Service;
 import app.wooportal.server.core.base.DataService;
 import app.wooportal.server.core.repository.DataRepository;
@@ -16,6 +17,13 @@ public class RoleService extends DataService<RoleEntity, RolePredicateBuilder> {
       RolePredicateBuilder predicate) {
     super(repo, predicate);
   }
+  
+  @Override
+  public Optional<RoleEntity> getExisting(RoleEntity entity) {
+    return entity != null && entity.getKey() != null && !entity.getKey().isBlank()
+       ? repo.findOne(singleQuery(predicate.withKey(entity.getKey())))
+       : Optional.empty();
+  }
 
   public List<RoleEntity> getByUser(UserEntity user) {
     return repo.findAll(collectionQuery(predicate.withUserId(user.getId()))).getList();
@@ -24,5 +32,4 @@ public class RoleService extends DataService<RoleEntity, RolePredicateBuilder> {
   public RoleEntity getAdminRole() {
     return repo.findOne(singleQuery(predicate.withKeyword(admin))).get();
   }
-
 }

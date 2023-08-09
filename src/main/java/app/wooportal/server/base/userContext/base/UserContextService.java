@@ -9,6 +9,7 @@ import app.wooportal.server.core.repository.DataRepository;
 import app.wooportal.server.core.security.components.user.UserService;
 import app.wooportal.server.core.security.services.AuthenticationService;
 import app.wooportal.server.core.seo.SlugService;
+import app.wooportal.server.features.organisation.member.OrganisationMemberService;
 
 @Service
 public class UserContextService extends DataService<UserContextEntity, UserContextPredicateBuilder> {
@@ -23,14 +24,17 @@ public class UserContextService extends DataService<UserContextEntity, UserConte
       AuthenticationService authService,
       SlugService slugService,
       UserService userService,
-      AddressService addressService) {
+      AddressService addressService,
+      OrganisationMemberService memberService) {
     super(repo, predicate);
     
     addService("user", userService);
     addService("address", addressService);
+    addService("member", memberService);
     
     this.authService = authService;
     this.slugService = slugService;
+    
   }
   
   @Override
