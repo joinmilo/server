@@ -6,6 +6,7 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.security.components.role.RoleEntity;
 import app.wooportal.server.core.security.components.role.application.translation.RoleApplicationTranslatableEntity;
@@ -27,6 +28,9 @@ public class RoleApplicationEntity extends BaseEntity {
   private static final long serialVersionUID = 1L;
 
   private Boolean accepted;
+  
+  @Transient
+  private String content;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private RoleEntity role;
