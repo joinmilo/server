@@ -1,4 +1,4 @@
-package app.wooportal.server.core.security.components.role.application;
+package app.wooportal.server.core.security.components.roleApplication;
 
 import org.springframework.stereotype.Repository;
 import app.wooportal.server.core.repository.DataRepository;

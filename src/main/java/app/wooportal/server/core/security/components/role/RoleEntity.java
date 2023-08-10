@@ -11,13 +11,13 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 import org.hibernate.annotations.CollectionId;
 import org.hibernate.annotations.Type;
 import app.wooportal.server.core.base.BaseEntity;
-import app.wooportal.server.core.security.components.role.application.RoleApplicationEntity;
+import app.wooportal.server.core.i18n.annotations.Translatable;
 import app.wooportal.server.core.security.components.role.translation.RoleTranslatableEntity;
+import app.wooportal.server.core.security.components.roleApplication.RoleApplicationEntity;
 import app.wooportal.server.core.security.components.user.UserEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -35,7 +35,7 @@ public class RoleEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
 
-  @Transient
+  @Translatable
   private String name;
 
   @Column(unique = true, nullable = false)
@@ -45,7 +45,7 @@ public class RoleEntity extends BaseEntity {
   private Set<RoleTranslatableEntity> translatables;
   
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "role")
-  private Set<RoleApplicationEntity> roleApplications;
+  private Set<RoleApplicationEntity> applcations;
 
   @ManyToMany(fetch = FetchType.LAZY)
   @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "role_id"),

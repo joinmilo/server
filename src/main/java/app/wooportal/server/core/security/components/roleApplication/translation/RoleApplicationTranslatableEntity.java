@@ -1,4 +1,4 @@
-package app.wooportal.server.core.security.components.role.application.translation;
+package app.wooportal.server.core.security.components.roleApplication.translation;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -7,7 +7,7 @@ import javax.persistence.Table;
 import app.wooportal.server.core.i18n.components.language.LanguageEntity;
 import app.wooportal.server.core.i18n.entities.TranslatableEntity;
 import app.wooportal.server.core.security.components.role.RoleEntity;
-import app.wooportal.server.core.security.components.role.application.RoleApplicationEntity;
+import app.wooportal.server.core.security.components.roleApplication.RoleApplicationEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
