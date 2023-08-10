@@ -17,11 +17,11 @@ databaseChangeLog:
                   name: last_name
                   type: VARCHAR(255)   
               - column:
-                  name: last_logged_in
+                  name: last_login
                   type: datetime                       
               - column:
                   name: language_id
-                  type: char(36)                                                   
+                  type: char(36)
             tableName: users   
                         
   - changeSet:
