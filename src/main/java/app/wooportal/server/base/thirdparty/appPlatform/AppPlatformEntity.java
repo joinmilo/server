@@ -24,6 +24,6 @@ public class AppPlatformEntity extends BaseEntity {
   private String name;
   
   @Column(nullable = false, unique = true)
-  private String keyword;
+  private String code;
 
 }

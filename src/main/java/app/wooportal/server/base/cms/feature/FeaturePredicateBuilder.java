@@ -13,10 +13,10 @@ public class FeaturePredicateBuilder extends PredicateBuilder<QFeatureEntity, Fe
 
   @Override
   public BooleanExpression freeSearch(String term) {
-    return query.keyword.likeIgnoreCase(term).or(query.translatables.any().name.likeIgnoreCase(term));
+    return query.code.likeIgnoreCase(term).or(query.translatables.any().name.likeIgnoreCase(term));
   }
-  public BooleanExpression withKeyword(String keyword) {
-    return keyword != null && !keyword.isBlank() ? query.keyword.equalsIgnoreCase(keyword)
+  public BooleanExpression withCode(String code) {
+    return code != null && !code.isBlank() ? query.code.equalsIgnoreCase(code)
         : null;
   }
 }

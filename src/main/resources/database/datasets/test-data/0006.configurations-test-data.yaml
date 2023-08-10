@@ -6,11 +6,11 @@ databaseChangeLog:
       author: codeschluss
       changes:
         - sql:
-            comment: Update captcha sitekeyword to test keyword
+            comment: Update captcha sitecode to test code
             splitStatements: true
             sql: update configurations
                  set value = '10000000-ffff-ffff-ffff-000000000001'
-                 where `keyword` = 'hCaptchaSitekeyword';
+                 where `code` = 'hCaptchaSitekey';
                  
   - changeSet:
       id: 0006.test-data.2
@@ -20,7 +20,7 @@ databaseChangeLog:
             comment: Add configurations
             splitStatements: true
             sql:
-               insert into configurations (`id`, `keyword`, `value`, `media_id`) values
+               insert into configurations (`id`, `code`, `value`, `media_id`) values
                ('701de29d-0170-48fa-aa71-12e899500de6', 'logo', null, '3e791600-8e00-4069-a060-4862c44da93b'),
                ('458f85bb-ee49-44fa-8bc8-538b52c7b5e4', 'logoText', null, '6c92cfcd-d65d-47d9-bdc5-b8004afe916c'),
                ('0ad29ce1-a519-417c-91c5-28a346185542', 'favicon', null, 'fc8a64b5-7335-4309-a5c1-e9d2de53c338');

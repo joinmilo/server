@@ -32,11 +32,11 @@ public class JwtUserDetails extends User {
   }
   
   public String[] getRoles() {
-    return roles.stream().map(RoleEntity::getKeyword).toArray(String[]::new);
+    return roles.stream().map(RoleEntity::getCode).toArray(String[]::new);
   }
 
   public boolean isAdmin() {
-    return roles.stream().anyMatch(role -> role.getKeyword().equalsIgnoreCase(RoleService.admin));
+    return roles.stream().anyMatch(role -> role.getCode().equalsIgnoreCase(RoleService.admin));
   }
   
   public boolean isVerified() {

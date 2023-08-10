@@ -41,64 +41,64 @@ databaseChangeLog:
                 insert into page_features (id, `order`, feature_id, page_id)
                 select uuid(), 0, f.id, '7cefc60c-8325-4861-90c7-97f1e8eeb290'
                 from features f
-                WHERE f.keyword = "events";
+                WHERE f.code = "events";
                 
                 insert into page_features (id, `order`, feature_id, page_id)
                 select uuid(), 1, f.id, '7cefc60c-8325-4861-90c7-97f1e8eeb290'
                 from features f
-                WHERE f.keyword = "articles";
+                WHERE f.code = "articles";
                 
                 insert into page_features (id, `order`, feature_id, page_id)
                 select uuid(), 2, f.id, '7cefc60c-8325-4861-90c7-97f1e8eeb290'
                 from features f
-                WHERE f.keyword = "surveys";
+                WHERE f.code = "surveys";
                 
                 insert into page_features (id, `order`, feature_id, page_id)
                 select uuid(), 3, f.id, '7cefc60c-8325-4861-90c7-97f1e8eeb290'
                 from features f
-                WHERE f.keyword = "contests";
+                WHERE f.code = "contests";
                 
                 insert into page_features (id, `order`, feature_id, page_id)
                 select uuid(), 4, f.id, '7cefc60c-8325-4861-90c7-97f1e8eeb290'
                 from features f
-                WHERE f.keyword = "calendar";
+                WHERE f.code = "calendar";
                 
                 insert into page_features (id, `order`, feature_id, page_id)
                 select uuid(), 5, f.id, '7cefc60c-8325-4861-90c7-97f1e8eeb290'
                 from features f
-                WHERE f.keyword = "reports";
+                WHERE f.code = "reports";
                 
                 insert into page_features (id, `order`, feature_id, page_id)
                 select uuid(), 6, f.id, '7cefc60c-8325-4861-90c7-97f1e8eeb290'
                 from features f
-                WHERE f.keyword = "organisations";
+                WHERE f.code = "organisations";
                 
                 insert into page_features (id, `order`, feature_id, page_id)
                 select uuid(), 7, f.id, '7cefc60c-8325-4861-90c7-97f1e8eeb290'
                 from features f
-                WHERE f.keyword = "authors";
+                WHERE f.code = "authors";
                 
                 insert into page_features (id, `order`, feature_id, page_id)
                 select uuid(), 8, f.id, '7cefc60c-8325-4861-90c7-97f1e8eeb290'
                 from features f
-                WHERE f.keyword = "forms";
+                WHERE f.code = "forms";
                 
                 insert into page_features (id, `order`, feature_id, page_id)
                 select uuid(), 9, f.id, '7cefc60c-8325-4861-90c7-97f1e8eeb290'
                 from features f
-                WHERE f.keyword = "guestarticle";
+                WHERE f.code = "guestarticle";
                 
                 insert into page_features (id, `order`, feature_id, page_id)
                 select uuid(), 10, f.id, '7cefc60c-8325-4861-90c7-97f1e8eeb290'
                 from features f
-                WHERE f.keyword = "map";
+                WHERE f.code = "map";
                 
                 insert into page_features (id, `order`, feature_id, page_id)
                 select uuid(), 11, f.id, '7cefc60c-8325-4861-90c7-97f1e8eeb290'
                 from features f
-                WHERE f.keyword = "media";
+                WHERE f.code = "media";
                 
                 insert into page_features (id, `order`, feature_id, page_id)
                 select uuid(), 12, f.id, '7cefc60c-8325-4861-90c7-97f1e8eeb290'
                 from features f
-                WHERE f.keyword = "deals";
+                WHERE f.code = "deals";

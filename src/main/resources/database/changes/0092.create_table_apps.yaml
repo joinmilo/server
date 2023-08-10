@@ -35,7 +35,7 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                     unique: true
-                  name: keyword
+                  name: code
                   type: VARCHAR(255)
             tableName: app_platforms
         - sql:

@@ -7,7 +7,7 @@
         - sql:
             comment: Add Features
             splitStatements: true
-            sql: insert into features (id, `keyword`) values
+            sql: insert into features (id, `code`) values
               ('cf2b4b5d-df3a-4f79-9cfd-61679c57bd16', 'authors'),
               ('b93928cc-ec57-4848-96af-26d8284ffcd1', 'map'),
               ('41cdbfa8-e751-41d4-b893-5c7215ec55e9', 'calendar'),
@@ -32,16 +32,16 @@
                 UPDATE
                 features f
                 SET 
-                f.keyword = "events"
+                f.code = "events"
                 WHERE
-                f.keyword = "activities";
+                f.code = "activities";
                 
                 UPDATE
                 features f
                 SET 
-                f.keyword = "articles"
+                f.code = "articles"
                 WHERE
-                f.keyword = "blogposts";                
+                f.code = "blogposts";                
                      
   - changeSet:
       id: 0001.add_data_menu_items.3
@@ -55,145 +55,145 @@
                 select uuid(), "Organisation", f.id, l.id
                 from languages l, features f
                 WHERE l.locale = "de" AND
-                f.keyword = "organisations";
+                f.code = "organisations";
                 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Artikel", f.id, l.id
                 from languages l, features f
                 WHERE l.locale = "de" AND
-                f.keyword = "articles";
+                f.code = "articles";
                 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Veranstaltung", f.id, l.id
                 from languages l, features f
                 WHERE l.locale = "de" AND
-                f.keyword = "events";     
+                f.code = "events";     
 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Organisation", f.id, l.id
                 from languages l, features f
                 WHERE l.locale = "en" AND
-                f.keyword = "organisations";
+                f.code = "organisations";
                 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Article", f.id, l.id
                 from languages l, features f
                 WHERE l.locale = "en" AND
-                f.keyword = "articles";
+                f.code = "articles";
                 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Event", f.id, l.id
                 from languages l, features f
                 WHERE l.locale = "en" AND
-                f.keyword = "events";             
+                f.code = "events";             
 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Publizierende", f.id, l.id
                 from languages l, features f
                 WHERE l.locale = "de" AND
-                f.keyword = "author";
+                f.code = "author";
                 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Author", f.id, l.id
                 from languages l, features f
                 WHERE l.locale = "en" AND
-                f.keyword = "author";  
+                f.code = "author";  
                 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Karte", f.id, l.id
                 from languages l, features f
                 WHERE l.locale = "de" AND
-                f.keyword = "map"; 
+                f.code = "map"; 
                 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Map", f.id, l.id
                 from languages l, features f
                 WHERE l.locale = "en" AND
-                f.keyword = "map";                                               
+                f.code = "map";                                               
                          
                 insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Kalender", f.id, l.id
                 from languages l, features f
                 WHERE l.locale = "de" AND
-                f.keyword = "calendar";
+                f.code = "calendar";
                 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Calendar", f.id, l.id
                 from languages l, features f
                 WHERE l.locale = "en" AND
-                f.keyword = "calendar";                           
+                f.code = "calendar";                           
                            
                 insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Umfrage", f.id, l.id
                 from languages l, features f
                 WHERE l.locale = "de" AND
-                f.keyword = "surveys";
+                f.code = "surveys";
                 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Survey", f.id, l.id
                 from languages l, features f
                 WHERE l.locale = "en" AND
-                f.keyword = "surveys";    
+                f.code = "surveys";    
 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Wettbewerb", f.id, l.id
                 from languages l, features f
                 WHERE l.locale = "de" AND
-                f.keyword = "contests";
+                f.code = "contests";
                 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Contest", f.id, l.id
                 from languages l, features f
                 WHERE l.locale = "en" AND
-                f.keyword = "contests";
+                f.code = "contests";
                 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Eigener_Artikel", f.id, l.id
                 from languages l, features f
                 WHERE l.locale = "de" AND
-                f.keyword = "guestarticle";
+                f.code = "guestarticle";
                 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Own_Article", f.id, l.id
                 from languages l, features f
                 WHERE l.locale = "en" AND
-                f.keyword = "guestarticle";      
+                f.code = "guestarticle";      
                 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Media", f.id, l.id
                 from languages l, features f
                 WHERE l.locale = "de" AND
-                f.keyword = "media";
+                f.code = "media";
                 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Media", f.id, l.id
                 from languages l, features f
                 WHERE l.locale = "en" AND
-                f.keyword = "media";     
+                f.code = "media";     
                 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Suche_Biete", f.id, l.id
                 from languages l, features f
                 WHERE l.locale = "de" AND
-                f.keyword = "deal";
+                f.code = "deal";
                 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Search_Offer", f.id, l.id
                 from languages l, features f
                 WHERE l.locale = "en" AND
-                f.keyword = "deal";    
+                f.code = "deal";    
 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Formulare", f.id, l.id
                 from languages l, features f
                 WHERE l.locale = "de" AND
-                f.keyword = "forms";
+                f.code = "forms";
                 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Forms", f.id, l.id
                 from languages l, features f
                 WHERE l.locale = "en" AND
-                f.keyword = "forms";                                                                                                    
+                f.code = "forms";                                                                                                    
 
   - changeSet:
       id: 0001.add_data_menu_items.4
@@ -233,17 +233,17 @@
                 insert into menu_items (`id`, `header`, `order`, `parent_id`, `feature_id`, `page_id`, `icon`)
                 select uuid(), true, 0, '0115fe46-3a7e-4377-abe5-f56f720bf3d9', f.id, null, 'calendar'
                 from features f
-                WHERE f.keyword = "events";
+                WHERE f.code = "events";
                 
                 insert into menu_items (`id`, `header`, `order`, `parent_id`, `feature_id`, `page_id`, `icon`)
                 select uuid(), true, 1, '0115fe46-3a7e-4377-abe5-f56f720bf3d9', f.id, null, 'people-group'
                 from features f
-                WHERE f.keyword = "organisations";
+                WHERE f.code = "organisations";
                 
                 insert into menu_items (`id`, `header`, `order`, `parent_id`, `feature_id`, `page_id`, `icon`)
                 select uuid(), true, 0, '7a8cc14b-49e4-4f53-a86f-11aa6e2db95e', f.id, null, 'newspaper'
                 from features f
-                WHERE f.keyword = "articles";
+                WHERE f.code = "articles";
                 
                 insert into menu_items (`id`, `header`, `order`, `parent_id`, `feature_id`, `page_id`, `icon`)
                 select uuid(), true, 3, '7a8cc14b-49e4-4f53-a86f-11aa6e2db95e', null, p.parent_id, 'user-group'

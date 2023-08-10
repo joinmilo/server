@@ -33,7 +33,7 @@ databaseChangeLog:
               - column:
                   constraints:
                     nullable: false
-                  name: keyword
+                  name: code
                   type: VARCHAR(255)                                                                                   
             tableName: channels
         - sql:

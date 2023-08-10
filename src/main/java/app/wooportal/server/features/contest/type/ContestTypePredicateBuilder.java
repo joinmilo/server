@@ -14,6 +14,6 @@ public class ContestTypePredicateBuilder
 
   @Override
   public BooleanExpression freeSearch(String term) {
-    return query.keyword.likeIgnoreCase(term).or(query.translatables.any().name.likeIgnoreCase(term));
+    return query.code.likeIgnoreCase(term).or(query.translatables.any().name.likeIgnoreCase(term));
   }
 }

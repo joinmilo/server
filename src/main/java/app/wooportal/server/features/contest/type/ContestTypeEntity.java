@@ -29,7 +29,7 @@ public class ContestTypeEntity extends BaseEntity {
   private static final long serialVersionUID = 1L;
 
   @Column(nullable = false)
-  private String keyword;
+  private String code;
   
   @Translatable
   private String name;

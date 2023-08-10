@@ -12,7 +12,7 @@ public class FeatureService extends DataService<FeatureEntity, FeaturePredicateB
     super(repo, predicate);
   }
 
-  public Optional<FeatureEntity> getByKey(String keyword) {
-    return repo.findOne(singleQuery(predicate.withKeyword(keyword)));
+  public Optional<FeatureEntity> getByKey(String code) {
+    return repo.findOne(singleQuery(predicate.withCode(code)));
   }
 }

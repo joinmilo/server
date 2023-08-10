@@ -7,7 +7,7 @@ databaseChangeLog:
         - sql:
             comment: Add initial role data
             splitStatements: true
-            sql: insert into `roles` (id, `keyword`) values
+            sql: insert into `roles` (id, `code`) values
               ("1f222bdd-b241-4c7d-8adb-c3b11e366a2b", "translator"),
               ("0b8e5964-7687-4cc3-9519-3c570420bb22", "admin"),
               ("1485fce0-9814-4981-bab5-cb1daf009675", "author"),
@@ -139,8 +139,8 @@ databaseChangeLog:
         - sql:
             comment: Add new configs
             splitStatements: true
-            sql: insert into configurations (`id`, `keyword`, `value`) values
-              ('ad024a93-6f72-408f-992f-00c6639b0752', 'hCaptchaSitekeyword', '8d4dfccc-7457-46ce-8bc6-1646b7f637dd'),
+            sql: insert into configurations (`id`, `code`, `value`) values
+              ('ad024a93-6f72-408f-992f-00c6639b0752', 'hCaptchaSitekey', '8d4dfccc-7457-46ce-8bc6-1646b7f637dd'),
               ('8a5e5a03-7c9f-4bcc-820c-514bb5cc618f', 'defaultLocale', 'de'),
               ('187b280d-8fe3-4129-9526-530f9c8e708b', 'pwBitStrength', '40'),
               ('652dbe0f-387d-4d32-9626-6ed8756420b9', 'maxRating', '5');
@@ -152,7 +152,7 @@ databaseChangeLog:
         - sql:
             comment: Add App platforms
             splitStatements: true
-            sql: insert into app_platforms (id, `keyword`, `name`) values
+            sql: insert into app_platforms (id, `code`, `name`) values
               ('9fc24c85-0ca6-4e20-a551-e77b58aff4f4', 'apple', 'Apple App Store'),
               ('ab7a5460-2833-4d97-a36e-c00542d3e201', 'google', 'Google Play Store');
               

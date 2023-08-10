@@ -265,7 +265,7 @@ databaseChangeLog:
       author: codeschluss
       changes:
        - renameColumn:
-           newColumnName: keyword
+           newColumnName: code
            oldColumnName: item
            tableName: configurations
            columnDataType: VARCHAR(255)

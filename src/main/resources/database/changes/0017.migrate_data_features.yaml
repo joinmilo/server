@@ -15,7 +15,7 @@ databaseChangeLog:
       changes:
       - renameColumn:
           columnDataType: VARCHAR(255)      
-          newColumnName: keyword
+          newColumnName: code
           oldColumnName: name
           remarks: change in names
           tableName: features

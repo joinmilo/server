@@ -23,7 +23,7 @@ public class ThemeVariableEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
   
-  private String keyword;
+  private String code;
   
   private String value;
   
