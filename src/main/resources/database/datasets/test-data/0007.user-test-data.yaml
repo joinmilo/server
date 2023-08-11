@@ -24,6 +24,7 @@ databaseChangeLog:
                ('c3d05f46-5c3c-4100-85d5-649ecfb42601', true, 'Hans@example.com', 'Hans', 'Müller', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm', null, null),
                ('02785e86-0606-4eab-bbbc-6e90f35587b5', true, 'Sabine@example.com', 'Sabine', 'Gaille', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm', null, null),
                ('f96b2b8b-6b9f-44dd-8c30-83f6c9400970', true, 'Frank@example.com', 'Frank', 'Martin', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm', null, null),
+               ('86db5071-55c6-4871-bab6-e94a40e914ff', true, 'test@example.cpm', 'Doomed2', 'Test', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm', null, null),
                ('e618577b-bed0-4e19-89f3-e6ba2e9da795', true, 'Sebastian@example.com', 'Sebastian', 'Stern', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm', null, null); -- password is '1234'
                
   - changeSet:
@@ -39,36 +40,15 @@ databaseChangeLog:
                ('ece550e8-bc2b-43c4-8aaf-48a30e82080f', 'c3d05f46-5c3c-4100-85d5-649ecfb42601', 'slug-wh1zc'),
                ('5102ef99-492e-476d-a6d8-357125e9f443', '02785e86-0606-4eab-bbbc-6e90f35587b5', 'slug-wh2zc'),
                ('a9b32d23-ec3b-42ac-ab11-caf9bdc32643', 'f96b2b8b-6b9f-44dd-8c30-83f6c9400970', 'slug-wh4zc'),
-               ('bdadf02e-37df-4d3b-a639-cf9a76532904', 'e618577b-bed0-4e19-89f3-e6ba2e9da795', 'slug-wh3zc');
-               
+               ('bdadf02e-37df-4d3b-a639-cf9a76532904', 'e618577b-bed0-4e19-89f3-e6ba2e9da795', 'slug-wh3zc'),
+               ('20ab2295-4d4f-4524-893d-f3b09f1e885a', '86db5071-55c6-4871-bab6-e94a40e914ff', 'slug-qac77');
+                   
   - changeSet:
       id: 0007.test-data.4
       author: codeschluss
-      changes:                                                                                
-            comment: Add test user
-            splitStatements: true
-            sql: insert into users (id, email, password, first_name, last_name)
-                 select "86db5071-55c6-4871-bab6-e94a40e914ff", "test@example.cpm", "1234", "Doomed2", "Test";
-                 
-  - changeSet:
-      id: 0007.test-data.5
-      author: codeschluss
       changes:
         - sql:
-            comment: Add test user
-            splitStatements: true
-            sql: insert into user_contexts (id, description, user_id, slug)
-                 select "20ab2295-4d4f-4524-893d-f3b09f1e885a",
-                  "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt
-                   ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et",
-                   "86db5071-55c6-4871-bab6-e94a40e914ff", 'slug-qac77';
-                   
-  - changeSet:
-      id: 0007.test-data.6
-      author: codeschluss
-      changes:
-        - sql:
-            comment: Add articles
+            comment: Add user_context_media
             splitStatements: true
             sql:
                insert into user_context_media (id, media_id, user_context_id, profile_picture, title) values
@@ -77,7 +57,7 @@ databaseChangeLog:
                ('c28f0643-1d34-42de-bb39-3a77718a59da', '3e791600-8e00-4069-a060-4862c44da93b', '5737ee58-9f88-43d1-baf4-a34dd85f0219', true, true);
                
   - changeSet:
-      id: 0007.test-data.7
+      id: 0007.test-data.5
       author: codeschluss
       changes:
         - sql:
@@ -92,7 +72,7 @@ databaseChangeLog:
                ('1900e08e-e6e9-4362-bc50-1c6d5b2ec0f7', '83c0ce85-c808-43eb-a72d-62a228db2979', true);                                                           
                
   - changeSet:
-      id: 0007.test-data.8
+      id: 0007.test-data.6
       author: codeschluss
       changes:
         - sql:
@@ -124,7 +104,7 @@ databaseChangeLog:
                  WHERE l.locale = "de";   
                  
   - changeSet:
-      id: 0007.test-data.9
+      id: 0007.test-data.7
       author: codeschluss
       changes:
         - sql:
@@ -133,6 +113,21 @@ databaseChangeLog:
             sql: insert into user_context_translatables (id, parent_id, language_id, description)
                  select uuid(), "20ab2295-4d4f-4524-893d-f3b09f1e885a", l.id, "Hallo iam Doomed 2 test. Iam was created to test the view in the author details and iam not happy about that!"
                  from languages l
-                 WHERE l.locale = "de";                   
-                
-                     
+                 WHERE l.locale = "de";
+                 
+                 insert into user_context_translatables (id, parent_id, language_id, description)
+                 select uuid(), "20ab2295-4d4f-4524-893d-f3b09f1e885a", l.id, "Hallo iam Doomed 2 test. Iam was created to test the view in the author details and iam not happy about that!"
+                 from languages l
+                 WHERE l.locale = "en";
+                 
+  - changeSet:
+      id: 0007.test-data.8
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add user_roles
+            splitStatements: true
+            sql: insert into user_roles (id, user_id, role_id)
+                 select uuid(), '83c0ce85-c808-43eb-a72d-62a228db2979', r.id
+                 from roles r
+                 WHERE r.code = 'admin';

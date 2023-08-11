@@ -8,13 +8,16 @@ import javax.persistence.Table;
 import app.wooportal.server.core.i18n.components.language.LanguageEntity;
 import app.wooportal.server.core.i18n.entities.TranslatableEntity;
 import app.wooportal.server.core.security.components.role.RoleEntity;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
 @Entity
 @Table(name = "role_translatables")
 public class RoleTranslatableEntity extends TranslatableEntity<RoleEntity> {
