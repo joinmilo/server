@@ -19,7 +19,7 @@ import app.wooportal.server.core.error.exception.VerificationInvalidException;
 import app.wooportal.server.core.error.exception.VerificationUserNotFoundException;
 import app.wooportal.server.core.push.subscription.SubscriptionService;
 import app.wooportal.server.core.repository.DataRepository;
-import app.wooportal.server.core.security.components.roleApplication.RoleApplicationService;
+import app.wooportal.server.core.security.components.role.roleApplication.RoleApplicationService;
 import app.wooportal.server.core.security.components.user.emailVerification.VerificationEntity;
 import app.wooportal.server.core.security.components.user.emailVerification.VerificationService;
 import app.wooportal.server.core.security.components.user.passwordReset.PasswordResetEntity;

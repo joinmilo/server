@@ -14,10 +14,11 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import org.hibernate.annotations.CollectionId;
 import org.hibernate.annotations.Type;
+import app.wooportal.server.base.userContext.base.UserContextEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.i18n.annotations.Translatable;
+import app.wooportal.server.core.security.components.role.roleApplication.RoleApplicationEntity;
 import app.wooportal.server.core.security.components.role.translation.RoleTranslatableEntity;
-import app.wooportal.server.core.security.components.roleApplication.RoleApplicationEntity;
 import app.wooportal.server.core.security.components.user.UserEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -53,5 +54,11 @@ public class RoleEntity extends BaseEntity {
       uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "role_id"})})
   @CollectionId(column = @Column(name = "id"), type = @Type(type = "uuid-char"), generator = "UUID")
   private List<UserEntity> users = new ArrayList<>();
-
+  
+  @ManyToMany(fetch = FetchType.LAZY)
+  @JoinTable(name = "role_role_privileges", joinColumns = @JoinColumn(name = "role_id"),
+      inverseJoinColumns = @JoinColumn(name = "role_privilege_id"),
+      uniqueConstraints = {@UniqueConstraint(columnNames = {"role_id", "role_privilege_id"})})
+  @CollectionId(column = @Column(name = "id"), type = @Type(type = "uuid-char"), generator = "UUID")
+  private List<UserContextEntity> privileges = new ArrayList<>();
 }

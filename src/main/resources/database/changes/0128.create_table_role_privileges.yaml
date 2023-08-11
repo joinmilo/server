@@ -1,0 +1,121 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+  - changeSet:
+      id: 0128.create_table_role_privileges.1
+      author: codeschluss
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: role_privileges_primary_key
+                  name: id
+                  type: CHAR(36)
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  name: created
+                  type: datetime
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  name: modified
+                  type: datetime
+              - column:
+                  constraints:
+                    nullable: false
+                  name: code
+                  type: VARCHAR(255)                                                  
+            tableName: role_privileges
+        - sql:
+            comment: set char set for mysql
+            dbms: mysql
+            endDelimiter: \nGO
+            splitStatements: true
+            sql: ALTER TABLE role_privileges CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;   
+            
+  - changeSet:
+      id: 0128.create_table_user_contexts.2
+      author: codeschluss
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                  name: role_id
+                  type: CHAR(36)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: role_privilege_id
+                  type: CHAR(36)                 
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: user_role_role_privileges_primary_key
+                  name: id
+                  type: CHAR(36)
+            tableName: role_role_privileges
+        - sql:
+            comment: set char set for mysql
+            dbms: mysql
+            endDelimiter: \nGO
+            splitStatements: true
+            sql: ALTER TABLE role_role_privileges CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;            
+                                        
+  - changeSet:
+      id: 0128.create_table_user_contexts.3
+      author: codeschluss
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: role_id
+            indexName: idx_fkv8sgzw5lcqa91vumla9hc4tru
+            tableName: role_role_privileges
+  - changeSet:
+      id: 0128.create_table_user_contexts.4
+      author: codeschluss
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: role_privilege_id
+            indexName: idx_fk5r2p0r7zsltfve6pgg5nffvlc
+            tableName: role_role_privileges
+  - changeSet:
+      id: 0128.create_table_user_contexts.5
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: role_id
+            baseTableName: role_role_privileges
+            constraintName: fkv8sgzw5lcqa91vumla9hc4tru
+            initiallyDeferred: false
+            onDelete: CASCADE
+            onUpdate: CASCADE
+            referencedColumnNames: id
+            referencedTableName: roles
+            validate: true
+  - changeSet:
+      id: 0128.create_table_user_contexts.6
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: role_privilege_id
+            baseTableName: role_role_privileges
+            constraintName: fk5r2p0r7zsltfve6pgg5nffvlc
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: CASCADE
+            onUpdate: CASCADE
+            referencedColumnNames: id
+            referencedTableName: role_privileges
+            validate: true                                 
+                                  

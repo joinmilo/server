@@ -1,4 +1,4 @@
-package app.wooportal.server.core.security.components.roleApplication;
+package app.wooportal.server.core.security.components.role.roleApplication;
 
 import java.util.Set;
 import javax.persistence.Entity;
@@ -9,7 +9,8 @@ import javax.persistence.Table;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.i18n.annotations.Translatable;
 import app.wooportal.server.core.security.components.role.RoleEntity;
-import app.wooportal.server.core.security.components.roleApplication.translation.RoleApplicationTranslatableEntity;
+import app.wooportal.server.core.security.components.role.roleApplication.translation.RoleApplicationTranslatableEntity;
+import app.wooportal.server.core.security.components.role.rolePrivilege.RolePrivilegeEntity;
 import app.wooportal.server.core.security.components.user.UserEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -34,6 +35,9 @@ public class RoleApplicationEntity extends BaseEntity {
 
   @ManyToOne(fetch = FetchType.LAZY)
   private RoleEntity role;
+  
+  @ManyToOne(fetch = FetchType.LAZY)
+  private RolePrivilegeEntity privilege;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private UserEntity user;

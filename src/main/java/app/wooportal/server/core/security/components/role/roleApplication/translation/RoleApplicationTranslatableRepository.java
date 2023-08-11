@@ -1,4 +1,4 @@
-package app.wooportal.server.core.security.components.roleApplication.translation;
+package app.wooportal.server.core.security.components.role.roleApplication.translation;
 
 
 import org.springframework.stereotype.Repository;
