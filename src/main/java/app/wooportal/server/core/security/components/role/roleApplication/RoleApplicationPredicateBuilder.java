@@ -1,4 +1,4 @@
-package app.wooportal.server.core.security.components.roleApplication;
+package app.wooportal.server.core.security.components.role.roleApplication;
 
 import org.springframework.stereotype.Service;
 import com.querydsl.core.types.dsl.BooleanExpression;
