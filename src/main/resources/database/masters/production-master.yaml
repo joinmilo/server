@@ -239,7 +239,13 @@ databaseChangeLog:
     - include:        
         file: database/changes/0127.add_columns_to_suburbs.yaml    
     - include:                 
-        file: database/changes/0128.create_table_role_applications.yaml            
+        file: database/changes/0128.create_table_role_privilege_translatables.yaml  
+    - include:                 
+        file: database/changes/0129.create_table_role_privileges.yaml                      
+    - include:                 
+        file: database/changes/0130.create_table_role_application_translatables.yaml   
+    - include:                 
+        file: database/changes/0131.create_table_role_applications.yaml         
                 
     #Data section        
     - include:
