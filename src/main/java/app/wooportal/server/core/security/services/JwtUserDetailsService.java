@@ -1,7 +1,7 @@
 package app.wooportal.server.core.security.services;
 
 import app.wooportal.server.core.security.JwtUserDetails;
-import app.wooportal.server.core.security.components.role.RoleService;
+import app.wooportal.server.core.security.components.role.base.RoleService;
 import app.wooportal.server.core.security.components.user.UserEntity;
 import app.wooportal.server.core.security.components.user.UserService;
 import java.util.Optional;
@@ -24,8 +24,9 @@ public class JwtUserDetailsService implements UserDetailsService {
   @Override
   public JwtUserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
     Optional<UserEntity> user = userService.getByMail(username);
-
-    return user.isPresent() ? new JwtUserDetails(user.get(), roleService.getByUser(user.get()))
+    
+    return user.isPresent()
+        ? new JwtUserDetails(user.get(), roleService.getByUser(user.get()))
         : null;
   }
 

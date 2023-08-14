@@ -19,7 +19,7 @@ import app.wooportal.server.core.error.exception.VerificationInvalidException;
 import app.wooportal.server.core.error.exception.VerificationUserNotFoundException;
 import app.wooportal.server.core.push.subscription.SubscriptionService;
 import app.wooportal.server.core.repository.DataRepository;
-import app.wooportal.server.core.security.components.role.roleApplication.RoleApplicationService;
+import app.wooportal.server.core.security.components.role.application.RoleApplicationService;
 import app.wooportal.server.core.security.components.user.emailVerification.VerificationEntity;
 import app.wooportal.server.core.security.components.user.emailVerification.VerificationService;
 import app.wooportal.server.core.security.components.user.passwordReset.PasswordResetEntity;
@@ -54,7 +54,7 @@ public class UserService extends DataService<UserEntity, UserPredicateBuilder> {
   }
 
   public Optional<UserEntity> getByMail(String name) {
-    return repo.findOne(singleQuery(predicate.withMail(name)));
+    return repo.findOne(singleQuery(predicate.withMail(name)).addGraph(graph("role.privileges")));
   }
 
   public Optional<UserEntity> me() {

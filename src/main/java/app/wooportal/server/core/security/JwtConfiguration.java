@@ -26,7 +26,7 @@ public class JwtConfiguration {
 
   private String secret;
   private String claimApproved;
-  private String claimRoles;
+  private String claimPrivileges;
   private String claimUserid;
   private String claimScopes;
   private String claimVerified;
