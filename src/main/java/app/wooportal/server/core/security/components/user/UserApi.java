@@ -11,7 +11,7 @@ import app.wooportal.server.core.error.exception.BadParamsException;
 import app.wooportal.server.core.push.MessageDto;
 import app.wooportal.server.core.push.NotificationType;
 import app.wooportal.server.core.push.PushService;
-import app.wooportal.server.core.security.components.role.RoleService;
+import app.wooportal.server.core.security.components.role.base.RoleService;
 import app.wooportal.server.core.security.permissions.AdminPermission;
 import io.leangen.graphql.annotations.GraphQLArgument;
 import io.leangen.graphql.annotations.GraphQLMutation;

@@ -39,7 +39,7 @@ databaseChangeLog:
               - column:
                   constraints:
                     nullable: false
-                  name: role_id
+                  name: privilege_id
                   type: CHAR(36)                                                 
             tableName: role_applications
         - sql:
@@ -82,7 +82,7 @@ databaseChangeLog:
         - createIndex:
             columns:
               - column:
-                  name: role_id
+                  name: privilege_id
             indexName: idx_fk8epiuule5ldv210fhiz4h76u5
             tableName: role_applications
   - changeSet:
@@ -90,7 +90,7 @@ databaseChangeLog:
       author: codeschluss
       changes:
         - addForeignKeyConstraint:
-            baseColumnNames: role_id
+            baseColumnNames: privilege_id
             baseTableName: role_applications
             constraintName: fk8epiuule5ldv210fhiz4h76u5
             deferrable: false
@@ -99,5 +99,4 @@ databaseChangeLog:
             onDelete: CASCADE
             referencedColumnNames: id
             referencedTableName: roles
-            validate: true                         
-                                  
+            validate: true

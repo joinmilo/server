@@ -1,6 +1,7 @@
 package app.wooportal.server.core.security.components.token;
 
 import java.util.Date;
+import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
@@ -23,7 +24,10 @@ public class TokenService {
     return JWT.create().withSubject(jwtUserDetails.getUsername())
         .withClaim(securityConfig.getClaimUserid(), jwtUserDetails.getUser().getId())
         .withClaim(securityConfig.getClaimVerified(), jwtUserDetails.isVerified())
-        .withArrayClaim(securityConfig.getClaimRoles(), jwtUserDetails.getRoles())
+        .withArrayClaim(securityConfig.getClaimPrivileges(), jwtUserDetails.getAuthorities()
+            .stream().map(a -> a.getAuthority())
+            .collect(Collectors.toList())
+            .toArray(String[]::new))
         .withArrayClaim(securityConfig.getClaimScopes(), 
             new String[] {securityConfig.getScopeAccess()})
         .withExpiresAt(
