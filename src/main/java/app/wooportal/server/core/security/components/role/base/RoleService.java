@@ -1,4 +1,4 @@
-package app.wooportal.server.core.security.components.role;
+package app.wooportal.server.core.security.components.role.base;
 
 import java.util.List;
 import java.util.Optional;
