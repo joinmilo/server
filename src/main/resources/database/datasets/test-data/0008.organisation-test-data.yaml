@@ -43,11 +43,11 @@ databaseChangeLog:
         - sql:
             comment: Add data organisation_translatables
             splitStatements: true
-            sql: insert into organisation_members (id, approved, admin, is_public, user_context_id, organisation_id) values
-               (uuid(), true, false,  true, 'ece550e8-bc2b-43c4-8aaf-48a30e82080f', 'c7356a4c-fd81-4860-b1cc-06f549067132'),
-               (uuid(), true, false,  true, '5737ee58-9f88-43d1-baf4-a34dd85f0219', 'c7356a4c-fd81-4860-b1cc-06f549067132'),
-               (uuid(), true, false,  true, '5737ee58-9f88-43d1-baf4-a34dd85f0219', 'c7356a4c-fd81-4860-b1cc-06f549067132'),
-               (uuid(), true, false,  true, '5737ee58-9f88-43d1-baf4-a34dd85f0219', 'c7356a4c-fd81-4860-b1cc-06f549067132');
+            sql: insert into organisation_members (id, approved, is_public, user_context_id, organisation_id) values
+               (uuid(), true, true, 'ece550e8-bc2b-43c4-8aaf-48a30e82080f', 'c7356a4c-fd81-4860-b1cc-06f549067132'),
+               (uuid(), true, true, '5737ee58-9f88-43d1-baf4-a34dd85f0219', 'c7356a4c-fd81-4860-b1cc-06f549067132'),
+               (uuid(), true, true, '5737ee58-9f88-43d1-baf4-a34dd85f0219', 'c7356a4c-fd81-4860-b1cc-06f549067132'),
+               (uuid(), true, true, '5737ee58-9f88-43d1-baf4-a34dd85f0219', 'c7356a4c-fd81-4860-b1cc-06f549067132');
                
   - changeSet:
       id: 0008.test-data.5
