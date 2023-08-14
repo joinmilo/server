@@ -1,34 +1,30 @@
-package app.wooportal.server.core.security.components.role.translation;
+package app.wooportal.server.core.security.components.role.application.translation;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import app.wooportal.server.core.i18n.components.language.LanguageEntity;
 import app.wooportal.server.core.i18n.entities.TranslatableEntity;
-import app.wooportal.server.core.security.components.role.RoleEntity;
-import lombok.AccessLevel;
+import app.wooportal.server.core.security.components.role.application.RoleApplicationEntity;
+import app.wooportal.server.core.security.components.role.base.RoleEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PUBLIC)
 @Entity
-@Table(name = "role_translatables")
-public class RoleTranslatableEntity extends TranslatableEntity<RoleEntity> {
+@Table(name = "role_application_translatables")
+public class RoleApplicationTranslatableEntity extends TranslatableEntity<RoleEntity> {
 
   private static final long serialVersionUID = 1L;
 
-  @Column(nullable = false)
-  private String name;
+  private String content;
 
   @ManyToOne(fetch = FetchType.LAZY)
-  private RoleEntity parent;
+  private RoleApplicationEntity parent;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private LanguageEntity language;
