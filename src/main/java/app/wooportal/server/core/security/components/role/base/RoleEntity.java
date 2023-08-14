@@ -1,4 +1,4 @@
-package app.wooportal.server.core.security.components.role;
+package app.wooportal.server.core.security.components.role.base;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,11 +14,10 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import org.hibernate.annotations.CollectionId;
 import org.hibernate.annotations.Type;
-import app.wooportal.server.base.userContext.base.UserContextEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.i18n.annotations.Translatable;
-import app.wooportal.server.core.security.components.role.roleApplication.RoleApplicationEntity;
-import app.wooportal.server.core.security.components.role.translation.RoleTranslatableEntity;
+import app.wooportal.server.core.security.components.role.base.translation.RoleTranslatableEntity;
+import app.wooportal.server.core.security.components.role.privilege.RolePrivilegeEntity;
 import app.wooportal.server.core.security.components.user.UserEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -44,9 +43,6 @@ public class RoleEntity extends BaseEntity {
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
   private Set<RoleTranslatableEntity> translatables;
-  
-  @OneToMany(fetch = FetchType.LAZY, mappedBy = "role")
-  private Set<RoleApplicationEntity> applcations;
 
   @ManyToMany(fetch = FetchType.LAZY)
   @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "role_id"),
@@ -60,5 +56,5 @@ public class RoleEntity extends BaseEntity {
       inverseJoinColumns = @JoinColumn(name = "role_privilege_id"),
       uniqueConstraints = {@UniqueConstraint(columnNames = {"role_id", "role_privilege_id"})})
   @CollectionId(column = @Column(name = "id"), type = @Type(type = "uuid-char"), generator = "UUID")
-  private List<UserContextEntity> privileges = new ArrayList<>();
+  private List<RolePrivilegeEntity> privileges = new ArrayList<>();
 }

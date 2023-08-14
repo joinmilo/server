@@ -1,4 +1,4 @@
-package app.wooportal.server.core.security.components.role.rolePrivilege;
+package app.wooportal.server.core.security.components.role.privilege;
 
 import org.springframework.stereotype.Service;
 import app.wooportal.server.core.base.DataService;
