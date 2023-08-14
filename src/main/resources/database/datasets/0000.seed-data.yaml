@@ -205,12 +205,141 @@ databaseChangeLog:
               ("5d934fdc-ca72-4450-9886-ebd1cb5238e5", "user_admin"),
               ("81d716ff-066e-434c-a0cf-057321b919b3", "translator_admin"),              
               ("27ba1e83-ef5e-44f7-8cf5-419dff27d70d", "cms_admin");
+                       
+  - changeSet:
+      id: 0000.seed-data.10
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add data role_privilege_translatables
+            splitStatements: true
+            sql: insert into role_privilege_translatables (id, parent_id, language_id, `name`, description)
+                 select uuid(), "f27d3b20-162e-4302-802e-ceaa8a678b14", l.id, "Administration", "Erstellung, Bearbeitung und Löschung sämtlicher Inhalte"
+                 from languages l
+                 WHERE l.locale = "de";   
+                 
+                 insert into role_privilege_translatables (id, parent_id, language_id, `name`, description)
+                 select uuid(), "0130847a-5797-4e96-8936-886d8cf2f30a", l.id, "Verwaltungen", "Erstellung, Bearbeitung und Löschung eigener Inhalte"
+                 from languages l
+                 WHERE l.locale = "de";   
+                 
+                 insert into role_privilege_translatables (id, parent_id, language_id, `name`, description)
+                 select uuid(), "7fa2fff3-0c7c-4cb7-a65a-1c8c0c6f9076", l.id, "Artikel-Administration", "Erstellung, Bearbeitung und Löschung sämtlicher Artikel"
+                 from languages l
+                 WHERE l.locale = "de";                              
               
+                 insert into role_privilege_translatables (id, parent_id, language_id, `name`, description)
+                 select uuid(), "3442417f-e0ee-445f-b1f8-de04231afa83", l.id, "Artikel-Verwaltung", "Erstellung, Bearbeitung und Löschung eigener Artikel"
+                 from languages l
+                 WHERE l.locale = "de";                 		
               
-              
-              
-              
-              
+                 insert into role_privilege_translatables (id, parent_id, language_id, `name`, description)
+                 select uuid(), "b03de608-e506-46f8-9c23-21a760ca9785", l.id, "Wettbewerbe-Administration", "Erstellung, Bearbeitung und Löschung sämtlicher Wettbewerbe"
+                 from languages l
+                 WHERE l.locale = "de";   
+                 
+                 insert into role_privilege_translatables (id, parent_id, language_id, `name`, description)
+                 select uuid(), "4b0aec80-849d-4120-8d67-9e7ffff313ff", l.id, "Kleinanzeigen-Verwaltung", "Erstellung, Bearbeitung und Löschung sämtlicher Kleinanzeigen"
+                 from languages l
+                 WHERE l.locale = "de";   
+                 
+                 insert into role_privilege_translatables (id, parent_id, language_id, `name`, description)
+                 select uuid(), "4b0aec80-849d-4120-8d67-9e7ffff313ff", l.id, "Kleinanzeigen-Verwaltung", "Erstellung, Bearbeitung und Löschung sämtlicher Kleinanzeigen"
+                 from languages l
+                 WHERE l.locale = "de";    
+                 
+                 insert into role_privilege_translatables (id, parent_id, language_id, `name`, description)
+                 select uuid(), "79d530a1-b941-41b1-afae-85d90aa80cc6", l.id, "Veranstaltungen-Administration", "Erstellung, Bearbeitung und Löschung sämtlicher Veranstaltungen"
+                 from languages l
+                 WHERE l.locale = "de";         
+                 
+                 insert into role_privilege_translatables (id, parent_id, language_id, `name`, description)
+                 select uuid(), "58d24b4b-2e49-4302-9a53-16b4c0fdc573", l.id, "Veranstaltungen-Verwaltung", "Erstellung, Bearbeitung und Löschung eigener Veranstaltungen"
+                 from languages l
+                 WHERE l.locale = "de";     
+                 
+                 insert into role_privilege_translatables (id, parent_id, language_id, `name`, description)
+                 select uuid(), "bba27f35-0455-4d7c-8385-b4a34f3bbe05", l.id, "Formulare-Administration", "Erstellung, Bearbeitung und Löschung sämtlicher Formulare"
+                 from languages l
+                 WHERE l.locale = "de";        
+                 
+                 insert into role_privilege_translatables (id, parent_id, language_id, `name`, description)
+                 select uuid(), "7700d012-dab1-48af-ae2e-b9913c330129", l.id, "Formulare-Verwaltung", "Erstellung, Bearbeitung und Löschung eigener Formulare"
+                 from languages l
+                 WHERE l.locale = "de"; 
+                 
+                 insert into role_privilege_translatables (id, parent_id, language_id, `name`, description)
+                 select uuid(), "799c00b4-5b34-4668-aa7f-b05c83fd714c", l.id, "Media-Administration", "Erstellung, Bearbeitung und Löschung sämtlicher medialer Inhalte"
+                 from languages l
+                 WHERE l.locale = "de";     
+                 
+                 insert into role_privilege_translatables (id, parent_id, language_id, `name`, description)
+                 select uuid(), "9a34e340-fbac-4016-acf7-a532b8ac5565", l.id, "Media-Verwaltung", "Erstellung, Bearbeitung und Löschung eigener medialer Inhalte"
+                 from languages l
+                 WHERE l.locale = "de";       
+                 
+                 insert into role_privilege_translatables (id, parent_id, language_id, `name`, description)
+                 select uuid(), "e1c2e253-3c8b-4faa-b3b6-a8cd2f0bb11e", l.id, "Organisationen-Administration", "Erstellung, Bearbeitung und Löschung sämtlicher Organisationen"
+                 from languages l
+                 WHERE l.locale = "de";     
+                 
+                 insert into role_privilege_translatables (id, parent_id, language_id, `name`, description)
+                 select uuid(), "a35c818d-dcb3-4235-ab7a-e5885c897e2b", l.id, "Umfragen-Administration", "Erstellung, Bearbeitung und Löschung sämtlicher Umfragen"
+                 from languages l
+                 WHERE l.locale = "de";    
+                 
+                 insert into role_privilege_translatables (id, parent_id, language_id, `name`, description)
+                 select uuid(), "90cca41b-2dff-4762-9eec-1a4bcfae8c71", l.id, "Umfragen-Verwaltung", "Erstellung, Bearbeitung und Löschung eigener Umfragen"
+                 from languages l
+                 WHERE l.locale = "de";   
+                 
+                 insert into role_privilege_translatables (id, parent_id, language_id, `name`, description)
+                 select uuid(), "a35c818d-dcb3-4235-ab7a-e5885c897e2b", l.id, "Addressen-Administration", "Erstellung, Bearbeitung und Löschung sämtlicher Adressen"
+                 from languages l
+                 WHERE l.locale = "de";   
+                 
+                 insert into role_privilege_translatables (id, parent_id, language_id, `name`, description)
+                 select uuid(), "8dabe2e5-4140-43b7-a108-d452f14c170e", l.id, "Soziale-Medien-Administration", "Erstellung, Bearbeitung und Löschung sämtlicher sozialer Medien"
+                 from languages l
+                 WHERE l.locale = "de";   
+                 
+                 insert into role_privilege_translatables (id, parent_id, language_id, `name`, description)
+                 select uuid(), "5d934fdc-ca72-4450-9886-ebd1cb5238e5", l.id, "Nutzer-Administration", "Erstellung, Bearbeitung und Löschung sämtlicher Apps"
+                 from languages l
+                 WHERE l.locale = "de";    
+                 
+                 insert into role_privilege_translatables (id, parent_id, language_id, `name`, description)
+                 select uuid(), "81d716ff-066e-434c-a0cf-057321b919b3", l.id, "Übersetzer-Administration", "Erstellung, Bearbeitung und Löschung sämtlicher Übersetzungen"
+                 from languages l
+                 WHERE l.locale = "de"; 
+                 
+                 insert into role_privilege_translatables (id, parent_id, language_id, `name`, description)
+                 select uuid(), "27ba1e83-ef5e-44f7-8cf5-419dff27d70d", l.id, "CMS-Administration", "Erstellung, Bearbeitung und Löschung sämtlicher Menüs und Seiten"
+                 from languages l
+                 WHERE l.locale = "de";
+                 
+  - changeSet:
+      id: 0000.seed-data.11
+      author: codeschluss
+      changes:
+        - sql:
+            comment: add organizer to approved members
+            splitStatements: true
+            sql:
+                /*!40101 SET character_set_client = utf8 */;
+                
+                INSERT IGNORE INTO user_roles (id, user_id, role_id)
+                SELECT uuid(), uc.user_id, r.id
+                FROM organisation_members m
+                LEFT JOIN user_contexts uc ON uc.id = m.user_context_id
+                LEFT JOIN roles r ON r.code = "organizer"
+                WHERE m.approved = true;
+
+
+
+                                                                                                                                                                                                                                                                
+                 
+                                                           
               
               
               
