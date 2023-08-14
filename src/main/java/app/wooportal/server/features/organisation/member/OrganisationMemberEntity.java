@@ -30,9 +30,6 @@ public class OrganisationMemberEntity extends BaseEntity {
   private Boolean approved;
   
   @Column(nullable = false)
-  private Boolean admin;
-  
-  @Column(nullable = false)
   private Boolean isPublic;
 
   @ManyToOne(fetch = FetchType.LAZY)

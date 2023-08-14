@@ -29,12 +29,6 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                   defaultValueBoolean: false
-                  name: admin
-                  type: boolean
-              - column:
-                  constraints:
-                    nullable: false
-                  defaultValueBoolean: false
                   name: approved
                   type: boolean   
               - column:
