@@ -47,7 +47,6 @@ databaseChangeLog:
                ('ece550e8-bc2b-43c4-8aaf-48a30e82080f', 'c3d05f46-5c3c-4100-85d5-649ecfb42601', 'slug-wh1zc'),
                ('5102ef99-492e-476d-a6d8-357125e9f443', '02785e86-0606-4eab-bbbc-6e90f35587b5', 'slug-wh2zc'),
                ('a9b32d23-ec3b-42ac-ab11-caf9bdc32643', 'f96b2b8b-6b9f-44dd-8c30-83f6c9400970', 'slug-wh4zc'),
-               ('bdadf02e-37df-4d3b-a639-cf9a76532904', 'e618577b-bed0-4e19-89f3-e6ba2e9da795', 'slug-wh3zc'),
                ('20ab2295-4d4f-4524-893d-f3b09f1e885a', '86db5071-55c6-4871-bab6-e94a40e914ff', 'slug-qac77'),
                ('f88e5ebf-1828-4bd6-905e-821bff9c3f64', '79e26a57-04f9-4356-89bc-a1c2cbd9a425', 'slug-wh5zc'),
                ('75a2d0e2-638a-47f0-b47e-16360d08a897', '83c04c77-e816-4f5d-8408-37349cf07583', 'slug-wh6zc'),
