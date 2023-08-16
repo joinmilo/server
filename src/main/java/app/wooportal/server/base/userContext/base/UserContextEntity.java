@@ -99,12 +99,12 @@ public class UserContextEntity extends BaseEntity {
 
   @OneToMany(mappedBy = "userContext", fetch = FetchType.LAZY)
   private Set<EventRatingEntity> eventRatings;
-
+  
   @OneToMany(mappedBy = "addressee", fetch = FetchType.LAZY)
-  private Set<FriendEntity> friendAddressee;
+  private Set<FriendEntity> receivedFriendRequests;
 
   @OneToMany(mappedBy = "requester", fetch = FetchType.LAZY)
-  private Set<FriendEntity> friendRequester;
+  private Set<FriendEntity> sentFriendRequests;
 
   @OneToMany(mappedBy = "userContext", fetch = FetchType.LAZY)
   private Set<OrganisationMemberEntity> members;

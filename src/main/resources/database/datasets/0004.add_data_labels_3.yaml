@@ -849,9 +849,9 @@ databaseChangeLog:
             sql:
                /*!40101 SET character_set_client = utf8 */;
                /* Set variables */
-               SET @tagId   = "deleteFriendship";
-               SET @german  = "Freundschaft löschen";
-               SET @english = "Delete Friendship";
+               SET @tagId   = "removeFriend";
+               SET @german  = "Freundschaft entfernen";
+               SET @english = "Remove friend";
 
 
                /* Insert */
@@ -911,9 +911,9 @@ databaseChangeLog:
             sql:
                /*!40101 SET character_set_client = utf8 */;
                /* Set variables */
-               SET @tagId   = "deleteRequest";
-               SET @german  = "Anfrage löschen";
-               SET @english = "Delete Request";
+               SET @tagId   = "remove";
+               SET @german  = "Entfernen";
+               SET @english = "Remove";
 
 
                /* Insert */

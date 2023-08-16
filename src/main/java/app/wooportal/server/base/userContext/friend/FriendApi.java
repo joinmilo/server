@@ -57,4 +57,5 @@ public class FriendApi extends CrudApi<FriendEntity, FriendService> {
   public Boolean deleteOne(@GraphQLArgument(name = CrudApi.id) String id) {
     return super.deleteOne(id);
   }
+  
 }
