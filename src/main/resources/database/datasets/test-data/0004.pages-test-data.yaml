@@ -11,7 +11,8 @@ databaseChangeLog:
             sql:
                 insert into pages (id, slug, meta_description, is_landing, call_url) values
                 ("7cefc60c-8325-4861-90c7-97f1e8eeb290", "landing", null, true, "http://localhost:8010"),
-                ("5e3ba845-01c1-43ef-969f-640ba23ee765", "test", null, false, "http://localhost:8010/portal/test");
+                ("5e3ba845-01c1-43ef-969f-640ba23ee765", "test", null, false, "http://localhost:8010/portal/test"),
+                ("983c981e-a992-44c3-a838-4249b239690a", "data-protection", null, false, "http://localhost:8010/data-protection");
                 
                 insert into page_media (id, media_id, page_id, title) values
                 (uuid(), "1774bd91-1698-4c4a-8f16-3a0a98fdef32", "7cefc60c-8325-4861-90c7-97f1e8eeb290", true),
@@ -28,7 +29,13 @@ databaseChangeLog:
                 select uuid(), "Wooportal", "Hier findest du alle Events und Neuigkeiten aus deiner Stadt", "Entdecke mehr", p.id, l.id
                 from pages p, languages l
                 WHERE p.slug = "landing" AND
-                l.locale = "de"; 
+                l.locale = "de";
+                
+                insert into page_translatables (id, `name`, short_description, call_text, parent_id, language_id)
+                select uuid(), "Datenschutz", "Eins können wir euch versichern... EURE Daten sind sicher!", null, p.id, l.id
+                from pages p, languages l
+                WHERE p.slug = "data-protection" AND
+                l.locale = "de";  
                 
   - changeSet:
       id: 0004.test-data.2

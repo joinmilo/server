@@ -143,7 +143,8 @@ databaseChangeLog:
               ('ad024a93-6f72-408f-992f-00c6639b0752', 'hCaptchaSitekey', '8d4dfccc-7457-46ce-8bc6-1646b7f637dd'),
               ('8a5e5a03-7c9f-4bcc-820c-514bb5cc618f', 'defaultLocale', 'de'),
               ('187b280d-8fe3-4129-9526-530f9c8e708b', 'pwBitStrength', '40'),
-              ('652dbe0f-387d-4d32-9626-6ed8756420b9', 'maxRating', '5');
+              ('652dbe0f-387d-4d32-9626-6ed8756420b9', 'maxRating', '5'),
+              ('2879aa51-28b6-4263-ba28-8b1fb8241d3b', 'dataProtection', 'data-protection');              
               
   - changeSet:
       id: 0000.seed-data.7
