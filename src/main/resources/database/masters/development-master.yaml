@@ -243,9 +243,9 @@ databaseChangeLog:
     - include:                 
         file: database/changes/0129.create_table_role_privilege_translatables.yaml  
     - include:                 
-        file: database/changes/0130.create_table_role_applications.yaml                                
+        file: database/changes/0130.create_table_privilege_applications.yaml                                
     - include:                 
-        file: database/changes/0131.create_table_role_application_translatables.yaml   
+        file: database/changes/0131.create_table_privilege_application_translatables.yaml   
                                    
     #Data section
     - include:

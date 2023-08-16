@@ -19,7 +19,7 @@ import app.wooportal.server.core.error.exception.VerificationInvalidException;
 import app.wooportal.server.core.error.exception.VerificationUserNotFoundException;
 import app.wooportal.server.core.push.subscription.SubscriptionService;
 import app.wooportal.server.core.repository.DataRepository;
-import app.wooportal.server.core.security.components.role.application.RoleApplicationService;
+import app.wooportal.server.core.security.components.role.privilege.application.PrivilegeApplicationService;
 import app.wooportal.server.core.security.components.user.emailVerification.VerificationEntity;
 import app.wooportal.server.core.security.components.user.emailVerification.VerificationService;
 import app.wooportal.server.core.security.components.user.passwordReset.PasswordResetEntity;
@@ -40,7 +40,7 @@ public class UserService extends DataService<UserEntity, UserPredicateBuilder> {
       AuthenticationService authService, BCryptPasswordEncoder bcryptPasswordEncoder,
       UserContextMediaService mediaService, PasswordResetService passwordResetService,
       SubscriptionService subscriptionService, VerificationService verificationService,
-      RoleApplicationService roleApplicationService) {
+      PrivilegeApplicationService privilegeApplicationService) {
     super(repo, predicate);
 
     this.authService = authService;
@@ -50,11 +50,11 @@ public class UserService extends DataService<UserEntity, UserPredicateBuilder> {
     addService("passwordResets", passwordResetService);
     addService("subscriptions", subscriptionService);
     addService("verifications", verificationService);
-    addService("roleApplications", roleApplicationService);
+    addService("privilegeApplications", privilegeApplicationService);
   }
 
   public Optional<UserEntity> getByMail(String name) {
-    return repo.findOne(singleQuery(predicate.withMail(name)).addGraph(graph("role.privileges")));
+    return repo.findOne(singleQuery(predicate.withMail(name)).addGraph(graph("roles.privileges")));
   }
 
   public Optional<UserEntity> me() {

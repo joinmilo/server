@@ -17,5 +17,9 @@ public class RolePrivilegePredicateBuilder extends PredicateBuilder<QRolePrivile
     return query.description.likeIgnoreCase(term)
         .or(query.name.likeIgnoreCase(term));
   }
+  
+	public BooleanExpression withCode(String code) {
+		return query.code.eq(code);
+	}
 }
 

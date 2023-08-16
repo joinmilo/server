@@ -1,15 +1,17 @@
-package app.wooportal.server.core.security.components.role.application;
+package app.wooportal.server.core.security.components.role.privilege.application;
 
 import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.i18n.annotations.Translatable;
-import app.wooportal.server.core.security.components.role.application.translation.RoleApplicationTranslatableEntity;
 import app.wooportal.server.core.security.components.role.privilege.RolePrivilegeEntity;
+import app.wooportal.server.core.security.components.role.privilege.application.translation.PrivilegeApplicationTranslatableEntity;
 import app.wooportal.server.core.security.components.user.UserEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -22,8 +24,8 @@ import lombok.Setter;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @AllArgsConstructor
 @Entity
-@Table(name = "role_applications")
-public class RoleApplicationEntity extends BaseEntity {
+@Table(name = "privilege_applications")
+public class PrivilegeApplicationEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
 
@@ -39,5 +41,5 @@ public class RoleApplicationEntity extends BaseEntity {
   private UserEntity user;
   
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
-  private Set<RoleApplicationTranslatableEntity> translatables;
+  private Set<PrivilegeApplicationTranslatableEntity> translatables;
 }

@@ -4,6 +4,7 @@ import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,15 +16,17 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
+
 import org.hibernate.annotations.CollectionId;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
+
 import app.wooportal.server.base.userContext.base.UserContextEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.messaging.notifications.base.NotificationEntity;
 import app.wooportal.server.core.push.subscription.SubscriptionEntity;
-import app.wooportal.server.core.security.components.role.application.RoleApplicationEntity;
 import app.wooportal.server.core.security.components.role.base.RoleEntity;
+import app.wooportal.server.core.security.components.role.privilege.application.PrivilegeApplicationEntity;
 import app.wooportal.server.core.security.components.user.emailVerification.VerificationEntity;
 import app.wooportal.server.core.security.components.user.passwordReset.PasswordResetEntity;
 import lombok.AccessLevel;
@@ -82,7 +85,7 @@ public class UserEntity extends BaseEntity {
   private List<RoleEntity> roles = new ArrayList<>();
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-  private Set<RoleApplicationEntity> roleApplications;
+  private Set<PrivilegeApplicationEntity> privilegeApplications;
   
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
   private Set<SubscriptionEntity> subscriptions;
