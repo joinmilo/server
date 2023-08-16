@@ -74,7 +74,7 @@ public class AuthenticationService {
           return Optional.of(new UsernamePasswordAuthenticationToken(
               userDetails.get(), null, Collections.emptyList())); 
         }
-      } catch (Exception ignored) { }
+      } catch (Exception ignored) {}
     }
     return Optional.empty();
   }

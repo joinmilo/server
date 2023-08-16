@@ -1,4 +1,4 @@
-package app.wooportal.server.core.security.components.role.application;
+package app.wooportal.server.core.security.components.role.privilege.application;
 
 import org.springframework.stereotype.Service;
 import app.wooportal.server.core.base.DataService;
@@ -6,11 +6,11 @@ import app.wooportal.server.core.repository.DataRepository;
 import app.wooportal.server.core.security.components.role.privilege.RolePrivilegeService;
 
 @Service
-public class RoleApplicationService
-    extends DataService<RoleApplicationEntity, RoleApplicationPredicateBuilder> {
+public class PrivilegeApplicationService
+    extends DataService<PrivilegeApplicationEntity, PrivilegeApplicationPredicateBuilder> {
 
-  public RoleApplicationService(DataRepository<RoleApplicationEntity> repo,
-      RoleApplicationPredicateBuilder predicate,
+  public PrivilegeApplicationService(DataRepository<PrivilegeApplicationEntity> repo,
+      PrivilegeApplicationPredicateBuilder predicate,
       RolePrivilegeService rolePrivilegeService) {
     super(repo, predicate);
     
