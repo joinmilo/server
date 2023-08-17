@@ -76,3 +76,21 @@ databaseChangeLog:
                  from languages l
                  WHERE l.locale = "de";
                  
+  - changeSet:
+      id: 0009.test-data.8
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add picture to event
+            splitStatements: true
+            sql:
+               insert into article_media (id, media_id, article_id, title, card) values
+               ('6eed38fe-f325-4b98-bb91-57be8892f249', '1774bd91-1698-4c4a-8f16-3a0a98fdef32', '7dd9abba-b253-4fb4-818d-7ef090f26b83', true, true),
+               ('a9fa1b8d-916a-440f-952b-fe2d53c9e744', '3e791600-8e00-4069-a060-4862c44da93b', '7dd9abba-b253-4fb4-818d-7ef090f26b83', false, false),
+               ('7350022c-6e92-484c-9a05-77a04349d1e8', 'fc8a64b5-7335-4309-a5c1-e9d2de53c338', '7dd9abba-b253-4fb4-818d-7ef090f26b83', false, false),
+               ('6112c3b0-efff-458c-82f6-e145fbe2b633', '1737d307-da5f-4bb4-9148-08c13beab44a', '7dd9abba-b253-4fb4-818d-7ef090f26b83', false, false),
+               ('0de3c8dd-d4ba-400a-9137-2219e7d42e32', '0b4cb5ff-1802-496a-8b18-a4e3c5608fba', '7dd9abba-b253-4fb4-818d-7ef090f26b83', false, false),
+               ('3317cbd5-778f-42ef-8e1c-bd7280531900', '32630107-fd88-4b82-967e-3ad3128527e5', '7dd9abba-b253-4fb4-818d-7ef090f26b83', false, false),
+               ('9ba3f2df-4696-4c7d-a21f-448000cd3eca', '8ce57895-53c6-4af2-95eb-69dc8a4ee658', '7dd9abba-b253-4fb4-818d-7ef090f26b83', false, false),
+               ('ac49f5af-36d5-4dec-a47f-38204f280ab9', '88bd9809-b153-4de8-9158-d740a10ab810', '7dd9abba-b253-4fb4-818d-7ef090f26b83', false, false);                 
+                 

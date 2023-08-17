@@ -48,3 +48,23 @@ databaseChangeLog:
                  select uuid(), 'SurveyOne', "Coole Umfrage! Nicht verpassen!", 'd0757ae3-414d-4938-b52f-ab521311809c', l.id 
                  from languages l
                  WHERE l.locale = "de";
+                 
+  - changeSet:
+      id: 0014.test-data.5
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add picture to survey
+            splitStatements: true
+            sql:
+               insert into survey_media (id, media_id, survey_id, title, card) values
+               ('b19fedf5-785d-4ed0-9bac-20daed65d6fb', '1774bd91-1698-4c4a-8f16-3a0a98fdef32', 'd0757ae3-414d-4938-b52f-ab521311809c', true, true),
+               ('705b2204-4ab5-425f-8bbc-704f7016364f', '3e791600-8e00-4069-a060-4862c44da93b', 'd0757ae3-414d-4938-b52f-ab521311809c', false, false),
+               ('08532a30-40b7-46bc-a28d-290da5e8ffa3', 'fc8a64b5-7335-4309-a5c1-e9d2de53c338', 'd0757ae3-414d-4938-b52f-ab521311809c', false, false),
+               ('befc0fe8-3743-4440-abef-abd5688e7063', '1737d307-da5f-4bb4-9148-08c13beab44a', 'd0757ae3-414d-4938-b52f-ab521311809c', false, false),
+               ('499c6b57-fc4f-48c7-8f83-1bd39a5de592', '0b4cb5ff-1802-496a-8b18-a4e3c5608fba', 'd0757ae3-414d-4938-b52f-ab521311809c', false, false),
+               ('3c3bc686-3b36-436c-9c66-5f8885ae3f12', '32630107-fd88-4b82-967e-3ad3128527e5', 'd0757ae3-414d-4938-b52f-ab521311809c', false, false),
+               ('111e40af-8a60-43ce-97e0-370c30d80d67', '8ce57895-53c6-4af2-95eb-69dc8a4ee658', 'd0757ae3-414d-4938-b52f-ab521311809c', false, false),
+               ('f7500fa4-fdf8-4db2-a6bb-c502f4867788', '88bd9809-b153-4de8-9158-d740a10ab810', 'd0757ae3-414d-4938-b52f-ab521311809c', false, false);
+               
+                                
