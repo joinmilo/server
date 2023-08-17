@@ -14,8 +14,22 @@ databaseChangeLog:
       author: codeschluss
       changes:
       - renameColumn:
-          columnDataType: VARCHAR(255)      
+          columnDataType: VARCHAR(255)
           newColumnName: code
           oldColumnName: name
           remarks: change in names
+          tableName: features
+
+  - changeSet:
+      id: 0017.migrate_data_features.3
+      author: codeschluss
+      changes:
+      - addColumn:
+          columns:
+            - column:
+                name: active
+                type: BOOLEAN
+            - column:
+                  name: icon
+                  type: VARCHAR(255)
           tableName: features

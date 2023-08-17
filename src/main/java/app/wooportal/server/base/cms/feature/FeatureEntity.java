@@ -23,19 +23,23 @@ import lombok.Setter;
 @Entity
 @Table(name = "features")
 public class FeatureEntity extends BaseEntity {
+  
+  private Boolean active;
 
   private static final long serialVersionUID = 1L;
   
+  private String code;
+  
+  private String icon;
+  
   @Translatable
   private String name;
-
-  private String code;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "feature")
   private Set<PageFeatureEntity> pageFeatures;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "feature")
-  private Set<MenuItemEntity> menuItem;
+  private Set<MenuItemEntity> menuItems;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
   private Set<FeatureTranslatableEntity> translatables;

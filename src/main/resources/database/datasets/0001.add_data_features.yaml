@@ -1,0 +1,207 @@
+  databaseChangeLog:
+  - logicalFilePath: path_independent
+  - changeSet:
+      id: 0001.add_data_features.1
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add Features
+            splitStatements: true
+            sql: insert into features (id, `code`, `icon`) values
+              ('cf2b4b5d-df3a-4f79-9cfd-61679c57bd16', 'authors', 'pen-fancy'),
+              ('b93928cc-ec57-4848-96af-26d8284ffcd1', 'map', 'map-location-dot'),
+              ('41cdbfa8-e751-41d4-b893-5c7215ec55e9', 'calendar', 'calendar-days'),
+              ('909d5070-f915-4891-b78b-1ef83690fddf', 'surveys', 'square-poll-vertical'),
+              ('492fa827-9fb4-4294-906d-b85e5bdb6890', 'contests', 'trophy'),
+              ('0633fd36-707a-42ee-878f-21e43f458aa9', 'guestarticle', 'user-pen'),
+              ('909fca09-78bb-42dd-95d0-164ceb1d9192', 'media', 'photo-film'),
+              ('8f1faa18-3204-4ab1-9f71-18317d1a3d89', 'deals', 'tags'),
+              ('17d083d2-3bf0-4efb-97ef-17d08cba37f4', 'forms', 'folder-open'),
+              ('bc1e70f7-5e83-484a-8f44-2a6485727ce9', 'reports', 'message');
+                
+  - changeSet:
+      id: 0001.add_data_features.2
+      author: codeschluss                
+      changes:
+        - sql:
+            comment: update existing features
+            splitStatements: true
+            sql:
+                /*!40101 SET character_set_client = utf8 */;
+                    
+                UPDATE features f
+                SET f.code = "events", f.icon = "calendar"
+                WHERE f.code = "activities";
+                
+                UPDATE features f
+                SET f.code = "articles", f.icon = "newspaper"
+                WHERE f.code = "blogposts";
+                
+                UPDATE features f
+                SET f.icon = "people-group"
+                WHERE f.code = "organisations";
+                     
+  - changeSet:
+      id: 0001.add_data_features.3
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add feature translatables
+            splitStatements: true
+            sql:
+                insert into feature_translatables (id, `name`, parent_id, language_id)
+                select uuid(), "Einrichtungen", f.id, l.id
+                from languages l, features f
+                WHERE l.locale = "de" AND
+                f.code = "organisations";
+                
+                insert into feature_translatables (id, `name`, parent_id, language_id)
+                select uuid(), "Beiträge", f.id, l.id
+                from languages l, features f
+                WHERE l.locale = "de" AND
+                f.code = "articles";
+                
+                insert into feature_translatables (id, `name`, parent_id, language_id)
+                select uuid(), "Events", f.id, l.id
+                from languages l, features f
+                WHERE l.locale = "de" AND
+                f.code = "events";     
+
+                insert into feature_translatables (id, `name`, parent_id, language_id)
+                select uuid(), "Organisations", f.id, l.id
+                from languages l, features f
+                WHERE l.locale = "en" AND
+                f.code = "organisations";
+                
+                insert into feature_translatables (id, `name`, parent_id, language_id)
+                select uuid(), "Articles", f.id, l.id
+                from languages l, features f
+                WHERE l.locale = "en" AND
+                f.code = "articles";
+                
+                insert into feature_translatables (id, `name`, parent_id, language_id)
+                select uuid(), "Events", f.id, l.id
+                from languages l, features f
+                WHERE l.locale = "en" AND
+                f.code = "events";             
+
+                insert into feature_translatables (id, `name`, parent_id, language_id)
+                select uuid(), "Autoren", f.id, l.id
+                from languages l, features f
+                WHERE l.locale = "de" AND
+                f.code = "authors";
+                
+                insert into feature_translatables (id, `name`, parent_id, language_id)
+                select uuid(), "Authors", f.id, l.id
+                from languages l, features f
+                WHERE l.locale = "en" AND
+                f.code = "authors";  
+                
+                insert into feature_translatables (id, `name`, parent_id, language_id)
+                select uuid(), "Karte", f.id, l.id
+                from languages l, features f
+                WHERE l.locale = "de" AND
+                f.code = "map"; 
+                
+                insert into feature_translatables (id, `name`, parent_id, language_id)
+                select uuid(), "Map", f.id, l.id
+                from languages l, features f
+                WHERE l.locale = "en" AND
+                f.code = "map";                                               
+                         
+                insert into feature_translatables (id, `name`, parent_id, language_id)
+                select uuid(), "Kalender", f.id, l.id
+                from languages l, features f
+                WHERE l.locale = "de" AND
+                f.code = "calendar";
+                
+                insert into feature_translatables (id, `name`, parent_id, language_id)
+                select uuid(), "Calendar", f.id, l.id
+                from languages l, features f
+                WHERE l.locale = "en" AND
+                f.code = "calendar";                           
+                           
+                insert into feature_translatables (id, `name`, parent_id, language_id)
+                select uuid(), "Umfragen", f.id, l.id
+                from languages l, features f
+                WHERE l.locale = "de" AND
+                f.code = "surveys";
+                
+                insert into feature_translatables (id, `name`, parent_id, language_id)
+                select uuid(), "Surveys", f.id, l.id
+                from languages l, features f
+                WHERE l.locale = "en" AND
+                f.code = "surveys";    
+
+                insert into feature_translatables (id, `name`, parent_id, language_id)
+                select uuid(), "Wettbewerbe", f.id, l.id
+                from languages l, features f
+                WHERE l.locale = "de" AND
+                f.code = "contests";
+                
+                insert into feature_translatables (id, `name`, parent_id, language_id)
+                select uuid(), "Contests", f.id, l.id
+                from languages l, features f
+                WHERE l.locale = "en" AND
+                f.code = "contests";
+                
+                insert into feature_translatables (id, `name`, parent_id, language_id)
+                select uuid(), "Gastbeiträge", f.id, l.id
+                from languages l, features f
+                WHERE l.locale = "de" AND
+                f.code = "guestarticle";
+                
+                insert into feature_translatables (id, `name`, parent_id, language_id)
+                select uuid(), "Guest articles", f.id, l.id
+                from languages l, features f
+                WHERE l.locale = "en" AND
+                f.code = "guestarticle";      
+                
+                insert into feature_translatables (id, `name`, parent_id, language_id)
+                select uuid(), "Mediathek", f.id, l.id
+                from languages l, features f
+                WHERE l.locale = "de" AND
+                f.code = "media";
+                
+                insert into feature_translatables (id, `name`, parent_id, language_id)
+                select uuid(), "Media", f.id, l.id
+                from languages l, features f
+                WHERE l.locale = "en" AND
+                f.code = "media";     
+                
+                insert into feature_translatables (id, `name`, parent_id, language_id)
+                select uuid(), "Kleinanzeigen", f.id, l.id
+                from languages l, features f
+                WHERE l.locale = "de" AND
+                f.code = "deals";
+                
+                insert into feature_translatables (id, `name`, parent_id, language_id)
+                select uuid(), "Deals", f.id, l.id
+                from languages l, features f
+                WHERE l.locale = "en" AND
+                f.code = "deals";
+
+                insert into feature_translatables (id, `name`, parent_id, language_id)
+                select uuid(), "Formulare", f.id, l.id
+                from languages l, features f
+                WHERE l.locale = "de" AND
+                f.code = "forms";
+                
+                insert into feature_translatables (id, `name`, parent_id, language_id)
+                select uuid(), "Forms", f.id, l.id
+                from languages l, features f
+                WHERE l.locale = "en" AND
+                f.code = "forms";
+                
+                insert into feature_translatables (id, `name`, parent_id, language_id)
+                select uuid(), "Feedback", f.id, l.id
+                from languages l, features f
+                WHERE l.locale = "de" AND
+                f.code = "reports";
+                
+                insert into feature_translatables (id, `name`, parent_id, language_id)
+                select uuid(), "Feedback", f.id, l.id
+                from languages l, features f
+                WHERE l.locale = "en" AND
+                f.code = "reports";                                                                                                    
+

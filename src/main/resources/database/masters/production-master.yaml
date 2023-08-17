@@ -245,7 +245,7 @@ databaseChangeLog:
     - include:
         file: database/datasets/0000.seed-data.yaml
     - include:
-        file: database/datasets/0001.add_data_menu_items.yaml
+        file: database/datasets/0001.add_data_features.yaml
     - include:
         file: database/datasets/0002.add_data_labels.yaml
     - include:

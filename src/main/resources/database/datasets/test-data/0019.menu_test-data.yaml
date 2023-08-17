@@ -1,202 +1,8 @@
-  databaseChangeLog:
+databaseChangeLog:
   - logicalFilePath: path_independent
-  - changeSet:
-      id: 0001.add_data_menu_items.1
-      author: codeschluss
-      changes:
-        - sql:
-            comment: Add Features
-            splitStatements: true
-            sql: insert into features (id, `code`) values
-              ('cf2b4b5d-df3a-4f79-9cfd-61679c57bd16', 'authors'),
-              ('b93928cc-ec57-4848-96af-26d8284ffcd1', 'map'),
-              ('41cdbfa8-e751-41d4-b893-5c7215ec55e9', 'calendar'),
-              ('909d5070-f915-4891-b78b-1ef83690fddf', 'surveys'),
-              ('492fa827-9fb4-4294-906d-b85e5bdb6890', 'contests'),
-              ('0633fd36-707a-42ee-878f-21e43f458aa9', 'guestarticle'),
-              ('909fca09-78bb-42dd-95d0-164ceb1d9192', 'media'),
-              ('8f1faa18-3204-4ab1-9f71-18317d1a3d89', 'deals'),
-              ('17d083d2-3bf0-4efb-97ef-17d08cba37f4', 'forms'),
-              ('bc1e70f7-5e83-484a-8f44-2a6485727ce9', 'reports');
-                
-  - changeSet:
-      id: 0001.add_data_menu_items.2
-      author: codeschluss                
-      changes:
-        - sql:
-            comment: change in names
-            splitStatements: true
-            sql:
-                /*!40101 SET character_set_client = utf8 */;
-                    
-                UPDATE
-                features f
-                SET 
-                f.code = "events"
-                WHERE
-                f.code = "activities";
-                
-                UPDATE
-                features f
-                SET 
-                f.code = "articles"
-                WHERE
-                f.code = "blogposts";                
-                     
-  - changeSet:
-      id: 0001.add_data_menu_items.3
-      author: codeschluss
-      changes:
-        - sql:
-            comment: Add feature translatables
-            splitStatements: true
-            sql:
-                insert into feature_translatables (id, `name`, parent_id, language_id)
-                select uuid(), "Organisation", f.id, l.id
-                from languages l, features f
-                WHERE l.locale = "de" AND
-                f.code = "organisations";
-                
-                insert into feature_translatables (id, `name`, parent_id, language_id)
-                select uuid(), "Artikel", f.id, l.id
-                from languages l, features f
-                WHERE l.locale = "de" AND
-                f.code = "articles";
-                
-                insert into feature_translatables (id, `name`, parent_id, language_id)
-                select uuid(), "Veranstaltung", f.id, l.id
-                from languages l, features f
-                WHERE l.locale = "de" AND
-                f.code = "events";     
-
-                insert into feature_translatables (id, `name`, parent_id, language_id)
-                select uuid(), "Organisation", f.id, l.id
-                from languages l, features f
-                WHERE l.locale = "en" AND
-                f.code = "organisations";
-                
-                insert into feature_translatables (id, `name`, parent_id, language_id)
-                select uuid(), "Article", f.id, l.id
-                from languages l, features f
-                WHERE l.locale = "en" AND
-                f.code = "articles";
-                
-                insert into feature_translatables (id, `name`, parent_id, language_id)
-                select uuid(), "Event", f.id, l.id
-                from languages l, features f
-                WHERE l.locale = "en" AND
-                f.code = "events";             
-
-                insert into feature_translatables (id, `name`, parent_id, language_id)
-                select uuid(), "Publizierende", f.id, l.id
-                from languages l, features f
-                WHERE l.locale = "de" AND
-                f.code = "author";
-                
-                insert into feature_translatables (id, `name`, parent_id, language_id)
-                select uuid(), "Author", f.id, l.id
-                from languages l, features f
-                WHERE l.locale = "en" AND
-                f.code = "author";  
-                
-                insert into feature_translatables (id, `name`, parent_id, language_id)
-                select uuid(), "Karte", f.id, l.id
-                from languages l, features f
-                WHERE l.locale = "de" AND
-                f.code = "map"; 
-                
-                insert into feature_translatables (id, `name`, parent_id, language_id)
-                select uuid(), "Map", f.id, l.id
-                from languages l, features f
-                WHERE l.locale = "en" AND
-                f.code = "map";                                               
-                         
-                insert into feature_translatables (id, `name`, parent_id, language_id)
-                select uuid(), "Kalender", f.id, l.id
-                from languages l, features f
-                WHERE l.locale = "de" AND
-                f.code = "calendar";
-                
-                insert into feature_translatables (id, `name`, parent_id, language_id)
-                select uuid(), "Calendar", f.id, l.id
-                from languages l, features f
-                WHERE l.locale = "en" AND
-                f.code = "calendar";                           
-                           
-                insert into feature_translatables (id, `name`, parent_id, language_id)
-                select uuid(), "Umfrage", f.id, l.id
-                from languages l, features f
-                WHERE l.locale = "de" AND
-                f.code = "surveys";
-                
-                insert into feature_translatables (id, `name`, parent_id, language_id)
-                select uuid(), "Survey", f.id, l.id
-                from languages l, features f
-                WHERE l.locale = "en" AND
-                f.code = "surveys";    
-
-                insert into feature_translatables (id, `name`, parent_id, language_id)
-                select uuid(), "Wettbewerb", f.id, l.id
-                from languages l, features f
-                WHERE l.locale = "de" AND
-                f.code = "contests";
-                
-                insert into feature_translatables (id, `name`, parent_id, language_id)
-                select uuid(), "Contest", f.id, l.id
-                from languages l, features f
-                WHERE l.locale = "en" AND
-                f.code = "contests";
-                
-                insert into feature_translatables (id, `name`, parent_id, language_id)
-                select uuid(), "Eigener_Artikel", f.id, l.id
-                from languages l, features f
-                WHERE l.locale = "de" AND
-                f.code = "guestarticle";
-                
-                insert into feature_translatables (id, `name`, parent_id, language_id)
-                select uuid(), "Own_Article", f.id, l.id
-                from languages l, features f
-                WHERE l.locale = "en" AND
-                f.code = "guestarticle";      
-                
-                insert into feature_translatables (id, `name`, parent_id, language_id)
-                select uuid(), "Media", f.id, l.id
-                from languages l, features f
-                WHERE l.locale = "de" AND
-                f.code = "media";
-                
-                insert into feature_translatables (id, `name`, parent_id, language_id)
-                select uuid(), "Media", f.id, l.id
-                from languages l, features f
-                WHERE l.locale = "en" AND
-                f.code = "media";     
-                
-                insert into feature_translatables (id, `name`, parent_id, language_id)
-                select uuid(), "Suche_Biete", f.id, l.id
-                from languages l, features f
-                WHERE l.locale = "de" AND
-                f.code = "deal";
-                
-                insert into feature_translatables (id, `name`, parent_id, language_id)
-                select uuid(), "Search_Offer", f.id, l.id
-                from languages l, features f
-                WHERE l.locale = "en" AND
-                f.code = "deal";    
-
-                insert into feature_translatables (id, `name`, parent_id, language_id)
-                select uuid(), "Formulare", f.id, l.id
-                from languages l, features f
-                WHERE l.locale = "de" AND
-                f.code = "forms";
-                
-                insert into feature_translatables (id, `name`, parent_id, language_id)
-                select uuid(), "Forms", f.id, l.id
-                from languages l, features f
-                WHERE l.locale = "en" AND
-                f.code = "forms";                                                                                                    
 
   - changeSet:
-      id: 0001.add_data_menu_items.4
+      id: 0019.menu_test-data.1
       author: codeschluss
       changes:
         - sql:
@@ -206,24 +12,24 @@
 
               /* Entdecken Menu */
               ('0115fe46-3a7e-4377-abe5-f56f720bf3d9', true, 0, null, null, null, null),
-              ('8804707f-f80d-4987-bb86-42d16ba570dd', true, 2, '0115fe46-3a7e-4377-abe5-f56f720bf3d9', '8f1faa18-3204-4ab1-9f71-18317d1a3d89', null, 'tags'),
-              ('d443f235-fe72-41a6-b7d2-1554047048d5', true, 3, '0115fe46-3a7e-4377-abe5-f56f720bf3d9', 'b93928cc-ec57-4848-96af-26d8284ffcd1', null, 'map-location-dot'),
-              ('ff3ae469-f496-4dd8-bf2d-213566e2a0f9', true, 4, '0115fe46-3a7e-4377-abe5-f56f720bf3d9', '41cdbfa8-e751-41d4-b893-5c7215ec55e9', null, 'calendar-days'),
+              ('8804707f-f80d-4987-bb86-42d16ba570dd', true, 2, '0115fe46-3a7e-4377-abe5-f56f720bf3d9', '8f1faa18-3204-4ab1-9f71-18317d1a3d89', null, 'tags'), /* Deals */
+              ('d443f235-fe72-41a6-b7d2-1554047048d5', true, 3, '0115fe46-3a7e-4377-abe5-f56f720bf3d9', 'b93928cc-ec57-4848-96af-26d8284ffcd1', null, 'map-location-dot'), /* Map */
+              ('ff3ae469-f496-4dd8-bf2d-213566e2a0f9', true, 4, '0115fe46-3a7e-4377-abe5-f56f720bf3d9', '41cdbfa8-e751-41d4-b893-5c7215ec55e9', null, 'calendar-days'), /* Calendar */
               
               /* Erfahren Menu */
               ('7a8cc14b-49e4-4f53-a86f-11aa6e2db95e', true, 1, null, null, null, null),
-              ('fa345abe-b311-451e-abe2-9583fc6fb000', true, 1, '7a8cc14b-49e4-4f53-a86f-11aa6e2db95e', 'cf2b4b5d-df3a-4f79-9cfd-61679c57bd16', null, 'pen-fancy'),
-              ('e5441241-dbc1-4410-9a93-3d0a921c9eee', true, 2, '7a8cc14b-49e4-4f53-a86f-11aa6e2db95e', '909fca09-78bb-42dd-95d0-164ceb1d9192', null, 'photo-film'),
+              ('fa345abe-b311-451e-abe2-9583fc6fb000', true, 1, '7a8cc14b-49e4-4f53-a86f-11aa6e2db95e', 'cf2b4b5d-df3a-4f79-9cfd-61679c57bd16', null, 'pen-fancy'), /* Authors */
+              ('e5441241-dbc1-4410-9a93-3d0a921c9eee', true, 2, '7a8cc14b-49e4-4f53-a86f-11aa6e2db95e', '909fca09-78bb-42dd-95d0-164ceb1d9192', null, 'photo-film'), /* Media */
               
-              /* Mitmachen Menu */                     
+              /* Mitmachen Menu */
               ('b1d9d0ba-7f07-4ccc-acf0-aa96052e85e8', true, 2, null, null, null, null),
-              ('1c919ec0-8d29-4bb6-8d52-6db881a1d3ea', true, 0, 'b1d9d0ba-7f07-4ccc-acf0-aa96052e85e8', '909d5070-f915-4891-b78b-1ef83690fddf', null, 'square-poll-vertical'),
-              ('947b7507-d10b-477a-99eb-d8510c4b12e2', true, 1, 'b1d9d0ba-7f07-4ccc-acf0-aa96052e85e8', '492fa827-9fb4-4294-906d-b85e5bdb6890', null, 'trophy'),
-              ('555d678d-954f-43c9-ae63-5329df968da2', true, 2, 'b1d9d0ba-7f07-4ccc-acf0-aa96052e85e8', '0633fd36-707a-42ee-878f-21e43f458aa9', null, 'user-pen'),
-              ('cd16fa6f-8a80-42d9-9174-0b981ed028c2', true, 3, 'b1d9d0ba-7f07-4ccc-acf0-aa96052e85e8', 'bc1e70f7-5e83-484a-8f44-2a6485727ce9', null, 'message');   
+              ('1c919ec0-8d29-4bb6-8d52-6db881a1d3ea', true, 0, 'b1d9d0ba-7f07-4ccc-acf0-aa96052e85e8', '909d5070-f915-4891-b78b-1ef83690fddf', null, 'square-poll-vertical'), /*  */
+              ('947b7507-d10b-477a-99eb-d8510c4b12e2', true, 1, 'b1d9d0ba-7f07-4ccc-acf0-aa96052e85e8', '492fa827-9fb4-4294-906d-b85e5bdb6890', null, 'trophy'), /* Contests */
+              ('555d678d-954f-43c9-ae63-5329df968da2', true, 2, 'b1d9d0ba-7f07-4ccc-acf0-aa96052e85e8', '0633fd36-707a-42ee-878f-21e43f458aa9', null, 'user-pen'), /* Guestarticle  */
+              ('cd16fa6f-8a80-42d9-9174-0b981ed028c2', true, 3, 'b1d9d0ba-7f07-4ccc-acf0-aa96052e85e8', 'bc1e70f7-5e83-484a-8f44-2a6485727ce9', null, 'message'); /* Reports */
               
   - changeSet:
-      id: 0001.add_data_menu_items.5
+      id: 0019.menu_test-data.2
       author: codeschluss
       changes:
         - sql:
@@ -251,7 +57,7 @@
                 WHERE p.name = "Über uns";
               
   - changeSet:
-      id: 0001.add_data_menu_items.6
+      id: 0019.menu_test-data.3
       author: codeschluss
       changes:
         - sql:
@@ -433,3 +239,4 @@
                 select uuid(), "Calendar", "ff3ae469-f496-4dd8-bf2d-213566e2a0f9", l.id, "Don't miss an event"
                 from languages l
                 WHERE l.locale = "en";
+

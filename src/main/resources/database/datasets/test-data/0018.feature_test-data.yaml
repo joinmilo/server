@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+
+  - changeSet:
+      id: 0018.feature_test-data.1
+      author: codeschluss                
+      changes:
+        - sql:
+            comment: set all features active
+            splitStatements: true
+            sql:
+                /*!40101 SET character_set_client = utf8 */;
+                    
+                UPDATE
+                features f
+                SET 
+                f.active = true;
