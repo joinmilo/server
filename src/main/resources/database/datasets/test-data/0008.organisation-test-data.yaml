@@ -49,5 +49,20 @@ databaseChangeLog:
                (uuid(), true, false,  true, '5737ee58-9f88-43d1-baf4-a34dd85f0219', 'c7356a4c-fd81-4860-b1cc-06f549067132'),
                (uuid(), true, false,  true, '5737ee58-9f88-43d1-baf4-a34dd85f0219', 'c7356a4c-fd81-4860-b1cc-06f549067132');
                
-                                                                        
+  - changeSet:
+      id: 0008.test-data.5
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add picture to organisations
+            splitStatements: true
+            sql:
+               insert into organisation_media (id, media_id, organisation_id, title, card) values
+               ('803e7b0e-6284-4f40-a0c7-aa43450c0cda', '3e791600-8e00-4069-a060-4862c44da93b', 'c7356a4c-fd81-4860-b1cc-06f549067132', false, false),
+               ('5d70ec21-27c9-4de5-951d-535c1e40386d', 'fc8a64b5-7335-4309-a5c1-e9d2de53c338', 'c7356a4c-fd81-4860-b1cc-06f549067132', false, false),
+               ('bbb27e0c-8c6b-4bd7-aa70-9726c4c0cad4', '1737d307-da5f-4bb4-9148-08c13beab44a', 'c7356a4c-fd81-4860-b1cc-06f549067132', false, false),
+               ('558e244d-7e1d-4967-bd87-3964a970bf8f', '0b4cb5ff-1802-496a-8b18-a4e3c5608fba', 'c7356a4c-fd81-4860-b1cc-06f549067132', false, false),
+               ('c9060d86-b264-4dc2-bb49-c5ffbcaecd95', '32630107-fd88-4b82-967e-3ad3128527e5', 'c7356a4c-fd81-4860-b1cc-06f549067132', false, false),
+               ('068f95e7-8b50-4299-9e05-193b77c6daa3', '8ce57895-53c6-4af2-95eb-69dc8a4ee658', 'c7356a4c-fd81-4860-b1cc-06f549067132', false, false),
+               ('bb11836e-48fe-4551-98a7-e1941b7e02c9', '88bd9809-b153-4de8-9158-d740a10ab810', 'c7356a4c-fd81-4860-b1cc-06f549067132', false, false);                                                                        
                   
