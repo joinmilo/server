@@ -1,0 +1,76 @@
+databaseChangeLog:
+  - changeSet:
+      id: 0132.migrate_data_providers.1
+      author: codeschluss
+      changes:
+        - addColumn:
+            tableName: providers
+            columns:                                                       
+            - column:
+                constraints:
+                  nullable: false
+                defaultValueBoolean: false
+                name: is_public
+                type: boolean
+            - column:
+                name: user_context_id
+                type: CHAR(36)
+                
+  - changeSet:
+      id: 0132.migrate_data_providers.2
+      author: codeschluss
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: user_context_id
+            indexName: idx_fkf5z4qzb5v92nclpeudnw2gilq
+            tableName: providers
+  - changeSet:
+      id: 0132.migrate_data_providers.3
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: user_context_id
+            baseTableName: providers
+            constraintName: fkf5z4qzb5v92nclpeudnw2gilq
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: user_contexts
+            validate: true   
+                
+  - changeSet:
+      id: 0132.migrate_data_providers.4
+      author: codeschluss
+      changes:
+        - renameTable:
+            newTableName: organisation_members  
+            oldTableName: providers
+            
+  - changeSet:
+      id: 0132.migrate_data_providers.5
+      author: codeschluss
+      changes:
+        - sql:
+            comment: change user_id to user_context_id in providers
+            splitStatements: true
+            sql:
+                /*!40101 SET character_set_client = utf8 */;
+                
+                UPDATE
+                organisation_members o
+                LEFT JOIN users u on u.id = o.user_id 
+                LEFT JOIN user_contexts uc on u.id = uc.user_id
+                SET o.user_context_id = uc.id;
+                               
+  - changeSet:
+      id: 0132.migrate_data_providers.6
+      author: codeschluss
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: organisation_members
+            constraintName: CONSTRAINT_A3553C8B                                 
+                            
