@@ -123,9 +123,7 @@ databaseChangeLog:
     - include:
         file: database/changes/0064.migrate_data_organisations.yaml    
     - include:
-        file: database/changes/0065.add_column_favorite_organisations_users.yaml        
-    - include:
-        file: database/changes/0067.create_table_organisation_members.yaml  
+        file: database/changes/0065.add_column_favorite_organisations_users.yaml
     - include:
         file: database/changes/0068.create_table_organisation_ratings.yaml
     - include:
@@ -245,7 +243,9 @@ databaseChangeLog:
     - include:                 
         file: database/changes/0130.create_table_role_application_translatables.yaml   
     - include:                 
-        file: database/changes/0131.create_table_role_applications.yaml         
+        file: database/changes/0131.create_table_role_applications.yaml  
+    - include:
+        file: database/changes/0132.migrate_data_providers.yaml               
                 
     #Data section        
     - include:

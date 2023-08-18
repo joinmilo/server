@@ -38,7 +38,13 @@ databaseChangeLog:
           tableName: articles         
       - dropColumn:
           columnName: likes
-          tableName: organisations                                            
+          tableName: organisations         
+      - dropColumn:
+          columnName: admin
+          tableName: organisation_members  
+      - dropColumn:
+          columnName: user_id
+          tableName: organisation_members                                                                
 
   - changeSet:
       id: 0000.drops.3
@@ -54,9 +60,6 @@ databaseChangeLog:
         - dropTable:
             cascadeConstraints: true
             tableName: subscription_types
-        - dropTable:
-            cascadeConstraints: true
-            tableName: providers
         - dropTable:
             cascadeConstraints: true
             tableName: blogger_subscriptions
