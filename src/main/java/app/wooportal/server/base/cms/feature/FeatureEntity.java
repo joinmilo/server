@@ -7,7 +7,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import app.wooportal.server.base.cms.feature.translations.FeatureTranslatableEntity;
 import app.wooportal.server.base.cms.menuItem.MenuItemEntity;
-import app.wooportal.server.base.cms.pageFeature.PageFeatureEntity;
+import app.wooportal.server.base.cms.pageEmbedding.PageEmbeddingEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.i18n.annotations.Translatable;
 import lombok.AccessLevel;
@@ -36,7 +36,7 @@ public class FeatureEntity extends BaseEntity {
   private String name;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "feature")
-  private Set<PageFeatureEntity> pageFeatures;
+  private Set<PageEmbeddingEntity> embeddings;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "feature")
   private Set<MenuItemEntity> menuItems;

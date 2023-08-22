@@ -1,15 +1,15 @@
-package app.wooportal.server.base.cms.pageFeature;
+package app.wooportal.server.base.cms.pageEmbedding;
 
 import org.springframework.stereotype.Service;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import app.wooportal.server.core.base.PredicateBuilder;
 
 @Service
-public class PageFeaturePredicateBuilder
-    extends PredicateBuilder<QPageFeatureEntity, PageFeatureEntity> {
+public class PageEmbeddingPredicateBuilder
+    extends PredicateBuilder<QPageEmbeddingEntity, PageEmbeddingEntity> {
 
-  public PageFeaturePredicateBuilder() {
-    super(QPageFeatureEntity.pageFeatureEntity);
+  public PageEmbeddingPredicateBuilder() {
+    super(QPageEmbeddingEntity.pageEmbeddingEntity);
   }
 
   @Override

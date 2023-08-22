@@ -11,7 +11,7 @@ import app.wooportal.server.base.cms.menuItem.MenuItemEntity;
 import app.wooportal.server.base.cms.page.media.PageMediaEntity;
 import app.wooportal.server.base.cms.page.translations.PageTranslatableEntity;
 import app.wooportal.server.base.cms.page.visitors.PageVisitorEntity;
-import app.wooportal.server.base.cms.pageFeature.PageFeatureEntity;
+import app.wooportal.server.base.cms.pageEmbedding.PageEmbeddingEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.i18n.annotations.Translatable;
 import app.wooportal.server.core.seo.annotations.SlugSource;
@@ -57,7 +57,7 @@ public class PageEntity extends BaseEntity {
   private String shortDescription;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "page")
-  private Set<PageFeatureEntity> pageFeatures;
+  private Set<PageEmbeddingEntity> embeddings;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "page")
   private Set<MenuItemEntity> menuItems;

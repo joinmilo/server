@@ -1,4 +1,4 @@
-package app.wooportal.server.base.cms.pageFeature;
+package app.wooportal.server.base.cms.pageEmbedding;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -20,9 +20,9 @@ import lombok.Setter;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @AllArgsConstructor
 @Entity
-@Table(name = "page_features")
+@Table(name = "page_embeddings")
 @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-public class PageFeatureEntity extends BaseEntity {
+public class PageEmbeddingEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
 

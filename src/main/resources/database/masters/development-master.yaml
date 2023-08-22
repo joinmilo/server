@@ -41,7 +41,7 @@ databaseChangeLog:
     - include:
         file: database/changes/0020.create_table_feature_translatables.yaml
     - include:
-        file: database/changes/0022.create_table_page_features.yaml
+        file: database/changes/0022.create_table_page_embeddings.yaml
     - include:
         file: database/changes/0023.create_table_user_contexts.yaml  
     - include:

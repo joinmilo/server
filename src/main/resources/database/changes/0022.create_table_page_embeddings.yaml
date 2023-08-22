@@ -1,7 +1,7 @@
 databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
-      id: 0022.create_table_page_features.1
+      id: 0022.create_table_page_embeddings.1
       author: codeschluss
       changes:
         - createTable:
@@ -10,7 +10,7 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                     primaryKey: true
-                    primaryKeyName: page_features_primary_key
+                    primaryKeyName: page_embeddings_primary_key
                   name: id
                   type: CHAR(36)
               - column:
@@ -40,16 +40,16 @@ databaseChangeLog:
                     nullable: false
                   name: page_id
                   type: CHAR(36)                                                                          
-            tableName: page_features
+            tableName: page_embeddings
         - sql:
             comment: set char set for mysql
             dbms: mysql
             endDelimiter: \nGO
             splitStatements: true
-            sql: ALTER TABLE page_features CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;             
+            sql: ALTER TABLE page_embeddings CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;             
 
   - changeSet:
-      id: 0022.create_table_page_features.2
+      id: 0022.create_table_page_embeddings.2
       author: codeschluss
       changes:
         - createIndex:
@@ -57,14 +57,14 @@ databaseChangeLog:
               - column:
                   name: feature_id
             indexName: idx_fkwtr324z26vpij2l2vwdgf7x0c
-            tableName: page_features
+            tableName: page_embeddings
   - changeSet:
-      id: 0022.create_table_page_features.3
+      id: 0022.create_table_page_embeddings.3
       author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: feature_id
-            baseTableName: page_features
+            baseTableName: page_embeddings
             constraintName: fkwtr324z26vpij2l2vwdgf7x0c
             deferrable: false
             initiallyDeferred: false
@@ -75,7 +75,7 @@ databaseChangeLog:
             validate: true                
 
   - changeSet:
-      id: 0022.create_table_page_features.4
+      id: 0022.create_table_page_embeddings.4
       author: codeschluss
       changes:
         - createIndex:
@@ -83,14 +83,14 @@ databaseChangeLog:
               - column:
                   name: page_id
             indexName: idx_fkdgcaa3m9gek1bh8fhycstp0uv
-            tableName: page_features
+            tableName: page_embeddings
   - changeSet:
-      id: 0022.create_table_page_features.5
+      id: 0022.create_table_page_embeddings.5
       author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: page_id
-            baseTableName: page_features
+            baseTableName: page_embeddings
             constraintName: fkdgcaa3m9gek1bh8fhycstp0uv
             deferrable: false
             initiallyDeferred: false

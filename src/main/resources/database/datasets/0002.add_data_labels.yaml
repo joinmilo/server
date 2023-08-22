@@ -3151,9 +3151,9 @@ databaseChangeLog:
             sql:
                /*!40101 SET character_set_client = utf8 */;
                /* Set variables */
-               SET @tagId   = "privacySettings";
-               SET @german  = "Datenschutzeinstellungen";
-               SET @english = "Privacy settings";
+               SET @tagId   = "privacy";
+               SET @german  = "Datenschutz";
+               SET @english = "Privacy";
 
                /* Insert */
                insert into labels (`id`, `tag_id`) values
