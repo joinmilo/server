@@ -101,7 +101,7 @@ public class ArticleEntity extends BaseEntity {
   private Set<ArticleMediaEntity> uploads;
   
   @ManyToMany(fetch = FetchType.LAZY)
-  @JoinTable(name = "favorite_articles_users", joinColumns = @JoinColumn(name = "article_id"),
+  @JoinTable(name = "favorite_articles", joinColumns = @JoinColumn(name = "article_id"),
       inverseJoinColumns = @JoinColumn(name = "user_context_id"),
       uniqueConstraints = {@UniqueConstraint(columnNames = {"user_context_id", "article_id"})})
   @CollectionId(column = @Column(name = "id"), type = @Type(type = "uuid-char"), generator = "UUID")

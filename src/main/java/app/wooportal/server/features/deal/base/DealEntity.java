@@ -96,7 +96,7 @@ public class DealEntity extends BaseEntity {
   private Set<DealMediaEntity> uploads;
   
   @ManyToMany(fetch = FetchType.LAZY)
-  @JoinTable(name = "favorite_deals_users", joinColumns = @JoinColumn(name = "deal_id"),
+  @JoinTable(name = "favorite_deals", joinColumns = @JoinColumn(name = "deal_id"),
       inverseJoinColumns = @JoinColumn(name = "user_context_id"),
       uniqueConstraints = {@UniqueConstraint(columnNames = {"user_context_id", "deal_id"})})
   @CollectionId(column = @Column(name = "id"), type = @Type(type = "uuid-char"), generator = "UUID")

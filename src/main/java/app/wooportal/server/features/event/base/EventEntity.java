@@ -117,7 +117,7 @@ public class EventEntity extends BaseEntity {
   private List<EventTargetGroupEntity> targetGroups = new ArrayList<>();
   
   @ManyToMany(fetch = FetchType.LAZY)
-  @JoinTable(name = "favorite_events_users", joinColumns = @JoinColumn(name = "event_id"),
+  @JoinTable(name = "favorite_events", joinColumns = @JoinColumn(name = "event_id"),
       inverseJoinColumns = @JoinColumn(name = "user_context_id"),
       uniqueConstraints = {@UniqueConstraint(columnNames = {"user_context_id", "event_id"})})
   @CollectionId(column = @Column(name = "id"), type = @Type(type = "uuid-char"), generator = "UUID")

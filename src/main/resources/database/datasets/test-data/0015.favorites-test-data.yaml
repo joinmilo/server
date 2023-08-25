@@ -9,7 +9,7 @@ databaseChangeLog:
             comment: Add favorite events
             splitStatements: true
             sql:
-               insert into favorite_events_users (`id`, `event_id`, `user_context_id`) values
+               insert into favorite_events (`id`, `event_id`, `user_context_id`) values
                ('4f95cb2e-cd05-41d9-a7f1-35b7efb86778', 'db3d3896-d60a-4e6e-b708-b50769f3dbae', '5737ee58-9f88-43d1-baf4-a34dd85f0219');
                
   - changeSet:
@@ -20,7 +20,7 @@ databaseChangeLog:
             comment: Add favorite deals
             splitStatements: true
             sql:
-               insert into favorite_deals_users (`id`, `deal_id`, `user_context_id`) values
+               insert into favorite_deals (`id`, `deal_id`, `user_context_id`) values
                ('b7cadba3-59a0-4ab6-9221-6f8c926f8615', '69f29c5f-5713-4549-902b-7157cb62b999', '5737ee58-9f88-43d1-baf4-a34dd85f0219'),
                ('a5cd5d89-8f0e-4d26-91f9-dcdd62e74c7e', 'b23763c3-667b-4867-b7ff-2699c4135190', '5737ee58-9f88-43d1-baf4-a34dd85f0219'),
                ('27b3fa64-5646-4983-8c47-e6c552eb3e48', '6be9d46d-17e8-4390-b939-2795a9ad7822', '5737ee58-9f88-43d1-baf4-a34dd85f0219'),
@@ -36,5 +36,5 @@ databaseChangeLog:
             comment: Add favorite organisations
             splitStatements: true
             sql:
-               insert into favorite_organisations_users (`id`, `organisation_id`, `user_context_id`) values
+               insert into favorite_organisations (`id`, `organisation_id`, `user_context_id`) values
                ('d778ad66-cf31-4618-8970-7a259773c7ff', 'c7356a4c-fd81-4860-b1cc-06f549067132', '5737ee58-9f88-43d1-baf4-a34dd85f0219');
