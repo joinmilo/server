@@ -227,7 +227,7 @@ databaseChangeLog:
     - include:
         file: database/changes/0121.create_table_event_ratings.yaml
     - include:
-        file: database/changes/0122.add_column_favorite_articles_users.yaml
+        file: database/changes/0122.add_column_favorite_articles.yaml
     - include:
         file: database/changes/0123.add_column_favorite_authors.yaml
     - include:

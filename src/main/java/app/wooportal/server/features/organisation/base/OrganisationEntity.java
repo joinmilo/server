@@ -96,7 +96,7 @@ public class OrganisationEntity extends BaseEntity {
   private Set<OrganisationVisitorEntity> visitors;
 
   @ManyToMany(fetch = FetchType.LAZY)
-  @JoinTable(name = "favorite_organisations_users", joinColumns = @JoinColumn(name = "organisation_id"),
+  @JoinTable(name = "favorite_organisations", joinColumns = @JoinColumn(name = "organisation_id"),
       inverseJoinColumns = @JoinColumn(name = "user_context_id"),
       uniqueConstraints = {@UniqueConstraint(columnNames = {"user_context_id", "organisation_id"})})
   @CollectionId(column = @Column(name = "id"), type = @Type(type = "uuid-char"), generator = "UUID")

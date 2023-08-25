@@ -1,11 +1,18 @@
 databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
-      id: 0063.add_column_favorite_deals_users.1
+      id: 0063.add_column_favorite_deals.1
       author: codeschluss
       changes:
         - createTable:
             columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: favorite_deals_primary_key
+                  name: id
+                  type: CHAR(36)
               - column:
                   constraints:
                     nullable: false
@@ -16,23 +23,16 @@ databaseChangeLog:
                     nullable: false
                   name: user_context_id
                   type: CHAR(36)                 
-              - column:
-                  constraints:
-                    nullable: false
-                    primaryKey: true
-                    primaryKeyName: favorite_deals_users_primary_key
-                  name: id
-                  type: CHAR(36)
-            tableName: favorite_deals_users
+            tableName: favorite_deals
         - sql:
             comment: set char set for mysql
             dbms: mysql
             endDelimiter: \nGO
             splitStatements: true
-            sql: ALTER TABLE favorite_deals_users CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+            sql: ALTER TABLE favorite_deals CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
                         
   - changeSet:
-      id: 0063.add_column_favorite_deals_users.2
+      id: 0063.add_column_favorite_deals.2
       author: codeschluss
       changes:
         - createIndex:
@@ -40,9 +40,9 @@ databaseChangeLog:
               - column:
                   name: deal_id
             indexName: idx_fkra9h3xledcfypzvxlnuu84tka
-            tableName: favorite_deals_users
+            tableName: favorite_deals
   - changeSet:
-      id: 0063.add_column_favorite_deals_users.3
+      id: 0063.add_column_favorite_deals.3
       author: codeschluss
       changes:
         - createIndex:
@@ -50,14 +50,14 @@ databaseChangeLog:
               - column:
                   name: user_context_id
             indexName: idx_fkyork7aboj7uaj69r330hhf4sm
-            tableName: favorite_deals_users
+            tableName: favorite_deals
   - changeSet:
-      id: 0063.add_column_favorite_deals_users.4
+      id: 0063.add_column_favorite_deals.4
       author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: deal_id
-            baseTableName: favorite_deals_users
+            baseTableName: favorite_deals
             constraintName: fkra9h3xledcfypzvxlnuu84tka
             initiallyDeferred: false
             onDelete: CASCADE
@@ -66,12 +66,12 @@ databaseChangeLog:
             referencedTableName: deals
             validate: true
   - changeSet:
-      id: 0063.add_column_favorite_deals_users.5
+      id: 0063.add_column_favorite_deals.5
       author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: user_context_id
-            baseTableName: favorite_deals_users
+            baseTableName: favorite_deals
             constraintName: fkyork7aboj7uaj69r330hhf4sm
             deferrable: false
             initiallyDeferred: false
