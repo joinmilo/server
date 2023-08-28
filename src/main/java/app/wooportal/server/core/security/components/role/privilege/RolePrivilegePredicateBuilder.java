@@ -6,7 +6,8 @@ import app.wooportal.server.core.base.PredicateBuilder;
 
 
 @Service
-public class RolePrivilegePredicateBuilder extends PredicateBuilder<QRolePrivilegeEntity, RolePrivilegeEntity> {
+public class RolePrivilegePredicateBuilder
+    extends PredicateBuilder<QRolePrivilegeEntity, RolePrivilegeEntity> {
 
   public RolePrivilegePredicateBuilder() {
     super(QRolePrivilegeEntity.rolePrivilegeEntity);
@@ -14,12 +15,11 @@ public class RolePrivilegePredicateBuilder extends PredicateBuilder<QRolePrivile
 
   @Override
   public BooleanExpression freeSearch(String term) {
-    return query.description.likeIgnoreCase(term)
-        .or(query.name.likeIgnoreCase(term));
+    return query.description.likeIgnoreCase(term).or(query.name.likeIgnoreCase(term));
   }
-  
-	public BooleanExpression withCode(String code) {
-		return query.code.eq(code);
-	}
+
+  public BooleanExpression withCode(String code) {
+    return query.code.eq(code);
+  }
 }
 

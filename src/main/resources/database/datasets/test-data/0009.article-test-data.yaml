@@ -44,14 +44,14 @@ databaseChangeLog:
             comment: Add articles
             splitStatements: true
             sql:
-               insert into articles (id, author_id, public_author_id, slug) values
-               ('640f4663-7e49-4727-8208-e5f5f5b078ed', '20ab2295-4d4f-4524-893d-f3b09f1e885a', null, 'slug-m1vr2'),
-               ('b0ba555d-b378-4c32-b115-17be6e2a5eff','20ab2295-4d4f-4524-893d-f3b09f1e885a', null, 'slug-3qmzb'),
-               ('c28e12c7-ff99-4885-8fd0-de6806023c71', '20ab2295-4d4f-4524-893d-f3b09f1e885a', null, 'slug-zhy1p'),
-               ('f164a12c-fe78-4773-9c8b-27c5bf939c6a', '20ab2295-4d4f-4524-893d-f3b09f1e885a', null, 'slug-i92zz'),
-               ('1729e341-d9c9-4a4c-b05b-80a369ced20e', '20ab2295-4d4f-4524-893d-f3b09f1e885a', null, 'slug-t8avi'),                                             
-               ('21ffbd6a-af52-4ede-9f10-8f9220d6e4b3', '20ab2295-4d4f-4524-893d-f3b09f1e885a', null, 'slug-c63y1'),
-               ('07852f7d-a9a2-478a-a3cb-5ee2a7a923e5', null, 'bd24d04e-333a-45b4-9e1b-0958b8bba58d', 'guest-article');
+               insert into articles (id, author_id, public_author_id, slug, approved) values
+               ('640f4663-7e49-4727-8208-e5f5f5b078ed', '20ab2295-4d4f-4524-893d-f3b09f1e885a', null, 'slug-m1vr2', true),
+               ('b0ba555d-b378-4c32-b115-17be6e2a5eff', '20ab2295-4d4f-4524-893d-f3b09f1e885a', null, 'slug-3qmzb', true),
+               ('c28e12c7-ff99-4885-8fd0-de6806023c71', '20ab2295-4d4f-4524-893d-f3b09f1e885a', null, 'slug-zhy1p', true),
+               ('f164a12c-fe78-4773-9c8b-27c5bf939c6a', '20ab2295-4d4f-4524-893d-f3b09f1e885a', null, 'slug-i92zz', true),
+               ('1729e341-d9c9-4a4c-b05b-80a369ced20e', '20ab2295-4d4f-4524-893d-f3b09f1e885a', null, 'slug-t8avi', true),                                             
+               ('21ffbd6a-af52-4ede-9f10-8f9220d6e4b3', '20ab2295-4d4f-4524-893d-f3b09f1e885a', null, 'slug-c63y1', true),
+               ('07852f7d-a9a2-478a-a3cb-5ee2a7a923e5', null, 'bd24d04e-333a-45b4-9e1b-0958b8bba58d', 'guest-article', true);
                
   - changeSet:
       id: 0009.test-data.6
@@ -61,8 +61,8 @@ databaseChangeLog:
             comment: Add Article sponsored
             splitStatements: true
             sql:
-               insert into articles (`id`, `category_id`, `author_id`, `slug`, `sponsored`) values
-               ('7dd9abba-b253-4fb4-818d-7ef090f26b83', '195dffc0-4f0f-4d7b-b266-f871dd5c8500', '5737ee58-9f88-43d1-baf4-a34dd85f0219', 'article-sponsored', true);
+               insert into articles (`id`, `category_id`, `author_id`, `slug`, `sponsored`, `approved`) values
+               ('7dd9abba-b253-4fb4-818d-7ef090f26b83', '195dffc0-4f0f-4d7b-b266-f871dd5c8500', '5737ee58-9f88-43d1-baf4-a34dd85f0219', 'article-sponsored', true, true);
                
   - changeSet:
       id: 0009.test-data.7
