@@ -22,11 +22,11 @@ public class UserContextService extends DataService<UserContextEntity, UserConte
   public UserContextService(
       DataRepository<UserContextEntity> repo,
       UserContextPredicateBuilder predicate,
+      AddressService addressService,
       AuthenticationService authService,
+      OrganisationMemberService memberService,
       SlugService slugService,
       UserService userService,
-      AddressService addressService,
-      OrganisationMemberService memberService,
       UserContextMediaService userContextMedia) {
     super(repo, predicate);
     
@@ -52,7 +52,7 @@ public class UserContextService extends DataService<UserContextEntity, UserConte
     if (currentUser.isPresent()) {
       return repo.findOne(singleQuery(predicate.withUser(currentUser.get().getId())));
     }
-    return null;
+    return Optional.empty();
   }
 
 }

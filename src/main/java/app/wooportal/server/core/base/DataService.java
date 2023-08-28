@@ -264,9 +264,15 @@ public abstract class DataService<E extends BaseEntity, P extends PredicateBuild
   }
 
   private Optional<E> getExistingWithId(E newEntity) {
-    return repo.findOne(singleQuery(predicate.withId(newEntity.getId())))
+    return getById(newEntity.getId())
         .map(Optional::of)
         .orElseGet(() -> getExisting(newEntity));
+  }
+  
+  public Optional<E> getById(String id) {
+    return id == null || id.isEmpty() 
+        ? Optional.empty()
+        : repo.findOne(singleQuery(predicate.withId(id)));
   }
   
   private void performPreSave(E entity, E newEntity, JsonNode context) {
