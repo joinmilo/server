@@ -14,13 +14,13 @@ public class RolePrivilegeService
   public RolePrivilegeService(DataRepository<RolePrivilegeEntity> repo,
       RolePrivilegePredicateBuilder predicate) {
     super(repo, predicate);
-   
+
   }
-  
-	@Override
-	public Optional<RolePrivilegeEntity> getExisting(RolePrivilegeEntity entity) {
-		return entity != null && entity.getCode() != null && !entity.getCode().isBlank()
-				? repo.findOne(singleQuery(predicate.withCode(entity.getCode())))
-				: Optional.empty();
-	}
+
+  @Override
+  public Optional<RolePrivilegeEntity> getExisting(RolePrivilegeEntity entity) {
+    return entity != null && entity.getCode() != null && !entity.getCode().isBlank()
+        ? repo.findOne(singleQuery(predicate.withCode(entity.getCode())))
+        : Optional.empty();
+  }
 }

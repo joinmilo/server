@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.i18n.annotations.Translatable;
-import app.wooportal.server.core.security.components.role.privilege.application.PrivilegeApplicationEntity;
+import app.wooportal.server.core.security.components.role.application.PrivilegeApplicationEntity;
 import app.wooportal.server.core.security.components.role.privilege.translation.RolePrivilegeTranslatableEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

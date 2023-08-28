@@ -245,7 +245,7 @@ databaseChangeLog:
     - include:                 
         file: database/changes/0131.create_table_role_applications.yaml  
     - include:
-        file: database/changes/0132.migrate_data_providers.yaml               
+        file: database/changes/0132.migrate_data_providers.yaml
                 
     #Data section        
     - include:
@@ -260,6 +260,8 @@ databaseChangeLog:
         file: database/datasets/0004.add_data_labels_3.yaml
     - include:
         file: database/datasets/0005.add_available_languages.yaml
+    - include:
+        file: database/datasets/0006.roles_privileges_data.yaml
         
     #Cleanups
     - include:
