@@ -13,5 +13,4 @@ public interface MapService {
   
   public RouteResource calculateRoute(LocationParam params) 
       throws ServiceUnavailableException, NotFoundException;
-
 }

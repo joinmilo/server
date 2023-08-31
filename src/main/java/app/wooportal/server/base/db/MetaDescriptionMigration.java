@@ -21,7 +21,7 @@ public class MetaDescriptionMigration implements CustomTaskChange {
 
   @Override
   public String getConfirmationMessage() {
-    return "Successfully migrated Slugs";
+    return "Successfully migrated meta descriptions";
   }
 
   @Override

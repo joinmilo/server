@@ -54,11 +54,26 @@ public class BingMapService implements MapService {
   }
 
   private URI createAddressUri(AddressEntity newAddress) {
-    return UriComponentsBuilder.fromUriString(config.getAddressUrl())
-        .path(newAddress.getPostalCode()).path("/" + newAddress.getPlace())
-        .path("/" + newAddress.getStreet() + " " + newAddress.getHouseNumber())
-        .queryParam("key", config.getServiceSubscriptionKey()).build().encode().toUri();
-  }
+    UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(config.getAddressUrl());
+       
+    if (newAddress.getPlace() != null) {
+      
+        builder.queryParam("adminDistrict", newAddress.getPlace());
+    }
+    if (newAddress.getSuburb() != null) {
+        builder.queryParam("locality", newAddress.getSuburb().getName());
+    }
+    if (newAddress.getPostalCode() != null) {
+        builder.queryParam("postalCode", newAddress.getPostalCode());
+    }
+    if (newAddress.getStreet() != null && newAddress.getHouseNumber() != null) {
+        builder.queryParam("addressLine", newAddress.getStreet() + " " + newAddress.getHouseNumber());
+    }
+    
+    builder.queryParam("key", config.getServiceSubscriptionKey());
+    
+    return builder.build().encode().toUri();
+}
 
   private AddressEntity transformResultToAddress(
       BingMapAddressResult result, AddressEntity givenAddress) {
