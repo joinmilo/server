@@ -55,25 +55,33 @@ public class BingMapService implements MapService {
 
   private URI createAddressUri(AddressEntity newAddress) {
     UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(config.getAddressUrl());
-       
-    if (newAddress.getPlace() != null) {
+    
+    if (newAddress.getPlace() != null) {            
+      builder.queryParam("adminDistrict", newAddress.getPlace());
+    }
+    
+    if (newAddress.getSuburb() != null) {            
+      builder.queryParam("locality", newAddress.getSuburb().getName());
+    } 
+        
+    if (newAddress.getStreet() != null) {
+      var addressLine = newAddress.getStreet();
       
-        builder.queryParam("adminDistrict", newAddress.getPlace());
+      if (newAddress.getHouseNumber() != null) {
+        addressLine += " " + newAddress.getHouseNumber();
+      }
+      
+      builder.queryParam("addressLine", addressLine);
     }
-    if (newAddress.getSuburb() != null) {
-        builder.queryParam("locality", newAddress.getSuburb().getName());
-    }
+    
     if (newAddress.getPostalCode() != null) {
-        builder.queryParam("postalCode", newAddress.getPostalCode());
+      builder.queryParam("postalCode", newAddress.getPostalCode());
     }
-    if (newAddress.getStreet() != null && newAddress.getHouseNumber() != null) {
-        builder.queryParam("addressLine", newAddress.getStreet() + " " + newAddress.getHouseNumber());
-    }
-    
+
     builder.queryParam("key", config.getServiceSubscriptionKey());
-    
+
     return builder.build().encode().toUri();
-}
+  }
 
   private AddressEntity transformResultToAddress(
       BingMapAddressResult result, AddressEntity givenAddress) {
