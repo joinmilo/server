@@ -84,10 +84,9 @@ public class ArticleApi extends CrudApi<ArticleEntity, ArticleService> {
   @GraphQLQuery(name = "calculatedRatings")
   public CompletableFuture<RatingDto> calculateAverageRating(
       @GraphQLContext ArticleEntity article) {
-    if(article.getRatings() != null && !article.getRatings().isEmpty()) {
-      return ratingService.calculateRating(
-          article.getRatings().stream().map(rating -> rating.getScore()).collect(Collectors.toList()));
-    } else return CompletableFuture.completedFuture(new RatingDto());
-
+    return article.getRatings() != null && !article.getRatings().isEmpty()
+        ? ratingService.calculateRating(
+            article.getRatings().stream().map(rating -> rating.getScore()).collect(Collectors.toList()))
+        : CompletableFuture.completedFuture(new RatingDto());
   }
 }
