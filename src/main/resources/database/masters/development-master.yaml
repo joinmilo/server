@@ -245,9 +245,7 @@ databaseChangeLog:
     - include:                 
         file: database/changes/0131.create_table_privilege_application_translatables.yaml   
     - include:
-        file: database/changes/0132.migrate_data_providers.yaml
-    - include:
-        file: database/changes/0133.migrate_suburbs.yaml        
+        file: database/changes/0132.migrate_data_providers.yaml     
                                    
     #Data section
     - include:
