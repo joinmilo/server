@@ -36,7 +36,7 @@ public class SuburbMigration implements CustomTaskChange {
     var serviceSubscriptionKey = getLocationKey();
     var locationConfig = new LocationConfiguration();
     locationConfig.setServiceSubscriptionKey(serviceSubscriptionKey);
-    locationConfig.setAddressUrl("http://dev.virtualearth.net/REST/v1/Locations");
+    locationConfig.setAddressUrl("http://dev.virtualearth.net/REST/v1/Locations/DE");
     bingMapService = new BingMapService(locationConfig, null);
   }
 

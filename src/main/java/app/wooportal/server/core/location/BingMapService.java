@@ -57,11 +57,11 @@ public class BingMapService implements MapService {
     UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(config.getAddressUrl());
     
     if (newAddress.getPlace() != null) {            
-      builder.queryParam("adminDistrict", newAddress.getPlace());
+      builder.pathSegment(newAddress.getPlace());
     }
     
     if (newAddress.getSuburb() != null) {            
-      builder.queryParam("locality", newAddress.getSuburb().getName());
+      builder.pathSegment(newAddress.getSuburb().getName());
     } 
         
     if (newAddress.getStreet() != null) {
@@ -71,11 +71,11 @@ public class BingMapService implements MapService {
         addressLine += " " + newAddress.getHouseNumber();
       }
       
-      builder.queryParam("addressLine", addressLine);
+      builder.pathSegment(addressLine);
     }
     
     if (newAddress.getPostalCode() != null) {
-      builder.queryParam("postalCode", newAddress.getPostalCode());
+      builder.pathSegment(newAddress.getPostalCode());
     }
 
     builder.queryParam("key", config.getServiceSubscriptionKey());
