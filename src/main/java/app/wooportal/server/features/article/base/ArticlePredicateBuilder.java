@@ -19,4 +19,8 @@ public class ArticlePredicateBuilder extends PredicateBuilder<QArticleEntity, Ar
         .or(query.metaDescription.likeIgnoreCase(term))
         .or(query.slug.likeIgnoreCase(term));
   }
+
+  public BooleanExpression withoutId(String articleId) {
+    return query.id.ne(articleId);
+  }
 }

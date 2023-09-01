@@ -44,4 +44,30 @@ public class ArticleService extends DataService<ArticleEntity, ArticlePredicateB
       addContext("approved", context);
     }
   }
+
+  public Boolean sponsorArticle(String articleId) {
+    var article = getById(articleId);
+    
+    if (article.isPresent()) {
+      article.get().setSponsored(true);
+      repo.save(article.get());
+      
+      unsponsorOthers(articleId);
+      
+      //TODO: Send notifications
+      
+      return true;
+    }
+    return false;
+  }
+
+  private void unsponsorOthers(String articleId) {
+    var others = readAll(collectionQuery(predicate.withoutId(articleId)));
+    if (others != null && !others.isEmpty()) {
+      others.getList().stream().forEach(article -> {
+        article.setSponsored(false);
+        repo.save(article);
+      });
+    }
+  }
 }

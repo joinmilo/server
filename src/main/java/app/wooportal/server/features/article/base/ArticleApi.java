@@ -89,4 +89,10 @@ public class ArticleApi extends CrudApi<ArticleEntity, ArticleService> {
             article.getRatings().stream().map(rating -> rating.getScore()).collect(Collectors.toList()))
         : CompletableFuture.completedFuture(new RatingDto());
   }
+  
+  @GraphQLMutation(name = "sponsorArticle")
+  public Boolean sponsorArticle(String articleId) {
+    return service.sponsorArticle(articleId);
+  }
+
 }
