@@ -75,4 +75,9 @@ public class ContestApi extends CrudApi<ContestEntity, ContestService> {
       @GraphQLContext ContestEntity contest) {
     return commentService.getMostRecentByContest(contest.getId());
   }
+  
+  @GraphQLMutation(name = "sponsorContest")
+  public Boolean sponsorContest(String contestId) {
+    return service.sponsorContest(contestId);
+  }
 }

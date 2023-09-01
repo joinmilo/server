@@ -19,4 +19,8 @@ public class ContestPredicateBuilder extends PredicateBuilder<QContestEntity, Co
         .or(query.metaDescription.likeIgnoreCase(term))
         .or(query.slug.likeIgnoreCase(term));
   }
+  
+  public BooleanExpression withoutId(String contestId) {
+    return query.id.ne(contestId);
+  }
 }
