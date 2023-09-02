@@ -1,0 +1,116 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+  - changeSet:
+      id: 0132.create_table_user_deletions.1
+      author: codeschluss
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: user_deletions_primary_key
+                  name: id
+                  type: CHAR(36)
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  name: created
+                  type: datetime
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  name: modified
+                  type: datetime                                                                                                                                                                           
+            tableName: user_deletions
+        - sql:
+            comment: set char set for mysql
+            dbms: mysql
+            endDelimiter: \nGO
+            splitStatements: true
+            sql: ALTER TABLE user_deletions CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;             
+
+  - changeSet:
+      id: 0132.create_table_user_deletions.2
+      author: codeschluss
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: user_deletion_user_deletion_types_primary_key
+                  name: id
+                  type: CHAR(36)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: user_deletion_id
+                  type: CHAR(36)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: user_deletion_type_id
+                  type: CHAR(36)                 
+            tableName: user_deletion_user_deletion_types
+        - sql:
+            comment: set char set for mysql
+            dbms: mysql
+            endDelimiter: \nGO
+            splitStatements: true
+            sql: ALTER TABLE user_deletion_user_deletion_types CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;             
+        
+  - changeSet:
+      id: 0132.create_table_user_deletions.3
+      author: codeschluss
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: user_deletion_id
+            indexName: idx_2kytr036yydtwhrtda19rfydj
+            tableName: user_deletion_user_deletion_types
+  - changeSet:
+      id: 0132.create_table_user_deletions.4
+      author: codeschluss
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: user_deletion_type_id
+            indexName: idx_fkcwqfev4f9h0odzz55zy38gz3o
+            tableName: user_deletion_user_deletion_types
+  - changeSet:
+      id: 0132.create_table_user_deletions.5
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: user_deletion_id
+            baseTableName: user_deletion_user_deletion_types
+            constraintName: fk2kytr036yydtwhrtda19rfydj
+            initiallyDeferred: false
+            onDelete: CASCADE
+            onUpdate: CASCADE
+            referencedColumnNames: id
+            referencedTableName: user_deletions
+            validate: true
+  - changeSet:
+      id: 0132.create_table_user_deletions.6
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: user_deletion_type_id
+            baseTableName: user_deletion_user_deletion_types
+            constraintName: fkcwqfev4f9h0odzz55zy38gz3o
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: CASCADE
+            onUpdate: CASCADE
+            referencedColumnNames: id
+            referencedTableName: user_deletion_types
+            validate: true                       
+  

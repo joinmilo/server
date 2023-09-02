@@ -102,4 +102,44 @@ databaseChangeLog:
                 left join user_contexts u
                 ON u.user_id = b.user_id
                 SET
-                a.author_id = u.id;
+                a.author_id = u.id;    
+
+  - changeSet:
+      id: 0000.seed-data.9
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add data user_deletion_types
+            splitStatements: true
+            sql: insert into user_deletion_types (id) values
+              ('b33f8a70-a3ad-4daa-9856-61980b27b76d'),
+              ('eea0636c-e5cb-4863-9d1b-e43d26d12f59'),
+              ('50cc6eb2-84b9-4407-ab55-87b422de6e6e'),
+              ('f296c58a-c915-4a0c-ac11-3dec704baf19');
+              
+  - changeSet:
+      id: 0000.seed-data.10
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add data user_deletion_type_translatables
+            splitStatements: true
+            sql: insert into user_deletion_type_translatables (id, parent_id, language_id, `name`)
+                 select uuid(), "b33f8a70-a3ad-4daa-9856-61980b27b76d", l.id, "Du hast deinen Wohnort gewechselt."
+                 from languages l
+                 WHERE l.locale = "de";
+                 
+                 insert into user_deletion_type_translatables (id, parent_id, language_id, `name`)
+                 select uuid(), "eea0636c-e5cb-4863-9d1b-e43d26d12f59", l.id, "Du findest keine passenden Inhalte."
+                 from languages l
+                 WHERE l.locale = "de";  
+                 
+                 insert into user_deletion_type_translatables (id, parent_id, language_id, `name`)
+                 select uuid(), "50cc6eb2-84b9-4407-ab55-87b422de6e6e", l.id, "Dir gefällft die App nicht."
+                 from languages l
+                 WHERE l.locale = "de";      
+                 
+                 insert into user_deletion_type_translatables (id, parent_id, language_id, `name`)
+                 select uuid(), "f296c58a-c915-4a0c-ac11-3dec704baf19", l.id, "Andere Gründe"
+                 from languages l
+                 WHERE l.locale = "de";         
