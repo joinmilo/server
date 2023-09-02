@@ -4,12 +4,11 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Component;
 import app.wooportal.server.base.userContext.base.media.UserContextMediaEntity;
+import app.wooportal.server.base.userDeletion.base.UserDeletionEntity;
 import app.wooportal.server.core.base.CrudApi;
 import app.wooportal.server.core.base.dto.listing.FilterSortPaginate;
 import app.wooportal.server.core.base.dto.listing.PageableList;
 import app.wooportal.server.core.error.exception.BadParamsException;
-import app.wooportal.server.core.push.MessageDto;
-import app.wooportal.server.core.push.NotificationType;
 import app.wooportal.server.core.push.PushService;
 import app.wooportal.server.core.security.components.role.base.RoleService;
 import app.wooportal.server.core.security.permissions.AdminPermission;
@@ -74,21 +73,8 @@ public class UserApi extends CrudApi<UserEntity, UserService> {
   }
 
   @GraphQLMutation(name = "deleteMe")
-  public Boolean deleteMe(String password) {
-    var deletedUser = service.deleteMe(password);
-
-    if (deletedUser.isPresent()) {
-      var message = new MessageDto("Benutzer gelöscht",
-          "Benutzer mit dem Namen: " + deletedUser.get().getFirstName() + " "
-              + deletedUser.get().getFirstName() + " " + "hat soeben das Benutzerkonto gelöscht",
-          NotificationType.deletedUser);
-
-      pushService.sendPush(service
-          .readAll(service.collectionQuery(service.getPredicate().withRole(RoleService.admin)))
-          .getList(), message);
-      return true;
-    }
-    return false;
+  public Boolean deleteMe(String password,UserDeletionEntity userDeletion ) {
+    return service.deleteMe(password, userDeletion);
   }
 
   @GraphQLMutation(name = "addUploads")

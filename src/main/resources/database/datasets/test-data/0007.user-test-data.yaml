@@ -19,20 +19,20 @@ databaseChangeLog:
             comment: Add a test user
             splitStatements: true
             sql:
-               insert into users (id, verified, email, first_name, last_name, password, phone, last_login) values
-               ('83c0ce85-c808-43eb-a72d-62a228db2979', true, 'Fiona@example.com', 'Fiona', 'Haug', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm', 08395-2220, '2020-05-04 12:58:50'),
-               ('c3d05f46-5c3c-4100-85d5-649ecfb42601', true, 'Hans@example.com', 'Hans', 'Müller', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm', null, null),
-               ('02785e86-0606-4eab-bbbc-6e90f35587b5', true, 'Sabine@example.com', 'Sabine', 'Gaille', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm', null, null),
-               ('f96b2b8b-6b9f-44dd-8c30-83f6c9400970', true, 'Frank@example.com', 'Frank', 'Martin', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm', null, null),
-               ('79e26a57-04f9-4356-89bc-a1c2cbd9a425', true, 'Sarah@example.com', 'Sarah', 'Meyer', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm', null, null),
-               ('86db5071-55c6-4871-bab6-e94a40e914ff', true, 'test@example.cpm', 'Doomed2', 'Test', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm', null, null),
-               ('83c04c77-e816-4f5d-8408-37349cf07583', true, 'Stefan@example.com', 'Stefan', 'Gruber', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm', null, null),
-               ('c957054e-fb19-463d-81f6-5b76400edbaf', true, 'Michael@example.com', 'Michael', 'Huber', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm', null, null),
-               ('70efc007-7c7f-4bda-9da8-d94a4c9f1fa3', true, 'Simon@example.com', 'Simon', 'Pfalzer', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm', null, null),
-               ('0ec2820e-66b8-4abc-8e66-cdf0e01202e0', true, 'Alex@example.com', 'Alex', 'Pfeifer', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm', null, null),
-               ('0e15e746-5a72-4b8f-b5b8-5f2c839a725d', true, 'Chris@example.com', 'Chris', 'Stoppel', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm', null, null),
-               ('e41564e8-4863-4739-b974-ebb9937b89f9', true, 'Christina@example.com', 'Christina', 'Wagner', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm', null, null),               
-               ('e618577b-bed0-4e19-89f3-e6ba2e9da795', true, 'Sebastian@example.com', 'Sebastian', 'Stern', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm', null, null); -- password is '1234'
+               insert into users (id, verified, email, first_name, last_name, password, phone, last_login, language_id) values
+               ('83c0ce85-c808-43eb-a72d-62a228db2979', true, 'Fiona@example.com', 'Fiona', 'Haug', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm', '0123-456789', '2020-05-04 12:58:50', '01ef9863-b0b4-4710-a90f-3fe103e2ea37'),
+               ('c3d05f46-5c3c-4100-85d5-649ecfb42601', true, 'Hans@example.com', 'Hans', 'Müller', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm', null, null, null),
+               ('02785e86-0606-4eab-bbbc-6e90f35587b5', true, 'Sabine@example.com', 'Sabine', 'Gaille', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm', null, null, null),
+               ('f96b2b8b-6b9f-44dd-8c30-83f6c9400970', true, 'Frank@example.com', 'Frank', 'Martin', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm', null, null, null),
+               ('79e26a57-04f9-4356-89bc-a1c2cbd9a425', true, 'Sarah@example.com', 'Sarah', 'Meyer', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm', null, null, null),
+               ('86db5071-55c6-4871-bab6-e94a40e914ff', true, 'test@example.cpm', 'Doomed2', 'Test', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm', null, null, null),
+               ('83c04c77-e816-4f5d-8408-37349cf07583', true, 'Stefan@example.com', 'Stefan', 'Gruber', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm', null, null, null),
+               ('c957054e-fb19-463d-81f6-5b76400edbaf', true, 'Michael@example.com', 'Michael', 'Huber', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm', null, null, null),
+               ('70efc007-7c7f-4bda-9da8-d94a4c9f1fa3', true, 'Simon@example.com', 'Simon', 'Pfalzer', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm', null, null, null),
+               ('0ec2820e-66b8-4abc-8e66-cdf0e01202e0', true, 'Alex@example.com', 'Alex', 'Pfeifer', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm', null, null, null),
+               ('0e15e746-5a72-4b8f-b5b8-5f2c839a725d', true, 'Chris@example.com', 'Chris', 'Stoppel', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm', null, null, null),
+               ('e41564e8-4863-4739-b974-ebb9937b89f9', true, 'Christina@example.com', 'Christina', 'Wagner', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm', null, null, null),               
+               ('e618577b-bed0-4e19-89f3-e6ba2e9da795', true, 'Sebastian@example.com', 'Sebastian', 'Stern', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm', null, null, null); -- password is '1234'
                
   - changeSet:
       id: 0007.test-data.3
@@ -42,20 +42,20 @@ databaseChangeLog:
             comment: add user_context
             splitStatements: true
             sql:
-               insert into user_contexts (id, user_id, slug) values
-               ('5737ee58-9f88-43d1-baf4-a34dd85f0219', '83c0ce85-c808-43eb-a72d-62a228db2979', 'slug-wh0zc'),
-               ('ece550e8-bc2b-43c4-8aaf-48a30e82080f', 'c3d05f46-5c3c-4100-85d5-649ecfb42601', 'slug-wh1zc'),
-               ('5102ef99-492e-476d-a6d8-357125e9f443', '02785e86-0606-4eab-bbbc-6e90f35587b5', 'slug-wh2zc'),
-               ('a9b32d23-ec3b-42ac-ab11-caf9bdc32643', 'f96b2b8b-6b9f-44dd-8c30-83f6c9400970', 'slug-wh4zc'),
-               ('20ab2295-4d4f-4524-893d-f3b09f1e885a', '86db5071-55c6-4871-bab6-e94a40e914ff', 'slug-qac77'),
-               ('f88e5ebf-1828-4bd6-905e-821bff9c3f64', '79e26a57-04f9-4356-89bc-a1c2cbd9a425', 'slug-wh5zc'),
-               ('75a2d0e2-638a-47f0-b47e-16360d08a897', '83c04c77-e816-4f5d-8408-37349cf07583', 'slug-wh6zc'),
-               ('20e6d38f-37fa-493e-92cd-8832cc0f258f', 'c957054e-fb19-463d-81f6-5b76400edbaf', 'slug-wh7zc'),
-               ('ec1f2c65-da94-452c-a649-11314cdc7b7f', '70efc007-7c7f-4bda-9da8-d94a4c9f1fa3', 'slug-wh8zc'),
-               ('d34478bf-a52a-4198-a495-e5157c8ecb54', '0ec2820e-66b8-4abc-8e66-cdf0e01202e0', 'slug-wh9zc'),
-               ('62a23c9a-37c8-411e-9b3c-813ff3896201', '0e15e746-5a72-4b8f-b5b8-5f2c839a725d', 'slug-wh10zc'),
-               ('c0a2aa89-dbe0-4abd-86f3-3d008262c1c3', 'e41564e8-4863-4739-b974-ebb9937b89f9', 'slug-wh11zc'),
-               ('bdadf02e-37df-4d3b-a639-cf9a76532904', 'e618577b-bed0-4e19-89f3-e6ba2e9da795', 'slug-wh3zc');
+               insert into user_contexts (id, user_id, address_id,slug) values
+               ('5737ee58-9f88-43d1-baf4-a34dd85f0219', '83c0ce85-c808-43eb-a72d-62a228db2979', 'f0cbc934-72d9-4427-b37a-a8347350500a','slug-wh0zc'),
+               ('ece550e8-bc2b-43c4-8aaf-48a30e82080f', 'c3d05f46-5c3c-4100-85d5-649ecfb42601', null, 'slug-wh1zc'),
+               ('5102ef99-492e-476d-a6d8-357125e9f443', '02785e86-0606-4eab-bbbc-6e90f35587b5', null, 'slug-wh2zc'),
+               ('a9b32d23-ec3b-42ac-ab11-caf9bdc32643', 'f96b2b8b-6b9f-44dd-8c30-83f6c9400970', null, 'slug-wh4zc'),
+               ('20ab2295-4d4f-4524-893d-f3b09f1e885a', '86db5071-55c6-4871-bab6-e94a40e914ff', null, 'slug-qac77'),
+               ('f88e5ebf-1828-4bd6-905e-821bff9c3f64', '79e26a57-04f9-4356-89bc-a1c2cbd9a425', null, 'slug-wh5zc'),
+               ('75a2d0e2-638a-47f0-b47e-16360d08a897', '83c04c77-e816-4f5d-8408-37349cf07583', null, 'slug-wh6zc'),
+               ('20e6d38f-37fa-493e-92cd-8832cc0f258f', 'c957054e-fb19-463d-81f6-5b76400edbaf', null, 'slug-wh7zc'),
+               ('ec1f2c65-da94-452c-a649-11314cdc7b7f', '70efc007-7c7f-4bda-9da8-d94a4c9f1fa3', null, 'slug-wh8zc'),
+               ('d34478bf-a52a-4198-a495-e5157c8ecb54', '0ec2820e-66b8-4abc-8e66-cdf0e01202e0', null, 'slug-wh9zc'),
+               ('62a23c9a-37c8-411e-9b3c-813ff3896201', '0e15e746-5a72-4b8f-b5b8-5f2c839a725d', null, 'slug-wh10zc'),
+               ('c0a2aa89-dbe0-4abd-86f3-3d008262c1c3', 'e41564e8-4863-4739-b974-ebb9937b89f9', null, 'slug-wh11zc'),
+               ('bdadf02e-37df-4d3b-a639-cf9a76532904', 'e618577b-bed0-4e19-89f3-e6ba2e9da795', null, 'slug-wh3zc');
                
   - changeSet:
       id: 0007.test-data.4
@@ -68,7 +68,8 @@ databaseChangeLog:
                insert into user_context_media (id, media_id, user_context_id, profile_picture, title) values
                ('89c41d6b-0f8d-436a-a3c8-5754a0069787', '3e791600-8e00-4069-a060-4862c44da93b', '20ab2295-4d4f-4524-893d-f3b09f1e885a', true, false),
                ('f4b76435-da01-4b06-872c-2a95a75965fe', '1774bd91-1698-4c4a-8f16-3a0a98fdef32', '20ab2295-4d4f-4524-893d-f3b09f1e885a', false, true),
-               ('c28f0643-1d34-42de-bb39-3a77718a59da', '3e791600-8e00-4069-a060-4862c44da93b', '5737ee58-9f88-43d1-baf4-a34dd85f0219', true, true);
+               ('c28f0643-1d34-42de-bb39-3a77718a59da', '3e791600-8e00-4069-a060-4862c44da93b', '5737ee58-9f88-43d1-baf4-a34dd85f0219', true, false),
+               ('57b431d9-dd82-43e3-a7f8-9882ad587010', '1774bd91-1698-4c4a-8f16-3a0a98fdef32', '5737ee58-9f88-43d1-baf4-a34dd85f0219', false, true);
                
   - changeSet:
       id: 0007.test-data.5
@@ -133,6 +134,11 @@ databaseChangeLog:
                  select uuid(), "20ab2295-4d4f-4524-893d-f3b09f1e885a", l.id, "Hallo iam Doomed 2 test. Iam was created to test the view in the author details and iam not happy about that!"
                  from languages l
                  WHERE l.locale = "en";
+                 
+                 insert into user_context_translatables (id, parent_id, language_id, description)
+                 select uuid(), "5737ee58-9f88-43d1-baf4-a34dd85f0219", l.id, "Hallo! Ich bin Fiona und das ist meine Beschreibung. :)"
+                 from languages l
+                 WHERE l.locale = "de";
                  
   - changeSet:
       id: 0007.test-data.8

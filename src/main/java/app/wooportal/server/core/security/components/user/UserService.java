@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.JsonNode;
 import app.wooportal.server.base.userContext.base.media.UserContextMediaEntity;
 import app.wooportal.server.base.userContext.base.media.UserContextMediaService;
+import app.wooportal.server.base.userDeletion.base.UserDeletionEntity;
+import app.wooportal.server.base.userDeletion.base.UserDeletionService;
 import app.wooportal.server.core.base.DataService;
 import app.wooportal.server.core.error.exception.AlreadyVerifiedException;
 import app.wooportal.server.core.error.exception.BadParamsException;
@@ -35,6 +37,8 @@ public class UserService extends DataService<UserEntity, UserPredicateBuilder> {
   private final BCryptPasswordEncoder bcryptPasswordEncoder;
 
   private final UserContextMediaService mediaService;
+  
+  private final UserDeletionService userDeletionService;
 
   public UserService(DataRepository<UserEntity> repo, UserPredicateBuilder predicate,
       AuthenticationService authService, BCryptPasswordEncoder bcryptPasswordEncoder,
@@ -46,6 +50,7 @@ public class UserService extends DataService<UserEntity, UserPredicateBuilder> {
     this.authService = authService;
     this.bcryptPasswordEncoder = bcryptPasswordEncoder;
     this.mediaService = mediaService;
+    this.userDeletionService = userDeletionService;
 
     addService("passwordResets", passwordResetService);
     addService("subscriptions", subscriptionService);
@@ -174,13 +179,14 @@ public class UserService extends DataService<UserEntity, UserPredicateBuilder> {
     throw new VerificationInvalidException("Verification invalid", token);
   }
 
-  public Optional<UserEntity> deleteMe(String password) {
+  public Boolean deleteMe(String password, UserDeletionEntity userDeletion) {
     var currentUser = authService.authenticateCurrentUser(password);
     if (currentUser.isPresent()) {
       deleteById(currentUser.get().getUser().getId());
-      return Optional.of(currentUser.get().getUser());
+      userDeletionService.save(userDeletion);
+      return true;
     }
-    return Optional.empty();
+    return false;
   }
 
   public boolean changePassword(String newPassword) {

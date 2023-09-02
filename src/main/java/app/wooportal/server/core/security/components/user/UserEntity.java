@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -23,6 +24,7 @@ import org.hibernate.annotations.Type;
 
 import app.wooportal.server.base.userContext.base.UserContextEntity;
 import app.wooportal.server.core.base.BaseEntity;
+import app.wooportal.server.core.i18n.components.language.LanguageEntity;
 import app.wooportal.server.core.messaging.notifications.base.NotificationEntity;
 import app.wooportal.server.core.push.subscription.SubscriptionEntity;
 import app.wooportal.server.core.security.components.role.application.PrivilegeApplicationEntity;
@@ -92,4 +94,8 @@ public class UserEntity extends BaseEntity {
 
   @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
   private Set<VerificationEntity> verifications;
+  
+  @ManyToOne(fetch = FetchType.LAZY)
+  private LanguageEntity language;
+  
 }
