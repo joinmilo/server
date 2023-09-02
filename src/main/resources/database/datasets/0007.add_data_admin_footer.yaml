@@ -1,0 +1,129 @@
+  databaseChangeLog:
+  - logicalFilePath: path_independent
+  - changeSet:
+      id: 0007.add_data_admin_footer.1
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add Admin footer parents
+            splitStatements: true
+            sql: insert into admin_footer_parents (`id`) values
+              ('21bbf62f-acc2-493e-ac36-20aeedf1962e'),
+              ('cb721bb9-f3ef-4661-b2ce-71e3a97d028d');
+
+  - changeSet:
+      id: 0007.add_data_admin_footer.2
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add Admin footer parent translatables
+            splitStatements: true
+            sql:
+                insert into admin_footer_parent_translatables (id, `name`, parent_id, language_id)
+                select uuid(), "Über Woo", "21bbf62f-acc2-493e-ac36-20aeedf1962e", l.id
+                from languages l
+                WHERE l.locale = "de";
+                
+                insert into admin_footer_parent_translatables (id, `name`, parent_id, language_id)
+                select uuid(), "About Woo", "21bbf62f-acc2-493e-ac36-20aeedf1962e", l.id
+                from languages l
+                WHERE l.locale = "en";
+                
+                insert into admin_footer_parent_translatables (id, `name`, parent_id, language_id)
+                select uuid(), "Ressourcen", "cb721bb9-f3ef-4661-b2ce-71e3a97d028d", l.id
+                from languages l
+                WHERE l.locale = "de";
+                
+                insert into admin_footer_parent_translatables (id, `name`, parent_id, language_id)
+                select uuid(), "Resources", "cb721bb9-f3ef-4661-b2ce-71e3a97d028d", l.id
+                from languages l
+                WHERE l.locale = "en";
+                
+  - changeSet:
+      id: 0007.add_data_admin_footer.3
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add Admin footer items
+            splitStatements: true
+            sql: insert into admin_footer_items (`id`, `parent_id`, `url`) values
+              
+              /* About Woo */
+
+              /* Roadmap */    ('260d4e24-b642-4e9f-a841-42072418a627', '21bbf62f-acc2-493e-ac36-20aeedf1962e', 'https://tree.taiga.io/project/vetemi-woo/backlog'),
+              /* Sourcecode */ ('1a9ac124-8e79-440d-8f8a-99cd681b2c3b', '21bbf62f-acc2-493e-ac36-20aeedf1962e', 'https://github.com/wooportal'),
+              /* About us */   ('18e5577c-9212-4d20-8cbe-b82c70c14d4c', '21bbf62f-acc2-493e-ac36-20aeedf1962e', 'https://codeschluss.de'),
+              
+              /* Resources */
+
+              /* Blog */          ('974573a5-bfad-45a2-bb8f-f4c2bda42c12', 'cb721bb9-f3ef-4661-b2ce-71e3a97d028d', 'https://tree.taiga.io/project/vetemi-woo/backlog'),
+              /* Documentation */ ('8aaa43dc-47d5-4b47-9649-beb3530cc57f', 'cb721bb9-f3ef-4661-b2ce-71e3a97d028d', 'https://tree.taiga.io/project/vetemi-woo/wiki/home'),
+              /* Help */          ('4d13cc40-7b1d-485f-9737-1915484219c0', 'cb721bb9-f3ef-4661-b2ce-71e3a97d028d', 'https://github.com/wooportal/client-next/issues');
+
+  - changeSet:
+      id: 0007.add_data_admin_footer.4
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add Admin footer item translatables
+            splitStatements: true
+            sql:
+                insert into admin_footer_item_translatables (id, `name`, parent_id, language_id)
+                select uuid(), "Roadmap", "260d4e24-b642-4e9f-a841-42072418a627", l.id
+                from languages l
+                WHERE l.locale = "de";
+                
+                insert into admin_footer_item_translatables (id, `name`, parent_id, language_id)
+                select uuid(), "Roadmap", "260d4e24-b642-4e9f-a841-42072418a627", l.id
+                from languages l
+                WHERE l.locale = "en";
+                
+                insert into admin_footer_item_translatables (id, `name`, parent_id, language_id)
+                select uuid(), "Quellcode", "1a9ac124-8e79-440d-8f8a-99cd681b2c3b", l.id
+                from languages l
+                WHERE l.locale = "de";
+                
+                insert into admin_footer_item_translatables (id, `name`, parent_id, language_id)
+                select uuid(), "Source code", "1a9ac124-8e79-440d-8f8a-99cd681b2c3b", l.id
+                from languages l
+                WHERE l.locale = "en";
+                
+                insert into admin_footer_item_translatables (id, `name`, parent_id, language_id)
+                select uuid(), "About us", "18e5577c-9212-4d20-8cbe-b82c70c14d4c", l.id
+                from languages l
+                WHERE l.locale = "de";
+                
+                insert into admin_footer_item_translatables (id, `name`, parent_id, language_id)
+                select uuid(), "Über uns", "18e5577c-9212-4d20-8cbe-b82c70c14d4c", l.id
+                from languages l
+                WHERE l.locale = "en";
+                
+                insert into admin_footer_item_translatables (id, `name`, parent_id, language_id)
+                select uuid(), "Blog", "974573a5-bfad-45a2-bb8f-f4c2bda42c12", l.id
+                from languages l
+                WHERE l.locale = "de";
+                
+                insert into admin_footer_item_translatables (id, `name`, parent_id, language_id)
+                select uuid(), "Blog", "974573a5-bfad-45a2-bb8f-f4c2bda42c12", l.id
+                from languages l
+                WHERE l.locale = "en";
+                
+                insert into admin_footer_item_translatables (id, `name`, parent_id, language_id)
+                select uuid(), "Documentation", "8aaa43dc-47d5-4b47-9649-beb3530cc57f", l.id
+                from languages l
+                WHERE l.locale = "de";
+                
+                insert into admin_footer_item_translatables (id, `name`, parent_id, language_id)
+                select uuid(), "Dokumentation", "8aaa43dc-47d5-4b47-9649-beb3530cc57f", l.id
+                from languages l
+                WHERE l.locale = "en";
+                
+                insert into admin_footer_item_translatables (id, `name`, parent_id, language_id)
+                select uuid(), "Hilfe", "4d13cc40-7b1d-485f-9737-1915484219c0", l.id
+                from languages l
+                WHERE l.locale = "de";
+                
+                insert into admin_footer_item_translatables (id, `name`, parent_id, language_id)
+                select uuid(), "Help", "4d13cc40-7b1d-485f-9737-1915484219c0", l.id
+                from languages l
+                WHERE l.locale = "en";

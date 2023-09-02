@@ -1,12 +1,22 @@
 databaseChangeLog:
   - logicalFilePath: path_independent
-
+  
   - changeSet:
       id: 0000.seed-data.1
       author: codeschluss
       changes:
         - sql:
-            comment: Add data report_types
+            comment: Add media data
+            splitStatements: true
+            sql: insert into media (`id`, `name`, `mime_type`, `extension`, `size`) values
+               ('f27e4983-0c10-4544-8bba-65d6e56b0cd0', 'platformLogo', 'image/png', 'png', 31900);
+
+  - changeSet:
+      id: 0000.seed-data.2
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add report_types data
             splitStatements: true
             sql: insert into report_types (id) values
               ('29c9ebf0-ac66-4752-a123-82f691cd8d72'),
@@ -16,7 +26,7 @@ databaseChangeLog:
               ('206e4249-d36c-49df-a02e-28b189d4b0dd');
               
   - changeSet:
-      id: 0000.seed-data.2
+      id: 0000.seed-data.3
       author: codeschluss
       changes:
         - sql:
@@ -48,21 +58,24 @@ databaseChangeLog:
                  WHERE l.locale = "de";
 
   - changeSet:
-      id: 0000.seed-data.3
+      id: 0000.seed-data.4
       author: codeschluss
       changes:
         - sql:
             comment: Add new configs
             splitStatements: true
-            sql: insert into configurations (`id`, `code`, `value`) values
-              ('ad024a93-6f72-408f-992f-00c6639b0752', 'hCaptchaSitekey', '8d4dfccc-7457-46ce-8bc6-1646b7f637dd'),
-              ('8a5e5a03-7c9f-4bcc-820c-514bb5cc618f', 'defaultLocale', 'de'),
-              ('187b280d-8fe3-4129-9526-530f9c8e708b', 'pwBitStrength', '40'),
-              ('652dbe0f-387d-4d32-9626-6ed8756420b9', 'maxRating', '5'),
-              ('2879aa51-28b6-4263-ba28-8b1fb8241d3b', 'dataProtection', 'data-protection');              
+            sql: insert into configurations (`id`, `code`, `value`, `media_id`) values
+              ('ad024a93-6f72-408f-992f-00c6639b0752', 'hCaptchaSitekey', '8d4dfccc-7457-46ce-8bc6-1646b7f637dd', null),
+              ('8a5e5a03-7c9f-4bcc-820c-514bb5cc618f', 'defaultLocale', 'de', null),
+              ('187b280d-8fe3-4129-9526-530f9c8e708b', 'pwBitStrength', '40', null),
+              ('652dbe0f-387d-4d32-9626-6ed8756420b9', 'maxRating', '5', null),
+              ('2879aa51-28b6-4263-ba28-8b1fb8241d3b', 'dataProtection', 'data-protection', null),
+              ('885d7366-f02b-460c-b3a0-be7d8468e96a', 'platformCompany', 'Codeschluss GbR', null),
+              ('09f8dff2-29fc-4a7a-8a30-58661dfdd617', 'platformLogo', null, 'f27e4983-0c10-4544-8bba-65d6e56b0cd0'),
+              ('4487c49f-2826-47f3-922c-52efb6e96229', 'platformUrl', 'https://codeschluss.de', null);
               
   - changeSet:
-      id: 0000.seed-data.4
+      id: 0000.seed-data.5
       author: codeschluss
       changes:
         - sql:
@@ -73,7 +86,7 @@ databaseChangeLog:
               ('ab7a5460-2833-4d97-a36e-c00542d3e201', 'google', 'Google Play Store');
               
   - changeSet:
-      id: 0000.seed-data.5
+      id: 0000.seed-data.6
       author: codeschluss
       changes:
         - sql:

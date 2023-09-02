@@ -245,8 +245,16 @@ databaseChangeLog:
     - include:                 
         file: database/changes/0131.create_table_privilege_application_translatables.yaml   
     - include:
-        file: database/changes/0132.migrate_data_providers.yaml     
-                                   
+        file: database/changes/0132.migrate_data_providers.yaml
+    - include:
+        file: database/changes/0134.create_table_admin_footer_parents.yaml
+    - include:
+        file: database/changes/0135.create_table_admin_footer_parent_translatables.yaml
+    - include:
+        file: database/changes/0136.create_table_admin_footer_items.yaml
+    - include:
+        file: database/changes/0137.create_table_admin_footer_item_translatables.yaml
+
     #Data section
     - include:
         file: database/datasets/0000.seed-data.yaml
@@ -262,6 +270,8 @@ databaseChangeLog:
         file: database/datasets/0005.add_available_languages.yaml
     - include:
         file: database/datasets/0006.roles_privileges_data.yaml
+    - include:
+        file: database/datasets/0007.add_data_admin_footer.yaml
         
      #Cleanups
     - include:
