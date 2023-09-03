@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
@@ -35,6 +37,7 @@
 		<docx4j.version>11.4.6</docx4j.version>
 		<firebase.version>8.1.0</firebase.version>
 		<graphql-starter.version>0.0.7</graphql-starter.version>
+		<google-search.version>v1-rev20230701-2.0.0</google-search.version>
 		<imgscalr.version>4.2</imgscalr.version>
 		<jacoco.version>0.8.7</jacoco.version>
 		<jakarta.activation>2.1.0</jakarta.activation>
@@ -75,6 +78,11 @@
 			<groupId>com.google.firebase</groupId>
 			<artifactId>firebase-admin</artifactId>
 			<version>${firebase.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.apis</groupId>
+			<artifactId>google-api-services-searchconsole</artifactId>
+			<version>${google-search.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.h2database</groupId>
@@ -150,7 +158,7 @@
 		</dependency>
 		<!-- <dependency>
 			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
+		<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
 		</dependency> -->
 		<dependency>
@@ -168,10 +176,10 @@
 			<version>${reflection.version}</version>
 		</dependency>
 		<dependency>
-    		<groupId>com.github.slugify</groupId>
-    		<artifactId>slugify</artifactId>
-    		<version>${slugify.version}</version>
-		</dependency>			
+			<groupId>com.github.slugify</groupId>
+			<artifactId>slugify</artifactId>
+			<version>${slugify.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -223,8 +231,10 @@
 
 		<!--
 			Please do not reorder the following sections.
-			It will throw an error because of different XML bind usages.
-			See: https://stackoverflow.com/questions/52502189/java-11-package-javax-xml-bind-does-not-exist
+			It will throw
+		an error because of different XML bind usages.
+			See:
+		https://stackoverflow.com/questions/52502189/java-11-package-javax-xml-bind-does-not-exist
 		-->
 		<dependency>
 			<groupId>jakarta.activation</groupId>
@@ -267,7 +277,8 @@
 						</goals>
 						<configuration>
 							<outputDirectory>target/generated-sources/java</outputDirectory>
-							<processor>com.querydsl.apt.jpa.JPAAnnotationProcessor</processor>
+							<processor>
+								com.querydsl.apt.jpa.JPAAnnotationProcessor</processor>
 						</configuration>
 					</execution>
 				</executions>
@@ -300,7 +311,8 @@
 				<groupId>org.liquibase</groupId>
 				<artifactId>liquibase-maven-plugin</artifactId>
 				<configuration>
-					<propertyFile>target/classes/application-development.properties</propertyFile>
+					<propertyFile>
+						target/classes/application-development.properties</propertyFile>
 					<promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
 				</configuration>
 				<dependencies>

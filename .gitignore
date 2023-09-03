@@ -55,7 +55,7 @@ Thumbs.db
 .storage/
 
 # Credentials
-/src/main/resources/credentials/firebase-credentials.json
-/.apt_generated/
-/.apt_generated_tests/
-/bin/
+**/firebase-credentials.json
+**/google-storage-credentials.json
+**/firebase-credentials.json
+**/search-console-credentials.json
