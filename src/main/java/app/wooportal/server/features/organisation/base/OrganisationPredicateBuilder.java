@@ -18,4 +18,8 @@ public class OrganisationPredicateBuilder
         .or(query.slug.likeIgnoreCase(term))
         .or(query.metaDescription.likeIgnoreCase(term));
   }
+  
+  public BooleanExpression withoutId(String organisationId) {
+    return query.id.ne(organisationId);
+  }
 }

@@ -21,4 +21,8 @@ public class EventPredicateBuilder extends PredicateBuilder<QEventEntity, EventE
         .or(query.translatables.any().shortDescription.likeIgnoreCase(term))
         .or(query.category.translatables.any().name.likeIgnoreCase(term));
   }
+  
+  public BooleanExpression withoutId(String eventId) {
+    return query.id.ne(eventId);
+  }
 }

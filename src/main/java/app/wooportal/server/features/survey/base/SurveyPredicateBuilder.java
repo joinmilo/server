@@ -16,4 +16,8 @@ public class SurveyPredicateBuilder extends PredicateBuilder<QSurveyEntity, Surv
     return query.metaDescription.likeIgnoreCase(term)
         .or(query.slug.likeIgnoreCase(term));
   }
+  
+  public BooleanExpression withoutId(String surveyId) {
+    return query.id.ne(surveyId);
+  }
 }

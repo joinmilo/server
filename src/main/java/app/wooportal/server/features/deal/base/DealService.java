@@ -10,4 +10,30 @@ public class DealService extends DataService<DealEntity, DealPredicateBuilder> {
   public DealService(DataRepository<DealEntity> repo, DealPredicateBuilder predicate) {
     super(repo, predicate);
   }
+  
+  public Boolean sponsorDeal(String dealId) {
+    var Deal = getById(dealId);
+    
+    if (Deal.isPresent()) {
+      Deal.get().setSponsored(true);
+      repo.save(Deal.get());
+      
+      unsponsorOthers(dealId);
+      
+      //TODO: Send notifications
+      
+      return true;
+    }
+    return false;
+  }
+
+  private void unsponsorOthers(String dealId) {
+    var others = readAll(collectionQuery(predicate.withoutId(dealId)));
+    if (others != null && !others.isEmpty()) {
+      others.getList().stream().forEach(Deal -> {
+        Deal.setSponsored(false);
+        repo.save(Deal);
+      });
+    }
+  }
 }

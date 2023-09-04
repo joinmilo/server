@@ -110,5 +110,10 @@ public class EventApi extends CrudApi<EventEntity, EventService> {
       @GraphQLContext EventEntity event) {
     return scheduleService.hasSchedules(event.getId());
   }
+  
+  @GraphQLMutation(name = "sponsorEvent")
+  public Boolean sponsorEvent(String eventId) {
+    return service.sponsorEvent(eventId);
+  }
 
 }

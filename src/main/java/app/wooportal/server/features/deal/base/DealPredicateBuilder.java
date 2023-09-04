@@ -20,4 +20,8 @@ public class DealPredicateBuilder extends PredicateBuilder<QDealEntity, DealEnti
         .or(query.translatables.any().shortDescription.likeIgnoreCase(term))
         .or(query.translatables.any().name.likeIgnoreCase(term));
   }
+  
+  public BooleanExpression withoutId(String dealId) {
+    return query.id.ne(dealId);
+  }
 }

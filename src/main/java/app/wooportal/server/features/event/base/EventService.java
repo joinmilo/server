@@ -14,5 +14,32 @@ public class EventService extends DataService<EventEntity, EventPredicateBuilder
     super(repo, predicate);
 
     addService("attendeeConfiguration", attendeeConfigurationService);
+   
+  }
+  
+  public Boolean sponsorEvent(String eventId) {
+    var event = getById(eventId);
+    
+    if (event.isPresent()) {
+      event.get().setSponsored(true);
+      repo.save(event.get());
+      
+      unsponsorOthers(eventId);
+      
+      //TODO: Send notifications
+      
+      return true;
+    }
+    return false;
+  }
+
+  private void unsponsorOthers(String eventId) {
+    var others = readAll(collectionQuery(predicate.withoutId(eventId)));
+    if (others != null && !others.isEmpty()) {
+      others.getList().stream().forEach(event -> {
+        event.setSponsored(false);
+        repo.save(event);
+      });
+    }
   }
 }
