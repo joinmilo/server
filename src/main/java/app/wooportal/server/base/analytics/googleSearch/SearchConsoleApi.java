@@ -2,7 +2,6 @@ package app.wooportal.server.base.analytics.googleSearch;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.OffsetDateTime;
 import java.util.List;
 import org.springframework.stereotype.Component;
 import app.wooportal.server.core.base.dto.analytics.AnalyticsDto;

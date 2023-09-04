@@ -66,7 +66,7 @@ public class UserService extends DataService<UserEntity, UserPredicateBuilder> {
   }
 
   @Override
-  public void preSave(UserEntity entity, UserEntity newEntity, JsonNode context) {
+  public void preCreate(UserEntity entity, UserEntity newEntity, JsonNode context) {
     if (newEntity.getId() == null && !newEntity.getTermsAccepted()) {
       throw new BadParamsException("Terms were not accepted", newEntity);
     }
