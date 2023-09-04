@@ -78,7 +78,7 @@ public class ContestEntity extends BaseEntity {
   protected Set<ContestTranslatableEntity> translatables;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "contest")
-  private Set<ContestParticipationEntity> participation;
+  private Set<ContestParticipationEntity> participations;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "contest")
   private Set<ContestMediaEntity> uploads;

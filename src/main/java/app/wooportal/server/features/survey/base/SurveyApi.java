@@ -50,15 +50,18 @@ public class SurveyApi extends CrudApi<SurveyEntity, SurveyService> {
 
   @Override
   @GraphQLMutation(name = "deleteSurveys")
-  @AdminPermission
   public Boolean deleteAll(@GraphQLArgument(name = CrudApi.ids) List<String> ids) {
     return super.deleteAll(ids);
   }
 
   @Override
   @GraphQLMutation(name = "deleteSurvey")
-  @AdminPermission
   public Boolean deleteOne(@GraphQLArgument(name = CrudApi.id) String id) {
     return super.deleteOne(id);
+  }
+  
+  @GraphQLMutation(name = "sponsorSurvey")
+  public Boolean sponsorSurvey(String surveyId) {
+    return service.sponsorSurvey(surveyId);
   }
 }

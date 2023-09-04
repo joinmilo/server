@@ -10,4 +10,30 @@ public class SurveyService extends DataService<SurveyEntity, SurveyPredicateBuil
   public SurveyService(DataRepository<SurveyEntity> repo, SurveyPredicateBuilder predicate) {
     super(repo, predicate);
   }
+  
+  public Boolean sponsorSurvey(String surveyId) {
+    var survey = getById(surveyId);
+    
+    if (survey.isPresent()) {
+      survey.get().setSponsored(true);
+      repo.save(survey.get());
+      
+      unsponsorOthers(surveyId);
+      
+      //TODO: Send notifications
+      
+      return true;
+    }
+    return false;
+  }
+
+  private void unsponsorOthers(String surveyId) {
+    var others = readAll(collectionQuery(predicate.withoutId(surveyId)));
+    if (others != null && !others.isEmpty()) {
+      others.getList().stream().forEach(survey -> {
+        survey.setSponsored(false);
+        repo.save(survey);
+      });
+    }
+  }
 }

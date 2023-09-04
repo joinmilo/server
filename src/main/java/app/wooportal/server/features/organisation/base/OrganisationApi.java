@@ -66,14 +66,12 @@ public class OrganisationApi extends CrudApi<OrganisationEntity, OrganisationSer
 
   @Override
   @GraphQLMutation(name = "deleteOrganisations")
-  @AdminPermission
   public Boolean deleteAll(@GraphQLArgument(name = CrudApi.ids) List<String> ids) {
     return super.deleteAll(ids);
   }
 
   @Override
   @GraphQLMutation(name = "deleteOrganisation")
-  @AdminPermission
   public Boolean deleteOne(@GraphQLArgument(name = CrudApi.id) String id) {
     return super.deleteOne(id);
   }
@@ -89,5 +87,9 @@ public class OrganisationApi extends CrudApi<OrganisationEntity, OrganisationSer
       @GraphQLContext OrganisationEntity organisation) {
     return ratingService.calculateRating(
         organisation.getRatings().stream().map(rating -> rating.getScore()).collect(Collectors.toList()));
+  }
+  @GraphQLMutation(name = "sponsorOrganisation")
+  public Boolean sponsorContest(String organisationId) {
+    return service.sponsorOrganisation(organisationId);
   }
 }

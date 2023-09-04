@@ -49,15 +49,18 @@ public class DealApi extends CrudApi<DealEntity, DealService> {
 
   @Override
   @GraphQLMutation(name = "deleteDeals")
-  @AdminPermission
   public Boolean deleteAll(@GraphQLArgument(name = CrudApi.ids) List<String> ids) {
     return super.deleteAll(ids);
   }
 
   @Override
   @GraphQLMutation(name = "deleteDeal")
-  @AdminPermission
   public Boolean deleteOne(@GraphQLArgument(name = CrudApi.id) String id) {
     return super.deleteOne(id);
+  }
+  
+  @GraphQLMutation(name = "sponsorDeal")
+  public Boolean sponsorDeal(String dealId) {
+    return service.sponsorDeal(dealId);
   }
 }
