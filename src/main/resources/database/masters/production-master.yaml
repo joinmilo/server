@@ -256,8 +256,6 @@ databaseChangeLog:
         file: database/changes/0136.create_table_admin_footer_items.yaml
     - include:
         file: database/changes/0137.create_table_admin_footer_item_translatables.yaml
-    - include:
-        file: database/changes/0138.create_table_role_applications.yaml
     - include:                 
         file: database/changes/0139.create_table_user_deletion_types.yaml   
     - include:                 

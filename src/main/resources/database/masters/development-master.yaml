@@ -125,8 +125,6 @@ databaseChangeLog:
     - include:
         file: database/changes/0065.add_column_favorite_organisations.yaml        
     - include:
-        file: database/changes/0067.create_table_organisation_members.yaml  
-    - include:
         file: database/changes/0068.create_table_organisation_ratings.yaml
     - include:
         file: database/changes/0069.create_table_organisation_comments.yaml
@@ -249,6 +247,8 @@ databaseChangeLog:
     - include:
         file: database/changes/0132.migrate_data_providers.yaml
     - include:
+        file: database/changes/0133.migrate_suburbs.yaml
+    - include:
         file: database/changes/0134.create_table_admin_footer_parents.yaml
     - include:
         file: database/changes/0135.create_table_admin_footer_parent_translatables.yaml
@@ -256,8 +256,6 @@ databaseChangeLog:
         file: database/changes/0136.create_table_admin_footer_items.yaml
     - include:
         file: database/changes/0137.create_table_admin_footer_item_translatables.yaml
-    - include:
-        file: database/changes/0138.create_table_role_application_translatables.yaml
     - include:                 
         file: database/changes/0139.create_table_user_deletion_types.yaml   
     - include:                 

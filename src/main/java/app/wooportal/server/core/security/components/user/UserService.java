@@ -44,7 +44,7 @@ public class UserService extends DataService<UserEntity, UserPredicateBuilder> {
       AuthenticationService authService, BCryptPasswordEncoder bcryptPasswordEncoder,
       UserContextMediaService mediaService, PasswordResetService passwordResetService,
       SubscriptionService subscriptionService, VerificationService verificationService,
-      PrivilegeApplicationService privilegeApplicationService) {
+      PrivilegeApplicationService privilegeApplicationService, UserDeletionService userDeletionService) {
     super(repo, predicate);
 
     this.authService = authService;
