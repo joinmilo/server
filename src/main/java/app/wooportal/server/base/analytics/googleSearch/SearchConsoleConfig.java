@@ -11,5 +11,7 @@ public class SearchConsoleConfig {
   
   private String credentials;
   
+  private String host;
+  
   private String scope;
 }
