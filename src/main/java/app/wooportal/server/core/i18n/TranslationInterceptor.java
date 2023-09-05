@@ -2,6 +2,7 @@ package app.wooportal.server.core.i18n;
 
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
+import javax.transaction.Transactional;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -66,6 +67,7 @@ public class TranslationInterceptor {
   
   @SuppressWarnings("unchecked")
   @Around("save()")
+  @Transactional
   public <E extends BaseEntity> Object saveTranslation(ProceedingJoinPoint pjp) throws Throwable {
     Object result = pjp.proceed();
     var savedEntity = pjp.getArgs()[0];

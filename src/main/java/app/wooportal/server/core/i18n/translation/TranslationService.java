@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
+import javax.transaction.Transactional;
 import org.hibernate.Hibernate;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
@@ -83,8 +84,8 @@ public class TranslationService {
     }
   }
 
+  @Transactional
   public void save(BaseEntity savedEntity) throws Throwable {
-
     var sourceFields = new HashMap<String, String>();
     Class<TranslatableEntity<BaseEntity>> translatableClass = null;
     String longestContentField = null;

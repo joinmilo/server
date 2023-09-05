@@ -23,9 +23,9 @@ public class ArticleMediaEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
   
-  private Boolean card;
+  private Boolean card = false;
   
-  private Boolean title;
+  private Boolean title = false;
   
   @ManyToOne(fetch = FetchType.LAZY)
   private ArticleEntity article;

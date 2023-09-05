@@ -54,9 +54,14 @@ public class MediaService extends DataService<MediaEntity, MediaPredicateBuilder
   }
   
   //TODO: preSave transform youtube videos to embed videos, see class VideoMigration.isValidYoutubeLink()
-
   @Override
-  public void postSave(MediaEntity entity, MediaEntity newEntity, JsonNode context) {
+  public void preSave(MediaEntity entity, MediaEntity newEntity, JsonNode context) {
+    entity.setExtension(mimeTypeService.getFileExtension(newEntity.getMimeType()));
+    addContext("extension", context);
+  }
+  
+  @Override
+  public void postSave(MediaEntity entity, MediaEntity newEntity, MediaEntity saved, JsonNode context) {
     if (newEntity.getBase64() != null && !newEntity.getBase64().isBlank()) {
       byte[] data = Base64.getDecoder().decode(newEntity.getBase64());
       var fileExtension = mimeTypeService.getFileExtension(newEntity.getMimeType());
@@ -68,7 +73,7 @@ public class MediaService extends DataService<MediaEntity, MediaPredicateBuilder
         storageService.delete(entity.getId(), fileExtension);
       }
       try {
-        storageService.store(entity.getId(), fileExtension, data);
+        storageService.store(saved.getId(), fileExtension, data);
       } catch (IOException e) {
         e.printStackTrace();
         errorMailService.sendErrorMail(e);

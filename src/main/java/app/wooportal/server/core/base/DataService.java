@@ -251,7 +251,7 @@ public abstract class DataService<E extends BaseEntity, P extends PredicateBuild
     var saved = persist(entity);
     savePostSaveFields(saved, newEntity, postFieldNames, context);
     
-    performPostSave(copy, saved, context);
+    performPostSave(copy, newEntity, saved, context);
     return saved;
   }
 
@@ -374,20 +374,20 @@ public abstract class DataService<E extends BaseEntity, P extends PredicateBuild
     return repo.save(entity);
   }
   
-  private void performPostSave(E entity, E saved, JsonNode context) {
+  private void performPostSave(E entity, E newEntity, E saved, JsonNode context) {
     if (entity.getId() != null) {
-      postUpdate(entity, saved, context);
+      postUpdate(entity, newEntity, saved, context);
     } else {
-      postCreate(entity, saved, context);
+      postCreate(entity, newEntity, saved, context);
     }
-    postSave(entity, saved, context);
+    postSave(entity, newEntity, saved, context);
   }
   
-  protected void postUpdate(E entity, E saved, JsonNode context) { }
+  protected void postUpdate(E entity, E newEntity, E saved, JsonNode context) { }
   
-  protected void postCreate(E entity, E saved, JsonNode context) { }
+  protected void postCreate(E entity, E newEntity, E saved, JsonNode context) { }
   
-  protected void postSave(E entity, E saved, JsonNode context) { }
+  protected void postSave(E entity, E newEntity, E saved, JsonNode context) { }
 
   protected List<String> saveFields(E entity, E newEntity, JsonNode context) {    
     return context != null && !context.isNull()
