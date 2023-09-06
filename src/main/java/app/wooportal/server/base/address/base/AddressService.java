@@ -3,6 +3,7 @@ package app.wooportal.server.base.address.base;
 import javax.naming.ServiceUnavailableException;
 import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.JsonNode;
+import app.wooportal.server.base.address.suburb.SuburbService;
 import app.wooportal.server.core.base.DataService;
 import app.wooportal.server.core.error.exception.NotFoundException;
 import app.wooportal.server.core.location.MapService;
@@ -14,8 +15,12 @@ public class AddressService extends DataService<AddressEntity, AddressPredicateB
   private final MapService mapService;
 
   public AddressService(DataRepository<AddressEntity> repo, 
-      AddressPredicateBuilder predicate, MapService mapService) {
+      AddressPredicateBuilder predicate, 
+      MapService mapService,
+      SuburbService suburbService) {
     super(repo, predicate);
+    
+    addService("suburb", suburbService);
     
     this.mapService = mapService;
   }
