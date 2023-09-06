@@ -1,14 +1,23 @@
 package app.wooportal.server.features.organisation.base;
 
 import org.springframework.stereotype.Service;
+import app.wooportal.server.base.address.base.AddressService;
+import app.wooportal.server.base.contact.ContactService;
 import app.wooportal.server.core.base.DataService;
 import app.wooportal.server.core.repository.DataRepository;
 
 @Service
 public class OrganisationService extends DataService<OrganisationEntity, OrganisationPredicateBuilder> {
 
-  public OrganisationService(DataRepository<OrganisationEntity> repo, OrganisationPredicateBuilder predicate) {
+  public OrganisationService(
+      DataRepository<OrganisationEntity> repo,
+      OrganisationPredicateBuilder predicate,
+      AddressService addressService,
+      ContactService contactService) {
     super(repo, predicate);
+    
+    addService("address", addressService);
+    addService("contact", contactService);
   }
   
   public Boolean sponsorOrganisation(String rganisationId) {

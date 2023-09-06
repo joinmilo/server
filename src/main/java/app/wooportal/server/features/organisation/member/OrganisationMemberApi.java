@@ -36,7 +36,6 @@ public class OrganisationMemberApi extends CrudApi<OrganisationMemberEntity, Org
 
   @Override
   @GraphQLMutation(name = "saveOrganisationMembers")
-  @AdminPermission
   public List<OrganisationMemberEntity> saveAll(
       @GraphQLArgument(name = CrudApi.entities) List<OrganisationMemberEntity> entities) {
     return super.saveAll(entities);

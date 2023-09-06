@@ -72,5 +72,17 @@ databaseChangeLog:
       changes:
         - dropForeignKeyConstraint:
             baseTableName: organisation_members
-            constraintName: CONSTRAINT_A3553C8B                                 
+            constraintName: CONSTRAINT_A3553C8B         
+            
+  -  changeSet:  
+      id:  0132.migrate_data_providers.7
+      author:  codeschluss
+      changes:  
+        - addNotNullConstraint:  
+            columnName:  approved
+            columnDataType: boolean
+            defaultNullValue:  false  
+            schemaName: wooportal
+            tableName:  organisation_members
+            validate:  true   
                             
