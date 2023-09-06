@@ -117,10 +117,18 @@ public abstract class PredicateBuilder<T extends EntityPathBase<?>, E extends Ba
             params.getSearch() == null || params.getSearch().isBlank())) {
       throw new IllegalArgumentException("Either search or expression must not be null");
     }
+   
+    var builder = new BooleanBuilder();
     
-    return params.getSearch() != null && !params.getSearch().isBlank()
-        ? freeSearch(params.getSearch())
-        : buildExpression(params.getExpression());
+    if (params.getSearch() != null) {
+      builder.and(freeSearch(params.getSearch()));
+    }
+    
+    if (params.getExpression() != null) {
+      builder.and(buildExpression(params.getExpression()));
+    }
+    
+    return builder;
   }
 
   public abstract BooleanExpression freeSearch(String term);
