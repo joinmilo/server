@@ -39,7 +39,7 @@ public class EventAnalyticsApi {
         event.getRatings().stream().map(rating -> rating.getScore()).collect(Collectors.toList()));
   }
   
-  @GraphQLQuery(name = "searchConsoleEventDetails")
+  @GraphQLQuery(name = "googleSearchEventDetails")
   public List<AnalyticsDto> searchConsoleEventDetails(@GraphQLContext EventEntity event,
       LocalDate startDate, LocalDate endDate) throws IOException {
 
@@ -47,9 +47,9 @@ public class EventAnalyticsApi {
       endDate = LocalDate.now();
       startDate = LocalDate.of(endDate.getYear(), 1, 1);
       
-    }
+    } 
     OffsetDateTime targetDateTime = OffsetDateTime.of(2023, 10, 1, 0, 0, 0, 0, ZoneOffset.UTC);
-    var keyword = event.getCreated().isBefore(targetDateTime) ? event.getId() : event.getSlug();
+    var keyword = event.getCreated().isBefore(targetDateTime) ? event.getId() : "events" + event.getSlug();
     return searchConsoleService.calculateForFeature(startDate, endDate, keyword);
   }
 }
