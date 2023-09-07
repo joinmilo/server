@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
+import app.wooportal.server.base.analytics.googleSearch.GoogleSearchDto;
 import app.wooportal.server.base.analytics.googleSearch.SearchAnalyticsDto;
 import app.wooportal.server.base.analytics.googleSearch.SearchConsoleService;
 import app.wooportal.server.base.analytics.googleSearch.SearchDimension;
@@ -40,7 +41,7 @@ public class EventAnalyticsApi {
   }
   
   @GraphQLQuery(name = "googleSearchEventDetails")
-  public List<AnalyticsDto> searchConsoleEventDetails(@GraphQLContext EventEntity event,
+  public List<GoogleSearchDto> searchConsoleEventDetails(@GraphQLContext EventEntity event,
       LocalDate startDate, LocalDate endDate) throws IOException {
 
     if (startDate == null || endDate == null) {
