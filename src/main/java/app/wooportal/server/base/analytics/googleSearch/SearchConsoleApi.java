@@ -34,5 +34,4 @@ public class SearchConsoleApi {
       SearchDimension dimension) throws IOException {
     return service.calculateForDimension(startDate, endDate, dimension);
   }
-
 }

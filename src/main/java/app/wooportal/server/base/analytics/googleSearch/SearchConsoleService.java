@@ -3,10 +3,12 @@ package app.wooportal.server.base.analytics.googleSearch;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
@@ -18,12 +20,10 @@ import com.google.api.services.searchconsole.v1.model.ApiDimensionFilter;
 import com.google.api.services.searchconsole.v1.model.ApiDimensionFilterGroup;
 import com.google.api.services.searchconsole.v1.model.SearchAnalyticsQueryRequest;
 import app.wooportal.server.core.base.dto.analytics.AnalyticsDto;
-import app.wooportal.server.core.config.GeneralConfiguration;
 
 @Service
 public class SearchConsoleService {
   
-  private final GeneralConfiguration generalConfig;
   private final SearchConsoleConfig config;
   
   private final String clicks = "clicks";
@@ -35,10 +35,8 @@ public class SearchConsoleService {
   private final String position = "position";
   
   public SearchConsoleService(
-      SearchConsoleConfig searchConfig,
-      GeneralConfiguration generalConfig) {
+      SearchConsoleConfig searchConfig) {
     this.config = searchConfig;
-    this.generalConfig = generalConfig;
   }
   
   public SearchAnalyticsDto calculateTotal(
@@ -79,7 +77,7 @@ public class SearchConsoleService {
     var result = new HashMap<String, HashMap<String, Double>>();
     for (var row : searchService
         .searchanalytics()
-        .query(generalConfig.getHost(), query)
+        .query(config.getHost(), query)
         .execute()
         .getRows()) {
       var entry = result.containsKey(row.getKeys().get(0))
@@ -116,36 +114,46 @@ public class SearchConsoleService {
     filterGroup.setFilters(Arrays.asList(filter));
     
      var query = baseQuery.setDimensionFilterGroups(Arrays.asList(filterGroup));
- 
-    var result = new HashMap<String, HashMap<String, Double>>();
-    for (var row : searchService
-        .searchanalytics()
-        .query(config.getHost(), query)
-        .execute()
-        .getRows()) {
-         
-      var entry = result.containsKey(row.getKeys().get(0))
-          ? result.get(row.getKeys().get(0))
-          : new HashMap<String, Double>();
-      entry.put(clicks, 
-          entry.containsKey(clicks) ? entry.get(clicks) + row.getClicks() : row.getClicks()); 
-      entry.put(impressions, 
-          entry.containsKey(impressions) ? entry.get(impressions) + row.getImpressions() : row.getImpressions());
-      entry.put(ctr,
-          entry.containsKey(ctr) ? entry.get(ctr) + row.getCtr() : row.getCtr());
-      entry.put(position, 
-          entry.containsKey(position) ? entry.get(position) + row.getPosition() : row.getPosition());
-      
-      result.put(row.getKeys().get(0), entry);
-  
-      row.getKeys().get(0);
-      row.getKeys().get(1);
-      
-    }
 
-    return result.entrySet().stream().map(e -> new AnalyticsDto(e.getKey(), e.getValue()))
-        .collect(Collectors.toList());
-  }
+     String[] metrics = {clicks, impressions, ctr, position};
+
+     List<AnalyticsDto> analyticsDtoList = new ArrayList<>();
+
+     for (String metric : metrics) {
+         var metricData = new HashMap<String, Double>();
+
+         for (var row : searchService
+                 .searchanalytics()
+                 .query(config.getHost(), query)
+                 .execute()
+                 .getRows()) {
+
+             var date = row.getKeys().get(0);
+             var value = 0.0;
+ 
+             switch (metric) {
+                 case "clicks":
+                     value = row.getClicks();
+                     break;
+                 case "impressions":
+                     value = row.getImpressions();
+                     break;
+                 case "ctr":
+                     value = row.getCtr();
+                     break;
+                 case "position":
+                     value = row.getPosition();
+                     break;
+             }
+
+             metricData.put(date, value);
+         }
+
+         analyticsDtoList.add(new AnalyticsDto(metric, metricData));
+     }
+
+     return analyticsDtoList;
+ }
 
   public SearchConsole createSearchService() throws IOException {
 //  // As of now, this cannot be passed to SearchConsole.Builder
