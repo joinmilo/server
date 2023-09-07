@@ -1,5 +1,6 @@
 package app.wooportal.server.base.analytics.googleSearch;
 
+import java.util.ArrayList;
 import app.wooportal.server.core.base.dto.analytics.AnalyticsEntry;
 import lombok.Data;
 
@@ -10,6 +11,6 @@ public class GoogleSearchDto {
   
   private Double value = 0.0;
   
-  private AnalyticsEntry entry;
+  private ArrayList<AnalyticsEntry> entries;
    
 }
