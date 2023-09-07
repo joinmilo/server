@@ -2,6 +2,8 @@ package app.wooportal.server.core.media.base;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Base64;
 import org.docx4j.convert.in.xhtml.XHTMLImporterImpl;
 import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
@@ -58,6 +60,14 @@ public class MediaService extends DataService<MediaEntity, MediaPredicateBuilder
   public void preSave(MediaEntity entity, MediaEntity newEntity, JsonNode context) {
     entity.setExtension(mimeTypeService.getFileExtension(newEntity.getMimeType()));
     addContext("extension", context);
+    
+    //TODO: This must be integrated as a check
+    if (newEntity.getUrl() != null && !newEntity.getUrl().isBlank()) {
+      if (!isValidURL(newEntity.getUrl())) {
+        newEntity.setUrl(null);
+        removeContext("url", context);
+      }
+    }
   }
   
   @Override
@@ -166,6 +176,15 @@ public class MediaService extends DataService<MediaEntity, MediaPredicateBuilder
     header.add("Pragma", "no-cache");
     header.add("Expires", "0");
     return header;
+  }
+  
+  public boolean isValidURL(String urlString) {
+    try {
+      new URL(urlString);
+      return true;
+    } catch (MalformedURLException e) {
+      return false;
+    }
   }
 }
 
