@@ -8,10 +8,10 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
-import app.wooportal.server.base.analytics.googleSearch.GoogleSearchDto;
-import app.wooportal.server.base.analytics.googleSearch.SearchAnalyticsDto;
 import app.wooportal.server.base.analytics.googleSearch.SearchConsoleService;
-import app.wooportal.server.base.analytics.googleSearch.SearchDimension;
+import app.wooportal.server.base.analytics.googleSearch.dto.SearchConsoleDetailsDto;
+import app.wooportal.server.base.analytics.googleSearch.dto.SearchConsoleSummaryDto;
+import app.wooportal.server.base.analytics.googleSearch.query.SearchConsoleDimension;
 import app.wooportal.server.base.rating.RatingDto;
 import app.wooportal.server.base.rating.RatingService;
 import app.wooportal.server.core.base.dto.analytics.AnalyticsDto;
@@ -41,16 +41,15 @@ public class EventAnalyticsApi {
   }
   
   @GraphQLQuery(name = "googleSearchEventDetails")
-  public List<GoogleSearchDto> searchConsoleEventDetails(@GraphQLContext EventEntity event,
+  public List<SearchConsoleDetailsDto> searchConsoleEventDetails(@GraphQLContext EventEntity event,
       LocalDate startDate, LocalDate endDate) throws IOException {
 
     if (startDate == null || endDate == null) {
       endDate = LocalDate.now();
       startDate = LocalDate.of(endDate.getYear(), 1, 1);
-      
     } 
     OffsetDateTime targetDateTime = OffsetDateTime.of(2023, 10, 1, 0, 0, 0, 0, ZoneOffset.UTC);
     var keyword = event.getCreated().isBefore(targetDateTime) ? event.getId() : "events" + event.getSlug();
-    return searchConsoleService.calculateForFeature(startDate, endDate, keyword);
+    return searchConsoleService.calculateForPage(startDate, endDate, keyword);
   }
 }

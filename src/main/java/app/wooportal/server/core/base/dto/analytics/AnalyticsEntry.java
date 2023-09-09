@@ -22,5 +22,15 @@ public class AnalyticsEntry implements Comparable<AnalyticsEntry> {
     return String.format("%100s", this.getName()).compareTo(
       String.format("%100s", other.getName()));
   }
+  
+  public AnalyticsEntry setName(String name) {
+    this.name = name;
+    return this;
+  }
+  
+  public AnalyticsEntry setValue(Double value) {
+    this.value = value;
+    return this;
+  }
 
 }

@@ -9,10 +9,10 @@ import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
-import app.wooportal.server.base.analytics.googleSearch.GoogleSearchDto;
-import app.wooportal.server.base.analytics.googleSearch.SearchAnalyticsDto;
 import app.wooportal.server.base.analytics.googleSearch.SearchConsoleService;
-import app.wooportal.server.base.analytics.googleSearch.SearchDimension;
+import app.wooportal.server.base.analytics.googleSearch.dto.SearchConsoleDetailsDto;
+import app.wooportal.server.base.analytics.googleSearch.dto.SearchConsoleSummaryDto;
+import app.wooportal.server.base.analytics.googleSearch.query.SearchConsoleDimension;
 import app.wooportal.server.base.rating.RatingDto;
 import app.wooportal.server.base.rating.RatingService;
 import app.wooportal.server.core.base.CrudApi;
@@ -110,12 +110,12 @@ public class ArticleApi extends CrudApi<ArticleEntity, ArticleService> {
   
   
   @GraphQLQuery(name = "searchConsoleArticleDetails")
-  public List<GoogleSearchDto> searchConsoleEventDetails(@GraphQLContext ArticleEntity article,
+  public List<SearchConsoleDetailsDto> searchConsoleEventDetails(@GraphQLContext ArticleEntity article,
       LocalDate startDate, LocalDate endDate) throws IOException {
 
     OffsetDateTime targetDateTime = OffsetDateTime.of(2023, 10, 1, 0, 0, 0, 0, ZoneOffset.UTC);
     var keyword = article.getCreated().isBefore(targetDateTime) ? article.getId() : article.getSlug();
-    return searchConsoleService.calculateForFeature(startDate, endDate,
+    return searchConsoleService.calculateForPage(startDate, endDate,
         keyword);
   }
 
