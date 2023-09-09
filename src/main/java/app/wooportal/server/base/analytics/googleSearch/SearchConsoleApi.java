@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 import org.springframework.stereotype.Component;
+import app.wooportal.server.base.analytics.googleSearch.dto.SearchConsoleSummaryDto;
+import app.wooportal.server.base.analytics.googleSearch.query.SearchConsoleDimension;
 import app.wooportal.server.core.base.dto.analytics.AnalyticsDto;
 import io.leangen.graphql.annotations.GraphQLQuery;
 import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
@@ -20,8 +22,7 @@ public class SearchConsoleApi {
   }
   
   @GraphQLQuery(name = "getSearchConsoleOverview")
-  public SearchAnalyticsDto searchConsoleOverview(
-//      IntervalFilter interval,
+  public SearchConsoleSummaryDto searchConsoleOverview(
       LocalDate startDate,
       LocalDate endDate) throws IOException {
     return service.calculateTotal(startDate, endDate);
@@ -31,7 +32,7 @@ public class SearchConsoleApi {
   public List<AnalyticsDto> searchConsoleDetails(
       LocalDate startDate,
       LocalDate endDate,
-      SearchDimension dimension) throws IOException {
+      SearchConsoleDimension dimension) throws IOException {
     return service.calculateForDimension(startDate, endDate, dimension);
   }
 }
