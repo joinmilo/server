@@ -1,4 +1,4 @@
-package app.wooportal.server.base.analytics.googleSearch.query;
+package app.wooportal.server.base.analytics.googleSearch.dto;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
