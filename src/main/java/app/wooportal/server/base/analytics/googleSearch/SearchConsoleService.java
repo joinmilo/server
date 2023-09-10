@@ -154,7 +154,11 @@ public class SearchConsoleService {
         clicksEntry.add(key, row.getClicks());
         impressionsEntry.add(key, row.getImpressions());
         ctrEntry.add(key, row.getCtr());
-        positionEntry.add(key, row.getPosition());
+        
+        // Necessary because 0 values warp average calculation
+        if (row.getPosition() != 0.0) {
+          positionEntry.add(key, row.getPosition());
+        }
       }
 
       return  Set.of(
