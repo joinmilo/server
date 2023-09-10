@@ -55,7 +55,7 @@ public class SearchConsoleService {
    * @param startDate Date to start calculation
    * @param endDate Date to end calculation
    * @param entity This must be an entity with a field having the annotation {@code @SlugSource} 
-   * @return List of all dates with statistics for each day
+   * @return List of all dates with statistics (clicks, impressions, ctr and position) for each day
    * @throws IOException
    */
   public Set<AnalyticsDto> getEntitySearchStatistics(
@@ -84,13 +84,13 @@ public class SearchConsoleService {
       return calculate(new SearchConsoleQuery()
           .setStartDate(startDate)
           .setEndDate(endDate)
-          .setDimensions(SearchConsoleDimension.page)
+          .setDimensions(SearchConsoleDimension.date)
           .addPageFilter(entity.getId()));
     }
     var resultUntilMajorRelease = calculate(new SearchConsoleQuery()
         .setStartDate(startDate)
         .setEndDate(majorReleaseDate)
-        .setDimensions(SearchConsoleDimension.page)
+        .setDimensions(SearchConsoleDimension.date)
         .addPageFilter(entity.getId()));
     
     var resultAfterMajorRelease = calculateAfterMajorRelease(
@@ -129,7 +129,7 @@ public class SearchConsoleService {
       return calculate(new SearchConsoleQuery()
           .setStartDate(startDate)
           .setEndDate(majorReleaseDate)
-          .setDimensions(SearchConsoleDimension.page)
+          .setDimensions(SearchConsoleDimension.date)
           .addPageFilter(slug.get().toString()));
     }
     return null;
