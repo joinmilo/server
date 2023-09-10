@@ -1,5 +1,6 @@
 package app.wooportal.server.core.base.dto.analytics;
 
+import java.util.Objects;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,12 +18,6 @@ public class AnalyticsEntry implements Comparable<AnalyticsEntry> {
   
   private Double value; 
   
-  @Override
-  public int compareTo(AnalyticsEntry other) {
-    return String.format("%100s", this.getName()).compareTo(
-      String.format("%100s", other.getName()));
-  }
-  
   public AnalyticsEntry setName(String name) {
     this.name = name;
     return this;
@@ -31,6 +26,31 @@ public class AnalyticsEntry implements Comparable<AnalyticsEntry> {
   public AnalyticsEntry setValue(Double value) {
     this.value = value;
     return this;
+  }
+  
+  @Override
+  public int hashCode() {
+    return getName() != null
+        ? Objects.hash(getName())
+        : super.hashCode();
+  }
+  
+  @Override
+  public boolean equals(Object other) {
+    if (!getClass().equals(other.getClass())) {
+      return false;
+    }
+    
+    return getName() != null
+        ? getName().equals(((AnalyticsDto) other).getName())
+            || getName() == ((AnalyticsDto) other).getName()
+        : super.equals(other);
+  }
+  
+  @Override
+  public int compareTo(AnalyticsEntry other) {
+    return String.format("%100s", getName()).compareTo(
+      String.format("%100s", other.getName()));
   }
 
 }

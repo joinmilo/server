@@ -2,6 +2,7 @@ package app.wooportal.server.core.base.dto.analytics;
 
 import java.util.Collection;
 import java.util.Map;
+import java.util.Objects;
 import java.util.TreeSet;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -72,6 +73,25 @@ public class AnalyticsDto implements Comparable<AnalyticsDto> {
   
   public Double getAverageSummary() {
     return summary / series.size();
+  }
+  
+  @Override
+  public int hashCode() {
+    return getName() != null
+        ? Objects.hash(getName())
+        : super.hashCode();
+  }
+  
+  @Override
+  public boolean equals(Object other) {
+    if (!getClass().equals(other.getClass())) {
+      return false;
+    }
+    
+    return getName() != null
+        ? getName().equals(((AnalyticsDto) other).getName())
+            || getName() == ((AnalyticsDto) other).getName()
+        : super.equals(other);
   }
   
   @Override

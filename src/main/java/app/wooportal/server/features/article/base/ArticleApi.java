@@ -2,17 +2,13 @@ package app.wooportal.server.features.article.base;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.time.ZoneOffset;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
 import app.wooportal.server.base.analytics.googleSearch.SearchConsoleService;
-import app.wooportal.server.base.analytics.googleSearch.dto.SearchConsoleDimension;
-import app.wooportal.server.base.analytics.googleSearch.dto.SearchConsoleDto;
-import app.wooportal.server.base.analytics.googleSearch.dto1.SearchConsoleSummaryDto;
 import app.wooportal.server.base.rating.RatingDto;
 import app.wooportal.server.base.rating.RatingService;
 import app.wooportal.server.core.base.CrudApi;
@@ -22,7 +18,6 @@ import app.wooportal.server.core.base.dto.listing.PageableList;
 import app.wooportal.server.core.security.permissions.AdminPermission;
 import app.wooportal.server.features.article.comment.ArticleCommentEntity;
 import app.wooportal.server.features.article.comment.ArticleCommentService;
-import app.wooportal.server.features.event.base.EventEntity;
 import io.leangen.graphql.annotations.GraphQLArgument;
 import io.leangen.graphql.annotations.GraphQLContext;
 import io.leangen.graphql.annotations.GraphQLMutation;
@@ -110,15 +105,14 @@ public class ArticleApi extends CrudApi<ArticleEntity, ArticleService> {
   
   
   @GraphQLQuery(name = "searchConsoleArticleDetails")
-  public List<AnalyticsDto> searchConsoleEventDetails(
+  public Set<AnalyticsDto> searchConsoleEventDetails(
       @GraphQLContext ArticleEntity article,
       LocalDate startDate,
       LocalDate endDate) throws IOException {
-
-    OffsetDateTime targetDateTime = OffsetDateTime.of(2023, 10, 1, 0, 0, 0, 0, ZoneOffset.UTC);
-    var keyword = article.getCreated().isBefore(targetDateTime) ? article.getId() : article.getSlug();
-    return searchConsoleService.calculateForPage(startDate, endDate,
-        keyword);
+    return searchConsoleService.getEntitySearchStatistics(
+        startDate,
+        endDate,
+        article);
   }
 
 }
