@@ -10,7 +10,7 @@ import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.gson.GsonFactory;
 import com.google.api.services.searchconsole.v1.SearchConsole;
 import com.google.api.services.searchconsole.v1.model.ApiDataRow;
-import app.wooportal.server.base.analytics.googleSearch.query.SearchConsoleQuery;
+import app.wooportal.server.base.analytics.googleSearch.dto.SearchConsoleQuery;
 
 @Service
 public class SearchConsoleApiService {

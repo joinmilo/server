@@ -1,4 +1,4 @@
-package app.wooportal.server.base.analytics.googleSearch.query;
+package app.wooportal.server.base.analytics.googleSearch.dto;
 
 public enum SearchConsoleDataState {
   
