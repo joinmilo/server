@@ -64,7 +64,6 @@ public class AddressApi extends CrudApi<AddressEntity, AddressService> {
 
   @Override
   @GraphQLMutation(name = "deleteAddress")
-  @AdminPermission
   public Boolean deleteOne(@GraphQLArgument(name = CrudApi.id) String id) {
     return super.deleteOne(id);
   }
