@@ -1,7 +1,7 @@
 package app.wooportal.server.features.event.base;
 
 import java.io.IOException;
-import java.time.LocalDate;
+import java.time.OffsetDateTime;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
@@ -38,8 +38,8 @@ public class EventAnalyticsApi {
   @GraphQLQuery(name = "searchStatistics")
   public CompletableFuture<Set<AnalyticsDto>> searchConsoleEventDetails(
       @GraphQLContext EventEntity event,
-      LocalDate startDate,
-      LocalDate endDate) throws IOException {
+      OffsetDateTime startDate,
+      OffsetDateTime endDate) throws IOException {
     return searchConsoleService.getEntitySearchStatistics(startDate, endDate, event);
   }
 }

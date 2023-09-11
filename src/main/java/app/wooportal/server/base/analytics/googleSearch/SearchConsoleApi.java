@@ -1,7 +1,7 @@
 package app.wooportal.server.base.analytics.googleSearch;
 
 import java.io.IOException;
-import java.time.LocalDate;
+import java.time.OffsetDateTime;
 import java.util.Set;
 import org.springframework.stereotype.Component;
 import app.wooportal.server.base.analytics.googleSearch.dto.SearchConsoleDimension;
@@ -22,8 +22,8 @@ public class SearchConsoleApi {
   
   @GraphQLQuery(name = "getSearchStatistics")
   public Set<AnalyticsDto> searchConsoleDetails(
-      LocalDate startDate,
-      LocalDate endDate,
+      OffsetDateTime startDate,
+      OffsetDateTime endDate,
       SearchConsoleDimension dimension) throws IOException {
     return service.getSearchStatistics(startDate, endDate, dimension);
   }

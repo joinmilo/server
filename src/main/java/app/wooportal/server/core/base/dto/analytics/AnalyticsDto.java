@@ -14,10 +14,12 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class AnalyticsDto implements Comparable<AnalyticsDto> {
+  
+  private Double average;
 
   private String name;
   
-  private Double summary = 0.0;
+  private Double sum = 0.0;
   
   private TreeSet<AnalyticsEntry> series = new TreeSet<>();
   
@@ -66,13 +68,15 @@ public class AnalyticsDto implements Comparable<AnalyticsDto> {
   public AnalyticsDto add(AnalyticsEntry entry) {
     if (entry != null) {      
       this.series.add(entry);
-      this.summary += entry.getValue();
+      this.sum += entry.getValue();
     }
     return this;
   }
   
-  public Double getAverageSummary() {
-    return summary / series.size();
+  public Double getAverage() {
+    return average != null
+        ? average
+        : sum / series.size();
   }
   
   @Override

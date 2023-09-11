@@ -2,7 +2,8 @@ package app.wooportal.server.base.analytics.googleSearch;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
-import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,8 @@ public class SearchConsoleService {
   private final String ctr = "ctr";
   private final String position = "position";
   
-  private final LocalDate majorReleaseDate = LocalDate.of(2023, 10, 1);
+  private final OffsetDateTime majorReleaseDate = OffsetDateTime
+      .of(2023, 10, 1, 0, 0, 0, 0, ZoneOffset.UTC);
   
   public SearchConsoleService(
       SearchConsoleApiService apiService,
@@ -32,8 +34,8 @@ public class SearchConsoleService {
   }
 
   public Set<AnalyticsDto> getSearchStatistics(
-      LocalDate startDate,
-      LocalDate endDate,
+      OffsetDateTime startDate,
+      OffsetDateTime endDate,
       SearchConsoleDimension dimension) throws IOException {
     
     if (startDate.isAfter(endDate)) {
@@ -53,19 +55,21 @@ public class SearchConsoleService {
    * date, the field {@code slug} is the major indicator. This method takes this circumstance
    * into account, so that past statistics are possible.
    * 
-   * @param startDate Date to start calculation
-   * @param endDate Date to end calculation
+   * @param startDate Date to start calculation, must be before endDate
+   * @param endDate Date to end calculation, must be before endDate
    * @param entity This must be an entity with a field having the annotation {@code @SlugSource} 
    * @return List of all dates with statistics (clicks, impressions, ctr and position) for each day
    * @throws IOException
    */
   public CompletableFuture<Set<AnalyticsDto>> getEntitySearchStatistics(
-      LocalDate startDate,
-      LocalDate endDate,
+      OffsetDateTime startDate,
+      OffsetDateTime endDate,
       BaseEntity entity) throws IOException {
     
     var slugFields = ReflectionUtils.getFieldsWithAnnotation(entity.getClass(), SlugTarget.class);
-    if (startDate.isAfter(endDate)
+    if (startDate == null
+        || endDate == null
+        || startDate.isAfter(endDate)
         || slugFields == null
         || slugFields.isEmpty()) {
       return null;
@@ -79,8 +83,8 @@ public class SearchConsoleService {
   }
 
   private Set<AnalyticsDto> calculateBeforeMajorRelease(
-      LocalDate startDate,
-      LocalDate endDate,
+      OffsetDateTime startDate,
+      OffsetDateTime endDate,
       BaseEntity entity,
       Field slugField) throws IOException {
     if (endDate.isBefore(majorReleaseDate)) {
@@ -122,8 +126,8 @@ public class SearchConsoleService {
   }
 
   private Set<AnalyticsDto> calculateAfterMajorRelease(
-      LocalDate startDate,
-      LocalDate endDate,
+      OffsetDateTime startDate,
+      OffsetDateTime endDate,
       BaseEntity entity,
       Field slugField) throws IOException {
     var slug = ReflectionUtils.get(slugField.getName(), entity);

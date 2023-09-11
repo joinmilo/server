@@ -1,6 +1,6 @@
 package app.wooportal.server.base.analytics.googleSearch.dto;
 
-import java.time.LocalDate;
+import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import com.google.api.services.searchconsole.v1.model.ApiDimensionFilter;
@@ -33,14 +33,14 @@ public class SearchConsoleQuery {
     return this;
   }
   
-  public SearchConsoleQuery setStartDate(LocalDate startDate) {
+  public SearchConsoleQuery setStartDate(OffsetDateTime startDate) {
     if (startDate != null) {
       query.setStartDate(startDate.format(DateTimeFormatter.ISO_LOCAL_DATE));
     }
    return this;
   }
   
-  public SearchConsoleQuery setEndDate(LocalDate endDate) {
+  public SearchConsoleQuery setEndDate(OffsetDateTime endDate) {
     if (endDate != null) {
       query.setEndDate(endDate.format(DateTimeFormatter.ISO_LOCAL_DATE));
     }
