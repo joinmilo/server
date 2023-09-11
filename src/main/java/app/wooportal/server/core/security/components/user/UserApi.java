@@ -71,7 +71,6 @@ public class UserApi extends CrudApi<UserEntity, UserService> {
 
   @Override
   @GraphQLMutation(name = "deleteUser")
-  @AdminPermission
   public Boolean deleteOne(@GraphQLArgument(name = CrudApi.id) String id) {
     return super.deleteOne(id);
   }
