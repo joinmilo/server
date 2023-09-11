@@ -1,18 +1,9 @@
 package app.wooportal.server.features.article.base;
 
-import java.io.IOException;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
-import java.util.concurrent.CompletableFuture;
-import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
-import app.wooportal.server.base.analytics.googleSearch.SearchConsoleService;
-import app.wooportal.server.base.rating.RatingDto;
-import app.wooportal.server.base.rating.RatingService;
 import app.wooportal.server.core.base.CrudApi;
-import app.wooportal.server.core.base.dto.analytics.AnalyticsDto;
 import app.wooportal.server.core.base.dto.listing.FilterSortPaginate;
 import app.wooportal.server.core.base.dto.listing.PageableList;
 import app.wooportal.server.core.security.permissions.AdminPermission;
@@ -28,19 +19,14 @@ import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 @Component
 public class ArticleApi extends CrudApi<ArticleEntity, ArticleService> {
 
-  private final RatingService ratingService;
   private final ArticleCommentService commentService;
-  private final SearchConsoleService searchConsoleService;
 
-  public ArticleApi(ArticleService service,
-      RatingService ratingService,
-      ArticleCommentService commentService,
-      SearchConsoleService searchConsoleService) {
+  public ArticleApi(
+      ArticleService service,
+      ArticleCommentService commentService) {
     super(service);
     
-    this.ratingService = ratingService;
     this.commentService = commentService;
-    this.searchConsoleService = searchConsoleService;
   }
   
   @Override
@@ -89,30 +75,9 @@ public class ArticleApi extends CrudApi<ArticleEntity, ArticleService> {
     return commentService.getMostRecentByArticle(article.getId());
   }
   
-  @GraphQLQuery(name = "calculatedRatings")
-  public CompletableFuture<RatingDto> calculateAverageRating(
-      @GraphQLContext ArticleEntity article) {
-    return article.getRatings() != null && !article.getRatings().isEmpty()
-        ? ratingService.calculateRating(
-            article.getRatings().stream().map(rating -> rating.getScore()).collect(Collectors.toList()))
-        : CompletableFuture.completedFuture(new RatingDto());
-  }
-  
   @GraphQLMutation(name = "sponsorArticle")
   public Boolean sponsorArticle(String articleId) {
     return service.sponsorArticle(articleId);
-  }
-  
-  
-  @GraphQLQuery(name = "searchConsoleArticleDetails")
-  public Set<AnalyticsDto> searchConsoleEventDetails(
-      @GraphQLContext ArticleEntity article,
-      LocalDate startDate,
-      LocalDate endDate) throws IOException {
-    return searchConsoleService.getEntitySearchStatistics(
-        startDate,
-        endDate,
-        article);
   }
 
 }

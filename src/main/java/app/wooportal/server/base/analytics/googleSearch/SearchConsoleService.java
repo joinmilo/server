@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.time.LocalDate;
 import java.util.Set;
+import java.util.concurrent.CompletableFuture;
 import org.springframework.stereotype.Service;
 import app.wooportal.server.base.analytics.googleSearch.dto.SearchConsoleDimension;
 import app.wooportal.server.base.analytics.googleSearch.dto.SearchConsoleQuery;
@@ -58,7 +59,7 @@ public class SearchConsoleService {
    * @return List of all dates with statistics (clicks, impressions, ctr and position) for each day
    * @throws IOException
    */
-  public Set<AnalyticsDto> getEntitySearchStatistics(
+  public CompletableFuture<Set<AnalyticsDto>> getEntitySearchStatistics(
       LocalDate startDate,
       LocalDate endDate,
       BaseEntity entity) throws IOException {
@@ -70,9 +71,11 @@ public class SearchConsoleService {
       return null;
     }
     
-    return startDate.isBefore(majorReleaseDate)
-        ? calculateBeforeMajorRelease(startDate, endDate, entity, slugFields.get(0))
-        : calculateAfterMajorRelease(startDate, endDate, entity, slugFields.get(0));
+    return CompletableFuture.completedFuture(
+        startDate.isBefore(majorReleaseDate)
+          ? calculateBeforeMajorRelease(startDate, endDate, entity, slugFields.get(0))
+          : calculateAfterMajorRelease(startDate, endDate, entity, slugFields.get(0))
+        );
   }
 
   private Set<AnalyticsDto> calculateBeforeMajorRelease(

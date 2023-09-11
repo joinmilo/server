@@ -1,4 +1,4 @@
-package app.wooportal.server.features.event.base;
+package app.wooportal.server.features.article.base;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -16,30 +16,37 @@ import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 
 @GraphQLApi
 @Component
-public class EventAnalyticsApi {
-  
+public class ArticleAnalyticsApi {
+
   private final RatingService ratingService;
   private final SearchConsoleService searchConsoleService;
 
-  public EventAnalyticsApi(
+  public ArticleAnalyticsApi(
       RatingService ratingService,
       SearchConsoleService searchConsoleService) {
+    
     this.ratingService = ratingService;
     this.searchConsoleService = searchConsoleService;
   }
   
   @GraphQLQuery(name = "calculatedRatings")
   public CompletableFuture<RatingDto> calculateAverageRating(
-      @GraphQLContext EventEntity event) {
-    return ratingService.calculateRating(
-        event.getRatings().stream().map(rating -> rating.getScore()).collect(Collectors.toList()));
+      @GraphQLContext ArticleEntity article) {
+    return article.getRatings() != null && !article.getRatings().isEmpty()
+        ? ratingService.calculateRating(
+            article.getRatings().stream().map(rating -> rating.getScore()).collect(Collectors.toList()))
+        : CompletableFuture.completedFuture(new RatingDto());
   }
   
   @GraphQLQuery(name = "searchStatistics")
   public CompletableFuture<Set<AnalyticsDto>> searchConsoleEventDetails(
-      @GraphQLContext EventEntity event,
+      @GraphQLContext ArticleEntity article,
       LocalDate startDate,
       LocalDate endDate) throws IOException {
-    return searchConsoleService.getEntitySearchStatistics(startDate, endDate, event);
+    return searchConsoleService.getEntitySearchStatistics(
+        startDate,
+        endDate,
+        article);
   }
+
 }
