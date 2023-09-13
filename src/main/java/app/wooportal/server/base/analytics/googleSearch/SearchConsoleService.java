@@ -194,7 +194,7 @@ public class SearchConsoleService {
           impressionsEntry.compute(),
           positionEntry.compute(),
           ctrEntry.compute()
-            .setAverage(clicksEntry.getSum() / impressionsEntry.getSum()));
+            .setAverage(clicksEntry.getSum() / impressionsEntry.getSum() * 100));
     }
     return null;
   }
