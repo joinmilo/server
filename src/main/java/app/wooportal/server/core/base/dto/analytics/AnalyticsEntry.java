@@ -28,6 +28,13 @@ public class AnalyticsEntry implements Comparable<AnalyticsEntry> {
     return this;
   }
   
+  public AnalyticsEntry addValue(Double value) {
+    if (this.value != null && value != null) {
+      this.value += value;
+    }
+    return this;
+  }
+  
   @Override
   public int hashCode() {
     return getName() != null

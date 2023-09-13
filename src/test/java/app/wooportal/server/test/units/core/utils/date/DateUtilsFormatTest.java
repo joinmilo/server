@@ -35,32 +35,5 @@ public class DateUtilsFormatTest {
     
     assertThat(result).isEqualTo("2021.05.01");
   }
-  
-  @Test
-  public void formatHourly() throws Exception {
-    var test = OffsetDateTime.of(2021, 5, 1, 1, 1, 1, 0, ZoneOffset.UTC);
-
-    var result = DateUtils.format(test, IntervalFilter.HOURLY);
-    
-    assertThat(result).isEqualTo("2021.05.01 01:00");
-  }
-  
-  @Test
-  public void formatHourly24H() throws Exception {
-    var test = OffsetDateTime.of(2021, 5, 1, 21, 1, 1, 0, ZoneOffset.UTC);
-
-    var result = DateUtils.format(test, IntervalFilter.HOURLY);
-    
-    assertThat(result).isEqualTo("2021.05.01 21:00");
-  }
-  
-  @Test
-  public void formatMinute() throws Exception {
-    var test = OffsetDateTime.of(2021, 5, 1, 1, 30, 0, 0, ZoneOffset.UTC);
-
-    var result = DateUtils.format(test, IntervalFilter.MINUTE);
-    
-    assertThat(result).isEqualTo("2021.05.01 01:30");
-  }
 
 }

@@ -38,8 +38,6 @@ public class DateUtils {
   private static OffsetDateTime start(OffsetDateTime date, IntervalFilter interval) {
     var start = date.withSecond(0);
     switch (interval) {
-      case HOURLY:
-        return start.withMinute(0);
       case DAILY:
         start = start.withMinute(0);
         return start.withHour(0);
@@ -51,7 +49,6 @@ public class DateUtils {
         start = start.withMinute(0);
         start = start.withHour(0);
         return start.withDayOfMonth(1);
-      case MINUTE:
       default:
         return start;
     }
@@ -62,9 +59,14 @@ public class DateUtils {
       case MONTHLY -> ChronoUnit.MONTHS;
       case CALENDAR_WEEKS -> ChronoUnit.WEEKS;
       case DAILY -> ChronoUnit.DAYS;
-      case MINUTE -> ChronoUnit.MINUTES;
-      default -> ChronoUnit.HOURS;
+      default -> ChronoUnit.DAYS;
     };
+  }
+  
+  public static String formatLocalDate(String date, DateTimeFormatter sourceFormatter, IntervalFilter interval) {
+    return LocalDate
+        .parse(date, sourceFormatter)
+        .format(DateUtils.getFormatter(interval));
   }
   
   public static String format(OffsetDateTime date, IntervalFilter interval) {
@@ -76,7 +78,6 @@ public class DateUtils {
       case MONTHLY -> "yyyy.MM";
       case CALENDAR_WEEKS -> "YYYY 'KW' ww";
       case DAILY -> "yyyy.MM.dd";
-      case MINUTE -> "yyyy.MM.dd HH:mm";
       default -> "yyyy.MM.dd HH:00";
     };
 

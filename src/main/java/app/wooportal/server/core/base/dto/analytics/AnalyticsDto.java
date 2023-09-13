@@ -1,9 +1,14 @@
 package app.wooportal.server.core.base.dto.analytics;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.TreeMap;
 import java.util.TreeSet;
+import io.leangen.graphql.annotations.GraphQLIgnore;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,13 +20,24 @@ import lombok.ToString;
 @ToString
 public class AnalyticsDto implements Comparable<AnalyticsDto> {
   
+  @Getter(AccessLevel.NONE)
+  private boolean allowNull = true;
+  
   private Double average;
+  
+  @Getter(AccessLevel.NONE)
+  private Double averageCalculated;
 
   private String name;
   
   private Double sum = 0.0;
   
-  private TreeSet<AnalyticsEntry> series = new TreeSet<>();
+  private AnalyticsOperation entryOperation = AnalyticsOperation.SUM; 
+  
+  @Getter(AccessLevel.NONE)
+  private TreeMap<String, List<AnalyticsEntry>> elements = new TreeMap<>();
+  
+  private TreeSet<AnalyticsEntry> series;
   
   public AnalyticsDto(
       String name,
@@ -37,9 +53,83 @@ public class AnalyticsDto implements Comparable<AnalyticsDto> {
     addAll(series);
   }
   
+  public AnalyticsDto setAllowNull(boolean allowNull) {
+    this.allowNull = allowNull;
+    return this;
+  }
+  
+  public AnalyticsDto setAverage(Double average) {
+    this.average = average;
+    return this;
+  }
+  
   public AnalyticsDto setName(String name) {
     this.name = name;
     return this;
+  }
+  
+  public AnalyticsDto setEntryOperation(AnalyticsOperation entryOperation) {
+    this.entryOperation = entryOperation;
+    return this;
+  }
+  
+  @GraphQLIgnore
+  public AnalyticsDto compute() {
+    var result = new TreeSet<AnalyticsEntry>();
+    var count = 0.0;
+    if (elements != null && !elements.isEmpty()) {
+      for (var entry: elements.entrySet()) {
+        Double value = entry.getValue().size() > 0
+            ? calculate(entry.getValue())
+                : entry.getValue().get(0).getValue();
+        sum += value;
+        
+        count = !allowNull
+            ? value > 0.0
+                ? count + 1
+                : count
+            : count + 1;
+
+        result.add(new AnalyticsEntry(entry.getKey(), value));
+      }
+      
+      this.series = result;
+      this.averageCalculated = sum / count;
+    }
+    
+    return this;
+  }
+  
+  private Double calculate(List<AnalyticsEntry> entries) {
+    var values = entries.stream().mapToDouble(AnalyticsEntry::getValue);
+    
+    if (!allowNull) {
+      values = values.filter(value -> value > 0.0);
+    }
+    
+    return switch(entryOperation) {
+      case AVG -> {
+        var value = values.average();
+        yield value.isPresent()
+            ? value.getAsDouble()
+            : 0.0;
+      }
+      case MAX -> {
+        var value = values.max();
+        yield value.isPresent()
+            ? value.getAsDouble()
+            : 0.0;
+      }
+      case MIN -> {
+        var value = values.min();
+        yield value.isPresent()
+            ? value.getAsDouble()
+            : 0.0;
+      }
+      case COUNT -> Double.valueOf(values.count());
+      case SUM -> values.sum();
+      default -> values.sum();
+    };
   }
   
   public AnalyticsDto addAll(Collection<AnalyticsEntry> series) {
@@ -66,9 +156,14 @@ public class AnalyticsDto implements Comparable<AnalyticsDto> {
   }
   
   public AnalyticsDto add(AnalyticsEntry entry) {
-    if (entry != null) {      
-      this.series.add(entry);
-      this.sum += entry.getValue();
+    if (entry != null) {
+      if (elements.containsKey(entry.getName())) {
+        elements.get(entry.getName())
+          .add(entry);
+      } else {        
+        elements.put(entry.getName(),
+            new ArrayList<AnalyticsEntry>(List.of(entry)));
+      }
     }
     return this;
   }
@@ -76,7 +171,7 @@ public class AnalyticsDto implements Comparable<AnalyticsDto> {
   public Double getAverage() {
     return average != null
         ? average
-        : sum / series.size();
+        : averageCalculated;
   }
   
   @Override

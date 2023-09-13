@@ -1,6 +1,7 @@
 package app.wooportal.server.base.analytics.googleSearch.dto;
 
 import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import com.google.api.services.searchconsole.v1.model.ApiDimensionFilter;
@@ -17,6 +18,9 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 public class SearchConsoleQuery {
+  
+  public static DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE
+      .withZone(ZoneOffset.UTC);
   
   /**
    *  @see https://developers.google.com/webmaster-tools/v1/searchanalytics/query
@@ -35,16 +39,24 @@ public class SearchConsoleQuery {
   
   public SearchConsoleQuery setStartDate(OffsetDateTime startDate) {
     if (startDate != null) {
-      query.setStartDate(startDate.format(DateTimeFormatter.ISO_LOCAL_DATE));
+      query.setStartDate(startDate.format(formatter));
     }
    return this;
   }
   
+  public OffsetDateTime getStartDate() {
+    return OffsetDateTime.parse(query.getStartDate(), formatter);
+  }
+  
   public SearchConsoleQuery setEndDate(OffsetDateTime endDate) {
     if (endDate != null) {
-      query.setEndDate(endDate.format(DateTimeFormatter.ISO_LOCAL_DATE));
+      query.setEndDate(endDate.format(formatter));
     }
    return this;
+  }
+  
+  public OffsetDateTime getEndDate() {
+    return OffsetDateTime.parse(query.getEndDate(), formatter);
   }
   
   public SearchConsoleQuery addPageFilter(

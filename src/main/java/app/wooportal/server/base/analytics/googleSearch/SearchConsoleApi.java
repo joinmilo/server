@@ -6,6 +6,7 @@ import java.util.Set;
 import org.springframework.stereotype.Component;
 import app.wooportal.server.base.analytics.googleSearch.dto.SearchConsoleDimension;
 import app.wooportal.server.core.base.dto.analytics.AnalyticsDto;
+import app.wooportal.server.core.base.dto.analytics.IntervalFilter;
 import io.leangen.graphql.annotations.GraphQLQuery;
 import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 
@@ -24,7 +25,8 @@ public class SearchConsoleApi {
   public Set<AnalyticsDto> searchConsoleDetails(
       OffsetDateTime startDate,
       OffsetDateTime endDate,
+      IntervalFilter filter,
       SearchConsoleDimension dimension) throws IOException {
-    return service.getSearchStatistics(startDate, endDate, dimension);
+    return service.getSearchStatistics(startDate, endDate, filter, dimension);
   }
 }

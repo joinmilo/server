@@ -10,6 +10,7 @@ import app.wooportal.server.base.analytics.googleSearch.SearchConsoleService;
 import app.wooportal.server.base.rating.RatingDto;
 import app.wooportal.server.base.rating.RatingService;
 import app.wooportal.server.core.base.dto.analytics.AnalyticsDto;
+import app.wooportal.server.core.base.dto.analytics.IntervalFilter;
 import io.leangen.graphql.annotations.GraphQLContext;
 import io.leangen.graphql.annotations.GraphQLQuery;
 import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
@@ -42,10 +43,12 @@ public class ArticleAnalyticsApi {
   public CompletableFuture<Set<AnalyticsDto>> searchConsoleEventDetails(
       @GraphQLContext ArticleEntity article,
       OffsetDateTime startDate,
-      OffsetDateTime endDate) throws IOException {
+      OffsetDateTime endDate,
+      IntervalFilter interval) throws IOException {
     return searchConsoleService.getEntitySearchStatistics(
         startDate,
         endDate,
+        interval,
         article);
   }
 

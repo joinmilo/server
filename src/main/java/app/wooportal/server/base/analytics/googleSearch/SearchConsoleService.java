@@ -11,7 +11,10 @@ import app.wooportal.server.base.analytics.googleSearch.dto.SearchConsoleDimensi
 import app.wooportal.server.base.analytics.googleSearch.dto.SearchConsoleQuery;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.base.dto.analytics.AnalyticsDto;
+import app.wooportal.server.core.base.dto.analytics.AnalyticsOperation;
+import app.wooportal.server.core.base.dto.analytics.IntervalFilter;
 import app.wooportal.server.core.seo.annotations.SlugTarget;
+import app.wooportal.server.core.utils.DateUtils;
 import app.wooportal.server.core.utils.ReflectionUtils;
 
 @Service
@@ -36,16 +39,19 @@ public class SearchConsoleService {
   public Set<AnalyticsDto> getSearchStatistics(
       OffsetDateTime startDate,
       OffsetDateTime endDate,
+      IntervalFilter interval,
       SearchConsoleDimension dimension) throws IOException {
     
     if (startDate.isAfter(endDate)) {
       return null;
     }
 
-    return calculate(new SearchConsoleQuery()
-        .setStartDate(startDate)
-        .setEndDate(endDate)
-        .setDimensions(dimension));
+    return calculate(
+        new SearchConsoleQuery()
+          .setStartDate(startDate)
+          .setEndDate(endDate)
+          .setDimensions(dimension),
+        interval);
   }
   
   /**
@@ -57,13 +63,15 @@ public class SearchConsoleService {
    * 
    * @param startDate Date to start calculation, must be before endDate
    * @param endDate Date to end calculation, must be before endDate
-   * @param entity This must be an entity with a field having the annotation {@code @SlugSource} 
+   * @param entity This must be an entity with a field having the annotation {@code @SlugSource}
+   * @param interval Defines the timer containers in which the result should be aggregated
    * @return List of all dates with statistics (clicks, impressions, ctr and position) for each day
    * @throws IOException
    */
   public CompletableFuture<Set<AnalyticsDto>> getEntitySearchStatistics(
       OffsetDateTime startDate,
       OffsetDateTime endDate,
+      IntervalFilter interval,
       BaseEntity entity) throws IOException {
     
     var slugFields = ReflectionUtils.getFieldsWithAnnotation(entity.getClass(), SlugTarget.class);
@@ -77,32 +85,38 @@ public class SearchConsoleService {
     
     return CompletableFuture.completedFuture(
         startDate.isBefore(majorReleaseDate)
-          ? calculateBeforeMajorRelease(startDate, endDate, entity, slugFields.get(0))
-          : calculateAfterMajorRelease(startDate, endDate, entity, slugFields.get(0))
+          ? calculateBeforeMajorRelease(startDate, endDate, interval, entity, slugFields.get(0))
+          : calculateAfterMajorRelease(startDate, endDate, interval, entity, slugFields.get(0))
         );
   }
 
   private Set<AnalyticsDto> calculateBeforeMajorRelease(
       OffsetDateTime startDate,
       OffsetDateTime endDate,
+      IntervalFilter interval,
       BaseEntity entity,
       Field slugField) throws IOException {
     if (endDate.isBefore(majorReleaseDate)) {
-      return calculate(new SearchConsoleQuery()
-          .setStartDate(startDate)
-          .setEndDate(endDate)
-          .setDimensions(SearchConsoleDimension.date)
-          .addPageFilter(entity.getId()));
+      return calculate(
+          new SearchConsoleQuery()
+            .setStartDate(startDate)
+            .setEndDate(endDate)
+            .setDimensions(SearchConsoleDimension.date)
+            .addPageFilter(entity.getId()),
+          interval);
     }
-    var resultUntilMajorRelease = calculate(new SearchConsoleQuery()
-        .setStartDate(startDate)
-        .setEndDate(majorReleaseDate)
-        .setDimensions(SearchConsoleDimension.date)
-        .addPageFilter(entity.getId()));
+    var resultUntilMajorRelease = calculate(
+        new SearchConsoleQuery()
+          .setStartDate(startDate)
+          .setEndDate(majorReleaseDate)
+          .setDimensions(SearchConsoleDimension.date)
+          .addPageFilter(entity.getId()),
+        interval);
     
     var resultAfterMajorRelease = calculateAfterMajorRelease(
         majorReleaseDate.plusDays(1), 
         endDate,
+        interval,
         entity,
         slugField);
     
@@ -128,48 +142,59 @@ public class SearchConsoleService {
   private Set<AnalyticsDto> calculateAfterMajorRelease(
       OffsetDateTime startDate,
       OffsetDateTime endDate,
+      IntervalFilter interval,
       BaseEntity entity,
       Field slugField) throws IOException {
     var slug = ReflectionUtils.get(slugField.getName(), entity);
     
     if (slug.isPresent()) {      
-      return calculate(new SearchConsoleQuery()
-          .setStartDate(startDate)
-          .setEndDate(majorReleaseDate)
-          .setDimensions(SearchConsoleDimension.date)
-          .addPageFilter(slug.get().toString()));
+      return calculate(
+          new SearchConsoleQuery()
+            .setStartDate(startDate)
+            .setEndDate(majorReleaseDate)
+            .setDimensions(SearchConsoleDimension.date)
+            .addPageFilter(slug.get().toString()),
+          interval);
     }
     return null;
   }
 
   private Set<AnalyticsDto> calculate(
-      SearchConsoleQuery query) throws IOException {
+      SearchConsoleQuery query,
+      IntervalFilter interval) throws IOException {
     if (query != null) {
       var clicksEntry = new AnalyticsDto()
           .setName(clicks);
       var impressionsEntry = new AnalyticsDto()
           .setName(impressions);
       var ctrEntry = new AnalyticsDto()
-          .setName(ctr);
+          .setName(ctr)
+          .setEntryOperation(AnalyticsOperation.AVG)
+          .setAllowNull(false);
+      
       var positionEntry = new AnalyticsDto()
-          .setName(position);
+          .setName(position)
+          .setEntryOperation(AnalyticsOperation.AVG)
+          .setAllowNull(false);
       
       var rows = apiService.execute(query);
       for (var row : rows) {
-        var key = row.getKeys().get(0);
+        var key = interval != null
+            ? DateUtils.formatLocalDate(row.getKeys().get(0), SearchConsoleQuery.formatter, interval)
+            : row.getKeys().get(0);
         
         clicksEntry.add(key, row.getClicks());
         impressionsEntry.add(key, row.getImpressions());
         ctrEntry.add(key, row.getCtr());
-        
-        // Necessary because 0 values warp average calculation
-        if (row.getPosition() != 0.0) {
-          positionEntry.add(key, row.getPosition());
-        }
+        positionEntry.add(key, row.getPosition());
       }
 
-      return  Set.of(
-          clicksEntry, impressionsEntry, ctrEntry, positionEntry);
+      return Set.of(
+          clicksEntry.compute(),
+          impressionsEntry.compute(),
+          positionEntry.compute(),
+          ctrEntry.compute()
+            .setAverage(clicksEntry.getSum() / impressionsEntry.getSum()));
     }
     return null;
   }
