@@ -51,7 +51,7 @@ databaseChangeLog:
             splitStatements: true
             sql:
                insert into event_attendees (id, configuration_id, user_context_id, approved) values
-               ('01205866-523d-4505-883e-1996598cc6a8', 'dd322834-4abd-42bf-b753-f1310e585088','ece550e8-bc2b-43c4-8aaf-48a30e82080f', true),
+               ('01205866-523d-4505-883e-1996598cc6a8', 'dd322834-4abd-42bf-b753-f1310e585088','ece550e8-bc2b-43c4-8aaf-48a30e82080f', false),
                ('42db8cb9-99fa-4877-89d2-24935b6f3cf8', 'dd322834-4abd-42bf-b753-f1310e585088','5102ef99-492e-476d-a6d8-357125e9f443', true),
                ('34e1a393-019a-48ac-b66e-7e9646a230d1', 'dd322834-4abd-42bf-b753-f1310e585088','bdadf02e-37df-4d3b-a639-cf9a76532904', true);
                
@@ -76,7 +76,7 @@ databaseChangeLog:
             comment: Add data event_comment_translatables
             splitStatements: true
             sql: insert into event_comment_translatables (id, parent_id, language_id, content)
-                 select uuid(), "be8eb3ec-717a-4743-b633-0346b4062413", l.id, "Good event! I really liked it!"
+                 select uuid(), "be8eb3ec-717a-4743-b633-0346b4062413", l.id, "Good event! I really liked it! asdkfjkasdfj asdfasd fasdf asdpofj aa sdfkj asdkfj aejrf ea fld falkdjsf üasweiof aüi jföldkaj föle fiaoe fioehwa ofhe föalkdsf aewpoifj owaie fasdklfj awoeifh ewfi"
                  from languages l
                  WHERE l.locale = "de"; 
                  
