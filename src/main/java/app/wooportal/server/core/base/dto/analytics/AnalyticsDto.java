@@ -59,7 +59,9 @@ public class AnalyticsDto implements Comparable<AnalyticsDto> {
   }
   
   public AnalyticsDto setAverage(Double average) {
-    this.average = average;
+    if (!Double.isNaN(average)) {      
+      this.average = average;
+    }
     return this;
   }
   
@@ -94,7 +96,9 @@ public class AnalyticsDto implements Comparable<AnalyticsDto> {
       }
       
       this.series = result;
-      this.averageCalculated = sum / count;
+      this.averageCalculated = count != 0.0
+          ? sum / count
+          : 0;
     }
     
     return this;
