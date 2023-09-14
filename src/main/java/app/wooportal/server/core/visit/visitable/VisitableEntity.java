@@ -36,7 +36,9 @@ public abstract class VisitableEntity<E extends BaseEntity> extends BaseEntity {
   }
 
   public void addVisit() {
-    this.visits = this.visits != null ? this.visits + 1 : 1;
+    this.visits = this.visits != null
+        ? this.visits + 1
+        : 1;
   }
 }
 

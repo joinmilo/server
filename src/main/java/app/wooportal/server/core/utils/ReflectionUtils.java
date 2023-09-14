@@ -174,6 +174,15 @@ public class ReflectionUtils {
 
     return field.getType();
   }
+  
+  public static Optional<Class<?>> getGenericFieldType(Field field) {
+    if (field.getGenericType() instanceof ParameterizedType) {
+      var pt = (ParameterizedType) field.getGenericType();
+      var genericType = (Class<?>) pt.getActualTypeArguments()[0];
+      return Optional.ofNullable((Class<?>) genericType);
+    }
+    return Optional.empty();
+  }
 
   public static Optional<Object> get(String fieldName, Object obj) {
     if (obj == null || fieldName == null || fieldName.isBlank()) {

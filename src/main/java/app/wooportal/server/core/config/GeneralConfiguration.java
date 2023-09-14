@@ -15,6 +15,8 @@ import lombok.Setter;
 @ConfigurationProperties(prefix = "general")
 public class GeneralConfiguration {
   
+  private String clientIpHeader;
+
   private String host;
   
   private String portalName;

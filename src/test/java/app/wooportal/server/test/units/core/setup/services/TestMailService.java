@@ -36,7 +36,7 @@ public class TestMailService {
         "test@to.de", 
         false, "/templates/");
     
-    generalConfig = new GeneralConfiguration("http:localhos", "portal");
+    generalConfig = new GeneralConfiguration("http:localhos", "portal", "test");
     service = new MailService(
         mailSenderMock,
         mailConfig,
