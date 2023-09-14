@@ -13,6 +13,6 @@ public class EventAttendeePredicateBuilder extends PredicateBuilder<QEventAttend
 
   @Override
   public BooleanExpression freeSearch(String term) {
-    return query.configuration.events.any().name.likeIgnoreCase(term);
+    return query.configuration.events.any().slug.likeIgnoreCase(term);
   }
 }
