@@ -62,5 +62,30 @@ databaseChangeLog:
                ('558e244d-7e1d-4967-bd87-3964a970bf8f', '0b4cb5ff-1802-496a-8b18-a4e3c5608fba', 'c7356a4c-fd81-4860-b1cc-06f549067132', false, false),
                ('c9060d86-b264-4dc2-bb49-c5ffbcaecd95', '32630107-fd88-4b82-967e-3ad3128527e5', 'c7356a4c-fd81-4860-b1cc-06f549067132', false, false),
                ('068f95e7-8b50-4299-9e05-193b77c6daa3', '8ce57895-53c6-4af2-95eb-69dc8a4ee658', 'c7356a4c-fd81-4860-b1cc-06f549067132', false, false),
-               ('bb11836e-48fe-4551-98a7-e1941b7e02c9', '88bd9809-b153-4de8-9158-d740a10ab810', 'c7356a4c-fd81-4860-b1cc-06f549067132', false, false);                                                                        
+               ('bb11836e-48fe-4551-98a7-e1941b7e02c9', '88bd9809-b153-4de8-9158-d740a10ab810', 'c7356a4c-fd81-4860-b1cc-06f549067132', false, false);
+               
+  - changeSet:
+      id: 0008.test-data.6
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add comments
+            splitStatements: true
+            sql:
+               insert into organisation_comments (id, organisation_id, user_context_id) values
+               ('22758912-b42b-44c2-8b44-c34fc513c792', 'c7356a4c-fd81-4860-b1cc-06f549067132', '5737ee58-9f88-43d1-baf4-a34dd85f0219'),
+               ('a9bd0864-bd51-4357-8060-aeed62f6b767', 'c7356a4c-fd81-4860-b1cc-06f549067132', '5737ee58-9f88-43d1-baf4-a34dd85f0219'),
+               ('dc9469d2-88f8-49cc-b0eb-00c1fbce9831', 'c7356a4c-fd81-4860-b1cc-06f549067132', '5737ee58-9f88-43d1-baf4-a34dd85f0219');
+               
+  - changeSet:
+      id: 0008.test-data.7
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add data organisation_comment_translatables
+            splitStatements: true
+            sql: insert into organisation_comment_translatables (id, parent_id, language_id, content)
+                 select uuid(), "22758912-b42b-44c2-8b44-c34fc513c792", l.id, "Good event! I really liked it!"
+                 from languages l
+                 WHERE l.locale = "de";                                                                                        
                   

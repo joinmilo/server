@@ -92,5 +92,29 @@ databaseChangeLog:
                ('0de3c8dd-d4ba-400a-9137-2219e7d42e32', '0b4cb5ff-1802-496a-8b18-a4e3c5608fba', '7dd9abba-b253-4fb4-818d-7ef090f26b83', false, false),
                ('3317cbd5-778f-42ef-8e1c-bd7280531900', '32630107-fd88-4b82-967e-3ad3128527e5', '7dd9abba-b253-4fb4-818d-7ef090f26b83', false, false),
                ('9ba3f2df-4696-4c7d-a21f-448000cd3eca', '8ce57895-53c6-4af2-95eb-69dc8a4ee658', '7dd9abba-b253-4fb4-818d-7ef090f26b83', false, false),
-               ('ac49f5af-36d5-4dec-a47f-38204f280ab9', '88bd9809-b153-4de8-9158-d740a10ab810', '7dd9abba-b253-4fb4-818d-7ef090f26b83', false, false);                 
-                 
+               ('ac49f5af-36d5-4dec-a47f-38204f280ab9', '88bd9809-b153-4de8-9158-d740a10ab810', '7dd9abba-b253-4fb4-818d-7ef090f26b83', false, false);    
+                            
+  - changeSet:
+      id: 0009.test-data.9
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add comments
+            splitStatements: true
+            sql:
+               insert into article_comments (id, article_id, user_context_id) values
+               ('6fb29fd9-9d09-494e-a63e-b4301ef874c9', '7dd9abba-b253-4fb4-818d-7ef090f26b83', '5737ee58-9f88-43d1-baf4-a34dd85f0219'),
+               ('153575dc-f522-438b-afbc-9ee6a5464b6c', '7dd9abba-b253-4fb4-818d-7ef090f26b83', '5737ee58-9f88-43d1-baf4-a34dd85f0219'),
+               ('653e6866-dc39-4690-a82f-b2b3c8954810', '7dd9abba-b253-4fb4-818d-7ef090f26b83', '5737ee58-9f88-43d1-baf4-a34dd85f0219');
+               
+  - changeSet:
+      id: 0009.test-data.10
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add data article_comment_translatables
+            splitStatements: true
+            sql: insert into article_comment_translatables (id, parent_id, language_id, content)
+                 select uuid(), "6fb29fd9-9d09-494e-a63e-b4301ef874c9", l.id, "Good article! I really like it!"
+                 from languages l
+                 WHERE l.locale = "de";                
