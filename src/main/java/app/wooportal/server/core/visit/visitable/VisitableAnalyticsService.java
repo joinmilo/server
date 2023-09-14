@@ -14,6 +14,10 @@ public class VisitableAnalyticsService<E extends BaseEntity, V extends Visitable
   
   private final VisitableService<V> visitableService;
   
+  private final String visits = "visits";
+  
+  private final String visitors = "visitors";
+  
   public VisitableAnalyticsService(
       VisitableService<V> visitableService) {
     this.visitableService = visitableService;
@@ -29,10 +33,10 @@ public class VisitableAnalyticsService<E extends BaseEntity, V extends Visitable
         entity, startDate, endDate);
     
     var visits = new AnalyticsDto()
-        .setName("views");
+        .setName(this.visits);
     
     var visitors = new AnalyticsDto()
-        .setName("visitors");
+        .setName(this.visitors);
     
     for (var visitor: result) {
       var key = DateUtils.format(visitor.getCreated(), interval);
