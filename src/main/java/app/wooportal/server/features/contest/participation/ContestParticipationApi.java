@@ -1,4 +1,4 @@
-package app.wooportal.server.features.organisation.comment;
+package app.wooportal.server.features.contest.participation;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,50 +14,52 @@ import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 
 @GraphQLApi
 @Component
-public class OrganisationCommentApi
-    extends CrudApi<OrganisationCommentEntity, OrganisationCommentService> {
+public class ContestParticipationApi
+    extends CrudApi<ContestParticipationEntity, ContestParticipationService> {
 
-  public OrganisationCommentApi(OrganisationCommentService service) {
+
+  public ContestParticipationApi(ContestParticipationService service) {
     super(service);
+
   }
 
   @Override
-  @GraphQLQuery(name = "getOrganisationComments")
-  public PageableList<OrganisationCommentEntity> readAll(
+  @GraphQLQuery(name = "getContestParticipations")
+  public PageableList<ContestParticipationEntity> readAll(
       @GraphQLArgument(name = CrudApi.params) FilterSortPaginate params) {
     return super.readAll(params);
   }
 
   @Override
-  @GraphQLQuery(name = "getOrganisationComment")
-  public Optional<OrganisationCommentEntity> readOne(
-      @GraphQLArgument(name = CrudApi.entity) OrganisationCommentEntity entity) {
+  @GraphQLQuery(name = "getContesParticipationt")
+  public Optional<ContestParticipationEntity> readOne(
+      @GraphQLArgument(name = CrudApi.entity) ContestParticipationEntity entity) {
     return super.readOne(entity);
   }
 
   @Override
-  @GraphQLMutation(name = "saveOrganisationComments")
+  @GraphQLMutation(name = "saveContestParticipations")
   @AdminPermission
-  public List<OrganisationCommentEntity> saveAll(
-      @GraphQLArgument(name = CrudApi.entities) List<OrganisationCommentEntity> entities) {
+  public List<ContestParticipationEntity> saveAll(
+      @GraphQLArgument(name = CrudApi.entities) List<ContestParticipationEntity> entities) {
     return super.saveAll(entities);
   }
 
   @Override
-  @GraphQLMutation(name = "saveOrganisationComment")
-  public OrganisationCommentEntity saveOne(
-      @GraphQLArgument(name = CrudApi.entity) OrganisationCommentEntity entity) {
+  @GraphQLMutation(name = "saveContestParticipation")
+  public ContestParticipationEntity saveOne(
+      @GraphQLArgument(name = CrudApi.entity) ContestParticipationEntity entity) {
     return super.saveOne(entity);
   }
 
   @Override
-  @GraphQLMutation(name = "deleteOrganisationComments")
+  @GraphQLMutation(name = "deleteContestParticipations")
   public Boolean deleteAll(@GraphQLArgument(name = CrudApi.ids) List<String> ids) {
     return super.deleteAll(ids);
   }
 
   @Override
-  @GraphQLMutation(name = "deleteOrganisationComment")
+  @GraphQLMutation(name = "deleteContestParticipation")
   public Boolean deleteOne(@GraphQLArgument(name = CrudApi.id) String id) {
     return super.deleteOne(id);
   }
