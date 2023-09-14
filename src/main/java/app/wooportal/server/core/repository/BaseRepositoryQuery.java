@@ -36,17 +36,17 @@ public class BaseRepositoryQuery<E extends BaseEntity> {
     return instance;
   }
 
-  protected BaseRepositoryQuery<E> setEntityClass(Class<E> entityClass) {
+  public BaseRepositoryQuery<E> setEntityClass(Class<E> entityClass) {
     this.entityClass = entityClass;
     return this;
   }
   
-  protected BaseRepositoryQuery<E> setGraphBuilder(GraphBuilder<E> graphBuilder) {
+  public BaseRepositoryQuery<E> setGraphBuilder(GraphBuilder<E> graphBuilder) {
     this.graphBuilder = graphBuilder;
     return this;
   }
   
-  protected BaseRepositoryQuery<E> setPredicateBuilder(BooleanBuilder builder) {
+  public BaseRepositoryQuery<E> setPredicateBuilder(BooleanBuilder builder) {
     this.predicateBuilder = builder;
     return this;
   }

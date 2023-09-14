@@ -1,40 +1,48 @@
 package app.wooportal.server.core.visit.visitable;
 
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.UUID;
 import javax.naming.ServiceUnavailableException;
 import javax.servlet.http.HttpServletRequest;
 import org.hibernate.Hibernate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.config.GeneralConfiguration;
-import app.wooportal.server.core.error.exception.NotFoundException;
 import app.wooportal.server.core.repository.DataRepository;
 import app.wooportal.server.core.repository.RepositoryService;
 import app.wooportal.server.core.visit.VisitHelper;
 import app.wooportal.server.core.visit.visitor.VisitorEntity;
 import app.wooportal.server.core.visit.visitor.VisitorService;
 
+//TODO: Figure out how to unify DataService approach with the current save and repository approach
 @Service
 public class VisitableService<V extends VisitableEntity<?>> {
   
-  @Autowired
-  private Environment env;
+  private final Environment env;
   
-  @Autowired
-  private GeneralConfiguration generalConfig;
+  private final GeneralConfiguration generalConfig;
+  
+  private final RepositoryService repoService;
+  
+  private final VisitorService visitorService;
   
   protected String ipAddress;
   protected String remoteAddress;
   protected String userAgent;
   
-  @Autowired
-  private RepositoryService repoService;
-  
-  @Autowired
-  private VisitorService visitorService;
+  public VisitableService(
+      Environment env,
+      GeneralConfiguration generalConfig,
+      RepositoryService repoService,
+      VisitorService visitorService) {
+    
+    this.env = env;
+    this.generalConfig = generalConfig;
+    this.repoService = repoService;
+    this.visitorService = visitorService;
+  }
 
   @SuppressWarnings("unchecked")
   public <E extends BaseEntity> void saveEntityVisit(E entity) throws Throwable {
@@ -67,23 +75,18 @@ public class VisitableService<V extends VisitableEntity<?>> {
     return visitorService.save(visitor);
   }
   
-  public List<VisitableEntity<?>> getVisitablesForEntity(BaseEntity entity) 
-      throws Throwable {
-    var result = getVisitables(entity);
-    if (result != null && !result.isEmpty()) {
-      return result;
-    }
-    throw new NotFoundException("no visitors so far");
-  }
-  
   @SuppressWarnings("unchecked")
-  private List<VisitableEntity<?>> getVisitables(BaseEntity entity) throws Throwable {
+  public <T extends VisitableEntity<?>> List<VisitableEntity<?>> getVisitables(
+      BaseEntity entity,
+      OffsetDateTime startDate,
+      OffsetDateTime endDate) throws Throwable {
     var visitableRepo = getRepository(VisitHelper.getVisitableType(entity).get());
-    
-    var findMethod = visitableRepo.getClass().getMethod(
-        "findByParentId", String.class);
 
-    return (List<VisitableEntity<?>>) findMethod.invoke(visitableRepo, entity.getId());
+    var findMethod = visitableRepo.getClass().getMethod(
+        "findByParentIdAndCreatedBetween", String.class, OffsetDateTime.class, OffsetDateTime.class);
+
+    return (List<VisitableEntity<?>>) findMethod
+        .invoke(visitableRepo, entity.getId(), startDate, endDate);
   }
 
   public VisitableRepository<?> getRepository(Class<VisitableEntity<?>> visitableClass) {
@@ -122,6 +125,8 @@ public class VisitableService<V extends VisitableEntity<?>> {
         : remoteAddress;
   }
 
+  //TODO: Injecting Request in Async service does not work
+  //see: https://stackoverflow.com/questions/53612149/spring-boot-async-get-httpservletrequest-inside-async-method
   public void setRequest(HttpServletRequest request) {
     userAgent = request.getHeader("User-Agent");
     ipAddress = request.getHeader(generalConfig.getClientIpHeader());

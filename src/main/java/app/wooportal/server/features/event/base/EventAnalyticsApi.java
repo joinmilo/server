@@ -11,6 +11,7 @@ import app.wooportal.server.base.rating.RatingDto;
 import app.wooportal.server.base.rating.RatingService;
 import app.wooportal.server.core.base.dto.analytics.AnalyticsDto;
 import app.wooportal.server.core.base.dto.analytics.IntervalFilter;
+import app.wooportal.server.core.visit.visitable.VisitableAnalyticsService;
 import io.leangen.graphql.annotations.GraphQLContext;
 import io.leangen.graphql.annotations.GraphQLQuery;
 import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
@@ -21,12 +22,15 @@ public class EventAnalyticsApi {
   
   private final RatingService ratingService;
   private final SearchConsoleService searchConsoleService;
+  private final VisitableAnalyticsService<EventEntity, ?> visitableAnalyticsService;
 
   public EventAnalyticsApi(
       RatingService ratingService,
-      SearchConsoleService searchConsoleService) {
+      SearchConsoleService searchConsoleService,
+      VisitableAnalyticsService<EventEntity, ?> visitableAnalyticsService) {
     this.ratingService = ratingService;
     this.searchConsoleService = searchConsoleService;
+    this.visitableAnalyticsService = visitableAnalyticsService;
   }
   
   @GraphQLQuery(name = "calculatedRatings")
@@ -37,12 +41,22 @@ public class EventAnalyticsApi {
   }
   
   @GraphQLQuery(name = "searchStatistics")
-  public CompletableFuture<Set<AnalyticsDto>> searchConsoleEventDetails(
+  public CompletableFuture<Set<AnalyticsDto>> searchStatistics(
       @GraphQLContext EventEntity event,
       OffsetDateTime startDate,
       OffsetDateTime endDate,
       IntervalFilter interval) throws IOException {
     return searchConsoleService.getEntitySearchStatistics(
+        startDate, endDate, interval, event);
+  }
+  
+  @GraphQLQuery(name = "visitorStatistics")
+  public CompletableFuture<Set<AnalyticsDto>> visitorStatistics(
+      @GraphQLContext EventEntity event,
+      OffsetDateTime startDate,
+      OffsetDateTime endDate,
+      IntervalFilter interval) throws Throwable {
+    return visitableAnalyticsService.getEntityVisitableStatistics(
         startDate, endDate, interval, event);
   }
 }

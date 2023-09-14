@@ -152,6 +152,13 @@ public class AnalyticsDto implements Comparable<AnalyticsDto> {
     return this;
   }
   
+  public AnalyticsDto add(String key, Integer value) {
+    if (value != null) {      
+      return add(key, Double.valueOf(value));
+    }
+    return this;
+  }
+  
   public AnalyticsDto add(String key, Double value) {
     if (key != null && value != null) {
       add(new AnalyticsEntry(key, value));
