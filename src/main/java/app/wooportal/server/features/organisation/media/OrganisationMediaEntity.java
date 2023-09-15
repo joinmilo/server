@@ -1,4 +1,4 @@
-package app.wooportal.server.features.organisation.base.media;
+package app.wooportal.server.features.organisation.media;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;

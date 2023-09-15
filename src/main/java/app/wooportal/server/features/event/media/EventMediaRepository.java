@@ -1,4 +1,4 @@
-package app.wooportal.server.features.event.base.media;
+package app.wooportal.server.features.event.media;
 
 import org.springframework.stereotype.Repository;
 import app.wooportal.server.core.repository.DataRepository;

@@ -1,4 +1,4 @@
-package app.wooportal.server.base.analytics.googleSearch;
+package app.wooportal.server.base.analytics.search;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -7,8 +7,8 @@ import java.time.ZoneOffset;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import org.springframework.stereotype.Service;
-import app.wooportal.server.base.analytics.googleSearch.dto.SearchConsoleDimension;
-import app.wooportal.server.base.analytics.googleSearch.dto.SearchConsoleQuery;
+import app.wooportal.server.base.analytics.search.dto.SearchConsoleDimension;
+import app.wooportal.server.base.analytics.search.dto.SearchConsoleQuery;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.base.dto.analytics.AnalyticsDto;
 import app.wooportal.server.core.base.dto.analytics.AnalyticsOperation;
@@ -190,10 +190,10 @@ public class SearchConsoleService {
       }
 
       return Set.of(
-          clicksEntry.compute(),
-          impressionsEntry.compute(),
-          positionEntry.compute(),
-          ctrEntry.compute()
+          clicksEntry,
+          impressionsEntry,
+          positionEntry,
+          ctrEntry
             .setAverage(clicksEntry.getSum() / impressionsEntry.getSum() * 100));
     }
     return null;

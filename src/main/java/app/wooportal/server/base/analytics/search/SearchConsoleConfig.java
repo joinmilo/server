@@ -1,4 +1,4 @@
-package app.wooportal.server.base.analytics.googleSearch;
+package app.wooportal.server.base.analytics.search;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;

@@ -1,10 +1,10 @@
-package app.wooportal.server.base.analytics.googleSearch;
+package app.wooportal.server.base.analytics.search;
 
 import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.Set;
 import org.springframework.stereotype.Component;
-import app.wooportal.server.base.analytics.googleSearch.dto.SearchConsoleDimension;
+import app.wooportal.server.base.analytics.search.dto.SearchConsoleDimension;
 import app.wooportal.server.core.base.dto.analytics.AnalyticsDto;
 import app.wooportal.server.core.base.dto.analytics.IntervalFilter;
 import io.leangen.graphql.annotations.GraphQLQuery;

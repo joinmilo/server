@@ -1,4 +1,4 @@
-package app.wooportal.server.base.analytics.googleSearch.dto;
+package app.wooportal.server.base.analytics.search.dto;
 
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;

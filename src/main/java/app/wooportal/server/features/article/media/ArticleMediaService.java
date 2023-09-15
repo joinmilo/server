@@ -1,4 +1,4 @@
-package app.wooportal.server.features.article.base.media;
+package app.wooportal.server.features.article.media;
 
 import org.springframework.stereotype.Service;
 import app.wooportal.server.core.base.DataService;

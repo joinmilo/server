@@ -1,4 +1,4 @@
-package app.wooportal.server.features.event.base.media;
+package app.wooportal.server.features.article.media;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,49 +14,49 @@ import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 
 @GraphQLApi
 @Component
-public class EventMediaApi extends CrudApi<EventMediaEntity, EventMediaService> {
+public class ArticleMediaApi extends CrudApi<ArticleMediaEntity, ArticleMediaService> {
 
-  public EventMediaApi(EventMediaService service) {
+  public ArticleMediaApi(ArticleMediaService service) {
     super(service);
   }
   
   @Override
-  @GraphQLQuery(name = "getEventMedia")
-  public PageableList<EventMediaEntity> readAll(
+  @GraphQLQuery(name = "getArticleMedia")
+  public PageableList<ArticleMediaEntity> readAll(
       @GraphQLArgument(name = CrudApi.params) FilterSortPaginate params) {
     return super.readAll(params);
   }
 
   @Override
-  @GraphQLQuery(name = "getEventMedium")
-  public Optional<EventMediaEntity> readOne(
-      @GraphQLArgument(name = CrudApi.entity) EventMediaEntity entity) {
+  @GraphQLQuery(name = "getArticleMedium")
+  public Optional<ArticleMediaEntity> readOne(
+      @GraphQLArgument(name = CrudApi.entity) ArticleMediaEntity entity) {
     return super.readOne(entity);
   }
 
   @Override
-  @GraphQLMutation(name = "saveEventMedia")
+  @GraphQLMutation(name = "saveArticleMedia")
   @AdminPermission
-  public List<EventMediaEntity> saveAll(
-      @GraphQLArgument(name = CrudApi.entities) List<EventMediaEntity> entities) {
+  public List<ArticleMediaEntity> saveAll(
+      @GraphQLArgument(name = CrudApi.entities) List<ArticleMediaEntity> entities) {
     return super.saveAll(entities);
   }
 
   @Override
-  @GraphQLMutation(name = "saveEventMedium")
-  public EventMediaEntity saveOne(@GraphQLArgument(name = CrudApi.entity) EventMediaEntity entity) {
+  @GraphQLMutation(name = "saveArticleMedium")
+  public ArticleMediaEntity saveOne(@GraphQLArgument(name = CrudApi.entity) ArticleMediaEntity entity) {
     return super.saveOne(entity);
   }
 
   @Override
-  @GraphQLMutation(name = "deleteEventMedia")
+  @GraphQLMutation(name = "deleteArticleMedia")
   @AdminPermission
   public Boolean deleteAll(@GraphQLArgument(name = CrudApi.ids) List<String> ids) {
     return super.deleteAll(ids);
   }
 
   @Override
-  @GraphQLMutation(name = "deleteEventMedium")
+  @GraphQLMutation(name = "deleteArticleMedium")
   @AdminPermission
   public Boolean deleteOne(@GraphQLArgument(name = CrudApi.id) String id) {
     return super.deleteOne(id);

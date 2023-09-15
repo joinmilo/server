@@ -1,4 +1,4 @@
-package app.wooportal.server.features.event.base.media;
+package app.wooportal.server.features.event.media;
 
 import org.springframework.stereotype.Service;
 import com.querydsl.core.types.dsl.BooleanExpression;

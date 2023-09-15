@@ -1,4 +1,4 @@
-package app.wooportal.server.features.event.base.media;
+package app.wooportal.server.features.article.media;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -6,7 +6,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.media.base.MediaEntity;
-import app.wooportal.server.features.event.base.EventEntity;
+import app.wooportal.server.features.article.base.ArticleEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,17 +18,17 @@ import lombok.Setter;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @AllArgsConstructor
 @Entity
-@Table(name = "event_media")
-public class EventMediaEntity extends BaseEntity {
+@Table(name = "article_media")
+public class ArticleMediaEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
   
-  private Boolean card;
+  private Boolean card = false;
   
-  private Boolean title;
+  private Boolean title = false;
   
   @ManyToOne(fetch = FetchType.LAZY)
-  private EventEntity event;
+  private ArticleEntity article;
   
   @ManyToOne(fetch = FetchType.LAZY)
   private MediaEntity media;
