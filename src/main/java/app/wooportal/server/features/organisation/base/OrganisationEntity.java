@@ -27,10 +27,10 @@ import app.wooportal.server.core.i18n.annotations.Translatable;
 import app.wooportal.server.core.seo.annotations.SlugSource;
 import app.wooportal.server.core.seo.annotations.SlugTarget;
 import app.wooportal.server.features.event.base.EventEntity;
-import app.wooportal.server.features.organisation.base.media.OrganisationMediaEntity;
 import app.wooportal.server.features.organisation.base.translations.OrganisationTranslatableEntity;
 import app.wooportal.server.features.organisation.base.visitors.OrganisationVisitorEntity;
 import app.wooportal.server.features.organisation.comment.OrganisationCommentEntity;
+import app.wooportal.server.features.organisation.media.OrganisationMediaEntity;
 import app.wooportal.server.features.organisation.member.OrganisationMemberEntity;
 import app.wooportal.server.features.organisation.rating.OrganisationRatingEntity;
 import lombok.AccessLevel;
@@ -83,7 +83,7 @@ public class OrganisationEntity extends BaseEntity {
   @OneToMany(mappedBy = "organisation", fetch = FetchType.LAZY)
   private Set<OrganisationMemberEntity> members;
 
-  @OneToMany(mappedBy = "organisation", fetch = FetchType.LAZY)
+  @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
   private Set<OrganisationRatingEntity> ratings;
 
   @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)

@@ -24,11 +24,11 @@ import app.wooportal.server.core.i18n.annotations.Translatable;
 import app.wooportal.server.core.seo.annotations.SlugSource;
 import app.wooportal.server.core.seo.annotations.SlugTarget;
 import app.wooportal.server.features.event.attendeeConfiguration.EventAttendeeConfigurationEntity;
-import app.wooportal.server.features.event.base.media.EventMediaEntity;
 import app.wooportal.server.features.event.base.translations.EventTranslatableEntity;
 import app.wooportal.server.features.event.base.visitors.EventVisitorEntity;
 import app.wooportal.server.features.event.category.EventCategoryEntity;
 import app.wooportal.server.features.event.comment.EventCommentEntity;
+import app.wooportal.server.features.event.media.EventMediaEntity;
 import app.wooportal.server.features.event.rating.EventRatingEntity;
 import app.wooportal.server.features.event.schedule.EventScheduleEntity;
 import app.wooportal.server.features.event.targetGroup.EventTargetGroupEntity;
@@ -97,7 +97,7 @@ public class EventEntity extends BaseEntity {
   @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
   private Set<EventVisitorEntity> visitors;
 
-  @OneToMany(mappedBy = "event", fetch = FetchType.LAZY)
+  @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
   private Set<EventRatingEntity> ratings;
 
   @OneToMany(mappedBy = "event", fetch = FetchType.LAZY)

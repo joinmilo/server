@@ -3,11 +3,7 @@ package app.wooportal.server.features.event.base;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.CompletableFuture;
-import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
-import app.wooportal.server.base.rating.RatingDto;
-import app.wooportal.server.base.rating.RatingService;
 import app.wooportal.server.core.base.CrudApi;
 import app.wooportal.server.core.base.dto.listing.FilterSortPaginate;
 import app.wooportal.server.core.base.dto.listing.PageableList;
@@ -28,19 +24,15 @@ public class EventApi extends CrudApi<EventEntity, EventService> {
   private final EventCommentService commentService;
   
   private final EventScheduleService scheduleService;
-  
-  private final RatingService ratingService;
 
   public EventApi(
       EventService service,
       EventCommentService commentService,
-      EventScheduleService scheduleService,
-      RatingService ratingService) {
+      EventScheduleService scheduleService) {
     super(service);
     
     this.commentService = commentService;
     this.scheduleService = scheduleService;
-    this.ratingService = ratingService;
   }
 
   @Override
@@ -79,13 +71,6 @@ public class EventApi extends CrudApi<EventEntity, EventService> {
   @GraphQLMutation(name = "deleteEvent")
   public Boolean deleteOne(@GraphQLArgument(name = CrudApi.id) String id) {
     return super.deleteOne(id);
-  }
-  
-  @GraphQLQuery(name = "calculatedRatings")
-  public CompletableFuture<RatingDto> calculateAverageRating(
-      @GraphQLContext EventEntity event) {
-    return ratingService.calculateRating(
-        event.getRatings().stream().map(rating -> rating.getScore()).collect(Collectors.toList()));
   }
 
   @GraphQLQuery(name = "lastEventComment")

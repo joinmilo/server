@@ -28,7 +28,7 @@ databaseChangeLog:
               - column:
                   constraints:
                     nullable: false
-                  name: event_id
+                  name: parent_id
                   type: CHAR(36) 
               - column:
                   constraints:
@@ -81,7 +81,7 @@ databaseChangeLog:
         - createIndex:
             columns:
               - column:
-                  name: event_id
+                  name: parent_id
             indexName: idx_fk1r8zv0lwedc8rh9mojd6fr64c
             tableName: event_ratings
   - changeSet:
@@ -89,7 +89,7 @@ databaseChangeLog:
       author: codeschluss
       changes:
         - addForeignKeyConstraint:
-            baseColumnNames: event_id
+            baseColumnNames: parent_id
             baseTableName: event_ratings
             constraintName: fk1r8zv0lwedc8rh9mojd6fr64c
             deferrable: false

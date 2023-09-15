@@ -24,11 +24,11 @@ import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.i18n.annotations.Translatable;
 import app.wooportal.server.core.seo.annotations.SlugSource;
 import app.wooportal.server.core.seo.annotations.SlugTarget;
-import app.wooportal.server.features.article.base.media.ArticleMediaEntity;
 import app.wooportal.server.features.article.base.translations.ArticleTranslatableEntity;
 import app.wooportal.server.features.article.base.visitors.ArticleVisitorEntity;
 import app.wooportal.server.features.article.category.ArticleCategoryEntity;
 import app.wooportal.server.features.article.comment.ArticleCommentEntity;
+import app.wooportal.server.features.article.media.ArticleMediaEntity;
 import app.wooportal.server.features.article.publicAuthor.ArticlePublicAuthorEntity;
 import app.wooportal.server.features.article.rating.ArticleRatingEntity;
 import lombok.AccessLevel;
@@ -88,7 +88,7 @@ public class ArticleEntity extends BaseEntity {
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "article")
   private Set<ArticleCommentEntity> comments;
 
-  @OneToMany(fetch = FetchType.LAZY, mappedBy = "article")
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
   private Set<ArticleRatingEntity> ratings;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")

@@ -24,19 +24,7 @@ databaseChangeLog:
                     nullable: false
                   defaultValueComputed: CURRENT_TIMESTAMP
                   name: modified
-                  type: datetime
-              - column:
-                  constraints:
-                    nullable: false
-                  defaultValueBoolean: false
-                  name: admin
-                  type: boolean
-              - column:
-                  constraints:
-                    nullable: false
-                  defaultValueBoolean: false
-                  name: public
-                  type: boolean                                 
+                  type: datetime                                
               - column:
                   constraints:
                     nullable: false
@@ -45,7 +33,7 @@ databaseChangeLog:
               - column:
                   constraints:
                     nullable: false
-                  name: organisation_id
+                  name: parent_id
                   type: CHAR(36)
               - column:
                   constraints:
@@ -93,7 +81,7 @@ databaseChangeLog:
         - createIndex:
             columns:
               - column:
-                  name: organisation_id
+                  name: parent_id
             indexName: idx_fk3cxefhzcoo6t6v7tnu4arz490
             tableName: organisation_ratings
   - changeSet:
@@ -101,7 +89,7 @@ databaseChangeLog:
       author: codeschluss
       changes:
         - addForeignKeyConstraint:
-            baseColumnNames: organisation_id
+            baseColumnNames: parent_id
             baseTableName: organisation_ratings
             constraintName: fk3cxefhzcoo6t6v7tnu4arz490
             deferrable: false
@@ -110,6 +98,6 @@ databaseChangeLog:
             onDelete: CASCADE
             referencedColumnNames: id
             referencedTableName: organisations
-            validate: true                           
+            validate: true
           
             

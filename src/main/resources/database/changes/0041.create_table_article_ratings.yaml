@@ -33,7 +33,7 @@ databaseChangeLog:
               - column:
                   constraints:
                     nullable: false
-                  name: article_id
+                  name: parent_id
                   type: CHAR(36)  
               - column:
                   constraints:
@@ -81,7 +81,7 @@ databaseChangeLog:
         - createIndex:
             columns:
               - column:
-                  name: article_id
+                  name: parent_id
             indexName: idx_fky8809ut20hjoud9wib78cd0uu
             tableName: article_ratings
             
@@ -90,7 +90,7 @@ databaseChangeLog:
       author: codeschluss
       changes:
         - addForeignKeyConstraint:
-            baseColumnNames: article_id
+            baseColumnNames: parent_id
             baseTableName: article_ratings
             constraintName: fky8809ut20hjoud9wib78cd0uu
             deferrable: false

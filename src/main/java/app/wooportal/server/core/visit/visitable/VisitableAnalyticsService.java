@@ -46,7 +46,7 @@ public class VisitableAnalyticsService<E extends BaseEntity, V extends Visitable
     }
     
     return CompletableFuture.completedFuture(
-        Set.of(visitors.compute(), visits.compute())
+        Set.of(visitors, visits)
     );
   }
 

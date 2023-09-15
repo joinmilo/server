@@ -2,11 +2,7 @@ package app.wooportal.server.features.organisation.base;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.CompletableFuture;
-import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
-import app.wooportal.server.base.rating.RatingDto;
-import app.wooportal.server.base.rating.RatingService;
 import app.wooportal.server.core.base.CrudApi;
 import app.wooportal.server.core.base.dto.listing.FilterSortPaginate;
 import app.wooportal.server.core.base.dto.listing.PageableList;
@@ -23,15 +19,12 @@ import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 @Component
 public class OrganisationApi extends CrudApi<OrganisationEntity, OrganisationService> {
 
-  private final RatingService ratingService;
   private final OrganisationCommentService commentService;
 
   public OrganisationApi(OrganisationService service,
-      RatingService ratingService, 
       OrganisationCommentService commentService) {
     super(service);
 
-    this.ratingService = ratingService;
     this.commentService = commentService;
   }
 
@@ -82,12 +75,6 @@ public class OrganisationApi extends CrudApi<OrganisationEntity, OrganisationSer
     return commentService.getMostRecentByOrganisation(organisation.getId());
   }
 
-  @GraphQLQuery(name = "calculatedRatings")
-  public CompletableFuture<RatingDto> calculateAverageRating(
-      @GraphQLContext OrganisationEntity organisation) {
-    return ratingService.calculateRating(
-        organisation.getRatings().stream().map(rating -> rating.getScore()).collect(Collectors.toList()));
-  }
   @GraphQLMutation(name = "sponsorOrganisation")
   public Boolean sponsorContest(String organisationId) {
     return service.sponsorOrganisation(organisationId);

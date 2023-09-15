@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.TreeMap;
 import java.util.TreeSet;
-import io.leangen.graphql.annotations.GraphQLIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -53,11 +53,13 @@ public class AnalyticsDto implements Comparable<AnalyticsDto> {
     addAll(series);
   }
   
+  @JsonIgnore
   public AnalyticsDto setAllowNull(boolean allowNull) {
     this.allowNull = allowNull;
     return this;
   }
   
+  @JsonIgnore
   public AnalyticsDto setAverage(Double average) {
     if (!Double.isNaN(average)) {      
       this.average = average;
@@ -65,18 +67,28 @@ public class AnalyticsDto implements Comparable<AnalyticsDto> {
     return this;
   }
   
+  @JsonIgnore
   public AnalyticsDto setName(String name) {
     this.name = name;
     return this;
   }
   
+  @JsonIgnore
   public AnalyticsDto setEntryOperation(AnalyticsOperation entryOperation) {
     this.entryOperation = entryOperation;
     return this;
   }
   
-  @GraphQLIgnore
-  public AnalyticsDto compute() {
+  public TreeSet<AnalyticsEntry> getSeries() {
+    if (series == null) {
+      compute1();
+      return series;
+    }
+    return series;
+  }
+  
+  @JsonIgnore
+  public AnalyticsDto compute1() {
     var result = new TreeSet<AnalyticsEntry>();
     var count = 0.0;
     if (elements != null && !elements.isEmpty()) {
@@ -104,6 +116,7 @@ public class AnalyticsDto implements Comparable<AnalyticsDto> {
     return this;
   }
   
+  @JsonIgnore
   private Double calculate(List<AnalyticsEntry> entries) {
     var values = entries.stream().mapToDouble(AnalyticsEntry::getValue);
     
@@ -136,6 +149,7 @@ public class AnalyticsDto implements Comparable<AnalyticsDto> {
     };
   }
   
+  @JsonIgnore
   public AnalyticsDto addAll(Collection<AnalyticsEntry> series) {
     if (series != null) {      
       for (var entry : series) {      
@@ -145,6 +159,7 @@ public class AnalyticsDto implements Comparable<AnalyticsDto> {
     return this;
   }
   
+  @JsonIgnore
   public AnalyticsDto setSeries(Map<String, Double> entries) {
     if (entries != null) {
       entries.forEach((k, v) -> add(new AnalyticsEntry(k,v))); 
@@ -152,6 +167,7 @@ public class AnalyticsDto implements Comparable<AnalyticsDto> {
     return this;
   }
   
+  @JsonIgnore
   public AnalyticsDto add(String key, Integer value) {
     if (value != null) {      
       return add(key, Double.valueOf(value));
@@ -159,6 +175,7 @@ public class AnalyticsDto implements Comparable<AnalyticsDto> {
     return this;
   }
   
+  @JsonIgnore
   public AnalyticsDto add(String key, Double value) {
     if (key != null && value != null) {
       add(new AnalyticsEntry(key, value));
@@ -166,6 +183,7 @@ public class AnalyticsDto implements Comparable<AnalyticsDto> {
     return this;
   }
   
+  @JsonIgnore
   public AnalyticsDto add(AnalyticsEntry entry) {
     if (entry != null) {
       if (elements.containsKey(entry.getName())) {
