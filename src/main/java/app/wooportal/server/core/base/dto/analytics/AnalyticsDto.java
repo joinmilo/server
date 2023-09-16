@@ -18,6 +18,9 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @ToString
+
+//TODO: It's getting too complicated
+// Better: AnalyticsService and Dto as container only
 public class AnalyticsDto implements Comparable<AnalyticsDto> {
   
   @Getter(AccessLevel.NONE)
@@ -30,7 +33,10 @@ public class AnalyticsDto implements Comparable<AnalyticsDto> {
 
   private String name;
   
-  private Double sum = 0.0;
+  private Double sum;
+  
+  @Getter(AccessLevel.NONE)
+  private Double sumCalculated;
   
   private AnalyticsOperation entryOperation = AnalyticsOperation.SUM; 
   
@@ -81,72 +87,20 @@ public class AnalyticsDto implements Comparable<AnalyticsDto> {
   
   public TreeSet<AnalyticsEntry> getSeries() {
     if (series == null) {
-      compute1();
+      compute();
       return series;
     }
     return series;
   }
   
-  @JsonIgnore
-  public AnalyticsDto compute1() {
-    var result = new TreeSet<AnalyticsEntry>();
-    var count = 0.0;
-    if (elements != null && !elements.isEmpty()) {
-      for (var entry: elements.entrySet()) {
-        Double value = entry.getValue().size() > 0
-            ? calculate(entry.getValue())
-                : entry.getValue().get(0).getValue();
-        sum += value;
-        
-        count = !allowNull
-            ? value > 0.0
-                ? count + 1
-                : count
-            : count + 1;
-
-        result.add(new AnalyticsEntry(entry.getKey(), value));
-      }
-      
-      this.series = result;
-      this.averageCalculated = count != 0.0
-          ? sum / count
-          : 0;
+  public Double getSum() {
+    if (series == null) {
+      compute();
     }
     
-    return this;
-  }
-  
-  @JsonIgnore
-  private Double calculate(List<AnalyticsEntry> entries) {
-    var values = entries.stream().mapToDouble(AnalyticsEntry::getValue);
-    
-    if (!allowNull) {
-      values = values.filter(value -> value > 0.0);
-    }
-    
-    return switch(entryOperation) {
-      case AVG -> {
-        var value = values.average();
-        yield value.isPresent()
-            ? value.getAsDouble()
-            : 0.0;
-      }
-      case MAX -> {
-        var value = values.max();
-        yield value.isPresent()
-            ? value.getAsDouble()
-            : 0.0;
-      }
-      case MIN -> {
-        var value = values.min();
-        yield value.isPresent()
-            ? value.getAsDouble()
-            : 0.0;
-      }
-      case COUNT -> Double.valueOf(values.count());
-      case SUM -> values.sum();
-      default -> values.sum();
-    };
+    return sum != null
+        ? sum
+        : sumCalculated;
   }
   
   @JsonIgnore
@@ -189,7 +143,7 @@ public class AnalyticsDto implements Comparable<AnalyticsDto> {
       if (elements.containsKey(entry.getName())) {
         elements.get(entry.getName())
           .add(entry);
-      } else {        
+      } else {
         elements.put(entry.getName(),
             new ArrayList<AnalyticsEntry>(List.of(entry)));
       }
@@ -198,9 +152,76 @@ public class AnalyticsDto implements Comparable<AnalyticsDto> {
   }
   
   public Double getAverage() {
+    if (series == null) {
+      compute();
+    }
+    
     return average != null
         ? average
         : averageCalculated;
+  }
+  
+  @JsonIgnore
+  public AnalyticsDto compute() {
+    var result = new TreeSet<AnalyticsEntry>();
+    var count = 0.0;
+    sumCalculated = 0.0;
+    if (elements != null && !elements.isEmpty()) {
+      for (var entry: elements.entrySet()) {
+        Double value = entry.getValue().size() > 0
+            ? calculate(entry.getValue())
+                : entry.getValue().get(0).getValue();
+        sumCalculated += value;
+        
+        count = !allowNull
+            ? value > 0.0
+                ? count + 1
+                : count
+            : count + 1;
+
+        result.add(new AnalyticsEntry(entry.getKey(), value));
+      }
+      
+      this.series = result;
+      this.averageCalculated = count != 0.0
+          ? sumCalculated / count
+          : 0;
+    }
+    
+    return this;
+  }
+  
+  @JsonIgnore
+  private Double calculate(List<AnalyticsEntry> entries) {
+    var values = entries.stream().mapToDouble(AnalyticsEntry::getValue);
+    
+    if (!allowNull) {
+      values = values.filter(value -> value > 0.0);
+    }
+    
+    return switch(entryOperation) {
+      case AVG -> {
+        var value = values.average();
+        yield value.isPresent()
+            ? value.getAsDouble()
+            : 0.0;
+      }
+      case MAX -> {
+        var value = values.max();
+        yield value.isPresent()
+            ? value.getAsDouble()
+            : 0.0;
+      }
+      case MIN -> {
+        var value = values.min();
+        yield value.isPresent()
+            ? value.getAsDouble()
+            : 0.0;
+      }
+      case COUNT -> Double.valueOf(values.count());
+      case SUM -> values.sum();
+      default -> values.sum();
+    };
   }
   
   @Override

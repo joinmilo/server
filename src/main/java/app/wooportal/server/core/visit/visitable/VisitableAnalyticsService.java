@@ -33,10 +33,12 @@ public class VisitableAnalyticsService<E extends BaseEntity, V extends Visitable
         entity, startDate, endDate);
     
     var visits = new AnalyticsDto()
-        .setName(this.visits);
+        .setName(this.visits)
+        .setSeries(DateUtils.generatePeriodContainer(startDate, endDate, interval, 0.0));
     
     var visitors = new AnalyticsDto()
-        .setName(this.visitors);
+        .setName(this.visitors)
+        .setSeries(DateUtils.generatePeriodContainer(startDate, endDate, interval, 0.0));
     
     for (var visitor: result) {
       var key = DateUtils.format(visitor.getCreated(), interval);

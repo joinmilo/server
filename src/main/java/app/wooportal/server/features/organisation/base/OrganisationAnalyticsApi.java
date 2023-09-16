@@ -10,6 +10,8 @@ import app.wooportal.server.base.analytics.search.SearchConsoleService;
 import app.wooportal.server.core.base.dto.analytics.AnalyticsDto;
 import app.wooportal.server.core.base.dto.analytics.IntervalFilter;
 import app.wooportal.server.core.visit.visitable.VisitableAnalyticsService;
+import app.wooportal.server.features.organisation.rating.OrganisationRatingEntity;
+import app.wooportal.server.features.organisation.rating.OrganisationRatingService;
 import io.leangen.graphql.annotations.GraphQLContext;
 import io.leangen.graphql.annotations.GraphQLQuery;
 import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
@@ -18,25 +20,40 @@ import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 @Component
 public class OrganisationAnalyticsApi {
   
-  private final RatingService ratingService;
+  private final RatingService<OrganisationEntity, OrganisationRatingEntity> ratingAnalyticsService;
+  private final OrganisationRatingService ratingService;
   private final SearchConsoleService searchConsoleService;
   private final VisitableAnalyticsService<OrganisationEntity, ?> visitableAnalyticsService;
 
   public OrganisationAnalyticsApi(
-      RatingService ratingService,
+      RatingService<OrganisationEntity, OrganisationRatingEntity> ratingAnalyticsService,
+      OrganisationRatingService ratingService,
       SearchConsoleService searchConsoleService,
       VisitableAnalyticsService<OrganisationEntity, ?> visitableAnalyticsService) {
+    this.ratingAnalyticsService = ratingAnalyticsService;
     this.ratingService = ratingService;
     this.searchConsoleService = searchConsoleService;
     this.visitableAnalyticsService = visitableAnalyticsService;
   }
   
   @GraphQLQuery(name = "ratingDistribution")
-  public CompletableFuture<AnalyticsDto> calculateRatingDistribution(
-      @GraphQLContext OrganisationEntity entity) {
-    return entity.getRatings() != null && !entity.getRatings().isEmpty()
-        ? ratingService.calculateRatingDistribution(entity.getRatings())
-        : CompletableFuture.completedFuture(new AnalyticsDto());
+  public CompletableFuture<AnalyticsDto> ratingDistribution(
+      @GraphQLContext OrganisationEntity entity,
+      OffsetDateTime startDate,
+      OffsetDateTime endDate) {
+    return ratingAnalyticsService.calculateRatingDistribution(
+        ratingService.getAllBetween(entity, startDate, endDate));
+  }
+  
+  @GraphQLQuery(name = "ratingStatistics")
+  public CompletableFuture<Set<AnalyticsDto>> ratingStatistics(
+      @GraphQLContext OrganisationEntity entity,
+      OffsetDateTime startDate,
+      OffsetDateTime endDate,
+      IntervalFilter interval) {
+    return ratingAnalyticsService.calculateRatingStatistics(
+        ratingService.getAllBetween(entity, startDate, endDate),
+        interval);
   }
   
   @GraphQLQuery(name = "searchStatistics")
