@@ -49,7 +49,7 @@ public class ArticleAnalyticsApi {
       IntervalFilter interval) {
     return ratingAnalyticsService.calculateRatingStatistics(
         ratingService.getAllBetween(entity, startDate, endDate),
-        interval);
+        startDate, endDate, interval);
   }
   
   @GraphQLQuery(name = "searchStatistics")

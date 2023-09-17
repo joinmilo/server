@@ -1,16 +1,14 @@
 package app.wooportal.server.base.analytics.rating;
 
+import java.time.OffsetDateTime;
 import java.util.Collection;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Supplier;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 import org.springframework.stereotype.Service;
 import app.wooportal.server.base.configuration.ConfigurationService;
 import app.wooportal.server.core.base.BaseEntity;
@@ -38,6 +36,8 @@ public class RatingService<E extends BaseEntity, R extends RatableEntity<E>> {
   
   public CompletableFuture<Set<AnalyticsDto>> calculateRatingStatistics(
       List<R> ratings,
+      OffsetDateTime startDate,
+      OffsetDateTime endDate,
       IntervalFilter interval) {
     if (ratings != null
         && !ratings.isEmpty()
@@ -45,7 +45,8 @@ public class RatingService<E extends BaseEntity, R extends RatableEntity<E>> {
       var result = new HashSet<AnalyticsDto>();
       
       result.add(ratingDistribution(ratings));
-      result.addAll(timeDistributions(ratings, interval));
+      result.addAll(
+          timeDistributions(ratings, startDate, endDate, interval));
       
       return CompletableFuture.completedFuture(result);
     }
@@ -94,33 +95,26 @@ public class RatingService<E extends BaseEntity, R extends RatableEntity<E>> {
     return container;
   }
   
-  private Collection<? extends AnalyticsDto> timeDistributions(
+  private Collection<AnalyticsDto> timeDistributions(
       List<R> ratings,
-      IntervalFilter interval) {
-    Supplier<Stream<R>> ratingsSupplier = () -> ratings.stream().sorted(Comparator.comparing(BaseEntity::getModified));
-    var first = ratingsSupplier.get()
-        .findFirst()
-        .get().getModified();
-    var last = ratingsSupplier.get()
-        .skip(ratings.size() - 1)
-        .findFirst()
-        .get().getModified();
-    
+      OffsetDateTime startDate,
+      OffsetDateTime endDate,
+      IntervalFilter interval) {    
     return Set.of(
         timeAmountDistribution(
-            DateUtils.generatePeriodContainer(first, last, interval, 0.0),
-            ratingsSupplier.get(),
+            DateUtils.generatePeriodContainer(startDate, endDate, interval, 0.0),
+            ratings,
             interval),
         timeAverageDistribution(
-            DateUtils.generatePeriodContainer(first, last, interval, 0.0),
-            ratingsSupplier.get(),
+            DateUtils.generatePeriodContainer(startDate, endDate, interval, 0.0),
+            ratings,
             interval)
         );
   }
   
   private AnalyticsDto timeAmountDistribution(
       Map<String,Double> container,
-      Stream<R> ratings,
+      Collection<R> ratings,
       IntervalFilter interval) {
     
     var result = new AnalyticsDto()
@@ -130,18 +124,18 @@ public class RatingService<E extends BaseEntity, R extends RatableEntity<E>> {
         && !container.isEmpty()
         && interval != null) {
       
-      ratings.forEach(rating -> result.add(
-          DateUtils.format(rating.getModified(), interval), 1
+      ratings.forEach(rating -> container.put(
+          DateUtils.format(rating.getModified(), interval), 1.0
       ));
 
     }
     
-    return result;
+    return result.setSeries(container);
   }
   
   private AnalyticsDto timeAverageDistribution(
       Map<String,Double> container,
-      Stream<R> ratings,
+      Collection<R> ratings,
       IntervalFilter interval) {
     
     var result = new AnalyticsDto()
@@ -152,12 +146,12 @@ public class RatingService<E extends BaseEntity, R extends RatableEntity<E>> {
         && !container.isEmpty()
         && interval != null) {
       
-      ratings.forEach(rating -> result.add(
-          DateUtils.format(rating.getModified(), interval), rating.getScore()
+      ratings.forEach(rating -> container.put(
+          DateUtils.format(rating.getModified(), interval), rating.getScore().doubleValue()
       ));
 
     }
     
-    return result;
+    return result.setSeries(container);
   }
 }
