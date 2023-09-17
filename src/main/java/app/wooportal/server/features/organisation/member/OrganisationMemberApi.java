@@ -50,14 +50,12 @@ public class OrganisationMemberApi extends CrudApi<OrganisationMemberEntity, Org
 
   @Override
   @GraphQLMutation(name = "deleteOrganisationMembers")
-  @AdminPermission
   public Boolean deleteAll(@GraphQLArgument(name = CrudApi.ids) List<String> ids) {
     return super.deleteAll(ids);
   }
 
   @Override
   @GraphQLMutation(name = "deleteOrganisationMember")
-  @AdminPermission
   public Boolean deleteOne(@GraphQLArgument(name = CrudApi.id) String id) {
     return super.deleteOne(id);
   }

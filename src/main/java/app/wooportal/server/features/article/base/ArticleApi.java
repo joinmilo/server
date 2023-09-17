@@ -79,5 +79,4 @@ public class ArticleApi extends CrudApi<ArticleEntity, ArticleService> {
   public Boolean sponsorArticle(String articleId) {
     return service.sponsorArticle(articleId);
   }
-
 }
