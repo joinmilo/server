@@ -162,7 +162,7 @@ public class AnalyticsDto implements Comparable<AnalyticsDto> {
   }
   
   @JsonIgnore
-  public AnalyticsDto compute() {
+  private AnalyticsDto compute() {
     var result = new TreeSet<AnalyticsEntry>();
     var count = 0.0;
     sumCalculated = 0.0;

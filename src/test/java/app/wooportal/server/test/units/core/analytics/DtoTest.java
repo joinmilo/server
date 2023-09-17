@@ -17,7 +17,7 @@ public class DtoTest {
         "2", 1.0,
         "3", 2.0);
     
-    var result = new AnalyticsDto(name, series).compute();
+    var result = new AnalyticsDto(name, series);
     
     assertThat(result.getName()).isEqualTo(name);
     assertThat(result.getSeries()).allMatch(s ->
@@ -33,7 +33,7 @@ public class DtoTest {
         new AnalyticsEntry("2", 1.0),
         new AnalyticsEntry("3", 2.0));
     
-    var result = new AnalyticsDto(name, series).compute();
+    var result = new AnalyticsDto(name, series);
     
     assertThat(result.getName()).isEqualTo(name);
     assertThat(result.getSeries()).allMatch(s -> series.contains(s));
@@ -43,7 +43,7 @@ public class DtoTest {
   public void addOk() {
     var entry = new AnalyticsEntry("1", 0.0);
     
-    var result = new AnalyticsDto().add(entry).compute();
+    var result = new AnalyticsDto().add(entry);
     
     assertThat(result.getSeries()).anyMatch(s -> entry.equals(s));
   }
@@ -55,14 +55,14 @@ public class DtoTest {
         new AnalyticsEntry("2", 1.0),
         new AnalyticsEntry("3", 2.0));
     
-    var result = new AnalyticsDto().addAll(series).compute();
+    var result = new AnalyticsDto().addAll(series);
     
     assertThat(result.getSeries()).allMatch(s -> series.contains(s));
   }
   
   @Test
   public void setSeriesWithNull() {    
-    var result = new AnalyticsDto().setSeries(null).compute();
+    var result = new AnalyticsDto().setSeries(null);
     
     assertThat(result.getSeries()).isEmpty();
   }

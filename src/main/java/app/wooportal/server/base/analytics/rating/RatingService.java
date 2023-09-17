@@ -118,19 +118,20 @@ public class RatingService<E extends BaseEntity, R extends RatableEntity<E>> {
       IntervalFilter interval) {
     
     var result = new AnalyticsDto()
-        .setName(timeAmountDistribution);
+        .setName(timeAmountDistribution)
+        .setSeries(container);
 
     if (container != null
         && !container.isEmpty()
         && interval != null) {
       
-      ratings.forEach(rating -> container.put(
-          DateUtils.format(rating.getModified(), interval), 1.0
+      ratings.forEach(rating -> result.add(
+          DateUtils.format(rating.getModified(), interval), 1
       ));
 
     }
     
-    return result.setSeries(container);
+    return result;
   }
   
   private AnalyticsDto timeAverageDistribution(
@@ -140,18 +141,20 @@ public class RatingService<E extends BaseEntity, R extends RatableEntity<E>> {
     
     var result = new AnalyticsDto()
         .setName(timeAverageDistribution)
-        .setEntryOperation(AnalyticsOperation.AVG);
+        .setEntryOperation(AnalyticsOperation.AVG)
+        .setAllowNull(false)
+        .setSeries(container);
 
     if (container != null
         && !container.isEmpty()
         && interval != null) {
       
-      ratings.forEach(rating -> container.put(
-          DateUtils.format(rating.getModified(), interval), rating.getScore().doubleValue()
+      ratings.forEach(rating -> result.add(
+          DateUtils.format(rating.getModified(), interval), rating.getScore()
       ));
 
     }
     
-    return result.setSeries(container);
+    return result;
   }
 }
