@@ -45,7 +45,6 @@ public class UserApi extends CrudApi<UserEntity, UserService> {
 
   @Override
   @GraphQLMutation(name = "saveUsers")
-  @AdminPermission
   public List<UserEntity> saveAll(
       @GraphQLArgument(name = CrudApi.entities) List<UserEntity> entities) {
     return super.saveAll(entities);
@@ -64,7 +63,6 @@ public class UserApi extends CrudApi<UserEntity, UserService> {
 
   @Override
   @GraphQLMutation(name = "deleteUsers")
-  @AdminPermission
   public Boolean deleteAll(@GraphQLArgument(name = CrudApi.ids) List<String> ids) {
     return super.deleteAll(ids);
   }
