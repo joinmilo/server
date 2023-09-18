@@ -2,7 +2,7 @@ databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
       id: 0097.migrate_data_videos
-      author: mia
+      author: codeschluss
       changes:
         - customChange:
             { "class": "app.wooportal.server.base.db.VideoMigration" }

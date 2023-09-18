@@ -20,7 +20,6 @@ databaseChangeLog:
             splitStatements: true
             sql:
                insert into users (id, verified, email, first_name, last_name, password, phone, last_login, language_id) values
-               ('83c0ce85-c808-43eb-a72d-62a228db2979', true, 'Fiona@example.com', 'Fiona', 'Haug', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm', '0123-456789', '2020-05-04 12:58:50', '01ef9863-b0b4-4710-a90f-3fe103e2ea37'),
                ('c3d05f46-5c3c-4100-85d5-649ecfb42601', true, 'Hans@example.com', 'Hans', 'Müller', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm', null, null, null),
                ('02785e86-0606-4eab-bbbc-6e90f35587b5', true, 'Sabine@example.com', 'Sabine', 'Gaille', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm', null, null, null),
                ('f96b2b8b-6b9f-44dd-8c30-83f6c9400970', true, 'Frank@example.com', 'Frank', 'Martin', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm', null, null, null),
@@ -36,6 +35,18 @@ databaseChangeLog:
                
   - changeSet:
       id: 0007.test-data.3
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add user with language
+            splitStatements: true
+            sql: insert into users (id, verified, email, first_name, last_name, password, phone, last_login, language_id)
+                 select "83c0ce85-c808-43eb-a72d-62a228db2979", true, "Fiona@example.com", "Fiona", "Haug", "$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm", "0123-456789", "2020-05-04 12:58:50", l.id
+                 from languages l
+                 WHERE l.locale = "de"; 
+
+  - changeSet:
+      id: 0007.test-data.4
       author: codeschluss
       changes:
         - sql:
@@ -58,7 +69,7 @@ databaseChangeLog:
                ('bdadf02e-37df-4d3b-a639-cf9a76532904', 'e618577b-bed0-4e19-89f3-e6ba2e9da795', null, 'slug-wh3zc');
                
   - changeSet:
-      id: 0007.test-data.4
+      id: 0007.test-data.5
       author: codeschluss
       changes:
         - sql:
@@ -72,7 +83,7 @@ databaseChangeLog:
                ('57b431d9-dd82-43e3-a7f8-9882ad587010', '1774bd91-1698-4c4a-8f16-3a0a98fdef32', '5737ee58-9f88-43d1-baf4-a34dd85f0219', false, true);
                
   - changeSet:
-      id: 0007.test-data.5
+      id: 0007.test-data.6
       author: codeschluss
       changes:
         - sql:
@@ -87,7 +98,7 @@ databaseChangeLog:
                ('1900e08e-e6e9-4362-bc50-1c6d5b2ec0f7', '83c0ce85-c808-43eb-a72d-62a228db2979', true);                                                           
                
   - changeSet:
-      id: 0007.test-data.6
+      id: 0007.test-data.7
       author: codeschluss
       changes:
         - sql:
@@ -119,7 +130,7 @@ databaseChangeLog:
                  WHERE l.locale = "de";   
                  
   - changeSet:
-      id: 0007.test-data.7
+      id: 0007.test-data.8
       author: codeschluss
       changes:
         - sql:
@@ -141,7 +152,7 @@ databaseChangeLog:
                  WHERE l.locale = "de";
                  
   - changeSet:
-      id: 0007.test-data.8
+      id: 0007.test-data.9
       author: codeschluss
       changes:
         - sql:
@@ -153,7 +164,7 @@ databaseChangeLog:
                  WHERE r.code = 'admin';
                  
   - changeSet:
-      id: 0007.test-data.9
+      id: 0007.test-data.10
       author: codeschluss
       changes:
         - sql:

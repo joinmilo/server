@@ -2,7 +2,7 @@ databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
       id: 0112.transform_slugs
-      author: mia
+      author: codeschluss
       changes:
         - customChange:
             { "class": "app.wooportal.server.base.db.SlugMigration" }
