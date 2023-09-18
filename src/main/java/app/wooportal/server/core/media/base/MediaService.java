@@ -98,7 +98,8 @@ public class MediaService extends DataService<MediaEntity, MediaPredicateBuilder
       throw new NotFoundException("media does not exist", id);
     }
   
-    return ResponseEntity.ok().headers(createHeader(result.get().getName(), result.get().getExtension()))
+    return ResponseEntity.ok()
+        .headers(createHeader(result.get().getName(), result.get().getExtension()))
         .contentType(MediaType.parseMediaType(result.get().getMimeType()))
         .body(storageService.read(id, result.get().getExtension()));
   }
@@ -169,9 +170,9 @@ public class MediaService extends DataService<MediaEntity, MediaPredicateBuilder
     return document;
   }
 
-  public HttpHeaders createHeader(String name, String formatType) {
+  public HttpHeaders createHeader(String name, String fileExtension) {
     HttpHeaders header = new HttpHeaders();
-    header.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + name + "." + mimeTypeService.getFileExtension(formatType));
+    header.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + name + "." + fileExtension);
     header.add("Cache-Control", "no-cache, no-store, must-revalidate");
     header.add("Pragma", "no-cache");
     header.add("Expires", "0");

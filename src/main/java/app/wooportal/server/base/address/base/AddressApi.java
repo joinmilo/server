@@ -9,7 +9,6 @@ import app.wooportal.server.core.base.dto.listing.FilterSortPaginate;
 import app.wooportal.server.core.base.dto.listing.PageableList;
 import app.wooportal.server.core.error.exception.NotFoundException;
 import app.wooportal.server.core.location.MapService;
-import app.wooportal.server.core.security.permissions.AdminPermission;
 import io.leangen.graphql.annotations.GraphQLArgument;
 import io.leangen.graphql.annotations.GraphQLMutation;
 import io.leangen.graphql.annotations.GraphQLQuery;
@@ -43,7 +42,6 @@ public class AddressApi extends CrudApi<AddressEntity, AddressService> {
 
   @Override
   @GraphQLMutation(name = "saveAddresses")
-  @AdminPermission
   public List<AddressEntity> saveAll(
       @GraphQLArgument(name = CrudApi.entities) List<AddressEntity> entities) {
     return super.saveAll(entities);
@@ -57,7 +55,6 @@ public class AddressApi extends CrudApi<AddressEntity, AddressService> {
 
   @Override
   @GraphQLMutation(name = "deleteAddresses")
-  @AdminPermission
   public Boolean deleteAll(@GraphQLArgument(name = CrudApi.ids) List<String> ids) {
     return super.deleteAll(ids);
   }
