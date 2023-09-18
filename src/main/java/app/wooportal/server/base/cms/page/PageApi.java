@@ -44,7 +44,6 @@ public class PageApi extends CrudApi<PageEntity, PageService> {
 
   @Override
   @GraphQLMutation(name = "savePage")
-  @AdminPermission
   public PageEntity saveOne(@GraphQLArgument(name = CrudApi.entity) PageEntity entity) {
     return super.saveOne(entity);
   }
