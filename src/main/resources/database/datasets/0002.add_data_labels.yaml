@@ -4255,7 +4255,7 @@ databaseChangeLog:
                AND l.locale = "en";             
                
   - changeSet:
-      id: 0002.add_data_labels.126
+      id: 0002.add_data_labels.142
       author: codeschluss
       changes:
         - sql:
@@ -4285,7 +4285,7 @@ databaseChangeLog:
                AND l.locale = "en";                                  
                               
   - changeSet:
-      id: 0002.add_data_labels.127
+      id: 0002.add_data_labels.143
       author: codeschluss
       changes:
         - sql:
@@ -4315,7 +4315,7 @@ databaseChangeLog:
                AND l.locale = "en";          
 
   - changeSet:
-      id: 0002.add_data_labels.128
+      id: 0002.add_data_labels.144
       author: codeschluss
       changes:
         - sql:
@@ -4345,7 +4345,7 @@ databaseChangeLog:
                AND l.locale = "en";            
 
   - changeSet:
-      id: 0002.add_data_labels.129
+      id: 0002.add_data_labels.145
       author: codeschluss
       changes:
         - sql:
@@ -4375,7 +4375,7 @@ databaseChangeLog:
                AND l.locale = "en";    
                
   - changeSet:
-      id: 0002.add_data_labels.130
+      id: 0002.add_data_labels.146
       author: codeschluss
       changes:
         - sql:
@@ -4405,7 +4405,7 @@ databaseChangeLog:
                AND l.locale = "en";     
                
   - changeSet:
-      id: 0002.add_data_labels.131
+      id: 0002.add_data_labels.147
       author: codeschluss
       changes:
         - sql:
@@ -4435,7 +4435,7 @@ databaseChangeLog:
                AND l.locale = "en";    
                
   - changeSet:
-      id: 0002.add_data_labels.132
+      id: 0002.add_data_labels.148
       author: codeschluss
       changes:
         - sql:
@@ -4463,8 +4463,3 @@ databaseChangeLog:
                from labels p, languages l
                WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
                AND l.locale = "en";                
-               
-                                                  
-                                                            
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
