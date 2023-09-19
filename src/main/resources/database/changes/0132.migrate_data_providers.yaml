@@ -81,8 +81,7 @@ databaseChangeLog:
         - addNotNullConstraint:  
             columnName:  approved
             columnDataType: boolean
-            defaultNullValue:  false  
-            schemaName: wooportal
-            tableName:  organisation_members
-            validate:  true   
+            defaultNullValue: false
+            tableName: organisation_members
+            validate: true   
                             
