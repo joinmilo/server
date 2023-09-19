@@ -58,7 +58,6 @@ public class InfoMediaCategoryApi extends CrudApi<InfoMediaCategoryEntity, InfoM
 
   @Override
   @GraphQLMutation(name = "deleteInfoMediaCategory")
-  @AdminPermission
   public Boolean deleteOne(@GraphQLArgument(name = CrudApi.id) String id) {
     return super.deleteOne(id);
   }
