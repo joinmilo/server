@@ -57,7 +57,7 @@ databaseChangeLog:
     - include:
         file: database/changes/0030.migrate_data_events.yaml          
     - include:
-        file: database/changes/0031.add_column_favorite_events_users.yaml    
+        file: database/changes/0031.add_column_favorite_events.yaml    
     - include:
         file: database/changes/0032.migrate_data_schedules.yaml    
     - include:
@@ -119,11 +119,11 @@ databaseChangeLog:
     - include:
         file: database/changes/0062.create_table_deal_visitors.yaml
     - include:
-        file: database/changes/0063.add_column_favorite_deals_users.yaml   
+        file: database/changes/0063.add_column_favorite_deals.yaml   
     - include:
         file: database/changes/0064.migrate_data_organisations.yaml    
     - include:
-        file: database/changes/0065.add_column_favorite_organisations_users.yaml
+        file: database/changes/0065.add_column_favorite_organisations.yaml        
     - include:
         file: database/changes/0068.create_table_organisation_ratings.yaml
     - include:
@@ -155,9 +155,9 @@ databaseChangeLog:
     - include:
         file: database/changes/0082.create_table_survey_result_translatables.yaml
     - include:
-        file: database/changes/0083.create_table_question_translatables.yaml   
+        file: database/changes/0083.create_table_survey_question_translatables.yaml   
     - include:
-        file: database/changes/0084.create_table_question_option_translatables.yaml
+        file: database/changes/0084.create_table_survey_question_option_translatables.yaml
     - include:
         file: database/changes/0085.create_tables_theme_variables_and_themes.yaml  
     - include:
@@ -233,17 +233,17 @@ databaseChangeLog:
     - include:
         file: database/changes/0125.create_table_contest_comments.yaml
     - include:
-        file: database/changes/0126.create_table_contest_comment_translatables.yaml  
-    - include:        
-        file: database/changes/0127.add_columns_to_suburbs.yaml    
+        file: database/changes/0126.create_table_contest_comment_translatables.yaml    
     - include:                 
-        file: database/changes/0128.create_table_role_privilege_translatables.yaml  
+        file: database/changes/0127.add_columns_to_suburbs.yaml   
     - include:                 
-        file: database/changes/0129.create_table_role_privileges.yaml                      
+        file: database/changes/0128.create_table_role_privileges.yaml                      
     - include:                 
-        file: database/changes/0130.create_table_role_application_translatables.yaml   
+        file: database/changes/0129.create_table_role_privilege_translatables.yaml  
     - include:                 
-        file: database/changes/0131.create_table_role_applications.yaml  
+        file: database/changes/0130.create_table_privilege_applications.yaml                                
+    - include:                 
+        file: database/changes/0131.create_table_privilege_application_translatables.yaml   
     - include:
         file: database/changes/0132.migrate_data_providers.yaml
     - include:
@@ -263,7 +263,7 @@ databaseChangeLog:
     - include:                 
         file: database/changes/0141.create_table_user_deletions.yaml   
     - include:                 
-        file: database/changes/0142.create_table_user_deletion_translatables.yaml            
+        file: database/changes/0142.create_table_user_deletion_translatables.yaml      
                 
     #Data section        
     - include:
