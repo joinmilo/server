@@ -44,22 +44,7 @@ public class FeatureApi extends CrudApi<FeatureEntity, FeatureService> {
 
   @Override
   @GraphQLMutation(name = "saveFeature")
-  @AdminPermission
   public FeatureEntity saveOne(@GraphQLArgument(name = CrudApi.entity) FeatureEntity entity) {
     return super.saveOne(entity);
-  }
-
-  @Override
-  @GraphQLMutation(name = "deleteFeatures")
-  @AdminPermission
-  public Boolean deleteAll(@GraphQLArgument(name = CrudApi.ids) List<String> ids) {
-    return super.deleteAll(ids);
-  }
-
-  @Override
-  @GraphQLMutation(name = "deleteFeature")
-  @AdminPermission
-  public Boolean deleteOne(@GraphQLArgument(name = CrudApi.id) String id) {
-    return super.deleteOne(id);
   }
 }
