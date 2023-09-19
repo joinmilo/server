@@ -7,6 +7,7 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import app.wooportal.server.core.base.BaseEntity;
+import app.wooportal.server.core.i18n.annotations.Translatable;
 import app.wooportal.server.core.i18n.components.label.translations.LabelTranslatablesEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -23,6 +24,9 @@ import lombok.Setter;
 public class LabelEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
+  
+  @Translatable
+  private String content;
 
   @Column(nullable = false, unique = true)
   private String tagId;

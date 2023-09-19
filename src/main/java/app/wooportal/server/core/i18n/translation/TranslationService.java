@@ -125,15 +125,16 @@ public class TranslationService {
       String longestContentField) throws Throwable {
     var translatables = new ArrayList<TranslatableEntity<BaseEntity>>();
     TranslatableEntity<BaseEntity> defaultTranslatable = null;
-    var detectedLocale = detectLocale(sourceFields.get(longestContentField));
+    
+    var locale = detectLocale(sourceFields.get(longestContentField));
     var defaultLocale = localeService.getDefaultLocale();
     
     for (var language : languageService.readAll(
         languageService.collectionQuery(
             languageService.getPredicate().withActive())).getList()) {
       var translatable = getTranslatableInstance(translatableClass, language, savedEntity);
-      if (detectedLocale.isPresent() && language.getLocale().equals(detectedLocale.get())
-          || detectedLocale.isEmpty() && language.getLocale().equals(defaultLocale)) {
+      if (locale.isPresent() && language.getLocale().equals(locale.get())
+          || locale.isEmpty() && language.getLocale().equals(defaultLocale)) {
         defaultTranslatable = translatable;
       } else {
         translatables.add(translatable);
@@ -142,8 +143,8 @@ public class TranslationService {
 
     saveDefaultTranslation(defaultTranslatable, sourceFields);
     
-    if (detectedLocale.isPresent()) {        
-      saveAutoTranslations(translatables, sourceFields, detectedLocale.get());
+    if (locale.isPresent()) {        
+      saveAutoTranslations(translatables, sourceFields, locale.get());
     }
   }
 
