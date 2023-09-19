@@ -63,7 +63,7 @@ public class VideoMigration implements CustomTaskChange {
             v.modified,
             v.thumbnail_id,
             v.url
-        FROM wooportal.organisation_videos ov
+        FROM organisation_videos ov
         LEFT JOIN videos v on v.id = ov.video_id;
       """);
     
@@ -108,7 +108,7 @@ public class VideoMigration implements CustomTaskChange {
             v.modified,
             v.thumbnail_id,
             v.url
-        FROM wooportal.markup_videos mv
+        FROM markup_videos mv
         LEFT JOIN videos v on v.id = mv.video_id;
       """);
     

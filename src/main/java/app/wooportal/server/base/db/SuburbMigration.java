@@ -25,6 +25,8 @@ public class SuburbMigration implements CustomTaskChange {
   private ValidationErrors errors = new ValidationErrors();
 
   private JdbcConnection connection;
+  
+  private String place;
 
   @Override
   public String getConfirmationMessage() {
@@ -38,17 +40,35 @@ public class SuburbMigration implements CustomTaskChange {
     locationConfig.setServiceSubscriptionKey(serviceSubscriptionKey);
     locationConfig.setAddressUrl("http://dev.virtualearth.net/REST/v1/Locations/DE");
     bingMapService = new BingMapService(locationConfig, null);
+    
+    place = getPlace();
   }
 
   private String getLocationKey() {
-    var location = System.getenv("WOOPORTAL_LOCATION_KEY");
+    var place = System.getenv("WOOPORTAL_LOCATION_KEY");
+    
+    place = place != null && !place.isBlank()
+        ? place
+        : System.getProperty("location.key");
+    
+    if (place == null || place.isBlank()) {
+      var message = "No location key found. Set either ENV WOOPORTAL_LOCATION_KEY or VM argument -Dlocation.key";
+      errors.addError(message);
+    } else {
+      return place;
+    }
+    return null;
+  }
+  
+  private String getPlace() {
+    var location = System.getenv("WOOPORTAL_LOCATION_CITY");
     
     location = location != null && !location.isBlank()
         ? location
-        : System.getProperty("location.key");
+        : System.getProperty("location.place");
     
     if (location == null || location.isBlank()) {
-      var message = "No location key found. Set either ENV WOOPORTAL_LOCATION_KEY or VM argument -Dlocation.key";
+      var message = "No location key found. Set either ENV WOOPORTAL_LOCATION_CITY or VM argument -Dlocation.place";
       errors.addError(message);
     } else {
       return location;
@@ -90,7 +110,7 @@ public class SuburbMigration implements CustomTaskChange {
       var suburb = new SuburbEntity();
       suburb.setName(suburbsResultSet.getString("name"));
       var address = new AddressEntity();
-      address.setPlace("Wuppertal");
+      address.setPlace(place);
       address.setSuburb(suburb);
 
       try {
