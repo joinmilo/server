@@ -51,14 +51,12 @@ public class ArticleCategoryApi extends CrudApi<ArticleCategoryEntity, ArticleCa
 
   @Override
   @GraphQLMutation(name = "deleteArticleCategories")
-  @AdminPermission
   public Boolean deleteAll(@GraphQLArgument(name = CrudApi.ids) List<String> ids) {
     return super.deleteAll(ids);
   }
 
   @Override
   @GraphQLMutation(name = "deleteArticleCategory")
-  @AdminPermission
   public Boolean deleteOne(@GraphQLArgument(name = CrudApi.id) String id) {
     return super.deleteOne(id);
   }
