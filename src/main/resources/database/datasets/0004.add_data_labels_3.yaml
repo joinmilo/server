@@ -322,7 +322,7 @@ databaseChangeLog:
             sql:
                /*!40101 SET character_set_client = utf8 */;
                /* Set variables */
-               SET @tagId   = "types";
+               SET @tagId   = "contestTypes";
                SET @german  = "Wettbewerbsarten";
                SET @english = "contest types";
 
