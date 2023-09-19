@@ -58,7 +58,6 @@ public class ReportTypeApi extends CrudApi<ReportTypeEntity, ReportTypeService> 
 
   @Override
   @GraphQLMutation(name = "deleteReportType")
-  @AdminPermission
   public Boolean deleteOne(@GraphQLArgument(name = CrudApi.id) String id) {
     return super.deleteOne(id);
   }

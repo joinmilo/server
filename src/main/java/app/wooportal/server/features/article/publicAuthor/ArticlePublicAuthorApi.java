@@ -58,7 +58,6 @@ public class ArticlePublicAuthorApi extends CrudApi<ArticlePublicAuthorEntity, A
 
   @Override
   @GraphQLMutation(name = "deleteArticlePublicAuthor")
-  @AdminPermission
   public Boolean deleteOne(@GraphQLArgument(name = CrudApi.id) String id) {
     return super.deleteOne(id);
   }

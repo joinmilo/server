@@ -81,6 +81,26 @@ databaseChangeLog:
               - column:
                   constraints:
                     nullable: false
+                    primaryKey: true
+                    primaryKeyName: report_media_primary_key
+                  name: id
+                  type: CHAR(36)
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  name: created
+                  type: datetime
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  name: modified
+                  type: datetime
+                                    
+              - column:
+                  constraints:
+                    nullable: false
                   name: report_id
                   type: CHAR(36)
               - column:
@@ -88,13 +108,6 @@ databaseChangeLog:
                     nullable: false
                   name: media_id
                   type: CHAR(36)                 
-              - column:
-                  constraints:
-                    nullable: false
-                    primaryKey: true
-                    primaryKeyName: report_media_primary_key
-                  name: id
-                  type: CHAR(36)
             tableName: report_media
         - sql:
             comment: set char set for mysql
