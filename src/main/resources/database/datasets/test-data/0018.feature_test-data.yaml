@@ -14,4 +14,4 @@ databaseChangeLog:
                 UPDATE
                 features f
                 SET 
-                f.active = true;
+                f.active = true, f.released = true;

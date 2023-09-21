@@ -34,6 +34,8 @@ public class FeatureEntity extends BaseEntity {
   
   @Translatable
   private String name;
+  
+  private Boolean released;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "feature")
   private Set<PageEmbeddingEntity> embeddings;

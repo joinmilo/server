@@ -282,6 +282,8 @@ databaseChangeLog:
         file: database/datasets/0006.roles_privileges_data.yaml
     - include:
         file: database/datasets/0007.add_data_admin_footer.yaml
+    - include:
+        file: database/datasets/0008.feature_activition_data.yaml
         
      #Cleanups
     - include:
@@ -324,8 +326,8 @@ databaseChangeLog:
         file: database/datasets/test-data/0016.info_media-test-data.yaml
     - include:
         file: database/datasets/test-data/0017.friends-test-data.yaml
-    - include:
-        file: database/datasets/test-data/0018.feature_test-data.yaml
+    #- include:
+    #    file: database/datasets/test-data/0018.feature_test-data.yaml
     - include:
         file: database/datasets/test-data/0019.menu_test-data.yaml
                                                               

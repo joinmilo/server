@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+
+  - changeSet:
+      id: 0008.feature_activition_data
+      author: codeschluss
+      changes:
+        - sql:
+            comment: set inital released features
+            splitStatements: true
+            sql:
+                /*!40101 SET character_set_client = utf8 */;
+                    
+                UPDATE features SET released = true;
+                
+                UPDATE features SET released = false, active = false
+                WHERE code in ('surveys', 'contests', 'forms');

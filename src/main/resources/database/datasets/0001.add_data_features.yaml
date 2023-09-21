@@ -7,17 +7,17 @@
         - sql:
             comment: Add Features
             splitStatements: true
-            sql: insert into features (id, `code`, `icon`) values
-              ('cf2b4b5d-df3a-4f79-9cfd-61679c57bd16', 'authors', 'pen-fancy'),
-              ('41cdbfa8-e751-41d4-b893-5c7215ec55e9', 'calendar', 'calendar-days'),
-              ('492fa827-9fb4-4294-906d-b85e5bdb6890', 'contests', 'trophy'),
-              ('8f1faa18-3204-4ab1-9f71-18317d1a3d89', 'deals', 'tags'),
-              ('17d083d2-3bf0-4efb-97ef-17d08cba37f4', 'forms', 'folder-open'),
-              ('0633fd36-707a-42ee-878f-21e43f458aa9', 'guestarticle', 'user-pen'),
-              ('b93928cc-ec57-4848-96af-26d8284ffcd1', 'map', 'map-location-dot'),
-              ('909fca09-78bb-42dd-95d0-164ceb1d9192', 'media', 'photo-film'),
-              ('bc1e70f7-5e83-484a-8f44-2a6485727ce9', 'reports', 'message'),
-              ('909d5070-f915-4891-b78b-1ef83690fddf', 'surveys', 'square-poll-vertical');
+            sql: insert into features (id, `code`, `icon`, `released`) values
+              ('cf2b4b5d-df3a-4f79-9cfd-61679c57bd16', 'authors', 'pen-fancy', true),
+              ('41cdbfa8-e751-41d4-b893-5c7215ec55e9', 'calendar', 'calendar-days', true),
+              ('492fa827-9fb4-4294-906d-b85e5bdb6890', 'contests', 'trophy', false),
+              ('8f1faa18-3204-4ab1-9f71-18317d1a3d89', 'deals', 'tags', true),
+              ('17d083d2-3bf0-4efb-97ef-17d08cba37f4', 'forms', 'folder-open', false),
+              ('0633fd36-707a-42ee-878f-21e43f458aa9', 'guestarticle', 'user-pen', true),
+              ('b93928cc-ec57-4848-96af-26d8284ffcd1', 'map', 'map-location-dot', true),
+              ('909fca09-78bb-42dd-95d0-164ceb1d9192', 'media', 'photo-film', true),
+              ('bc1e70f7-5e83-484a-8f44-2a6485727ce9', 'reports', 'message', true),
+              ('909d5070-f915-4891-b78b-1ef83690fddf', 'surveys', 'square-poll-vertical', false);
                 
   - changeSet:
       id: 0001.add_data_features.2
@@ -30,15 +30,15 @@
                 /*!40101 SET character_set_client = utf8 */;
                     
                 UPDATE features f
-                SET f.code = "events", f.icon = "calendar"
+                SET f.code = "events", f.icon = "calendar", f.released = true
                 WHERE f.code = "activities";
                 
                 UPDATE features f
-                SET f.code = "articles", f.icon = "newspaper"
+                SET f.code = "articles", f.icon = "newspaper", f.released = true
                 WHERE f.code = "blogposts";
                 
                 UPDATE features f
-                SET f.icon = "people-group"
+                SET f.icon = "people-group", f.released = true
                 WHERE f.code = "organisations";
                      
   - changeSet:

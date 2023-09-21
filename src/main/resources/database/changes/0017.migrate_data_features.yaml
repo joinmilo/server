@@ -30,6 +30,9 @@ databaseChangeLog:
                 name: active
                 type: BOOLEAN
             - column:
+                name: released
+                type: BOOLEAN
+            - column:
                   name: icon
                   type: VARCHAR(255)
           tableName: features
