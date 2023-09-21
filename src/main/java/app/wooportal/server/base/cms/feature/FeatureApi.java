@@ -47,4 +47,9 @@ public class FeatureApi extends CrudApi<FeatureEntity, FeatureService> {
   public FeatureEntity saveOne(@GraphQLArgument(name = CrudApi.entity) FeatureEntity entity) {
     return super.saveOne(entity);
   }
+  
+  @GraphQLMutation(name = "changeActivation")
+  public Boolean changeActivation(String featureId, Boolean active) {
+    return service.changeActivation(featureId, active);
+  }
 }

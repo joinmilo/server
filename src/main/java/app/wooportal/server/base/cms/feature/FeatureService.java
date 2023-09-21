@@ -2,40 +2,54 @@ package app.wooportal.server.base.cms.feature;
 
 import java.util.Optional;
 import org.springframework.stereotype.Service;
+import app.wooportal.server.base.cms.menuItem.MenuItemService;
 import app.wooportal.server.core.base.DataService;
 import app.wooportal.server.core.repository.DataRepository;
+import app.wooportal.server.core.utils.ReflectionUtils;
 
 @Service
 public class FeatureService extends DataService<FeatureEntity, FeaturePredicateBuilder> {
   
   public static String articlesFeature = "articles";
-  
   public static String authorsFeature = "authors";
-  
   public static String calendarFeature = "calendar";
-  
   public static String contestsFeature = "contests";
-  
   public static String dealsFeature = "deals";
-  
   public static String eventsFeature = "events";
-  
   public static String formsFeature = "forms";
-  
   public static String guestarticleFeature = "guestarticle";
-  
   public static String mapFeature = "map";
-  
   public static String mediaFeature = "media";
-  
   public static String organisationsFeature = "organisations";
-  
   public static String reportsFeature = "reports";
-  
-  public static String surveysRole = "surveys";
+  public static String surveysFeature = "surveys";
 
-  public FeatureService(DataRepository<FeatureEntity> repo, FeaturePredicateBuilder predicate) {
+  public FeatureService(
+      DataRepository<FeatureEntity> repo,
+      FeaturePredicateBuilder predicate,
+      MenuItemService menuItemService) {
     super(repo, predicate);
+   
+    addService("menuItems", menuItemService);
+  }
+  
+  public Boolean changeActivation(String featureId, Boolean active) {
+    var feature = repo.findOne(
+        singleQuery(predicate.withId(featureId)).addGraph(graph("menuItems"))
+    );
+    
+    if (feature.isPresent()) {
+      var newFeature = ReflectionUtils.copy(feature.get());
+      newFeature.setActive(active);
+      
+      if (active == null || !active) {
+        newFeature.setMenuItems(null);
+      }
+
+      save(newFeature);
+      return true;      
+    }
+    return false;
   }
   
   public FeatureEntity getArticlesFeature() {
@@ -158,11 +172,11 @@ public class FeatureService extends DataService<FeatureEntity, FeaturePredicateB
     return feature.get();
   }
   
-  public FeatureEntity getSurveysRole() {
-    var feature = getByKey(surveysRole);
+  public FeatureEntity getSurveysFeature() {
+    var feature = getByKey(surveysFeature);
     
     if (feature.isEmpty()) {
-      throw new RuntimeException("Include Feature: " + surveysRole);
+      throw new RuntimeException("Include Feature: " + surveysFeature);
     }
     
     return feature.get();
@@ -171,4 +185,5 @@ public class FeatureService extends DataService<FeatureEntity, FeaturePredicateB
   public Optional<FeatureEntity> getByKey(String code) {
     return repo.findOne(singleQuery(predicate.withCode(code)));
   }
+
 }

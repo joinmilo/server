@@ -495,7 +495,7 @@ public abstract class DataService<E extends BaseEntity, P extends PredicateBuild
           persisted,
           ReflectionUtils.isFieldTypeOfObject(persisted, fieldName, Set.class)
             ? new HashSet<>(result) : result
-      ); 
+      );
     } 
     
     if (persistedSubEntities.isPresent()
