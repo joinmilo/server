@@ -11,7 +11,7 @@ public class DealService extends DataService<DealEntity, DealPredicateBuilder> {
     super(repo, predicate);
   }
   
-  public Boolean sponsorDeal(String dealId) {
+  public Boolean sponsor(String dealId) {
     var Deal = getById(dealId);
     
     if (Deal.isPresent()) {

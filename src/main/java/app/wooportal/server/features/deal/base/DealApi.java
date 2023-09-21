@@ -61,6 +61,6 @@ public class DealApi extends CrudApi<DealEntity, DealService> {
   
   @GraphQLMutation(name = "sponsorDeal")
   public Boolean sponsorDeal(String dealId) {
-    return service.sponsorDeal(dealId);
+    return service.sponsor(dealId);
   }
 }

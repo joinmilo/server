@@ -75,8 +75,14 @@ public class ArticleApi extends CrudApi<ArticleEntity, ArticleService> {
     return commentService.getMostRecentByArticle(article.getId());
   }
   
+  @GraphQLMutation(name = "changeArticleApproval")
+  public Boolean changeArticleApproval(String articleId) {
+    return service.changeApproval(articleId);
+  }
+  
   @GraphQLMutation(name = "sponsorArticle")
   public Boolean sponsorArticle(String articleId) {
-    return service.sponsorArticle(articleId);
+    return service.sponsor(articleId);
   }
+
 }

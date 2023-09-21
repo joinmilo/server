@@ -47,8 +47,20 @@ public class ArticleService extends DataService<ArticleEntity, ArticlePredicateB
       addContext("approved", context);
     }
   }
+  
+  public Boolean changeApproval(String articleId) {
+    var article = getById(articleId);
+    
+    if (article.isPresent()) {
+      article.get().setApproved(!article.get().getApproved());
+      repo.save(article.get());
+      
+      return true;
+    }
+    return false;
+  }
 
-  public Boolean sponsorArticle(String articleId) {
+  public Boolean sponsor(String articleId) {
     var article = getById(articleId);
     
     if (article.isPresent()) {

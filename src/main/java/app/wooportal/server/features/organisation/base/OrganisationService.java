@@ -20,7 +20,7 @@ public class OrganisationService extends DataService<OrganisationEntity, Organis
     addService("contact", contactService);
   }
   
-  public Boolean sponsorOrganisation(String rganisationId) {
+  public Boolean sponsor(String rganisationId) {
     var rganisation = getById(rganisationId);
     
     if (rganisation.isPresent()) {

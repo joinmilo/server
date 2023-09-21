@@ -17,7 +17,7 @@ public class EventService extends DataService<EventEntity, EventPredicateBuilder
    
   }
   
-  public Boolean sponsorEvent(String eventId) {
+  public Boolean sponsor(String eventId) {
     var event = getById(eventId);
     
     if (event.isPresent()) {
