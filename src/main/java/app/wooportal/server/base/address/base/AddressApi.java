@@ -1,5 +1,8 @@
 package app.wooportal.server.base.address.base;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.List;
 import java.util.Optional;
 import javax.naming.ServiceUnavailableException;
@@ -66,8 +69,14 @@ public class AddressApi extends CrudApi<AddressEntity, AddressService> {
   }
   
   @GraphQLMutation(name = "verifyAddress")
-  public AddressEntity verifyAddress(
-      @GraphQLArgument(name = CrudApi.entity) AddressEntity entity) throws NotFoundException, ServiceUnavailableException {
-    return mapService.retrieveExternalAddress(entity);
+  public AddressEntity verifyAddress(@GraphQLArgument(name = CrudApi.entity) AddressEntity entity)
+      throws ServiceUnavailableException {
+    try {
+      return mapService.retrieveExternalAddress(entity);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return null;
   }
 }
+  
