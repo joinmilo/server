@@ -263,7 +263,21 @@ databaseChangeLog:
     - include:                 
         file: database/changes/0141.create_table_user_deletions.yaml   
     - include:                 
-        file: database/changes/0142.create_table_user_deletion_translatables.yaml      
+        file: database/changes/0142.create_table_user_deletion_translatables.yaml  
+    - include:                 
+        file: database/changes/0143.create_table_news_feed.yaml
+    - include:                 
+        file: database/changes/0144.create_table_news_feed_translatables.yaml     
+    - include:                 
+        file: database/changes/0145.create_table_milestones.yaml   
+    - include:                 
+        file: database/changes/0146.create_table_milestone_translatables.yaml   
+    - include:                 
+        file: database/changes/0147.create_table_milestone_media.yaml    
+    - include:                 
+        file: database/changes/0148.create_table_milestone_element.yaml 
+    - include:                 
+        file: database/changes/0149.create_table_milestone_element_translatables.yaml           
                 
     #Data section        
     - include:
