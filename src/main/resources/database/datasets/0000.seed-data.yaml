@@ -157,6 +157,7 @@ databaseChangeLog:
             splitStatements: true
             sql: insert into news_feeds (id) values
               ('20c26551-1ac2-40ba-bbc6-0eaac63327e2'),
+              ('8ca140dc-a78b-4bb6-91e1-568fd37e6821'),              
               ('0a14bce0-437d-4ecc-9480-e939fcaad280');   
               
   - changeSet:
@@ -167,14 +168,19 @@ databaseChangeLog:
             comment: Add data news_feed_translatables
             splitStatements: true
             sql: insert into news_feed_translatables (id, parent_id, language_id, `content`)
-                 select uuid(), "20c26551-1ac2-40ba-bbc6-0eaac63327e2", l.id, "New feature Deals"
+                 select uuid(), "20c26551-1ac2-40ba-bbc6-0eaac63327e2", l.id, "Mediathek für Einrichtungen"
                  from languages l
                  WHERE l.locale = "de";
                  
                  insert into news_feed_translatables (id, parent_id, language_id, `content`)
-                 select uuid(), "0a14bce0-437d-4ecc-9480-e939fcaad280", l.id, "New Feature Mediathek"
+                 select uuid(), "0a14bce0-437d-4ecc-9480-e939fcaad280", l.id, "Neu dabei - Kleinanzeigen"
                  from languages l
-                 WHERE l.locale = "de";      
+                 WHERE l.locale = "de";    
+                 
+                 insert into news_feed_translatables (id, parent_id, language_id, `content`)
+                 select uuid(), "8ca140dc-a78b-4bb6-91e1-568fd37e6821", l.id, "Performance-Verbesserung"
+                 from languages l
+                 WHERE l.locale = "de";                     
                  
   - changeSet:
       id: 0000.seed-data.13
