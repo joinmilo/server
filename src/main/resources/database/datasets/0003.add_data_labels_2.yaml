@@ -5682,7 +5682,7 @@ databaseChangeLog:
             sql:
                /*!40101 SET character_set_client = utf8 */;
                /* Set variables */
-               SET @tagId   = "createNewSuburbs";
+               SET @tagId   = "createNewSuburb";
                SET @german  = "Neuen Stadtteil anlegen";
                SET @english = "Create new suburb";
 
@@ -5713,7 +5713,7 @@ databaseChangeLog:
                /*!40101 SET character_set_client = utf8 */;
                /* Set variables */
                SET @tagId   = "areYouSureToCancel?";
-               SET @german  = "Deine Änderungen sind nicht gespeichert. Bist du sicher, dass die Seite verlassen möchten?";
+               SET @german  = "Deine Änderungen sind nicht gespeichert. Bist du sicher, dass du abbrechen möchtest?";
                SET @english = "Your changes are not saved. Are you sure you want to leave the site?";
 
                /* Insert */
@@ -5745,6 +5745,36 @@ databaseChangeLog:
                SET @tagId   = "areYouSureToReset?";
                SET @german  = "Bist du sicher, dass du eine Änderungen verwerfen möchtest?";
                SET @english = "Are you sure you want to discard changes??";
+
+               /* Insert */
+               insert into labels (`id`, `tag_id`) values
+               (uuid(), @tagId COLLATE utf8mb4_unicode_ci);
+                
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @german COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "de";
+
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @english COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "en";
+               
+  - changeSet:
+      id: 0003.add_data_labels_2.191
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add labels
+            splitStatements: true
+            sql:
+               /*!40101 SET character_set_client = utf8 */;
+               /* Set variables */
+               SET @tagId   = "savedSuccessfully";
+               SET @german  = "Erfolgreich gespeichert";
+               SET @english = "Saved successfully";
 
                /* Insert */
                insert into labels (`id`, `tag_id`) values
