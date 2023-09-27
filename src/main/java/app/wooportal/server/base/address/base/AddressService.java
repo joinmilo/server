@@ -1,5 +1,6 @@
 package app.wooportal.server.base.address.base;
 
+import java.util.Optional;
 import javax.naming.ServiceUnavailableException;
 import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -26,8 +27,30 @@ public class AddressService extends DataService<AddressEntity, AddressPredicateB
   }
   
   @Override
-  public void preSave(AddressEntity entity, AddressEntity newEntity, JsonNode context) {
+  public Optional<AddressEntity> getExisting(AddressEntity entity) {
+    return entity != null
+        && entity.getStreet() != null
+        && entity.getHouseNumber() != null
+        && entity.getPlace() != null
+        && entity.getPostalCode() != null
+          ? getByAddress(entity)
+          : Optional.empty();
+  }
+  
+  private Optional<AddressEntity> getByAddress(AddressEntity entity) {
+    var result = repo.findAll(collectionQuery(predicate.withStreet(entity.getStreet()))
+        .and(predicate.withHouseNumber(entity.getHouseNumber()))
+        .and(predicate.withPlace(entity.getPlace()))
+        .and(predicate.withPostalCode(entity.getPostalCode()))
+    );
+    
+    return result != null && !result.isEmpty()
+        ? Optional.ofNullable(result.get(0))
+        : Optional.empty();
+  }
 
+  @Override
+  public void preSave(AddressEntity entity, AddressEntity newEntity, JsonNode context) {
     try {
      var address = this.mapService.retrieveExternalAddress(newEntity);
      newEntity.setLatitude(address.getLatitude());

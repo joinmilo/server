@@ -24,6 +24,7 @@ import app.wooportal.server.core.location.model.address.Point;
 import app.wooportal.server.core.location.model.route.BingMapLocationResult;
 import app.wooportal.server.core.location.model.route.RouteResource;
 import app.wooportal.server.core.location.model.route.RouteResourceSet;
+import app.wooportal.server.core.utils.StringUtils;
 
 @Service
 public class BingMapService implements MapService {
@@ -57,25 +58,25 @@ public class BingMapService implements MapService {
     UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(config.getAddressUrl());
     
     if (newAddress.getPlace() != null) {            
-      builder.pathSegment(newAddress.getPlace());
+      builder.pathSegment(StringUtils.replaceUmlauts(newAddress.getPlace()));
     }
     
-    if (newAddress.getSuburb() != null) {            
-      builder.pathSegment(newAddress.getSuburb().getName());
+    if (newAddress.getSuburb() != null && newAddress.getSuburb().getName() != null) {            
+      builder.pathSegment(StringUtils.replaceUmlauts(newAddress.getSuburb().getName()));
     } 
         
     if (newAddress.getStreet() != null) {
-      var addressLine = newAddress.getStreet();
+      var addressLine = StringUtils.replaceUmlauts(newAddress.getStreet());
       
       if (newAddress.getHouseNumber() != null) {
-        addressLine += " " + newAddress.getHouseNumber();
+        addressLine += " " + StringUtils.replaceUmlauts(newAddress.getHouseNumber());
       }
       
       builder.pathSegment(addressLine);
     }
     
     if (newAddress.getPostalCode() != null) {
-      builder.pathSegment(newAddress.getPostalCode());
+      builder.pathSegment(StringUtils.replaceUmlauts(newAddress.getPostalCode()));
     }
 
     builder.queryParam("key", config.getServiceSubscriptionKey());
