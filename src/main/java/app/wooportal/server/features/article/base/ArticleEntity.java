@@ -73,9 +73,6 @@ public class ArticleEntity extends BaseEntity {
   @Column(nullable = false)
   private Boolean sponsored;
 
-  @Translatable
-  private String title;
-
   @ManyToOne(fetch = FetchType.LAZY)
   private ArticleCategoryEntity category;
 

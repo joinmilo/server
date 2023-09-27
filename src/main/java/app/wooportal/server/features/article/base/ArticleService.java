@@ -6,6 +6,7 @@ import app.wooportal.server.core.base.DataService;
 import app.wooportal.server.core.captcha.CaptchaService;
 import app.wooportal.server.core.error.exception.BadParamsException;
 import app.wooportal.server.core.repository.DataRepository;
+import app.wooportal.server.core.security.services.AuthenticationService;
 import app.wooportal.server.features.article.media.ArticleMediaService;
 import app.wooportal.server.features.article.publicAuthor.ArticlePublicAuthorService;
 
@@ -13,14 +14,17 @@ import app.wooportal.server.features.article.publicAuthor.ArticlePublicAuthorSer
 public class ArticleService extends DataService<ArticleEntity, ArticlePredicateBuilder> {
 
   private final CaptchaService captchaService;
+  private final AuthenticationService authService;
 
   public ArticleService(DataRepository<ArticleEntity> repo,
       ArticlePredicateBuilder predicate,
       CaptchaService captchaService,
       ArticleMediaService articleMediaService,
-      ArticlePublicAuthorService publicAuthorService) {
+      ArticlePublicAuthorService publicAuthorService,
+      AuthenticationService authService) {
     super(repo, predicate);
     this.captchaService = captchaService;
+    this.authService = authService;
     
     addService("publicAuthor", publicAuthorService);
     addService("uploads", articleMediaService);
@@ -41,10 +45,24 @@ public class ArticleService extends DataService<ArticleEntity, ArticlePredicateB
       addContext("sponsored", context);
     }
     
-    //TODO: This is easy to break
-    if (newEntity.getAuthor() == null) {      
-      newEntity.setApproved(false);
-      addContext("approved", context);
+    var currentUser = authService.getAuthenticatedUser();
+
+    if (currentUser != null && !currentUser.isEmpty()) {
+       newEntity.setAuthor(currentUser.get().getUserContext());
+       addContext("author", context);
+
+      currentUser.get().getRoles().forEach(role -> {
+        role.getPrivileges().forEach(privilege -> {
+          if ("articles-manage".equals(privilege.getCode())
+              || "articles-admin".equals(privilege.getCode())) {
+            newEntity.setApproved(true);
+            addContext("approved", context);
+          } else {
+            newEntity.setApproved(false);
+            addContext("approved", context);
+          }
+        });
+      });
     }
   }
   
