@@ -24,7 +24,7 @@ public class SuburbEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
 
-  @Column(nullable = false)
+  @Column(nullable = false, unique = true)
   private String name;
 
   @Column(nullable = false)

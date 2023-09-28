@@ -16,4 +16,16 @@ public class ArticleMediaPredicateBuilder
   public BooleanExpression freeSearch(String term) {
     return query.media.name.likeIgnoreCase(term);
   }
+  
+  public BooleanExpression withArticle(String articleId) {
+    return articleId != null
+        ? query.article.id.eq(articleId)
+        : null;
+  }
+
+  public BooleanExpression withMedia(String mediaId) {
+    return mediaId != null
+        ? query.media.id.eq(mediaId)
+        : null;
+  }
 }

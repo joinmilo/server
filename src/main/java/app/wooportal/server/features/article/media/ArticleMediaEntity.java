@@ -2,8 +2,10 @@ package app.wooportal.server.features.article.media;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.media.base.MediaEntity;
 import app.wooportal.server.features.article.base.ArticleEntity;
@@ -18,7 +20,8 @@ import lombok.Setter;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @AllArgsConstructor
 @Entity
-@Table(name = "article_media")
+@Table(name = "article_media", uniqueConstraints = 
+    @UniqueConstraint(columnNames = { "media_id", "article_id" }))
 public class ArticleMediaEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
@@ -28,9 +31,11 @@ public class ArticleMediaEntity extends BaseEntity {
   private Boolean title = false;
   
   @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(nullable = false)
   private ArticleEntity article;
   
   @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(nullable = false)
   private MediaEntity media;
   
 }

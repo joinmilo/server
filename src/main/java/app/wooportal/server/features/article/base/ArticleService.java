@@ -6,6 +6,7 @@ import app.wooportal.server.core.base.DataService;
 import app.wooportal.server.core.captcha.CaptchaService;
 import app.wooportal.server.core.error.exception.BadParamsException;
 import app.wooportal.server.core.repository.DataRepository;
+import app.wooportal.server.core.security.components.user.UserEntity;
 import app.wooportal.server.core.security.services.AuthenticationService;
 import app.wooportal.server.features.article.media.ArticleMediaService;
 import app.wooportal.server.features.article.publicAuthor.ArticlePublicAuthorService;
@@ -33,38 +34,47 @@ public class ArticleService extends DataService<ArticleEntity, ArticlePredicateB
   @Override
   public void preCreate(ArticleEntity entity, ArticleEntity newEntity, JsonNode context) {
 
-    // TODO: Make an hook for specific validations
-    if (newEntity.getCaptchaToken() != null && !newEntity.getCaptchaToken().isEmpty()) {
-      captchaService.verifyToken(newEntity.getCaptchaToken());
-    } else {
-      throw new BadParamsException("Captcha token empty or null", null);
-    }
-    
+    //TODO privilege 
     if (newEntity.getSponsored() == null) {
       newEntity.setSponsored(false);
       addContext("sponsored", context);
     }
-    
+
     var currentUser = authService.getAuthenticatedUser();
 
     if (currentUser != null && !currentUser.isEmpty()) {
-       newEntity.setAuthor(currentUser.get().getUserContext());
-       addContext("author", context);
+      newEntity.setAuthor(currentUser.get().getUserContext());
+      addContext("author", context);
 
-      currentUser.get().getRoles().forEach(role -> {
-        role.getPrivileges().forEach(privilege -> {
-          if ("articles-manage".equals(privilege.getCode())
-              || "articles-admin".equals(privilege.getCode())) {
-            newEntity.setApproved(true);
-            addContext("approved", context);
-          } else {
-            newEntity.setApproved(false);
-            addContext("approved", context);
-          }
-        });
-      });
+      if (this.validatePrivilege(currentUser.get())) {
+        newEntity.setApproved(true);
+        addContext("approved", context);
+      }
+
+      else {
+
+        newEntity.setApproved(false);
+        addContext("approved", context);
+
+        if (newEntity.getCaptchaToken() != null && !newEntity.getCaptchaToken().isEmpty()) {
+          captchaService.verifyToken(newEntity.getCaptchaToken());
+        } else {
+          throw new BadParamsException("Captcha token empty or null", null);
+        }
+      }
     }
   }
+  
+  private boolean validatePrivilege(UserEntity currentUser) {
+    return currentUser.getRoles().stream()
+            .flatMap(role -> role.getPrivileges().stream())
+            .anyMatch(privilege -> "articles-manage".equals(privilege.getCode()) 
+                || "admin".equals(privilege.getCode()) 
+                || "manage".equals(privilege.getCode()) 
+                || "articles-admin".equals(privilege.getCode()));
+}
+
+
   
   public Boolean changeApproval(String articleId) {
     var article = getById(articleId);
