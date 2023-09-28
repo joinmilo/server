@@ -16,7 +16,6 @@ import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 @Component
 public class MilestoneApi extends CrudApi<MilestoneEntity, MilestoneService> {
 
-
   public MilestoneApi(MilestoneService service) {
     super(service);
   }

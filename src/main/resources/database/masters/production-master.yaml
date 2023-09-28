@@ -298,6 +298,8 @@ databaseChangeLog:
         file: database/datasets/0007.add_data_admin_footer.yaml
     - include:
         file: database/datasets/0008.feature_activition_data.yaml
+    - include:
+        file: database/datasets/0009.add_milestones.yaml
         
     #Cleanups
     - include:
