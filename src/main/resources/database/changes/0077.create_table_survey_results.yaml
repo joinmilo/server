@@ -51,7 +51,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: user_context_id
-            indexName: idx_fkjaoph4yxcz9c7u1t2ma0ejxpt
+            indexName: idx_fk_survey_results_user_context_id
             tableName: survey_results
   - changeSet:
       id: 0077.create_table_survey_results.3
@@ -60,7 +60,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: user_context_id
             baseTableName: survey_results
-            constraintName: fkjaoph4yxcz9c7u1t2ma0ejxpt
+            constraintName: fk_survey_results_user_context_id
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE
@@ -77,7 +77,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: survey_id
-            indexName: idx_fkr6vmdnkqnv12ctsztpe00gigc
+            indexName: idx_fk_survey_results_survey_id
             tableName: survey_results
   - changeSet:
       id: 0077.create_table_survey_results.5
@@ -86,7 +86,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: survey_id
             baseTableName: survey_results
-            constraintName: fkr6vmdnkqnv12ctsztpe00gigc
+            constraintName: fk_survey_results_survey_id
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE

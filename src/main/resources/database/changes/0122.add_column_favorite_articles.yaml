@@ -39,7 +39,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: article_id
-            indexName: idx_fku965q0986xx0kp64o85gxfqm8
+            indexName: idx_fk_favorite_articles_article_id
             tableName: favorite_articles
   - changeSet:
       id: 0122.add_column_favorite_articles.3
@@ -49,7 +49,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: user_context_id
-            indexName: idx_fkxmsc8etvbwtduligexlnl4lcu
+            indexName: idx_fk_favorite_articles_user_context_id
             tableName: favorite_articles
   - changeSet:
       id: 0122.add_column_favorite_articles.4
@@ -58,7 +58,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: article_id
             baseTableName: favorite_articles
-            constraintName: fku965q0986xx0kp64o85gxfqm8
+            constraintName: fk_favorite_articles_article_id
             initiallyDeferred: false
             onDelete: CASCADE
             onUpdate: CASCADE
@@ -72,7 +72,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: user_context_id
             baseTableName: favorite_articles
-            constraintName: fkxmsc8etvbwtduligexlnl4lcu
+            constraintName: fk_favorite_articles_user_context_id
             deferrable: false
             initiallyDeferred: false
             onDelete: CASCADE

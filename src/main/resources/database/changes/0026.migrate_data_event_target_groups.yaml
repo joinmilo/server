@@ -61,10 +61,21 @@ databaseChangeLog:
       id: 0026.migrate_data_event_target_groups.7
       author: codeschluss
       changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: event_id
+            indexName: idx_fk_event_event_target_groups_event_id
+            tableName: event_event_target_groups            
+            
+  - changeSet:
+      id: 0026.migrate_data_event_target_groups.8
+      author: codeschluss
+      changes:
         - addForeignKeyConstraint:
             baseColumnNames: event_id
             baseTableName: event_event_target_groups
-            constraintName: CONSTRAINT_8C7DC395
+            constraintName: fk_event_event_target_groups_event_id
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE
@@ -72,3 +83,5 @@ databaseChangeLog:
             referencedColumnNames: id
             referencedTableName: activities
             validate: true  
+            
+            

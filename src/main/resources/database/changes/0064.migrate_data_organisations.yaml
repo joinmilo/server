@@ -30,7 +30,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: contact_id
-            indexName: idx_fk307r0o15615cc4o5aupzeqk72
+            indexName: idx_fk_organisations_contact_id
             tableName: organisations
   - changeSet:
       id: 0064.migrate_data_organisations.3
@@ -39,7 +39,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: contact_id
             baseTableName: organisations
-            constraintName: fk307r0o15615cc4o5aupzeqk72
+            constraintName: fk_organisations_contact_id
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE

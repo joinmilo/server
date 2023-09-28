@@ -64,7 +64,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: language_id
-            indexName: idx_fkqyd469n2y85es2ptacjwlksld
+            indexName: idx_fk_users_language_id
             tableName: users
   - changeSet:
       id: 0005.migrate_data_users.6
@@ -73,7 +73,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: language_id
             baseTableName: users
-            constraintName: fkqyd469n2y85es2ptacjwlksld
+            constraintName: fk_users_language_id
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE

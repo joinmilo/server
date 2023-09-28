@@ -51,7 +51,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: milestone_id
-            indexName: idx_fknavim5m0891d5vz93q432qjje
+            indexName: idx_fk_milestone_media-milestone_id
             tableName: milestone_media
   - changeSet:
       id: 0145.create_table_media.3
@@ -60,7 +60,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: milestone_id
             baseTableName: milestone_media
-            constraintName: fknavim5m0891d5vz93q432qjje
+            constraintName: fk_milestone_media-milestone_id
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE

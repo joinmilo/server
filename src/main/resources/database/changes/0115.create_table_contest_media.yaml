@@ -63,7 +63,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: contest_id
-            indexName: idx_fknpq8cj0ofi4gy93r80rijn0dk
+            indexName: idx_fk_contest_media_contest_id
             tableName: contest_media
   - changeSet:
       id: 0115.create_table_contest_media.3
@@ -72,7 +72,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: contest_id
             baseTableName: contest_media
-            constraintName: fknpq8cj0ofi4gy93r80rijn0dk
+            constraintName: fk_contest_media_contest_id
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE

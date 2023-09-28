@@ -56,7 +56,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: parent_id
-            indexName: idx_fks9xsq5w7t10dyqi2bsoctz6d2
+            indexName: idx_fk_survey_answer_translatables_parent_id
             tableName: survey_answer_translatables
   - changeSet:
       id: 0080.create_table_survey_answer_translatables.3
@@ -65,7 +65,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: parent_id
             baseTableName: survey_answer_translatables
-            constraintName: fks9xsq5w7t10dyqi2bsoctz6d2
+            constraintName: fk_survey_answer_translatables_parent_id
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE
@@ -82,7 +82,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: language_id
-            indexName: idx_fka44ep5763q6w0wsbmnbt80gc3
+            indexName: idx_fk_survey_answer_translatables_language_id
             tableName: survey_answer_translatables
   - changeSet:
       id: 0080.create_table_survey_answer_translatables.5
@@ -91,7 +91,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: language_id
             baseTableName: survey_answer_translatables
-            constraintName: fka44ep5763q6w0wsbmnbt80gc3
+            constraintName: fk_survey_answer_translatables_language_id
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE

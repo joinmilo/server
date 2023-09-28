@@ -96,7 +96,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: platform_id
-            indexName: idx_fkozl3n2u8tkokye3gtrxfcuboe
+            indexName: idx_fk_apps_platform_id
             tableName: apps
   - changeSet:
       id: 0092.create_table_apps.4
@@ -105,7 +105,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: platform_id
             baseTableName: apps
-            constraintName: fkozl3n2u8tkokye3gtrxfcuboe
+            constraintName: fk_apps_platform_id
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE

@@ -96,7 +96,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: type_id
-            indexName: idx_fkabl4o8x6510i9d7e1wvm3oh7i
+            indexName: idx_fk_contests_type_id
             tableName: contests
   - changeSet:
       id: 0046.create_table_contests.3
@@ -105,7 +105,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: type_id
             baseTableName: contests
-            constraintName: fkabl4o8x6510i9d7e1wvm3oh7i
+            constraintName: fk_contests_type_id
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE
@@ -122,7 +122,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: contact_id
-            indexName: idx_fkox1n47yolbab9h90mxqikbcdt
+            indexName: idx_fk_contests_contact_id
             tableName: contests
   - changeSet:
       id: 0046.create_table_contests.7
@@ -131,7 +131,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: contact_id
             baseTableName: contests
-            constraintName: fkox1n47yolbab9h90mxqikbcdt
+            constraintName: fk_contests_contact_id
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE

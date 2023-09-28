@@ -63,7 +63,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: deal_id
-            indexName: idx_fkezjk9vvwoca6xkc2x25nogl16
+            indexName: idx_fk_deal_media_deal_id
             tableName: deal_media
   - changeSet:
       id: 0117.create_table_media.3
@@ -72,7 +72,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: deal_id
             baseTableName: deal_media
-            constraintName: fkezjk9vvwoca6xkc2x25nogl16
+            constraintName: fk_deal_media_deal_id
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE

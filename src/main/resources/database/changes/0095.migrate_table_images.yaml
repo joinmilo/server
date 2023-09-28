@@ -54,7 +54,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: thumbnail_id
-            indexName: idx_fkjx3xwnvp4nzh2iufgec4z8p80
+            indexName: idx_fk_media_thumbnail_id
             tableName: media
   - changeSet:
       id: 0095.migrate_table_images.6
@@ -63,7 +63,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: thumbnail_id
             baseTableName: media
-            constraintName: fkjx3xwnvp4nzh2iufgec4z8p80
+            constraintName: fk_media_thumbnail_id
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE
@@ -79,7 +79,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: attribution_id
-            indexName: idx_fkhn65ag729eao40o9a5w9sg8s0
+            indexName: idx_fk_media_attribution_id
             tableName: media
   - changeSet:
       id: 0095.migrate_table_images.8
@@ -88,7 +88,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: attribution_id
             baseTableName: media
-            constraintName: fkhn65ag729eao40o9a5w9sg8s0
+            constraintName: fk_media_attribution_id
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE

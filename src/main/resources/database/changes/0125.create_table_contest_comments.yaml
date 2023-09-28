@@ -52,7 +52,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: user_context_id
-            indexName: idx_fk5m67abythm5ytsgbb56vz07aa
+            indexName: idx_fk_contest_comments_user_context_id
             tableName: contest_comments
   - changeSet:
       id: 0125.create_table_contest_comments.3
@@ -61,7 +61,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: user_context_id
             baseTableName: contest_comments
-            constraintName: fk5m67abythm5ytsgbb56vz07aa
+            constraintName: fk_contest_comments_user_context_id
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE
@@ -78,7 +78,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: contest_id
-            indexName: idx_fkty961vfow4d2l05doipa26m1y
+            indexName: idx_fk_contest_comments_contest_id
             tableName: contest_comments
   - changeSet:
       id: 0125.create_table_contest_comments.5
@@ -87,7 +87,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: contest_id
             baseTableName: contest_comments
-            constraintName: fkty961vfow4d2l05doipa26m1y
+            constraintName: fk_contest_comments_contest_id
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE

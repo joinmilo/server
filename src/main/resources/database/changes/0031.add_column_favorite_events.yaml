@@ -39,7 +39,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: event_id
-            indexName: idx_fkt0dawfxvo9je41nk5zw9a6p7q
+            indexName: idx_fk_favorite_events_event_id
             tableName: favorite_events
   - changeSet:
       id: 0031.add_column_favorite_events.3
@@ -49,7 +49,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: user_context_id
-            indexName: idx_fk9296ucsbtt4e5slrs2he8xbyn
+            indexName: idx_fk_favorite_events_user_context_id
             tableName: favorite_events
   - changeSet:
       id: 0031.add_column_favorite_events.4
@@ -58,7 +58,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: event_id
             baseTableName: favorite_events
-            constraintName: fkt0dawfxvo9je41nk5zw9a6p7q
+            constraintName: fk_favorite_events_event_id
             initiallyDeferred: false
             onDelete: CASCADE
             onUpdate: CASCADE
@@ -72,7 +72,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: user_context_id
             baseTableName: favorite_events
-            constraintName: fk9296ucsbtt4e5slrs2he8xbyn
+            constraintName: fk_favorite_events_user_context_id
             deferrable: false
             initiallyDeferred: false
             onDelete: CASCADE

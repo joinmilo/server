@@ -51,7 +51,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: user_id
-            indexName: idx_fknaejljnqhdia1kkqi7zw9y2ga
+            indexName: idx_fk_verifications_user_id
             tableName: verifications
   - changeSet:
       id: 0089.create_table_verifications.3
@@ -60,7 +60,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: user_id
             baseTableName: verifications
-            constraintName: fknaejljnqhdia1kkqi7zw9y2ga
+            constraintName: fk_verifications_user_id
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE

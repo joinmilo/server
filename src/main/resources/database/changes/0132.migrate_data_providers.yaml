@@ -24,7 +24,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: user_context_id
-            indexName: idx_fkf5z4qzb5v92nclpeudnw2gilq
+            indexName: idx_fk_providers_user_context_id
             tableName: providers
   - changeSet:
       id: 0132.migrate_data_providers.3
@@ -33,7 +33,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: user_context_id
             baseTableName: providers
-            constraintName: fkf5z4qzb5v92nclpeudnw2gilq
+            constraintName: fk_providers_user_context_id
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE

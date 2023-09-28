@@ -63,7 +63,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: user_context_id
-            indexName: idx_fktvur37xg6bhm8xubrk7bh7gjc
+            indexName: idx_fk_user_context_media_user_context_id
             tableName: user_context_media
   - changeSet:
       id: 0119.create_table_user_context_media.3
@@ -72,7 +72,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: user_context_id
             baseTableName: user_context_media
-            constraintName: fktvur37xg6bhm8xubrk7bh7gjc
+            constraintName: fk_user_context_media_user_context_id
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE

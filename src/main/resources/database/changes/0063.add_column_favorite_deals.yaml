@@ -39,7 +39,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: deal_id
-            indexName: idx_fkra9h3xledcfypzvxlnuu84tka
+            indexName: idx_fk_favorite_deals_deal_id
             tableName: favorite_deals
   - changeSet:
       id: 0063.add_column_favorite_deals.3
@@ -49,7 +49,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: user_context_id
-            indexName: idx_fkyork7aboj7uaj69r330hhf4sm
+            indexName: idx_fk_favorite_deals_user_context_id
             tableName: favorite_deals
   - changeSet:
       id: 0063.add_column_favorite_deals.4
@@ -58,7 +58,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: deal_id
             baseTableName: favorite_deals
-            constraintName: fkra9h3xledcfypzvxlnuu84tka
+            constraintName: fk_favorite_deals_deal_id
             initiallyDeferred: false
             onDelete: CASCADE
             onUpdate: CASCADE
@@ -72,7 +72,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: user_context_id
             baseTableName: favorite_deals
-            constraintName: fkyork7aboj7uaj69r330hhf4sm
+            constraintName: fk_favorite_deals_user_context_id
             deferrable: false
             initiallyDeferred: false
             onDelete: CASCADE
