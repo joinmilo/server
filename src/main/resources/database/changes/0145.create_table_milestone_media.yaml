@@ -1,7 +1,7 @@
 databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
-      id: 0147.create_table_media.1
+      id: 0145.create_table_media.1
       author: codeschluss
       changes:
         - createTable:
@@ -44,7 +44,7 @@ databaseChangeLog:
             sql: ALTER TABLE milestone_media CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;            
 
   - changeSet:
-      id: 0147.create_table_media.2
+      id: 0145.create_table_media.2
       author: codeschluss
       changes:
         - createIndex:
@@ -54,7 +54,7 @@ databaseChangeLog:
             indexName: idx_fknavim5m0891d5vz93q432qjje
             tableName: milestone_media
   - changeSet:
-      id: 0147.create_table_media.3
+      id: 0145.create_table_media.3
       author: codeschluss
       changes:
         - addForeignKeyConstraint:

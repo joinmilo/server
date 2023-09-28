@@ -1,7 +1,7 @@
 databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
-      id: 0146.create_milestone_translatables.1
+      id: 0144.create_milestone_translatables.1
       author: codeschluss
       changes:
         - createTable:
@@ -49,7 +49,7 @@ databaseChangeLog:
             sql: ALTER TABLE milestone_translatables CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;             
 
   - changeSet:
-      id: 0146.create_milestone_translatables.2
+      id: 0144.create_milestone_translatables.2
       author: codeschluss
       changes:
         - createIndex:
@@ -59,7 +59,7 @@ databaseChangeLog:
             indexName: idx_fk56nzw7vy87oecafik7xxjk51k
             tableName: milestone_translatables
   - changeSet:
-      id: 0146.create_milestone_translatables.3
+      id: 0144.create_milestone_translatables.3
       author: codeschluss
       changes:
         - addForeignKeyConstraint:
@@ -75,7 +75,7 @@ databaseChangeLog:
             validate: true   
             
   - changeSet:
-      id: 0146.create_milestone_translatables.4
+      id: 0144.create_milestone_translatables.4
       author: codeschluss
       changes:
         - createIndex:
@@ -85,7 +85,7 @@ databaseChangeLog:
             indexName: idx_fkymvsattahid415i1894q3r9da
             tableName: milestone_translatables
   - changeSet:
-      id: 0146.create_milestone_translatables.5
+      id: 0144.create_milestone_translatables.5
       author: codeschluss
       changes:
         - addForeignKeyConstraint:

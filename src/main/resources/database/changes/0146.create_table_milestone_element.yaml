@@ -1,7 +1,7 @@
 databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
-      id: 0148.create_table_milestone_elements.1
+      id: 0146.create_table_milestone_elements.1
       author: codeschluss
       changes:
         - createTable:
@@ -39,7 +39,7 @@ databaseChangeLog:
             sql: ALTER TABLE milestone_elements CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;             
 
   - changeSet:
-      id: 0148.create_table_milestone_element.2
+      id: 0146.create_table_milestone_element.2
       author: codeschluss
       changes:
         - createIndex:
@@ -49,7 +49,7 @@ databaseChangeLog:
             indexName: idx_fk5u12mjvo5r2dznsf5s9gpm9pr
             tableName: milestone_elements
   - changeSet:
-      id: 0148.create_table_milestone_element.3
+      id: 0146.create_table_milestone_element.3
       author: codeschluss
       changes:
         - addForeignKeyConstraint:

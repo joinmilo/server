@@ -5004,7 +5004,7 @@ databaseChangeLog:
                AND l.locale = "en";    
 
   - changeSet:
-      id: 0002.add_data_labels.165
+      id: 0002.add_data_labels.167
       author: codeschluss
       changes:
         - sql:
@@ -5034,7 +5034,7 @@ databaseChangeLog:
                AND l.locale = "en";   
                
   - changeSet:
-      id: 0002.add_data_labels.166
+      id: 0002.add_data_labels.168
       author: codeschluss
       changes:
         - sql:
@@ -5044,8 +5044,8 @@ databaseChangeLog:
                /*!40101 SET character_set_client = utf8 */;
                /* Set variables */
                SET @tagId   = "welcomeTextBlock2";
-               SET @german  = "Wir freuen uns, euch unser neuestes Release vorstellen zu dürfen! Mit dieser Aktualisierung bringen wir spannende neue Funktionen und Verbesserungen.";
-               SET @english = "We are excited to introduce our latest release to you! With this update, we bring exciting new features and improvements.";
+               SET @german  = "Wir freuen uns, euch unser neuestes Release vorstellen zu dürfen! Wir haben das Portal komplett neu entwickelt und haben so den Grundstein für eine langfristige Entwicklung gelegt. Mit der ersten Version des neuen Portals präsentieren wir spannende neue Funktionen und Verbesserungen.";
+               SET @english = "We are happy to introduce you to our latest release! We have completely redeveloped the portal and have thus laid the foundation for long-term development. With the first version of the portal we are presenting exciting new features and improvements.";
 
                /* Insert */
                insert into labels (`id`, `tag_id`) values
@@ -5061,10 +5061,10 @@ databaseChangeLog:
                select uuid(), p.id, l.id, @english COLLATE utf8mb4_unicode_ci
                from labels p, languages l
                WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
-               AND l.locale = "en";   
+               AND l.locale = "en";
 
   - changeSet:
-      id: 0002.add_data_labels.167
+      id: 0002.add_data_labels.169
       author: codeschluss
       changes:
         - sql:
@@ -5094,7 +5094,7 @@ databaseChangeLog:
                AND l.locale = "en";    
                
   - changeSet:
-      id: 0002.add_data_labels.168
+      id: 0002.add_data_labels.170
       author: codeschluss
       changes:
         - sql:
@@ -5104,8 +5104,8 @@ databaseChangeLog:
                /*!40101 SET character_set_client = utf8 */;
                /* Set variables */
                SET @tagId   = "welcomeTextBlock4";
-               SET @german  = "Bei Fragen einfach melden!";
-               SET @english = "If you have any questions, please feel free to reach out!";
+               SET @german  = "Wir entwickeln euer Portal ständig weiter. Weiter unten könnt ihr die aktuelle Roadmap einsehen. Wir laden euch außerdem ein, eure Verbesserungsvorschläge und Ideen mit uns zu teilen, um das Portal gemeinsam mit euch langfristig weiterzuentwickeln.";
+               SET @english = "We are constantly developing your portal. You can see the current roadmap below. We also invite you to share your suggestions for improvements and ideas with us in order to further develop the portal together with you in the long term.";
 
                /* Insert */
                insert into labels (`id`, `tag_id`) values
@@ -5124,7 +5124,7 @@ databaseChangeLog:
                AND l.locale = "en";    
                
   - changeSet:
-      id: 0002.add_data_labels.169
+      id: 0002.add_data_labels.171
       author: codeschluss
       changes:
         - sql:
@@ -5133,9 +5133,9 @@ databaseChangeLog:
             sql:
                /*!40101 SET character_set_client = utf8 */;
                /* Set variables */
-               SET @tagId   = "newsFeed";
-               SET @german  = "News feed";
-               SET @english = "News feed";
+               SET @tagId   = "welcomeTextBlock5";
+               SET @german  = "Bei Fragen einfach melden!";
+               SET @english = "If you have any questions, please feel free to reach out!";
 
                /* Insert */
                insert into labels (`id`, `tag_id`) values

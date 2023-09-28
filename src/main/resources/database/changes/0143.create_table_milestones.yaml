@@ -1,7 +1,7 @@
 databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
-      id: 0145.create_table_milestones.1
+      id: 0143.create_table_milestones.1
       author: codeschluss
       changes:
         - createTable:
@@ -38,8 +38,3 @@ databaseChangeLog:
             endDelimiter: \nGO
             splitStatements: true
             sql: ALTER TABLE milestones CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;             
-
-
-
-                    
-  
