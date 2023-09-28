@@ -1,5 +1,6 @@
 package app.wooportal.server.base.milestone;
 
+import java.time.OffsetDateTime;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -33,7 +34,7 @@ public class MilestoneEntity extends BaseEntity {
   private String name;
   
   @Column(nullable = false)
-  private Integer order;
+  private OffsetDateTime endDate;
   
   @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
   private Set<MilestoneTranslatableEntity> translatables;

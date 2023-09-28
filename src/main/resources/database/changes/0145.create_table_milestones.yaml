@@ -28,8 +28,9 @@ databaseChangeLog:
               - column:
                   constraints:
                     nullable: false
-                  name: order
-                  type: INTEGER                                                                                                                                                                                                           
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  name: end_date
+                  type: datetime                                                                                                                                                                                                         
             tableName: milestones
         - sql:
             comment: set char set for mysql

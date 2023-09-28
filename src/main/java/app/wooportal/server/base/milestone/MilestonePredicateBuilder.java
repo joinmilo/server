@@ -13,6 +13,6 @@ public class MilestonePredicateBuilder extends PredicateBuilder<QMilestoneEntity
 
   @Override
   public BooleanExpression freeSearch(String term) {
-    return null;
+    return query.name.likeIgnoreCase(term);
   }
 }
