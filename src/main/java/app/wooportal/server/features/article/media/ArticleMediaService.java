@@ -1,5 +1,6 @@
 package app.wooportal.server.features.article.media;
 
+import java.util.Optional;
 import org.springframework.stereotype.Service;
 import app.wooportal.server.core.base.DataService;
 import app.wooportal.server.core.media.base.MediaService;
@@ -16,5 +17,18 @@ public class ArticleMediaService
     super(repo, predicate);
     
     addService("media", mediaService);
+  }
+  
+  @Override
+  public Optional<ArticleMediaEntity> getExisting(ArticleMediaEntity entity) {
+    return entity != null
+        && entity.getMedia() != null
+        && entity.getMedia().getId() != null
+        && entity.getArticle() != null
+        && entity.getArticle().getId() != null
+       ? repo.findOne(singleQuery(predicate.withMedia(entity.getMedia().getId()))
+           .and(predicate.withArticle(entity.getArticle().getId()))
+         )
+       : Optional.empty();
   }
 }
