@@ -63,7 +63,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: survey_id
-            indexName: idx_fku898e4vqsdxm8zhk6wwmf7kyv
+            indexName: idx_fk_survey_media_survey_id
             tableName: survey_media
   - changeSet:
       id: 0118.create_table_survey_media.3
@@ -72,7 +72,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: survey_id
             baseTableName: survey_media
-            constraintName: fku898e4vqsdxm8zhk6wwmf7kyv
+            constraintName: fk_survey_media_survey_id
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE

@@ -56,7 +56,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: feature_id
-            indexName: idx_fkwtr324z26vpij2l2vwdgf7x0c
+            indexName: idx_fk_page_embeddings_feature_id
             tableName: page_embeddings
   - changeSet:
       id: 0022.create_table_page_embeddings.3
@@ -65,7 +65,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: feature_id
             baseTableName: page_embeddings
-            constraintName: fkwtr324z26vpij2l2vwdgf7x0c
+            constraintName: fk_page_embeddings_feature_id
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE
@@ -82,7 +82,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: page_id
-            indexName: idx_fkdgcaa3m9gek1bh8fhycstp0uv
+            indexName: idx_fk_page_embeddings_page_id
             tableName: page_embeddings
   - changeSet:
       id: 0022.create_table_page_embeddings.5
@@ -91,7 +91,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: page_id
             baseTableName: page_embeddings
-            constraintName: fkdgcaa3m9gek1bh8fhycstp0uv
+            constraintName: fk_page_embeddings_page_id
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE

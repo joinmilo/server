@@ -46,7 +46,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: milestone_id
-            indexName: idx_fk5u12mjvo5r2dznsf5s9gpm9pr
+            indexName: idx_fk_milestone_elements_milestone_id
             tableName: milestone_elements
   - changeSet:
       id: 0146.create_table_milestone_element.3
@@ -55,7 +55,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: milestone_id
             baseTableName: milestone_elements
-            constraintName: fk5u12mjvo5r2dznsf5s9gpm9pr
+            constraintName: fk_milestone_elements_milestone_id
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE

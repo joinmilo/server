@@ -47,14 +47,25 @@ databaseChangeLog:
             endDelimiter: \nGO
             splitStatements: true
             sql: ALTER TABLE error_messages CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;            
+ 
   - changeSet:
       id: 0091.create_table_error_messages.2
+      author: codeschluss
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: language_id
+            indexName: idx_fk_error_messages_user_id
+            tableName: error_messages
+  - changeSet:
+      id: 0091.create_table_error_messages.3
       author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: language_id
             baseTableName: error_messages
-            constraintName: fka23delwy5drt6plakma5ne8ff
+            constraintName: fk_error_messages_user_id
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE

@@ -57,7 +57,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: user_id
-            indexName: idx_fkoa4vzd4mzr6mvt4vh4o0drftk
+            indexName: idx_fk_privilege_applications_user_id
             tableName: privilege_applications
   - changeSet:
       id: 0130.create_table_privilege_applications.3
@@ -66,7 +66,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: user_id
             baseTableName: privilege_applications
-            constraintName: fkoa4vzd4mzr6mvt4vh4o0drftk
+            constraintName: fk_privilege_applications_user_id
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE
@@ -83,7 +83,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: privilege_id
-            indexName: idx_fk8epiuule5ldv210fhiz4h76u5
+            indexName: idx_fk_privilege_applications_privilege_id
             tableName: privilege_applications
   - changeSet:
       id: 0130.create_table_privilege_applications.5
@@ -92,7 +92,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: privilege_id
             baseTableName: privilege_applications
-            constraintName: fk8epiuule5ldv210fhiz4h76u5
+            constraintName: fk_privilege_applications_privilege_id
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE

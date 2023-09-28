@@ -39,7 +39,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: role_id
-            indexName: idx_fkqjfvo9dkcg6ecd4c64j7iksjt
+            indexName: idx_fk_user_roles_role_id
             tableName: user_roles
             
   - changeSet:
@@ -50,7 +50,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: user_id
-            indexName: idx_fkalu4y1a3wjsvyljzgsvisbtw7
+            indexName: idx_fk_user_roles_user_id 
             tableName: user_roles 
             
   - changeSet:
@@ -60,7 +60,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: role_id
             baseTableName: user_roles
-            constraintName: fkqjfvo9dkcg6ecd4c64j7iksjt
+            constraintName: fk_user_roles_role_id
             deferrable: false
             initiallyDeferred: false
             onDelete: CASCADE
@@ -75,7 +75,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: user_id
             baseTableName: user_roles
-            constraintName: fkalu4y1a3wjsvyljzgsvisbtw7
+            constraintName: fk_user_roles_user_id
             deferrable: false
             initiallyDeferred: false
             onDelete: CASCADE
@@ -94,6 +94,6 @@ databaseChangeLog:
                   name: user_id
               - column:
                   name: role_id
-            indexName: idx_ukc8uysexawf7i37tkjzgmtrl93
+            indexName: uc_user_roles_user_id_role_id
             tableName: user_roles
             unique: true                                

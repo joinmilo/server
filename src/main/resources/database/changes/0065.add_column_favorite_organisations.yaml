@@ -39,7 +39,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: organisation_id
-            indexName: idx_ijh7urzf90se2izu91v2qcc05
+            indexName: idx_fk_favorite_organisations_organisation_id
             tableName: favorite_organisations
   - changeSet:
       id: 0065.add_column_favorite_organisations.3
@@ -49,7 +49,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: user_context_id
-            indexName: idx_fkkwqc86ge3wwnjd6kb870uifot
+            indexName: idx_fk_favorite_organisations_user_context_id
             tableName: favorite_organisations
   - changeSet:
       id: 0065.add_column_favorite_organisations.4
@@ -58,7 +58,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: organisation_id
             baseTableName: favorite_organisations
-            constraintName: fkijh7urzf90se2izu91v2qcc05
+            constraintName: fk_favorite_organisations_organisation_id
             initiallyDeferred: false
             onDelete: CASCADE
             onUpdate: CASCADE
@@ -72,7 +72,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: user_context_id
             baseTableName: favorite_organisations
-            constraintName: fkkwqc86ge3wwnjd6kb870uifot
+            constraintName: fk_favorite_organisations_user_context_id
             deferrable: false
             initiallyDeferred: false
             onDelete: CASCADE

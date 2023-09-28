@@ -44,7 +44,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: public_author_id
-            indexName: idx_fkxslps3ku90a7z43lzxgxm1n3g
+            indexName: idx_fk_articles_public_author_id
             tableName: articles
   - changeSet:
       id: 0039.migrate_data_articles.4
@@ -53,7 +53,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: public_author_id
             baseTableName: articles
-            constraintName: fkxslps3ku90a7z43lzxgxm1n3g
+            constraintName: fk_articles_public_author_id
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE
@@ -70,7 +70,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: author_id
-            indexName: idx_fkq6egww5u9qs1yc6jebdabs7sb
+            indexName: idx_fk_articles_author_id
             tableName: articles
   - changeSet:
       id: 0039.migrate_data_articles.8
@@ -79,7 +79,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: author_id
             baseTableName: articles
-            constraintName: fkq6egww5u9qs1yc6jebdabs7sb
+            constraintName: fk_articles_author_id
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE
@@ -114,7 +114,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: category_id
-            indexName: idx_CONSTRAINT_J3O98DC
+            indexName: idx_fk_articles_category_id
             tableName: articles
   - changeSet:
       id: 0039.migrate_data_articles.12
@@ -123,7 +123,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: category_id
             baseTableName: articles
-            constraintName: CONSTRAINT_J3O98DC
+            constraintName: fk_articles_category_id
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE

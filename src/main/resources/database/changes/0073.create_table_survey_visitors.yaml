@@ -56,7 +56,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: visitor_id
-            indexName: idx_fkbrhw7r0a98xjmg7u6h4k3t2ey
+            indexName: idx_fk_survey_visitors_visitor_id
             tableName: survey_visitors
   - changeSet:
       id: 0073.create_table_survey_visitors.3
@@ -65,7 +65,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: visitor_id
             baseTableName: survey_visitors
-            constraintName: fkbrhw7r0a98xjmg7u6h4k3t2ey
+            constraintName: fk_survey_visitors_visitor_id
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE
@@ -82,7 +82,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: parent_id
-            indexName: idx_fkapy9jylw56tf3u8qrgckq15rl
+            indexName: idx_fk_survey_visitors_parent_id
             tableName: survey_visitors
   - changeSet:
       id: 0073.create_table_survey_visitors.5
@@ -91,7 +91,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: parent_id
             baseTableName: survey_visitors
-            constraintName: fkapy9jylw56tf3u8qrgckq15rl
+            constraintName: fk_survey_visitors_parent_id
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE

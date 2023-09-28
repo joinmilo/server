@@ -56,7 +56,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: template_id
-            indexName: idx_fkbbibsfuimtf7it4ct41acot23
+            indexName: idx_fk_message_definitions_template_id
             tableName: message_definitions
   - changeSet:
       id: 0009.create_table_message_definitions.5
@@ -65,7 +65,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: template_id
             baseTableName: message_definitions
-            constraintName: fkbbibsfuimtf7it4ct41acot23
+            constraintName: fk_message_definitions_template_id
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE
@@ -113,7 +113,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: message_definition_id
-            indexName: idx_fkhqvbmwjwnn5h28seljws3jnrw
+            indexName: idx_fk_message_definition_channels_message_definition_id
             tableName: message_definition_channels
   - changeSet:
       id: 0009.create_table_message_definitions.8
@@ -123,7 +123,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: channel_id
-            indexName: idx_fkc79xb2x7d8epwn7bhr3wphtvs
+            indexName: idx_fk_message_definition_channels_channel_id
             tableName: message_definition_channels
   - changeSet:
       id: 0009.create_table_message_definitions.9
@@ -132,7 +132,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: message_definition_id
             baseTableName: message_definition_channels
-            constraintName: fkhqvbmwjwnn5h28seljws3jnrw
+            constraintName: fk_message_definition_channels_message_definition_id
             initiallyDeferred: false
             onDelete: CASCADE
             onUpdate: CASCADE
@@ -146,7 +146,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: channel_id
             baseTableName: message_definition_channels
-            constraintName: fkc79xb2x7d8epwn7bhr3wphtvs
+            constraintName: fk_message_definition_channels_channel_id
             deferrable: false
             initiallyDeferred: false
             onDelete: CASCADE
@@ -194,7 +194,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: message_definition_id
-            indexName: idx_fk1n0ch8tm44rjsr8vbj5hohhbo
+            indexName: idx_fk_message_definition_users_message_definition_id
             tableName: message_definition_users
   - changeSet:
       id: 0009.create_table_message_definitions.13
@@ -204,7 +204,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: user_id
-            indexName: idx_fkz5v0rbz2kpwncicq0skfkx3qs
+            indexName: idx_fk_message_definition_users_user_id
             tableName: message_definition_users
   - changeSet:
       id: 0009.create_table_message_definitions.14
@@ -213,7 +213,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: message_definition_id
             baseTableName: message_definition_users
-            constraintName: fk1n0ch8tm44rjsr8vbj5hohhbo
+            constraintName: fk_message_definition_users_message_definition_id
             initiallyDeferred: false
             onDelete: CASCADE
             onUpdate: CASCADE
@@ -227,7 +227,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: user_id
             baseTableName: message_definition_users
-            constraintName: fkz5v0rbz2kpwncicq0skfkx3qs
+            constraintName: fk_message_definition_users_user_id
             deferrable: false
             initiallyDeferred: false
             onDelete: CASCADE

@@ -100,7 +100,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: theme_id
-            indexName: idx_fkh2ywg3uu4jr93wbn93r8tde51
+            indexName: idx_fk_theme_variables_theme_id
             tableName: theme_variables
   - changeSet:
       id: 0085.create_tables_theme_variables_and_themes.4
@@ -109,7 +109,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: theme_id
             baseTableName: theme_variables
-            constraintName: fkh2ywg3uu4jr93wbn93r8tde51
+            constraintName: fk_theme_variables_theme_id
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE

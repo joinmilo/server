@@ -57,7 +57,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: configuration_id
-            indexName: idx_fkmm1o1ld21oydkr26t52fps832
+            indexName: idx_fk_event_attendees_configuration_id
             tableName: event_attendees
   - changeSet:
       id: 0034.create_table_event_attendees.3
@@ -66,7 +66,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: configuration_id
             baseTableName: event_attendees
-            constraintName: fkmm1o1ld21oydkr26t52fps832
+            constraintName: fk_event_attendees_configuration_id
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE
@@ -83,7 +83,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: user_context_id
-            indexName: idx_fkyl69iohfpfem75tbu40fi9ok3
+            indexName: idx_fk_event_attendees_user_context_id
             tableName: event_attendees
   - changeSet:
       id: 0034.create_table_event_attendees.5
@@ -92,7 +92,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: user_context_id
             baseTableName: event_attendees
-            constraintName: fkyl69iohfpfem75tbu40fi9ok3
+            constraintName: fk_event_attendees_user_context_id
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE

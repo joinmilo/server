@@ -56,7 +56,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: parent_id
-            indexName: idx_fk0qs23p1tzjwx0soccpepaemyf
+            indexName: idx_fk_message_definition_translatables_parent_id
             tableName: message_definition_translatables
   - changeSet:
       id: 00010.create_table_message_definition_translatables.3
@@ -65,7 +65,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: parent_id
             baseTableName: message_definition_translatables
-            constraintName: fk0qs23p1tzjwx0soccpepaemyf
+            constraintName: fk_message_definition_translatables_parent_id
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE
@@ -82,7 +82,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: language_id
-            indexName: idx_fkj6q2kv8nde5n69drlrz5jqp3s
+            indexName: idx_fk_message_definition_translatables_language_id
             tableName: message_definition_translatables
   - changeSet:
       id: 00010.create_table_message_definition_translatables.5
@@ -91,7 +91,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: language_id
             baseTableName: message_definition_translatables
-            constraintName: fkj6q2kv8nde5n69drlrz5jqp3s
+            constraintName: fk_message_definition_translatables_language_id
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE

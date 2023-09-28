@@ -56,7 +56,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: parent_id
-            indexName: idx_fkjbz5peclz4brj1silu8imi3v8
+            indexName: idx_fk_feature_translatables_parent_id
             tableName: feature_translatables
   - changeSet:
       id: 0020.create_table_feature_translatables.3
@@ -65,7 +65,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: parent_id
             baseTableName: feature_translatables
-            constraintName: fkjbz5peclz4brj1silu8imi3v8
+            constraintName: fk_feature_translatables_parent_id
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE
@@ -82,7 +82,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: language_id
-            indexName: idx_fk05s2ou55j9huw1qlalslx5ilk
+            indexName: idx_fk_feature_translatables_language_id
             tableName: feature_translatables
   - changeSet:
       id: 0020.create_table_feature_translatables.5
@@ -91,7 +91,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: language_id
             baseTableName: feature_translatables
-            constraintName: fk05s2ou55j9huw1qlalslx5ilk
+            constraintName: fk_feature_translatables_language_id
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE

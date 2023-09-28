@@ -52,7 +52,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: user_id
-            indexName: idx_fkhffk5jb3y99b478fk1d94dnox
+            indexName: fk_notifications_user_id
             tableName: notifications
   - changeSet:
       id: seed.3
@@ -61,7 +61,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: user_id
             baseTableName: notifications
-            constraintName: fkhffk5jb3y99b478fk1d94dnox
+            constraintName: fk_notifications_user_id
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE
@@ -131,7 +131,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: parent_id
-            indexName: idx_fkklosp8nttg3add1b4mmfpmll9
+            indexName: fk_notifications_translatables_parent_id
             tableName: notification_translatables
   - changeSet:
       id: seed.6
@@ -140,7 +140,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: parent_id
             baseTableName: notification_translatables
-            constraintName: fkklosp8nttg3add1b4mmfpmll9
+            constraintName: fk_notifications_translatables_parent_id
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE
@@ -157,7 +157,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: language_id
-            indexName: idx_fke82k30lai2hgjxl2ptb58c0f9
+            indexName: fk_notification_translatables_language_id
             tableName: notification_translatables
   - changeSet:
       id: seed.8
@@ -166,7 +166,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: language_id
             baseTableName: notification_translatables
-            constraintName: fke82k30lai2hgjxl2ptb58c0f9
+            constraintName: fk_notification_translatables_language_id
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE
@@ -208,7 +208,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: markup_id
             baseTableName: markup_videos
-            constraintName: CONSTRAINT_B3VWWOLP
+            constraintName: fk_markup_videos_markup_id
             deferrable: false
             initiallyDeferred: false
             onDelete: CASCADE
@@ -219,7 +219,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: parent_id
             baseTableName: markup_translatables
-            constraintName: CONSTRAINT_FD6PDQ4
+            constraintName: fk_markup_translatables_parent_id
             deferrable: false
             initiallyDeferred: false
             onDelete: CASCADE
@@ -230,7 +230,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: parent_id
             baseTableName: markup_visitors
-            constraintName: CONSTRAINT_HKS468K
+            constraintName: fk_markup_visitors_parent_id
             deferrable: false
             initiallyDeferred: false
             onDelete: CASCADE
@@ -241,7 +241,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: markup_id
             baseTableName: markup_images
-            constraintName: CONSTRAINT_KD873B63
+            constraintName: fk_markup_images_markup_id
             deferrable: false
             initiallyDeferred: false
             onDelete: CASCADE
@@ -252,7 +252,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: title_image_id
             baseTableName: blogs
-            constraintName: CONSTRAINT_S284FBS3
+            constraintName: fk_blogs_title_image_id
             deferrable: false
             initiallyDeferred: false
             onDelete: SET NULL

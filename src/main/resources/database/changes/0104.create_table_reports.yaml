@@ -54,7 +54,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: type_id
-            indexName: idx_fktowzkbu9lubcdjuknugmh3ubm
+            indexName: idx_fk_reports_type_id
             tableName: reports
   - changeSet:
       id: 0100.create_table_reports.3
@@ -63,7 +63,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: type_id
             baseTableName: reports
-            constraintName: fktowzkbu9lubcdjuknugmh3ubm
+            constraintName: fk_reports_type_id
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE
@@ -124,7 +124,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: report_id
-            indexName: idx_fki9q8b87thle12n1cnkrablq8t
+            indexName: idx_fk_report_media_report_id
             tableName: report_media
   - changeSet:
       id: 0100.create_table_reports.6
@@ -134,7 +134,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: media_id
-            indexName: idx_fkihayqn1uv38g2ifx9wqkm2j6r
+            indexName: idx_fk_report_media_media_id
             tableName: report_media
   - changeSet:
       id: 0100.create_table_reports.7
@@ -143,7 +143,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: report_id
             baseTableName: report_media
-            constraintName: fki9q8b87thle12n1cnkrablq8t
+            constraintName: fk_report_media_report_id
             initiallyDeferred: false
             onDelete: CASCADE
             onUpdate: CASCADE
@@ -157,7 +157,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: media_id
             baseTableName: report_media
-            constraintName: fkihayqn1uv38g2ifx9wqkm2j6r
+            constraintName: fk_report_media_media_id
             deferrable: false
             initiallyDeferred: false
             onDelete: CASCADE

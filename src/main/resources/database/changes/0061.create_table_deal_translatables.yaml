@@ -64,7 +64,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: parent_id
-            indexName: idx_fkgkyhinmcu01x77xxwp683b3c6
+            indexName: idx_fk_deal_translatables_parent_id
             tableName: deal_translatables
   - changeSet:
       id: 0060.create_table_deal_translatables.3
@@ -73,7 +73,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: parent_id
             baseTableName: deal_translatables
-            constraintName: fkgkyhinmcu01x77xxwp683b3c6
+            constraintName: fk_deal_translatables_parent_id
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE
@@ -90,7 +90,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: language_id
-            indexName: idx_fk0e3noyrd1vsrp11gnk2x39oa9
+            indexName: idx_fk_deal_translatables_language_id
             tableName: deal_translatables
   - changeSet:
       id: 0060.create_table_deal_translatables.5
@@ -99,7 +99,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: language_id
             baseTableName: deal_translatables
-            constraintName: fk0e3noyrd1vsrp11gnk2x39oa9
+            constraintName: fk_deal_translatables_language_id
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE

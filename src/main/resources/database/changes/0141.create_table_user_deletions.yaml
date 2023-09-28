@@ -72,7 +72,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: user_deletion_id
-            indexName: idx_2kytr036yydtwhrtda19rfydj
+            indexName: idx_fk_user_deletion_user_deletion_types_user_deletion_id
             tableName: user_deletion_user_deletion_types
   - changeSet:
       id: 0132.create_table_user_deletions.4
@@ -82,7 +82,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: user_deletion_type_id
-            indexName: idx_fkcwqfev4f9h0odzz55zy38gz3o
+            indexName: idx_fk_user_deletion_user_deletion_types_user_deletion_type_id
             tableName: user_deletion_user_deletion_types
   - changeSet:
       id: 0132.create_table_user_deletions.5
@@ -91,7 +91,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: user_deletion_id
             baseTableName: user_deletion_user_deletion_types
-            constraintName: fk2kytr036yydtwhrtda19rfydj
+            constraintName: fk_user_deletion_user_deletion_types_user_deletion_id
             initiallyDeferred: false
             onDelete: CASCADE
             onUpdate: CASCADE
@@ -105,7 +105,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: user_deletion_type_id
             baseTableName: user_deletion_user_deletion_types
-            constraintName: fkcwqfev4f9h0odzz55zy38gz3o
+            constraintName: fk_user_deletion_user_deletion_types_user_deletion_type_id
             deferrable: false
             initiallyDeferred: false
             onDelete: CASCADE

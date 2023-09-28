@@ -56,7 +56,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: parent_id
-            indexName: idx_fkk4avc8yzfnvtllabcc8t10c27
+            indexName: idx_fk_event_comment_translatables_parent_id
             tableName: event_comment_translatables
   - changeSet:
       id: 0109.create_table_event_comment_translatables.3
@@ -65,7 +65,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: parent_id
             baseTableName: event_comment_translatables
-            constraintName: fkk4avc8yzfnvtllabcc8t10c27
+            constraintName: fk_event_comment_translatables_parent_id
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE
@@ -82,7 +82,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: language_id
-            indexName: idx_fkwb5e3k1gpuz340kou34jwc60s
+            indexName: idx_fk_event_comment_translatables_language_id
             tableName: event_comment_translatables
   - changeSet:
       id: 0109.create_table_event_comment_translatables.5
@@ -91,7 +91,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseColumnNames: language_id
             baseTableName: event_comment_translatables
-            constraintName: fkwb5e3k1gpuz340kou34jwc60s
+            constraintName: fk_event_comment_translatables_language_id
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE
