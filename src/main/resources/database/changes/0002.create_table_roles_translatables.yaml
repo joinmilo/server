@@ -47,16 +47,7 @@ databaseChangeLog:
             endDelimiter: \nGO
             splitStatements: true
             sql: ALTER TABLE role_translatables CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-  - changeSet:
-      id: 0002.create_table_role_translatables.2
-      author: codeschluss
-      changes:
-        - createIndex:
-            columns:
-              - column:
-                  name: parent_id
-            indexName: fk_role_translatables_parent_id
-            tableName: role_translatables
+
   - changeSet:
       id: 0002.create_table_role_translatables.3
       author: codeschluss
@@ -73,16 +64,6 @@ databaseChangeLog:
             referencedTableName: roles
             validate: true   
             
-  - changeSet:
-      id: 0002.create_table_role_translatables.4
-      author: codeschluss
-      changes:
-        - createIndex:
-            columns:
-              - column:
-                  name: language_id
-            indexName: idx_fk_role_translatables_language_id
-            tableName: role_translatables
   - changeSet:
       id: 0002.create_table_role_translatables.5
       author: codeschluss

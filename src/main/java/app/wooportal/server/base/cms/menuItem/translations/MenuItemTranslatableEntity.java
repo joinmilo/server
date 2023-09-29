@@ -1,5 +1,6 @@
 package app.wooportal.server.base.cms.menuItem.translations;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import app.wooportal.server.base.cms.menuItem.MenuItemEntity;
@@ -22,5 +23,6 @@ public class MenuItemTranslatableEntity extends TranslatableEntity<MenuItemEntit
   
   private String shortDescription;
 
+  @Column(nullable = false)
   private String name;
 }

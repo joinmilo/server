@@ -45,16 +45,6 @@ databaseChangeLog:
             sql: ALTER TABLE notifications CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;              
             
   - changeSet:
-      id: seed.2
-      author: codeschluss
-      changes:
-        - createIndex:
-            columns:
-              - column:
-                  name: user_id
-            indexName: fk_notifications_user_id
-            tableName: notifications
-  - changeSet:
       id: seed.3
       author: codeschluss
       changes:
@@ -123,16 +113,7 @@ databaseChangeLog:
             splitStatements: true
             sql: ALTER TABLE notification_translatables CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;              
 
-  - changeSet:
-      id: seed.5
-      author: codeschluss
-      changes:
-        - createIndex:
-            columns:
-              - column:
-                  name: parent_id
-            indexName: fk_notifications_translatables_parent_id
-            tableName: notification_translatables
+
   - changeSet:
       id: seed.6
       author: codeschluss
@@ -149,16 +130,6 @@ databaseChangeLog:
             referencedTableName: notifications
             validate: true                         
           
-  - changeSet:
-      id: seed.7
-      author: codeschluss
-      changes:
-        - createIndex:
-            columns:
-              - column:
-                  name: language_id
-            indexName: fk_notification_translatables_language_id
-            tableName: notification_translatables
   - changeSet:
       id: seed.8
       author: codeschluss

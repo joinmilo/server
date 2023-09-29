@@ -1,5 +1,6 @@
 package app.wooportal.server.base.cms.page.translations;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import app.wooportal.server.base.cms.page.PageEntity;

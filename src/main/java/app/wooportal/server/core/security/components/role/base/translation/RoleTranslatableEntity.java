@@ -3,9 +3,9 @@ package app.wooportal.server.core.security.components.role.base.translation;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
 import app.wooportal.server.core.i18n.components.language.LanguageEntity;
 import app.wooportal.server.core.i18n.entities.TranslatableEntity;
 import app.wooportal.server.core.security.components.role.base.RoleEntity;
@@ -31,8 +31,10 @@ public class RoleTranslatableEntity extends TranslatableEntity<RoleEntity> {
   private String name;
 
   @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(nullable = false)
   private RoleEntity parent;
 
   @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(nullable = false)
   private LanguageEntity language;
 }

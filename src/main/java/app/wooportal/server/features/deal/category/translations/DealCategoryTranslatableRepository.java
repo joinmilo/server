@@ -8,5 +8,4 @@ import app.wooportal.server.features.deal.base.translations.DealTranslatableEnti
 @Repository
 public interface DealCategoryTranslatableRepository
     extends TranslationRepository<DealTranslatableEntity> {
-
 }

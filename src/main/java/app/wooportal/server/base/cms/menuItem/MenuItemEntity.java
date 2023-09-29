@@ -1,6 +1,7 @@
 package app.wooportal.server.base.cms.menuItem;
 
 import java.util.Set;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
@@ -27,6 +28,7 @@ public class MenuItemEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
 
+  @Column(nullable = false)
   private Boolean header;
   
   private String icon;

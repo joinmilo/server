@@ -63,6 +63,7 @@ public class OrganisationEntity extends BaseEntity {
   private String metaDescription;
 
   @SlugTarget
+  @Column(nullable = false)
   private String slug;
   
   @Column(nullable = false)

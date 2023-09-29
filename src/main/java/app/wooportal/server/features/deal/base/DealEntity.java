@@ -64,6 +64,7 @@ public class DealEntity extends BaseEntity {
 
   private Double price;
   
+  @JoinColumn(nullable = false)
   private Boolean isPublic; 
 
   @Column(nullable = false)

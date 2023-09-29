@@ -1,5 +1,6 @@
 package app.wooportal.server.base.cms.pageEmbedding;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -26,6 +27,7 @@ public class PageEmbeddingEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
 
+  @Column(nullable = false)
   private Integer order;
 
   @ManyToOne(fetch = FetchType.LAZY)

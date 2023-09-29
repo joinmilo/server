@@ -3,6 +3,7 @@ package app.wooportal.server.features.event.comment;
 import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -33,11 +34,13 @@ public class EventCommentEntity extends BaseEntity {
   private String content;
 
   @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(nullable = false)
   private EventEntity event;
 
   @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
   private Set<EventCommentTranslatableEntity> translatables;
 
   @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(nullable = false)
   private UserContextEntity userContext;
 }

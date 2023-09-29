@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.media.base.MediaEntity;
 import app.wooportal.server.features.organisation.base.OrganisationEntity;
@@ -18,7 +19,8 @@ import lombok.Setter;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @AllArgsConstructor
 @Entity
-@Table(name = "organisation_media")
+@Table(name = "organisation_media", uniqueConstraints = 
+@UniqueConstraint(columnNames = { "media_id", "organisation_id" }))
 public class OrganisationMediaEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;

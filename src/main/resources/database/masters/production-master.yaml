@@ -274,6 +274,10 @@ databaseChangeLog:
         file: database/changes/0146.create_table_milestone_element.yaml
     - include:                 
         file: database/changes/0147.create_table_milestone_element_translatables.yaml
+    - include:                 
+        file: database/changes/0148.update_name_constraints.yaml 
+    - include:                 
+        file: database/changes/0149.change_null_and_unique_constraints.yaml       
                 
     #Data section        
     - include:

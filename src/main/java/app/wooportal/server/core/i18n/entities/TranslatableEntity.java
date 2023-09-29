@@ -15,6 +15,7 @@ public abstract class TranslatableEntity<P extends BaseEntity> extends BaseEntit
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JsonIgnore
+  @JoinColumn(nullable = false)
   protected LanguageEntity language;
 
   @ManyToOne(fetch = FetchType.LAZY)

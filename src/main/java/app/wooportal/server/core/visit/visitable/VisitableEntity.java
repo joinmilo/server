@@ -23,6 +23,7 @@ public abstract class VisitableEntity<E extends BaseEntity> extends BaseEntity {
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JsonIgnore
+  @JoinColumn(nullable = false)
   protected VisitorEntity visitor;
 
   @ManyToOne(fetch = FetchType.LAZY)
