@@ -2699,4 +2699,126 @@ databaseChangeLog:
                WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
                AND l.locale = "en";
 
+  - changeSet:
+      id: 0004.add_data_labels_3.88
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add labels
+            splitStatements: true
+            sql:
+               /*!40101 SET character_set_client = utf8 */;
+               /* Set variables */
+               SET @tagId   = "editCategory";
+               SET @german  = "Kategorie bearbeiten";
+               SET @english = "Edit category";
+
+
+               /* Insert */
+               insert into labels (`id`, `tag_id`) values
+               (uuid(), @tagId COLLATE utf8mb4_unicode_ci);
+
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @german COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "de";
+
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @english COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "en";
                
+  - changeSet:
+      id: 0004.add_data_labels_3.89
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add labels
+            splitStatements: true
+            sql:
+               /*!40101 SET character_set_client = utf8 */;
+               /* Set variables */
+               SET @tagId   = "createNewCategory";
+               SET @german  = "Neue Kategorie erstellen";
+               SET @english = "Create new category";
+
+
+               /* Insert */
+               insert into labels (`id`, `tag_id`) values
+               (uuid(), @tagId COLLATE utf8mb4_unicode_ci);
+
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @german COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "de";
+
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @english COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "en";
+               
+  - changeSet:
+      id: 0004.add_data_labels_3.90
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add labels
+            splitStatements: true
+            sql:
+               /*!40101 SET character_set_client = utf8 */;
+               /* Set variables */
+               SET @tagId   = "editType";
+               SET @german  = "Rubrik bearbeiten";
+               SET @english = "Edit category";
+
+
+               /* Insert */
+               insert into labels (`id`, `tag_id`) values
+               (uuid(), @tagId COLLATE utf8mb4_unicode_ci);
+
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @german COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "de";
+
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @english COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "en";
+               
+  - changeSet:
+      id: 0004.add_data_labels_3.91
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add labels
+            splitStatements: true
+            sql:
+               /*!40101 SET character_set_client = utf8 */;
+               /* Set variables */
+               SET @tagId   = "createNewType";
+               SET @german  = "Neue Rubrik erstellen";
+               SET @english = "Create new category";
+
+
+               /* Insert */
+               insert into labels (`id`, `tag_id`) values
+               (uuid(), @tagId COLLATE utf8mb4_unicode_ci);
+
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @german COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "de";
+
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @english COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "en";
