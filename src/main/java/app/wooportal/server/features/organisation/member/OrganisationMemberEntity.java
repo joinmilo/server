@@ -3,6 +3,7 @@ package app.wooportal.server.features.organisation.member;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
@@ -33,8 +34,10 @@ public class OrganisationMemberEntity extends BaseEntity {
   private Boolean isPublic;
 
   @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(nullable = false)
   private OrganisationEntity organisation;
 
   @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(nullable = false)
   private UserContextEntity userContext;
 }

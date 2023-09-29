@@ -1,0 +1,1084 @@
+databaseChangeLog:                                         
+  - changeSet:
+      id: 0148.update_name_constraints.1
+      author: codeschluss
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: article_category_translatables
+            constraintName: CONSTRAINT_8BDD7EAE
+        - dropForeignKeyConstraint:
+            baseTableName: article_category_translatables
+            constraintName: CONSTRAINT_C13EAE27   
+        - dropForeignKeyConstraint:
+            baseTableName: topic_subscriptions
+            constraintName: CONSTRAINT_A0E3F42A   
+            
+  - changeSet:
+      id: 0148.update_name_constraints.2
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: parent_id
+            baseTableName: article_category_translatables
+            constraintName: fk_article_category_translatable_parent_id
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: article_categories
+            validate: true   
+            
+  - changeSet:
+      id: 0148.update_name_constraints.3
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: language_id
+            baseTableName: article_category_translatables
+            constraintName: fk_article_category_translatable_language_id
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: languages
+            validate: true              
+                                 
+  - changeSet:
+      id: 0148.update_name_constraints.4
+      author: codeschluss
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: article_media
+            constraintName: CONSTRAINT_D872AC9B
+        - dropForeignKeyConstraint:
+            baseTableName: article_media
+            constraintName: CONSTRAINT_0B395AC7 
+                                    
+       
+  - changeSet:
+      id: 0148.update_name_constraints.5
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: article_id
+            baseTableName: article_media
+            constraintName: fk_article_media_article_id
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: articles
+            validate: true
+            
+  - changeSet:
+      id: 0148.update_name_constraints.6
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: media_id
+            baseTableName: article_media
+            constraintName: fk_article_media_media_id
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: media
+            validate: true    
+                          
+  - changeSet:
+      id: 0148.update_name_constraints.7
+      author: codeschluss
+      changes:
+        - addUniqueConstraint:
+            columnNames: media_id, article_id
+            constraintName: uc_article_media_article_id_media_id
+            tableName: article_media
+            unique: true                   
+            
+  - changeSet:
+      id: 0148.update_name_constraints.8
+      author: codeschluss
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: parent_id
+              - column:
+                  name: user_context_id
+            indexName: uc_article_ratings_parent_id_user_context_id
+            tableName: article_ratings
+            unique: true     
+            
+  - changeSet:
+      id: 0148.update_name_constraints.9
+      author: codeschluss
+      changes: 
+        - dropForeignKeyConstraint:
+            baseTableName: article_translatables
+            constraintName: CONSTRAINT_35871595   
+        - dropForeignKeyConstraint:
+            baseTableName: article_translatables
+            constraintName: CONSTRAINT_A8DFD6F2                      
+        
+                   
+  - changeSet:
+      id: 0148.update_name_constraints.10
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: parent_id
+            baseTableName: article_translatables
+            constraintName: fk_article_translatables_parent_id
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: articles
+            validate: true 
+            
+  - changeSet:
+      id: 0148.update_name_constraints.11
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: language_id
+            baseTableName: article_translatables
+            constraintName: fk_article_translatables_language_id
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: languages
+            validate: true       
+            
+  - changeSet:
+      id: 0148.update_name_constraints.12
+      author: codeschluss
+      changes: 
+        - dropForeignKeyConstraint:
+            baseTableName: article_visitors
+            constraintName: CONSTRAINT_1DCN7935J   
+        - dropForeignKeyConstraint:
+            baseTableName: article_visitors
+            constraintName: CONSTRAINT_SKJGIU48T      
+            
+  - changeSet:
+      id: 0148.update_name_constraints.13
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: visitor_id
+            baseTableName: article_visitors
+            constraintName: fk_article_visitors_visitor_id
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: visitors
+            validate: true 
+            
+  - changeSet:
+      id: 0148.update_name_constraints.14
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: parent_id
+            baseTableName: article_visitors
+            constraintName: fk_article_visitors_parent_id
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: articles
+            validate: true      
+            
+  - changeSet:
+      id: 0148.update_name_constraints.15
+      author: codeschluss
+      changes:
+        - addUniqueConstraint:
+            columnNames: media_id, contest_id
+            constraintName: uc_contest_media_contest_id_media_id
+            tableName: contest_media
+            unique: true                                                         
+
+            
+  - changeSet:
+      id: 0148.update_name_constraints.16
+      author: codeschluss
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: event_category_translatables
+            constraintName: CONSTRAINT_AB741731
+        - dropForeignKeyConstraint:
+            baseTableName: event_category_translatables
+            constraintName: CONSTRAINT_BEBD3988             
+            
+  - changeSet:
+      id: 0148.update_name_constraints.18
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: language_id
+            baseTableName: event_category_translatables
+            constraintName: fk_event_category_translatables_language_id
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: languages
+            validate: true          
+            
+  - changeSet:
+      id: 0148.update_name_constraints.19
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: parent_id
+            baseTableName: event_category_translatables
+            constraintName: fk_event_category_translatables_parent_id
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: event_categories
+            validate: true                 
+            
+  - changeSet:
+      id: 0148.update_name_constraints.20
+      author: codeschluss
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: event_event_target_groups
+            constraintName: CONSTRAINT_FCB32C3A
+         
+            
+  - changeSet:
+      id: 0148.update_name_constraints.21
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: target_group_id
+            baseTableName: event_event_target_groups
+            constraintName: fk_event_event_target_groups_target_group_id
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: event_target_groups
+            validate: true  
+            
+  - changeSet:
+      id: 0148.update_name_constraints.22
+      author: codeschluss
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: event_media
+            constraintName: CONSTRAINT_C8B342F9
+        - dropForeignKeyConstraint:
+            baseTableName: event_media
+            constraintName: CONSTRAINT_883CB24A             
+            
+  - changeSet:
+      id: 0148.update_name_constraints.23
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: event_id
+            baseTableName: event_media
+            constraintName: fk_event_media_event_id
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: events
+            validate: true          
+            
+  - changeSet:
+      id: 0148.update_name_constraints.24
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: media_id
+            baseTableName: event_media
+            constraintName: fk_event_media_media_id
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: media
+            validate: true   
+            
+  - changeSet:
+      id: 0148.update_name_constraints.25
+      author: codeschluss
+      changes:
+        - addUniqueConstraint:
+            columnNames: parent_id, user_context_id
+            constraintName: uc_event_ratings_parent_id_user_context_id
+            tableName: event_ratings
+            unique: true     
+            
+  - changeSet:
+      id: 0148.update_name_constraints.26
+      author: codeschluss
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: event_target_group_translatables
+            constraintName: CONSTRAINT_4D0DAE96
+        - dropForeignKeyConstraint:
+            baseTableName: event_target_group_translatables
+            constraintName: CONSTRAINT_D1DC2C8D             
+            
+  - changeSet:
+      id: 0148.update_name_constraints.27
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: parent_id
+            baseTableName: event_target_group_translatables
+            constraintName: fk_event_target_group_translatables_parent_id
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: event_target_groups
+            validate: true          
+            
+  - changeSet:
+      id: 0148.update_name_constraints.28
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: language_id
+            baseTableName: event_target_group_translatables
+            constraintName: fk_event_target_group_translatables_language_id
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: languages
+            validate: true      
+            
+  - changeSet:
+      id: 0148.update_name_constraints.29
+      author: codeschluss
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: event_translatables
+            constraintName: CONSTRAINT_2EF8068E
+        - dropForeignKeyConstraint:
+            baseTableName: event_translatables
+            constraintName: CONSTRAINT_952C2A0C             
+            
+  - changeSet:
+      id: 0148.update_name_constraints.30
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: parent_id
+            baseTableName: event_translatables
+            constraintName: fk_event_translatables_parent_id
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: events
+            validate: true          
+            
+  - changeSet:
+      id: 0148.update_name_constraints.31
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: language_id
+            baseTableName: event_translatables
+            constraintName: fk_event_translatables_language_id
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: languages
+            validate: true  
+            
+  - changeSet:
+      id: 0148.update_name_constraints.32
+      author: codeschluss
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: event_visitors
+            constraintName: CONSTRAINT_1FJ3287G
+        - dropForeignKeyConstraint:
+            baseTableName: event_visitors
+            constraintName: CONSTRAINT_D256HF3K8             
+            
+  - changeSet:
+      id: 0148.update_name_constraints.33
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: parent_id
+            baseTableName: event_visitors
+            constraintName: fk_event_visitors_parent_id
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: events
+            validate: true          
+            
+  - changeSet:
+      id: 0148.update_name_constraints.34
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: visitor_id
+            baseTableName: event_visitors
+            constraintName: fk_event_visitors_visitor_id
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: visitors
+            validate: true   
+            
+  - changeSet:
+      id: 0148.update_name_constraints.35
+      author: codeschluss
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: events
+            constraintName: 'CONSTRAINT_ B549225'
+        - dropForeignKeyConstraint:
+            baseTableName: events
+            constraintName: CONSTRAINT_DF94058F             
+            
+  - changeSet:
+      id: 0148.update_name_constraints.36
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: category_id
+            baseTableName: events
+            constraintName: fk_events_category_id
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: event_categories
+            validate: true          
+            
+  - changeSet:
+      id: 0148.update_name_constraints.37
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: address_id
+            baseTableName: events
+            constraintName: fk_events_address_id
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: addresses
+            validate: true      
+            
+  - changeSet:
+      id: 0148.update_name_constraints.38
+      author: codeschluss
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: feature_visitors
+            constraintName: CONSTRAINT_A45HG19D
+        - dropForeignKeyConstraint:
+            baseTableName: feature_visitors
+            constraintName: CONSTRAINT_YVEJ65832             
+            
+  - changeSet:
+      id: 0148.update_name_constraints.39
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: parent_id
+            baseTableName: feature_visitors
+            constraintName: fk_feature_visitors_parent_id
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: features
+            validate: true          
+            
+  - changeSet:
+      id: 0148.update_name_constraints.40
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: visitor_id
+            baseTableName: feature_visitors
+            constraintName: fk_feature_visitors_visitor_id
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: visitors
+            validate: true                                                                                       
+            
+  - changeSet:
+      id: 0148.update_name_constraints.41
+      author: codeschluss
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: label_translatables
+            constraintName: CONSTRAINT_44L4154V
+        - dropForeignKeyConstraint:
+            baseTableName: label_translatables
+            constraintName: CONSTRAINT_WQK6JXEJ          
+            
+  - changeSet:
+      id: 0148.update_name_constraints.42
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: parent_id
+            baseTableName: label_translatables
+            constraintName: fk_label_translatables_parent_id
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: labels
+            validate: true          
+            
+  - changeSet:
+      id: 0148.update_name_constraints.43
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: language_id
+            baseTableName: label_translatables
+            constraintName: fk_label_translatables_language_id
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: languages
+            validate: true     
+            
+  - changeSet:
+      id: 0148.update_name_constraints.44
+      author: codeschluss
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: organisation_media
+            constraintName: CONSTRAINT_831AD7F2
+        - dropForeignKeyConstraint:
+            baseTableName: organisation_media
+            constraintName: CONSTRAINT_9377DC5A          
+            
+  - changeSet:
+      id: 0148.update_name_constraints.45
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: media_id
+            baseTableName: organisation_media
+            constraintName: fk_organisation_media_media_id
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: media
+            validate: true          
+            
+  - changeSet:
+      id: 0148.update_name_constraints.46
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: organisation_id
+            baseTableName: organisation_media
+            constraintName: fk_organisation_media_organisation_id
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: organisations
+            validate: true        
+            
+  - changeSet:
+      id: 0148.update_name_constraints.47
+      author: codeschluss
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: organisation_members
+            constraintName: CONSTRAINT_EBB6F2A9  
+        - dropForeignKeyConstraint:
+            baseTableName: organisation_members
+            constraintName: fk_providers_user_context_id                
+            
+  - changeSet:
+      id: 0148.update_name_constraints.48
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: organisation_id
+            baseTableName: organisation_members
+            constraintName: fk_organisation_members_organisation_id
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: organisations
+            validate: true    
+            
+  - changeSet:
+      id: 0148.update_name_constraints.49
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: user_context_id
+            baseTableName: organisation_members
+            constraintName: fk_organisation_members_user_context_id
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: user_contexts
+            validate: true 
+            
+  - changeSet:
+      id: 0148.update_name_constraints.50
+      author: codeschluss
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: organisation_translatables
+            constraintName: CONSTRAINT_66DE2763
+        - dropForeignKeyConstraint:
+            baseTableName: organisation_translatables
+            constraintName: CONSTRAINT_5C00E973                
+            
+  - changeSet:
+      id: 0148.update_name_constraints.51
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: parent_id
+            baseTableName: organisation_translatables
+            constraintName: fk_organisation_translatables_parent_id
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: organisations
+            validate: true    
+            
+  - changeSet:
+      id: 0148.update_name_constraints.52
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: language_id
+            baseTableName: organisation_translatables
+            constraintName: fk_organisation_translatables_language_id
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: languages
+            validate: true                                                  
+            
+            
+  - changeSet:
+      id: 0148.update_name_constraints.53
+      author: codeschluss
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: organisation_visitors
+            constraintName: CONSTRAINT_D39G64HJ
+        - dropForeignKeyConstraint:
+            baseTableName: organisation_visitors
+            constraintName: CONSTRAINT_LK3FS860               
+            
+  - changeSet:
+      id: 0148.update_name_constraints.54
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: parent_id
+            baseTableName: organisation_visitors
+            constraintName: fk_organisation_visitors_parent_id
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: organisations
+            validate: true    
+            
+  - changeSet:
+      id: 0148.update_name_constraints.55
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: visitor_id
+            baseTableName: organisation_visitors
+            constraintName: fk_organisation_visitors_visitor_id
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: visitors
+            validate: true
+            
+  - changeSet:
+      id: 0148.update_name_constraints.56
+      author: codeschluss
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: organisations
+            constraintName: CONSTRAINT_DECA20E0           
+            
+  - changeSet:
+      id: 0148.update_name_constraints.57
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: address_id
+            baseTableName: organisations
+            constraintName: fk_organisations_address_id
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: addresses
+            validate: true     
+            
+  - changeSet:
+      id: 0148.update_name_constraints.58
+      author: codeschluss
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: page_media
+            constraintName: CONSTRAINT_184BH7D9
+                       
+            
+  - changeSet:
+      id: 0148.update_name_constraints.59
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: media_id
+            baseTableName: page_media
+            constraintName: fk_page_media_media_id
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: media
+            validate: true          
+            
+  - changeSet:
+      id: 0148.update_name_constraints.60
+      author: codeschluss
+      changes:
+        - addUniqueConstraint:
+            columnNames: media_id, page_id
+            constraintName: uc_page_media_page_id_media_id
+            tableName: page_media
+            unique: true     
+
+  - changeSet:
+      id: 0148.update_name_constraints.61
+      author: codeschluss
+      changes:
+        - dropUniqueConstraint:
+            tableName: page_media
+            constraintName: CONSTRAINT_XB557B69   
+            
+  - changeSet:
+      id: 0148.update_name_constraints.62
+      author: codeschluss
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: page_translatables
+            constraintName: CONSTRAINT_SIU9AHL
+                       
+            
+  - changeSet:
+      id: 0148.update_name_constraints.63
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: language_id
+            baseTableName: page_translatables
+            constraintName: fk_page_translatables_language_id
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: languages
+            validate: true    
+            
+  - changeSet:
+      id: 0148.update_name_constraints.64
+      author: codeschluss
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: page_visitors
+            constraintName: CONSTRAINT_AVK6582FJ
+                       
+            
+  - changeSet:
+      id: 0148.update_name_constraints.65
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: visitor_id
+            baseTableName: page_visitors
+            constraintName: fk_page_visitors_visitor_id
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: visitors
+            validate: true        
+            
+  - changeSet:
+      id: 0148.update_name_constraints.66
+      author: codeschluss
+      changes:
+        - addUniqueConstraint:
+            columnNames: media_id, report_id
+            constraintName: uc_page_media_report_id_media_id
+            tableName: report_media
+            unique: true                 
+            
+  - changeSet:
+      id: 0148.update_name_constraints.67
+      author: codeschluss
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: addresses
+            constraintName: 'CONSTRAINT_ 2614FE7'
+                       
+            
+  - changeSet:
+      id: 0148.update_name_constraints.68
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: suburb_id
+            baseTableName: addresses
+            constraintName: fk_addresses_suburb_id
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: suburbs
+            validate: true        
+
+  - changeSet:
+      id: 0148.update_name_constraints.69
+      author: codeschluss
+      changes:
+        - addUniqueConstraint:
+            columnNames: media_id, survey_id
+            constraintName: uc_survey_media_survey_id_media_id
+            tableName: survey_media
+            unique: true      
+            
+  - changeSet:
+      id: 0148.update_name_constraints.70
+      author: codeschluss
+      changes:
+        - addUniqueConstraint:
+            columnNames: media_id, user_context_id
+            constraintName: uc_user_context_media_user_context_id_media_id
+            tableName: user_context_media
+            unique: true  
+            
+  - changeSet:
+      id: 0148.update_name_constraints.71
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: media_id
+            baseTableName: user_context_media
+            constraintName: fk_user_context_media_media_id
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: media
+            validate: true      
+            
+  - changeSet:
+      id: 0148.update_name_constraints.72
+      author: codeschluss
+      changes:
+        - addUniqueConstraint:
+            columnNames: media_id, event_id
+            constraintName: uc_event_media_event_id_media_id
+            tableName: event_media
+            unique: true  
+            
+  - changeSet:
+      id: 0148.update_name_constraints.73
+      author: codeschluss
+      changes:
+        - addUniqueConstraint:
+            columnNames: media_id, deal_id
+            constraintName: uc_deal_media_deal_id_media_id
+            tableName: deal_media
+            unique: true  
+            
+  - changeSet:
+      id: 0148.update_name_constraints.74
+      author: codeschluss
+      changes:
+        - addUniqueConstraint:
+            columnNames: media_id, organisation_id
+            constraintName: uc_organisation_media_organisation_id_media_id
+            tableName: organisation_media
+            unique: true  
+            
+  - changeSet:
+      id: 0148.update_name_constraints.75
+      author: codeschluss
+      changes:
+        - addUniqueConstraint:
+            columnNames: article_id, user_context_id
+            constraintName: uc_favorite_articles_article_id_user_context_id
+            tableName: favorite_articles
+            unique: true        
+            
+  - changeSet:
+      id: 0148.update_name_constraints.76
+      author: codeschluss
+      changes:
+        - addUniqueConstraint:
+            columnNames: author_id, user_context_id
+            constraintName: uc_favorite_authors_author_id_user_context_id
+            tableName: favorite_authors
+            unique: true                                                      
+            
+  - changeSet:
+      id: 0148.update_name_constraints.77
+      author: codeschluss
+      changes:
+        - addUniqueConstraint:
+            columnNames: deal_id, user_context_id
+            constraintName: uc_favorite_deals_deal_id_user_context_id
+            tableName: favorite_deals
+            unique: true    
+            
+  - changeSet:
+      id: 0148.update_name_constraints.78
+      author: codeschluss
+      changes:
+        - addUniqueConstraint:
+            columnNames: event_id, user_context_id
+            constraintName: uc_favorite_events_event_id_user_context_id
+            tableName: favorite_events
+            unique: true  
+            
+  - changeSet:
+      id: 0148.update_name_constraints.79
+      author: codeschluss
+      changes:
+        - addUniqueConstraint:
+            columnNames: organisation_id, user_context_id
+            constraintName: uc_favorite_organisations_organisation_id_user_context_id
+            tableName: favorite_organisations
+            unique: true   
+            
+  - changeSet:
+      id: 0148.update_name_constraints.80
+      author: codeschluss
+      changes:
+        - addUniqueConstraint:
+            columnNames: parent_id, language_id
+            constraintName: uc_article_category_translatables_parent_id_language_id
+            tableName: article_category_translatables
+            unique: true   
+            
+  - changeSet:
+      id: 0148.update_name_constraints.81
+      author: codeschluss
+      changes:
+        - addUniqueConstraint:
+            columnNames: media_id, contest_participation_id
+            constraintName: uc_contest_participation_media_contest_participation_id_media_id
+            tableName: contest_participation_media
+            unique: true  
+            
+  - changeSet:
+      id: 0148.update_name_constraints.82
+      author: codeschluss
+      changes:
+        - addUniqueConstraint:
+            columnNames: user_context_id, contest_participation_id
+            constraintName: uc_contest_votes_contest_participation_id_user_context_id
+            tableName: contest_votes
+            unique: true    
+            
+  - changeSet:
+      id: 0148.update_name_constraints.83
+      author: codeschluss
+      changes:
+        - addUniqueConstraint:
+            columnNames: parent_id, language_id
+            constraintName: uc_event_category_translatables_parent_id_language_id
+            tableName: event_category_translatables
+            unique: true   
+            
+  - changeSet:
+      id: 0148.update_name_constraints.84
+      author: codeschluss
+      changes:
+        - addUniqueConstraint:
+            columnNames: role_id, role_privilege_id
+            constraintName: uc_role_role_privileges_role_id_role_privilege_id
+            tableName: role_role_privileges
+            unique: true                                                       
+                                                                                                                                          
+            

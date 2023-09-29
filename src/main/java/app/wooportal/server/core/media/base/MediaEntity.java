@@ -45,7 +45,6 @@ public class MediaEntity extends BaseEntity {
   @Column(name = "mime_type", nullable = false)
   private String mimeType;
 
-  @Column(nullable = false)
   private String name;
   
   private Long size;

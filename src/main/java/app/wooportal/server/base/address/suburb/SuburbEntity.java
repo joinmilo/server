@@ -27,10 +27,8 @@ public class SuburbEntity extends BaseEntity {
   @Column(nullable = false, unique = true)
   private String name;
 
-  @Column(nullable = false)
   private Float latitude;
 
-  @Column(nullable = false)
   private Float longitude;
 
   @OneToMany(mappedBy = "suburb", fetch = FetchType.LAZY)

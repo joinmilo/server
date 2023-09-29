@@ -29,4 +29,10 @@ public class EventRatingPredicateBuilder
         ? query.modified.between(startDate, endDate)
         : null;
   }
+  
+  public BooleanExpression withUserContext(String userContextId) {
+    return userContextId != null
+        ? query.userContext.id.eq(userContextId)
+        : null;
+  }
 }

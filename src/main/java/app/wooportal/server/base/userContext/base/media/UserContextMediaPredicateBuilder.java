@@ -16,4 +16,17 @@ public class UserContextMediaPredicateBuilder
   public BooleanExpression freeSearch(String term) {
     return query.media.name.likeIgnoreCase(term);
   }
+  
+  
+  public BooleanExpression withUserContext(String userContextId) {
+    return userContextId != null
+        ? query.userContext.id.eq(userContextId)
+        : null;
+  }
+
+  public BooleanExpression withMedia(String mediaId) {
+    return mediaId != null
+        ? query.media.id.eq(mediaId)
+        : null;
+  }
 }

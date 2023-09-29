@@ -70,7 +70,6 @@ databaseChangeLog:
             splitStatements: true
             sql:
                insert into deal_media (id, media_id, deal_id, title, card) values
-               ('6cb93d4b-fd23-44ea-97e3-9e3d6cf2ff73', '1774bd91-1698-4c4a-8f16-3a0a98fdef32', '69f29c5f-5713-4549-902b-7157cb62b999', true, true),
                ('70c38e4a-8810-4b10-a4c3-687cdb96f18a', '3e791600-8e00-4069-a060-4862c44da93b', '69f29c5f-5713-4549-902b-7157cb62b999', false, false),
                ('fb16dbe9-fa00-44ce-9407-ee64b199eff2', 'fc8a64b5-7335-4309-a5c1-e9d2de53c338', '69f29c5f-5713-4549-902b-7157cb62b999', false, false),
                ('9a1bbfbe-7888-4bf7-bbfa-c9d7a24bce30', '1737d307-da5f-4bb4-9148-08c13beab44a', '69f29c5f-5713-4549-902b-7157cb62b999', false, false),

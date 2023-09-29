@@ -2,6 +2,7 @@ package app.wooportal.server.features.event.attendee;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import app.wooportal.server.base.userContext.base.UserContextEntity;
@@ -23,11 +24,14 @@ public class EventAttendeeEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
 
+  @JoinColumn(nullable = false)
   private Boolean approved;
 
   @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(nullable = false)
   private EventAttendeeConfigurationEntity configuration;
 
   @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(nullable = false)
   private UserContextEntity userContext;
 }

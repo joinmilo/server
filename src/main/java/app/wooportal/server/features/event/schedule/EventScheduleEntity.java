@@ -35,7 +35,6 @@ public class EventScheduleEntity extends BaseEntity {
   private OffsetDateTime startDate;
 
   @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(nullable = false)
   @QueryInit(value = {
       "*.*",
   })

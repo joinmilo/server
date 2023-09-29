@@ -25,6 +25,7 @@ public abstract class RatableEntity<E extends BaseEntity> extends BaseEntity {
   protected E parent;
 
   @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(nullable = false)
   private UserContextEntity userContext;
 
 }

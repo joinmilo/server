@@ -31,27 +31,6 @@ databaseChangeLog:
             splitStatements: true
             sql: ALTER TABLE user_roles CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;              
             
-  - changeSet:
-      id: 0004.add_data_user_roles.2
-      author: codeschluss
-      changes:
-        - createIndex:
-            columns:
-              - column:
-                  name: role_id
-            indexName: idx_fk_user_roles_role_id
-            tableName: user_roles
-            
-  - changeSet:
-      id: 0004.add_data_user_roles.3
-      author: codeschluss
-      changes:
-        - createIndex:
-            columns:
-              - column:
-                  name: user_id
-            indexName: idx_fk_user_roles_user_id 
-            tableName: user_roles 
             
   - changeSet:
       id: 0004.add_data_user_roles.4
@@ -88,12 +67,8 @@ databaseChangeLog:
       id: 0004.add_data_user_roles.6
       author: codeschluss
       changes:
-        - createIndex:
-            columns:
-              - column:
-                  name: user_id
-              - column:
-                  name: role_id
-            indexName: uc_user_roles_user_id_role_id
+        - addUniqueConstraint:
+            columnNames: user_id, role_id
+            constraintName: uc_user_roles_user_id_role_id
             tableName: user_roles
             unique: true                                

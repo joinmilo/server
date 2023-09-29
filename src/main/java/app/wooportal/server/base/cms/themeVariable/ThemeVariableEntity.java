@@ -1,5 +1,6 @@
 package app.wooportal.server.base.cms.themeVariable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -23,8 +24,10 @@ public class ThemeVariableEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
   
+  @Column(nullable = false)
   private String code;
   
+  @Column(nullable = false)
   private String value;
   
   @ManyToOne(fetch = FetchType.LAZY)

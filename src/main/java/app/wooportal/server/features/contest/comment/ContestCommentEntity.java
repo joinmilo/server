@@ -37,9 +37,10 @@ public class ContestCommentEntity extends BaseEntity {
   @JoinColumn(nullable = false)
   private ContestEntity contest;
 
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(nullable = false)
+  private UserContextEntity userContext;
+  
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
   private Set<ContestCommentTranslatableEntity> translatables;
-  
-  @ManyToOne(fetch = FetchType.LAZY)
-  private UserContextEntity userContext;
 }

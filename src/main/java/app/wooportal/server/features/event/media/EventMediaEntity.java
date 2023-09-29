@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.media.base.MediaEntity;
 import app.wooportal.server.features.event.base.EventEntity;
@@ -18,7 +19,8 @@ import lombok.Setter;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @AllArgsConstructor
 @Entity
-@Table(name = "event_media")
+@Table(name = "event_media", uniqueConstraints = 
+@UniqueConstraint(columnNames = { "media_id", "event_id" }))
 public class EventMediaEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
@@ -32,5 +34,4 @@ public class EventMediaEntity extends BaseEntity {
   
   @ManyToOne(fetch = FetchType.LAZY)
   private MediaEntity media;
-  
 }

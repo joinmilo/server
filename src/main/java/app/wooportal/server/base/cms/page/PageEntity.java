@@ -41,6 +41,7 @@ public class PageEntity extends BaseEntity {
   @Translatable
   private String content;
   
+  @Column(nullable = false)
   private Boolean isLanding;
 
   private String metaDescription;

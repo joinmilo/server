@@ -27,6 +27,7 @@ public class InfoMediaEntity extends BaseEntity {
   private static final long serialVersionUID = 1L;
 
   @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(nullable = false)
   private InfoMediaCategoryEntity category;
 
   @ManyToOne(fetch = FetchType.LAZY)

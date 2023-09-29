@@ -1,5 +1,6 @@
 package app.wooportal.server.features.contest.type.translations;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import app.wooportal.server.core.i18n.entities.TranslatableEntity;
@@ -19,5 +20,6 @@ public class ContestTypeTranslatableEntity extends TranslatableEntity<ContestTyp
 
   private static final long serialVersionUID = 1L;
 
+  @Column(nullable = false)
   private String name;
 }

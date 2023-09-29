@@ -1,0 +1,212 @@
+databaseChangeLog:                                         
+  - changeSet:
+      id: 0149.update_name_constraints.1
+      author: codeschluss
+      changes:
+        - addNotNullConstraint:
+            columnName:  language_id
+            columnDataType: char(36)
+            tableName: event_translatables
+        - addNotNullConstraint:
+            columnName:  language_id
+            columnDataType: char(36)
+            tableName: article_translatables   
+            
+  - changeSet:
+      id: 0149.update_name_constraints.2
+      author: codeschluss
+      changes:
+        - addNotNullConstraint:
+            columnName:  visitor_id
+            columnDataType: char(36)
+            tableName: article_visitors 
+        - addNotNullConstraint:
+            columnName:  visits
+            columnDataType: int(11)
+            tableName: article_visitors 
+            
+  - changeSet:
+      id: 0149.update_name_constraints.3
+      author: codeschluss
+      changes:
+        - addNotNullConstraint:
+            columnName:  language_id
+            columnDataType: char(36)
+            tableName: event_category_translatables   
+            
+  - changeSet:
+      id: 0149.update_name_constraints.4
+      author: codeschluss
+      changes:
+        - addNotNullConstraint:
+            columnName: event_id
+            columnDataType: char(36)
+            tableName: event_comments
+        - addNotNullConstraint:
+            columnName: user_context_id
+            columnDataType: char(36)
+            tableName: event_comments                                                                    
+
+  - changeSet:
+      id: 0149.update_name_constraints.5
+      author: codeschluss
+      changes:
+        - addNotNullConstraint:
+            columnName: article_id
+            columnDataType: char(36)
+            tableName: article_media
+        - addNotNullConstraint:
+            columnName: media_id
+            columnDataType: char(36)
+            tableName: article_media
+        - addNotNullConstraint:
+            columnName: media_id
+            columnDataType: char(36)
+            tableName: event_media
+        - addNotNullConstraint:
+            columnName: event_id
+            columnDataType: char(36)
+            tableName: event_media  
+            
+  - changeSet:
+      id: 0149.update_name_constraints.6
+      author: codeschluss
+      changes:
+        - addNotNullConstraint:
+            columnName: language_id
+            columnDataType: char(36)
+            tableName: event_target_group_translatables
+            
+  - changeSet:
+      id: 0149.update_name_constraints.7
+      author: codeschluss
+      changes:
+        - addNotNullConstraint:
+            columnName: content
+            columnDataType: mediumtext
+            tableName: event_translatables    
+            
+  - changeSet:
+      id: 0149.update_name_constraints.8
+      author: codeschluss
+      changes:
+        - dropNotNullConstraint:
+            columnName: category_id
+            columnDataType: char(36)
+            tableName: events   
+                                
+  - changeSet:
+      id: 0149.update_name_constraints.9
+      author: codeschluss
+      changes:
+        - addNotNullConstraint:
+            columnName: media_id
+            columnDataType: char(36)
+            tableName: organisation_media  
+            
+  - changeSet:
+      id: 0149.update_name_constraints.10
+      author: codeschluss
+      changes:
+        - addNotNullConstraint:
+            columnName: user_context_id
+            columnDataType: char(36)
+            tableName: organisation_members    
+            
+  - changeSet:
+      id: 0149.update_name_constraints.11
+      author: codeschluss
+      changes:
+        - addNotNullConstraint:
+            columnName: language_id
+            columnDataType: char(36)
+            tableName: organisation_translatables   
+
+  - changeSet:
+      id: 0149.update_name_constraints.12
+      author: codeschluss
+      changes:
+        - addNotNullConstraint:
+            columnName: visitor_id
+            columnDataType: char(36)
+            tableName: organisation_visitors 
+            
+  - changeSet:
+      id: 0149.update_name_constraints.13
+      author: codeschluss
+      changes:
+        - addNotNullConstraint:
+            columnName: visits
+            columnDataType: int(11)
+            tableName: organisation_visitors
+            
+  - changeSet:
+      id: 0149.update_name_constraints.14
+      author: codeschluss
+      changes:
+        - addNotNullConstraint:
+            columnName: page_id
+            columnDataType: char(36)
+            tableName: page_media 
+            
+  - changeSet:
+      id: 0149.update_name_constraints.15
+      author: codeschluss
+      changes:
+        - addNotNullConstraint:
+            columnName: media_id
+            columnDataType: char(36)
+            tableName: page_media         
+            
+  - changeSet:
+      id: 0149.update_name_constraints.16
+      author: codeschluss
+      changes:
+        - addNotNullConstraint:
+            columnName: visitor_id
+            columnDataType: char(36)
+            tableName: page_visitors 
+            
+  - changeSet:
+      id: 0149.update_name_constraints.17
+      author: codeschluss
+      changes:
+        - addNotNullConstraint:
+            columnName: visits
+            columnDataType: int(11)
+            tableName: page_visitors
+            
+  - changeSet:
+      id: 0149.update_name_constraints.18
+      author: codeschluss
+      changes:
+        - addNotNullConstraint:
+            columnName: email
+            columnDataType: varchar(255)
+            tableName: users
+            
+  - changeSet:
+      id: 0149.update_name_constraints.19
+      author: codeschluss
+      changes:
+        - addNotNullConstraint:
+            columnName: verified
+            columnDataType: bit(1)
+            tableName: users     
+            
+  - changeSet:
+      id: 0149.update_name_constraints.20
+      author: codeschluss
+      changes:
+        - addNotNullConstraint:
+            columnName: user_agent
+            columnDataType: varchar(255)
+            tableName: visitors                                
+            
+                                                                                                                          
+                                               
+
+            
+
+                                                                                                                                          
+            

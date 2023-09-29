@@ -10,6 +10,8 @@ databaseChangeLog:
             ALTER TABLE events DROP FOREIGN KEY CONSTRAINT_E66193E8; 
         - sql:  
             ALTER TABLE articles DROP FOREIGN KEY CONSTRAINT_LWCH48H6;
+        - sql:  
+            ALTER TABLE articles DROP FOREIGN KEY fk_blogs_title_image_id;            
             
   - changeSet:
       id: 0000.drops.2
@@ -44,7 +46,11 @@ databaseChangeLog:
           tableName: organisation_members  
       - dropColumn:
           columnName: user_id
-          tableName: organisation_members                                                                
+          tableName: organisation_members        
+      - dropColumn:
+          columnName: title_image_id
+          tableName: articles  
+                                                                            
 
   - changeSet:
       id: 0000.drops.3
@@ -78,6 +84,17 @@ databaseChangeLog:
         - dropTable:
             cascadeConstraints: true
             tableName: videos
+        - dropTable:
+            cascadeConstraints: true
+            tableName: organisation_likes
+        - dropTable:
+            cascadeConstraints: true
+            tableName: organisation_subscriptions   
+        - dropTable:
+            cascadeConstraints: true
+            tableName: topic_subscriptions            
+                           
+            
 
   - changeSet:
       id: 0000.drops.4
@@ -116,4 +133,6 @@ databaseChangeLog:
       - dropColumn:
           columnName: image
           tableName: media
+          
+             
           

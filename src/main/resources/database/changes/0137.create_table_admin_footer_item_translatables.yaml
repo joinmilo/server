@@ -27,7 +27,7 @@ databaseChangeLog:
                   type: datetime
               - column:
                   constraints:
-                    nullable: false              
+                    nullable: false          
                   name: name
                   type: VARCHAR(255)
               - column:

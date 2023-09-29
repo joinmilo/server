@@ -23,5 +23,4 @@ public class DealCategoryTranslatableEntity extends TranslatableEntity<DealCateg
 
   @Column(nullable = false)
   private String name;
-
 }

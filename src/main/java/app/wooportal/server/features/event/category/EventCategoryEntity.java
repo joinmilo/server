@@ -3,6 +3,7 @@ package app.wooportal.server.features.event.category;
 import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import app.wooportal.server.core.base.BaseEntity;
@@ -25,8 +26,10 @@ public class EventCategoryEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
 
+  @JoinColumn(nullable = false)
   private String color;
   
+  @JoinColumn(nullable = false)
   private String icon;
   
   @Translatable
