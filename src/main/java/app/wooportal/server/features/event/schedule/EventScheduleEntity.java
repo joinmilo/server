@@ -4,7 +4,6 @@ import java.time.OffsetDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import com.querydsl.core.annotations.QueryInit;
@@ -27,10 +26,10 @@ public class EventScheduleEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
   
-  @Column(name = "end_date")
+  @Column(name = "end_date", nullable = false)
   private OffsetDateTime endDate;
 
-  @Column(name = "start_date")
+  @Column(name = "start_date", nullable = false)
   @DefaultSort
   private OffsetDateTime startDate;
 

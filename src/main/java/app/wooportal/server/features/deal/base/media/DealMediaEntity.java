@@ -2,6 +2,7 @@ package app.wooportal.server.features.deal.base.media;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -30,9 +31,11 @@ public class DealMediaEntity extends BaseEntity {
   private Boolean title;
   
   @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(nullable = false)
   private DealEntity deal;
   
   @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(nullable = false)
   private MediaEntity media;
   
 }
