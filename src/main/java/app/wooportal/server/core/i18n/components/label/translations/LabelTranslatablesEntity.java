@@ -21,6 +21,6 @@ public class LabelTranslatablesEntity extends TranslatableEntity<LabelEntity> {
 
   private static final long serialVersionUID = 1L;
   
+  @Column(nullable = false)
   private String content;
-
 }
