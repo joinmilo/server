@@ -4,7 +4,6 @@ import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
-import app.wooportal.server.base.userContext.base.UserContextService;
 import app.wooportal.server.core.base.DataService;
 import app.wooportal.server.core.repository.DataRepository;
 import app.wooportal.server.features.event.base.EventEntity;
@@ -14,11 +13,8 @@ public class EventRatingService extends DataService<EventRatingEntity, EventRati
 
   public EventRatingService(
       DataRepository<EventRatingEntity> repo,
-      EventRatingPredicateBuilder predicate,
-      UserContextService userContextService) {
+      EventRatingPredicateBuilder predicate) {
     super(repo, predicate);
-    
-    addService("userContext", userContextService);
   }
 
   public List<EventRatingEntity> getAllBetween(
