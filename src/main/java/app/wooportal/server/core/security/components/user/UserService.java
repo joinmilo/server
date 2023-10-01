@@ -59,7 +59,7 @@ public class UserService extends DataService<UserEntity, UserPredicateBuilder> {
   }
 
   public Optional<UserEntity> getByMail(String name) {
-    return repo.findOne(singleQuery(predicate.withMail(name)).addGraph(graph("roles.privileges")));
+    return repo.findOne(singleQuery(predicate.withEmail(name)).addGraph(graph("roles.privileges")));
   }
 
   public Optional<UserEntity> me() {
@@ -117,7 +117,7 @@ public class UserService extends DataService<UserEntity, UserPredicateBuilder> {
   }
 
   public Boolean createPasswordReset(String email) {
-    var result = repo.findOne(singleQuery(predicate.withMail(email)));
+    var result = repo.findOne(singleQuery(predicate.withEmail(email)));
 
     if (result.isEmpty()) {
       throw new NotFoundException("User with mail does not exist", email);
@@ -147,7 +147,7 @@ public class UserService extends DataService<UserEntity, UserPredicateBuilder> {
   }
 
   public Boolean createVerification(String mailAddress) {
-    var result = repo.findOne(singleQuery(predicate.withMail(mailAddress)));
+    var result = repo.findOne(singleQuery(predicate.withEmail(mailAddress)));
 
     if (result.isEmpty()) {
       throw new VerificationUserNotFoundException("User with mail does not exist", mailAddress);

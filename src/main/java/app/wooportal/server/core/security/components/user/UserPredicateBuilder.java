@@ -17,8 +17,9 @@ public class UserPredicateBuilder extends PredicateBuilder<QUserEntity, UserEnti
     return query.email.likeIgnoreCase(term).or(query.roles.any().translatables.any().name.likeIgnoreCase(term));
   }
 
-  public BooleanExpression withMail(String loginName) {
-    return loginName != null && !loginName.isBlank() ? query.email.equalsIgnoreCase(loginName)
+  public BooleanExpression withEmail(String loginName) {
+    return loginName != null && !loginName.isBlank()
+        ? query.email.equalsIgnoreCase(loginName)
         : null;
   }
 

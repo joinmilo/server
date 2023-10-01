@@ -105,6 +105,10 @@ public abstract class DataService<E extends BaseEntity, P extends PredicateBuild
     return (D) classToServices.get(ClassUtils.getUserClass(serviceClass).getSimpleName());
   }
   
+  public boolean exists(Predicate predicate) {
+    return repo.exists(predicate);
+  }
+  
   public Optional<E> readOne(BaseRepositoryQuery<E> query) {
     return repo.findOne(query);
   }

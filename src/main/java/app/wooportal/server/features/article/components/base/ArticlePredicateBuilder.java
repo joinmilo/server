@@ -23,4 +23,8 @@ public class ArticlePredicateBuilder extends PredicateBuilder<QArticleEntity, Ar
   public BooleanExpression withoutId(String articleId) {
     return query.id.ne(articleId);
   }
+
+  public BooleanExpression withAuthor(String authorId) {
+    return query.author.id.eq(authorId);
+  }
 }

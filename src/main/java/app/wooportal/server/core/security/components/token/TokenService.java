@@ -8,7 +8,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import app.wooportal.server.core.error.exception.InvalidTokenException;
 import app.wooportal.server.core.security.JwtConfiguration;
-import app.wooportal.server.core.security.JwtUserDetails;
+import app.wooportal.server.core.security.dto.UserDetails;
 
 @Service
 public class TokenService {
@@ -20,7 +20,7 @@ public class TokenService {
     this.securityConfig = securityConfig;
   }
 
-  public String createAccessToken(JwtUserDetails jwtUserDetails) {
+  public String createAccessToken(UserDetails jwtUserDetails) {
     return JWT.create().withSubject(jwtUserDetails.getUsername())
         .withClaim(securityConfig.getClaimUserid(), jwtUserDetails.getUser().getId())
         .withClaim(securityConfig.getClaimVerified(), jwtUserDetails.isVerified())
@@ -36,7 +36,7 @@ public class TokenService {
         .sign(Algorithm.HMAC512(securityConfig.getSecret()));
   }
 
-  public String createRefreshToken(JwtUserDetails jwtUserDetails) {
+  public String createRefreshToken(UserDetails jwtUserDetails) {
     return JWT.create().withSubject(jwtUserDetails.getUsername())
         .withArrayClaim(securityConfig.getClaimScopes(), 
             new String[] {securityConfig.getScopeRefresh()})    

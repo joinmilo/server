@@ -7,10 +7,12 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
-import app.wooportal.server.core.security.JwtUserDetails;
+import app.wooportal.server.base.userContext.security.UserContextDetails;
 import app.wooportal.server.core.security.components.token.TokenService;
 import app.wooportal.server.core.security.components.user.UserEntity;
+import app.wooportal.server.core.security.dto.UserDetails;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,7 +23,7 @@ public class AuthenticationService {
   
   private final TokenService tokenService;
 
-  private final JwtUserDetailsService userDetailsService;
+  private final UserDetailsService userDetailsService;
   
   private final AuthenticationManager authManager;
 
@@ -29,40 +31,24 @@ public class AuthenticationService {
   public AuthenticationService(
       AuthenticationManager authManager,
       TokenService tokenService,
-      JwtUserDetailsService userDetailsService) {
+      UserDetailsService userDetailsService) {
     this.authManager = authManager;
     this.tokenService = tokenService;
     this.userDetailsService = userDetailsService;
   }
-  
-  public Optional<JwtUserDetails> authenticateCurrentUser(String password) {
-    var currentUser = getAuthenticatedUser();
-    return currentUser.isPresent()
-        ? authenticate(currentUser.get().getEmail(), password)
-        : Optional.empty();
-  }
 
-  public Optional<JwtUserDetails> authenticate(String username, String password) {
-    return Optional.of((JwtUserDetails) authManager
+  public Optional<UserDetails> authenticate(String username, String password) {
+    return Optional.of((UserDetails) authManager
         .authenticate(
             new UsernamePasswordAuthenticationToken(username, password, Collections.emptyList()))
         .getPrincipal());
   }
-
-  public Optional<UserEntity> getAuthenticatedUser() {
-    var authentication = SecurityContextHolder.getContext().getAuthentication();
-    if (authentication.getPrincipal() instanceof JwtUserDetails) {
-      var jwtUserDetails = (JwtUserDetails) authentication.getPrincipal();
-      return Optional.of(jwtUserDetails.getUser());
-    }
-    return Optional.empty();
-  }
   
-  public Optional<UserEntity> getUserFromToken(String jwtToken) {
-    var userDetails = retrieveUserDetailsFromToken(jwtToken);
-    return userDetails.isPresent()
-      ? Optional.ofNullable(userDetails.get().getUser())
-      : Optional.empty();
+  public Optional<UserDetails> authenticateCurrentUser(String password) {
+    var currentUser = getAuthenticatedUser();
+    return currentUser.isPresent()
+        ? authenticate(currentUser.get().getEmail(), password)
+        : Optional.empty();
   }
   
   public Optional<UsernamePasswordAuthenticationToken> getAuthenticationToken(HttpServletRequest request) {
@@ -72,19 +58,28 @@ public class AuthenticationService {
         var userDetails = retrieveUserDetailsFromToken(jwtToken);
         if (userDetails.isPresent()) {
           return Optional.of(new UsernamePasswordAuthenticationToken(
-              userDetails.get(), null, Collections.emptyList())); 
+              userDetails.get(), null, userDetails.get().getAuthorities())); 
         }
       } catch (Exception ignored) {}
     }
     return Optional.empty();
   }
   
-  private Optional<JwtUserDetails> retrieveUserDetailsFromToken(String jwtToken) {
+  private Optional<UserDetails> retrieveUserDetailsFromToken(String jwtToken) {
     if (jwtToken != null && !jwtToken.contains("undefined")) {
       var username = tokenService.verifyAccess(jwtToken).getSubject();
       if (username != null) {
-        return Optional.ofNullable(userDetailsService.loadUserByUsername(username));
+        return Optional.ofNullable((UserDetails) userDetailsService.loadUserByUsername(username));
       }
+    }
+    return Optional.empty();
+  }
+  
+  public Optional<UserEntity> getAuthenticatedUser() {
+    var authentication = SecurityContextHolder.getContext().getAuthentication();
+    if (authentication.getPrincipal() instanceof UserContextDetails) {
+      var userContextDetails = (UserDetails) authentication.getPrincipal();
+      return Optional.of(userContextDetails.getUser());
     }
     return Optional.empty();
   }

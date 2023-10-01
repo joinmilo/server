@@ -25,4 +25,10 @@ public class UserContextPredicateBuilder
   public BooleanExpression withUser(String userId) {
     return query.user.id.eq(userId);
   }
+  
+  public BooleanExpression withEmail(String email) {
+    return email != null && !email.isBlank()
+        ? query.user.email.equalsIgnoreCase(email)
+        : null;
+  }
 }

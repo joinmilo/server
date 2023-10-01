@@ -10,14 +10,15 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.core.GrantedAuthorityDefaults;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import app.wooportal.server.core.security.filter.JwtAuthorizationFilter;
 import app.wooportal.server.core.security.services.AuthenticationService;
-import app.wooportal.server.core.security.services.JwtUserDetailsService;
 
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -27,12 +28,12 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 
   private final BCryptPasswordEncoder bcryptPasswordEncoder;
   
-  private final JwtUserDetailsService userDetailsService;
+  private final UserDetailsService userDetailsService;
 
   public ApplicationSecurity(
       AuthenticationService authService,
       BCryptPasswordEncoder encoder,
-      JwtUserDetailsService userDetailsService) {
+      UserDetailsService userDetailsService) {
     this.authService = authService;
     this.bcryptPasswordEncoder = encoder;
     this.userDetailsService = userDetailsService;
@@ -52,6 +53,11 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
       .and()
     .addFilter(jwtAuthorizationFilter())
     .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+  }
+  
+  @Bean
+  public GrantedAuthorityDefaults grantedAuthorityDefaults() {
+    return new GrantedAuthorityDefaults("");
   }
 
   @Bean

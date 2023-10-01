@@ -1,12 +1,9 @@
-package app.wooportal.server.core.security;
+package app.wooportal.server.core.security.dto;
 
 import java.io.Serial;
 import java.util.Collection;
 import java.util.stream.Collectors;
-
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
-
 import app.wooportal.server.core.security.components.user.UserEntity;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -15,14 +12,14 @@ import lombok.Setter;
 @Setter
 @Getter
 @EqualsAndHashCode(callSuper = true)
-public class JwtUserDetails extends User {
+public class DefaultUserDetails extends UserDetails {
 
   @Serial
   private static final long serialVersionUID = 1L;
 
   private UserEntity user;
 
-  public JwtUserDetails(
+  public DefaultUserDetails(
       UserEntity user) {
     super(user.getEmail(), user.getPassword(), user.getRoles().stream()   
         .map(r -> r.getPrivileges())

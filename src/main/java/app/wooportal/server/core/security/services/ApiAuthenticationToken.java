@@ -10,7 +10,7 @@ public class ApiAuthenticationToken extends AbstractAuthenticationToken {
   private final TokenDto token;
   
   public ApiAuthenticationToken(TokenDto token) {
-    super (null);
+    super(null);
     this.token = token;
   }
 

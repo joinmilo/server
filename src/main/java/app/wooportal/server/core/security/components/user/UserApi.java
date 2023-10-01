@@ -71,7 +71,7 @@ public class UserApi extends CrudApi<UserEntity, UserService> {
   }
 
   @GraphQLMutation(name = "deleteMe")
-  public Boolean deleteMe(String password,UserDeletionEntity userDeletion ) {
+  public Boolean deleteMe(String password, UserDeletionEntity userDeletion ) {
     return service.deleteMe(password, userDeletion);
   }
 

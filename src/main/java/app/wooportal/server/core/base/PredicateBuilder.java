@@ -37,7 +37,7 @@ public abstract class PredicateBuilder<T extends EntityPathBase<?>, E extends Ba
     this.query = query;
   }
   
-  public Predicate withId(String id) {
+  public BooleanExpression withId(String id) {
     if (id == null || id.isBlank()) {
       return null;
     }

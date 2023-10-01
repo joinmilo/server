@@ -30,31 +30,31 @@ public class PushApi {
     this.userService = userService;
   }
 
-  @GraphQLMutation(name = "sendGlobalPush")
-  public Boolean sendGlobalPush(MessageDto message) {
-    pushService.sendPush(userService.getRepo().findAll(), message);
-    return true;
-  }
+//  @GraphQLMutation(name = "sendGlobalPush")
+//  public Boolean sendGlobalPush(MessageDto message) {
+//    pushService.sendPush(userService.getRepo().findAll(), message);
+//    return true;
+//  }
   
-  @GraphQLSubscription
-  public Publisher<MessageDto> addListener(String token) {
-    var user =  authService.getUserFromToken(token);
-    
-    if (user.isEmpty()) {
-      throw new InvalidTokenException("Invalid token, either user doesn't exist or token invalid", token);
-    }
-    return graphQlPushService.addListener(user);
-  }
-  
-  @GraphQLSubscription
-  public Publisher<MessageDto> addChatListener(String token) {
-    var user =  authService.getUserFromToken(token);
-    
-    if (user.isEmpty()) {
-      throw new InvalidTokenException("Invalid token, either user doesn't exist or token invalid", token);
-    }
-    return graphQlPushService.addChatListener(user);
-  }
+//  @GraphQLSubscription
+//  public Publisher<MessageDto> addListener(String token) {
+//    var user =  authService.getUserFromToken(token);
+//    
+//    if (user.isEmpty()) {
+//      throw new InvalidTokenException("Invalid token, either user doesn't exist or token invalid", token);
+//    }
+//    return graphQlPushService.addListener(user);
+//  }
+//  
+//  @GraphQLSubscription
+//  public Publisher<MessageDto> addChatListener(String token) {
+//    var user =  authService.getUserFromToken(token);
+//    
+//    if (user.isEmpty()) {
+//      throw new InvalidTokenException("Invalid token, either user doesn't exist or token invalid", token);
+//    }
+//    return graphQlPushService.addChatListener(user);
+//  }
 }
 
 

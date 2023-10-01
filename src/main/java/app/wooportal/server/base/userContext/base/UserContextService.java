@@ -55,4 +55,9 @@ public class UserContextService extends DataService<UserContextEntity, UserConte
     return Optional.empty();
   }
 
+  public Optional<UserContextEntity> getByEmail(String username) {
+    return repo.findOne(singleQuery(predicate.withEmail(username))
+        .addGraph(graph("user.roles.privileges")));
+  }
+
 }
