@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 import app.wooportal.server.core.base.CrudApi;
 import app.wooportal.server.core.base.dto.listing.FilterSortPaginate;
 import app.wooportal.server.core.base.dto.listing.PageableList;
-import app.wooportal.server.core.security.permissions.AdminPermission;
 import app.wooportal.server.features.contest.comment.ContestCommentEntity;
 import app.wooportal.server.features.contest.comment.ContestCommentService;
 import io.leangen.graphql.annotations.GraphQLArgument;
@@ -44,7 +43,6 @@ public class ContestApi extends CrudApi<ContestEntity, ContestService> {
 
   @Override
   @GraphQLMutation(name = "saveContests")
-  @AdminPermission
   public List<ContestEntity> saveAll(
       @GraphQLArgument(name = CrudApi.entities) List<ContestEntity> entities) {
     return super.saveAll(entities);

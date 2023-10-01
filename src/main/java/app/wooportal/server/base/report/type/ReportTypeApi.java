@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 import app.wooportal.server.core.base.CrudApi;
 import app.wooportal.server.core.base.dto.listing.FilterSortPaginate;
 import app.wooportal.server.core.base.dto.listing.PageableList;
-import app.wooportal.server.core.security.permissions.AdminPermission;
 import io.leangen.graphql.annotations.GraphQLArgument;
 import io.leangen.graphql.annotations.GraphQLMutation;
 import io.leangen.graphql.annotations.GraphQLQuery;
@@ -37,7 +36,6 @@ public class ReportTypeApi extends CrudApi<ReportTypeEntity, ReportTypeService> 
 
   @Override
   @GraphQLMutation(name = "saveReportTypes")
-  @AdminPermission
   public List<ReportTypeEntity> saveAll(
       @GraphQLArgument(name = CrudApi.entities) List<ReportTypeEntity> entities) {
     return super.saveAll(entities);
@@ -51,7 +49,6 @@ public class ReportTypeApi extends CrudApi<ReportTypeEntity, ReportTypeService> 
 
   @Override
   @GraphQLMutation(name = "deleteReportTypes")
-  @AdminPermission
   public Boolean deleteAll(@GraphQLArgument(name = CrudApi.ids) List<String> ids) {
     return super.deleteAll(ids);
   }

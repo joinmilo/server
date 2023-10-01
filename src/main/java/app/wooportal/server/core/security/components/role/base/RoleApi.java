@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 import app.wooportal.server.core.base.CrudApi;
 import app.wooportal.server.core.base.dto.listing.FilterSortPaginate;
 import app.wooportal.server.core.base.dto.listing.PageableList;
-import app.wooportal.server.core.security.permissions.AdminPermission;
 import io.leangen.graphql.annotations.GraphQLArgument;
 import io.leangen.graphql.annotations.GraphQLMutation;
 import io.leangen.graphql.annotations.GraphQLQuery;
@@ -23,7 +22,6 @@ public class RoleApi extends CrudApi<RoleEntity, RoleService> {
 
   @Override
   @GraphQLQuery(name = "getRoles")
-  @AdminPermission
   public PageableList<RoleEntity> readAll(
       @GraphQLArgument(name = CrudApi.params) FilterSortPaginate params) {
     return super.readAll(params);
@@ -31,7 +29,6 @@ public class RoleApi extends CrudApi<RoleEntity, RoleService> {
 
   @Override
   @GraphQLQuery(name = "getRole")
-  @AdminPermission
   public Optional<RoleEntity> readOne(
       @GraphQLArgument(name = CrudApi.entity) RoleEntity entity) {
     return super.readOne(entity);
@@ -39,7 +36,6 @@ public class RoleApi extends CrudApi<RoleEntity, RoleService> {
 
   @Override
   @GraphQLMutation(name = "saveRoles")
-  @AdminPermission
   public List<RoleEntity> saveAll(
       @GraphQLArgument(name = CrudApi.entities) List<RoleEntity> entities) {
     return super.saveAll(entities);
@@ -47,7 +43,6 @@ public class RoleApi extends CrudApi<RoleEntity, RoleService> {
 
   @Override
   @GraphQLMutation(name = "saveRole")
-  @AdminPermission
   public RoleEntity saveOne(
       @GraphQLArgument(name = CrudApi.entity) RoleEntity entity) {
     return super.saveOne(entity);
@@ -55,14 +50,12 @@ public class RoleApi extends CrudApi<RoleEntity, RoleService> {
 
   @Override
   @GraphQLMutation(name = "deleteRoles")
-  @AdminPermission
   public Boolean deleteAll(@GraphQLArgument(name = CrudApi.ids) List<String> ids) {
     return super.deleteAll(ids);
   }
 
   @Override
   @GraphQLMutation(name = "deleteRole")
-  @AdminPermission
   public Boolean deleteOne(@GraphQLArgument(name = CrudApi.id) String id) {
     return super.deleteOne(id);
   }

@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 import app.wooportal.server.core.base.CrudApi;
 import app.wooportal.server.core.base.dto.listing.FilterSortPaginate;
 import app.wooportal.server.core.base.dto.listing.PageableList;
-import app.wooportal.server.core.security.permissions.AdminPermission;
 import io.leangen.graphql.annotations.GraphQLArgument;
 import io.leangen.graphql.annotations.GraphQLMutation;
 import io.leangen.graphql.annotations.GraphQLQuery;
@@ -36,7 +35,6 @@ public class SurveyApi extends CrudApi<SurveyEntity, SurveyService> {
 
   @Override
   @GraphQLMutation(name = "saveSurveys")
-  @AdminPermission
   public List<SurveyEntity> saveAll(
       @GraphQLArgument(name = CrudApi.entities) List<SurveyEntity> entities) {
     return super.saveAll(entities);

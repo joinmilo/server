@@ -4,7 +4,6 @@ import org.reactivestreams.Publisher;
 import org.springframework.stereotype.Component;
 import app.wooportal.server.core.error.exception.InvalidTokenException;
 import app.wooportal.server.core.security.components.user.UserService;
-import app.wooportal.server.core.security.permissions.AdminPermission;
 import app.wooportal.server.core.security.services.AuthenticationService;
 import io.leangen.graphql.annotations.GraphQLMutation;
 import io.leangen.graphql.annotations.GraphQLSubscription;
@@ -32,7 +31,6 @@ public class PushApi {
   }
 
   @GraphQLMutation(name = "sendGlobalPush")
-  @AdminPermission
   public Boolean sendGlobalPush(MessageDto message) {
     pushService.sendPush(userService.getRepo().findAll(), message);
     return true;

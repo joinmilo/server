@@ -4,7 +4,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 import app.wooportal.server.base.userContext.base.UserContextEntity;
 import app.wooportal.server.base.userContext.base.UserContextService;
-import app.wooportal.server.features.article.base.ArticleService;
+import app.wooportal.server.features.article.components.base.ArticleService;
 import app.wooportal.server.features.deal.base.DealService;
 import app.wooportal.server.features.event.base.EventService;
 import app.wooportal.server.features.organisation.base.OrganisationService;

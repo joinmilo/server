@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 import app.wooportal.server.core.base.CrudApi;
 import app.wooportal.server.core.base.dto.listing.FilterSortPaginate;
 import app.wooportal.server.core.base.dto.listing.PageableList;
-import app.wooportal.server.core.security.permissions.AdminPermission;
 import app.wooportal.server.core.security.permissions.Authenticated;
 import io.leangen.graphql.annotations.GraphQLArgument;
 import io.leangen.graphql.annotations.GraphQLMutation;
@@ -56,7 +55,6 @@ public class MessageTemplateApi extends CrudApi<MessageTemplateEntity, MessageTe
   
   @Override
   @GraphQLMutation(name = "deleteMessageTemplates")
-  @AdminPermission
   public Boolean deleteAll(
       @GraphQLArgument(name = CrudApi.ids) List<String> ids) {    
     return super.deleteAll(ids);
@@ -64,7 +62,6 @@ public class MessageTemplateApi extends CrudApi<MessageTemplateEntity, MessageTe
   
   @Override
   @GraphQLMutation(name = "deleteMessageTemplate")
-  @AdminPermission
   public Boolean deleteOne(
       @GraphQLArgument(name = CrudApi.id) String id) {    
     return super.deleteOne(id);

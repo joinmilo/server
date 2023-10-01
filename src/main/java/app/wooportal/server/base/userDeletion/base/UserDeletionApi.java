@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 import app.wooportal.server.core.base.CrudApi;
 import app.wooportal.server.core.base.dto.listing.FilterSortPaginate;
 import app.wooportal.server.core.base.dto.listing.PageableList;
-import app.wooportal.server.core.security.permissions.AdminPermission;
 import io.leangen.graphql.annotations.GraphQLArgument;
 import io.leangen.graphql.annotations.GraphQLMutation;
 import io.leangen.graphql.annotations.GraphQLQuery;
@@ -37,7 +36,6 @@ public class UserDeletionApi extends CrudApi<UserDeletionEntity, UserDeletionSer
 
   @Override
   @GraphQLMutation(name = "saveUserDeletions")
-  @AdminPermission
   public List<UserDeletionEntity> saveAll(
       @GraphQLArgument(name = CrudApi.entities) List<UserDeletionEntity> entities) {
     return super.saveAll(entities);
@@ -51,14 +49,12 @@ public class UserDeletionApi extends CrudApi<UserDeletionEntity, UserDeletionSer
 
   @Override
   @GraphQLMutation(name = "deleteUserDeletions")
-  @AdminPermission
   public Boolean deleteAll(@GraphQLArgument(name = CrudApi.ids) List<String> ids) {
     return super.deleteAll(ids);
   }
 
   @Override
   @GraphQLMutation(name = "deleteUserDeletion")
-  @AdminPermission
   public Boolean deleteOne(@GraphQLArgument(name = CrudApi.id) String id) {
     return super.deleteOne(id);
   }

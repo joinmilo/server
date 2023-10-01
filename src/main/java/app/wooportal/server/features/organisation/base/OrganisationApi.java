@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 import app.wooportal.server.core.base.CrudApi;
 import app.wooportal.server.core.base.dto.listing.FilterSortPaginate;
 import app.wooportal.server.core.base.dto.listing.PageableList;
-import app.wooportal.server.core.security.permissions.AdminPermission;
 import app.wooportal.server.features.organisation.comment.OrganisationCommentEntity;
 import app.wooportal.server.features.organisation.comment.OrganisationCommentService;
 import io.leangen.graphql.annotations.GraphQLArgument;
@@ -44,7 +43,6 @@ public class OrganisationApi extends CrudApi<OrganisationEntity, OrganisationSer
 
   @Override
   @GraphQLMutation(name = "saveOrganisations")
-  @AdminPermission
   public List<OrganisationEntity> saveAll(
       @GraphQLArgument(name = CrudApi.entities) List<OrganisationEntity> entities) {
     return super.saveAll(entities);

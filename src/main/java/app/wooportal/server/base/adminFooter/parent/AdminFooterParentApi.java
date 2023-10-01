@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 import app.wooportal.server.core.base.CrudApi;
 import app.wooportal.server.core.base.dto.listing.FilterSortPaginate;
 import app.wooportal.server.core.base.dto.listing.PageableList;
-import app.wooportal.server.core.security.permissions.AdminPermission;
 import io.leangen.graphql.annotations.GraphQLArgument;
 import io.leangen.graphql.annotations.GraphQLMutation;
 import io.leangen.graphql.annotations.GraphQLQuery;
@@ -36,7 +35,6 @@ public class AdminFooterParentApi extends CrudApi<AdminFooterParentEntity, Admin
 
   @Override
   @GraphQLMutation(name = "saveAdminFooterParents")
-  @AdminPermission
   public List<AdminFooterParentEntity> saveAll(
       @GraphQLArgument(name = CrudApi.entities) List<AdminFooterParentEntity> entities) {
     return super.saveAll(entities);
@@ -44,21 +42,18 @@ public class AdminFooterParentApi extends CrudApi<AdminFooterParentEntity, Admin
 
   @Override
   @GraphQLMutation(name = "saveAdminFooterParent")
-  @AdminPermission
   public AdminFooterParentEntity saveOne(@GraphQLArgument(name = CrudApi.entity) AdminFooterParentEntity entity) {
     return super.saveOne(entity);
   }
 
   @Override
   @GraphQLMutation(name = "deleteAdminFooterParents")
-  @AdminPermission
   public Boolean deleteAll(@GraphQLArgument(name = CrudApi.ids) List<String> ids) {
     return super.deleteAll(ids);
   }
 
   @Override
   @GraphQLMutation(name = "deleteAdminFooterParent")
-  @AdminPermission
   public Boolean deleteOne(@GraphQLArgument(name = CrudApi.id) String id) {
     return super.deleteOne(id);
   }
