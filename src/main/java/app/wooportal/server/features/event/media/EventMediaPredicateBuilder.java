@@ -16,4 +16,13 @@ public class EventMediaPredicateBuilder
   public BooleanExpression freeSearch(String term) {
     return query.media.name.likeIgnoreCase(term);
   }
+  
+  public BooleanExpression withMedia(String mediaId) {
+    return mediaId != null
+        ? query.media.id.eq(mediaId)
+        : null;
+  }
+  public BooleanExpression withEvent(String eventId) {
+    return query.event.id.eq(eventId);
+  }
 }
