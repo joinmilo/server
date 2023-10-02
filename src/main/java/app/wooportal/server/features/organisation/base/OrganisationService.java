@@ -5,6 +5,7 @@ import app.wooportal.server.base.address.base.AddressService;
 import app.wooportal.server.base.contact.ContactService;
 import app.wooportal.server.core.base.DataService;
 import app.wooportal.server.core.repository.DataRepository;
+import app.wooportal.server.features.organisation.media.OrganisationMediaService;
 
 @Service
 public class OrganisationService extends DataService<OrganisationEntity, OrganisationPredicateBuilder> {
@@ -13,11 +14,13 @@ public class OrganisationService extends DataService<OrganisationEntity, Organis
       DataRepository<OrganisationEntity> repo,
       OrganisationPredicateBuilder predicate,
       AddressService addressService,
-      ContactService contactService) {
+      ContactService contactService,
+      OrganisationMediaService uploadService) {
     super(repo, predicate);
     
     addService("address", addressService);
     addService("contact", contactService);
+    addService("uploads", uploadService);
   }
   
   public Boolean sponsor(String rganisationId) {
