@@ -49,7 +49,7 @@ public class ArticleEntity extends BaseEntity {
   private static final long serialVersionUID = 1L;
 
   @Column(nullable = false)
-  private Boolean approved = false;
+  private Boolean approved;
 
   @Transient
   private String captchaToken;
@@ -71,7 +71,7 @@ public class ArticleEntity extends BaseEntity {
   private String slug;
 
   @Column(nullable = false)
-  private Boolean sponsored = false;
+  private Boolean sponsored;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private ArticleCategoryEntity category;

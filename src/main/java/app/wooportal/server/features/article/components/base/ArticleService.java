@@ -51,6 +51,8 @@ public class ArticleService extends DataService<ArticleEntity, ArticlePredicateB
       newEntity.setContent(entity.getContent());
       newEntity.setName(entity.getName());
       newEntity.setUploads(entity.getUploads());
+      newEntity.setApproved(false);
+      newEntity.setSponsored(false);
       
       persist(newEntity, newEntity, null);
     }
