@@ -25,9 +25,9 @@ public class OrganisationMediaEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
   
-  private Boolean title;
+  private Boolean title = false;
   
-  private Boolean card;
+  private Boolean card = false;
   
   @ManyToOne(fetch = FetchType.LAZY)
   private OrganisationEntity organisation;
