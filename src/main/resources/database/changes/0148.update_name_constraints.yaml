@@ -869,32 +869,7 @@ databaseChangeLog:
             columnNames: media_id, report_id
             constraintName: uc_page_media_report_id_media_id
             tableName: report_media
-            unique: true                 
-            
-  - changeSet:
-      id: 0148.update_name_constraints.67
-      author: codeschluss
-      changes:
-        - dropForeignKeyConstraint:
-            baseTableName: addresses
-            constraintName: 'CONSTRAINT_ 2614FE7'
-                       
-            
-  - changeSet:
-      id: 0148.update_name_constraints.68
-      author: codeschluss
-      changes:
-        - addForeignKeyConstraint:
-            baseColumnNames: suburb_id
-            baseTableName: addresses
-            constraintName: fk_addresses_suburb_id
-            deferrable: false
-            initiallyDeferred: false
-            onUpdate: CASCADE
-            onDelete: CASCADE
-            referencedColumnNames: id
-            referencedTableName: suburbs
-            validate: true        
+            unique: true                    
 
   - changeSet:
       id: 0148.update_name_constraints.69
