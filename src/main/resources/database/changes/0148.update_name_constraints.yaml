@@ -467,26 +467,7 @@ databaseChangeLog:
       changes:
         - dropForeignKeyConstraint:
             baseTableName: events
-            constraintName: 'CONSTRAINT_ B549225'
-        - dropForeignKeyConstraint:
-            baseTableName: events
-            constraintName: CONSTRAINT_DF94058F             
-            
-  - changeSet:
-      id: 0148.update_name_constraints.36
-      author: codeschluss
-      changes:
-        - addForeignKeyConstraint:
-            baseColumnNames: category_id
-            baseTableName: events
-            constraintName: fk_events_category_id
-            deferrable: false
-            initiallyDeferred: false
-            onUpdate: CASCADE
-            onDelete: CASCADE
-            referencedColumnNames: id
-            referencedTableName: event_categories
-            validate: true          
+            constraintName: CONSTRAINT_DF94058F                      
             
   - changeSet:
       id: 0148.update_name_constraints.37
