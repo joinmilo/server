@@ -25,9 +25,9 @@ public class UserContextMediaEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
   
-  private Boolean title;
+  private Boolean title = false;
   
-  private Boolean profilePicture;
+  private Boolean profilePicture = false;
   
   @ManyToOne(fetch = FetchType.LAZY)
   private UserContextEntity userContext;
