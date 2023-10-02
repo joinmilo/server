@@ -2823,7 +2823,6 @@ databaseChangeLog:
                WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
                AND l.locale = "en";
 
-
   - changeSet:
       id: 0004.add_data_labels_3.92
       author: codeschluss
