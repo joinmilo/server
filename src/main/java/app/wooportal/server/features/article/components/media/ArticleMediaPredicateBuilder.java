@@ -28,4 +28,8 @@ public class ArticleMediaPredicateBuilder
         ? query.media.id.eq(mediaId)
         : null;
   }
+
+  public BooleanExpression withAuthor(String authorId) {
+    return query.article.author.id.eq(authorId);
+  }
 }

@@ -72,16 +72,19 @@ public class TranslationInterceptor {
     Object result = pjp.proceed();
     var savedEntity = pjp.getArgs()[0];
 
-    CompletableFuture.runAsync(() -> {
-      if (!(savedEntity instanceof TranslatableEntity)) {
+    if (!(savedEntity instanceof TranslatableEntity)) {
+      // Defaults should be saved synchronously because request
+      // will be gone in async procession
+      var savedDefaultLocale = translationService.saveDefaultTranslations((E) savedEntity);
+      CompletableFuture.runAsync(() -> {
         try {
-          translationService.save((E) savedEntity);
+          translationService.saveAutoTranslations((E) savedEntity, savedDefaultLocale);
         } catch (Throwable e) {
           e.printStackTrace();
           errorMailService.sendErrorMail(e.getStackTrace().toString());          
         }
-      }
-    });
+      });
+    }
     return result;
   }
 }

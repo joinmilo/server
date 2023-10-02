@@ -12,6 +12,7 @@ import app.wooportal.server.base.analytics.search.SearchConsoleService;
 import app.wooportal.server.core.base.dto.analytics.AnalyticsDto;
 import app.wooportal.server.core.base.dto.analytics.IntervalFilter;
 import app.wooportal.server.core.visit.visitable.VisitableAnalyticsService;
+import app.wooportal.server.features.article.components.base.authorization.ArticleManagePermission;
 import app.wooportal.server.features.article.components.rating.ArticleRatingEntity;
 import app.wooportal.server.features.article.components.rating.ArticleRatingService;
 import io.leangen.graphql.annotations.GraphQLContext;
@@ -39,6 +40,7 @@ public class ArticleAnalyticsApi {
   }
   
   @GraphQLQuery(name = "ratingDistribution")
+  @ArticleManagePermission
   public CompletableFuture<AnalyticsDto> ratingDistribution(
       @GraphQLContext ArticleEntity entity,
       OffsetDateTime startDate,
@@ -48,6 +50,7 @@ public class ArticleAnalyticsApi {
   }
   
   @GraphQLQuery(name = "ratingStatistics")
+  @ArticleManagePermission
   public CompletableFuture<Set<AnalyticsDto>> ratingStatistics(
       @GraphQLContext ArticleEntity entity,
       OffsetDateTime startDate,
@@ -59,6 +62,7 @@ public class ArticleAnalyticsApi {
   }
   
   @GraphQLQuery(name = "searchStatistics")
+  @ArticleManagePermission
   public CompletableFuture<Set<AnalyticsDto>> searchStatistics(
       @GraphQLContext ArticleEntity article,
       OffsetDateTime startDate,
@@ -72,6 +76,7 @@ public class ArticleAnalyticsApi {
   }
   
   @GraphQLQuery(name = "visitorStatistics")
+  @ArticleManagePermission
   public CompletableFuture<Set<AnalyticsDto>> visitorStatistics(
       @GraphQLContext ArticleEntity article,
       OffsetDateTime startDate,

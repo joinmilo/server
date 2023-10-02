@@ -20,5 +20,15 @@ public class LanguagePredicateBuilder extends PredicateBuilder<QLanguageEntity, 
   public BooleanExpression withActive() {
     return query.active.isTrue();
   }
+  
+  public BooleanExpression withLocale(String locale) {
+    return query.locale.eq(locale);
+  }
+
+  public BooleanExpression withoutLocale(String locale) {
+    return locale != null && !locale.isBlank()
+        ? query.locale.ne(locale)
+        : null;
+  }
 
 }

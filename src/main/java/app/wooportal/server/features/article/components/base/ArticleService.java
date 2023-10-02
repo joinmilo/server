@@ -2,12 +2,11 @@ package app.wooportal.server.features.article.components.base;
 
 import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.JsonNode;
+import app.wooportal.server.base.userContext.security.UserContextAuthorizationService;
 import app.wooportal.server.core.base.DataService;
 import app.wooportal.server.core.captcha.CaptchaService;
 import app.wooportal.server.core.error.exception.BadParamsException;
 import app.wooportal.server.core.repository.DataRepository;
-import app.wooportal.server.core.security.components.user.UserEntity;
-import app.wooportal.server.core.security.services.AuthenticationService;
 import app.wooportal.server.features.article.components.media.ArticleMediaService;
 import app.wooportal.server.features.article.components.publicAuthor.ArticlePublicAuthorService;
 
@@ -15,14 +14,14 @@ import app.wooportal.server.features.article.components.publicAuthor.ArticlePubl
 public class ArticleService extends DataService<ArticleEntity, ArticlePredicateBuilder> {
 
   private final CaptchaService captchaService;
-  private final AuthenticationService authService;
+  private final UserContextAuthorizationService authService;
 
   public ArticleService(DataRepository<ArticleEntity> repo,
       ArticlePredicateBuilder predicate,
       CaptchaService captchaService,
       ArticleMediaService articleMediaService,
       ArticlePublicAuthorService publicAuthorService,
-      AuthenticationService authService) {
+      UserContextAuthorizationService authService) {
     super(repo, predicate);
     this.captchaService = captchaService;
     this.authService = authService;
@@ -33,49 +32,42 @@ public class ArticleService extends DataService<ArticleEntity, ArticlePredicateB
 
   @Override
   public void preCreate(ArticleEntity entity, ArticleEntity newEntity, JsonNode context) {
-
-    //TODO privilege 
-    if (newEntity.getSponsored() == null) {
-      newEntity.setSponsored(false);
-      addContext("sponsored", context);
-    }
-
-    var currentUser = authService.getAuthenticatedUser();
+    var currentUser = authService.getAuthenticatedUserContext();
 
     if (currentUser != null && !currentUser.isEmpty()) {
-      newEntity.setAuthor(currentUser.get().getUserContext());
+      newEntity.setAuthor(currentUser.get());
       addContext("author", context);
 
-      if (this.validatePrivilege(currentUser.get())) {
-        newEntity.setApproved(true);
-        addContext("approved", context);
-      }
-
-      else {
-
-        newEntity.setApproved(false);
-        addContext("approved", context);
-
-        if (newEntity.getCaptchaToken() != null && !newEntity.getCaptchaToken().isEmpty()) {
-          captchaService.verifyToken(newEntity.getCaptchaToken());
-        } else {
-          throw new BadParamsException("Captcha token empty or null", null);
-        }
-      }
+      newEntity.setApproved(true);
+      addContext("approved", context);
     }
   }
-  
-  private boolean validatePrivilege(UserEntity currentUser) {
-    return currentUser.getRoles().stream()
-            .flatMap(role -> role.getPrivileges().stream())
-            .anyMatch(privilege -> "articles-manage".equals(privilege.getCode()) 
-                || "admin".equals(privilege.getCode()) 
-                || "manage".equals(privilege.getCode()) 
-                || "articles-admin".equals(privilege.getCode()));
-}
 
+  public ArticleEntity saveGuestArticle(ArticleEntity entity) {
+    if (isValidGuestArticle(entity)) {      
+      var newEntity = new ArticleEntity();
 
+      newEntity.setPublicAuthor(entity.getPublicAuthor());
+      newEntity.setContent(entity.getContent());
+      newEntity.setName(entity.getName());
+      newEntity.setUploads(entity.getUploads());
+      
+      persist(newEntity, newEntity, null);
+    }
+    return null;
+  }
   
+  private boolean isValidGuestArticle(ArticleEntity entity) {
+    if (entity.getCaptchaToken() != null && !entity.getCaptchaToken().isEmpty()
+        && entity.getPublicAuthor() != null
+        && entity.getContent() != null && !entity.getContent().isBlank()
+        && entity.getName() != null && !entity.getName().isBlank()) {
+      captchaService.verifyToken(entity.getCaptchaToken());
+      return true;
+    }
+    throw new BadParamsException("Invalid Guest Article", entity);
+  }
+
   public Boolean changeApproval(String articleId) {
     var article = getById(articleId);
     

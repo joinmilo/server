@@ -18,7 +18,7 @@ public class LocaleService {
   
   private final ConfigurationService configurationService;
   
-  private TranslationsConfiguration staticConfig;
+  private final TranslationsConfiguration staticConfig;
 
   public LocaleService(
       @Lazy ConfigurationService configurationService,

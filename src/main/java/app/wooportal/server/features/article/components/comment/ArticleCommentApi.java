@@ -6,6 +6,8 @@ import org.springframework.stereotype.Component;
 import app.wooportal.server.core.base.CrudApi;
 import app.wooportal.server.core.base.dto.listing.FilterSortPaginate;
 import app.wooportal.server.core.base.dto.listing.PageableList;
+import app.wooportal.server.core.security.permissions.AdminPermission;
+import app.wooportal.server.core.security.permissions.Authenticated;
 import io.leangen.graphql.annotations.GraphQLArgument;
 import io.leangen.graphql.annotations.GraphQLMutation;
 import io.leangen.graphql.annotations.GraphQLQuery;
@@ -36,6 +38,7 @@ public class ArticleCommentApi extends CrudApi<ArticleCommentEntity, ArticleComm
 
   @Override
   @GraphQLMutation(name = "saveArticleComments")
+  @Authenticated
   public List<ArticleCommentEntity> saveAll(
       @GraphQLArgument(name = CrudApi.entities) List<ArticleCommentEntity> entities) {
     return super.saveAll(entities);
@@ -43,18 +46,21 @@ public class ArticleCommentApi extends CrudApi<ArticleCommentEntity, ArticleComm
 
   @Override
   @GraphQLMutation(name = "saveArticleComment")
+  @Authenticated
   public ArticleCommentEntity saveOne(@GraphQLArgument(name = CrudApi.entity) ArticleCommentEntity entity) {
     return super.saveOne(entity);
   }
 
   @Override
   @GraphQLMutation(name = "deleteArticleComments")
+  @AdminPermission
   public Boolean deleteAll(@GraphQLArgument(name = CrudApi.ids) List<String> ids) {
     return super.deleteAll(ids);
   }
 
   @Override
   @GraphQLMutation(name = "deleteArticleComment")
+  @AdminPermission
   public Boolean deleteOne(@GraphQLArgument(name = CrudApi.id) String id) {
     return super.deleteOne(id);
   }

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import app.wooportal.server.core.base.CrudApi;
 import app.wooportal.server.core.base.dto.listing.FilterSortPaginate;
 import app.wooportal.server.core.base.dto.listing.PageableList;
+import app.wooportal.server.features.article.authorization.ArticleAdminPermission;
 import io.leangen.graphql.annotations.GraphQLArgument;
 import io.leangen.graphql.annotations.GraphQLMutation;
 import io.leangen.graphql.annotations.GraphQLQuery;
@@ -35,6 +36,7 @@ public class ArticleCategoryApi extends CrudApi<ArticleCategoryEntity, ArticleCa
 
   @Override
   @GraphQLMutation(name = "saveArticleCategories")
+  @ArticleAdminPermission
   public List<ArticleCategoryEntity> saveAll(
       @GraphQLArgument(name = CrudApi.entities) List<ArticleCategoryEntity> entities) {
     return super.saveAll(entities);
@@ -42,6 +44,7 @@ public class ArticleCategoryApi extends CrudApi<ArticleCategoryEntity, ArticleCa
 
   @Override
   @GraphQLMutation(name = "saveArticleCategory")
+  @ArticleAdminPermission
   public ArticleCategoryEntity saveOne(
       @GraphQLArgument(name = CrudApi.entity) ArticleCategoryEntity entity) {
     return super.saveOne(entity);
@@ -49,12 +52,14 @@ public class ArticleCategoryApi extends CrudApi<ArticleCategoryEntity, ArticleCa
 
   @Override
   @GraphQLMutation(name = "deleteArticleCategories")
+  @ArticleAdminPermission
   public Boolean deleteAll(@GraphQLArgument(name = CrudApi.ids) List<String> ids) {
     return super.deleteAll(ids);
   }
 
   @Override
   @GraphQLMutation(name = "deleteArticleCategory")
+  @ArticleAdminPermission
   public Boolean deleteOne(@GraphQLArgument(name = CrudApi.id) String id) {
     return super.deleteOne(id);
   }

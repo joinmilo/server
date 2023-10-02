@@ -1,4 +1,4 @@
-package app.wooportal.server.features.article.authorization.permissions;
+package app.wooportal.server.features.article.components.media.authorization;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -8,8 +8,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 @PreAuthorize("""
     hasAnyAuthority('articles_admin', 'admin')
       || (hasAuthority('articles_manage')
-        && @articleAuthorizationService.isOwn(authentication, #entity))
+        && @articleMediaAuthorizationService.isOwn(authentication, #entity, #id))
 """)
-public @interface ArticleManagePermission {
+public @interface ArticleMediaManagePermission {
 
 }

@@ -71,7 +71,7 @@ public class ErrorMessageService
     }
 
     if (e instanceof InvalidCaptchaException) {
-      return "Zusendung fehlgeschlagen. Bitte probieren Sie es erneut.";
+      return "Captcha-Verifikation fehlgeschlagen. Bitte probieren Sie es erneut.";
     }
 
     if (e instanceof VerificationInvalidException) {

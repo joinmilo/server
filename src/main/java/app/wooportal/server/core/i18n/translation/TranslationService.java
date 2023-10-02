@@ -35,6 +35,12 @@ public class TranslationService {
   private final RepositoryService repoService;
 
   private final TranslationApiService translationApiService;
+  
+  // Write State, reset for each save translation
+  private Class<TranslatableEntity<BaseEntity>> translatableClass;
+  private String longestContentField;
+  private HashMap<String, String> sourceFields;
+  
 
   public TranslationService(LanguageService languageService, LocaleService localeService,
       RepositoryService repoService, TranslationApiService translationApiService,
@@ -83,13 +89,76 @@ public class TranslationService {
       }
     }
   }
+  
+  @Transactional
+  public String saveDefaultTranslations(BaseEntity savedEntity) {
+    prepare(savedEntity);
+    
+    if (sourceFields != null && !sourceFields.isEmpty() && translatableClass != null) {      
+      var defaultLocales = localeService.getCurrentRequestLocales();
+      if (defaultLocales != null && !defaultLocales.isEmpty()) {
+        for (var locale: defaultLocales) {
+          var language = languageService.readOne(languageService.singleQuery(
+              languageService.getPredicate().withActive())
+              .and(languageService.getPredicate().withLocale(locale)));
+          
+          if (language.isPresent()) {
+            try {
+              var translatable = getTranslatableInstance(translatableClass, language.get(), savedEntity);
+              if (translatable != null) {      
+                for (var source : sourceFields.entrySet()) {
+                  translatable.set(source.getKey(), source.getValue());
+                }
+                repoService.save(translatable);
+                return locale;
+              }
+            } catch (Throwable e) {
+              e.printStackTrace();
+            }
+          }
+        }
+      }
+    }
+    return null;
+  }
 
   @Transactional
-  public void save(BaseEntity savedEntity) throws Throwable {
-    var sourceFields = new HashMap<String, String>();
-    Class<TranslatableEntity<BaseEntity>> translatableClass = null;
-    String longestContentField = null;
+  public void saveAutoTranslations(BaseEntity savedEntity, String savedDefaultLocale) throws Throwable {
+    prepare(savedEntity);
+
+    if (sourceFields != null && !sourceFields.isEmpty() && translatableClass != null) {
+      
+      var translatables = new ArrayList<TranslatableEntity<BaseEntity>>();
+      var locale = detectLocale(sourceFields.get(longestContentField));
+      
+      for (var language : languageService.readAll(
+          languageService.collectionQuery(
+              languageService.getPredicate().withActive()).and(
+                  languageService.getPredicate().withoutLocale(savedDefaultLocale))
+          ).getList()) {
+        var translatable = getTranslatableInstance(translatableClass, language, savedEntity);
+        
+        if (translatable != null) {
+          translatables.add(translatable);
+        }
+      }
+      
+      if (locale.isPresent()) {
+        persistAutoTranslations(translatables, sourceFields, locale.get());
+      }
+
+    }
     
+    sourceFields = null;
+    translatableClass = null;
+    longestContentField = null;
+  }
+
+  private void prepare(BaseEntity savedEntity) {
+    sourceFields = new HashMap<>();
+    translatableClass = null;
+    longestContentField = null;
+
     for (var field : ReflectionUtils.getFields(savedEntity.getClass())) {
 
       if (ReflectionUtils.getAnnotation(field, Translatable.class).isPresent()) {
@@ -107,45 +176,6 @@ public class TranslationService {
         translatableClass = type.get();
       }
     }
-
-    if (!sourceFields.isEmpty() && translatableClass != null) {
-      saveTranslations(
-          savedEntity,
-          translatableClass,
-          sourceFields,
-          longestContentField
-       );
-    }
-  }
-
-  private void saveTranslations(
-      BaseEntity savedEntity,
-      Class<TranslatableEntity<BaseEntity>> translatableClass,
-      Map<String, String> sourceFields,
-      String longestContentField) throws Throwable {
-    var translatables = new ArrayList<TranslatableEntity<BaseEntity>>();
-    TranslatableEntity<BaseEntity> defaultTranslatable = null;
-    
-    var locale = detectLocale(sourceFields.get(longestContentField));
-    var defaultLocale = localeService.getDefaultLocale();
-    
-    for (var language : languageService.readAll(
-        languageService.collectionQuery(
-            languageService.getPredicate().withActive())).getList()) {
-      var translatable = getTranslatableInstance(translatableClass, language, savedEntity);
-      if (locale.isPresent() && language.getLocale().equals(locale.get())
-          || locale.isEmpty() && language.getLocale().equals(defaultLocale)) {
-        defaultTranslatable = translatable;
-      } else {
-        translatables.add(translatable);
-      }
-    }
-
-    saveDefaultTranslation(defaultTranslatable, sourceFields);
-    
-    if (locale.isPresent()) {        
-      saveAutoTranslations(translatables, sourceFields, locale.get());
-    }
   }
 
   private Optional<String> detectLocale(String content) {
@@ -161,18 +191,7 @@ public class TranslationService {
     }
   }
 
-  private void saveDefaultTranslation(
-      TranslatableEntity<BaseEntity> defaultTranslatable,
-      Map<String, String> sourceTranslatables) throws Throwable {
-    if (defaultTranslatable != null) {      
-      for (var source : sourceTranslatables.entrySet()) {
-        defaultTranslatable.set(source.getKey(), source.getValue());
-      }
-      repoService.save(defaultTranslatable);
-    }
-  }
-
-  private void saveAutoTranslations(
+  private void persistAutoTranslations(
       List<TranslatableEntity<BaseEntity>> translatables,
       Map<String, String> sourceFields,
       String detectedLocale) throws Throwable {
@@ -244,4 +263,5 @@ public class TranslationService {
     throw new RuntimeException(
         "Repository of Translation must inherit from " + TranslationRepository.class);
   }
+
 }

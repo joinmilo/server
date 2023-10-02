@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import app.wooportal.server.core.base.CrudApi;
 import app.wooportal.server.core.base.dto.listing.FilterSortPaginate;
 import app.wooportal.server.core.base.dto.listing.PageableList;
+import app.wooportal.server.features.article.components.media.authorization.ArticleMediaManagePermission;
 import io.leangen.graphql.annotations.GraphQLArgument;
 import io.leangen.graphql.annotations.GraphQLMutation;
 import io.leangen.graphql.annotations.GraphQLQuery;
@@ -35,6 +36,7 @@ public class ArticleMediaApi extends CrudApi<ArticleMediaEntity, ArticleMediaSer
 
   @Override
   @GraphQLMutation(name = "saveArticleMedia")
+  @ArticleMediaManagePermission
   public List<ArticleMediaEntity> saveAll(
       @GraphQLArgument(name = CrudApi.entities) List<ArticleMediaEntity> entities) {
     return super.saveAll(entities);
@@ -42,18 +44,21 @@ public class ArticleMediaApi extends CrudApi<ArticleMediaEntity, ArticleMediaSer
 
   @Override
   @GraphQLMutation(name = "saveArticleMedium")
+  @ArticleMediaManagePermission
   public ArticleMediaEntity saveOne(@GraphQLArgument(name = CrudApi.entity) ArticleMediaEntity entity) {
     return super.saveOne(entity);
   }
 
   @Override
   @GraphQLMutation(name = "deleteArticleMedia")
+  @ArticleMediaManagePermission
   public Boolean deleteAll(@GraphQLArgument(name = CrudApi.ids) List<String> ids) {
     return super.deleteAll(ids);
   }
 
   @Override
   @GraphQLMutation(name = "deleteArticleMedium")
+  @ArticleMediaManagePermission
   public Boolean deleteOne(@GraphQLArgument(name = CrudApi.id) String id) {
     return super.deleteOne(id);
   }
