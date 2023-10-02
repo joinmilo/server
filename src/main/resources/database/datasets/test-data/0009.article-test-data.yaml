@@ -10,7 +10,8 @@ databaseChangeLog:
             splitStatements: true
             sql:
                insert into article_public_authors (`id`, `name`, `email`) values
-               ('bd24d04e-333a-45b4-9e1b-0958b8bba58d', 'Savannah Nguyen', 'savannah.nguyen@gmail.com');
+               ('bd24d04e-333a-45b4-9e1b-0958b8bba58d', 'Savannah Nguyen', 'savannah.nguyen@gmail.com'),
+               ('ff7c6f5a-9e44-49d6-af98-748cf43ad0ba', 'Savannah Nguyen', 'savannah.nguyen@gmail.com');
                
   - changeSet:
       id: 0009.test-data.2
@@ -51,7 +52,8 @@ databaseChangeLog:
                ('f164a12c-fe78-4773-9c8b-27c5bf939c6a', '20ab2295-4d4f-4524-893d-f3b09f1e885a', null, 'slug-i92zz', true),
                ('1729e341-d9c9-4a4c-b05b-80a369ced20e', '20ab2295-4d4f-4524-893d-f3b09f1e885a', null, 'slug-t8avi', true),                                             
                ('21ffbd6a-af52-4ede-9f10-8f9220d6e4b3', '20ab2295-4d4f-4524-893d-f3b09f1e885a', null, 'slug-c63y1', true),
-               ('07852f7d-a9a2-478a-a3cb-5ee2a7a923e5', null, 'bd24d04e-333a-45b4-9e1b-0958b8bba58d', 'guest-article', true);
+               ('07852f7d-a9a2-478a-a3cb-5ee2a7a923e5', null, 'bd24d04e-333a-45b4-9e1b-0958b8bba58d', 'guest-article', true),
+               ('0a2cc7c5-be7c-4ade-b3ec-34a681dff066', null, 'ff7c6f5a-9e44-49d6-af98-748cf43ad0ba', 'guest-article2', true);
                
   - changeSet:
       id: 0009.test-data.6
