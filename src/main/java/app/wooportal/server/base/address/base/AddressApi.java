@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import app.wooportal.server.core.base.CrudApi;
 import app.wooportal.server.core.base.dto.listing.FilterSortPaginate;
 import app.wooportal.server.core.base.dto.listing.PageableList;
+import app.wooportal.server.core.error.exception.NotFoundException;
 import app.wooportal.server.core.location.MapService;
 import io.leangen.graphql.annotations.GraphQLArgument;
 import io.leangen.graphql.annotations.GraphQLMutation;
@@ -65,15 +66,20 @@ public class AddressApi extends CrudApi<AddressEntity, AddressService> {
   }
   
   @GraphQLMutation(name = "verifyAddress")
-  public AddressEntity verifyAddress(@GraphQLArgument(name = CrudApi.entity) AddressEntity entity)
-      throws ServiceUnavailableException {
-    try {
-      return service.getByExample(entity)
-          .orElse(mapService.retrieveExternalAddress(entity));
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-    return null;
+  public AddressEntity verifyAddress(@GraphQLArgument(name = CrudApi.entity) AddressEntity entity) {
+    return service.getByExample(entity)
+      .orElseGet(() -> {
+        try {
+          var address = mapService.retrieveExternalAddress(entity);
+          return address.getStreet() != null
+              && address.getHouseNumber() != null
+              && address.getPlace() != null
+                ? address
+                : null;
+        } catch (NotFoundException | ServiceUnavailableException e) {
+          return null;
+        }
+      });
   }
 }
   
