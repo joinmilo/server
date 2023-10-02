@@ -2825,7 +2825,7 @@ databaseChangeLog:
 
 
   - changeSet:
-      id: 0004.add_data_labels_3.88
+      id: 0004.add_data_labels_3.92
       author: codeschluss
       changes:
         - sql:
@@ -2856,7 +2856,7 @@ databaseChangeLog:
                AND l.locale = "en";
                
   - changeSet:
-      id: 0004.add_data_labels_3.89
+      id: 0004.add_data_labels_3.93
       author: codeschluss
       changes:
         - sql:
@@ -2887,7 +2887,7 @@ databaseChangeLog:
                AND l.locale = "en";
                
   - changeSet:
-      id: 0004.add_data_labels_3.90
+      id: 0004.add_data_labels_3.94
       author: codeschluss
       changes:
         - sql:
@@ -2918,7 +2918,7 @@ databaseChangeLog:
                AND l.locale = "en";
                
   - changeSet:
-      id: 0004.add_data_labels_3.91
+      id: 0004.add_data_labels_3.95
       author: codeschluss
       changes:
         - sql:
