@@ -16,4 +16,13 @@ public class DealMediaPredicateBuilder
   public BooleanExpression freeSearch(String term) {
     return query.media.name.likeIgnoreCase(term);
   }
+  
+  public BooleanExpression withMedia(String mediaId) {
+    return mediaId != null
+        ? query.media.id.eq(mediaId)
+        : null;
+  }
+  public BooleanExpression withDeal(String dealId) {
+    return query.deal.id.eq(dealId);
+  }
 }

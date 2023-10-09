@@ -260,7 +260,7 @@ databaseChangeLog:
                  select uuid(), "27ba1e83-ef5e-44f7-8cf5-419dff27d70d", l.id, "CMS-Administration", "Erstellung, Bearbeitung und Löschung sämtlicher Menüs und Seiten"
                  from languages l
                  WHERE l.locale = "de";
-                 
+
   - changeSet:
       id: 0006.roles_privileges_data.8
       author: codeschluss
@@ -272,6 +272,8 @@ databaseChangeLog:
             
               /* Admin */
               (uuid(), "0b8e5964-7687-4cc3-9519-3c570420bb22", "f27d3b20-162e-4302-802e-ceaa8a678b14"),
+              (uuid(), "0b8e5964-7687-4cc3-9519-3c570420bb22", "8dabe2e5-4140-43b7-a108-d452f14c170e"),
+              (uuid(), "0b8e5964-7687-4cc3-9519-3c570420bb22", "5d934fdc-ca72-4450-9886-ebd1cb5238e5"),
               
               /* Author */
               (uuid(), "1485fce0-9814-4981-bab5-cb1daf009675", "3442417f-e0ee-445f-b1f8-de04231afa83"),
