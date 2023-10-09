@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+  - changeSet:
+      id: 0150.add_column_request.1
+      author: codeschluss
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueBoolean: false
+                  name: request
+                  type: boolean
+            tableName: deals

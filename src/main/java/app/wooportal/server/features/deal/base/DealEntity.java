@@ -13,11 +13,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-
 import org.hibernate.annotations.CollectionId;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
-
 import app.wooportal.server.base.address.base.AddressEntity;
 import app.wooportal.server.base.contact.ContactEntity;
 import app.wooportal.server.base.userContext.base.UserContextEntity;
@@ -72,6 +70,9 @@ public class DealEntity extends BaseEntity {
 
   @Column(nullable = false)
   private Boolean offer;
+  
+  @Column(nullable = false)
+  private Boolean request;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private UserContextEntity creator;
