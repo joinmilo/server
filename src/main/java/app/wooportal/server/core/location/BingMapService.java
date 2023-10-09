@@ -45,17 +45,20 @@ public class BingMapService implements MapService {
 
   public AddressEntity retrieveExternalAddress(AddressEntity newAddress)
       throws ServiceUnavailableException, NotFoundException {
-    var result = geoLocationClient
-        .method(HttpMethod.GET)
-        .uri(createAddressUri(newAddress))
-        .retrieve().bodyToMono(BingMapAddressResult.class).block();
-    isValid(result);
+    if (newAddress != null) {
+      var result = geoLocationClient.method(HttpMethod.GET).uri(createAddressUri(newAddress))
+          .retrieve().bodyToMono(BingMapAddressResult.class).block();
+      isValid(result);
 
-    return transformResultToAddress(result, newAddress);
+      return transformResultToAddress(result, newAddress);
+    }
+    return null;
   }
 
   private URI createAddressUri(AddressEntity newAddress) {
     UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(config.getAddressUrl());
+    
+    if(newAddress != null) {
     
     if (newAddress.getPlace() != null) {            
       builder.pathSegment(StringUtils.replaceUmlauts(newAddress.getPlace()));
@@ -77,7 +80,8 @@ public class BingMapService implements MapService {
     
     if (newAddress.getPostalCode() != null) {
       builder.pathSegment(StringUtils.replaceUmlauts(newAddress.getPostalCode()));
-    }
+    } 
+   }
 
     builder.queryParam("key", config.getServiceSubscriptionKey());
 

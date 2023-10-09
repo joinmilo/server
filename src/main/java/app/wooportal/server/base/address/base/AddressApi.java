@@ -70,15 +70,19 @@ public class AddressApi extends CrudApi<AddressEntity, AddressService> {
     return service.getByExample(entity)
       .orElseGet(() -> {
         try {
-          var address = mapService.retrieveExternalAddress(entity);
-          return address.getStreet() != null
+          var address = mapService.retrieveExternalAddress(entity); 
+          if (address != null) {
+          return 
+              address.getStreet() != null
               && address.getHouseNumber() != null
               && address.getPlace() != null
                 ? address
                 : null;
+              }
         } catch (NotFoundException | ServiceUnavailableException e) {
           return null;
         }
+        return null;
       });
   }
 }

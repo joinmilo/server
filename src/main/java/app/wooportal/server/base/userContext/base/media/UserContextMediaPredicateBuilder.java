@@ -19,9 +19,8 @@ public class UserContextMediaPredicateBuilder
   
   
   public BooleanExpression withUserContext(String userContextId) {
-    return userContextId != null
-        ? query.userContext.id.eq(userContextId)
-        : null;
+    return query.userContext.id.eq(userContextId);
+    
   }
 
   public BooleanExpression withMedia(String mediaId) {
