@@ -70,9 +70,6 @@ public class DealEntity extends BaseEntity {
 
   @Column(nullable = false)
   private Boolean offer;
-  
-  @Column(nullable = false)
-  private Boolean request;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private UserContextEntity creator;

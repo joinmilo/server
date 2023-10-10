@@ -278,8 +278,6 @@ databaseChangeLog:
         file: database/changes/0148.update_name_constraints.yaml    
     - include:                 
         file: database/changes/0149.change_null_and_unique_constraints.yaml
-    - include:                 
-        file: database/changes/0150.add_column_request.yaml    
                                    
     #Data section
     - include:
