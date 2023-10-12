@@ -1902,8 +1902,8 @@ databaseChangeLog:
                /*!40101 SET character_set_client = utf8 */;
                /* Set variables */
                SET @tagId   = "schedulesInThePast";
-               SET @german  = "Termine liegen in der Vergangenheit";
-               SET @english = "Appointments are in the past";
+               SET @german  = "Liegt in der Vergangenheit";
+               SET @english = "Is in the past";
 
 
                /* Insert */

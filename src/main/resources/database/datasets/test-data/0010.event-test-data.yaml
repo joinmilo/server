@@ -242,5 +242,5 @@ databaseChangeLog:
             splitStatements: true
             sql:
                insert into event_schedules (`id`, `end_date`, `start_date`, `event_id`) values
-               ('50b87045-4771-46d8-8ea8-50119ddf80bf', '2023-06-26 10:00:00', '2023-06-25 12:00:00', 'db3d3896-d60a-4e6e-b708-b50769f3dbae');
+               ('50b87045-4771-46d8-8ea8-50119ddf80bf', '2023-12-26 10:00:00', '2023-12-26 12:00:00', 'db3d3896-d60a-4e6e-b708-b50769f3dbae');
                  
