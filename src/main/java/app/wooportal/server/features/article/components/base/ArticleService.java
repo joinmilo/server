@@ -42,6 +42,7 @@ public class ArticleService extends DataService<ArticleEntity, ArticlePredicateB
       
       newEntity.setApproved(true);
       addContext("approved", context);
+    }
   }
 
   public ArticleEntity saveGuestArticle(ArticleEntity entity) {
