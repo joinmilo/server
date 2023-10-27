@@ -1,6 +1,7 @@
 package app.wooportal.server.features.event.base;
 
 import org.springframework.stereotype.Service;
+import com.fasterxml.jackson.databind.JsonNode;
 import app.wooportal.server.base.address.base.AddressService;
 import app.wooportal.server.core.base.DataService;
 import app.wooportal.server.core.repository.DataRepository;
@@ -50,5 +51,11 @@ public class EventService extends DataService<EventEntity, EventPredicateBuilder
         repo.save(event);
       });
     }
+  }
+  
+  @Override
+  public void preCreate(EventEntity entity, EventEntity newEntity, JsonNode context) {
+     newEntity.setSponsored(false);
+     addContext("sponsored", context);
   }
 }

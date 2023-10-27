@@ -28,7 +28,7 @@ public class MenuItemEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
 
-  @Column(nullable = false)
+  @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
   private Boolean header;
   
   private String icon;

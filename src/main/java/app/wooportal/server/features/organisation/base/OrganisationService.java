@@ -1,6 +1,7 @@
 package app.wooportal.server.features.organisation.base;
 
 import org.springframework.stereotype.Service;
+import com.fasterxml.jackson.databind.JsonNode;
 import app.wooportal.server.base.address.base.AddressService;
 import app.wooportal.server.base.contact.ContactService;
 import app.wooportal.server.core.base.DataService;
@@ -23,6 +24,12 @@ public class OrganisationService extends DataService<OrganisationEntity, Organis
     addService("uploads", uploadService);
   }
   
+  @Override
+  public void preCreate(OrganisationEntity entity, OrganisationEntity newEntity, JsonNode context) {
+    newEntity.setSponsored(true);
+    addContext("sponsored", context);
+  }    
+  
   public Boolean sponsor(String rganisationId) {
     var rganisation = getById(rganisationId);
     
@@ -31,9 +38,7 @@ public class OrganisationService extends DataService<OrganisationEntity, Organis
       repo.save(rganisation.get());
       
       unsponsorOthers(rganisationId);
-      
       //TODO: Send notifications
-      
       return true;
     }
     return false;

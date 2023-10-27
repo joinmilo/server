@@ -1,6 +1,8 @@
 package app.wooportal.server.base.cms.feature;
 
 import java.util.Set;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
@@ -23,7 +25,7 @@ import lombok.Setter;
 @Entity
 @Table(name = "features")
 public class FeatureEntity extends BaseEntity {
-  
+  	
   private Boolean active;
 
   private static final long serialVersionUID = 1L;
