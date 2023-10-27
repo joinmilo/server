@@ -9,7 +9,6 @@ import app.wooportal.server.core.base.CrudApi;
 import app.wooportal.server.core.base.dto.listing.FilterSortPaginate;
 import app.wooportal.server.core.base.dto.listing.PageableList;
 import app.wooportal.server.core.error.exception.BadParamsException;
-import app.wooportal.server.core.push.PushService;
 import io.leangen.graphql.annotations.GraphQLArgument;
 import io.leangen.graphql.annotations.GraphQLMutation;
 import io.leangen.graphql.annotations.GraphQLQuery;
@@ -19,12 +18,8 @@ import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 @Component
 public class UserApi extends CrudApi<UserEntity, UserService> {
 
-  private final PushService pushService;
-
-  public UserApi(UserService userService, PushService pushService) {
+  public UserApi(UserService userService) {
     super(userService);
-
-    this.pushService = pushService;
   }
 
   @Override

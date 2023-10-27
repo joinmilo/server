@@ -31,7 +31,7 @@ import app.wooportal.server.features.article.components.base.ArticleEntity;
 import app.wooportal.server.features.article.components.rating.ArticleRatingEntity;
 import app.wooportal.server.features.contest.participation.ContestParticipationEntity;
 import app.wooportal.server.features.contest.vote.ContestVoteEntity;
-import app.wooportal.server.features.deal.base.DealEntity;
+import app.wooportal.server.features.deal.components.base.DealEntity;
 import app.wooportal.server.features.event.attendee.EventAttendeeEntity;
 import app.wooportal.server.features.event.base.EventEntity;
 import app.wooportal.server.features.event.comment.EventCommentEntity;

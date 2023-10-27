@@ -5,10 +5,19 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import app.wooportal.server.base.userContext.base.UserContextEntity;
+import app.wooportal.server.core.security.components.role.privilege.RolePrivilegeService;
+import app.wooportal.server.core.security.services.AbstractAuthorizationService;
+import app.wooportal.server.core.security.services.AuthenticationService;
 
 @Service
-public class UserContextAuthorizationService {
+public class UserContextAuthorizationService extends AbstractAuthorizationService {
   
+  public UserContextAuthorizationService(
+      AuthenticationService authenticationService,
+      RolePrivilegeService rolePrivilegeService) {
+    super(authenticationService, rolePrivilegeService);
+  }
+
   public Optional<UserContextEntity> getUserContext(Authentication authentication) {
     var userDetails = getUserDetails(authentication);
     

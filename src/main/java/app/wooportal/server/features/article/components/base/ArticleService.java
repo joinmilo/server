@@ -34,13 +34,14 @@ public class ArticleService extends DataService<ArticleEntity, ArticlePredicateB
   public void preCreate(ArticleEntity entity, ArticleEntity newEntity, JsonNode context) {
     var currentUser = authService.getAuthenticatedUserContext();
 
-    if (currentUser != null && !currentUser.isEmpty()) {
+    if (authService.authenticatedUserHasPrivilege("articles_manage", "articles_admin", "admin")) {
       newEntity.setAuthor(currentUser.get());
       addContext("author", context);
-
+      
       newEntity.setApproved(true);
       addContext("approved", context);
     }
+
   }
 
   public ArticleEntity saveGuestArticle(ArticleEntity entity) {

@@ -10,8 +10,6 @@ import app.wooportal.server.core.security.components.user.UserEntity;
 @Service
 public class RoleService extends DataService<RoleEntity, RolePredicateBuilder> {
   
-  public static String admin = "admin";
-  
   public RoleService(
       DataRepository<RoleEntity> repo,
       RolePredicateBuilder predicate) {
@@ -29,7 +27,4 @@ public class RoleService extends DataService<RoleEntity, RolePredicateBuilder> {
     return repo.findAll(collectionQuery(predicate.withUserId(user.getId()))).getList();
   }
 
-  public RoleEntity getAdminRole() {
-    return repo.findOne(singleQuery(predicate.withCode(admin))).get();
-  }
 }

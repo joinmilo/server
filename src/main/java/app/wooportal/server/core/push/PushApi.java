@@ -1,12 +1,8 @@
 package app.wooportal.server.core.push;
 
-import org.reactivestreams.Publisher;
 import org.springframework.stereotype.Component;
-import app.wooportal.server.core.error.exception.InvalidTokenException;
 import app.wooportal.server.core.security.components.user.UserService;
 import app.wooportal.server.core.security.services.AuthenticationService;
-import io.leangen.graphql.annotations.GraphQLMutation;
-import io.leangen.graphql.annotations.GraphQLSubscription;
 import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 
 @GraphQLApi
