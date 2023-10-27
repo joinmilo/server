@@ -26,15 +26,9 @@ databaseChangeLog:
                   name: modified
                   type: datetime
               - column:
-                  constraints:
-                    nullable: false
-                  defaultValueBoolean: false
                   name: title
                   type: boolean        
               - column:
-                  constraints:
-                    nullable: false
-                  defaultValueBoolean: false
                   name: card
                   type: boolean                                                                                                                                                                                        
               - column:

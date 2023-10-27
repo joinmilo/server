@@ -33,6 +33,8 @@ public class ArticleService extends DataService<ArticleEntity, ArticlePredicateB
   @Override
   public void preCreate(ArticleEntity entity, ArticleEntity newEntity, JsonNode context) {
     var currentUser = authService.getAuthenticatedUserContext();
+    newEntity.setSponsored(false);
+    addContext("sponsored", context);
 
     if (authService.authenticatedUserHasPrivilege("articles_manage", "articles_admin", "admin")) {
       newEntity.setAuthor(currentUser.get());
@@ -40,8 +42,6 @@ public class ArticleService extends DataService<ArticleEntity, ArticlePredicateB
       
       newEntity.setApproved(true);
       addContext("approved", context);
-    }
-
   }
 
   public ArticleEntity saveGuestArticle(ArticleEntity entity) {
