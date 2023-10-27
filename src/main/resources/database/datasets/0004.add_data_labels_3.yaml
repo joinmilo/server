@@ -2710,7 +2710,7 @@ databaseChangeLog:
                /*!40101 SET character_set_client = utf8 */;
                /* Set variables */
                SET @tagId   = "userInformation";
-               SET @german  = "Nutzer:innen Informationen";
+               SET @german  = "Deine Daten";
                SET @english = "User information";
 
 
