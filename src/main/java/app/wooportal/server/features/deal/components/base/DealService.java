@@ -1,6 +1,9 @@
 package app.wooportal.server.features.deal.components.base;
 
 import org.springframework.stereotype.Service;
+
+import com.fasterxml.jackson.databind.JsonNode;
+
 import app.wooportal.server.base.contact.ContactService;
 import app.wooportal.server.core.base.DataService;
 import app.wooportal.server.core.repository.DataRepository;
@@ -18,6 +21,12 @@ public class DealService extends DataService<DealEntity, DealPredicateBuilder> {
     
     addService("contact", contactService);
     addService("uploads", mediaService);
+  }
+  
+  @Override
+  public void preCreate(DealEntity entity, DealEntity newEntity, JsonNode context) {
+    newEntity.setSponsored(false);
+    addContext("sponsored", context);
   }
   
   public Boolean sponsor(String dealId) {
