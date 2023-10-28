@@ -4,14 +4,18 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.time.OffsetDateTime;
 import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.EntityListeners;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import com.sun.istack.NotNull;
+
 import app.wooportal.server.core.utils.ReflectionUtils;
 import io.leangen.graphql.annotations.types.GraphQLType;
 import lombok.AllArgsConstructor;

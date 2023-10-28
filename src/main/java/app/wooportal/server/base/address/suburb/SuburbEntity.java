@@ -1,11 +1,13 @@
 package app.wooportal.server.base.address.suburb;
 
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 import app.wooportal.server.base.address.base.AddressEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import lombok.AccessLevel;

@@ -4,6 +4,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.util.Collection;
 import java.util.Optional;
+
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.i18n.entities.TranslatableEntity;
 

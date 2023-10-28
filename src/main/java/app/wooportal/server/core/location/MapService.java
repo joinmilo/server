@@ -1,6 +1,7 @@
 package app.wooportal.server.core.location;
 
 import javax.naming.ServiceUnavailableException;
+
 import app.wooportal.server.base.address.base.AddressEntity;
 import app.wooportal.server.core.error.exception.NotFoundException;
 import app.wooportal.server.core.location.dto.LocationParam;

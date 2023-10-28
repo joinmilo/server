@@ -1,8 +1,10 @@
 package app.wooportal.server.core.media.attribution;
 
 import java.io.Serial;
+
 import javax.persistence.Entity;
 import javax.persistence.Table;
+
 import app.wooportal.server.core.base.BaseEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
+
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.i18n.components.language.LanguageEntity;
 import lombok.AccessLevel;

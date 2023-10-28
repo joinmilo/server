@@ -1,11 +1,13 @@
 package app.wooportal.server.core.messaging.templates;
 
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.messaging.definitions.MessageDefinitionEntity;
 import app.wooportal.server.core.messaging.templates.translations.MessageTemplateTranslatableEntity;

@@ -1,8 +1,10 @@
 package app.wooportal.server.test.units.core.image;
 
 import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
 import app.wooportal.server.core.media.base.MediaConfiguration;
 import app.wooportal.server.core.media.base.MimeTypeService;
 import app.wooportal.server.core.media.image.ImageService;

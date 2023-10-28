@@ -1,12 +1,15 @@
 package app.wooportal.server.base.cms.page;
 
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 import org.hibernate.annotations.GenericGenerator;
+
 import app.wooportal.server.base.cms.menuItem.MenuItemEntity;
 import app.wooportal.server.base.cms.page.media.PageMediaEntity;
 import app.wooportal.server.base.cms.page.translations.PageTranslatableEntity;

@@ -3,7 +3,9 @@ package app.wooportal.server.base.userContext.security;
 import java.io.Serial;
 import java.util.Collection;
 import java.util.stream.Collectors;
+
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
 import app.wooportal.server.base.userContext.base.UserContextEntity;
 import app.wooportal.server.core.security.components.user.UserEntity;
 import app.wooportal.server.core.security.dto.UserDetails;

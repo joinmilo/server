@@ -2,7 +2,9 @@ package app.wooportal.server.test.units.core.setup.entities.base;
 
 import java.util.List;
 import java.util.Optional;
+
 import com.querydsl.core.types.Predicate;
+
 import app.wooportal.server.core.base.dto.listing.PageableList;
 import app.wooportal.server.core.repository.BaseRepositoryQuery;
 import app.wooportal.server.core.repository.CollectionRepositoryQuery;

@@ -1,7 +1,9 @@
 package app.wooportal.server.core.i18n.translation;
 
 import java.util.List;
+
 import org.springframework.data.repository.NoRepositoryBean;
+
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.i18n.entities.TranslatableEntity;
 import app.wooportal.server.core.repository.DataRepository;

@@ -1,6 +1,7 @@
 package app.wooportal.server.core.location.dto;
 
 import java.util.List;
+
 import lombok.Data;
 
 @Data

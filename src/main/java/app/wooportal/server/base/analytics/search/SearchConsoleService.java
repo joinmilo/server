@@ -6,7 +6,9 @@ import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
+
 import org.springframework.stereotype.Service;
+
 import app.wooportal.server.base.analytics.search.dto.SearchConsoleDimension;
 import app.wooportal.server.base.analytics.search.dto.SearchConsoleQuery;
 import app.wooportal.server.core.base.BaseEntity;

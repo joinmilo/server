@@ -1,6 +1,7 @@
 package app.wooportal.server.core.messaging.notifications.base;
 
 import org.springframework.stereotype.Service;
+
 import app.wooportal.server.core.base.DataService;
 
 @Service

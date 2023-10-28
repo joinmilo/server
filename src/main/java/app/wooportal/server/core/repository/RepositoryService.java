@@ -7,6 +7,7 @@ import org.springframework.context.event.EventListener;
 import org.springframework.data.repository.support.Repositories;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import app.wooportal.server.core.base.BaseEntity;
 
 @Service

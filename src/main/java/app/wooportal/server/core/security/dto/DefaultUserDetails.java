@@ -3,7 +3,9 @@ package app.wooportal.server.core.security.dto;
 import java.io.Serial;
 import java.util.Collection;
 import java.util.stream.Collectors;
+
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
 import app.wooportal.server.core.security.components.user.UserEntity;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

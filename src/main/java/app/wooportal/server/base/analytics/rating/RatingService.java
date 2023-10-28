@@ -9,7 +9,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.IntStream;
+
 import org.springframework.stereotype.Service;
+
 import app.wooportal.server.base.configuration.ConfigurationService;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.base.dto.analytics.AnalyticsDto;

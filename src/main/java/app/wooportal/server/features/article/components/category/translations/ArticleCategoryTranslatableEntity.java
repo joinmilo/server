@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+
 import app.wooportal.server.core.i18n.entities.TranslatableEntity;
 import app.wooportal.server.features.article.components.category.ArticleCategoryEntity;
 import lombok.AccessLevel;

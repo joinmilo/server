@@ -1,11 +1,14 @@
 package app.wooportal.server.base.report.type;
 
 import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 import org.hibernate.annotations.GenericGenerator;
+
 import app.wooportal.server.base.report.base.ReportEntity;
 import app.wooportal.server.base.report.type.translations.ReportTypeTranslatableEntity;
 import app.wooportal.server.core.base.BaseEntity;

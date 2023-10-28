@@ -1,12 +1,14 @@
 package app.wooportal.server.core.media.base;
 
 import java.io.Serial;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.context.ApplicationContextAdapter;
 import app.wooportal.server.core.media.attribution.MediaAttributionEntity;

@@ -1,6 +1,7 @@
 package app.wooportal.server.test.units.core.utils.date.setup;
 
 import javax.persistence.Table;
+
 import app.wooportal.server.core.base.BaseEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

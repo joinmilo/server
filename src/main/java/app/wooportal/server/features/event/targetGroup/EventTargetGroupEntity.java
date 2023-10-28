@@ -1,10 +1,12 @@
 package app.wooportal.server.features.event.targetGroup;
 
 import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.i18n.annotations.Translatable;
 import app.wooportal.server.features.event.targetGroup.translations.EventTargetGroupTranslatableEntity;

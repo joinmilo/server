@@ -2,7 +2,9 @@ package app.wooportal.server.test.units.core.utils.number;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
+
 import org.junit.jupiter.api.Test;
+
 import app.wooportal.server.core.utils.NumberUtils;
 
 public class NumberUtilsTest {

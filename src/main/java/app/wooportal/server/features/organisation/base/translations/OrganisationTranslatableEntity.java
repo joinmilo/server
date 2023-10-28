@@ -2,6 +2,7 @@ package app.wooportal.server.features.organisation.base.translations;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+
 import app.wooportal.server.core.i18n.entities.TranslatableEntity;
 import app.wooportal.server.features.organisation.base.OrganisationEntity;
 import lombok.AccessLevel;

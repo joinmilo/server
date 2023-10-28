@@ -1,21 +1,24 @@
 package app.wooportal.server.base.userContext.base;
 
 import java.util.Optional;
+
 import org.springframework.stereotype.Service;
+
 import com.fasterxml.jackson.databind.JsonNode;
+
 import app.wooportal.server.base.address.base.AddressService;
 import app.wooportal.server.base.userContext.base.media.UserContextMediaService;
+import app.wooportal.server.base.userContext.security.UserContextAuthorizationService;
 import app.wooportal.server.core.base.DataService;
 import app.wooportal.server.core.repository.DataRepository;
 import app.wooportal.server.core.security.components.user.UserService;
-import app.wooportal.server.core.security.services.AuthenticationService;
 import app.wooportal.server.core.seo.SlugService;
 import app.wooportal.server.features.organisation.member.OrganisationMemberService;
 
 @Service
 public class UserContextService extends DataService<UserContextEntity, UserContextPredicateBuilder> {
   
-  private final AuthenticationService authService;
+  private final UserContextAuthorizationService authService;
   
   private final SlugService slugService;
 
@@ -23,7 +26,7 @@ public class UserContextService extends DataService<UserContextEntity, UserConte
       DataRepository<UserContextEntity> repo,
       UserContextPredicateBuilder predicate,
       AddressService addressService,
-      AuthenticationService authService,
+      UserContextAuthorizationService authService,
       OrganisationMemberService memberService,
       SlugService slugService,
       UserService userService,
@@ -48,9 +51,9 @@ public class UserContextService extends DataService<UserContextEntity, UserConte
   }
   
   public Optional<UserContextEntity> me() {
-    var currentUser = authService.getAuthenticatedUser();
+    var currentUser = authService.getAuthenticatedUserContext();
     if (currentUser.isPresent()) {
-      return repo.findOne(singleQuery(predicate.withUser(currentUser.get().getId())));
+      return repo.findOne(singleQuery(predicate.withId(currentUser.get().getId())));
     }
     return Optional.empty();
   }
@@ -59,5 +62,13 @@ public class UserContextService extends DataService<UserContextEntity, UserConte
     return repo.findOne(singleQuery(predicate.withEmail(username))
         .addGraph(graph("user.roles.privileges")));
   }
-
+  
+	public Optional<UserContextEntity> saveMe(UserContextEntity entity) {
+		var currentUser = authService.getAuthenticatedUserContext();
+		if (currentUser.isPresent()) {
+			entity.setId(currentUser.get().getId());
+			return Optional.of(saveWithContext(entity));
+		}
+		return currentUser;
+	}
 }

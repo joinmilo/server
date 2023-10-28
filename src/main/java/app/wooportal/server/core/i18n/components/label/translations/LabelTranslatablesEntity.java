@@ -3,6 +3,7 @@ package app.wooportal.server.core.i18n.components.label.translations;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+
 import app.wooportal.server.core.i18n.components.label.LabelEntity;
 import app.wooportal.server.core.i18n.entities.TranslatableEntity;
 import lombok.AccessLevel;

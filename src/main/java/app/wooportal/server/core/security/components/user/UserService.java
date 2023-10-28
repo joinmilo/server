@@ -4,11 +4,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Pattern;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
 import com.fasterxml.jackson.databind.JsonNode;
-import app.wooportal.server.base.userContext.base.media.UserContextMediaEntity;
-import app.wooportal.server.base.userContext.base.media.UserContextMediaService;
+
 import app.wooportal.server.base.userDeletion.base.UserDeletionEntity;
 import app.wooportal.server.base.userDeletion.base.UserDeletionService;
 import app.wooportal.server.core.base.DataService;
@@ -36,20 +37,17 @@ public class UserService extends DataService<UserEntity, UserPredicateBuilder> {
 
   private final BCryptPasswordEncoder bcryptPasswordEncoder;
 
-  private final UserContextMediaService mediaService;
-  
   private final UserDeletionService userDeletionService;
 
   public UserService(DataRepository<UserEntity> repo, UserPredicateBuilder predicate,
       AuthenticationService authService, BCryptPasswordEncoder bcryptPasswordEncoder,
-      UserContextMediaService mediaService, PasswordResetService passwordResetService,
+      PasswordResetService passwordResetService,
       SubscriptionService subscriptionService, VerificationService verificationService,
       PrivilegeApplicationService privilegeApplicationService, UserDeletionService userDeletionService) {
     super(repo, predicate);
 
     this.authService = authService;
     this.bcryptPasswordEncoder = bcryptPasswordEncoder;
-    this.mediaService = mediaService;
     this.userDeletionService = userDeletionService;
 
     addService("passwordResets", passwordResetService);
@@ -86,34 +84,6 @@ public class UserService extends DataService<UserEntity, UserPredicateBuilder> {
       newEntity.setVerified(false);
       addContext("verified", context);
     }
-  }
-
-  public Optional<UserEntity> saveMe(UserEntity entity) {
-    var currentUser = authService.getAuthenticatedUser();
-    if (currentUser.isPresent()) {
-      entity.setId(currentUser.get().getId());
-      return Optional.of(saveWithContext(entity));
-    }
-    return currentUser;
-  }
-
-  public Optional<UserEntity> addUploads(List<UserContextMediaEntity> uploads) {
-    var currentUser = authService.getAuthenticatedUser();
-    if (currentUser.isPresent()) {
-      repo.findOne(singleQuery(predicate.withId(currentUser.get().getId()))).get().getUserContext()
-          .getUploads().addAll(mediaService.saveAll(uploads));
-      return Optional.of(repo.save(currentUser.get()));
-    }
-    return currentUser;
-  }
-
-  public Optional<UserEntity> deleteUpload(List<String> uploads) {
-    var currentUser = authService.getAuthenticatedUser();
-    if (currentUser.isPresent()) {
-      mediaService.deleteById(uploads.toArray(new String[uploads.size()]));
-      return Optional.of(repo.save(currentUser.get()));
-    }
-    return currentUser;
   }
 
   public Boolean createPasswordReset(String email) {

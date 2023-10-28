@@ -2,7 +2,10 @@ package app.wooportal.server.base.thirdparty.socialMedia;
 
 import java.util.List;
 import java.util.Optional;
+
 import org.springframework.stereotype.Component;
+
+import app.wooportal.server.base.thirdparty.socialMedia.authorization.permissions.SocialMediaAdminPermission;
 import app.wooportal.server.core.base.CrudApi;
 import app.wooportal.server.core.base.dto.listing.FilterSortPaginate;
 import app.wooportal.server.core.base.dto.listing.PageableList;
@@ -35,6 +38,7 @@ public class SocialMediaApi extends CrudApi<SocialMediaEntity, SocialMediaServic
 
   @Override
   @GraphQLMutation(name = "saveSocialMedias")
+  @SocialMediaAdminPermission 
   public List<SocialMediaEntity> saveAll(
       @GraphQLArgument(name = CrudApi.entities) List<SocialMediaEntity> entities) {
     return super.saveAll(entities);
@@ -42,18 +46,21 @@ public class SocialMediaApi extends CrudApi<SocialMediaEntity, SocialMediaServic
 
   @Override
   @GraphQLMutation(name = "saveSocialMedia")
+  @SocialMediaAdminPermission 
   public SocialMediaEntity saveOne(@GraphQLArgument(name = CrudApi.entity) SocialMediaEntity entity) {
     return super.saveOne(entity);
   }
 
   @Override
   @GraphQLMutation(name = "deleteSocialMedias")
+  @SocialMediaAdminPermission 
   public Boolean deleteAll(@GraphQLArgument(name = CrudApi.ids) List<String> ids) {
     return super.deleteAll(ids);
   }
 
   @Override
   @GraphQLMutation(name = "deleteSocialMedia")
+  @SocialMediaAdminPermission 
   public Boolean deleteOne(@GraphQLArgument(name = CrudApi.id) String id) {
     return super.deleteOne(id);
   }

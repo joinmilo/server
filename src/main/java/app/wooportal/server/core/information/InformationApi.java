@@ -1,6 +1,7 @@
 package app.wooportal.server.core.information;
 
 import org.springframework.stereotype.Component;
+
 import io.leangen.graphql.annotations.GraphQLQuery;
 import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 

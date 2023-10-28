@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.UnmodifiableClassException;
 import java.security.ProtectionDomain;
+
 import javassist.CannotCompileException;
 import javassist.ClassPool;
 import javassist.CtField;

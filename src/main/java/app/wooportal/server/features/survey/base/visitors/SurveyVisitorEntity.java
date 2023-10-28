@@ -2,6 +2,7 @@ package app.wooportal.server.features.survey.base.visitors;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+
 import app.wooportal.server.core.visit.visitable.VisitableEntity;
 import app.wooportal.server.features.survey.base.SurveyEntity;
 import lombok.AccessLevel;

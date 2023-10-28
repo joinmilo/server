@@ -2,10 +2,13 @@ package app.wooportal.server.core.i18n.components.label;
 
 import java.util.List;
 import java.util.Optional;
+
 import org.springframework.stereotype.Component;
+
 import app.wooportal.server.core.base.CrudApi;
 import app.wooportal.server.core.base.dto.listing.FilterSortPaginate;
 import app.wooportal.server.core.base.dto.listing.PageableList;
+import app.wooportal.server.core.i18n.components.label.authorization.permissions.TranslatorAdminPermission;
 import io.leangen.graphql.annotations.GraphQLArgument;
 import io.leangen.graphql.annotations.GraphQLMutation;
 import io.leangen.graphql.annotations.GraphQLQuery;
@@ -35,6 +38,7 @@ public class LabelApi extends CrudApi<LabelEntity, LabelService> {
 
   @Override
   @GraphQLMutation(name = "saveLabels")
+  @TranslatorAdminPermission
   public List<LabelEntity> saveAll(
       @GraphQLArgument(name = CrudApi.entities) List<LabelEntity> entities) {
     return super.saveAll(entities);
@@ -42,18 +46,21 @@ public class LabelApi extends CrudApi<LabelEntity, LabelService> {
 
   @Override
   @GraphQLMutation(name = "saveLabel")
+  @TranslatorAdminPermission
   public LabelEntity saveOne(@GraphQLArgument(name = CrudApi.entity) LabelEntity entity) {
     return super.saveOne(entity);
   }
 
   @Override
   @GraphQLMutation(name = "deleteLabels")
+  @TranslatorAdminPermission
   public Boolean deleteAll(@GraphQLArgument(name = CrudApi.ids) List<String> ids) {
     return super.deleteAll(ids);
   }
 
   @Override
   @GraphQLMutation(name = "deleteLabel")
+  @TranslatorAdminPermission
   public Boolean deleteOne(@GraphQLArgument(name = CrudApi.id) String id) {
     return super.deleteOne(id);
   }

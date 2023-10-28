@@ -3,13 +3,16 @@ package app.wooportal.server.base.analytics.search;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
+
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
+
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.gson.GsonFactory;
 import com.google.api.services.searchconsole.v1.SearchConsole;
 import com.google.api.services.searchconsole.v1.model.ApiDataRow;
+
 import app.wooportal.server.base.analytics.search.dto.SearchConsoleQuery;
 
 @Service

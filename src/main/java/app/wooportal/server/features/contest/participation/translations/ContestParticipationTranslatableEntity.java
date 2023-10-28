@@ -2,6 +2,7 @@ package app.wooportal.server.features.contest.participation.translations;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+
 import app.wooportal.server.core.i18n.entities.TranslatableEntity;
 import app.wooportal.server.features.contest.participation.ContestParticipationEntity;
 import lombok.AccessLevel;

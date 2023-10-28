@@ -1,7 +1,9 @@
 package app.wooportal.server.test.units.core.error;
 
 import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.Test;
+
 import app.wooportal.server.core.error.exception.BadParamsException;
 import app.wooportal.server.core.error.exception.InvalidTokenException;
 import app.wooportal.server.core.error.exception.NotFoundException;

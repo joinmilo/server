@@ -3,7 +3,9 @@ package app.wooportal.server.core.visit.visitable;
 import java.time.OffsetDateTime;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
+
 import org.springframework.stereotype.Service;
+
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.base.dto.analytics.AnalyticsDto;
 import app.wooportal.server.core.base.dto.analytics.IntervalFilter;

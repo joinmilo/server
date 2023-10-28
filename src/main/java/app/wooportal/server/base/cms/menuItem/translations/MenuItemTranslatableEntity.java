@@ -3,6 +3,7 @@ package app.wooportal.server.base.cms.menuItem.translations;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+
 import app.wooportal.server.base.cms.menuItem.MenuItemEntity;
 import app.wooportal.server.core.i18n.entities.TranslatableEntity;
 import lombok.AccessLevel;

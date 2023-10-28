@@ -1,7 +1,8 @@
 package app.wooportal.server.core.security.services;
 
-import app.wooportal.server.core.security.components.token.TokenDto;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
+
+import app.wooportal.server.core.security.components.token.TokenDto;
 
 public class ApiAuthenticationToken extends AbstractAuthenticationToken {
 

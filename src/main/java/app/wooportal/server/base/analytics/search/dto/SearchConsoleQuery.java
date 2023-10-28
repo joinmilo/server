@@ -4,9 +4,11 @@ import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
+
 import com.google.api.services.searchconsole.v1.model.ApiDimensionFilter;
 import com.google.api.services.searchconsole.v1.model.ApiDimensionFilterGroup;
 import com.google.api.services.searchconsole.v1.model.SearchAnalyticsQueryRequest;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

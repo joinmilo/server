@@ -2,9 +2,11 @@ package app.wooportal.server.core.messaging.template;
 
 import java.io.IOException;
 import java.util.Map;
+
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
+
 import app.wooportal.server.core.i18n.components.language.LanguageEntity;
 import app.wooportal.server.core.messaging.MailConfiguration;
 import freemarker.template.Configuration;

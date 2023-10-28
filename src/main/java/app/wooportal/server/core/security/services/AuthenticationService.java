@@ -2,13 +2,16 @@ package app.wooportal.server.core.security.services;
 
 import java.util.Collections;
 import java.util.Optional;
+
 import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
+
 import app.wooportal.server.base.userContext.security.UserContextDetails;
 import app.wooportal.server.core.security.components.token.TokenService;
 import app.wooportal.server.core.security.components.user.UserEntity;

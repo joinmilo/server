@@ -6,6 +6,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.config.SetNullOnRemoval;
 import lombok.AccessLevel;

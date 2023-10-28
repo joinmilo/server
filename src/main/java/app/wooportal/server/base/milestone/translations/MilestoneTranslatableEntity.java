@@ -3,6 +3,7 @@ package app.wooportal.server.base.milestone.translations;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+
 import app.wooportal.server.base.milestone.MilestoneEntity;
 import app.wooportal.server.core.i18n.entities.TranslatableEntity;
 import lombok.AccessLevel;

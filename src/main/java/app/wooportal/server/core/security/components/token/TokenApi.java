@@ -2,6 +2,7 @@ package app.wooportal.server.core.security.components.token;
 
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Component;
+
 import app.wooportal.server.core.error.exception.VerificationPendingException;
 import app.wooportal.server.core.security.services.AuthenticationService;
 import app.wooportal.server.core.security.services.DefaultUserDetailsService;

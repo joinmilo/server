@@ -13,7 +13,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
@@ -22,7 +21,6 @@ import org.hibernate.annotations.CollectionId;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
-import app.wooportal.server.base.userContext.base.UserContextEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.i18n.components.language.LanguageEntity;
 import app.wooportal.server.core.messaging.notifications.base.NotificationEntity;
@@ -69,9 +67,6 @@ public class UserEntity extends BaseEntity {
   private OffsetDateTime lastLogin;
   
   private Boolean verified;
-  
-  @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
-  private UserContextEntity userContext;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
   private Set<NotificationEntity> notifications;

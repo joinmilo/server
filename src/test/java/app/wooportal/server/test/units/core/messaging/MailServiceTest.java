@@ -3,14 +3,18 @@ package app.wooportal.server.test.units.core.messaging;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.argThat;
 import static org.mockito.Mockito.verify;
+
 import java.io.IOException;
 import java.util.Map;
+
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
 import app.wooportal.server.test.units.core.setup.services.TestMailService;
 
 public class MailServiceTest {

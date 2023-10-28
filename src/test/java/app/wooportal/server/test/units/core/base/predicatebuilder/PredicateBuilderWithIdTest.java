@@ -1,8 +1,11 @@
 package app.wooportal.server.test.units.core.base.predicatebuilder;
 
 import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.Test;
+
 import com.querydsl.core.types.Ops;
+
 import app.wooportal.server.test.units.core.setup.entities.base.TestPredicateBuilder;
 import app.wooportal.server.test.units.core.setup.services.QueryDslAssertion;
 

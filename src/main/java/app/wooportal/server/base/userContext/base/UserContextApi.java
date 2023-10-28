@@ -2,10 +2,14 @@ package app.wooportal.server.base.userContext.base;
 
 import java.util.List;
 import java.util.Optional;
+
 import org.springframework.stereotype.Component;
+
 import app.wooportal.server.core.base.CrudApi;
 import app.wooportal.server.core.base.dto.listing.FilterSortPaginate;
 import app.wooportal.server.core.base.dto.listing.PageableList;
+import app.wooportal.server.core.security.components.user.authorization.permissions.UserAdminPermission;
+import app.wooportal.server.core.security.permissions.Authenticated;
 import io.leangen.graphql.annotations.GraphQLArgument;
 import io.leangen.graphql.annotations.GraphQLMutation;
 import io.leangen.graphql.annotations.GraphQLQuery;
@@ -34,6 +38,7 @@ public class UserContextApi extends CrudApi<UserContextEntity, UserContextServic
 
   @Override
   @GraphQLMutation(name = "saveUserContexts")
+  @UserAdminPermission
   public List<UserContextEntity> saveAll(
       @GraphQLArgument(name = CrudApi.entities) List<UserContextEntity> entities) {
     return super.saveAll(entities);
@@ -47,17 +52,26 @@ public class UserContextApi extends CrudApi<UserContextEntity, UserContextServic
 
   @Override
   @GraphQLMutation(name = "deleteUserContexts")
+  @UserAdminPermission
   public Boolean deleteAll(@GraphQLArgument(name = CrudApi.ids) List<String> ids) {
     return super.deleteAll(ids);
   }
 
   @Override
   @GraphQLMutation(name = "deleteUserContext")
+  @UserAdminPermission
   public Boolean deleteOne(@GraphQLArgument(name = CrudApi.id) String id) {
     return super.deleteOne(id);
   }
   
+  @GraphQLMutation(name = "saveMe")
+  @Authenticated
+  public Optional<UserContextEntity> saveMe(@GraphQLArgument(name = CrudApi.entity) UserContextEntity entity) {
+    return service.saveMe(entity);
+  }
+  
   @GraphQLQuery(name = "me")
+  @Authenticated
   public Optional<UserContextEntity> me() {
     return service.me();
   }

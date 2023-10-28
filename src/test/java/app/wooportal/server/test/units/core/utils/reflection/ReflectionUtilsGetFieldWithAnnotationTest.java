@@ -2,11 +2,15 @@ package app.wooportal.server.test.units.core.utils.reflection;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
+
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+
 import javax.persistence.OneToMany;
+
 import org.assertj.core.api.Condition;
 import org.junit.jupiter.api.Test;
+
 import app.wooportal.server.core.utils.ReflectionUtils;
 import app.wooportal.server.test.units.core.utils.reflection.setup.ReflectionTestEntity;
 

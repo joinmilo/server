@@ -2,12 +2,15 @@ package app.wooportal.server.base.milestone;
 
 import java.time.OffsetDateTime;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 import org.hibernate.annotations.GenericGenerator;
+
 import app.wooportal.server.base.milestone.element.MilestoneElementEntity;
 import app.wooportal.server.base.milestone.media.MilestoneMediaEntity;
 import app.wooportal.server.base.milestone.translations.MilestoneTranslatableEntity;

@@ -1,6 +1,7 @@
 package app.wooportal.server.core.base.dto.query;
 
 import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

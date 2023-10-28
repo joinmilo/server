@@ -3,6 +3,7 @@ package app.wooportal.server.core.visit.visitor;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+
 import app.wooportal.server.core.base.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

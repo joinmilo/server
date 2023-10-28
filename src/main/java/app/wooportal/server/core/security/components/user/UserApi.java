@@ -2,13 +2,16 @@ package app.wooportal.server.core.security.components.user;
 
 import java.util.List;
 import java.util.Optional;
+
 import org.springframework.stereotype.Component;
-import app.wooportal.server.base.userContext.base.media.UserContextMediaEntity;
+
 import app.wooportal.server.base.userDeletion.base.UserDeletionEntity;
 import app.wooportal.server.core.base.CrudApi;
 import app.wooportal.server.core.base.dto.listing.FilterSortPaginate;
 import app.wooportal.server.core.base.dto.listing.PageableList;
 import app.wooportal.server.core.error.exception.BadParamsException;
+import app.wooportal.server.core.security.components.user.authorization.permissions.UserAdminPermission;
+import app.wooportal.server.core.security.permissions.Authenticated;
 import io.leangen.graphql.annotations.GraphQLArgument;
 import io.leangen.graphql.annotations.GraphQLMutation;
 import io.leangen.graphql.annotations.GraphQLQuery;
@@ -37,6 +40,7 @@ public class UserApi extends CrudApi<UserEntity, UserService> {
 
   @Override
   @GraphQLMutation(name = "saveUsers")
+  @UserAdminPermission
   public List<UserEntity> saveAll(
       @GraphQLArgument(name = CrudApi.entities) List<UserEntity> entities) {
     return super.saveAll(entities);
@@ -44,40 +48,29 @@ public class UserApi extends CrudApi<UserEntity, UserService> {
 
   @Override
   @GraphQLMutation(name = "saveUser")
+  @UserAdminPermission
   public UserEntity saveOne(@GraphQLArgument(name = CrudApi.entity) UserEntity entity) {
     return super.saveOne(entity);
   }
 
-  @GraphQLMutation(name = "saveMe")
-  public Optional<UserEntity> saveMe(@GraphQLArgument(name = CrudApi.entity) UserEntity entity) {
-    return service.saveMe(entity);
-  }
-
   @Override
   @GraphQLMutation(name = "deleteUsers")
+  @UserAdminPermission
   public Boolean deleteAll(@GraphQLArgument(name = CrudApi.ids) List<String> ids) {
     return super.deleteAll(ids);
   }
 
   @Override
   @GraphQLMutation(name = "deleteUser")
+  @UserAdminPermission
   public Boolean deleteOne(@GraphQLArgument(name = CrudApi.id) String id) {
     return super.deleteOne(id);
   }
 
   @GraphQLMutation(name = "deleteMe")
+  @Authenticated
   public Boolean deleteMe(String password, UserDeletionEntity userDeletion ) {
     return service.deleteMe(password, userDeletion);
-  }
-
-  @GraphQLMutation(name = "addUploads")
-  public Optional<UserEntity> addUploads(List<UserContextMediaEntity> uploads) {
-    return service.addUploads(uploads);
-  }
-
-  @GraphQLMutation(name = "deleteUploads")
-  public Optional<UserEntity> deleteUpload(List<String> uploadIds) {
-    return service.deleteUpload(uploadIds);
   }
 
   @GraphQLMutation(name = "sendPasswordReset")

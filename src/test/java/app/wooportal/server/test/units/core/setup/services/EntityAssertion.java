@@ -1,6 +1,7 @@
 package app.wooportal.server.test.units.core.setup.services;
 
 import static org.assertj.core.api.Assertions.assertThat;
+
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -8,7 +9,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+
 import com.fasterxml.jackson.databind.JsonNode;
+
 import app.wooportal.server.core.utils.ReflectionUtils;
 
 public class EntityAssertion {
