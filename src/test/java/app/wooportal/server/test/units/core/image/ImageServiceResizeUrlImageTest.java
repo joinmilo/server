@@ -3,11 +3,14 @@ package app.wooportal.server.test.units.core.image;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.mockito.Mockito.mock;
+
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
 import app.wooportal.server.core.error.ErrorMailService;
 import app.wooportal.server.core.media.base.MediaConfiguration;
 import app.wooportal.server.core.media.image.ImageService;

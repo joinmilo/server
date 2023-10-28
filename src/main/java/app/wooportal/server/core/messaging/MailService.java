@@ -3,12 +3,15 @@ package app.wooportal.server.core.messaging;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
+
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+
 import app.wooportal.server.core.config.GeneralConfiguration;
 import app.wooportal.server.core.i18n.components.language.LanguageEntity;
 import app.wooportal.server.core.messaging.template.TemplateService;

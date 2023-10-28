@@ -1,7 +1,9 @@
 package app.wooportal.server.base.search;
 
 import java.util.List;
+
 import org.springframework.stereotype.Component;
+
 import app.wooportal.server.core.base.dto.listing.FilterSortPaginate;
 import io.leangen.graphql.annotations.GraphQLQuery;
 import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;

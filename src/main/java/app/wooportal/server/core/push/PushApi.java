@@ -1,6 +1,7 @@
 package app.wooportal.server.core.push;
 
 import org.springframework.stereotype.Component;
+
 import app.wooportal.server.core.security.components.user.UserService;
 import app.wooportal.server.core.security.services.AuthenticationService;
 import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;

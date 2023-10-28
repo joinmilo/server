@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
 import app.wooportal.server.base.userContext.base.UserContextService;
 
 @Primary

@@ -1,6 +1,7 @@
 package app.wooportal.server.base.adminFooter.item;
 
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -8,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 import app.wooportal.server.base.adminFooter.item.translations.AdminFooterItemTranslatableEntity;
 import app.wooportal.server.base.adminFooter.parent.AdminFooterParentEntity;
 import app.wooportal.server.core.base.BaseEntity;

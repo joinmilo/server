@@ -2,7 +2,9 @@ package app.wooportal.server.test.units.core.utils.reflection;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
+
 import org.junit.jupiter.api.Test;
+
 import app.wooportal.server.core.utils.ReflectionUtils;
 import app.wooportal.server.test.units.core.utils.reflection.setup.ReflectionHiddenConstructorEntity;
 import app.wooportal.server.test.units.core.utils.reflection.setup.ReflectionTestEntity;

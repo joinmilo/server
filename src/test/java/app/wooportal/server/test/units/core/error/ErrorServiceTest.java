@@ -4,9 +4,10 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.argThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
-import javax.mail.MessagingException;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
 import app.wooportal.server.core.error.ErrorMailService;
 import app.wooportal.server.core.messaging.MailService;
 

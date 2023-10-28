@@ -2,6 +2,7 @@ package app.wooportal.server.base.cms.page.visitors;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+
 import app.wooportal.server.base.cms.page.PageEntity;
 import app.wooportal.server.core.visit.visitable.VisitableEntity;
 import lombok.AccessLevel;

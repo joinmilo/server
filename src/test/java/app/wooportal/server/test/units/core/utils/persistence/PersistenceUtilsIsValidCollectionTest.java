@@ -1,8 +1,11 @@
 package app.wooportal.server.test.units.core.utils.persistence;
 
 import static org.assertj.core.api.Assertions.assertThat;
+
 import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
+
 import app.wooportal.server.core.utils.PersistenceUtils;
 
 public class PersistenceUtilsIsValidCollectionTest {

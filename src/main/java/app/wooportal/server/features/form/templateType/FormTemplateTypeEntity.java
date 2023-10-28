@@ -1,11 +1,14 @@
 package app.wooportal.server.features.form.templateType;
 
 import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 import org.hibernate.annotations.GenericGenerator;
+
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.i18n.annotations.Translatable;
 import app.wooportal.server.features.form.templateType.translations.FormTemplateTypeTranslatableEntity;

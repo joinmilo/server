@@ -2,8 +2,11 @@ package app.wooportal.server.test.units.core.utils.persistence;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
+
 import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
+
 import app.wooportal.server.core.utils.PersistenceUtils;
 import app.wooportal.server.test.units.core.utils.persistence.setup.PersistenceEqualityEntity;
 

@@ -1,7 +1,9 @@
 package app.wooportal.server.test.units.core.setup.entities.base;
 
 import org.springframework.stereotype.Service;
+
 import com.querydsl.core.types.dsl.BooleanExpression;
+
 import app.wooportal.server.core.base.PredicateBuilder;
 
 @Service

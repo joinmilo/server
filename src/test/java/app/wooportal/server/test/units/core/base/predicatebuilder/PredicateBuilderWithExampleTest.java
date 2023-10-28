@@ -1,7 +1,9 @@
 package app.wooportal.server.test.units.core.base.predicatebuilder;
 
 import java.util.List;
+
 import org.junit.jupiter.api.Test;
+
 import app.wooportal.server.test.units.core.setup.entities.base.TestEntity;
 import app.wooportal.server.test.units.core.setup.entities.base.TestPredicateBuilder;
 import app.wooportal.server.test.units.core.setup.entities.child.TestChildEntity;

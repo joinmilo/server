@@ -2,7 +2,10 @@ package app.wooportal.server.base.cms.feature;
 
 import java.util.List;
 import java.util.Optional;
+
 import org.springframework.stereotype.Component;
+
+import app.wooportal.server.base.cms.authorization.permissions.CmsAdminPermission;
 import app.wooportal.server.core.base.CrudApi;
 import app.wooportal.server.core.base.dto.listing.FilterSortPaginate;
 import app.wooportal.server.core.base.dto.listing.PageableList;
@@ -35,6 +38,7 @@ public class FeatureApi extends CrudApi<FeatureEntity, FeatureService> {
 
   @Override
   @GraphQLMutation(name = "saveFeatures")
+  @CmsAdminPermission
   public List<FeatureEntity> saveAll(
       @GraphQLArgument(name = CrudApi.entities) List<FeatureEntity> entities) {
     return super.saveAll(entities);
@@ -42,11 +46,13 @@ public class FeatureApi extends CrudApi<FeatureEntity, FeatureService> {
 
   @Override
   @GraphQLMutation(name = "saveFeature")
+  @CmsAdminPermission
   public FeatureEntity saveOne(@GraphQLArgument(name = CrudApi.entity) FeatureEntity entity) {
     return super.saveOne(entity);
   }
   
   @GraphQLMutation(name = "changeActivation")
+  @CmsAdminPermission
   public Boolean changeActivation(String featureId, Boolean active) {
     return service.changeActivation(featureId, active);
   }

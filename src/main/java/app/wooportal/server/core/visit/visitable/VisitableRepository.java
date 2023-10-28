@@ -2,7 +2,9 @@ package app.wooportal.server.core.visit.visitable;
 
 import java.time.OffsetDateTime;
 import java.util.List;
+
 import org.springframework.data.repository.NoRepositoryBean;
+
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.repository.DataRepository;
 

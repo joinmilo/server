@@ -2,6 +2,7 @@
 package app.wooportal.server.core.location.model.route;
 
 import java.util.List;
+
 import app.wooportal.server.core.location.model.BingMapResult;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

@@ -4,7 +4,9 @@ import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.stereotype.Service;
+
 import com.auth0.jwt.exceptions.TokenExpiredException;
+
 import app.wooportal.server.core.base.DataService;
 import app.wooportal.server.core.error.ErrorMailService;
 import app.wooportal.server.core.error.exception.AlreadyVerifiedException;
@@ -13,12 +15,12 @@ import app.wooportal.server.core.error.exception.DuplicateException;
 import app.wooportal.server.core.error.exception.InvalidCaptchaException;
 import app.wooportal.server.core.error.exception.InvalidPasswordResetException;
 import app.wooportal.server.core.error.exception.InvalidTokenException;
-import app.wooportal.server.core.error.exception.VerificationInvalidException;
-import app.wooportal.server.core.error.exception.VerificationPendingException;
-import app.wooportal.server.core.error.exception.VerificationUserNotFoundException;
 import app.wooportal.server.core.error.exception.NotDeletableException;
 import app.wooportal.server.core.error.exception.NotFoundException;
 import app.wooportal.server.core.error.exception.NotNullableException;
+import app.wooportal.server.core.error.exception.VerificationInvalidException;
+import app.wooportal.server.core.error.exception.VerificationPendingException;
+import app.wooportal.server.core.error.exception.VerificationUserNotFoundException;
 import app.wooportal.server.core.repository.DataRepository;
 
 @Service

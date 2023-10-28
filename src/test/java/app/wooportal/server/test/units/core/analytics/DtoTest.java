@@ -1,9 +1,12 @@
 package app.wooportal.server.test.units.core.analytics;
 
 import static org.assertj.core.api.Assertions.assertThat;
+
 import java.util.List;
 import java.util.Map;
+
 import org.junit.jupiter.api.Test;
+
 import app.wooportal.server.core.base.dto.analytics.AnalyticsDto;
 import app.wooportal.server.core.base.dto.analytics.AnalyticsEntry;
 

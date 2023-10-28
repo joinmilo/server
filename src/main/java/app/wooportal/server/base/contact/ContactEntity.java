@@ -2,6 +2,7 @@ package app.wooportal.server.base.contact;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+
 import app.wooportal.server.core.base.BaseEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

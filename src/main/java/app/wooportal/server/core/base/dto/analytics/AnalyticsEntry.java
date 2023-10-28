@@ -1,6 +1,7 @@
 package app.wooportal.server.core.base.dto.analytics;
 
 import java.util.Objects;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

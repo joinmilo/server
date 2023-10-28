@@ -2,11 +2,11 @@ package app.wooportal.server.base.cms.feature;
 
 import java.util.Set;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 import app.wooportal.server.base.cms.feature.translations.FeatureTranslatableEntity;
 import app.wooportal.server.base.cms.menuItem.MenuItemEntity;
 import app.wooportal.server.base.cms.pageEmbedding.PageEmbeddingEntity;

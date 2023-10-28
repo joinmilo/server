@@ -2,7 +2,10 @@ package app.wooportal.server.base.cms.theme;
 
 import java.util.List;
 import java.util.Optional;
+
 import org.springframework.stereotype.Component;
+
+import app.wooportal.server.base.cms.authorization.permissions.CmsAdminPermission;
 import app.wooportal.server.core.base.CrudApi;
 import app.wooportal.server.core.base.dto.listing.FilterSortPaginate;
 import app.wooportal.server.core.base.dto.listing.PageableList;
@@ -35,6 +38,7 @@ public class ThemeApi extends CrudApi<ThemeEntity, ThemeService> {
 
   @Override
   @GraphQLMutation(name = "saveThemes")
+  @CmsAdminPermission
   public List<ThemeEntity> saveAll(
       @GraphQLArgument(name = CrudApi.entities) List<ThemeEntity> entities) {
     return super.saveAll(entities);
@@ -42,18 +46,21 @@ public class ThemeApi extends CrudApi<ThemeEntity, ThemeService> {
 
   @Override
   @GraphQLMutation(name = "saveTheme")
+  @CmsAdminPermission
   public ThemeEntity saveOne(@GraphQLArgument(name = CrudApi.entity) ThemeEntity entity) {
     return super.saveOne(entity);
   }
 
   @Override
   @GraphQLMutation(name = "deleteThemes")
+  @CmsAdminPermission
   public Boolean deleteAll(@GraphQLArgument(name = CrudApi.ids) List<String> ids) {
     return super.deleteAll(ids);
   }
 
   @Override
   @GraphQLMutation(name = "deleteTheme")
+  @CmsAdminPermission
   public Boolean deleteOne(@GraphQLArgument(name = CrudApi.id) String id) {
     return super.deleteOne(id);
   }

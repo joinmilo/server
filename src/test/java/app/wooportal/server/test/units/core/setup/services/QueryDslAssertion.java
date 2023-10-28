@@ -1,11 +1,14 @@
 package app.wooportal.server.test.units.core.setup.services;
 
 import static org.assertj.core.api.Assertions.assertThat;
+
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
 import org.assertj.core.api.ObjectAssert;
+
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.ConstantImpl;
 import com.querydsl.core.types.Expression;
@@ -16,6 +19,7 @@ import com.querydsl.core.types.PathImpl;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.PredicateOperation;
 import com.querydsl.core.types.dsl.BooleanOperation;
+
 import app.wooportal.server.core.base.dto.query.QueryConjunction;
 import app.wooportal.server.core.base.dto.query.QueryEntity;
 import app.wooportal.server.core.base.dto.query.QueryExpression;

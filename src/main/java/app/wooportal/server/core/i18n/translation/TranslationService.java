@@ -6,7 +6,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
+
 import javax.transaction.Transactional;
+
 import org.hibernate.Hibernate;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
@@ -14,6 +16,7 @@ import org.jsoup.nodes.Node;
 import org.jsoup.nodes.TextNode;
 import org.jsoup.parser.Parser;
 import org.springframework.stereotype.Service;
+
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.error.ErrorMailService;
 import app.wooportal.server.core.i18n.annotations.Translatable;

@@ -1,6 +1,7 @@
 package app.wooportal.server.core.repository;
 
 import javax.persistence.EntityManager;
+
 import org.springframework.data.jpa.repository.support.JpaRepositoryFactory;
 import org.springframework.data.repository.core.RepositoryMetadata;
 import org.springframework.data.repository.core.support.RepositoryComposition.RepositoryFragments;

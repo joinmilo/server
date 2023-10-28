@@ -5,10 +5,13 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.URL;
+
 import javax.imageio.ImageIO;
+
 import org.imgscalr.Scalr;
 import org.imgscalr.Scalr.Method;
 import org.springframework.stereotype.Service;
+
 import app.wooportal.server.core.error.ErrorMailService;
 import app.wooportal.server.core.media.base.MediaConfiguration;
 

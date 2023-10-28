@@ -1,7 +1,9 @@
 package app.wooportal.server.features.event.media;
 
 import org.springframework.stereotype.Service;
+
 import com.querydsl.core.types.dsl.BooleanExpression;
+
 import app.wooportal.server.core.base.PredicateBuilder;
 
 @Service
@@ -25,4 +27,8 @@ public class EventMediaPredicateBuilder
   public BooleanExpression withEvent(String eventId) {
     return query.event.id.eq(eventId);
   }
+  
+	public BooleanExpression withCreator(String creatorId) {
+		return query.event.creator.id.eq(creatorId);
+	}
 }

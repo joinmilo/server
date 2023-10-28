@@ -1,6 +1,7 @@
 package app.wooportal.server.core.security.services;
 
 import com.querydsl.core.BooleanBuilder;
+
 import app.wooportal.server.core.security.components.role.privilege.RolePrivilegeService;
 
 public abstract class AbstractAuthorizationService {

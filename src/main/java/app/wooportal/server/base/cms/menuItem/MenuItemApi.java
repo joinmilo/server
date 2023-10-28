@@ -2,7 +2,10 @@ package app.wooportal.server.base.cms.menuItem;
 
 import java.util.List;
 import java.util.Optional;
+
 import org.springframework.stereotype.Component;
+
+import app.wooportal.server.base.cms.authorization.permissions.CmsAdminPermission;
 import app.wooportal.server.core.base.CrudApi;
 import app.wooportal.server.core.base.dto.listing.FilterSortPaginate;
 import app.wooportal.server.core.base.dto.listing.PageableList;
@@ -35,6 +38,7 @@ public class MenuItemApi extends CrudApi<MenuItemEntity, MenuItemService> {
 
   @Override
   @GraphQLMutation(name = "saveMenuItems")
+  @CmsAdminPermission
   public List<MenuItemEntity> saveAll(
       @GraphQLArgument(name = CrudApi.entities) List<MenuItemEntity> entities) {
     return super.saveAll(entities);
@@ -42,18 +46,21 @@ public class MenuItemApi extends CrudApi<MenuItemEntity, MenuItemService> {
 
   @Override
   @GraphQLMutation(name = "saveMenuItem")
+  @CmsAdminPermission
   public MenuItemEntity saveOne(@GraphQLArgument(name = CrudApi.entity) MenuItemEntity entity) {
     return super.saveOne(entity);
   }
 
   @Override
   @GraphQLMutation(name = "deleteMenuItems")
+  @CmsAdminPermission
   public Boolean deleteAll(@GraphQLArgument(name = CrudApi.ids) List<String> ids) {
     return super.deleteAll(ids);
   }
 
   @Override
   @GraphQLMutation(name = "deleteMenuItem")
+  @CmsAdminPermission
   public Boolean deleteOne(@GraphQLArgument(name = CrudApi.id) String id) {
     return super.deleteOne(id);
   }

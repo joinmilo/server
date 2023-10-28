@@ -2,7 +2,10 @@ package app.wooportal.server.base.report.base;
 
 import java.util.List;
 import java.util.Optional;
+
 import org.springframework.stereotype.Component;
+
+import app.wooportal.server.base.report.authorization.permissions.ReportAdminPermission;
 import app.wooportal.server.core.base.CrudApi;
 import app.wooportal.server.core.base.dto.listing.FilterSortPaginate;
 import app.wooportal.server.core.base.dto.listing.PageableList;
@@ -36,6 +39,7 @@ public class ReportApi extends CrudApi<ReportEntity, ReportService> {
 
   @Override
   @GraphQLMutation(name = "saveReports")
+  @ReportAdminPermission
   public List<ReportEntity> saveAll(
       @GraphQLArgument(name = CrudApi.entities) List<ReportEntity> entities) {
     return super.saveAll(entities);
@@ -49,12 +53,14 @@ public class ReportApi extends CrudApi<ReportEntity, ReportService> {
 
   @Override
   @GraphQLMutation(name = "deleteReports")
+  @ReportAdminPermission
   public Boolean deleteAll(@GraphQLArgument(name = CrudApi.ids) List<String> ids) {
     return super.deleteAll(ids);
   }
 
   @Override
   @GraphQLMutation(name = "deleteReport")
+  @ReportAdminPermission
   public Boolean deleteOne(@GraphQLArgument(name = CrudApi.id) String id) {
     return super.deleteOne(id);
   }

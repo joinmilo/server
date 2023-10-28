@@ -3,12 +3,15 @@ package app.wooportal.server.test.units.core.base.graphbuilder;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
+
 import javax.persistence.AttributeNode;
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +23,9 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.web.WebAppConfiguration;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import app.wooportal.server.core.base.GraphBuilder;
 import app.wooportal.server.core.context.GraphQlContextAdapter;
 import app.wooportal.server.test.units.core.setup.entities.child.TestChildEntity;

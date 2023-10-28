@@ -1,10 +1,13 @@
 package app.wooportal.server.core.location;
 
 import static org.springframework.http.ResponseEntity.ok;
+
 import javax.naming.ServiceUnavailableException;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import app.wooportal.server.core.error.exception.BadParamsException;
 import app.wooportal.server.core.location.dto.LocationParam;
 

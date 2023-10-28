@@ -1,11 +1,14 @@
 package app.wooportal.server.core.i18n;
 
 import java.io.IOException;
+
 import javax.persistence.Entity;
 import javax.persistence.Transient;
+
 import org.reflections.Reflections;
 import org.reflections.util.ClasspathHelper;
 import org.reflections.util.ConfigurationBuilder;
+
 import app.wooportal.server.App;
 import app.wooportal.server.core.i18n.annotations.Translatable;
 import app.wooportal.server.core.utils.ReflectionUtils;

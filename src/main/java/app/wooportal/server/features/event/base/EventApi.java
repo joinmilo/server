@@ -3,10 +3,14 @@ package app.wooportal.server.features.event.base;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Optional;
+
 import org.springframework.stereotype.Component;
+
 import app.wooportal.server.core.base.CrudApi;
 import app.wooportal.server.core.base.dto.listing.FilterSortPaginate;
 import app.wooportal.server.core.base.dto.listing.PageableList;
+import app.wooportal.server.features.event.authorization.permissions.EventAdminPermission;
+import app.wooportal.server.features.event.authorization.permissions.EventManagePermission;
 import app.wooportal.server.features.event.comment.EventCommentEntity;
 import app.wooportal.server.features.event.comment.EventCommentService;
 import app.wooportal.server.features.event.schedule.EventScheduleEntity;
@@ -50,6 +54,7 @@ public class EventApi extends CrudApi<EventEntity, EventService> {
 
   @Override
   @GraphQLMutation(name = "saveEvents")
+  @EventManagePermission  
   public List<EventEntity> saveAll(
       @GraphQLArgument(name = CrudApi.entities) List<EventEntity> entities) {
     return super.saveAll(entities);
@@ -57,18 +62,21 @@ public class EventApi extends CrudApi<EventEntity, EventService> {
 
   @Override
   @GraphQLMutation(name = "saveEvent")
+  @EventManagePermission
   public EventEntity saveOne(@GraphQLArgument(name = CrudApi.entity) EventEntity entity) {
     return super.saveOne(entity);
   }
 
   @Override
   @GraphQLMutation(name = "deleteEvents")
+  @EventManagePermission
   public Boolean deleteAll(@GraphQLArgument(name = CrudApi.ids) List<String> ids) {
     return super.deleteAll(ids);
   }
 
   @Override
   @GraphQLMutation(name = "deleteEvent")
+  @EventManagePermission
   public Boolean deleteOne(@GraphQLArgument(name = CrudApi.id) String id) {
     return super.deleteOne(id);
   }
@@ -97,6 +105,7 @@ public class EventApi extends CrudApi<EventEntity, EventService> {
   }
   
   @GraphQLMutation(name = "sponsorEvent")
+  @EventAdminPermission
   public Boolean sponsorEvent(String eventId) {
     return service.sponsor(eventId);
   }

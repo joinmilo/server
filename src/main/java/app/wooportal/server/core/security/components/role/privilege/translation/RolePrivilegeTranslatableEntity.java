@@ -6,6 +6,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
 import app.wooportal.server.core.i18n.components.language.LanguageEntity;
 import app.wooportal.server.core.i18n.entities.TranslatableEntity;
 import app.wooportal.server.core.security.components.role.privilege.RolePrivilegeEntity;

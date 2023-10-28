@@ -3,6 +3,7 @@ package app.wooportal.server.test.units.core.utils.reflection.setup;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.config.DefaultSort;
 import lombok.AccessLevel;

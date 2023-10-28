@@ -2,8 +2,10 @@ package app.wooportal.server.core.security.dto;
 
 import java.io.Serial;
 import java.util.List;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
+
 import app.wooportal.server.core.security.components.user.UserEntity;
 import lombok.EqualsAndHashCode;
 

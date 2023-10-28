@@ -3,6 +3,7 @@ package app.wooportal.server.features.survey.answer.translations;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+
 import app.wooportal.server.core.i18n.entities.TranslatableEntity;
 import app.wooportal.server.features.survey.answer.SurveyAnswerEntity;
 import lombok.AccessLevel;

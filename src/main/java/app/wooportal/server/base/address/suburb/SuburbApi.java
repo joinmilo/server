@@ -2,7 +2,10 @@ package app.wooportal.server.base.address.suburb;
 
 import java.util.List;
 import java.util.Optional;
+
 import org.springframework.stereotype.Component;
+
+import app.wooportal.server.base.address.authorization.permissions.AddressAdminPermission;
 import app.wooportal.server.core.base.CrudApi;
 import app.wooportal.server.core.base.dto.listing.FilterSortPaginate;
 import app.wooportal.server.core.base.dto.listing.PageableList;
@@ -35,6 +38,7 @@ public class SuburbApi extends CrudApi<SuburbEntity, SuburbService> {
 
   @Override
   @GraphQLMutation(name = "saveSuburbs")
+  @AddressAdminPermission
   public List<SuburbEntity> saveAll(
       @GraphQLArgument(name = CrudApi.entities) List<SuburbEntity> entities) {
     return super.saveAll(entities);
@@ -42,18 +46,21 @@ public class SuburbApi extends CrudApi<SuburbEntity, SuburbService> {
 
   @Override
   @GraphQLMutation(name = "saveSuburb")
+  @AddressAdminPermission
   public SuburbEntity saveOne(@GraphQLArgument(name = CrudApi.entity) SuburbEntity entity) {
     return super.saveOne(entity);
   }
 
   @Override
   @GraphQLMutation(name = "deleteSuburbs")
+  @AddressAdminPermission
   public Boolean deleteAll(@GraphQLArgument(name = CrudApi.ids) List<String> ids) {
     return super.deleteAll(ids);
   }
 
   @Override
   @GraphQLMutation(name = "deleteSuburb")
+  @AddressAdminPermission
   public Boolean deleteOne(@GraphQLArgument(name = CrudApi.id) String id) {
     return super.deleteOne(id);
   }

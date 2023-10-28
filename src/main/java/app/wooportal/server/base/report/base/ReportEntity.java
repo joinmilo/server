@@ -1,6 +1,7 @@
 package app.wooportal.server.base.report.base;
 
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -8,7 +9,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
 import org.hibernate.annotations.GenericGenerator;
+
 import app.wooportal.server.base.report.base.media.ReportMediaEntity;
 import app.wooportal.server.base.report.base.translations.ReportTranslatableEntity;
 import app.wooportal.server.base.report.type.ReportTypeEntity;

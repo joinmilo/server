@@ -3,8 +3,10 @@ package app.wooportal.server.features.deal.authorization.services;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
+
 import app.wooportal.server.base.userContext.security.UserContextAuthorizationService;
 import app.wooportal.server.features.deal.components.base.DealEntity;
 import app.wooportal.server.features.deal.components.base.DealService;

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.NoRepositoryBean;
+
 import app.wooportal.server.core.base.BaseEntity;
 
 @NoRepositoryBean

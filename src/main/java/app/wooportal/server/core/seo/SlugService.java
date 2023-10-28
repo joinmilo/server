@@ -1,7 +1,9 @@
 package app.wooportal.server.core.seo;
 
 import java.util.Locale;
+
 import org.springframework.stereotype.Service;
+
 import com.github.slugify.Slugify;
 
 @Service

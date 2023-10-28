@@ -2,9 +2,12 @@ package app.wooportal.server.test.units.core.base.predicatebuilder;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import org.junit.jupiter.api.Test;
+
 import app.wooportal.server.core.base.dto.query.ConjunctionOperator;
 import app.wooportal.server.core.base.dto.query.QueryConjunction;
 import app.wooportal.server.core.base.dto.query.QueryEntity;

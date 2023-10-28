@@ -1,8 +1,10 @@
 package app.wooportal.server.core.base;
 
 import java.util.Collection;
+
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Expression;
 import com.querydsl.core.types.Predicate;
@@ -15,6 +17,7 @@ import com.querydsl.core.types.dsl.NumberExpression;
 import com.querydsl.core.types.dsl.SimpleExpression;
 import com.querydsl.core.types.dsl.StringExpression;
 import com.querydsl.core.types.dsl.StringPath;
+
 import app.wooportal.server.core.base.dto.listing.FilterSortPaginate;
 import app.wooportal.server.core.base.dto.query.QueryExpression;
 import app.wooportal.server.core.base.dto.query.QueryOperator;
