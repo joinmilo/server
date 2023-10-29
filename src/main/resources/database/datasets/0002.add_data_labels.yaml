@@ -2522,8 +2522,8 @@ databaseChangeLog:
                /*!40101 SET character_set_client = utf8 */;
                /* Set variables */
                SET @tagId   = "next";
-               SET @german  = "Weiter";
-               SET @english = "Next";
+               SET @german  = "weiter";
+               SET @english = "next";
 
                /* Insert */
                insert into labels (`id`, `tag_id`) values
