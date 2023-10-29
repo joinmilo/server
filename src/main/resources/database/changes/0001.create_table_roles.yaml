@@ -25,12 +25,6 @@ databaseChangeLog:
                   defaultValueComputed: CURRENT_TIMESTAMP
                   name: modified
                   type: datetime
-              - column:
-                  name: code
-                  constraints:
-                    nullable: false
-                    unique: true
-                  type: VARCHAR(255)
             tableName: roles
         - sql:
             comment: set char set for mysql

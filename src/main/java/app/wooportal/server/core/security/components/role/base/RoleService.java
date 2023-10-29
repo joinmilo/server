@@ -1,7 +1,6 @@
 package app.wooportal.server.core.security.components.role.base;
 
 import java.util.List;
-import java.util.Optional;
 import org.springframework.stereotype.Service;
 import app.wooportal.server.core.base.DataService;
 import app.wooportal.server.core.repository.DataRepository;
@@ -14,13 +13,6 @@ public class RoleService extends DataService<RoleEntity, RolePredicateBuilder> {
       DataRepository<RoleEntity> repo,
       RolePredicateBuilder predicate) {
     super(repo, predicate);
-  }
-  
-  @Override
-  public Optional<RoleEntity> getExisting(RoleEntity entity) {
-    return entity != null && entity.getCode() != null && !entity.getCode().isBlank()
-       ? repo.findOne(singleQuery(predicate.withCode(entity.getCode())))
-       : Optional.empty();
   }
 
   public List<RoleEntity> getByUser(UserEntity user) {

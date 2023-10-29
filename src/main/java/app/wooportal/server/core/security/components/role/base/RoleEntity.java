@@ -38,9 +38,6 @@ public class RoleEntity extends BaseEntity {
   @Translatable
   private String name;
 
-  @Column(unique = true, nullable = false)
-  private String code;
-
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
   private Set<RoleTranslatableEntity> translatables;
 

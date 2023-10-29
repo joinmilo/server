@@ -160,8 +160,8 @@ databaseChangeLog:
             sql: insert into user_roles (id, user_id, role_id)
                  select uuid(), '83c0ce85-c808-43eb-a72d-62a228db2979', r.id
                  from roles r
-                 WHERE r.code = 'admin';
-                 
+                 WHERE r.id = '0b8e5964-7687-4cc3-9519-3c570420bb22';
+
   - changeSet:
       id: 0007.test-data.10
       author: codeschluss

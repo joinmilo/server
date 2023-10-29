@@ -7,11 +7,11 @@ databaseChangeLog:
         - sql:
             comment: Add initial role data
             splitStatements: true
-            sql: insert into `roles` (id, `code`) values
-              ("1f222bdd-b241-4c7d-8adb-c3b11e366a2b", "translator"),
-              ("0b8e5964-7687-4cc3-9519-3c570420bb22", "admin"),
-              ("1485fce0-9814-4981-bab5-cb1daf009675", "author"),
-              ("661fe5a9-b6cb-434c-90f7-d6013c78a4dc", "organizer");
+            sql: insert into `roles` (id) values
+              ("1f222bdd-b241-4c7d-8adb-c3b11e366a2b"),
+              ("0b8e5964-7687-4cc3-9519-3c570420bb22"),
+              ("1485fce0-9814-4981-bab5-cb1daf009675"),
+              ("661fe5a9-b6cb-434c-90f7-d6013c78a4dc");
   - changeSet:
       id: 0006.roles_privileges_data.2
       author: codeschluss
