@@ -8,6 +8,9 @@ import org.springframework.stereotype.Component;
 import app.wooportal.server.core.base.CrudApi;
 import app.wooportal.server.core.base.dto.listing.FilterSortPaginate;
 import app.wooportal.server.core.base.dto.listing.PageableList;
+import app.wooportal.server.core.security.permissions.Authenticated;
+import app.wooportal.server.features.organisation.authorization.permissions.OrganisationAdminPermission;
+import app.wooportal.server.features.organisation.authorization.permissions.OrganisationManagePermission;
 import app.wooportal.server.features.organisation.comment.OrganisationCommentEntity;
 import app.wooportal.server.features.organisation.comment.OrganisationCommentService;
 import io.leangen.graphql.annotations.GraphQLArgument;
@@ -45,6 +48,7 @@ public class OrganisationApi extends CrudApi<OrganisationEntity, OrganisationSer
 
   @Override
   @GraphQLMutation(name = "saveOrganisations")
+  @Authenticated
   public List<OrganisationEntity> saveAll(
       @GraphQLArgument(name = CrudApi.entities) List<OrganisationEntity> entities) {
     return super.saveAll(entities);
@@ -52,6 +56,7 @@ public class OrganisationApi extends CrudApi<OrganisationEntity, OrganisationSer
 
   @Override
   @GraphQLMutation(name = "saveOrganisation")
+  @Authenticated
   public OrganisationEntity saveOne(
       @GraphQLArgument(name = CrudApi.entity) OrganisationEntity entity) {
     return super.saveOne(entity);
@@ -59,12 +64,14 @@ public class OrganisationApi extends CrudApi<OrganisationEntity, OrganisationSer
 
   @Override
   @GraphQLMutation(name = "deleteOrganisations")
+  @OrganisationAdminPermission
   public Boolean deleteAll(@GraphQLArgument(name = CrudApi.ids) List<String> ids) {
     return super.deleteAll(ids);
   }
 
   @Override
   @GraphQLMutation(name = "deleteOrganisation")
+  @OrganisationManagePermission
   public Boolean deleteOne(@GraphQLArgument(name = CrudApi.id) String id) {
     return super.deleteOne(id);
   }
@@ -76,6 +83,7 @@ public class OrganisationApi extends CrudApi<OrganisationEntity, OrganisationSer
   }
 
   @GraphQLMutation(name = "sponsorOrganisation")
+  @OrganisationAdminPermission
   public Boolean sponsorContest(String organisationId) {
     return service.sponsor(organisationId);
   }
