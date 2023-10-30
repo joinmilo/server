@@ -3317,7 +3317,7 @@ databaseChangeLog:
                AND l.locale = "en";
                
   - changeSet:
-      id: 0004.add_data_labels_3.107
+      id: 0004.add_data_labels_3.108
       author: codeschluss
       changes:
         - sql:
@@ -3347,7 +3347,7 @@ databaseChangeLog:
                AND l.locale = "en";
                
   - changeSet:
-      id: 0004.add_data_labels_3.108
+      id: 0004.add_data_labels_3.109
       author: codeschluss
       changes:
         - sql:
