@@ -3316,4 +3316,63 @@ databaseChangeLog:
                WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
                AND l.locale = "en";
                
+  - changeSet:
+      id: 0004.add_data_labels_3.107
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add labels
+            splitStatements: true
+            sql:
+               /*!40101 SET character_set_client = utf8 */;
+               /* Set variables */
+               SET @tagId   = "changeOrganisationApproval";
+               SET @german  = "Organisationzulassung ändern";
+               SET @english = "Change organisation approval";
+
+               /* Insert */
+               insert into labels (`id`, `tag_id`) values
+               (uuid(), @tagId COLLATE utf8mb4_unicode_ci);
+
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @german COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "de";
+
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @english COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "en";
+               
+  - changeSet:
+      id: 0004.add_data_labels_3.108
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add labels
+            splitStatements: true
+            sql:
+               /*!40101 SET character_set_client = utf8 */;
+               /* Set variables */
+               SET @tagId   = "thisWillApproveOrganisation";
+               SET @german  = "Die Organisation ist anschließend öffentlich sichtbar.";
+               SET @english = "The organisation will be published.";
+
+               /* Insert */
+               insert into labels (`id`, `tag_id`) values
+               (uuid(), @tagId COLLATE utf8mb4_unicode_ci);
+                
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @german COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "de";
+
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @english COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "en";
                
