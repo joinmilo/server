@@ -55,4 +55,16 @@ public class OrganisationService extends DataService<OrganisationEntity, Organis
       });
     }
   }
+  
+  public Boolean changeApproval(String organisationId) {
+    var organisation = getById(organisationId);
+    
+    if (organisation.isPresent()) {
+      organisation.get().setApproved(!organisation.get().getApproved());
+      repo.save(organisation.get());
+      
+      return true;
+    }
+    return false;
+  }
 }

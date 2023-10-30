@@ -87,4 +87,9 @@ public class OrganisationApi extends CrudApi<OrganisationEntity, OrganisationSer
   public Boolean sponsorContest(String organisationId) {
     return service.sponsor(organisationId);
   }
+  
+  @GraphQLMutation(name = "changeOrganisationApproval")
+  public Boolean changeOrganisationApproval(String organisationId) {
+    return service.changeApproval(organisationId);
+  }
 }
