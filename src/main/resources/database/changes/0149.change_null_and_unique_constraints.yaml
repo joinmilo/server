@@ -250,7 +250,17 @@ databaseChangeLog:
         - addNotNullConstraint:
             columnName: end_date
             columnDataType: datetime
-            tableName: event_schedules                            
+            tableName: event_schedules  
+            
+  - changeSet:
+      id: 0149.update_name_constraints.27
+      author: codeschluss
+      changes:
+        - dropNotNullConstraint:
+            columnName: title
+            columnDataType: bit(1)
+            tableName: page_media                 
+                              
             
                                                       
             
