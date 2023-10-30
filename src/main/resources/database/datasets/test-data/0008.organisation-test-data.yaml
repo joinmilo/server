@@ -10,7 +10,7 @@ databaseChangeLog:
             splitStatements: true
             sql:
                insert into organisations (`id`, `name`, `slug`, `sponsored`, `address_id`, `contact_id`) values
-               ('c7356a4c-fd81-4860-b1cc-06f549067132', 'organisation-sponsored', 'organisation-sponsored', true, 'b47ec304-2de7-4c20-a110-fd829695c18d', '3916b414-c2bf-4808-a401-284ac62df73d');
+               ('c7356a4c-fd81-4860-b1cc-06f549067132', 'organisation-sponsored', 'organisation-sponsored', false, 'b47ec304-2de7-4c20-a110-fd829695c18d', '3916b414-c2bf-4808-a401-284ac62df73d');
                
   - changeSet:
       id: 0008.test-data.2
