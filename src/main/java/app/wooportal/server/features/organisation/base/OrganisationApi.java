@@ -2,9 +2,7 @@ package app.wooportal.server.features.organisation.base;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.stereotype.Component;
-
 import app.wooportal.server.core.base.CrudApi;
 import app.wooportal.server.core.base.dto.listing.FilterSortPaginate;
 import app.wooportal.server.core.base.dto.listing.PageableList;
@@ -89,6 +87,7 @@ public class OrganisationApi extends CrudApi<OrganisationEntity, OrganisationSer
   }
   
   @GraphQLMutation(name = "changeOrganisationApproval")
+  @OrganisationAdminPermission
   public Boolean changeOrganisationApproval(String organisationId) {
     return service.changeApproval(organisationId);
   }
