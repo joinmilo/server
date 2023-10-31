@@ -47,7 +47,7 @@ public class LocaleService {
     }
     
     return headers.stream()
-        .sorted((h1, h2) -> Double.compare(h1.getValue(), h2.getValue()))
+        .sorted((h1, h2) -> Double.compare(h2.getValue(), h1.getValue()))
         .map(langHeader -> langHeader.getLanguage())
         .distinct()
         .collect(Collectors.toList());
