@@ -2,10 +2,9 @@ package app.wooportal.server.core.security.components.token;
 
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Component;
-
+import app.wooportal.server.base.userContext.security.UserContextDetailsService;
 import app.wooportal.server.core.error.exception.VerificationPendingException;
 import app.wooportal.server.core.security.services.AuthenticationService;
-import app.wooportal.server.core.security.services.DefaultUserDetailsService;
 import io.leangen.graphql.annotations.GraphQLMutation;
 import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 
@@ -17,10 +16,11 @@ public class TokenApi {
 
   private final TokenService tokenService;
 
-  private final DefaultUserDetailsService userDetailService;
+  private final UserContextDetailsService userDetailService;
 
-  public TokenApi(AuthenticationService authService, TokenService tokenService,
-      DefaultUserDetailsService userDetailService) {
+  public TokenApi(AuthenticationService authService,
+      TokenService tokenService,
+      UserContextDetailsService userDetailService) {
 
     this.authService = authService;
     this.tokenService = tokenService;

@@ -248,6 +248,26 @@ databaseChangeLog:
                  select uuid(), "27ba1e83-ef5e-44f7-8cf5-419dff27d70d", l.id, "CMS-Administration", "Erstellung, Bearbeitung und Löschung sämtlicher Menüs und Seiten"
                  from languages l
                  WHERE l.locale = "de";
+                 
+                 insert into role_privilege_translatables (id, parent_id, language_id, `name`, description)
+                 select uuid(), "1ce0ea16-9690-4182-bf98-2984c3e3eb82", l.id, "Social Media-Administration", "Erstellung, Bearbeitung und Löschung sämtlicher Social Media Einträge"
+                 from languages l
+                 WHERE l.locale = "de"; 
+                 
+                 insert into role_privilege_translatables (id, parent_id, language_id, `name`, description)
+                 select uuid(), "4dc497b9-61ab-452a-9954-0b7705154e3f", l.id, "Apps-Administration", "Erstellung, Bearbeitung und Löschung sämtlicher Apps Einträge"
+                 from languages l
+                 WHERE l.locale = "de";
+                 
+                 insert into role_privilege_translatables (id, parent_id, language_id, `name`, description)
+                 select uuid(), "6b5ff59b-772f-4e3b-874a-a5a796b96fb7", l.id, "Wettbewerbe-Verwaltung", "Erstellung, Bearbeitung und Löschung eigener Wettbewerbe"
+                 from languages l
+                 WHERE l.locale = "de";
+                 
+                 insert into role_privilege_translatables (id, parent_id, language_id, `name`, description)
+                 select uuid(), "d82ebb8e-ce76-4ffe-b42b-ef6c267d743d", l.id, "Report-Administration", "Einsicht und Löschung von Feedback Kommentaren"
+                 from languages l
+                 WHERE l.locale = "de";
 
   - changeSet:
       id: 0006.roles_privileges_data.8

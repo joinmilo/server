@@ -30,7 +30,7 @@ public class SearchConsoleService {
   private final String position = "position";
   
   private final OffsetDateTime majorReleaseDate = OffsetDateTime
-      .of(2023, 10, 1, 0, 0, 0, 0, ZoneOffset.UTC);
+      .of(2023, 11, 1, 0, 0, 0, 0, ZoneOffset.UTC);
   
   public SearchConsoleService(
       SearchConsoleApiService apiService,
@@ -59,7 +59,7 @@ public class SearchConsoleService {
   /**
    * Calculates the search statistics for entities. The calculation checks if {@code startDate}
    * is before the major release date. This is the release date of the rewritten portal. The difference
-   * is that prior to that date the {@code entity.id} field is URL page indicator. After that
+   * is that prior to that date the {@code entity.id} field is the URL page indicator. After that
    * date, the field {@code slug} is the major indicator. This method takes this circumstance
    * into account, so that past statistics are possible.
    * 
@@ -88,7 +88,7 @@ public class SearchConsoleService {
     return CompletableFuture.completedFuture(
         startDate.isBefore(majorReleaseDate)
           ? calculateBeforeMajorRelease(startDate, endDate, interval, entity, slugFields.get(0))
-          : calculateAfterMajorRelease(startDate, endDate, interval, entity, slugFields.get(0))
+          : calculateForSlug(startDate, endDate, interval, entity, slugFields.get(0))
         );
   }
 
@@ -115,7 +115,7 @@ public class SearchConsoleService {
           .addPageFilter(entity.getId()),
         interval);
     
-    var resultAfterMajorRelease = calculateAfterMajorRelease(
+    var resultAfterMajorRelease = calculateForSlug(
         majorReleaseDate.plusDays(1), 
         endDate,
         interval,
@@ -141,7 +141,7 @@ public class SearchConsoleService {
     return set1;
   }
 
-  private Set<AnalyticsDto> calculateAfterMajorRelease(
+  private Set<AnalyticsDto> calculateForSlug(
       OffsetDateTime startDate,
       OffsetDateTime endDate,
       IntervalFilter interval,
@@ -153,7 +153,7 @@ public class SearchConsoleService {
       return calculate(
           new SearchConsoleQuery()
             .setStartDate(startDate)
-            .setEndDate(majorReleaseDate)
+            .setEndDate(endDate)
             .setDimensions(SearchConsoleDimension.date)
             .addPageFilter(slug.get().toString()),
           interval);

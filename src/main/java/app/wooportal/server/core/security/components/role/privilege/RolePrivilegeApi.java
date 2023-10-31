@@ -1,4 +1,4 @@
-package app.wooportal.server.core.security.components.role.base;
+package app.wooportal.server.core.security.components.role.privilege;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,54 +16,54 @@ import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 
 @GraphQLApi
 @Component
-public class RoleApi extends CrudApi<RoleEntity, RoleService> {
+public class RolePrivilegeApi extends CrudApi<RolePrivilegeEntity, RolePrivilegeService> {
 
-  public RoleApi(
-      RoleService service) {
+  public RolePrivilegeApi(
+      RolePrivilegeService service) {
     super(service);
   }
 
   @Override
-  @GraphQLQuery(name = "getRoles")
+  @GraphQLQuery(name = "getRolePrivileges")
   @AdminPermission
-  public PageableList<RoleEntity> readAll(
+  public PageableList<RolePrivilegeEntity> readAll(
       @GraphQLArgument(name = CrudApi.params) FilterSortPaginate params) {
     return super.readAll(params);
   }
 
   @Override
-  @GraphQLQuery(name = "getRole")
+  @GraphQLQuery(name = "getRolePrivilege")
   @AdminPermission
-  public Optional<RoleEntity> readOne(
-      @GraphQLArgument(name = CrudApi.entity) RoleEntity entity) {
+  public Optional<RolePrivilegeEntity> readOne(
+      @GraphQLArgument(name = CrudApi.entity) RolePrivilegeEntity entity) {
     return super.readOne(entity);
   }
 
   @Override
-  @GraphQLMutation(name = "saveRoles")
+  @GraphQLMutation(name = "saveRolePrivileges")
   @AdminPermission
-  public List<RoleEntity> saveAll(
-      @GraphQLArgument(name = CrudApi.entities) List<RoleEntity> entities) {
+  public List<RolePrivilegeEntity> saveAll(
+      @GraphQLArgument(name = CrudApi.entities) List<RolePrivilegeEntity> entities) {
     return super.saveAll(entities);
   }
 
   @Override
-  @GraphQLMutation(name = "saveRole")
+  @GraphQLMutation(name = "saveRolePrivilege")
   @AdminPermission
-  public RoleEntity saveOne(
-      @GraphQLArgument(name = CrudApi.entity) RoleEntity entity) {
+  public RolePrivilegeEntity saveOne(
+      @GraphQLArgument(name = CrudApi.entity) RolePrivilegeEntity entity) {
     return super.saveOne(entity);
   }
 
   @Override
-  @GraphQLMutation(name = "deleteRoles")
+  @GraphQLMutation(name = "deleteRolePrivileges")
   @AdminPermission
   public Boolean deleteAll(@GraphQLArgument(name = CrudApi.ids) List<String> ids) {
     return super.deleteAll(ids);
   }
 
   @Override
-  @GraphQLMutation(name = "deleteRole")
+  @GraphQLMutation(name = "deleteRolePrivilege")
   @AdminPermission
   public Boolean deleteOne(@GraphQLArgument(name = CrudApi.id) String id) {
     return super.deleteOne(id);
