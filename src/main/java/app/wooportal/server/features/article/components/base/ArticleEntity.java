@@ -51,6 +51,8 @@ public class ArticleEntity extends BaseEntity {
 
   @Column(nullable = false)
   private Boolean approved;
+  
+  private Boolean commentsAllowed;
 
   @Transient
   private String captchaToken;

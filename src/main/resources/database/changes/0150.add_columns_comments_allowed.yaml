@@ -1,0 +1,42 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+  - changeSet:
+      id: 0150.add_columns_comments_allowed.1
+      author: codeschluss
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  constraints:
+                  defaultValueBoolean: false                 
+                  name: comments_allowed
+                  type: boolean
+            tableName: articles
+            
+  - changeSet:
+      id: 0150.add_columns_comments_allowed.2
+      author: codeschluss
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  constraints:
+                  defaultValueBoolean: false              
+                  name: comments_allowed
+                  type: boolean
+            tableName: events
+            
+  - changeSet:
+      id: 0150.add_columns_comments_allowed.3
+      author: codeschluss
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  constraints:
+                  defaultValueBoolean: false                 
+                  name: comments_allowed
+                  type: boolean
+            tableName: organisations         
+            
+                                    

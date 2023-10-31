@@ -55,6 +55,8 @@ public class EventEntity extends BaseEntity {
 
   @Translatable
   private String content;
+  
+  private Boolean commentsAllowed;
 
   private Double entryFee;
 

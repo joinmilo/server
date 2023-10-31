@@ -52,6 +52,8 @@ public class OrganisationEntity extends BaseEntity {
 
   @Column(nullable = false)
   private Boolean approved;
+  
+  private Boolean commentsAllowed;
 
   @Translatable
   private String description;
