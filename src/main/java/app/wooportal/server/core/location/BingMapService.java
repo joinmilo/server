@@ -93,16 +93,22 @@ public class BingMapService implements MapService {
 
   private AddressEntity transformResultToAddress(
       BingMapAddressResult result, AddressEntity givenAddress) {
-    for (AddressResourceSet resourceSet : result.getResourceSets()) {
+    for (var resourceSet : result.getResourceSets()) {
       if (resourceSet.getEstimatedTotal() > 0) {
-        for (AddressResource resource : resourceSet.getResources()) {
-          if (resource.getConfidence().equals("High") || resource.getConfidence().equals("high")) {
+        for (var resource : resourceSet.getResources()) {
+          if (isValid(resource)) {
             return createAddress(givenAddress, resource.getAddress(), resource.getPoint());
           }
         }
       }
     }
     throw new NotFoundException("Address not found");
+  }
+
+  private boolean isValid(AddressResource resource) {
+    return (resource.getConfidence().equals("High") || resource.getConfidence().equals("high"))
+        && resource.getAddress().getStreet() != null && !resource.getAddress().getStreet().isBlank()
+        && resource.getAddress().getHouseNumber() != null && !resource.getAddress().getHouseNumber().isBlank();
   }
 
   private AddressEntity createAddress(AddressEntity givenAddress, Address address, Point point) {

@@ -1,26 +1,37 @@
 package app.wooportal.server.features.organisation.base;
 
+import java.util.Set;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
 import app.wooportal.server.base.address.base.AddressService;
 import app.wooportal.server.base.contact.ContactService;
+import app.wooportal.server.base.userContext.security.UserContextAuthorizationService;
 import app.wooportal.server.core.base.DataService;
 import app.wooportal.server.core.repository.DataRepository;
 import app.wooportal.server.features.organisation.media.OrganisationMediaService;
+import app.wooportal.server.features.organisation.member.OrganisationMemberEntity;
+import app.wooportal.server.features.organisation.member.OrganisationMemberService;
 
 @Service
 public class OrganisationService extends DataService<OrganisationEntity, OrganisationPredicateBuilder> {
+  
+  private final UserContextAuthorizationService authService;
 
   public OrganisationService(
       DataRepository<OrganisationEntity> repo,
       OrganisationPredicateBuilder predicate,
+      UserContextAuthorizationService authService,
       AddressService addressService,
       ContactService contactService,
-      OrganisationMediaService uploadService) {
+      OrganisationMediaService uploadService,
+      OrganisationMemberService memberService) {
     super(repo, predicate);
     
+    this.authService = authService;
+    
+    addService("members", memberService);
     addService("address", addressService);
     addService("contact", contactService);
     addService("uploads", uploadService);
@@ -28,8 +39,30 @@ public class OrganisationService extends DataService<OrganisationEntity, Organis
   
   @Override
   public void preCreate(OrganisationEntity entity, OrganisationEntity newEntity, JsonNode context) {
-    newEntity.setSponsored(true);
+    newEntity.setSponsored(false);
     addContext("sponsored", context);
+    
+    newEntity.setApproved(false);
+    addContext("approved", context);
+    
+    var currentUser = authService.getAuthenticatedUserContext();
+    
+    if (currentUser.isPresent()) {
+      var firstMember = new OrganisationMemberEntity();
+      firstMember.setApproved(true);
+      firstMember.setUserContext(currentUser.get());
+      
+      firstMember.setIsPublic(true);
+      firstMember.setUserContext(currentUser.get());
+      
+      newEntity.setMembers(Set.of(firstMember));
+      addContext("members", context);
+    }
+
+    if (authService.authenticatedUserHasPrivilege("organisations_admin")) {
+      newEntity.setApproved(true);
+      addContext("approved", context);
+    }
   }    
   
   public Boolean sponsor(String rganisationId) {

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import app.wooportal.server.core.base.CrudApi;
 import app.wooportal.server.core.base.dto.listing.FilterSortPaginate;
 import app.wooportal.server.core.base.dto.listing.PageableList;
+import app.wooportal.server.core.security.permissions.AdminPermission;
 import app.wooportal.server.features.contest.comment.ContestCommentEntity;
 import app.wooportal.server.features.contest.comment.ContestCommentService;
 import io.leangen.graphql.annotations.GraphQLArgument;
@@ -45,6 +46,7 @@ public class ContestApi extends CrudApi<ContestEntity, ContestService> {
 
   @Override
   @GraphQLMutation(name = "saveContests")
+  @AdminPermission
   public List<ContestEntity> saveAll(
       @GraphQLArgument(name = CrudApi.entities) List<ContestEntity> entities) {
     return super.saveAll(entities);
@@ -52,18 +54,21 @@ public class ContestApi extends CrudApi<ContestEntity, ContestService> {
 
   @Override
   @GraphQLMutation(name = "saveContest")
+  @AdminPermission
   public ContestEntity saveOne(@GraphQLArgument(name = CrudApi.entity) ContestEntity entity) {
     return super.saveOne(entity);
   }
 
   @Override
   @GraphQLMutation(name = "deleteContests")
+  @AdminPermission
   public Boolean deleteAll(@GraphQLArgument(name = CrudApi.ids) List<String> ids) {
     return super.deleteAll(ids);
   }
 
   @Override
   @GraphQLMutation(name = "deleteContest")
+  @AdminPermission
   public Boolean deleteOne(@GraphQLArgument(name = CrudApi.id) String id) {
     return super.deleteOne(id);
   }
@@ -75,6 +80,7 @@ public class ContestApi extends CrudApi<ContestEntity, ContestService> {
   }
   
   @GraphQLMutation(name = "sponsorContest")
+  @AdminPermission
   public Boolean sponsorContest(String contestId) {
     return service.sponsorContest(contestId);
   }

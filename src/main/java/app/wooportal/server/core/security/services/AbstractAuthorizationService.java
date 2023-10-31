@@ -26,7 +26,8 @@ public abstract class AbstractAuthorizationService {
       for (var code: privilegeCode) {
         builder.or(predicate.withUserAndCode(user.get().getId(), code));
       }
-
+      
+      builder.or(predicate.withUserAndCode(user.get().getId(), "admin"));
       return rolePrivilegeService.exists(builder);
     }
     return false;

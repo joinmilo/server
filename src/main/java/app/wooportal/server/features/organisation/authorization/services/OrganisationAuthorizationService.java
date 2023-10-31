@@ -77,7 +77,7 @@ public class OrganisationAuthorizationService {
       
       for (var entityId: entityIds) {
         query.or(
-           predicate.withMember(userContextId).and(predicate.withId(entityId))
+           predicate.withMemberUser(userContextId).and(predicate.withId(entityId))
         );
       }
 
