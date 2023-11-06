@@ -5722,7 +5722,6 @@ databaseChangeLog:
                from labels p, languages l
                WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
                AND l.locale = "en";                                                                                                          
-               AND l.locale = "en"; 
                
   - changeSet:
       id: 0002.add_data_labels.191
