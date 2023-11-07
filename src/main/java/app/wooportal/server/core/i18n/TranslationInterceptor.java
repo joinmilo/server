@@ -82,9 +82,9 @@ public class TranslationInterceptor {
       CompletableFuture.runAsync(() -> {
         try {
           translationService.saveAutoTranslations((E) savedEntity, savedDefaultLocale);
-        } catch (Throwable e) {
+        } catch (Throwable e) { 
           e.printStackTrace();
-          errorMailService.sendErrorMail(e.getStackTrace().toString());          
+          errorMailService.sendErrorMail(e);          
         }
       });
     }
