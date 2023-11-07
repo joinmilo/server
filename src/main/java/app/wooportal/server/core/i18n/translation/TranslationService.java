@@ -189,7 +189,7 @@ public class TranslationService {
         : Optional.empty();
     } catch(Throwable e) {
       e.printStackTrace();
-      errorMailService.sendErrorMail(e.getStackTrace().toString());
+      errorMailService.sendErrorMail(e);
       return Optional.empty();
     }
   }
