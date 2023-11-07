@@ -51,7 +51,7 @@ public class VisitInterceptor<V extends VisitableEntity<?>> {
           visitableService.saveEntityVisit(result.get());
         } catch (Throwable e) {
           e.printStackTrace();
-          errorMailService.sendErrorMail(e.getStackTrace().toString());
+          errorMailService.sendErrorMail(e);
         }
       }
     });

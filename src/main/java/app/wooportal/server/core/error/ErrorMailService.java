@@ -17,7 +17,7 @@ public class ErrorMailService {
     this.mailService = mailService;
   }
 
-  public void sendErrorMail(Exception e) {
+  public void sendErrorMail(Throwable e) {
     StringWriter sw = new StringWriter();
     PrintWriter pw = new PrintWriter(sw);
     e.printStackTrace(pw);
