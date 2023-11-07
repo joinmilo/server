@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import app.wooportal.server.base.address.base.AddressService;
+import app.wooportal.server.base.contact.ContactService;
 import app.wooportal.server.core.base.DataService;
 import app.wooportal.server.core.repository.DataRepository;
 import app.wooportal.server.features.event.attendeeConfiguration.EventAttendeeConfigurationService;
@@ -19,13 +20,15 @@ public class EventService extends DataService<EventEntity, EventPredicateBuilder
       EventAttendeeConfigurationService attendeeConfigurationService,
       AddressService addressService,
       EventScheduleService scheduleService,
-      EventMediaService eventMediaService) {
+      EventMediaService eventMediaService,
+      ContactService contactService) {
     super(repo, predicate);
 
     addService("attendeeConfiguration", attendeeConfigurationService);
     addService("address", addressService);
     addService("schedules", scheduleService);
     addService("uploads", eventMediaService);
+    addService("contact", contactService);
    
   }
   
