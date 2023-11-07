@@ -99,7 +99,7 @@ public class ArticleService extends DataService<ArticleEntity, ArticlePredicateB
       article.get().setSponsored(true);
       repo.save(article.get());
       
-      unsponsorOthers(articleId);
+      unsponsorOther(articleId);
       
       //TODO: Send notifications
       
@@ -108,13 +108,13 @@ public class ArticleService extends DataService<ArticleEntity, ArticlePredicateB
     return false;
   }
 
-  private void unsponsorOthers(String articleId) {
-    var others = readAll(collectionQuery(predicate.withoutId(articleId)));
-    if (others != null && !others.isEmpty()) {
-      others.getList().stream().forEach(article -> {
-        article.setSponsored(false);
-        repo.save(article);
-      });
-    }
-  }
+  private void unsponsorOther(String articleId) {
+	    var other = readAll(collectionQuery(predicate.withSponsoredTrue().and(predicate.withoutId(articleId))));
+	    if (other != null && !other.isEmpty()) {
+	      other.getList().stream().forEach(article -> {
+	        article.setSponsored(false);
+	        repo.save(article);
+	      });
+	    }
+	  }  
 }
