@@ -1,9 +1,7 @@
 package app.wooportal.server.features.contest.base;
 
 import org.springframework.stereotype.Service;
-
 import com.querydsl.core.types.dsl.BooleanExpression;
-
 import app.wooportal.server.core.base.PredicateBuilder;
 
 @Service
@@ -24,5 +22,9 @@ public class ContestPredicateBuilder extends PredicateBuilder<QContestEntity, Co
   
   public BooleanExpression withoutId(String contestId) {
     return query.id.ne(contestId);
+  }
+
+  public BooleanExpression withSponsoredTrue() {
+    return query.sponsored.isTrue();
   }
 }

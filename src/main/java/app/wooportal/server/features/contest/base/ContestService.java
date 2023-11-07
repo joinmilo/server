@@ -19,7 +19,7 @@ public class ContestService extends DataService<ContestEntity, ContestPredicateB
       contest.get().setSponsored(true);
       repo.save(contest.get());
       
-      unsponsorOthers(contestId);
+      unsponsorOther(contestId);
       
       //TODO: Send notifications
       
@@ -28,8 +28,10 @@ public class ContestService extends DataService<ContestEntity, ContestPredicateB
     return false;
   }
 
-  private void unsponsorOthers(String contestId) {
-    var others = readAll(collectionQuery(predicate.withoutId(contestId)));
+  private void unsponsorOther(String contestId) {
+    var others = readAll(
+        collectionQuery(predicate.withoutId(contestId))
+          .and(predicate.withSponsoredTrue()));
     if (others != null && !others.isEmpty()) {
       others.getList().stream().forEach(contest -> {
         contest.setSponsored(false);

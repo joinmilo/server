@@ -109,12 +109,14 @@ public class ArticleService extends DataService<ArticleEntity, ArticlePredicateB
   }
 
   private void unsponsorOther(String articleId) {
-	    var other = readAll(collectionQuery(predicate.withSponsoredTrue().and(predicate.withoutId(articleId))));
-	    if (other != null && !other.isEmpty()) {
-	      other.getList().stream().forEach(article -> {
-	        article.setSponsored(false);
-	        repo.save(article);
-	      });
-	    }
-	  }  
+    var other = readAll(collectionQuery(
+        predicate.withSponsoredTrue()
+          .and(predicate.withoutId(articleId))));
+    if (other != null && !other.isEmpty()) {
+      other.getList().stream().forEach(article -> {
+        article.setSponsored(false);
+        repo.save(article);
+      });
+    }
+  }
 }

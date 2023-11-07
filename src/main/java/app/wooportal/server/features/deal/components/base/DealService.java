@@ -12,43 +12,45 @@ import app.wooportal.server.features.deal.components.base.media.DealMediaService
 @Service
 public class DealService extends DataService<DealEntity, DealPredicateBuilder> {
 
-	public DealService(DataRepository<DealEntity> repo, DealPredicateBuilder predicate, ContactService contactService,
-			DealMediaService mediaService) {
-		super(repo, predicate);
+  public DealService(DataRepository<DealEntity> repo, DealPredicateBuilder predicate,
+      ContactService contactService, DealMediaService mediaService) {
+    super(repo, predicate);
 
-		addService("contact", contactService);
-		addService("uploads", mediaService);
-	}
+    addService("contact", contactService);
+    addService("uploads", mediaService);
+  }
 
-	@Override
-	public void preCreate(DealEntity entity, DealEntity newEntity, JsonNode context) {
-		newEntity.setSponsored(false);
-		addContext("sponsored", context);
-	}
+  @Override
+  public void preCreate(DealEntity entity, DealEntity newEntity, JsonNode context) {
+    newEntity.setSponsored(false);
+    addContext("sponsored", context);
+  }
 
-	public Boolean sponsor(String dealId) {
-		var Deal = getById(dealId);
+  public Boolean sponsor(String dealId) {
+    var Deal = getById(dealId);
 
-		if (Deal.isPresent()) {
-			Deal.get().setSponsored(true);
-			repo.save(Deal.get());
+    if (Deal.isPresent()) {
+      Deal.get().setSponsored(true);
+      repo.save(Deal.get());
 
-			unsponsorOther(dealId);
+      unsponsorOther(dealId);
 
-			// TODO: Send notifications
+      // TODO: Send notifications
 
-			return true;
-		}
-		return false;
-	}
+      return true;
+    }
+    return false;
+  }
 
-	private void unsponsorOther(String dealId) {
-		var other = readAll(collectionQuery(predicate.withSponsoredTrue().and(predicate.withoutId(dealId))));
-		if (other != null && !other.isEmpty()) {
-			other.getList().stream().forEach(Deal -> {
-				Deal.setSponsored(false);
-				repo.save(Deal);
-			});
-		}
-	}
+  private void unsponsorOther(String dealId) {
+    var other = readAll(collectionQuery(
+        predicate.withSponsoredTrue()
+          .and(predicate.withoutId(dealId))));
+    if (other != null && !other.isEmpty()) {
+      other.getList().stream().forEach(Deal -> {
+        Deal.setSponsored(false);
+        repo.save(Deal);
+      });
+    }
+  }
 }

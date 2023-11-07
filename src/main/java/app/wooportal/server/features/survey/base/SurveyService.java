@@ -22,14 +22,15 @@ public class SurveyService extends DataService<SurveyEntity, SurveyPredicateBuil
       unsponsorOthers(surveyId);
       
       //TODO: Send notifications
-      
+
       return true;
     }
     return false;
   }
 
   private void unsponsorOthers(String surveyId) {
-    var others = readAll(collectionQuery(predicate.withoutId(surveyId)));
+    var others = readAll(collectionQuery(
+        predicate.withoutId(surveyId)).and(predicate.withSponsoredTrue()));
     if (others != null && !others.isEmpty()) {
       others.getList().stream().forEach(survey -> {
         survey.setSponsored(false);
