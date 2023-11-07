@@ -1,19 +1,13 @@
 package app.wooportal.server.core.i18n;
 
 import java.util.Optional;
-import java.util.concurrent.CompletableFuture;
-
-import javax.transaction.Transactional;
-
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Service;
-
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.base.dto.listing.PageableList;
-import app.wooportal.server.core.error.ErrorMailService;
 import app.wooportal.server.core.i18n.entities.TranslatableEntity;
 import app.wooportal.server.core.i18n.translation.TranslationService;
 
@@ -23,13 +17,9 @@ public class TranslationInterceptor {
   
   private final TranslationService translationService;
   
-  private final ErrorMailService errorMailService;
-  
   public TranslationInterceptor(
-      TranslationService translationService,
-      ErrorMailService errorMailService) {
+      TranslationService translationService) {
     this.translationService = translationService;
-    this.errorMailService = errorMailService;
   }
   
   @Pointcut("execution(* app.wooportal.server.core.repository.DataRepository+.save(..))")
@@ -68,9 +58,8 @@ public class TranslationInterceptor {
     return result;
   }
   
-  @SuppressWarnings("unchecked")
   @Around("save()")
-  @Transactional
+  @SuppressWarnings("unchecked")
   public <E extends BaseEntity> Object saveTranslation(ProceedingJoinPoint pjp) throws Throwable {
     Object result = pjp.proceed();
     var savedEntity = pjp.getArgs()[0];
@@ -79,14 +68,7 @@ public class TranslationInterceptor {
       // Defaults should be saved synchronously because request
       // will be gone in async procession
       var savedDefaultLocale = translationService.saveDefaultTranslations((E) savedEntity);
-      CompletableFuture.runAsync(() -> {
-        try {
-          translationService.saveAutoTranslations((E) savedEntity, savedDefaultLocale);
-        } catch (Throwable e) { 
-          e.printStackTrace();
-          errorMailService.sendErrorMail(e);          
-        }
-      });
+      translationService.saveAutoTranslations((E) savedEntity, savedDefaultLocale);
     }
     return result;
   }

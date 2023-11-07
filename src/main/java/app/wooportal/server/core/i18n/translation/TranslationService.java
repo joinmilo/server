@@ -6,17 +6,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
-
+import java.util.concurrent.CompletableFuture;
 import javax.transaction.Transactional;
-
 import org.hibernate.Hibernate;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.nodes.TextNode;
 import org.jsoup.parser.Parser;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.error.ErrorMailService;
 import app.wooportal.server.core.i18n.annotations.Translatable;
@@ -40,9 +39,9 @@ public class TranslationService {
   private final TranslationApiService translationApiService;
   
   // Write State, reset for each save translation
-  private Class<TranslatableEntity<BaseEntity>> translatableClass;
-  private String longestContentField;
-  private HashMap<String, String> sourceFields;
+//  private Class<TranslatableEntity<BaseEntity>> translatableClass;
+//  private String longestContentField;
+//  private HashMap<String, String> sourceFields;
   
 
   public TranslationService(LanguageService languageService, LocaleService localeService,
@@ -125,42 +124,51 @@ public class TranslationService {
     return null;
   }
 
-  @Transactional
-  public void saveAutoTranslations(BaseEntity savedEntity, String savedDefaultLocale) throws Throwable {
-    prepare(savedEntity);
-
-    if (sourceFields != null && !sourceFields.isEmpty() && translatableClass != null) {
+  @Async
+  public CompletableFuture<Boolean> saveAutoTranslations(BaseEntity savedEntity, String savedDefaultLocale) throws Throwable {
+    try {      
+      prepare(savedEntity);
       
-      var translatables = new ArrayList<TranslatableEntity<BaseEntity>>();
-      var locale = detectLocale(sourceFields.get(longestContentField));
-      
-      for (var language : languageService.readAll(
-          languageService.collectionQuery(
-              languageService.getPredicate().withActive()).and(
-                  languageService.getPredicate().withoutLocale(savedDefaultLocale))
-          ).getList()) {
-        var translatable = getTranslatableInstance(translatableClass, language, savedEntity);
+      if (sourceFields != null && !sourceFields.isEmpty() && translatableClass != null) {
         
-        if (translatable != null) {
-          translatables.add(translatable);
+        var translatables = new ArrayList<TranslatableEntity<BaseEntity>>();
+        var locale = detectLocale(sourceFields.get(longestContentField));
+        
+        for (var language : languageService.readAll(
+            languageService.collectionQuery(
+                languageService.getPredicate().withActive()).and(
+                    languageService.getPredicate().withoutLocale(savedDefaultLocale))
+            ).getList()) {
+          var translatable = getTranslatableInstance(translatableClass, language, savedEntity);
+          
+          if (translatable != null) {
+            translatables.add(translatable);
+          }
         }
+        
+        if (locale.isPresent()) {
+          persistAutoTranslations(translatables, sourceFields, locale.get());
+        }
+        
       }
       
-      if (locale.isPresent()) {
-        persistAutoTranslations(translatables, sourceFields, locale.get());
-      }
-
+      sourceFields = null;
+      translatableClass = null;
+      longestContentField = null;
+      
+      return CompletableFuture.completedFuture(true);
+    } catch (Throwable e) {
+      e.printStackTrace();
+      errorMailService.sendErrorMail(e);
+      
+      return CompletableFuture.completedFuture(false);
     }
-    
-    sourceFields = null;
-    translatableClass = null;
-    longestContentField = null;
   }
 
   private void prepare(BaseEntity savedEntity) {
-    sourceFields = new HashMap<>();
-    translatableClass = null;
-    longestContentField = null;
+    var sourceFields = new HashMap<>();
+    Class<TranslatableEntity<BaseEntity>> translatableClass = null;
+    String longestContentField = null;
 
     for (var field : ReflectionUtils.getFields(savedEntity.getClass())) {
 
