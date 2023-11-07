@@ -3416,8 +3416,8 @@ databaseChangeLog:
                /*!40101 SET character_set_client = utf8 */;
                /* Set variables */
                SET @tagId   = "noDataContent";
-               SET @german  = "Die Filtereinstellungen ergeben keine zutreffenden Daten.";
-               SET @english = "The filter settings do not produce any applicable data.";
+               SET @german  = "Zu den Filtereinstellungen konnten keine Einträge gefunden werden. Ändere die Filterkriterien oder besuche die Seite zu einem späteren Zeitpunkt.";
+               SET @english = "No entries could be found for the filter settings. Change the filter criteria or visit the page at a later time.";
 
                /* Insert */
                insert into labels (`id`, `tag_id`) values
