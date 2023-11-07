@@ -29,4 +29,8 @@ public class ArticlePredicateBuilder extends PredicateBuilder<QArticleEntity, Ar
   public BooleanExpression withAuthor(String authorId) {
     return query.author.id.eq(authorId);
   }
+  
+	public BooleanExpression withSponsoredTrue() {
+		return query.sponsored.isTrue();
+	}
 }

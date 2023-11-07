@@ -72,17 +72,17 @@ public class OrganisationService extends DataService<OrganisationEntity, Organis
       rganisation.get().setSponsored(true);
       repo.save(rganisation.get());
       
-      unsponsorOthers(rganisationId);
+      unsponsorOther(rganisationId);
       //TODO: Send notifications
       return true;
     }
     return false;
   }
 
-  private void unsponsorOthers(String rganisationId) {
-    var others = readAll(collectionQuery(predicate.withoutId(rganisationId)));
-    if (others != null && !others.isEmpty()) {
-      others.getList().stream().forEach(rganisation -> {
+  private void unsponsorOther(String organisationId) {
+		var other = readAll(collectionQuery(predicate.withSponsoredTrue().and(predicate.withoutId(organisationId))));
+    if (other != null && !other.isEmpty()) {
+      other.getList().stream().forEach(rganisation -> {
         rganisation.setSponsored(false);
         repo.save(rganisation);
       });

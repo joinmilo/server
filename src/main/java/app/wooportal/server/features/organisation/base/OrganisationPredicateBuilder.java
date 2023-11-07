@@ -26,4 +26,7 @@ public class OrganisationPredicateBuilder extends PredicateBuilder<QOrganisation
   public BooleanExpression withMemberUser(String userId) {
     return query.members.any().userContext.id.eq(userId);
   }
+	public BooleanExpression withSponsoredTrue() {
+		return query.sponsored.isTrue();
+	}
 }

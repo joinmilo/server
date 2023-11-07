@@ -45,7 +45,7 @@ public class EventService extends DataService<EventEntity, EventPredicateBuilder
       event.get().setSponsored(true);
       repo.save(event.get());
       
-      unsponsorOthers(eventId);
+      unsponsorOther(eventId);
       
       //TODO: Send notifications
       
@@ -54,10 +54,10 @@ public class EventService extends DataService<EventEntity, EventPredicateBuilder
     return false;
   }
 
-  private void unsponsorOthers(String eventId) {
-    var others = readAll(collectionQuery(predicate.withoutId(eventId)));
-    if (others != null && !others.isEmpty()) {
-      others.getList().stream().forEach(event -> {
+  private void unsponsorOther(String eventId) {
+	var other = readAll(collectionQuery(predicate.withSponsoredTrue().and(predicate.withoutId(eventId))));
+    if (other != null && !other.isEmpty()) {
+      other.getList().stream().forEach(event -> {
         event.setSponsored(false);
         repo.save(event);
       });

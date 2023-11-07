@@ -29,4 +29,8 @@ public class EventPredicateBuilder extends PredicateBuilder<QEventEntity, EventE
 	public BooleanExpression withCreator(String creatorId) {
 		return query.creator.id.eq(creatorId);
 	}
+	
+	public BooleanExpression withSponsoredTrue() {
+		return query.sponsored.isTrue();
+	}
 }
