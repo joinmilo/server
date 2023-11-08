@@ -1,7 +1,6 @@
 package app.wooportal.server.core.i18n.translation;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -36,13 +35,7 @@ public class TranslationService {
 
   private final RepositoryService repoService;
 
-  private final TranslationApiService translationApiService;
-  
-  // Write State, reset for each save translation
-//  private Class<TranslatableEntity<BaseEntity>> translatableClass;
-//  private String longestContentField;
-//  private HashMap<String, String> sourceFields;
-  
+  private final TranslationApiService translationApiService;  
 
   public TranslationService(LanguageService languageService, LocaleService localeService,
       RepositoryService repoService, TranslationApiService translationApiService,
@@ -94,9 +87,9 @@ public class TranslationService {
   
   @Transactional
   public String saveDefaultTranslations(BaseEntity savedEntity) {
-    prepare(savedEntity);
+    var dto = createDto(savedEntity);
     
-    if (sourceFields != null && !sourceFields.isEmpty() && translatableClass != null) {      
+    if (dto.getSourceFields() != null && !dto.getSourceFields().isEmpty() && dto.getTranslatableClass() != null) {      
       var defaultLocales = localeService.getCurrentRequestLocales();
       if (defaultLocales != null && !defaultLocales.isEmpty()) {
         for (var locale: defaultLocales) {
@@ -106,9 +99,9 @@ public class TranslationService {
           
           if (language.isPresent()) {
             try {
-              var translatable = getTranslatableInstance(translatableClass, language.get(), savedEntity);
+              var translatable = getTranslatableInstance(dto.getTranslatableClass(), language.get(), savedEntity);
               if (translatable != null) {      
-                for (var source : sourceFields.entrySet()) {
+                for (var source : dto.getSourceFields().entrySet()) {
                   translatable.set(source.getKey(), source.getValue());
                 }
                 repoService.save(translatable);
@@ -116,6 +109,7 @@ public class TranslationService {
               }
             } catch (Throwable e) {
               e.printStackTrace();
+              errorMailService.sendErrorMail(e);
             }
           }
         }
@@ -127,19 +121,19 @@ public class TranslationService {
   @Async
   public CompletableFuture<Boolean> saveAutoTranslations(BaseEntity savedEntity, String savedDefaultLocale) throws Throwable {
     try {      
-      prepare(savedEntity);
+      var dto = createDto(savedEntity);
       
-      if (sourceFields != null && !sourceFields.isEmpty() && translatableClass != null) {
+      if (dto.getSourceFields() != null && ! dto.getSourceFields().isEmpty() && dto.getTranslatableClass() != null) {
         
         var translatables = new ArrayList<TranslatableEntity<BaseEntity>>();
-        var locale = detectLocale(sourceFields.get(longestContentField));
+        var locale = detectLocale(dto.getLongestContent());
         
         for (var language : languageService.readAll(
             languageService.collectionQuery(
                 languageService.getPredicate().withActive()).and(
                     languageService.getPredicate().withoutLocale(savedDefaultLocale))
             ).getList()) {
-          var translatable = getTranslatableInstance(translatableClass, language, savedEntity);
+          var translatable = getTranslatableInstance(dto.getTranslatableClass(), language, savedEntity);
           
           if (translatable != null) {
             translatables.add(translatable);
@@ -147,15 +141,11 @@ public class TranslationService {
         }
         
         if (locale.isPresent()) {
-          persistAutoTranslations(translatables, sourceFields, locale.get());
+          persistAutoTranslations(translatables, dto.getSourceFields(), locale.get());
         }
         
       }
-      
-      sourceFields = null;
-      translatableClass = null;
-      longestContentField = null;
-      
+
       return CompletableFuture.completedFuture(true);
     } catch (Throwable e) {
       e.printStackTrace();
@@ -165,28 +155,25 @@ public class TranslationService {
     }
   }
 
-  private void prepare(BaseEntity savedEntity) {
-    var sourceFields = new HashMap<>();
-    Class<TranslatableEntity<BaseEntity>> translatableClass = null;
-    String longestContentField = null;
+  private TranslationDto createDto(BaseEntity savedEntity) {
+    var dto = new TranslationDto();
 
     for (var field : ReflectionUtils.getFields(savedEntity.getClass())) {
 
       if (ReflectionUtils.getAnnotation(field, Translatable.class).isPresent()) {
         var value = ReflectionUtils.get(field.getName(), savedEntity);
         if (value.isPresent()) {
-          sourceFields.put(field.getName(), (String) value.get());
-          if (longestContentField == null || value.get().toString().length() > sourceFields.get(longestContentField).length()) {
-            longestContentField = field.getName();
-          } 
+          dto.putSourcField(field.getName(), (String) value.get());
         }
       }
       
       var type = TranslationUtils.getTranslatableFieldType(field);
       if (type.isPresent()) {
-        translatableClass = type.get();
+        dto.setTranslatableClass(type.get());
       }
     }
+    
+    return dto;
   }
 
   private Optional<String> detectLocale(String content) {
