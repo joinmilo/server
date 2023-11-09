@@ -45,16 +45,16 @@ public class VisitInterceptor<V extends VisitableEntity<?>> {
     var result = (Optional<E>) pjp.proceed();
     
     visitableService.setRequest(request);
-    CompletableFuture.runAsync(() -> {
-      if (result.isPresent() && visitableService.isValidVisitor()) {
+    if (result.isPresent() && visitableService.isValidVisitor()) {      
+      CompletableFuture.runAsync(() -> {
         try {
           visitableService.saveEntityVisit(result.get());
         } catch (Throwable e) {
           e.printStackTrace();
           errorMailService.sendErrorMail(e);
         }
-      }
-    });
+      });
+    }
     return result;
   }
 
