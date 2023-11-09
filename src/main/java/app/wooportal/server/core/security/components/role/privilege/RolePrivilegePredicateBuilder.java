@@ -1,9 +1,7 @@
 package app.wooportal.server.core.security.components.role.privilege;
 
 import org.springframework.stereotype.Service;
-
 import com.querydsl.core.types.dsl.BooleanExpression;
-
 import app.wooportal.server.core.base.PredicateBuilder;
 
 
@@ -23,11 +21,6 @@ public class RolePrivilegePredicateBuilder
   public BooleanExpression withCode(String code) {
     return query.code.eq(code);
   }
-
-  public BooleanExpression withUserAndCode(String id, String code) {
-    return id != null && code != null
-        ? query.roles.any().users.any().id.eq(id).and(query.code.eq(code))
-        : null;
-  }
+  
 }
 

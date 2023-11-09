@@ -1,35 +1,44 @@
 package app.wooportal.server.core.security.services;
 
 import com.querydsl.core.BooleanBuilder;
-
-import app.wooportal.server.core.security.components.role.privilege.RolePrivilegeService;
+import app.wooportal.server.core.security.components.user.UserService;
 
 public abstract class AbstractAuthorizationService {
 
   protected final AuthenticationService authenticationService;
-  protected final RolePrivilegeService rolePrivilegeService;
+  protected final UserService userService;
   
   public AbstractAuthorizationService(
       AuthenticationService authenticationService,
-      RolePrivilegeService rolePrivilegeService) {
+      UserService userService) {
     this.authenticationService = authenticationService;
-    this.rolePrivilegeService = rolePrivilegeService;
+    this.userService = userService;
   }
   
   public boolean authenticatedUserHasPrivilege(String... privilegeCode) {
     var user = authenticationService.getAuthenticatedUser();
     
     if (user.isPresent() && privilegeCode != null) {
-      var predicate = rolePrivilegeService.getPredicate();
+      var predicate = userService.getPredicate();
       var builder = new BooleanBuilder();
       
       for (var code: privilegeCode) {
-        builder.or(predicate.withUserAndCode(user.get().getId(), code));
+        builder.or(predicate.withUserAndPrivilege(user.get().getId(), code));
       }
       
-      builder.or(predicate.withUserAndCode(user.get().getId(), "admin"));
-      return rolePrivilegeService.exists(builder);
+      builder.or(predicate.withUserAndPrivilege(user.get().getId(), "admin"));
+      return userService.exists(builder);
     }
+    return false;
+  }
+  
+  public boolean authenticatedUserHasAdminPrivilege() {
+    var user = authenticationService.getAuthenticatedUser();
+    
+    if (user.isPresent()) {      
+      return userService.exists(userService.getPredicate().hasAnyAdminPrivilege(user.get().getId()));
+    }
+    
     return false;
   }
 }

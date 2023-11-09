@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.hibernate.Hibernate;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
-
+import app.wooportal.server.base.userContext.security.UserContextAuthorizationService;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.config.GeneralConfiguration;
 import app.wooportal.server.core.repository.DataRepository;
@@ -31,16 +31,20 @@ public class VisitableService<V extends VisitableEntity<?>> {
   
   private final VisitorService visitorService;
   
+  private final UserContextAuthorizationService authorizationService;
+  
   protected String ipAddress;
   protected String remoteAddress;
   protected String userAgent;
   
   public VisitableService(
+      UserContextAuthorizationService authorizationService,
       Environment env,
       GeneralConfiguration generalConfig,
       RepositoryService repoService,
       VisitorService visitorService) {
     
+    this.authorizationService = authorizationService;
     this.env = env;
     this.generalConfig = generalConfig;
     this.repoService = repoService;
@@ -102,7 +106,9 @@ public class VisitableService<V extends VisitableEntity<?>> {
   }
 
   public boolean isValidVisitor() {
-    return isDevMode() || !isPrivateIpAddress();
+    return !isDevMode()
+        || !isPrivateIpAddress()
+        || !isAdminUser();
   }
 
   private boolean isDevMode() {
@@ -120,6 +126,10 @@ public class VisitableService<V extends VisitableEntity<?>> {
         || ipAddress.startsWith("172.")
         || ipAddress.startsWith("127.")
         || ipAddress.startsWith("10.");
+  }
+  
+  private boolean isAdminUser() {
+    return authorizationService.authenticatedUserHasAdminPrivilege();
   }
   
   private String retrieveUserAddress() {

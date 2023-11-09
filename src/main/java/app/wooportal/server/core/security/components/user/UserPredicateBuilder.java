@@ -1,11 +1,8 @@
 package app.wooportal.server.core.security.components.user;
 
 import java.time.OffsetDateTime;
-
 import org.springframework.stereotype.Service;
-
 import com.querydsl.core.types.dsl.BooleanExpression;
-
 import app.wooportal.server.core.base.PredicateBuilder;
 
 @Service
@@ -38,6 +35,14 @@ public class UserPredicateBuilder extends PredicateBuilder<QUserEntity, UserEnti
 
   public BooleanExpression notVerified() {
     return query.verified.isFalse();
+  }
+
+  public BooleanExpression withUserAndPrivilege(String userId, String code) {
+    return query.id.eq(userId).and(query.roles.any().privileges.any().code.eq(code));
+  }
+  
+  public BooleanExpression hasAnyAdminPrivilege(String userId) {
+    return query.id.eq(userId).and(query.roles.any().privileges.any().code.contains("admin"));
   }
 
 }

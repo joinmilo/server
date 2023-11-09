@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import app.wooportal.server.base.userContext.base.UserContextEntity;
 import app.wooportal.server.core.security.components.role.privilege.RolePrivilegeService;
+import app.wooportal.server.core.security.components.user.UserService;
 import app.wooportal.server.core.security.services.AbstractAuthorizationService;
 import app.wooportal.server.core.security.services.AuthenticationService;
 
@@ -16,8 +17,8 @@ public class UserContextAuthorizationService extends AbstractAuthorizationServic
   
   public UserContextAuthorizationService(
       AuthenticationService authenticationService,
-      RolePrivilegeService rolePrivilegeService) {
-    super(authenticationService, rolePrivilegeService);
+      UserService userService) {
+    super(authenticationService, userService);
   }
 
   public Optional<UserContextEntity> getUserContext(Authentication authentication) {
