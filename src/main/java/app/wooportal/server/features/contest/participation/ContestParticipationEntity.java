@@ -38,11 +38,13 @@ public class ContestParticipationEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
 
+  private Boolean approved;
+  
   @Translatable
   private String textSubmission;
 
   @Column(nullable = false)
-  private Boolean winner;
+  private Integer placement;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(nullable = false)
