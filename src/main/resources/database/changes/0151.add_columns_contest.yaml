@@ -1,0 +1,41 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+  - changeSet:
+      id: 0151.add_columns_contest.1
+      author: codeschluss
+      changes:
+        - addColumn:
+            columns:
+              - column:               
+                  name: max_votes
+                  type: INTEGER
+              - column:              
+                  name: max_participations
+                  type: INTEGER
+              - column:              
+                  name: participation_approval
+                  type: boolean 
+              - column:              
+                  name: canParticipantVote
+                  type: boolean                                                    
+            tableName: contests
+
+  - changeSet:
+      id: 0151.add_columns_contest.2
+      author: codeschluss
+      changes:
+        - addColumn:
+            columns:
+              - column:               
+                  name: placement
+                  type: INTEGER
+              - column:
+                  constraints:
+                  defaultValueBoolean: false                 
+                  name: approved
+                  type: boolean                                                  
+            tableName: contests            
+            
+     
+            
+                                    

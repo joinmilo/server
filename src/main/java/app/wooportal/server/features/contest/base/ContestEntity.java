@@ -2,7 +2,6 @@ package app.wooportal.server.features.contest.base;
 
 import java.time.OffsetDateTime;
 import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,7 +9,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 import app.wooportal.server.base.contact.ContactEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.i18n.annotations.Translatable;
@@ -18,6 +16,7 @@ import app.wooportal.server.core.seo.annotations.SlugSource;
 import app.wooportal.server.core.seo.annotations.SlugTarget;
 import app.wooportal.server.features.contest.base.media.ContestMediaEntity;
 import app.wooportal.server.features.contest.base.translations.ContestTranslatableEntity;
+import app.wooportal.server.features.contest.comment.ContestCommentEntity;
 import app.wooportal.server.features.contest.participation.ContestParticipationEntity;
 import app.wooportal.server.features.contest.type.ContestTypeEntity;
 import lombok.AccessLevel;
@@ -39,20 +38,17 @@ public class ContestEntity extends BaseEntity {
   @Translatable
   private String content;
   
+  @Column(nullable = false)
+  private Integer max_votes;
+  
+  @Column(nullable = false)
+  private Integer max_submissions;
+  
   private String metaDescription;
   
   @Translatable
   @SlugSource
   private String name;
-
-  @Translatable
-  private String shortDescription;
-
-  @Column(nullable = false)
-  private Boolean multiVote;
-
-  @Column(nullable = false)
-  private Boolean multiSubmission;
 
   @Column(nullable = false)
   private Boolean offer;
@@ -60,12 +56,19 @@ public class ContestEntity extends BaseEntity {
   @Column(nullable = false)
   private OffsetDateTime participationEndDate;
   
+  private Boolean participationApproval;
+  
+  private Boolean canParticipantVote;
+  
   @Column(nullable = false, unique = true)
   @SlugTarget
   private String slug;
 
   @Column(nullable = false)
   private Boolean sponsored;
+  
+  @Translatable
+  private String shortDescription;
   
   private OffsetDateTime voteEndDate;
   
@@ -84,4 +87,7 @@ public class ContestEntity extends BaseEntity {
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "contest")
   private Set<ContestMediaEntity> uploads;
+  
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "contest")
+  private Set<ContestCommentEntity> comments;
 }

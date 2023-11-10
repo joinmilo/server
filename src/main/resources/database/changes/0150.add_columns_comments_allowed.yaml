@@ -37,6 +37,19 @@ databaseChangeLog:
                   defaultValueBoolean: false                 
                   name: comments_allowed
                   type: boolean
-            tableName: organisations         
+            tableName: organisations     
+
+  - changeSet:
+      id: 0150.add_columns_comments_allowed.4
+      author: codeschluss
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  constraints:
+                  defaultValueBoolean: false                 
+                  name: comments_allowed
+                  type: boolean
+            tableName: contests              
             
                                     
