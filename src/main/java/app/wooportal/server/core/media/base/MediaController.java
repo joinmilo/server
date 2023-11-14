@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import app.wooportal.server.core.security.permissions.Authenticated;
 
 @RestController
 public class MediaController {
@@ -31,5 +32,11 @@ public class MediaController {
   @PostMapping(value = "/media/export")
   public ResponseEntity<byte[]> export(@RequestBody MediaHtmlDto content) throws Exception {
     return service.export(content);
+  }
+  
+  @PostMapping(value = "/media/mimetype")
+  @Authenticated
+  public ResponseEntity<String> getMimeType(@RequestBody String url) throws Exception {
+    return service.getMimeType(url);
   }
 }

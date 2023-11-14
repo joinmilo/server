@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Base64;
-
 import org.docx4j.convert.in.xhtml.XHTMLImporterImpl;
 import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
 import org.jsoup.Jsoup;
@@ -16,10 +15,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
 import com.fasterxml.jackson.databind.JsonNode;
 import com.openhtmltopdf.pdfboxout.PdfRendererBuilder;
-
 import app.wooportal.server.core.base.DataService;
 import app.wooportal.server.core.error.ErrorMailService;
 import app.wooportal.server.core.error.exception.BadParamsException;
@@ -180,6 +177,21 @@ public class MediaService extends DataService<MediaEntity, MediaPredicateBuilder
     header.add("Pragma", "no-cache");
     header.add("Expires", "0");
     return header;
+  }
+  
+  public ResponseEntity<String> getMimeType(String url) {
+    if (isValidURL(url)) {
+      try {
+        var mimeType = new URL(url).openConnection().getContentType();
+        return ResponseEntity.ok(
+            mimeTypeService.isMediaMimeType(mimeType)
+              ? mimeType
+              : null);
+      } catch (IOException e) {
+        ResponseEntity.ok(null);
+      }
+    }
+    return ResponseEntity.ok(null);
   }
   
   public boolean isValidURL(String urlString) {

@@ -38,20 +38,27 @@ public class MimeTypeService {
         : mimeType.split("/")[1];
   }
   
+  public boolean isMediaMimeType(String mimeType) {
+    return isApplicationMimeType(mimeType)
+        || isApplicationMimeType(mimeType)
+        || isImageMimeType(mimeType)
+        || isVideoMimeType(mimeType);
+  }
+  
   public boolean isApplicationMimeType(String mimeType) {
-    return applicationMimeTypeFileExtensions.containsKey(mimeType);
+    return mimeType != null && applicationMimeTypeFileExtensions.containsKey(mimeType);
   }
   
   public boolean isAudioMimeType(String mimeType) {
-    return audioMimeTypeFileExtensions.containsKey(mimeType);
+    return mimeType != null && audioMimeTypeFileExtensions.containsKey(mimeType);
   }
   
   public boolean isImageMimeType(String mimeType) {
-    return imageMimeTypeFileExtensions.containsKey(mimeType);
+    return mimeType != null && imageMimeTypeFileExtensions.containsKey(mimeType);
   }
   
   public boolean isVideoMimeType(String mimeType) {
-    return videoMimeTypeFileExtensions.containsKey(mimeType);
+    return mimeType != null && videoMimeTypeFileExtensions.containsKey(mimeType);
   }
   
   public MimeTypeService() {
