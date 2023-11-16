@@ -43,7 +43,6 @@ public class ContestParticipationEntity extends BaseEntity {
   @Translatable
   private String textSubmission;
 
-  @Column(nullable = false)
   private Integer placement;
 
   @ManyToOne(fetch = FetchType.LAZY)

@@ -35,30 +35,27 @@ public class ContestEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
 
+  private Boolean canParticipantVote;
+  
   @Translatable
   private String content;
   
-  @Column(nullable = false)
-  private Integer max_votes;
+  private Boolean commentsAllowed;
   
-  @Column(nullable = false)
-  private Integer max_submissions;
+  private Integer maxVotes;
+  
+  private Integer maxParticipations;
   
   private String metaDescription;
   
   @Translatable
   @SlugSource
   private String name;
-
-  @Column(nullable = false)
-  private Boolean offer;
   
   @Column(nullable = false)
   private OffsetDateTime participationEndDate;
   
   private Boolean participationApproval;
-  
-  private Boolean canParticipantVote;
   
   @Column(nullable = false, unique = true)
   @SlugTarget
