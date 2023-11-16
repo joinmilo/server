@@ -8,8 +8,8 @@ databaseChangeLog:
         - sql:
             comment: Add data contacts
             splitStatements: true
-            sql: insert into contacts (id, name, email) values
-              ('3916b414-c2bf-4808-a401-284ac62df73d', 'guenther', 'guenther@example.com');
+            sql: insert into contacts (id, name, email, phone, website) values
+              ('3916b414-c2bf-4808-a401-284ac62df73d', 'guenther', 'guenther@example.com', '08331-12345', 'www.example-website.de');
               
   - changeSet:
       id: 0007.test-data.2

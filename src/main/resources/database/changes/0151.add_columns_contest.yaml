@@ -10,14 +10,14 @@ databaseChangeLog:
                   name: max_votes
                   type: INTEGER
               - column:              
-                  name: max_participations
+                  name: max_participations                     
                   type: INTEGER
               - column:              
                   name: participation_approval
-                  type: boolean 
+                  type: boolean                
               - column:              
-                  name: canParticipantVote
-                  type: boolean                                                    
+                  name: can_participant_vote
+                  type: boolean                              
             tableName: contests
 
   - changeSet:
@@ -34,8 +34,6 @@ databaseChangeLog:
                   defaultValueBoolean: false                 
                   name: approved
                   type: boolean                                                  
-            tableName: contests            
-            
-     
+            tableName: contest_participations              
             
                                     

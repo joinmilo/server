@@ -49,8 +49,7 @@ databaseChangeLog:
           tableName: organisation_members        
       - dropColumn:
           columnName: title_image_id
-          tableName: articles  
-                                                                            
+          tableName: articles                                                                                          
 
   - changeSet:
       id: 0000.drops.3
@@ -133,6 +132,20 @@ databaseChangeLog:
       - dropColumn:
           columnName: image
           tableName: media
+          
+  - changeSet:
+      id: 0000.drops.8  
+      author: codeschluss      
+      changes: 
+      - dropColumn:
+          columnName: multi_vote
+          tableName: contests
+      - dropColumn:
+          columnName: multi_submission
+          tableName: contests    
+      - dropColumn:
+          columnName: offer
+          tableName: contests               
           
              
           
