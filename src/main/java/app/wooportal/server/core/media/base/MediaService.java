@@ -63,13 +63,14 @@ public class MediaService extends DataService<MediaEntity, MediaPredicateBuilder
     
     //TODO: This must be integrated as a check
     if (newEntity.getUrl() != null && !newEntity.getUrl().isBlank()) {
-      if (!isValidURL(newEntity.getUrl())) {
+      if (!isValidURL(newEntity.getUrl()) ||
+          (newEntity.getBase64() != null && !newEntity.getBase64().isBlank())) {
         newEntity.setUrl(null);
         removeContext("url", context);
       }
     }
   }
-  
+
   @Override
   public void postSave(MediaEntity entity, MediaEntity newEntity, MediaEntity saved, JsonNode context) {
     if (newEntity.getBase64() != null && !newEntity.getBase64().isBlank()) {
