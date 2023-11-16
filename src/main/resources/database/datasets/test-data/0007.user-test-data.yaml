@@ -17,7 +17,7 @@ databaseChangeLog:
       changes:
         - sql:
             comment: Add a test user
-            splitStatements: true
+            splitStatements: trueh
             sql:
                insert into users (id, verified, email, first_name, last_name, password, phone, last_login, language_id) values
                ('c3d05f46-5c3c-4100-85d5-649ecfb42601', true, 'Hans@example.com', 'Hans', 'Müller', '$2a$10$SjAMibESwp3bALh7QfOKZOFXynqAqWq6g.tGqsM4L4Rqlu7c5QVxm', null, null, null),
