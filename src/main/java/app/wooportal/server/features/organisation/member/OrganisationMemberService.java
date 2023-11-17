@@ -35,7 +35,7 @@ public class OrganisationMemberService extends DataService<OrganisationMemberEnt
   public void preCreate(
       OrganisationMemberEntity entity,
       OrganisationMemberEntity newEntity,
-      JsonNode context) {    
+      JsonNode context) {
     newEntity.setApproved(false);
     addContext("approved", context);
     

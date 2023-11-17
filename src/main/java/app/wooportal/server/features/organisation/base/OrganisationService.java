@@ -1,10 +1,7 @@
 package app.wooportal.server.features.organisation.base;
 
-import java.util.Set;
 import org.springframework.stereotype.Service;
-
 import com.fasterxml.jackson.databind.JsonNode;
-
 import app.wooportal.server.base.address.base.AddressService;
 import app.wooportal.server.base.contact.ContactService;
 import app.wooportal.server.base.userContext.security.UserContextAuthorizationService;
@@ -44,7 +41,19 @@ public class OrganisationService extends DataService<OrganisationEntity, Organis
     
     newEntity.setApproved(false);
     addContext("approved", context);
-    
+
+    if (authService.authenticatedUserHasPrivilege("organisations_admin")) {
+      newEntity.setApproved(true);
+      addContext("approved", context);
+    }
+  }  
+  
+  @Override
+  public void postCreate(
+      OrganisationEntity entity,
+      OrganisationEntity newEntity,
+      OrganisationEntity saved,
+      JsonNode context) {
     var currentUser = authService.getAuthenticatedUserContext();
     
     if (currentUser.isPresent()) {
@@ -55,15 +64,11 @@ public class OrganisationService extends DataService<OrganisationEntity, Organis
       firstMember.setIsPublic(true);
       firstMember.setUserContext(currentUser.get());
       
-      newEntity.setMembers(Set.of(firstMember));
-      addContext("members", context);
+      firstMember.setOrganisation(saved);
+      
+      getService(OrganisationMemberService.class).persist(firstMember);
     }
-
-    if (authService.authenticatedUserHasPrivilege("organisations_admin")) {
-      newEntity.setApproved(true);
-      addContext("approved", context);
-    }
-  }    
+  }
   
   public Boolean sponsor(String rganisationId) {
     var rganisation = getById(rganisationId);

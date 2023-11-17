@@ -395,7 +395,7 @@ public abstract class DataService<E extends BaseEntity, P extends PredicateBuild
     }
   }
   
-  private E persist(E entity) {
+  public E persist(E entity) {
     var id = entity.getId();
     if (id == null || id.isEmpty() || id.isBlank()) {
       entity.setId(UUID.randomUUID().toString());
