@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
-
+import com.querydsl.core.BooleanBuilder;
 import app.wooportal.server.base.userContext.security.UserContextAuthorizationService;
 import app.wooportal.server.features.event.base.EventEntity;
 import app.wooportal.server.features.event.base.EventService;
@@ -75,9 +75,12 @@ public class EventAuthorizationService {
       var predicate = service.getPredicate();
       var userContextId = userContext.get().getId();
       
+      var isOwner = new BooleanBuilder(predicate.withCreator(userContextId))
+          .or(predicate.withOrganisationMember(userContextId));
+      
       for (var entityId: entityIds) {
         query.or(
-           predicate.withCreator(userContextId).and(predicate.withId(entityId))
+            (isOwner).and(predicate.withId(entityId))
         );
       }
 
