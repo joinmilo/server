@@ -4,12 +4,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Pattern;
-
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import com.fasterxml.jackson.databind.JsonNode;
-
 import app.wooportal.server.base.userDeletion.base.UserDeletionEntity;
 import app.wooportal.server.base.userDeletion.base.UserDeletionService;
 import app.wooportal.server.core.base.DataService;
@@ -20,6 +17,9 @@ import app.wooportal.server.core.error.exception.InvalidTokenException;
 import app.wooportal.server.core.error.exception.NotFoundException;
 import app.wooportal.server.core.error.exception.VerificationInvalidException;
 import app.wooportal.server.core.error.exception.VerificationUserNotFoundException;
+import app.wooportal.server.core.i18n.components.language.LanguageEntity;
+import app.wooportal.server.core.i18n.components.language.LanguageService;
+import app.wooportal.server.core.i18n.translation.LocaleService;
 import app.wooportal.server.core.push.subscription.SubscriptionService;
 import app.wooportal.server.core.repository.DataRepository;
 import app.wooportal.server.core.security.components.role.application.PrivilegeApplicationService;
@@ -38,17 +38,24 @@ public class UserService extends DataService<UserEntity, UserPredicateBuilder> {
   private final BCryptPasswordEncoder bcryptPasswordEncoder;
 
   private final UserDeletionService userDeletionService;
+  
+  private final LocaleService localeService;
+  
+  private final LanguageService languageService;
 
   public UserService(DataRepository<UserEntity> repo, UserPredicateBuilder predicate,
       AuthenticationService authService, BCryptPasswordEncoder bcryptPasswordEncoder,
       PasswordResetService passwordResetService,
       SubscriptionService subscriptionService, VerificationService verificationService,
-      PrivilegeApplicationService privilegeApplicationService, UserDeletionService userDeletionService) {
+      PrivilegeApplicationService privilegeApplicationService, UserDeletionService userDeletionService,
+      LocaleService localeService, LanguageService languageService) {
     super(repo, predicate);
 
     this.authService = authService;
     this.bcryptPasswordEncoder = bcryptPasswordEncoder;
     this.userDeletionService = userDeletionService;
+    this.localeService = localeService;
+    this.languageService = languageService;
 
     addService("passwordResets", passwordResetService);
     addService("subscriptions", subscriptionService);
@@ -83,6 +90,14 @@ public class UserService extends DataService<UserEntity, UserPredicateBuilder> {
       addContext("verifications", context);
       newEntity.setVerified(false);
       addContext("verified", context);
+    }
+    
+    var language = new LanguageEntity();
+    language.setLocale(localeService.getDefaultLocale());
+    var result = languageService.getByExample(language); 
+    if (result.isPresent()) {      
+      newEntity.setLanguage(result.get());
+      addContext("language", context);
     }
   }
 
