@@ -282,6 +282,8 @@ databaseChangeLog:
         file: database/changes/0150.add_columns_comments_allowed.yaml
     - include:
         file: database/changes/0151.create_table_organisation_configurations.yaml
+    - include:
+        file: database/changes/0152.migrate_data_users_set_default_language.yaml         
                 
     #Data section        
     - include:

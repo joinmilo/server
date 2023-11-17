@@ -1,0 +1,18 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent                 
+  - changeSet:
+      id: 0152.migrate_data_users_set_default_language.1
+      author: codeschluss
+      changes:
+        - sql:
+            comment: set language to german for all users
+            splitStatements: true
+            sql:
+                /*!40101 SET character_set_client = utf8 */;
+                
+               UPDATE users u
+               SET u.language_id = (SELECT id FROM languages l WHERE l.locale = 'de');
+   
+                  
+                  
+          
