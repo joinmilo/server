@@ -68,8 +68,8 @@ public class ImageService {
   }
 
   private boolean needsResize(BufferedImage imageBuff) {
-    return imageBuff.getHeight() >= config.getImagesMaxHeight()
-        || imageBuff.getWidth() >= config.getImagesMaxWidth();
+    return imageBuff != null && (imageBuff.getHeight() >= config.getImagesMaxHeight()
+        || imageBuff.getWidth() >= config.getImagesMaxWidth());
   }
 
   private byte[] resize(BufferedImage imageBuff, String formatType) throws IOException {
