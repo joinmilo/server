@@ -95,6 +95,10 @@ public class OrganisationService extends DataService<OrganisationEntity, Organis
     if (organisation.isPresent()) {
       organisation.get().setApproved(!organisation.get().getApproved());
       repo.save(organisation.get());
+     
+      if (organisation.get().getApproved()) {        
+        getService(OrganisationMemberService.class).addRoleForMembers(organisation.get().getId());
+      }
       
       return true;
     }

@@ -279,7 +279,9 @@ databaseChangeLog:
     - include:                 
         file: database/changes/0149.change_null_and_unique_constraints.yaml  
     - include:                 
-        file: database/changes/0150.add_columns_comments_allowed.yaml         
+        file: database/changes/0150.add_columns_comments_allowed.yaml
+    - include:
+        file: database/changes/0151.create_table_organisation_configurations.yaml
                 
     #Data section        
     - include:
@@ -302,6 +304,8 @@ databaseChangeLog:
         file: database/datasets/0008.feature_activition_data.yaml
     - include:
         file: database/datasets/0009.add_milestones.yaml
+    - include:
+        file: database/datasets/0010.add_organisation_configuration.yaml
         
     #Cleanups
     - include:

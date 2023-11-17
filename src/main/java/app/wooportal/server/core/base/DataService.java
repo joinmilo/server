@@ -224,6 +224,27 @@ public abstract class DataService<E extends BaseEntity, P extends PredicateBuild
   public List<E> saveAll(Collection<E> entities) {
     return entities.stream().map(this::save).collect(Collectors.toList());
   }
+  
+  public List<E> saveAllWithContext(Collection<E> entities) {
+    var multiContext = context.getMultiSaveContext();
+    var result = new ArrayList<E>();
+    
+    entities: for (var entity: entities) {
+      E element = null;
+      if (multiContext != null && !multiContext.isEmpty()) {
+        for (var node: multiContext) {
+          var entityContext = findContext(entity, node);
+          if (entityContext != null) {
+            element = save(entity, entityContext);
+            continue entities;
+          }
+        }
+      }
+      element = save(entity, null);
+      result.add(element);
+    }
+    return result;
+  }
 
   public E saveWithContext(E newEntity) {
     if (newEntity != null) {

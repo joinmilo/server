@@ -106,7 +106,7 @@ public class VisitableService<V extends VisitableEntity<?>> {
   }
 
   public boolean isValidVisitor() {
-    return !isDevMode()
+    return isDevMode()
         || !isPrivateIpAddress()
         || !isAdminUser();
   }

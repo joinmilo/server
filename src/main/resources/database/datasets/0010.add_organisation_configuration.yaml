@@ -1,0 +1,12 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+
+  - changeSet:
+      id: 0010.add_organisation_configuration.1
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add milestones
+            splitStatements: true
+            sql: insert into organisation_configurations(`id`, `member_role_id`, `approval_required`) values
+              (uuid(), '661fe5a9-b6cb-434c-90f7-d6013c78a4dc', true);

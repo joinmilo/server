@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import graphql.language.Definition;
 import graphql.language.Field;
 import graphql.language.FragmentDefinition;
@@ -42,8 +42,8 @@ public class GraphQlContextAdapter implements ApiContextAdapter {
   }
   
   @Override
-  public JsonNode getMultiSaveContext() {
-    return getSaveContext();
+  public ArrayNode getMultiSaveContext() {
+    return (ArrayNode) getSaveContext();
   }
   
   public List<Field> getSingleReadContext() {

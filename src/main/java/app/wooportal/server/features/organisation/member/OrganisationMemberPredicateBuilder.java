@@ -1,9 +1,7 @@
 package app.wooportal.server.features.organisation.member;
 
 import org.springframework.stereotype.Service;
-
 import com.querydsl.core.types.dsl.BooleanExpression;
-
 import app.wooportal.server.core.base.PredicateBuilder;
 
 @Service
@@ -16,5 +14,9 @@ public class OrganisationMemberPredicateBuilder extends PredicateBuilder<QOrgani
   @Override
   public BooleanExpression freeSearch(String term) {
     return null;
+  }
+
+  public BooleanExpression withOrganisationId(String organisationId) {
+    return query.organisation.id.eq(organisationId);
   }
 }

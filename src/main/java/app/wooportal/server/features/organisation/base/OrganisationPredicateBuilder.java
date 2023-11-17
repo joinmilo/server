@@ -1,9 +1,7 @@
 package app.wooportal.server.features.organisation.base;
 
 import org.springframework.stereotype.Service;
-
 import com.querydsl.core.types.dsl.BooleanExpression;
-
 import app.wooportal.server.core.base.PredicateBuilder;
 
 @Service
@@ -29,4 +27,8 @@ public class OrganisationPredicateBuilder extends PredicateBuilder<QOrganisation
 	public BooleanExpression withSponsoredTrue() {
 		return query.sponsored.isTrue();
 	}
+
+  public BooleanExpression withApprovedOrga(String organisationId) {
+    return query.approved.isTrue().and(query.id.eq(organisationId));
+  }
 }
