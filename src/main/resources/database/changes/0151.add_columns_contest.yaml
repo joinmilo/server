@@ -14,10 +14,7 @@ databaseChangeLog:
                   type: INTEGER
               - column:              
                   name: participation_approval
-                  type: boolean                
-              - column:              
-                  name: can_participant_vote
-                  type: boolean                              
+                  type: boolean                            
             tableName: contests
 
   - changeSet:

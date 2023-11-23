@@ -34,8 +34,6 @@ import lombok.Setter;
 public class ContestEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
-
-  private Boolean canParticipantVote;
   
   @Translatable
   private String content;

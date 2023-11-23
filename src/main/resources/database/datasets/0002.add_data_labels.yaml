@@ -6140,6 +6140,186 @@ databaseChangeLog:
                insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
                select uuid(), p.id, l.id, @english COLLATE utf8mb4_unicode_ci
                from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci                                                                                                                                                           
+               AND l.locale = "en";         
+               
+  - changeSet:
+      id: 0002.add_data_labels.206
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add labels
+            splitStatements: true
+            sql:
+               /*!40101 SET character_set_client = utf8 */;
+               /* Set variables */
+               SET @tagId   = "vote";
+               SET @german  = "Abstimmen";
+               SET @english = "Vote";
+
+               /* Insert */
+               insert into labels (`id`, `tag_id`) values
+               (uuid(), @tagId COLLATE utf8mb4_unicode_ci);
+                
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @german COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
                WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
-               AND l.locale = "en";                                                                                                                                         
+               AND l.locale = "de";
+
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @english COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "en";     
+               
+  - changeSet:
+      id: 0002.add_data_labels.207
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add labels
+            splitStatements: true
+            sql:
+               /*!40101 SET character_set_client = utf8 */;
+               /* Set variables */
+               SET @tagId   = "createNewParticipation";
+               SET @german  = "Neue Teilnahme erstellen";
+               SET @english = "Create new participation";
+
+               /* Insert */
+               insert into labels (`id`, `tag_id`) values
+               (uuid(), @tagId COLLATE utf8mb4_unicode_ci);
+                
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @german COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "de";
+
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @english COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "en";  
+               
+  - changeSet:
+      id: 0002.add_data_labels.208
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add labels
+            splitStatements: true
+            sql:
+               /*!40101 SET character_set_client = utf8 */;
+               /* Set variables */
+               SET @tagId   = "yourVoteCounts";
+               SET @german  = "Deine Stimme zählt!";
+               SET @english = "Your vote counts!";
+
+               /* Insert */
+               insert into labels (`id`, `tag_id`) values
+               (uuid(), @tagId COLLATE utf8mb4_unicode_ci);
+                
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @german COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "de";
+
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @english COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "en";        
+               
+  - changeSet:
+      id: 0002.add_data_labels.209
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add labels
+            splitStatements: true
+            sql:
+               /*!40101 SET character_set_client = utf8 */;
+               /* Set variables */
+               SET @tagId   = "maxVotesReached";
+               SET @german  = "Stimme/n abgegeben";
+               SET @english = "Vote(s) cast";
+
+               /* Insert */
+               insert into labels (`id`, `tag_id`) values
+               (uuid(), @tagId COLLATE utf8mb4_unicode_ci);
+                
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @german COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "de";
+
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @english COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "en";  
+               
+  - changeSet:
+      id: 0002.add_data_labels.210
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add labels
+            splitStatements: true
+            sql:
+               /*!40101 SET character_set_client = utf8 */;
+               /* Set variables */
+               SET @tagId   = "allreadyVoted";
+               SET @german  = "Bereits gewählt";
+               SET @english = "Allready voted";
+
+               /* Insert */
+               insert into labels (`id`, `tag_id`) values
+               (uuid(), @tagId COLLATE utf8mb4_unicode_ci);
+                
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @german COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "de";
+
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @english COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "en";     
+               
+  - changeSet:
+      id: 0002.add_data_labels.211
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add labels
+            splitStatements: true
+            sql:
+               /*!40101 SET character_set_client = utf8 */;
+               /* Set variables */
+               SET @tagId   = "maxParticipationsReached";
+               SET @german  = "Teilnahme/n erstellt";
+               SET @english = "Participation(s) created";
+
+               /* Insert */
+               insert into labels (`id`, `tag_id`) values
+               (uuid(), @tagId COLLATE utf8mb4_unicode_ci);
+                
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @german COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "de";
+
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @english COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "en";                                                                                                                                                                                                          
                             
