@@ -35,8 +35,8 @@ databaseChangeLog:
                     nullable: false
                   defaultValueBoolean: false
                   name: read
-                  type: boolean                                                                 
-            tableName: notifications    
+                  type: boolean
+            tableName: notifications
         - sql:
             comment: set char set for mysql
             dbms: mysql

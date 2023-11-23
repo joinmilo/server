@@ -1,0 +1,315 @@
+databaseChangeLog:
+  - changeSet:
+      id: 0153.drop_constraints_nullable_booleans.1
+      author: codeschluss
+      changes:
+        - dropNotNullConstraint:
+            columnName: read
+            columnDataType: boolean
+            tableName: notifications
+            
+  - changeSet:
+      id: 0153.drop_constraints_nullable_booleans.2
+      author: codeschluss
+      changes:
+        - dropNotNullConstraint:
+            columnName: preferred_contact
+            columnDataType: boolean
+            tableName: contacts
+            
+  - changeSet:
+      id: 0153.drop_constraints_nullable_booleans.3
+      author: codeschluss
+      changes:
+        - dropNotNullConstraint:
+            columnName: is_landing
+            columnDataType: boolean
+            tableName: pages
+            
+  - changeSet:
+      id: 0153.drop_constraints_nullable_booleans.4
+      author: codeschluss
+      changes:
+        - dropNotNullConstraint:
+            columnName: title
+            columnDataType: boolean
+            tableName: page_media
+            
+  - changeSet:
+      id: 0153.drop_constraints_nullable_booleans.5
+      author: codeschluss
+      changes:
+        - dropNotNullConstraint:
+            columnName: header
+            columnDataType: boolean
+            tableName: menu_items
+            
+  - changeSet:
+      id: 0153.drop_constraints_nullable_booleans.6
+      author: codeschluss
+      changes:
+        - dropNotNullConstraint:
+            columnName: approval
+            columnDataType: boolean
+            tableName: event_attendee_configurations
+            
+  - changeSet:
+      id: 0153.drop_constraints_nullable_booleans.7
+      author: codeschluss
+      changes:
+        - dropNotNullConstraint:
+            columnName: sponsored
+            columnDataType: boolean
+            tableName: events
+            
+  - changeSet:
+      id: 0153.drop_constraints_nullable_booleans.8
+      author: codeschluss
+      changes:
+        - dropNotNullConstraint:
+            columnName: title
+            columnDataType: boolean
+            tableName: event_media
+            
+  - changeSet:
+      id: 0153.drop_constraints_nullable_booleans.9
+      author: codeschluss
+      changes:
+        - dropNotNullConstraint:
+            columnName: card
+            columnDataType: boolean
+            tableName: event_media
+
+  - changeSet:
+      id: 0153.drop_constraints_nullable_booleans.10
+      author: codeschluss
+      changes:
+        - dropNotNullConstraint:
+            columnName: approved
+            columnDataType: boolean
+            tableName: event_attendees
+            
+  - changeSet:
+      id: 0153.drop_constraints_nullable_booleans.11
+      author: codeschluss
+      changes:
+        - dropNotNullConstraint:
+            columnName: sponsored
+            columnDataType: boolean
+            tableName: articles
+            
+  - changeSet:
+      id: 0153.drop_constraints_nullable_booleans.12
+      author: codeschluss
+      changes:
+        - dropNotNullConstraint:
+            columnName: title
+            columnDataType: boolean
+            tableName: event_media
+            
+  - changeSet:
+      id: 0153.drop_constraints_nullable_booleans.13
+      author: codeschluss
+      changes:
+        - dropNotNullConstraint:
+            columnName: card
+            columnDataType: boolean
+            tableName: event_media
+            
+  - changeSet:
+      id: 0153.drop_constraints_nullable_booleans.14
+      author: codeschluss
+      changes:
+        - dropNotNullConstraint:
+            columnName: sponsored
+            columnDataType: boolean
+            tableName: deals
+            
+  - changeSet:
+      id: 0153.drop_constraints_nullable_booleans.15
+      author: codeschluss
+      changes:
+        - dropNotNullConstraint:
+            columnName: is_public
+            columnDataType: boolean
+            tableName: deals
+            
+  - changeSet:
+      id: 0153.drop_constraints_nullable_booleans.16
+      author: codeschluss
+      changes:
+        - dropNotNullConstraint:
+            columnName: offer
+            columnDataType: boolean
+            tableName: deals
+            
+  - changeSet:
+      id: 0153.drop_constraints_nullable_booleans.17
+      author: codeschluss
+      changes:
+        - dropNotNullConstraint:
+            columnName: sponsored
+            columnDataType: boolean
+            tableName: organisations
+            
+  - changeSet:
+      id: 0153.drop_constraints_nullable_booleans.18
+      author: codeschluss
+      changes:
+        - dropNotNullConstraint:
+            columnName: title
+            columnDataType: boolean
+            tableName: organisation_media
+            
+  - changeSet:
+      id: 0153.drop_constraints_nullable_booleans.19
+      author: codeschluss
+      changes:
+        - dropNotNullConstraint:
+            columnName: card
+            columnDataType: boolean
+            tableName: organisation_media
+            
+  - changeSet:
+      id: 0153.drop_constraints_nullable_booleans.20
+      author: codeschluss
+      changes:
+        - dropNotNullConstraint:
+            columnName: mandatory
+            columnDataType: boolean
+            tableName: surveys
+            
+  - changeSet:
+      id: 0153.drop_constraints_nullable_booleans.21
+      author: codeschluss
+      changes:
+        - dropNotNullConstraint:
+            columnName: sponsored
+            columnDataType: boolean
+            tableName: surveys
+            
+  - changeSet:
+      id: 0153.drop_constraints_nullable_booleans.22
+      author: codeschluss
+      changes:
+        - dropNotNullConstraint:
+            columnName: is_default
+            columnDataType: boolean
+            tableName: themes
+            
+  - changeSet:
+      id: 0153.drop_constraints_nullable_booleans.23
+      author: codeschluss
+      changes:
+        - dropNotNullConstraint:
+            columnName: title
+            columnDataType: boolean
+            tableName: deal_media
+            
+  - changeSet:
+      id: 0153.drop_constraints_nullable_booleans.24
+      author: codeschluss
+      changes:
+        - dropNotNullConstraint:
+            columnName: card
+            columnDataType: boolean
+            tableName: deal_media
+            
+  - changeSet:
+      id: 0153.drop_constraints_nullable_booleans.25
+      author: codeschluss
+      changes:
+        - dropNotNullConstraint:
+            columnName: card
+            columnDataType: boolean
+            tableName: survey_media
+            
+  - changeSet:
+      id: 0153.drop_constraints_nullable_booleans.26
+      author: codeschluss
+      changes:
+        - dropNotNullConstraint:
+            columnName: title
+            columnDataType: boolean
+            tableName: survey_media
+            
+  - changeSet:
+      id: 0153.drop_constraints_nullable_booleans.27
+      author: codeschluss
+      changes:
+        - dropNotNullConstraint:
+            columnName: profile_picture
+            columnDataType: boolean
+            tableName: user_context_media
+            
+  - changeSet:
+      id: 0153.drop_constraints_nullable_booleans.28
+      author: codeschluss
+      changes:
+        - dropNotNullConstraint:
+            columnName: title
+            columnDataType: boolean
+            tableName: user_context_media
+            
+  - changeSet:
+      id: 0153.drop_constraints_nullable_booleans.29
+      author: codeschluss
+      changes:
+        - dropNotNullConstraint:
+            columnName: accepted
+            columnDataType: boolean
+            tableName: friends
+            
+  - changeSet:
+      id: 0153.drop_constraints_nullable_booleans.30
+      author: codeschluss
+      changes:
+        - dropNotNullConstraint:
+            columnName: accepted
+            columnDataType: boolean
+            tableName: privilege_applications
+            
+  - changeSet:
+      id: 0153.drop_constraints_nullable_booleans.31
+      author: codeschluss
+      changes:
+        - dropNotNullConstraint:
+            columnName: is_public
+            columnDataType: boolean
+            tableName: organisation_members
+            
+  - changeSet:
+      id: 0153.drop_constraints_nullable_booleans.32
+      author: codeschluss
+      changes:
+        - dropNotNullConstraint:
+            columnName: approved
+            columnDataType: boolean
+            tableName: organisation_members
+            
+  - changeSet:
+      id: 0153.drop_constraints_nullable_booleans.33
+      author: codeschluss
+      changes:
+        - dropNotNullConstraint:
+            columnName: comments_allowed
+            columnDataType: boolean
+            tableName: articles
+          
+  - changeSet:
+      id: 0153.drop_constraints_nullable_booleans.34
+      author: codeschluss
+      changes:
+        - dropNotNullConstraint:
+            columnName: comments_allowed
+            columnDataType: boolean
+            tableName: events
+            
+  - changeSet:
+      id: 0153.drop_constraints_nullable_booleans.35
+      author: codeschluss
+      changes:
+        - dropNotNullConstraint:
+            columnName: comments_allowed
+            columnDataType: boolean
+            tableName: organisations
