@@ -283,7 +283,9 @@ databaseChangeLog:
     - include:
         file: database/changes/0151.create_table_organisation_configurations.yaml
     - include:
-        file: database/changes/0152.migrate_data_users_set_default_language.yaml         
+        file: database/changes/0152.migrate_data_users_set_default_language.yaml
+    - include:
+        file: database/changes/0153.drop_constraints_nullable_booleans.yaml         
                 
     #Data section        
     - include:
