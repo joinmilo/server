@@ -5,9 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
-
-import app.wooportal.server.base.cms.feature.FeatureEntity;
-import app.wooportal.server.base.cms.feature.FeatureService;
+import app.wooportal.server.base.cms.plugin.PluginEntity;
+import app.wooportal.server.base.cms.plugin.PluginService;
 import app.wooportal.server.base.userContext.base.UserContextEntity;
 import app.wooportal.server.base.userContext.base.UserContextService;
 import app.wooportal.server.core.base.BaseEntity;
@@ -35,12 +34,12 @@ public class SearchService {
   private final ContestService contestService;
   private final SurveyService surveyService;
   private final UserContextService userContextService;
-  private final FeatureService featureService;
+  private final PluginService featureService;
 
   public SearchService(EventService eventService, OrganisationService organisationService,
       ArticleService articleService, DealService dealService, ContestService contestService,
       SurveyService surveyService, UserContextService userContextService,
-      FeatureService featureService) throws IOException {
+      PluginService featureService) throws IOException {
 
     this.eventService = eventService;
     this.organisationService = organisationService;
@@ -132,7 +131,7 @@ public class SearchService {
         : list;
   }
 
-  private FeatureEntity getFeature(String code, List<FeatureEntity> features) {
+  private PluginEntity getFeature(String code, List<PluginEntity> features) {
     for (var feature : features) {
       if (feature.getCode().equals(code)) {
         return feature;

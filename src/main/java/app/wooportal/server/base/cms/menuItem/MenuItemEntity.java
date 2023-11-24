@@ -8,10 +8,9 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import app.wooportal.server.base.cms.feature.FeatureEntity;
 import app.wooportal.server.base.cms.menuItem.translations.MenuItemTranslatableEntity;
 import app.wooportal.server.base.cms.page.PageEntity;
+import app.wooportal.server.base.cms.plugin.PluginEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.i18n.annotations.Translatable;
 import lombok.AccessLevel;
@@ -44,7 +43,7 @@ public class MenuItemEntity extends BaseEntity {
   private String shortDescription;
 
   @ManyToOne(fetch = FetchType.LAZY)
-  private FeatureEntity feature;
+  private PluginEntity plugin;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private PageEntity page;

@@ -1,0 +1,29 @@
+databaseChangeLog:
+  - changeSet:
+      id: 0154.rename_feature_plugin.1
+      author: codeschluss
+      changes:
+      - renameTable:
+          newTableName: plugins
+          oldTableName: features
+          remarks: change in names
+
+  - changeSet:
+      id: 0154.rename_feature_plugin.2
+      author: codeschluss
+      changes:
+        - renameColumn:
+            newColumnName: plugin_id
+            oldColumnName: feature_id
+            columnDataType: char(36)
+            tableName: menu_items
+            
+  - changeSet:
+      id: 0154.rename_feature_plugin.3
+      author: codeschluss
+      changes:
+        - renameColumn:
+            newColumnName: plugin_id
+            oldColumnName: feature_id
+            columnDataType: char(36)
+            tableName: page_embeddings

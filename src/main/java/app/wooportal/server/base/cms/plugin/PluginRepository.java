@@ -1,10 +1,10 @@
-package app.wooportal.server.base.cms.feature;
+package app.wooportal.server.base.cms.plugin;
 
 import org.springframework.stereotype.Repository;
 
 import app.wooportal.server.core.repository.DataRepository;
 
 @Repository
-public interface FeatureRepository extends DataRepository<FeatureEntity> {
+public interface PluginRepository extends DataRepository<PluginEntity> {
 
 }

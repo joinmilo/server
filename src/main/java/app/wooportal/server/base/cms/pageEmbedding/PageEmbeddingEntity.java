@@ -6,11 +6,8 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.GenericGenerator;
-
-import app.wooportal.server.base.cms.feature.FeatureEntity;
 import app.wooportal.server.base.cms.page.PageEntity;
+import app.wooportal.server.base.cms.plugin.PluginEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -24,7 +21,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Table(name = "page_embeddings")
-@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
 public class PageEmbeddingEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
@@ -34,7 +30,7 @@ public class PageEmbeddingEntity extends BaseEntity {
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(nullable = false)
-  private FeatureEntity feature;
+  private PluginEntity plugin;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(nullable = false)
