@@ -8,7 +8,7 @@ databaseChangeLog:
         - sql:
             comment: Add Menu Data
             splitStatements: true
-            sql: insert into menu_items (id, header, `order`, `parent_id`, `feature_id`, `page_id`, `icon`) values
+            sql: insert into menu_items (id, header, `order`, `parent_id`, `plugin_id`, `page_id`, `icon`) values
 
               /* Entdecken Menu */
               ('0115fe46-3a7e-4377-abe5-f56f720bf3d9', true, 0, null, null, null, null),
@@ -37,25 +37,25 @@ databaseChangeLog:
       author: codeschluss
       changes:
         - sql:
-            comment: Add Menu Data and migrate existing features
+            comment: Add Menu Data and migrate existing plugins
             splitStatements: true
             sql:
-                insert into menu_items (`id`, `header`, `order`, `parent_id`, `feature_id`, `page_id`, `icon`)
-                select uuid(), true, 0, '0115fe46-3a7e-4377-abe5-f56f720bf3d9', f.id, null, 'calendar'
-                from features f
-                WHERE f.code = "events";
+                insert into menu_items (`id`, `header`, `order`, `parent_id`, `plugin_id`, `page_id`, `icon`)
+                select uuid(), true, 0, '0115fe46-3a7e-4377-abe5-f56f720bf3d9', p.id, null, 'calendar'
+                from plugins p
+                WHERE p.code = "events";
                 
-                insert into menu_items (`id`, `header`, `order`, `parent_id`, `feature_id`, `page_id`, `icon`)
-                select uuid(), true, 1, '0115fe46-3a7e-4377-abe5-f56f720bf3d9', f.id, null, 'people-group'
-                from features f
-                WHERE f.code = "organisations";
+                insert into menu_items (`id`, `header`, `order`, `parent_id`, `plugin_id`, `page_id`, `icon`)
+                select uuid(), true, 1, '0115fe46-3a7e-4377-abe5-f56f720bf3d9', p.id, null, 'people-group'
+                from plugins p
+                WHERE p.code = "organisations";
                 
-                insert into menu_items (`id`, `header`, `order`, `parent_id`, `feature_id`, `page_id`, `icon`)
-                select uuid(), true, 0, '7a8cc14b-49e4-4f53-a86f-11aa6e2db95e', f.id, null, 'newspaper'
-                from features f
-                WHERE f.code = "articles";
+                insert into menu_items (`id`, `header`, `order`, `parent_id`, `plugin_id`, `page_id`, `icon`)
+                select uuid(), true, 0, '7a8cc14b-49e4-4f53-a86f-11aa6e2db95e', p.id, null, 'newspaper'
+                from plugins p
+                WHERE p.code = "articles";
                 
-                insert into menu_items (`id`, `header`, `order`, `parent_id`, `feature_id`, `page_id`, `icon`)
+                insert into menu_items (`id`, `header`, `order`, `parent_id`, `plugin_id`, `page_id`, `icon`)
                 select uuid(), true, 3, '7a8cc14b-49e4-4f53-a86f-11aa6e2db95e', null, p.parent_id, 'user-group'
                 from page_translatables p
                 WHERE p.name = "Über uns";

@@ -51,9 +51,9 @@ public class PluginApi extends CrudApi<PluginEntity, PluginService> {
     return super.saveOne(entity);
   }
   
-  @GraphQLMutation(name = "changeActivation")
+  @GraphQLMutation(name = "changePluginActivation")
   @CmsAdminPermission
-  public Boolean changeActivation(String featureId, Boolean active) {
-    return service.changeActivation(featureId, active);
+  public Boolean changePluginActivation(String pluginId, Boolean active) {
+    return service.changeActivation(pluginId, active);
   }
 }

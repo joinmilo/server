@@ -8,7 +8,6 @@ import app.wooportal.server.core.base.dto.listing.FilterSortPaginate;
 import app.wooportal.server.core.base.dto.listing.PageableList;
 import app.wooportal.server.core.security.permissions.Authenticated;
 import app.wooportal.server.features.organisation.authorization.permissions.OrganisationAdminPermission;
-import app.wooportal.server.features.organisation.authorization.permissions.OrganisationManagePermission;
 import app.wooportal.server.features.organisation.comment.OrganisationCommentEntity;
 import app.wooportal.server.features.organisation.comment.OrganisationCommentService;
 import io.leangen.graphql.annotations.GraphQLArgument;

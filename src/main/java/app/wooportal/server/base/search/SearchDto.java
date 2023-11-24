@@ -17,6 +17,6 @@ public class SearchDto {
   
   private String name;
 
-  private PluginEntity feature;
+  private PluginEntity plugin;
 
 }

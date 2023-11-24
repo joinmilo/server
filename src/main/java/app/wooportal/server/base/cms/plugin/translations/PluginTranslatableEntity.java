@@ -15,8 +15,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @AllArgsConstructor
 @Entity
-@Table(name = "feature_translatables")
-public class FeatureTranslatableEntity extends TranslatableEntity<PluginEntity> {
+@Table(name = "plugin_translatables")
+public class PluginTranslatableEntity extends TranslatableEntity<PluginEntity> {
 
   private static final long serialVersionUID = 1L;
 
