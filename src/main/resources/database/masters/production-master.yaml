@@ -285,7 +285,9 @@ databaseChangeLog:
     - include:
         file: database/changes/0152.migrate_data_users_set_default_language.yaml
     - include:
-        file: database/changes/0153.drop_constraints_nullable_booleans.yaml         
+        file: database/changes/0153.drop_constraints_nullable_booleans.yaml
+    - include:
+        file: database/changes/0154.rename_feature_plugin.yaml         
                 
     #Data section        
     - include:

@@ -1,4 +1,4 @@
-package app.wooportal.server.base.cms.feature;
+package app.wooportal.server.base.cms.plugin;
 
 import java.util.Set;
 
@@ -6,10 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import app.wooportal.server.base.cms.feature.translations.FeatureTranslatableEntity;
 import app.wooportal.server.base.cms.menuItem.MenuItemEntity;
 import app.wooportal.server.base.cms.pageEmbedding.PageEmbeddingEntity;
+import app.wooportal.server.base.cms.plugin.translations.FeatureTranslatableEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.i18n.annotations.Translatable;
 import lombok.AccessLevel;
@@ -23,8 +22,8 @@ import lombok.Setter;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @AllArgsConstructor
 @Entity
-@Table(name = "features")
-public class FeatureEntity extends BaseEntity {
+@Table(name = "plugins")
+public class PluginEntity extends BaseEntity {
   	
   private Boolean active;
 
@@ -39,10 +38,10 @@ public class FeatureEntity extends BaseEntity {
   
   private Boolean released;
 
-  @OneToMany(fetch = FetchType.LAZY, mappedBy = "feature")
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "plugin")
   private Set<PageEmbeddingEntity> embeddings;
 
-  @OneToMany(fetch = FetchType.LAZY, mappedBy = "feature")
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "plugin")
   private Set<MenuItemEntity> menuItems;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")

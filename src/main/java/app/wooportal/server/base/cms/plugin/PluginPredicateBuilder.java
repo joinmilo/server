@@ -1,16 +1,14 @@
-package app.wooportal.server.base.cms.feature;
+package app.wooportal.server.base.cms.plugin;
 
 import org.springframework.stereotype.Service;
-
 import com.querydsl.core.types.dsl.BooleanExpression;
-
 import app.wooportal.server.core.base.PredicateBuilder;
 
 @Service
-public class FeaturePredicateBuilder extends PredicateBuilder<QFeatureEntity, FeatureEntity> {
+public class PluginPredicateBuilder extends PredicateBuilder<QPluginEntity, PluginEntity> {
 
-  public FeaturePredicateBuilder() {
-    super(QFeatureEntity.featureEntity);
+  public PluginPredicateBuilder() {
+    super(QPluginEntity.pluginEntity);
   }
 
   @Override

@@ -1,4 +1,4 @@
-package app.wooportal.server.base.cms.feature;
+package app.wooportal.server.base.cms.plugin;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,38 +16,38 @@ import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 
 @GraphQLApi
 @Component
-public class FeatureApi extends CrudApi<FeatureEntity, FeatureService> {
+public class PluginApi extends CrudApi<PluginEntity, PluginService> {
 
-  public FeatureApi(FeatureService service) {
+  public PluginApi(PluginService service) {
     super(service);
   }
 
   @Override
-  @GraphQLQuery(name = "getFeatures")
-  public PageableList<FeatureEntity> readAll(
+  @GraphQLQuery(name = "getPlugins")
+  public PageableList<PluginEntity> readAll(
       @GraphQLArgument(name = CrudApi.params) FilterSortPaginate params) {
     return super.readAll(params);
   }
 
   @Override
-  @GraphQLQuery(name = "getFeature")
-  public Optional<FeatureEntity> readOne(
-      @GraphQLArgument(name = CrudApi.entity) FeatureEntity entity) {
+  @GraphQLQuery(name = "getPlugin")
+  public Optional<PluginEntity> readOne(
+      @GraphQLArgument(name = CrudApi.entity) PluginEntity entity) {
     return super.readOne(entity);
   }
 
   @Override
-  @GraphQLMutation(name = "saveFeatures")
+  @GraphQLMutation(name = "savePlugins")
   @CmsAdminPermission
-  public List<FeatureEntity> saveAll(
-      @GraphQLArgument(name = CrudApi.entities) List<FeatureEntity> entities) {
+  public List<PluginEntity> saveAll(
+      @GraphQLArgument(name = CrudApi.entities) List<PluginEntity> entities) {
     return super.saveAll(entities);
   }
 
   @Override
-  @GraphQLMutation(name = "saveFeature")
+  @GraphQLMutation(name = "savePlugin")
   @CmsAdminPermission
-  public FeatureEntity saveOne(@GraphQLArgument(name = CrudApi.entity) FeatureEntity entity) {
+  public PluginEntity saveOne(@GraphQLArgument(name = CrudApi.entity) PluginEntity entity) {
     return super.saveOne(entity);
   }
   

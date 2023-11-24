@@ -1,6 +1,6 @@
 package app.wooportal.server.base.search;
 
-import app.wooportal.server.base.cms.feature.FeatureEntity;
+import app.wooportal.server.base.cms.plugin.PluginEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,6 +17,6 @@ public class SearchDto {
   
   private String name;
 
-  private FeatureEntity feature;
+  private PluginEntity feature;
 
 }

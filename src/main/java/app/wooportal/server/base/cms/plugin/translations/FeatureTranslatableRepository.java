@@ -1,4 +1,4 @@
-package app.wooportal.server.base.cms.feature.translations;
+package app.wooportal.server.base.cms.plugin.translations;
 
 
 import org.springframework.stereotype.Repository;
