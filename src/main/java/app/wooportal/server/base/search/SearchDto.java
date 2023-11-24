@@ -1,6 +1,6 @@
 package app.wooportal.server.base.search;
 
-import app.wooportal.server.base.cms.plugin.PluginEntity;
+import app.wooportal.server.base.cms.components.plugin.PluginEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
