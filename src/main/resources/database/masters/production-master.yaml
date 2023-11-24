@@ -287,7 +287,23 @@ databaseChangeLog:
     - include:
         file: database/changes/0153.drop_constraints_nullable_booleans.yaml
     - include:
-        file: database/changes/0154.rename_feature_plugin.yaml         
+        file: database/changes/0154.rename_feature_plugin.yaml
+    - include:
+        file: database/changes/0155.create_table_page_attribute_types.yaml
+    - include:
+        file: database/changes/0156.create_table_page_attribute_type_translatables.yaml
+    - include:
+        file: database/changes/0157.create_table_page_widget_types.yaml
+    - include:
+        file: database/changes/0158.create_table_page_widget_type_translatables.yaml
+    - include:
+        file: database/changes/0159.create_table_page_widget_attributes.yaml
+    - include:
+        file: database/changes/0160.create_table_page_widget_attribute_translatables.yaml
+    - include:
+        file: database/changes/0161.create_table_page_widgets.yaml
+    - include:
+        file: database/changes/0162.migrate_page_embeddings.yaml
                 
     #Data section        
     - include:

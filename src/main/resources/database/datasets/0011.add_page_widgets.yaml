@@ -1,0 +1,202 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+  
+  - changeSet:
+      id: 0011.add_page_widgets.1
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add page attribute types
+            splitStatements: true
+            sql: insert into page_attribute_types(`id`, `code`) values
+              ('25a08271-e328-42b2-a701-2bca56b8d526', 'text'),
+              ('320321fd-dcf0-4f6e-a61b-504fb0606018', 'media'),
+              ('b2cbc52b-11d3-47aa-827c-8a88b1747c7f', 'title'),
+              ('42a9b716-c7da-48f1-a661-51bc7d86c6bc', 'button');
+
+  - changeSet:
+      id: 0011.add_page_widgets.1
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add page widget types
+            splitStatements: true
+            sql: insert into page_widget_types(`id`, `code`) values
+              ('25a08271-e328-42b2-a701-2bca56b8d526', 'text_media'),
+              ('320321fd-dcf0-4f6e-a61b-504fb0606018', 'expansion'),
+              ('b2cbc52b-11d3-47aa-827c-8a88b1747c7f', 'media_slider'),
+              ('42a9b716-c7da-48f1-a661-51bc7d86c6bc', 'text_banner');
+              
+  - changeSet:
+      id: 0011.add_page_widgets.2
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add data page_widget_type_translatables
+            splitStatements: true
+            sql: insert into page_widget_type_translatables (id, parent_id, language_id, name)
+                 select uuid(), '25a08271-e328-42b2-a701-2bca56b8d526', l.id, 'Text/Medien' 
+                 from languages l
+                 WHERE l.locale = 'de';
+                 
+                 insert into page_widget_type_translatables (id, parent_id, language_id, name)
+                 select uuid(), '25a08271-e328-42b2-a701-2bca56b8d526', l.id, 'Text Media'
+                 from languages l
+                 WHERE l.locale = 'en';
+                 
+                 insert into page_widget_type_translatables (id, parent_id, language_id, name)
+                 select uuid(), '320321fd-dcf0-4f6e-a61b-504fb0606018', l.id, 'Akkordeon' 
+                 from languages l
+                 WHERE l.locale = 'de';
+                 
+                 insert into page_widget_type_translatables (id, parent_id, language_id, name)
+                 select uuid(), '320321fd-dcf0-4f6e-a61b-504fb0606018', l.id, 'Expansion panel'
+                 from languages l
+                 WHERE l.locale = 'en';
+
+                 insert into page_widget_type_translatables (id, parent_id, language_id, name)
+                 select uuid(), 'b2cbc52b-11d3-47aa-827c-8a88b1747c7f', l.id, 'Medien-Slider' 
+                 from languages l
+                 WHERE l.locale = 'de';
+                 
+                 insert into page_widget_type_translatables (id, parent_id, language_id, name)
+                 select uuid(), 'b2cbc52b-11d3-47aa-827c-8a88b1747c7f', l.id, 'Media slider'
+                 from languages l
+                 WHERE l.locale = 'en';
+                 
+                 insert into page_widget_type_translatables (id, parent_id, language_id, name)
+                 select uuid(), '42a9b716-c7da-48f1-a661-51bc7d86c6bc', l.id, 'Textbanner' 
+                 from languages l
+                 WHERE l.locale = 'de';
+                 
+                 insert into page_widget_type_translatables (id, parent_id, language_id, name)
+                 select uuid(), '42a9b716-c7da-48f1-a661-51bc7d86c6bc', l.id, 'Text banner'
+                 from languages l
+                 WHERE l.locale = 'en';
+                 
+  - changeSet:
+      id: 0010.seed-data.3
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add picture to milestone
+            splitStatements: true
+            sql:
+               insert into milestone_media (id, media_id, milestone_id) values
+               ('ca98c0b9-7f61-4e1d-964f-24fcbb2b3387', 'b25959cd-e017-4926-b3d6-228c5c8e55d6', 'd0e994a1-2821-4549-9a1a-fcad3521a8ad'),
+               ('71bf39e8-b4a2-41a4-b943-18e71f7480e8', 'e9af07cf-fd96-4f7f-860f-3c766aed8151', 'cbe0b7c2-fe31-40a7-875d-f8a91daafbda'),
+               ('306d076a-40ad-4fd8-86ba-016f5f3b1ec7', 'accafb0d-483a-4068-93da-dbc9cd2e6e44', 'c2a7b4d1-7cce-4fe9-b28c-b43fbf08f9d0'), 
+               ('34b95264-1720-4f20-8e78-490107e4420c', '880585fd-a165-4650-b2f6-613dfcca5bcb', 'eee62d6a-b83e-43bb-93db-861589a30423');               
+               
+  - changeSet:
+      id: 0009.add_milestones.4
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add milestone_elements
+            splitStatements: true
+            sql: insert into milestone_elements(id, milestone_id) values
+              ('12582b83-02c2-409e-8d11-112ea6713274', 'd0e994a1-2821-4549-9a1a-fcad3521a8ad'),
+              ('04d20367-069d-466f-8f2c-d8c0ecbd8da3', 'd0e994a1-2821-4549-9a1a-fcad3521a8ad'),
+              ('36d6f154-34c1-4c76-81d8-44487c633764', 'd0e994a1-2821-4549-9a1a-fcad3521a8ad'),
+              
+              ('abe61fe5-0b2f-4da4-9478-091834556180', 'cbe0b7c2-fe31-40a7-875d-f8a91daafbda'),
+              ('db308720-a26a-498c-bbe1-891c7ff30c91', 'cbe0b7c2-fe31-40a7-875d-f8a91daafbda'),
+              ('0df4ccb0-ee6d-413e-8043-b955cf99a8fb', 'cbe0b7c2-fe31-40a7-875d-f8a91daafbda'),
+              
+              ('eaba0521-a41d-4196-8257-ad62549d0e88', 'c2a7b4d1-7cce-4fe9-b28c-b43fbf08f9d0'),
+              ('ee6dd34a-a909-4764-81ad-778e638bf677', 'c2a7b4d1-7cce-4fe9-b28c-b43fbf08f9d0'),
+              ('6956bc0c-ae3c-4e6c-beda-217386682806', 'c2a7b4d1-7cce-4fe9-b28c-b43fbf08f9d0'),
+              ('9a681881-01de-4f03-849b-0c1f123e33e8', 'c2a7b4d1-7cce-4fe9-b28c-b43fbf08f9d0'),              
+              
+              ('ad533cc3-0c4b-4674-a4ec-3f54fdc5a0b1', 'eee62d6a-b83e-43bb-93db-861589a30423'),
+              ('44a15633-6ff4-431a-9aaa-2addcd9c2689', 'eee62d6a-b83e-43bb-93db-861589a30423'),
+              ('6500b424-80e6-47c6-9423-4c4d877b93e2', 'eee62d6a-b83e-43bb-93db-861589a30423');                                          
+              
+  - changeSet:
+      id: 0009.add_milestones.5
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add data milestone_translatables
+            splitStatements: true
+            sql: insert into milestone_element_translatables (id, parent_id, language_id, `name`, description)
+                 select uuid(), '12582b83-02c2-409e-8d11-112ea6713274', l.id, 'Wettbewerbe', 
+                 'Nutzen Sie die Funktion 'Wettbewerbe' zum Erstellen, Verwalten und Auswählen von Gewinnern für eigene Wettbewerbe, sei es durch Datei-Upload oder Texteingabe'
+                 from languages l
+                 WHERE l.locale = 'de';
+                 
+                 insert into milestone_element_translatables (id, parent_id, language_id, `name`, description)
+                 select uuid(), '04d20367-069d-466f-8f2c-d8c0ecbd8da3', l.id, 'Reduzierung der Paketgröße', 
+                 'Durch die Reduzierung der Paketgröße wird der Speicherbedarf der Applikation verkleinert um sie schneller und effizienter zu machen'
+                 from languages l
+                 WHERE l.locale = 'de';
+                 
+                 insert into milestone_element_translatables (id, parent_id, language_id, `name`, description)
+                 select uuid(), '36d6f154-34c1-4c76-81d8-44487c633764', l.id, 'Service Worker',
+                 'Einer der Hauptzwecke eines Service Workers ist es, Webseiten offline verfügbar zu machen. Das bedeutet, dass eine Webseite weiterhin funktionieren kann, selbst wenn der Benutzer keine Internetverbindung hat. Der Service Worker speichert Ressourcen wie HTML, CSS und JavaScript im Browsercache und kann sie verwenden, um Seiten anzuzeigen, wenn der Benutzer offline ist.'
+                 from languages l
+                 WHERE l.locale = 'de'; 
+                 
+                 
+                 insert into milestone_element_translatables (id, parent_id, language_id, `name`, description)
+                 select uuid(), 'abe61fe5-0b2f-4da4-9478-091834556180', l.id, 'Umfragen', 
+                 'Erstellen, verwalten und bewerten Sie Umfragen mit verschiedenen Optionen wie Einzel- und Mehrfachauswahl, Bewertungsskalen und Datumsangaben. Nutzen Sie diese Funktion zur effektiven Gestaltung und Analyse Ihrer Umfragen.'
+                 from languages l
+                 WHERE l.locale = 'de';  
+            
+                 insert into milestone_element_translatables (id, parent_id, language_id, `name`, description)
+                 select uuid(), 'db308720-a26a-498c-bbe1-891c7ff30c91', l.id, 'Serverseitiges Rendern', 
+                 'Serverseitiges Rendern (SSR) ist ein Konzept in der Webentwicklung, bei dem eine Webseite nicht nur im Browser des Benutzers, sondern auch auf einem Server gerendert wird, bevor sie dem Benutzer angezeigt wird. Insgesamt verbessert SSR die Leistung und die Benutzerfreundlichkeit von Webseiten und ist besonders nützlich für komplexe Anwendungen und Inhalte.'
+                 from languages l
+                 WHERE l.locale = 'de';   
+                 
+                 insert into milestone_element_translatables (id, parent_id, language_id, `name`, description)
+                 select uuid(), '0df4ccb0-ee6d-413e-8043-b955cf99a8fb', l.id, 'Benachrichtigungen', 
+                 'Bereitstellung der Funktion Benachrichtigung, um die Interaktion mit dem Benutzer zu verbessern'
+                 from languages l
+                 WHERE l.locale = 'de';    
+                 
+
+                 insert into milestone_element_translatables (id, parent_id, language_id, `name`, description)
+                 select uuid(), 'eaba0521-a41d-4196-8257-ad62549d0e88', l.id, 'Vorlesefunktion', 
+                 'Mit dieser barrierefreien Funktion können Sie sich alle Texte in der Anwendung, wie beispielsweise Artikel und Events, vorlesen lassen.'
+                 from languages l
+                 WHERE l.locale = 'de'; 
+                 
+                 insert into milestone_element_translatables (id, parent_id, language_id, `name`, description)
+                 select uuid(), 'ee6dd34a-a909-4764-81ad-778e638bf677', l.id, 'Formulare', 
+                 'Erstellung, Verwaltung und Auswertung eigener Formulare'
+                 from languages l
+                 WHERE l.locale = 'de';                                                                                                                                                                
+
+                 insert into milestone_element_translatables (id, parent_id, language_id, `name`, description)
+                 select uuid(), '6956bc0c-ae3c-4e6c-beda-217386682806', l.id, 'Automatisches Bereitstellen der App', 
+                 'Das Bereitstellen einer App ist der Schritt, bei dem eine entwickelte Anwendung von einem Entwicklungs- oder Testumfeld auf ein Produktionsumfeld oder einen Server verschoben wird, sodass Benutzer darauf zugreifen können.'
+                 from languages l
+                 WHERE l.locale = 'de'; 
+                 
+                 insert into milestone_element_translatables (id, parent_id, language_id, `name`, description)
+                 select uuid(), '9a681881-01de-4f03-849b-0c1f123e33e8', l.id, 'Email-Erweiterung', 
+                 'Erstellung von Mail-Vorlagen, sowie das Versenden von Emails an Benutzer jeglicher Gruppierung (z.B. Benutzer, die Event X in den Favoriten haben)'
+                 from languages l
+                 WHERE l.locale = 'de';      
+                 
+                 
+                 insert into milestone_element_translatables (id, parent_id, language_id, `name`, description)
+                 select uuid(), 'ad533cc3-0c4b-4674-a4ec-3f54fdc5a0b1', l.id, 'Chat', 
+                 'Die Chat-Funktion ermöglicht eine verbesserte Kommunikation untereinander sowie zum Benutzer der Applikation'
+                 from languages l
+                 WHERE l.locale = 'de';    
+                 
+                 insert into milestone_element_translatables (id, parent_id, language_id, `name`, description)
+                 select uuid(), '44a15633-6ff4-431a-9aaa-2addcd9c2689', l.id, 'Farbkonzept Generator', 
+                 'Mit nur wenigen Eingaben können Sie das Erscheinungsbild der Anwendung ganz nach Ihren Wünschen anpassen'
+                 from languages l
+                 WHERE l.locale = 'de';    
+                 
+                 insert into milestone_element_translatables (id, parent_id, language_id, `name`, description)
+                 select uuid(), '6500b424-80e6-47c6-9423-4c4d877b93e2', l.id, 'Adressen-Erweiterung', 
+                 'Around-Me Funktion (Zeige Events in der Nähe an) und erweitere Suchfunktionen'
+                 from languages l
+                 WHERE l.locale = 'de';    

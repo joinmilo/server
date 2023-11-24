@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
-import app.wooportal.server.base.cms.plugin.PluginEntity;
-import app.wooportal.server.base.cms.plugin.PluginService;
+import app.wooportal.server.base.cms.components.plugin.PluginEntity;
+import app.wooportal.server.base.cms.components.plugin.PluginService;
 import app.wooportal.server.base.userContext.base.UserContextEntity;
 import app.wooportal.server.base.userContext.base.UserContextService;
 import app.wooportal.server.core.base.BaseEntity;
