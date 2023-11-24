@@ -34,12 +34,12 @@ public class SearchService {
   private final ContestService contestService;
   private final SurveyService surveyService;
   private final UserContextService userContextService;
-  private final PluginService featureService;
+  private final PluginService pluginService;
 
   public SearchService(EventService eventService, OrganisationService organisationService,
       ArticleService articleService, DealService dealService, ContestService contestService,
       SurveyService surveyService, UserContextService userContextService,
-      PluginService featureService) throws IOException {
+      PluginService pluginService) throws IOException {
 
     this.eventService = eventService;
     this.organisationService = organisationService;
@@ -48,7 +48,7 @@ public class SearchService {
     this.dealService = dealService;
     this.surveyService = surveyService;
     this.userContextService = userContextService;
-    this.featureService = featureService;
+    this.pluginService = pluginService;
   }
 
   public List<SearchDto> search(FilterSortPaginate params) {
@@ -64,7 +64,7 @@ public class SearchService {
     entities.addAll(surveyService.readAll(params).getList());
     entities.addAll(userContextService.readAll(params).getList());
 
-    var features = featureService.readAll().getList();
+    var plugins = pluginService.readAll().getList();
     // TODO Translatable names etc
     
     for (var entity : entities) {
@@ -73,7 +73,7 @@ public class SearchService {
         var searchResult = new SearchDto();
 
         searchResult.setSlug(event.getSlug());
-        searchResult.setFeature(getFeature("events", features));
+        searchResult.setPlugin(getPlugin("events", plugins));
         list.add(searchResult);
 
       } else if (entity instanceof OrganisationEntity) {
@@ -81,7 +81,7 @@ public class SearchService {
         var searchResult = new SearchDto();
 
         searchResult.setSlug(organisation.getSlug());
-        searchResult.setFeature(getFeature("organisations", features));
+        searchResult.setPlugin(getPlugin("organisations", plugins));
         list.add(searchResult);
 
       } else if (entity instanceof ArticleEntity) {
@@ -89,7 +89,7 @@ public class SearchService {
         var searchResult = new SearchDto();
 
         searchResult.setSlug(article.getSlug());
-        searchResult.setFeature(getFeature("articles", features));
+        searchResult.setPlugin(getPlugin("articles", plugins));
         list.add(searchResult);
 
       } else if (entity instanceof ContestEntity) {
@@ -97,7 +97,7 @@ public class SearchService {
         var searchResult = new SearchDto();
 
         searchResult.setSlug(contest.getSlug());
-        searchResult.setFeature(getFeature("contests", features));
+        searchResult.setPlugin(getPlugin("contests", plugins));
         list.add(searchResult);
 
       } else if (entity instanceof DealEntity) {
@@ -105,7 +105,7 @@ public class SearchService {
         var searchResult = new SearchDto();
 
         searchResult.setSlug(deal.getSlug());
-        searchResult.setFeature(getFeature("deals", features));
+        searchResult.setPlugin(getPlugin("deals", plugins));
         list.add(searchResult);
 
       } else if (entity instanceof SurveyEntity) {
@@ -113,7 +113,7 @@ public class SearchService {
         var searchResult = new SearchDto();
 
         searchResult.setSlug(survey.getSlug());
-        searchResult.setFeature(getFeature("surveys", features));
+        searchResult.setPlugin(getPlugin("surveys", plugins));
         list.add(searchResult);
 
       } else if (entity instanceof UserContextEntity
@@ -122,7 +122,7 @@ public class SearchService {
         var searchResult = new SearchDto();
 
         searchResult.setSlug(author.getSlug());
-        searchResult.setFeature(getFeature("authors", features));
+        searchResult.setPlugin(getPlugin("authors", plugins));
         list.add(searchResult);
       }
     }
@@ -131,10 +131,10 @@ public class SearchService {
         : list;
   }
 
-  private PluginEntity getFeature(String code, List<PluginEntity> features) {
-    for (var feature : features) {
-      if (feature.getCode().equals(code)) {
-        return feature;
+  private PluginEntity getPlugin(String code, List<PluginEntity> plugins) {
+    for (var plugin : plugins) {
+      if (plugin.getCode().equals(code)) {
+        return plugin;
       }
     }
     return null;

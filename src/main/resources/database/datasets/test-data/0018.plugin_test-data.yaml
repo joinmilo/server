@@ -2,16 +2,16 @@ databaseChangeLog:
   - logicalFilePath: path_independent
 
   - changeSet:
-      id: 0018.feature_test-data.1
+      id: 0018.plugin_test-data.1
       author: codeschluss                
       changes:
         - sql:
-            comment: set all features active
+            comment: set all plugin active
             splitStatements: true
             sql:
                 /*!40101 SET character_set_client = utf8 */;
                     
                 UPDATE
-                features f
+                plugins p
                 SET 
-                f.active = true, f.released = true;
+                p.active = true, p.released = true;

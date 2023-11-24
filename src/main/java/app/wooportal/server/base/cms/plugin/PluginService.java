@@ -36,12 +36,12 @@ public class PluginService extends DataService<PluginEntity, PluginPredicateBuil
   }
   
   public Boolean changeActivation(String pluginId, Boolean active) {
-    var feature = repo.findOne(
+    var plugin = repo.findOne(
         singleQuery(predicate.withId(pluginId)).addGraph(graph("menuItems"))
     );
     
-    if (feature.isPresent()) {
-      var newPlugin = ReflectionUtils.copy(feature.get());
+    if (plugin.isPresent()) {
+      var newPlugin = ReflectionUtils.copy(plugin.get());
       newPlugin.setActive(active);
       
       if (active == null || !active) {
@@ -55,133 +55,133 @@ public class PluginService extends DataService<PluginEntity, PluginPredicateBuil
   }
   
   public PluginEntity getArticlesPlugin() {
-    var feature = getByKey(articlesPlugin);
+    var plugin = getByKey(articlesPlugin);
     
-    if (feature.isEmpty()) {
+    if (plugin.isEmpty()) {
       throw new RuntimeException("Include Plugin: " + articlesPlugin);
     }
     
-    return feature.get();
+    return plugin.get();
   }
   
   public PluginEntity getAuthorsPlugin() {
-    var feature = getByKey(authorsPlugin);
+    var plugin = getByKey(authorsPlugin);
     
-    if (feature.isEmpty()) {
+    if (plugin.isEmpty()) {
       throw new RuntimeException("Include Plugin: " + authorsPlugin);
     }
     
-    return feature.get();
+    return plugin.get();
   }
   
   public PluginEntity getCalendarPlugin() {
-    var feature = getByKey(calendarPlugin);
+    var plugin = getByKey(calendarPlugin);
     
-    if (feature.isEmpty()) {
+    if (plugin.isEmpty()) {
       throw new RuntimeException("Include Plugin: " + calendarPlugin);
     }
     
-    return feature.get();
+    return plugin.get();
   }
   
   public PluginEntity getContestsPlugin() {
-    var feature = getByKey(contestsPlugin);
+    var plugin = getByKey(contestsPlugin);
     
-    if (feature.isEmpty()) {
+    if (plugin.isEmpty()) {
       throw new RuntimeException("Include Plugin: " + contestsPlugin);
     }
     
-    return feature.get();
+    return plugin.get();
   }
   
   public PluginEntity getDealsPlugin() {
-    var feature = getByKey(dealsPlugin);
+    var plugin = getByKey(dealsPlugin);
     
-    if (feature.isEmpty()) {
+    if (plugin.isEmpty()) {
       throw new RuntimeException("Include Plugin: " + dealsPlugin);
     }
     
-    return feature.get();
+    return plugin.get();
   }
   
   public PluginEntity getEventsPlugin() {
-    var feature = getByKey(eventsPlugin);
+    var plugin = getByKey(eventsPlugin);
     
-    if (feature.isEmpty()) {
+    if (plugin.isEmpty()) {
       throw new RuntimeException("Include Plugin: " + eventsPlugin);
     }
     
-    return feature.get();
+    return plugin.get();
   }
   
   public PluginEntity getFormsPlugin() {
-    var feature = getByKey(formsPlugin);
+    var plugin = getByKey(formsPlugin);
     
-    if (feature.isEmpty()) {
+    if (plugin.isEmpty()) {
       throw new RuntimeException("Include Plugin: " + formsPlugin);
     }
     
-    return feature.get();
+    return plugin.get();
   }
   
   public PluginEntity getGuestarticlePlugin() {
-    var feature = getByKey(guestarticlePlugin);
+    var plugin = getByKey(guestarticlePlugin);
     
-    if (feature.isEmpty()) {
+    if (plugin.isEmpty()) {
       throw new RuntimeException("Include Plugin: " + guestarticlePlugin);
     }
     
-    return feature.get();
+    return plugin.get();
   }
   
   public PluginEntity getMapPlugin() {
-    var feature = getByKey(mapPlugin);
+    var plugin = getByKey(mapPlugin);
     
-    if (feature.isEmpty()) {
+    if (plugin.isEmpty()) {
       throw new RuntimeException("Include Plugin: " + mapPlugin);
     }
     
-    return feature.get();
+    return plugin.get();
   }
   
   public PluginEntity getMediaPlugin() {
-    var feature = getByKey(mediaPlugin);
+    var plugin = getByKey(mediaPlugin);
     
-    if (feature.isEmpty()) {
+    if (plugin.isEmpty()) {
       throw new RuntimeException("Include Plugin: " + mediaPlugin);
     }
     
-    return feature.get();
+    return plugin.get();
   }
   
   public PluginEntity getOrganisationsPlugin() {
-    var feature = getByKey(organisationsPlugin);
+    var plugin = getByKey(organisationsPlugin);
     
-    if (feature.isEmpty()) {
+    if (plugin.isEmpty()) {
       throw new RuntimeException("Include Plugin: " + organisationsPlugin);
     }
     
-    return feature.get();
+    return plugin.get();
   }
   
   public PluginEntity getReportsPlugin() {
-    var feature = getByKey(reportsPlugin);
+    var plugin = getByKey(reportsPlugin);
     
-    if (feature.isEmpty()) {
+    if (plugin.isEmpty()) {
       throw new RuntimeException("Include Plugin: " + reportsPlugin);
     }
     
-    return feature.get();
+    return plugin.get();
   }
   
   public PluginEntity getSurveysPlugin() {
-    var feature = getByKey(surveysPlugin);
+    var plugin = getByKey(surveysPlugin);
     
-    if (feature.isEmpty()) {
+    if (plugin.isEmpty()) {
       throw new RuntimeException("Include Plugin: " + surveysPlugin);
     }
     
-    return feature.get();
+    return plugin.get();
   }
 
   public Optional<PluginEntity> getByKey(String code) {

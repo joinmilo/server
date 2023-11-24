@@ -355,7 +355,7 @@ databaseChangeLog:
     - include:
         file: database/datasets/test-data/0017.friends-test-data.yaml
     - include:
-        file: database/datasets/test-data/0018.feature_test-data.yaml
+        file: database/datasets/test-data/0018.plugin_test-data.yaml
     - include:
         file: database/datasets/test-data/0019.menu_test-data.yaml
                                                               
