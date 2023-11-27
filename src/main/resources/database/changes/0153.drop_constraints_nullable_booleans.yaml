@@ -313,3 +313,12 @@ databaseChangeLog:
             columnName: comments_allowed
             columnDataType: boolean
             tableName: organisations
+            
+  - changeSet:
+      id: 0153.drop_constraints_nullable_booleans.36
+      author: codeschluss
+      changes:
+        - dropNotNullConstraint:
+            columnName: approval
+            columnDataType: boolean
+            tableName: event_attendee_configurations            
