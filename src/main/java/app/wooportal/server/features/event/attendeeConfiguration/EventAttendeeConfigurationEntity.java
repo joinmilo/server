@@ -27,7 +27,6 @@ public class EventAttendeeConfigurationEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
 
-  @JoinColumn(nullable = false)
   private Boolean approval;
   
   private Integer maxAttendees;
