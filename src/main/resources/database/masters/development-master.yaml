@@ -328,6 +328,8 @@ databaseChangeLog:
         file: database/datasets/0009.add_milestones.yaml
     - include:
         file: database/datasets/0010.add_organisation_configuration.yaml
+    - include:
+        file: database/datasets/0011.add_page_widgets.yaml
         
      #Cleanups
     - include:
