@@ -26,6 +26,9 @@ databaseChangeLog:
                   name: modified
                   type: datetime   
               - column:
+                  name: description
+                  type: TEXT
+              - column:
                   constraints:
                     nullable: false
                   name: name

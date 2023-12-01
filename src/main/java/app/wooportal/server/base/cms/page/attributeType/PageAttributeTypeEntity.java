@@ -13,6 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import org.hibernate.annotations.CollectionId;
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 import app.wooportal.server.base.cms.page.attributeType.translations.PageAttributeTypeTranslatableEntity;
 import app.wooportal.server.base.cms.page.widgetAttribute.PageWidgetAttributeEntity;
@@ -30,6 +31,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Table(name = "page_attribute_types")
+@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
 public class PageAttributeTypeEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;

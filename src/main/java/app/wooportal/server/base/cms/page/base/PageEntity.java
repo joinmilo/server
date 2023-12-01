@@ -37,7 +37,7 @@ public class PageEntity extends BaseEntity {
   
   @Translatable
   private String callText;
-  
+    
   private String callUrl;
   
   @Translatable

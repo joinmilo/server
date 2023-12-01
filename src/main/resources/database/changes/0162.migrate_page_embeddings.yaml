@@ -15,8 +15,11 @@ databaseChangeLog:
         - addColumn:
             columns:
               - column:
-                  name: wiget_id
+                  name: widget_id
                   type: CHAR(36)
+              - column:
+                  name: label
+                  type: VARCHAR(255)
             tableName: page_embeddings
 
   - changeSet:
@@ -26,17 +29,17 @@ databaseChangeLog:
         - createIndex:
             columns:
               - column:
-                  name: wiget_id
-            indexName: idx_fk_page_embeddings_wiget_id
+                  name: widget_id
+            indexName: idx_fk_page_embeddings_widget_id
             tableName: page_embeddings
   - changeSet:
       id: 0162.migrate_page_embeddings.4
       author: codeschluss
       changes:
         - addForeignKeyConstraint:
-            baseColumnNames: wiget_id
+            baseColumnNames: widget_id
             baseTableName: page_embeddings
-            constraintName: fk_page_embeddings_wiget_id
+            constraintName: fk_page_embeddings_widget_id
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE

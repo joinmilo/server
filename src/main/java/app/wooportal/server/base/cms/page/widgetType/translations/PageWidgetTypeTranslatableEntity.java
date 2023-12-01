@@ -1,5 +1,6 @@
 package app.wooportal.server.base.cms.page.widgetType.translations;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import app.wooportal.server.base.cms.page.widgetType.PageWidgetTypeEntity;
@@ -20,7 +21,10 @@ public class PageWidgetTypeTranslatableEntity
     extends TranslatableEntity<PageWidgetTypeEntity> {
 
   private static final long serialVersionUID = 1L;
+  
+  private String description;
 
+  @Column(nullable = false)
   private String name;
 
 }
