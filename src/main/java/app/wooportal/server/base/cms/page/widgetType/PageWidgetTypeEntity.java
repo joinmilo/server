@@ -13,11 +13,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import org.hibernate.annotations.CollectionId;
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
-import app.wooportal.server.base.cms.page.base.media.PageMediaEntity;
 import app.wooportal.server.base.cms.page.widget.PageWidgetEntity;
+import app.wooportal.server.base.cms.page.widgetAttribute.PageWidgetAttributeEntity;
 import app.wooportal.server.base.cms.page.widgetType.translations.PageWidgetTypeTranslatableEntity;
 import app.wooportal.server.core.base.BaseEntity;
+import app.wooportal.server.core.i18n.annotations.Translatable;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,13 +31,20 @@ import lombok.Setter;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @AllArgsConstructor
 @Entity
-@Table(name = "page_attribute_types")
+@Table(name = "page_widget_types")
+@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
 public class PageWidgetTypeEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
 
   @Column(nullable = false)
   private String code;
+  
+  @Translatable
+  private String description;
+  
+  @Translatable
+  private String name;
   
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
   private Set<PageWidgetTypeTranslatableEntity> translatables;
@@ -49,6 +58,6 @@ public class PageWidgetTypeEntity extends BaseEntity {
     inverseJoinColumns = @JoinColumn(name = "media_id"),
     uniqueConstraints = {@UniqueConstraint(columnNames = {"widget_attribute_id", "media_id"})})
   @CollectionId(column = @Column(name = "id"), type = @Type(type = "uuid-char"), generator = "UUID")
-  private List<PageMediaEntity> media = new ArrayList<>();
+  private List<PageWidgetAttributeEntity> attributes = new ArrayList<>();
 
 }

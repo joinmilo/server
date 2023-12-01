@@ -28,6 +28,8 @@ public class PageEmbeddingEntity extends BaseEntity {
 
   @Column(nullable = false)
   private Integer order;
+  
+  private String label;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private PluginEntity plugin;

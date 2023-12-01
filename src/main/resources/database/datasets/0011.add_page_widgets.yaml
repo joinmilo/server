@@ -34,43 +34,43 @@ databaseChangeLog:
         - sql:
             comment: Add data page_widget_type_translatables
             splitStatements: true
-            sql: insert into page_widget_type_translatables (id, parent_id, language_id, name)
-                 select uuid(), '25a08271-e328-42b2-a701-2bca56b8d526', l.id, 'Text/Medien' 
+            sql: insert into page_widget_type_translatables (id, parent_id, language_id, name, description)
+                 select uuid(), '25a08271-e328-42b2-a701-2bca56b8d526', l.id, 'Text/Medien', 'Standard-Seitenblock mit optionalen Inhalten wie Text, Bild/Video, Titel und Button'
                  from languages l
                  WHERE l.locale = 'de';
                  
-                 insert into page_widget_type_translatables (id, parent_id, language_id, name)
-                 select uuid(), '25a08271-e328-42b2-a701-2bca56b8d526', l.id, 'Text Media'
+                 insert into page_widget_type_translatables (id, parent_id, language_id, name, description)
+                 select uuid(), '25a08271-e328-42b2-a701-2bca56b8d526', l.id, 'Text Media', 'Standard page block with optional content such as text, image/video, title and button'
                  from languages l
                  WHERE l.locale = 'en';
                  
-                 insert into page_widget_type_translatables (id, parent_id, language_id, name)
-                 select uuid(), '320321fd-dcf0-4f6e-a61b-504fb0606018', l.id, 'Akkordeon' 
+                 insert into page_widget_type_translatables (id, parent_id, language_id, name, description)
+                 select uuid(), '320321fd-dcf0-4f6e-a61b-504fb0606018', l.id, 'Akkordeon', 'Aufklappbares Seitenelement mit Titel und Inhalt'
                  from languages l
                  WHERE l.locale = 'de';
                  
-                 insert into page_widget_type_translatables (id, parent_id, language_id, name)
-                 select uuid(), '320321fd-dcf0-4f6e-a61b-504fb0606018', l.id, 'Expansion panel'
+                 insert into page_widget_type_translatables (id, parent_id, language_id, name, description)
+                 select uuid(), '320321fd-dcf0-4f6e-a61b-504fb0606018', l.id, 'Expansion panel', 'Expandable page element with title and content'
                  from languages l
                  WHERE l.locale = 'en';
 
-                 insert into page_widget_type_translatables (id, parent_id, language_id, name)
-                 select uuid(), 'b2cbc52b-11d3-47aa-827c-8a88b1747c7f', l.id, 'Medien-Slider' 
+                 insert into page_widget_type_translatables (id, parent_id, language_id, name, description)
+                 select uuid(), 'b2cbc52b-11d3-47aa-827c-8a88b1747c7f', l.id, 'Medien-Slider', 'Zeigt mehrere Medien in einer Reihe, die navigierbar ist'
                  from languages l
                  WHERE l.locale = 'de';
                  
-                 insert into page_widget_type_translatables (id, parent_id, language_id, name)
-                 select uuid(), 'b2cbc52b-11d3-47aa-827c-8a88b1747c7f', l.id, 'Media slider'
+                 insert into page_widget_type_translatables (id, parent_id, language_id, name, description)
+                 select uuid(), 'b2cbc52b-11d3-47aa-827c-8a88b1747c7f', l.id, 'Media slider', 'Displays multiple media in a row that is navigable'
                  from languages l
                  WHERE l.locale = 'en';
                  
-                 insert into page_widget_type_translatables (id, parent_id, language_id, name)
-                 select uuid(), '42a9b716-c7da-48f1-a661-51bc7d86c6bc', l.id, 'Textbanner' 
+                 insert into page_widget_type_translatables (id, parent_id, language_id, name, description)
+                 select uuid(), '42a9b716-c7da-48f1-a661-51bc7d86c6bc', l.id, 'Textbanner', 'Farblich hervorgehobenes Seitenelement für kurze Textbotschaften'
                  from languages l
                  WHERE l.locale = 'de';
                  
-                 insert into page_widget_type_translatables (id, parent_id, language_id, name)
-                 select uuid(), '42a9b716-c7da-48f1-a661-51bc7d86c6bc', l.id, 'Text banner'
+                 insert into page_widget_type_translatables (id, parent_id, language_id, name, description)
+                 select uuid(), '42a9b716-c7da-48f1-a661-51bc7d86c6bc', l.id, 'Text banner', 'Page element highlighted in color for short text messages'
                  from languages l
                  WHERE l.locale = 'en';
                  
