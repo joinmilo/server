@@ -29,17 +29,17 @@
             sql:
                 /*!40101 SET character_set_client = utf8 */;
                     
-                UPDATE features p
-                SET p.code = "events", p.icon = "calendar", p.released = true
-                WHERE p.code = "activities";
+                UPDATE features f
+                SET f.code = "events", f.icon = "calendar", f.released = true
+                WHERE f.code = "activities";
                 
-                UPDATE features p
-                SET p.code = "articles", p.icon = "newspaper", p.released = true
-                WHERE p.code = "blogposts";
+                UPDATE features f
+                SET f.code = "articles", f.icon = "newspaper", f.released = true
+                WHERE f.code = "blogposts";
                 
-                UPDATE features p
-                SET p.icon = "people-group", p.released = true
-                WHERE p.code = "organisations";
+                UPDATE features f
+                SET f.icon = "people-group", f.released = true
+                WHERE f.code = "organisations";
                      
   - changeSet:
       id: 0001.add_data_features.3
@@ -50,158 +50,158 @@
             splitStatements: true
             sql:
                 insert into feature_translatables (id, `name`, parent_id, language_id)
-                select uuid(), "Einrichtungen", p.id, l.id
-                from languages l, features p
+                select uuid(), "Einrichtungen", f.id, l.id
+                from languages l, features f
                 WHERE l.locale = "de" AND
-                p.code = "organisations";
+                f.code = "organisations";
                 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
-                select uuid(), "Beiträge", p.id, l.id
-                from languages l, features p
+                select uuid(), "Beiträge", f.id, l.id
+                from languages l, features f
                 WHERE l.locale = "de" AND
-                p.code = "articles";
+                f.code = "articles";
                 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
-                select uuid(), "Events", p.id, l.id
-                from languages l, features p
+                select uuid(), "Events", f.id, l.id
+                from languages l, features f
                 WHERE l.locale = "de" AND
-                p.code = "events";     
+                f.code = "events";     
 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
-                select uuid(), "Organisations", p.id, l.id
-                from languages l, features p
+                select uuid(), "Organisations", f.id, l.id
+                from languages l, features f
                 WHERE l.locale = "en" AND
-                p.code = "organisations";
+                f.code = "organisations";
                 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
-                select uuid(), "Articles", p.id, l.id
-                from languages l, features p
+                select uuid(), "Articles", f.id, l.id
+                from languages l, features f
                 WHERE l.locale = "en" AND
-                p.code = "articles";
+                f.code = "articles";
                 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
-                select uuid(), "Events", p.id, l.id
-                from languages l, features p
+                select uuid(), "Events", f.id, l.id
+                from languages l, features f
                 WHERE l.locale = "en" AND
-                p.code = "events";             
+                f.code = "events";             
 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
-                select uuid(), "Autoren", p.id, l.id
-                from languages l, features p
+                select uuid(), "Autoren", f.id, l.id
+                from languages l, features f
                 WHERE l.locale = "de" AND
-                p.code = "authors";
+                f.code = "authors";
                 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
-                select uuid(), "Authors", p.id, l.id
-                from languages l, features p
+                select uuid(), "Authors", f.id, l.id
+                from languages l, features f
                 WHERE l.locale = "en" AND
-                p.code = "authors";  
+                f.code = "authors";  
                 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
-                select uuid(), "Karte", p.id, l.id
-                from languages l, features p
+                select uuid(), "Karte", f.id, l.id
+                from languages l, features f
                 WHERE l.locale = "de" AND
-                p.code = "map"; 
+                f.code = "map"; 
                 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
-                select uuid(), "Map", p.id, l.id
-                from languages l, features p
+                select uuid(), "Map", f.id, l.id
+                from languages l, features f
                 WHERE l.locale = "en" AND
-                p.code = "map";                                               
+                f.code = "map";                                               
                          
                 insert into feature_translatables (id, `name`, parent_id, language_id)
-                select uuid(), "Kalender", p.id, l.id
-                from languages l, features p
+                select uuid(), "Kalender", f.id, l.id
+                from languages l, features f
                 WHERE l.locale = "de" AND
-                p.code = "calendar";
+                f.code = "calendar";
                 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
-                select uuid(), "Calendar", p.id, l.id
-                from languages l, features p
+                select uuid(), "Calendar", f.id, l.id
+                from languages l, features f
                 WHERE l.locale = "en" AND
-                p.code = "calendar";                           
+                f.code = "calendar";                           
                            
                 insert into feature_translatables (id, `name`, parent_id, language_id)
-                select uuid(), "Umfragen", p.id, l.id
-                from languages l, features p
+                select uuid(), "Umfragen", f.id, l.id
+                from languages l, features f
                 WHERE l.locale = "de" AND
-                p.code = "surveys";
+                f.code = "surveys";
                 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
-                select uuid(), "Surveys", p.id, l.id
-                from languages l, features p
+                select uuid(), "Surveys", f.id, l.id
+                from languages l, features f
                 WHERE l.locale = "en" AND
-                p.code = "surveys";    
+                f.code = "surveys";    
 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
-                select uuid(), "Wettbewerbe", p.id, l.id
-                from languages l, features p
+                select uuid(), "Wettbewerbe", f.id, l.id
+                from languages l, features f
                 WHERE l.locale = "de" AND
-                p.code = "contests";
+                f.code = "contests";
                 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
-                select uuid(), "Contests", p.id, l.id
-                from languages l, features p
+                select uuid(), "Contests", f.id, l.id
+                from languages l, features f
                 WHERE l.locale = "en" AND
-                p.code = "contests";
+                f.code = "contests";
                 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
-                select uuid(), "Gastbeiträge", p.id, l.id
-                from languages l, features p
+                select uuid(), "Gastbeiträge", f.id, l.id
+                from languages l, features f
                 WHERE l.locale = "de" AND
-                p.code = "guestarticle";
+                f.code = "guestarticle";
                 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
-                select uuid(), "Guest articles", p.id, l.id
-                from languages l, features p
+                select uuid(), "Guest articles", f.id, l.id
+                from languages l, features f
                 WHERE l.locale = "en" AND
-                p.code = "guestarticle";      
+                f.code = "guestarticle";      
                 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
-                select uuid(), "Mediathek", p.id, l.id
-                from languages l, features p
+                select uuid(), "Mediathek", f.id, l.id
+                from languages l, features f
                 WHERE l.locale = "de" AND
-                p.code = "media";
+                f.code = "media";
                 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
-                select uuid(), "Media", p.id, l.id
-                from languages l, features p
+                select uuid(), "Media", f.id, l.id
+                from languages l, features f
                 WHERE l.locale = "en" AND
-                p.code = "media";     
+                f.code = "media";     
                 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
-                select uuid(), "Kleinanzeigen", p.id, l.id
-                from languages l, features p
+                select uuid(), "Kleinanzeigen", f.id, l.id
+                from languages l, features f
                 WHERE l.locale = "de" AND
-                p.code = "deals";
+                f.code = "deals";
                 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
-                select uuid(), "Deals", p.id, l.id
-                from languages l, features p
+                select uuid(), "Deals", f.id, l.id
+                from languages l, features f
                 WHERE l.locale = "en" AND
-                p.code = "deals";
+                f.code = "deals";
 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
-                select uuid(), "Formulare", p.id, l.id
-                from languages l, features p
+                select uuid(), "Formulare", f.id, l.id
+                from languages l, features f
                 WHERE l.locale = "de" AND
-                p.code = "forms";
+                f.code = "forms";
                 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
-                select uuid(), "Forms", p.id, l.id
-                from languages l, features p
+                select uuid(), "Forms", f.id, l.id
+                from languages l, features f
                 WHERE l.locale = "en" AND
-                p.code = "forms";
+                f.code = "forms";
                 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
-                select uuid(), "Feedback", p.id, l.id
-                from languages l, features p
+                select uuid(), "Feedback", f.id, l.id
+                from languages l, features f
                 WHERE l.locale = "de" AND
-                p.code = "reports";
+                f.code = "reports";
                 
                 insert into feature_translatables (id, `name`, parent_id, language_id)
-                select uuid(), "Feedback", p.id, l.id
-                from languages l, features p
+                select uuid(), "Feedback", f.id, l.id
+                from languages l, features f
                 WHERE l.locale = "en" AND
-                p.code = "reports";                                                                                                    
+                f.code = "reports";                                                                                                    
 
