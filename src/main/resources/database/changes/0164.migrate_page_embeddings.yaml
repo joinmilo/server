@@ -1,0 +1,90 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+  
+  - changeSet:
+      id: 0164.migrate_page_embeddings.1
+      author: codeschluss
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: type_id
+                  type: CHAR(36)
+              - column:
+                  name: label
+                  type: VARCHAR(255)
+            tableName: page_embeddings
+
+  - changeSet:
+      id: 0164.migrate_page_embeddings.2
+      author: codeschluss
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: type_id
+            indexName: idx_fk_page_embeddings_type_id
+            tableName: page_embeddings
+  - changeSet:
+      id: 0164.migrate_page_embeddings.3
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: type_id
+            baseTableName: page_embeddings
+            constraintName: fk_page_embeddings_type_id
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: page_embedding_types
+            validate: true
+  
+  - changeSet:
+      id: 0164.migrate_page_embeddings.4
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Set every existing page embedding as plugin
+            splitStatements: true
+            sql: update page_embeddings set type_id = '447eea1a-c2e3-4423-a9f3-eaf1560ac6c0';
+ 
+  - changeSet:
+      id: 0164.migrate_page_embeddings.5
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add page attributes for existing plugin page embeddings
+            splitStatements: true
+            sql: insert into page_attributes(id, embedding_id, type_id)
+                 select uuid(), e.id, '2ee51b66-33e4-4ba0-887d-b597bac3f40f'
+                 from page_embeddings e;
+                 
+  - changeSet:
+      id: 0164.migrate_page_embeddings.6
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add page attribute references for existing plugin page embeddings
+            splitStatements: true
+            sql: insert into page_attributes(id, attribute_id, type_id, reference_id)
+                 select uuid(), a.id, '6eed50ca-3504-41ad-a975-7eb8d6cd5728', e.plugin_id
+                 from page_attributes a
+                 left join page_embeddings e on a.embedding_id = e.id;
+ 
+  - changeSet:
+      id: 0164.migrate_page_embeddings.7
+      author: codeschluss
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: page_embeddings
+            constraintName: fk_page_embeddings_plugin_id
+
+  - changeSet:
+      id: 0164.migrate_page_embeddings.8
+      author: codeschluss
+      changes:
+        - dropColumn:
+            columnName: plugin_id
+            tableName: page_embeddings

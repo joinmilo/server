@@ -1,15 +1,15 @@
-package app.wooportal.server.base.cms.page.widgetAttribute;
+package app.wooportal.server.base.cms.page.attribute;
 
 import org.springframework.stereotype.Service;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import app.wooportal.server.core.base.PredicateBuilder;
 
 @Service
-public class PageWidgetAttributePredicateBuilder
-    extends PredicateBuilder<QPageWidgetAttributeEntity, PageWidgetAttributeEntity> {
+public class PageAttributePredicateBuilder
+    extends PredicateBuilder<QPageAttributeEntity, PageAttributeEntity> {
 
-  public PageWidgetAttributePredicateBuilder() {
-    super(QPageWidgetAttributeEntity.pageWidgetAttributeEntity);
+  public PageAttributePredicateBuilder() {
+    super(QPageAttributeEntity.pageAttributeEntity);
   }
 
   @Override

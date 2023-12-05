@@ -1,9 +1,9 @@
-package app.wooportal.server.base.cms.page.widgetAttribute.translations;
+package app.wooportal.server.base.cms.page.attribute.translations;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import app.wooportal.server.base.cms.page.widgetAttribute.PageWidgetAttributeEntity;
+import app.wooportal.server.base.cms.page.attribute.PageAttributeEntity;
 import app.wooportal.server.core.i18n.entities.TranslatableEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -16,9 +16,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @AllArgsConstructor
 @Entity
-@Table(name = "page_widget_attribute_translatables")
-public class PageWidgetAttributeTranslatableEntity
-    extends TranslatableEntity<PageWidgetAttributeEntity> {
+@Table(name = "page_attribute_translatables")
+public class PageAttributeTranslatableEntity extends TranslatableEntity<PageAttributeEntity> {
 
   private static final long serialVersionUID = 1L;
 

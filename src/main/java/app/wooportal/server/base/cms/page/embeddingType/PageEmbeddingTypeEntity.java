@@ -1,4 +1,4 @@
-package app.wooportal.server.base.cms.page.widgetType;
+package app.wooportal.server.base.cms.page.embeddingType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,9 +15,9 @@ import javax.persistence.UniqueConstraint;
 import org.hibernate.annotations.CollectionId;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
-import app.wooportal.server.base.cms.page.widget.PageWidgetEntity;
-import app.wooportal.server.base.cms.page.widgetAttribute.PageWidgetAttributeEntity;
-import app.wooportal.server.base.cms.page.widgetType.translations.PageWidgetTypeTranslatableEntity;
+import app.wooportal.server.base.cms.page.attribute.PageAttributeEntity;
+import app.wooportal.server.base.cms.page.embedding.PageEmbeddingEntity;
+import app.wooportal.server.base.cms.page.embeddingType.translations.PageEmbeddingTypeTranslatableEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.i18n.annotations.Translatable;
 import lombok.AccessLevel;
@@ -31,9 +31,9 @@ import lombok.Setter;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @AllArgsConstructor
 @Entity
-@Table(name = "page_widget_types")
+@Table(name = "page_embedding_types")
 @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-public class PageWidgetTypeEntity extends BaseEntity {
+public class PageEmbeddingTypeEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
 
@@ -47,17 +47,17 @@ public class PageWidgetTypeEntity extends BaseEntity {
   private String name;
   
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
-  private Set<PageWidgetTypeTranslatableEntity> translatables;
+  private Set<PageEmbeddingTypeTranslatableEntity> translatables;
   
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "type")
-  private Set<PageWidgetEntity> widgets;
+  private Set<PageEmbeddingEntity> embeddings;
   
   @ManyToMany(fetch = FetchType.LAZY)
-  @JoinTable(name = "page_widget_types_attribute_types",
-    joinColumns = @JoinColumn(name = "widget_attribute_id"),
+  @JoinTable(name = "page_embedding_types_attribute_types",
+    joinColumns = @JoinColumn(name = "embedding_attribute_id"),
     inverseJoinColumns = @JoinColumn(name = "media_id"),
-    uniqueConstraints = {@UniqueConstraint(columnNames = {"widget_attribute_id", "media_id"})})
+    uniqueConstraints = {@UniqueConstraint(columnNames = {"embedding_attribute_id", "media_id"})})
   @CollectionId(column = @Column(name = "id"), type = @Type(type = "uuid-char"), generator = "UUID")
-  private List<PageWidgetAttributeEntity> attributes = new ArrayList<>();
+  private List<PageAttributeEntity> attributes = new ArrayList<>();
 
 }

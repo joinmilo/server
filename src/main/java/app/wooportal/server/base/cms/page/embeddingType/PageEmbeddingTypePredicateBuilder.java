@@ -1,15 +1,15 @@
-package app.wooportal.server.base.cms.page.widgetType;
+package app.wooportal.server.base.cms.page.embeddingType;
 
 import org.springframework.stereotype.Service;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import app.wooportal.server.core.base.PredicateBuilder;
 
 @Service
-public class PageWidgetTypePredicateBuilder
-    extends PredicateBuilder<QPageWidgetTypeEntity, PageWidgetTypeEntity> {
+public class PageEmbeddingTypePredicateBuilder
+    extends PredicateBuilder<QPageEmbeddingTypeEntity, PageEmbeddingTypeEntity> {
 
-  public PageWidgetTypePredicateBuilder() {
-    super(QPageWidgetTypeEntity.pageWidgetTypeEntity);
+  public PageEmbeddingTypePredicateBuilder() {
+    super(QPageEmbeddingTypeEntity.pageEmbeddingTypeEntity);
   }
 
   @Override

@@ -1,0 +1,178 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+  
+  - changeSet:
+      id: 0163.add_page_embedding_types.1
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add page attribute types
+            splitStatements: true
+            sql: insert into page_attribute_types(`id`, `code`) values
+              ('96d0aecb-d0da-44ac-8ce0-c9af368df210', 'text'),
+              ('9d0c13a1-9309-42a6-a538-7cb79aa774dc', 'title'),
+              ('09aa5167-adf5-4130-988c-122b52206fc7', 'button'),
+              ('2ee51b66-33e4-4ba0-887d-b597bac3f40f', 'reference');
+              
+  - changeSet:
+      id: 0163.add_page_embedding_types.2
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add page attribute types
+            splitStatements: true
+            sql: insert into page_attribute_reference_types(`id`, `code`) values
+              ('6eed50ca-3504-41ad-a975-7eb8d6cd5728', 'plugin'),
+              ('c04c831c-5fed-40ae-8546-e6cbae353f73', 'media');
+
+  - changeSet:
+      id: 0163.add_page_embedding_types.3
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add page embedding types
+            splitStatements: true
+            sql: insert into page_embedding_types(`id`, `code`) values
+              ('447eea1a-c2e3-4423-a9f3-eaf1560ac6c0', 'plugin'),
+              ('25a08271-e328-42b2-a701-2bca56b8d526', 'text_media'),
+              ('320321fd-dcf0-4f6e-a61b-504fb0606018', 'expansion'),
+              ('b2cbc52b-11d3-47aa-827c-8a88b1747c7f', 'media_slider'),
+              ('42a9b716-c7da-48f1-a661-51bc7d86c6bc', 'text_banner');
+              
+  - changeSet:
+      id: 0163.add_page_embedding_types.4
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add data page_embedding_type_translatables
+            splitStatements: true
+            sql: insert into page_embedding_type_translatables (id, parent_id, language_id, name, description)
+                 select uuid(), '447eea1a-c2e3-4423-a9f3-eaf1560ac6c0', l.id, 'Plugin', 'Alle Plugins haben ein Pendant als Seitenelement, das in statischen Seiten hinzugefügt werden kann.'
+                 from languages l
+                 WHERE l.locale = 'de';
+                 
+                 insert into page_embedding_type_translatables (id, parent_id, language_id, name, description)
+                 select uuid(), '447eea1a-c2e3-4423-a9f3-eaf1560ac6c0', l.id, 'Plugin', 'All plugins have a counterpart page element that can be added to static pages.'
+                 from languages l
+                 WHERE l.locale = 'en';
+                 
+                 insert into page_embedding_type_translatables (id, parent_id, language_id, name, description)
+                 select uuid(), '25a08271-e328-42b2-a701-2bca56b8d526', l.id, 'Text/Medien', 'Standard-Seitenblock mit optionalen Inhalten wie Text, Bild/Video, Titel und Button.'
+                 from languages l
+                 WHERE l.locale = 'de';
+                 
+                 insert into page_embedding_type_translatables (id, parent_id, language_id, name, description)
+                 select uuid(), '25a08271-e328-42b2-a701-2bca56b8d526', l.id, 'Text Media', 'Standard page block with optional content such as text, image/video, title and button.'
+                 from languages l
+                 WHERE l.locale = 'en';
+                 
+                 insert into page_embedding_type_translatables (id, parent_id, language_id, name, description)
+                 select uuid(), '320321fd-dcf0-4f6e-a61b-504fb0606018', l.id, 'Akkordeon', 'Aufklappbares Seitenelement mit Titel und Inhalt.'
+                 from languages l
+                 WHERE l.locale = 'de';
+                 
+                 insert into page_embedding_type_translatables (id, parent_id, language_id, name, description)
+                 select uuid(), '320321fd-dcf0-4f6e-a61b-504fb0606018', l.id, 'Expansion panel', 'Expandable page element with title and content.'
+                 from languages l
+                 WHERE l.locale = 'en';
+
+                 insert into page_embedding_type_translatables (id, parent_id, language_id, name, description)
+                 select uuid(), 'b2cbc52b-11d3-47aa-827c-8a88b1747c7f', l.id, 'Medien-Slider', 'Zeigt mehrere Medien in einer Reihe, die navigierbar ist.'
+                 from languages l
+                 WHERE l.locale = 'de';
+                 
+                 insert into page_embedding_type_translatables (id, parent_id, language_id, name, description)
+                 select uuid(), 'b2cbc52b-11d3-47aa-827c-8a88b1747c7f', l.id, 'Media slider', 'Displays multiple media in a row that is navigable.'
+                 from languages l
+                 WHERE l.locale = 'en';
+                 
+                 insert into page_embedding_type_translatables (id, parent_id, language_id, name, description)
+                 select uuid(), '42a9b716-c7da-48f1-a661-51bc7d86c6bc', l.id, 'Textbanner', 'Farblich hervorgehobenes Seitenelement für kurze Textbotschaften.'
+                 from languages l
+                 WHERE l.locale = 'de';
+                 
+                 insert into page_embedding_type_translatables (id, parent_id, language_id, name, description)
+                 select uuid(), '42a9b716-c7da-48f1-a661-51bc7d86c6bc', l.id, 'Text banner', 'Page element highlighted in color for short text messages.'
+                 from languages l
+                 WHERE l.locale = 'en';
+                 
+  - changeSet:
+      id: 0163.add_page_embedding_types.5
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add data page_attribute_types
+            splitStatements: true
+            sql: insert into page_attribute_type_translatables (id, parent_id, language_id, name)
+                 select uuid(), '96d0aecb-d0da-44ac-8ce0-c9af368df210', l.id, 'Text' 
+                 from languages l
+                 WHERE l.locale = 'de';
+                 
+                 insert into page_attribute_type_translatables (id, parent_id, language_id, name)
+                 select uuid(), '96d0aecb-d0da-44ac-8ce0-c9af368df210', l.id, 'Text'
+                 from languages l
+                 WHERE l.locale = 'en';
+
+                 insert into page_attribute_type_translatables (id, parent_id, language_id, name)
+                 select uuid(), '9d0c13a1-9309-42a6-a538-7cb79aa774dc', l.id, 'Titel' 
+                 from languages l
+                 WHERE l.locale = 'de';
+                 
+                 insert into page_attribute_type_translatables (id, parent_id, language_id, name)
+                 select uuid(), '9d0c13a1-9309-42a6-a538-7cb79aa774dc', l.id, 'Title'
+                 from languages l
+                 WHERE l.locale = 'en';
+                 
+                 insert into page_attribute_type_translatables (id, parent_id, language_id, name)
+                 select uuid(), '09aa5167-adf5-4130-988c-122b52206fc7', l.id, 'Button' 
+                 from languages l
+                 WHERE l.locale = 'de';
+                 
+                 insert into page_attribute_type_translatables (id, parent_id, language_id, name)
+                 select uuid(), '09aa5167-adf5-4130-988c-122b52206fc7', l.id, 'Button'
+                 from languages l
+                 WHERE l.locale = 'en';
+                 
+                 insert into page_attribute_type_translatables (id, parent_id, language_id, name)
+                 select uuid(), '2ee51b66-33e4-4ba0-887d-b597bac3f40f', l.id, 'Referenz' 
+                 from languages l
+                 WHERE l.locale = 'de';
+                 
+                 insert into page_attribute_type_translatables (id, parent_id, language_id, name)
+                 select uuid(), '2ee51b66-33e4-4ba0-887d-b597bac3f40f', l.id, 'Reference'
+                 from languages l
+                 WHERE l.locale = 'en';
+                 
+  - changeSet:
+      id: 0163.add_page_embedding_types.6
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add data page_attribute_types
+            splitStatements: true
+            sql: insert into page_embedding_types_attribute_types(`id`, `embedding_type_id`, `attribute_type_id`) values
+            
+              /* PLUGIN */
+              (uuid(), '447eea1a-c2e3-4423-a9f3-eaf1560ac6c0', '2ee51b66-33e4-4ba0-887d-b597bac3f40f'),
+              
+              /* TEXT_MEDIA */
+              (uuid(), '25a08271-e328-42b2-a701-2bca56b8d526', '96d0aecb-d0da-44ac-8ce0-c9af368df210'),
+              (uuid(), '25a08271-e328-42b2-a701-2bca56b8d526', '2ee51b66-33e4-4ba0-887d-b597bac3f40f'),
+              (uuid(), '25a08271-e328-42b2-a701-2bca56b8d526', '9d0c13a1-9309-42a6-a538-7cb79aa774dc'),
+              (uuid(), '25a08271-e328-42b2-a701-2bca56b8d526', '09aa5167-adf5-4130-988c-122b52206fc7'),
+              
+              /* EXPANSION */
+              (uuid(), '320321fd-dcf0-4f6e-a61b-504fb0606018', '96d0aecb-d0da-44ac-8ce0-c9af368df210'),
+              (uuid(), '320321fd-dcf0-4f6e-a61b-504fb0606018', '2ee51b66-33e4-4ba0-887d-b597bac3f40f'),
+              (uuid(), '320321fd-dcf0-4f6e-a61b-504fb0606018', '9d0c13a1-9309-42a6-a538-7cb79aa774dc'),
+              (uuid(), '320321fd-dcf0-4f6e-a61b-504fb0606018', '09aa5167-adf5-4130-988c-122b52206fc7'),
+
+              /* MEDIA_SLIDER */
+              (uuid(), 'b2cbc52b-11d3-47aa-827c-8a88b1747c7f', '2ee51b66-33e4-4ba0-887d-b597bac3f40f'),
+              (uuid(), 'b2cbc52b-11d3-47aa-827c-8a88b1747c7f', '9d0c13a1-9309-42a6-a538-7cb79aa774dc'),
+              (uuid(), 'b2cbc52b-11d3-47aa-827c-8a88b1747c7f', '09aa5167-adf5-4130-988c-122b52206fc7'),
+              
+              /* TEXT_BANNER */              
+              (uuid(), '42a9b716-c7da-48f1-a661-51bc7d86c6bc', '96d0aecb-d0da-44ac-8ce0-c9af368df210'),
+              (uuid(), '42a9b716-c7da-48f1-a661-51bc7d86c6bc', '9d0c13a1-9309-42a6-a538-7cb79aa774dc'),
+              (uuid(), '42a9b716-c7da-48f1-a661-51bc7d86c6bc', '09aa5167-adf5-4130-988c-122b52206fc7');

@@ -1,16 +1,12 @@
-package app.wooportal.server.base.cms.page.embedding;
+package app.wooportal.server.base.cms.page.attributeReference;
 
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import app.wooportal.server.base.cms.page.attribute.PageAttributeEntity;
-import app.wooportal.server.base.cms.page.base.PageEntity;
-import app.wooportal.server.base.cms.page.embeddingType.PageEmbeddingTypeEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -23,24 +19,16 @@ import lombok.Setter;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @AllArgsConstructor
 @Entity
-@Table(name = "page_embeddings")
-public class PageEmbeddingEntity extends BaseEntity {
+@Table(name = "page_attribute_references")
+public class PageAttributeReferenceEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
 
   @Column(nullable = false)
-  private Integer order;
+  private String reference;
   
-  private String label;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(nullable = false)
+  protected PageAttributeEntity attribute;
 
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(nullable = false)
-  private PageEntity page;
-  
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(nullable = false)
-  protected PageEmbeddingTypeEntity type;
-  
-  @OneToMany(fetch = FetchType.LAZY, mappedBy = "embedding")
-  private Set<PageAttributeEntity> attributes;
 }

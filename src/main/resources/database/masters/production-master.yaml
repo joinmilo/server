@@ -293,17 +293,21 @@ databaseChangeLog:
     - include:
         file: database/changes/0156.create_table_page_attribute_type_translatables.yaml
     - include:
-        file: database/changes/0157.create_table_page_widget_types.yaml
+        file: database/changes/0157.create_table_page_embedding_types.yaml
     - include:
-        file: database/changes/0158.create_table_page_widget_type_translatables.yaml
+        file: database/changes/0158.create_table_page_embedding_type_translatables.yaml
     - include:
-        file: database/changes/0159.create_table_page_widget_attributes.yaml
+        file: database/changes/0159.create_table_page_attributes.yaml
     - include:
-        file: database/changes/0160.create_table_page_widget_attribute_translatables.yaml
+        file: database/changes/0160.create_table_page_attribute_translatables.yaml
     - include:
-        file: database/changes/0161.create_table_page_widgets.yaml
+        file: database/changes/0161.create_table_page_attribute_reference_types.yaml
     - include:
-        file: database/changes/0162.migrate_page_embeddings.yaml
+        file: database/changes/0162.create_table_page_attribute_references.yaml
+    - include:
+        file: database/changes/0163.add_page_embedding_base_data.yaml
+    - include:
+        file: database/changes/0164.migrate_page_embeddings.yaml
                 
     #Data section        
     - include:
@@ -329,9 +333,7 @@ databaseChangeLog:
     - include:
         file: database/datasets/0010.add_organisation_configuration.yaml
     - include:
-        file: database/datasets/0011.add_page_widgets.yaml
-    - include:
-        file: database/datasets/0012.add_labels_page_embeddings.yaml
+        file: database/datasets/0011.add_labels_page_embeddings.yaml
         
     #Cleanups
     - include:

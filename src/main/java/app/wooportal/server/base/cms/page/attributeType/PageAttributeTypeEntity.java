@@ -15,9 +15,9 @@ import javax.persistence.UniqueConstraint;
 import org.hibernate.annotations.CollectionId;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
+import app.wooportal.server.base.cms.page.attribute.PageAttributeEntity;
 import app.wooportal.server.base.cms.page.attributeType.translations.PageAttributeTypeTranslatableEntity;
-import app.wooportal.server.base.cms.page.widgetAttribute.PageWidgetAttributeEntity;
-import app.wooportal.server.base.cms.page.widgetType.PageWidgetTypeEntity;
+import app.wooportal.server.base.cms.page.embeddingType.PageEmbeddingTypeEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -43,14 +43,14 @@ public class PageAttributeTypeEntity extends BaseEntity {
   private Set<PageAttributeTypeTranslatableEntity> translatables;
   
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "type")
-  private Set<PageWidgetAttributeEntity> widgetAttributes;
+  private Set<PageAttributeEntity> attributes;
   
   @ManyToMany(fetch = FetchType.LAZY)
-  @JoinTable(name = "page_widget_types_attribute_types",
+  @JoinTable(name = "page_embedding_types_attribute_types",
     joinColumns = @JoinColumn(name = "attribute_type_id"),
-    inverseJoinColumns = @JoinColumn(name = "widget_type_id"),
-    uniqueConstraints = {@UniqueConstraint(columnNames = {"attribute_type_id", "widget_type_id"})})
+    inverseJoinColumns = @JoinColumn(name = "embedding_type_id"),
+    uniqueConstraints = {@UniqueConstraint(columnNames = {"attribute_type_id", "embedding_type_id"})})
   @CollectionId(column = @Column(name = "id"), type = @Type(type = "uuid-char"), generator = "UUID")
-  private List<PageWidgetTypeEntity> widgetTypes = new ArrayList<>();
+  private List<PageEmbeddingTypeEntity> embeddingTypes = new ArrayList<>();
 
 }
