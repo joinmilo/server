@@ -2,7 +2,7 @@ databaseChangeLog:
   - logicalFilePath: path_independent
   
   - changeSet:
-      id: 0163.add_page_embedding_types.1
+      id: 0162.add_page_embedding_types.1
       author: codeschluss
       changes:
         - sql:
@@ -13,20 +13,9 @@ databaseChangeLog:
               ('9d0c13a1-9309-42a6-a538-7cb79aa774dc', 'title'),
               ('09aa5167-adf5-4130-988c-122b52206fc7', 'button'),
               ('2ee51b66-33e4-4ba0-887d-b597bac3f40f', 'reference');
-              
-  - changeSet:
-      id: 0163.add_page_embedding_types.2
-      author: codeschluss
-      changes:
-        - sql:
-            comment: Add page attribute types
-            splitStatements: true
-            sql: insert into page_attribute_reference_types(`id`, `code`) values
-              ('6eed50ca-3504-41ad-a975-7eb8d6cd5728', 'plugin'),
-              ('c04c831c-5fed-40ae-8546-e6cbae353f73', 'media');
 
   - changeSet:
-      id: 0163.add_page_embedding_types.3
+      id: 0162.add_page_embedding_types.2
       author: codeschluss
       changes:
         - sql:
@@ -40,7 +29,7 @@ databaseChangeLog:
               ('42a9b716-c7da-48f1-a661-51bc7d86c6bc', 'text_banner');
               
   - changeSet:
-      id: 0163.add_page_embedding_types.4
+      id: 0162.add_page_embedding_types.3
       author: codeschluss
       changes:
         - sql:
@@ -97,7 +86,7 @@ databaseChangeLog:
                  WHERE l.locale = 'en';
                  
   - changeSet:
-      id: 0163.add_page_embedding_types.5
+      id: 0162.add_page_embedding_types.4
       author: codeschluss
       changes:
         - sql:
@@ -144,7 +133,7 @@ databaseChangeLog:
                  WHERE l.locale = 'en';
                  
   - changeSet:
-      id: 0163.add_page_embedding_types.6
+      id: 0162.add_page_embedding_types.5
       author: codeschluss
       changes:
         - sql:
