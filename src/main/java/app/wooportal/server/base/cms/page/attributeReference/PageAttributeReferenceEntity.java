@@ -25,7 +25,7 @@ public class PageAttributeReferenceEntity extends BaseEntity {
   private static final long serialVersionUID = 1L;
 
   @Column(nullable = false)
-  private String reference;
+  private String referenceId;
   
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(nullable = false)
