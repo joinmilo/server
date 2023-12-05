@@ -97,5 +97,5 @@ databaseChangeLog:
             onUpdate: CASCADE
             onDelete: CASCADE
             referencedColumnNames: id
-            referencedTableName: page_attributes
+            referencedTableName: page_attribute_reference_types
             validate: true
