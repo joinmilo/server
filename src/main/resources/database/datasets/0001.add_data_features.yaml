@@ -1,13 +1,13 @@
   databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
-      id: 0001.add_data_plugins.1
+      id: 0001.add_data_features.1
       author: codeschluss
       changes:
         - sql:
             comment: Add Features
             splitStatements: true
-            sql: insert into plugins (id, `code`, `icon`, `released`) values
+            sql: insert into features (id, `code`, `icon`, `released`) values
               ('cf2b4b5d-df3a-4f79-9cfd-61679c57bd16', 'authors', 'pen-fancy', true),
               ('41cdbfa8-e751-41d4-b893-5c7215ec55e9', 'calendar', 'calendar-days', true),
               ('492fa827-9fb4-4294-906d-b85e5bdb6890', 'contests', 'trophy', false),
@@ -20,188 +20,188 @@
               ('909d5070-f915-4891-b78b-1ef83690fddf', 'surveys', 'square-poll-vertical', false);
                 
   - changeSet:
-      id: 0001.add_data_plugins.2
+      id: 0001.add_data_features.2
       author: codeschluss                
       changes:
         - sql:
-            comment: update existing plugins
+            comment: update existing features
             splitStatements: true
             sql:
                 /*!40101 SET character_set_client = utf8 */;
                     
-                UPDATE plugins p
+                UPDATE features p
                 SET p.code = "events", p.icon = "calendar", p.released = true
                 WHERE p.code = "activities";
                 
-                UPDATE plugins p
+                UPDATE features p
                 SET p.code = "articles", p.icon = "newspaper", p.released = true
                 WHERE p.code = "blogposts";
                 
-                UPDATE plugins p
+                UPDATE features p
                 SET p.icon = "people-group", p.released = true
                 WHERE p.code = "organisations";
                      
   - changeSet:
-      id: 0001.add_data_plugins.3
+      id: 0001.add_data_features.3
       author: codeschluss
       changes:
         - sql:
             comment: Add feature translatables
             splitStatements: true
             sql:
-                insert into plugin_translatables (id, `name`, parent_id, language_id)
+                insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Einrichtungen", p.id, l.id
-                from languages l, plugins p
+                from languages l, features p
                 WHERE l.locale = "de" AND
                 p.code = "organisations";
                 
-                insert into plugin_translatables (id, `name`, parent_id, language_id)
+                insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Beiträge", p.id, l.id
-                from languages l, plugins p
+                from languages l, features p
                 WHERE l.locale = "de" AND
                 p.code = "articles";
                 
-                insert into plugin_translatables (id, `name`, parent_id, language_id)
+                insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Events", p.id, l.id
-                from languages l, plugins p
+                from languages l, features p
                 WHERE l.locale = "de" AND
                 p.code = "events";     
 
-                insert into plugin_translatables (id, `name`, parent_id, language_id)
+                insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Organisations", p.id, l.id
-                from languages l, plugins p
+                from languages l, features p
                 WHERE l.locale = "en" AND
                 p.code = "organisations";
                 
-                insert into plugin_translatables (id, `name`, parent_id, language_id)
+                insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Articles", p.id, l.id
-                from languages l, plugins p
+                from languages l, features p
                 WHERE l.locale = "en" AND
                 p.code = "articles";
                 
-                insert into plugin_translatables (id, `name`, parent_id, language_id)
+                insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Events", p.id, l.id
-                from languages l, plugins p
+                from languages l, features p
                 WHERE l.locale = "en" AND
                 p.code = "events";             
 
-                insert into plugin_translatables (id, `name`, parent_id, language_id)
+                insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Autoren", p.id, l.id
-                from languages l, plugins p
+                from languages l, features p
                 WHERE l.locale = "de" AND
                 p.code = "authors";
                 
-                insert into plugin_translatables (id, `name`, parent_id, language_id)
+                insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Authors", p.id, l.id
-                from languages l, plugins p
+                from languages l, features p
                 WHERE l.locale = "en" AND
                 p.code = "authors";  
                 
-                insert into plugin_translatables (id, `name`, parent_id, language_id)
+                insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Karte", p.id, l.id
-                from languages l, plugins p
+                from languages l, features p
                 WHERE l.locale = "de" AND
                 p.code = "map"; 
                 
-                insert into plugin_translatables (id, `name`, parent_id, language_id)
+                insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Map", p.id, l.id
-                from languages l, plugins p
+                from languages l, features p
                 WHERE l.locale = "en" AND
                 p.code = "map";                                               
                          
-                insert into plugin_translatables (id, `name`, parent_id, language_id)
+                insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Kalender", p.id, l.id
-                from languages l, plugins p
+                from languages l, features p
                 WHERE l.locale = "de" AND
                 p.code = "calendar";
                 
-                insert into plugin_translatables (id, `name`, parent_id, language_id)
+                insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Calendar", p.id, l.id
-                from languages l, plugins p
+                from languages l, features p
                 WHERE l.locale = "en" AND
                 p.code = "calendar";                           
                            
-                insert into plugin_translatables (id, `name`, parent_id, language_id)
+                insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Umfragen", p.id, l.id
-                from languages l, plugins p
+                from languages l, features p
                 WHERE l.locale = "de" AND
                 p.code = "surveys";
                 
-                insert into plugin_translatables (id, `name`, parent_id, language_id)
+                insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Surveys", p.id, l.id
-                from languages l, plugins p
+                from languages l, features p
                 WHERE l.locale = "en" AND
                 p.code = "surveys";    
 
-                insert into plugin_translatables (id, `name`, parent_id, language_id)
+                insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Wettbewerbe", p.id, l.id
-                from languages l, plugins p
+                from languages l, features p
                 WHERE l.locale = "de" AND
                 p.code = "contests";
                 
-                insert into plugin_translatables (id, `name`, parent_id, language_id)
+                insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Contests", p.id, l.id
-                from languages l, plugins p
+                from languages l, features p
                 WHERE l.locale = "en" AND
                 p.code = "contests";
                 
-                insert into plugin_translatables (id, `name`, parent_id, language_id)
+                insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Gastbeiträge", p.id, l.id
-                from languages l, plugins p
+                from languages l, features p
                 WHERE l.locale = "de" AND
                 p.code = "guestarticle";
                 
-                insert into plugin_translatables (id, `name`, parent_id, language_id)
+                insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Guest articles", p.id, l.id
-                from languages l, plugins p
+                from languages l, features p
                 WHERE l.locale = "en" AND
                 p.code = "guestarticle";      
                 
-                insert into plugin_translatables (id, `name`, parent_id, language_id)
+                insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Mediathek", p.id, l.id
-                from languages l, plugins p
+                from languages l, features p
                 WHERE l.locale = "de" AND
                 p.code = "media";
                 
-                insert into plugin_translatables (id, `name`, parent_id, language_id)
+                insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Media", p.id, l.id
-                from languages l, plugins p
+                from languages l, features p
                 WHERE l.locale = "en" AND
                 p.code = "media";     
                 
-                insert into plugin_translatables (id, `name`, parent_id, language_id)
+                insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Kleinanzeigen", p.id, l.id
-                from languages l, plugins p
+                from languages l, features p
                 WHERE l.locale = "de" AND
                 p.code = "deals";
                 
-                insert into plugin_translatables (id, `name`, parent_id, language_id)
+                insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Deals", p.id, l.id
-                from languages l, plugins p
+                from languages l, features p
                 WHERE l.locale = "en" AND
                 p.code = "deals";
 
-                insert into plugin_translatables (id, `name`, parent_id, language_id)
+                insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Formulare", p.id, l.id
-                from languages l, plugins p
+                from languages l, features p
                 WHERE l.locale = "de" AND
                 p.code = "forms";
                 
-                insert into plugin_translatables (id, `name`, parent_id, language_id)
+                insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Forms", p.id, l.id
-                from languages l, plugins p
+                from languages l, features p
                 WHERE l.locale = "en" AND
                 p.code = "forms";
                 
-                insert into plugin_translatables (id, `name`, parent_id, language_id)
+                insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Feedback", p.id, l.id
-                from languages l, plugins p
+                from languages l, features p
                 WHERE l.locale = "de" AND
                 p.code = "reports";
                 
-                insert into plugin_translatables (id, `name`, parent_id, language_id)
+                insert into feature_translatables (id, `name`, parent_id, language_id)
                 select uuid(), "Feedback", p.id, l.id
-                from languages l, plugins p
+                from languages l, features p
                 WHERE l.locale = "en" AND
                 p.code = "reports";                                                                                                    
 
