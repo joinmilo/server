@@ -2,7 +2,7 @@ databaseChangeLog:
   - logicalFilePath: path_independent
   
   - changeSet:
-      id: 0164.migrate_page_embeddings.1
+      id: 0163.migrate_page_embeddings.1
       author: codeschluss
       changes:
         - addColumn:
@@ -16,7 +16,7 @@ databaseChangeLog:
             tableName: page_embeddings
 
   - changeSet:
-      id: 0164.migrate_page_embeddings.2
+      id: 0163.migrate_page_embeddings.2
       author: codeschluss
       changes:
         - createIndex:
@@ -26,7 +26,7 @@ databaseChangeLog:
             indexName: idx_fk_page_embeddings_type_id
             tableName: page_embeddings
   - changeSet:
-      id: 0164.migrate_page_embeddings.3
+      id: 0163.migrate_page_embeddings.3
       author: codeschluss
       changes:
         - addForeignKeyConstraint:
@@ -42,7 +42,7 @@ databaseChangeLog:
             validate: true
   
   - changeSet:
-      id: 0164.migrate_page_embeddings.4
+      id: 0163.migrate_page_embeddings.4
       author: codeschluss
       changes:
         - sql:
@@ -51,7 +51,7 @@ databaseChangeLog:
             sql: update page_embeddings set type_id = '447eea1a-c2e3-4423-a9f3-eaf1560ac6c0';
  
   - changeSet:
-      id: 0164.migrate_page_embeddings.5
+      id: 0163.migrate_page_embeddings.5
       author: codeschluss
       changes:
         - sql:
@@ -62,19 +62,19 @@ databaseChangeLog:
                  from page_embeddings e;
                  
   - changeSet:
-      id: 0164.migrate_page_embeddings.6
+      id: 0163.migrate_page_embeddings.6
       author: codeschluss
       changes:
         - sql:
             comment: Add page attribute references for existing plugin page embeddings
             splitStatements: true
-            sql: insert into page_attribute_references(id, attribute_id, type_id, reference_id)
-                 select uuid(), a.id, '6eed50ca-3504-41ad-a975-7eb8d6cd5728', e.plugin_id
+            sql: insert into page_attribute_references(id, attribute_id, reference_id)
+                 select uuid(), a.id, e.plugin_id
                  from page_attributes a
                  left join page_embeddings e on a.embedding_id = e.id;
  
   - changeSet:
-      id: 0164.migrate_page_embeddings.7
+      id: 0163.migrate_page_embeddings.7
       author: codeschluss
       changes:
         - dropForeignKeyConstraint:
@@ -82,7 +82,7 @@ databaseChangeLog:
             constraintName: fk_page_embeddings_plugin_id
 
   - changeSet:
-      id: 0164.migrate_page_embeddings.8
+      id: 0163.migrate_page_embeddings.8
       author: codeschluss
       changes:
         - dropColumn:
