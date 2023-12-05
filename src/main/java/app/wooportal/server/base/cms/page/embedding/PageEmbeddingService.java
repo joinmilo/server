@@ -1,7 +1,7 @@
 package app.wooportal.server.base.cms.page.embedding;
 
 import org.springframework.stereotype.Service;
-import app.wooportal.server.base.cms.page.widget.PageWidgetService;
+import app.wooportal.server.base.cms.page.attribute.PageAttributeService;
 import app.wooportal.server.core.base.DataService;
 import app.wooportal.server.core.repository.DataRepository;
 
@@ -12,9 +12,9 @@ public class PageEmbeddingService
   public PageEmbeddingService(
       DataRepository<PageEmbeddingEntity> repo,
       PageEmbeddingPredicateBuilder predicate,
-      PageWidgetService pageWidgetService) {
+      PageAttributeService attributeService) {
     super(repo, predicate);
     
-    addService("widget", pageWidgetService);
+    addService("attributes", attributeService);
   }
 }

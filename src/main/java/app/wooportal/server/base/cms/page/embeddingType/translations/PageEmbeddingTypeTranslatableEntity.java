@@ -1,9 +1,9 @@
-package app.wooportal.server.base.cms.page.widgetType.translations;
+package app.wooportal.server.base.cms.page.embeddingType.translations;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import app.wooportal.server.base.cms.page.widgetType.PageWidgetTypeEntity;
+import app.wooportal.server.base.cms.page.embeddingType.PageEmbeddingTypeEntity;
 import app.wooportal.server.core.i18n.entities.TranslatableEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -16,9 +16,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @AllArgsConstructor
 @Entity
-@Table(name = "page_widget_type_translatables")
-public class PageWidgetTypeTranslatableEntity
-    extends TranslatableEntity<PageWidgetTypeEntity> {
+@Table(name = "page_embedding_type_translatables")
+public class PageEmbeddingTypeTranslatableEntity
+    extends TranslatableEntity<PageEmbeddingTypeEntity> {
 
   private static final long serialVersionUID = 1L;
   

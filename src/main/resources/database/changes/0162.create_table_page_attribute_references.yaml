@@ -1,0 +1,101 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+  - changeSet:
+      id: 0162.create_table_page_attribute_references.1
+      author: codeschlus
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: page_attribute_references_primary_key
+                  name: id
+                  type: CHAR(36)
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  name: created
+                  type: datetime                  
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  name: modified
+                  type: datetime
+              - column:
+                  constraints:
+                    nullable: false
+                  name: attribute_id
+                  type: CHAR(36)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: type_id
+                  type: CHAR(36)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: reference_id
+                  type: CHAR(36)
+            tableName: page_attribute_references
+        - sql:
+            comment: set char set for mysql
+            dbms: mysql
+            endDelimiter: \nGO
+            splitStatements: true
+            sql: ALTER TABLE page_attribute_references CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+  - changeSet:
+      id: 0162.create_table_page_attribute_references.2
+      author: codeschluss
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: attribute_id
+            indexName: idx_fk_page_attribute_references_attribute_id
+            tableName: page_attribute_references
+  - changeSet:
+      id: 0162.create_table_page_attribute_references.3
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: attribute_id
+            baseTableName: page_attribute_references
+            constraintName: fk_page_attribute_references_attribute_id
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: page_attributes
+            validate: true
+            
+  - changeSet:
+      id: 0162.create_table_page_attribute_references.4
+      author: codeschluss
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: type_id
+            indexName: idx_fk_page_attribute_references_type_id
+            tableName: page_attribute_references
+  - changeSet:
+      id: 0162.create_table_page_attribute_references.5
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: type_id
+            baseTableName: page_attribute_references
+            constraintName: fk_page_attribute_references_type_id
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: page_attributes
+            validate: true

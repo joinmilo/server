@@ -1,14 +1,12 @@
 package app.wooportal.server.base.cms.components.plugin;
 
 import java.util.Set;
-
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import app.wooportal.server.base.cms.components.menuItem.MenuItemEntity;
 import app.wooportal.server.base.cms.components.plugin.translations.PluginTranslatableEntity;
-import app.wooportal.server.base.cms.page.embedding.PageEmbeddingEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.i18n.annotations.Translatable;
 import lombok.AccessLevel;
@@ -37,9 +35,6 @@ public class PluginEntity extends BaseEntity {
   private String name;
   
   private Boolean released;
-
-  @OneToMany(fetch = FetchType.LAZY, mappedBy = "plugin")
-  private Set<PageEmbeddingEntity> embeddings;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "plugin")
   private Set<MenuItemEntity> menuItems;

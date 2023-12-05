@@ -1,7 +1,7 @@
 databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
-      id: 0161.create_table_page_widgets.1
+      id: 0157.create_table_page_embedding_types.1
       author: codeschluss
       changes:
         - createTable:
@@ -10,45 +10,7 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                     primaryKey: true
-                    primaryKeyName: page_widgets_primary_key
-                  name: id
-                  type: CHAR(36)
-              - column:
-                  constraints:
-                    nullable: false
-                  defaultValueComputed: CURRENT_TIMESTAMP
-                  name: created
-                  type: datetime                  
-              - column:
-                  constraints:
-                    nullable: false
-                  defaultValueComputed: CURRENT_TIMESTAMP
-                  name: modified
-                  type: datetime
-              - column:
-                  constraints:
-                    nullable: false
-                  name: type_id
-                  type: CHAR(36)
-            tableName: page_widgets
-        - sql:
-            comment: set char set for mysql
-            dbms: mysql
-            endDelimiter: \nGO
-            splitStatements: true
-            sql: ALTER TABLE page_widgets CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-            
-  - changeSet:
-      id: 0161.create_table_page_widgets.2
-      author: codeschluss
-      changes:
-        - createTable:
-            columns:
-              - column:
-                  constraints:
-                    nullable: false
-                    primaryKey: true
-                    primaryKeyName: page_widget_widget_attributes_primary_key
+                    primaryKeyName: page_embedding_types_primary_key
                   name: id
                   type: CHAR(36)
               - column:
@@ -66,95 +28,107 @@ databaseChangeLog:
               - column:
                   constraints:
                     nullable: false
-                  name: widget_id
-                  type: CHAR(36)
-              - column:
-                  constraints:
-                    nullable: false
-                  name: widget_attribute_id
-                  type: CHAR(36)
-            tableName: page_widget_widget_attributes
+                  name: code
+                  type: varchar(255)
+            tableName: page_embedding_types
         - sql:
             comment: set char set for mysql
             dbms: mysql
             endDelimiter: \nGO
             splitStatements: true
-            sql: ALTER TABLE page_widget_widget_attributes CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-            
-  - changeSet:
-      id: 0161.create_table_page_widgets.3
-      author: codeschluss
-      changes:
-        - createIndex:
-            columns:
-              - column:
-                  name: type_id
-            indexName: idx_fk_page_widgets_type_id
-            tableName: page_widgets
-  - changeSet:
-      id: 0161.create_table_page_widgets.4
-      author: codeschluss
-      changes:
-        - addForeignKeyConstraint:
-            baseColumnNames: type_id
-            baseTableName: page_widgets
-            constraintName: fk_page_widgets_type_id
-            deferrable: false
-            initiallyDeferred: false
-            onUpdate: CASCADE
-            onDelete: CASCADE
-            referencedColumnNames: id
-            referencedTableName: page_widget_types
-            validate: true
+            sql: ALTER TABLE page_embedding_types CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
   - changeSet:
-      id: 0161.create_table_page_widgets.5
+      id: 0157.create_table_page_embedding_types.2
+      author: codeschluss
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: page_embedding_types_attribute_types_primary_key
+                  name: id
+                  type: CHAR(36)
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  name: created
+                  type: datetime                  
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  name: modified
+                  type: datetime   
+              - column:
+                  constraints:
+                    nullable: false
+                  name: embedding_type_id
+                  type: CHAR(36)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: attribute_type_id
+                  type: CHAR(36)
+            tableName: page_embedding_types_attribute_types
+        - sql:
+            comment: set char set for mysql
+            dbms: mysql
+            endDelimiter: \nGO
+            splitStatements: true
+            sql: ALTER TABLE page_embedding_types_attribute_types CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+  - changeSet:
+      id: 0157.create_table_page_embedding_types.3
       author: codeschluss
       changes:
         - createIndex:
             columns:
               - column:
-                  name: widget_id
-            indexName: idx_fk_page_widget_widget_attributes_widget_id
-            tableName: page_widget_widget_attributes
+                  name: embedding_type_id
+            indexName: idx_fk_page_embedding_types_attribute_types_embedding_type_id
+            tableName: page_embedding_types_attribute_types
   - changeSet:
-      id: 0161.create_table_page_widgets.6
+      id: 0157.create_table_page_embedding_types.4
       author: codeschluss
       changes:
         - addForeignKeyConstraint:
-            baseColumnNames: widget_id
-            baseTableName: page_widget_widget_attributes
-            constraintName: fk_page_widget_widget_attributes_widget_id
+            baseColumnNames: embedding_type_id
+            baseTableName: page_embedding_types_attribute_types
+            constraintName: fk_page_embedding_types_attribute_types_embedding_type_id
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE
             onDelete: CASCADE
             referencedColumnNames: id
-            referencedTableName: page_widgets
+            referencedTableName: page_embedding_types
             validate: true   
 
   - changeSet:
-      id: 0161.create_table_page_widgets.7
+      id: 0157.create_table_page_embedding_types.5
       author: codeschluss
       changes:
         - createIndex:
             columns:
               - column:
-                  name: widget_attribute_id
-            indexName: idx_fk_page_widget_widget_attributes_widget_attribute_id
-            tableName: page_widget_widget_attributes
+                  name: attribute_type_id
+            indexName: idx_fk_page_embedding_types_attribute_types_attribute_type_id
+            tableName: page_embedding_types_attribute_types
   - changeSet:
-      id: 0161.create_table_page_widgets.8
+      id: 0157.create_table_page_embedding_types.6
       author: codeschluss
       changes:
         - addForeignKeyConstraint:
-            baseColumnNames: widget_attribute_id
-            baseTableName: page_widget_widget_attributes
-            constraintName: fk_page_widget_widget_attributes_widget_attribute_id
+            baseColumnNames: attribute_type_id
+            baseTableName: page_embedding_types_attribute_types
+            constraintName: fk_page_embedding_types_attribute_types_attribute_type_id
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE
             onDelete: CASCADE
             referencedColumnNames: id
-            referencedTableName: page_widget_attributes
+            referencedTableName: page_attribute_types
             validate: true
