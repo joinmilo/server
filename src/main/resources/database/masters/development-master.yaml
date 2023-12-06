@@ -346,8 +346,8 @@ databaseChangeLog:
         file: database/datasets/test-data/0002.reports-test-data.yaml
     - include:
         file: database/datasets/test-data/0003.address-test-data.yaml
-    - include:
-        file: database/datasets/test-data/0004.pages-test-data.yaml
+    #- include:
+    #    file: database/datasets/test-data/0004.pages-test-data.yaml
     - include:
         file: database/datasets/test-data/0005.apps-test-data.yaml
     - include:
@@ -376,6 +376,6 @@ databaseChangeLog:
         file: database/datasets/test-data/0017.friends-test-data.yaml
     - include:
         file: database/datasets/test-data/0018.plugin_test-data.yaml
-    - include:
-        file: database/datasets/test-data/0019.menu_test-data.yaml
+    #- include:
+    #    file: database/datasets/test-data/0019.menu_test-data.yaml
                                                               
