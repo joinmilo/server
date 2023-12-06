@@ -22,9 +22,11 @@ public class UserContextDetailsService implements UserDetailsService {
   public UserContextDetails loadUserByUsername(String username) throws UsernameNotFoundException {
     var user = userContextService.getByEmail(username);
     
-    return user.isPresent()
-        ? new UserContextDetails(user.get())
-        : null;
+    if (user.isPresent()) {
+      return new UserContextDetails(user.get());
+    }
+    
+    throw new UsernameNotFoundException("user does not exist with username: " + username);
   }
   
 }

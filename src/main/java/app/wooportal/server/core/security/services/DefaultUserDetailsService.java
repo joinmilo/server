@@ -23,9 +23,11 @@ public class DefaultUserDetailsService implements UserDetailsService {
   public DefaultUserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
     Optional<UserEntity> user = userService.getByMail(username);
     
-    return user.isPresent()
-        ? new DefaultUserDetails(user.get())
-        : null;
+    if (user.isPresent()) {
+      return new DefaultUserDetails(user.get()); 
+    }
+    
+    throw new UsernameNotFoundException("user does not exist with username: " + username);
   }
 
 }
