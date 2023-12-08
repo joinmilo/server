@@ -16,7 +16,6 @@ import org.hibernate.annotations.CollectionId;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 import app.wooportal.server.base.cms.page.attribute.PageAttributeEntity;
-import app.wooportal.server.base.cms.page.attributeType.translations.PageAttributeTypeTranslatableEntity;
 import app.wooportal.server.base.cms.page.embeddingType.PageEmbeddingTypeEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import lombok.AccessLevel;
@@ -38,9 +37,6 @@ public class PageAttributeTypeEntity extends BaseEntity {
 
   @Column(nullable = false)
   private String code;
-  
-  @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
-  private Set<PageAttributeTypeTranslatableEntity> translatables;
   
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "type")
   private Set<PageAttributeEntity> attributes;

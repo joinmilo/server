@@ -2,7 +2,7 @@ databaseChangeLog:
   - logicalFilePath: path_independent
   
   - changeSet:
-      id: 0162.add_page_embedding_types.1
+      id: 0161.add_page_embedding_types.1
       author: codeschluss
       changes:
         - sql:
@@ -15,7 +15,7 @@ databaseChangeLog:
               ('2ee51b66-33e4-4ba0-887d-b597bac3f40f', 'reference');
 
   - changeSet:
-      id: 0162.add_page_embedding_types.2
+      id: 0161.add_page_embedding_types.2
       author: codeschluss
       changes:
         - sql:
@@ -29,7 +29,7 @@ databaseChangeLog:
               ('42a9b716-c7da-48f1-a661-51bc7d86c6bc', 'text_banner');
               
   - changeSet:
-      id: 0162.add_page_embedding_types.3
+      id: 0161.add_page_embedding_types.3
       author: codeschluss
       changes:
         - sql:
@@ -86,54 +86,7 @@ databaseChangeLog:
                  WHERE l.locale = 'en';
                  
   - changeSet:
-      id: 0162.add_page_embedding_types.4
-      author: codeschluss
-      changes:
-        - sql:
-            comment: Add data page_attribute_types
-            splitStatements: true
-            sql: insert into page_attribute_type_translatables (id, parent_id, language_id, name)
-                 select uuid(), '96d0aecb-d0da-44ac-8ce0-c9af368df210', l.id, 'Text' 
-                 from languages l
-                 WHERE l.locale = 'de';
-                 
-                 insert into page_attribute_type_translatables (id, parent_id, language_id, name)
-                 select uuid(), '96d0aecb-d0da-44ac-8ce0-c9af368df210', l.id, 'Text'
-                 from languages l
-                 WHERE l.locale = 'en';
-
-                 insert into page_attribute_type_translatables (id, parent_id, language_id, name)
-                 select uuid(), '9d0c13a1-9309-42a6-a538-7cb79aa774dc', l.id, 'Titel' 
-                 from languages l
-                 WHERE l.locale = 'de';
-                 
-                 insert into page_attribute_type_translatables (id, parent_id, language_id, name)
-                 select uuid(), '9d0c13a1-9309-42a6-a538-7cb79aa774dc', l.id, 'Title'
-                 from languages l
-                 WHERE l.locale = 'en';
-                 
-                 insert into page_attribute_type_translatables (id, parent_id, language_id, name)
-                 select uuid(), '09aa5167-adf5-4130-988c-122b52206fc7', l.id, 'Button' 
-                 from languages l
-                 WHERE l.locale = 'de';
-                 
-                 insert into page_attribute_type_translatables (id, parent_id, language_id, name)
-                 select uuid(), '09aa5167-adf5-4130-988c-122b52206fc7', l.id, 'Button'
-                 from languages l
-                 WHERE l.locale = 'en';
-                 
-                 insert into page_attribute_type_translatables (id, parent_id, language_id, name)
-                 select uuid(), '2ee51b66-33e4-4ba0-887d-b597bac3f40f', l.id, 'Referenz' 
-                 from languages l
-                 WHERE l.locale = 'de';
-                 
-                 insert into page_attribute_type_translatables (id, parent_id, language_id, name)
-                 select uuid(), '2ee51b66-33e4-4ba0-887d-b597bac3f40f', l.id, 'Reference'
-                 from languages l
-                 WHERE l.locale = 'en';
-                 
-  - changeSet:
-      id: 0162.add_page_embedding_types.5
+      id: 0161.add_page_embedding_types.4
       author: codeschluss
       changes:
         - sql:
