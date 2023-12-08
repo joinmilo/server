@@ -1,7 +1,7 @@
 databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
-      id: 0161.create_table_page_attribute_references.1
+      id: 0160.create_table_page_attribute_references.1
       author: codeschlus
       changes:
         - createTable:
@@ -44,7 +44,7 @@ databaseChangeLog:
             sql: ALTER TABLE page_attribute_references CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
   - changeSet:
-      id: 0161.create_table_page_attribute_references.2
+      id: 0160.create_table_page_attribute_references.2
       author: codeschluss
       changes:
         - createIndex:
@@ -54,7 +54,7 @@ databaseChangeLog:
             indexName: idx_fk_page_attribute_references_attribute_id
             tableName: page_attribute_references
   - changeSet:
-      id: 0161.create_table_page_attribute_references.3
+      id: 0160.create_table_page_attribute_references.3
       author: codeschluss
       changes:
         - addForeignKeyConstraint:

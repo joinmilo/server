@@ -15,7 +15,7 @@ import javax.persistence.UniqueConstraint;
 import org.hibernate.annotations.CollectionId;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
-import app.wooportal.server.base.cms.page.attribute.PageAttributeEntity;
+import app.wooportal.server.base.cms.page.attributeType.PageAttributeTypeEntity;
 import app.wooportal.server.base.cms.page.embedding.PageEmbeddingEntity;
 import app.wooportal.server.base.cms.page.embeddingType.translations.PageEmbeddingTypeTranslatableEntity;
 import app.wooportal.server.core.base.BaseEntity;
@@ -54,10 +54,10 @@ public class PageEmbeddingTypeEntity extends BaseEntity {
   
   @ManyToMany(fetch = FetchType.LAZY)
   @JoinTable(name = "page_embedding_types_attribute_types",
-    joinColumns = @JoinColumn(name = "embedding_attribute_id"),
-    inverseJoinColumns = @JoinColumn(name = "media_id"),
-    uniqueConstraints = {@UniqueConstraint(columnNames = {"embedding_attribute_id", "media_id"})})
+    joinColumns = @JoinColumn(name = "embedding_type_id"),
+    inverseJoinColumns = @JoinColumn(name = "attribute_type_id"),
+    uniqueConstraints = {@UniqueConstraint(columnNames = {"embedding_type_id", "attribute_type_id"})})
   @CollectionId(column = @Column(name = "id"), type = @Type(type = "uuid-char"), generator = "UUID")
-  private List<PageAttributeEntity> attributes = new ArrayList<>();
+  private List<PageAttributeTypeEntity> attributes = new ArrayList<>();
 
 }

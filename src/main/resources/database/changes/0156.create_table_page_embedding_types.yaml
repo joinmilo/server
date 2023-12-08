@@ -1,7 +1,7 @@
 databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
-      id: 0157.create_table_page_embedding_types.1
+      id: 0156.create_table_page_embedding_types.1
       author: codeschluss
       changes:
         - createTable:
@@ -39,7 +39,7 @@ databaseChangeLog:
             sql: ALTER TABLE page_embedding_types CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
   - changeSet:
-      id: 0157.create_table_page_embedding_types.2
+      id: 0156.create_table_page_embedding_types.2
       author: codeschluss
       changes:
         - createTable:
@@ -82,7 +82,7 @@ databaseChangeLog:
             sql: ALTER TABLE page_embedding_types_attribute_types CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
   - changeSet:
-      id: 0157.create_table_page_embedding_types.3
+      id: 0156.create_table_page_embedding_types.3
       author: codeschluss
       changes:
         - createIndex:
@@ -92,7 +92,7 @@ databaseChangeLog:
             indexName: idx_fk_page_embedding_types_attribute_types_embedding_type_id
             tableName: page_embedding_types_attribute_types
   - changeSet:
-      id: 0157.create_table_page_embedding_types.4
+      id: 0156.create_table_page_embedding_types.4
       author: codeschluss
       changes:
         - addForeignKeyConstraint:
@@ -108,7 +108,7 @@ databaseChangeLog:
             validate: true   
 
   - changeSet:
-      id: 0157.create_table_page_embedding_types.5
+      id: 0156.create_table_page_embedding_types.5
       author: codeschluss
       changes:
         - createIndex:
@@ -118,7 +118,7 @@ databaseChangeLog:
             indexName: idx_fk_page_embedding_types_attribute_types_attribute_type_id
             tableName: page_embedding_types_attribute_types
   - changeSet:
-      id: 0157.create_table_page_embedding_types.6
+      id: 0156.create_table_page_embedding_types.6
       author: codeschluss
       changes:
         - addForeignKeyConstraint:
