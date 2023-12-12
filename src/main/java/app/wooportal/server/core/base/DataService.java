@@ -505,7 +505,9 @@ public abstract class DataService<E extends BaseEntity, P extends PredicateBuild
 
   @SuppressWarnings("unchecked")
   protected void saveOneToManyField(E persisted, E newEntity, String fieldName, JsonNode context) {
-    var persistedSubEntities = ReflectionUtils.get(fieldName, persisted);
+    var persistedSubEntities = ReflectionUtils.get(fieldName, persisted)
+        .map(collection -> new HashSet<E>((Collection<E>) collection));
+    
     var newSubEntities = ReflectionUtils.get(fieldName, newEntity);
     var owningField = PersistenceUtils.mappedBy(persisted, fieldName);
     
@@ -545,7 +547,7 @@ public abstract class DataService<E extends BaseEntity, P extends PredicateBuild
       } 
     }
   }
-  
+
   protected Optional<Object> find(Collection<E> collection, E element) {
     if (collection != null && !collection.isEmpty() && element != null) {
       for (E collectionElement : collection) {
