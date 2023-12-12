@@ -1,13 +1,14 @@
 package app.wooportal.server.base.cms.page.attributeReference;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import app.wooportal.server.base.cms.components.plugin.PluginEntity;
 import app.wooportal.server.base.cms.page.attribute.PageAttributeEntity;
 import app.wooportal.server.core.base.BaseEntity;
+import app.wooportal.server.core.media.base.MediaEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,12 +24,16 @@ import lombok.Setter;
 public class PageAttributeReferenceEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
-
-  @Column(nullable = false)
-  private String referenceId;
   
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(nullable = false)
   protected PageAttributeEntity attribute;
+  
+  @ManyToOne(fetch = FetchType.LAZY)
+  protected MediaEntity media;
+
+  @ManyToOne(fetch = FetchType.LAZY)
+  protected PluginEntity plugin;
+  
 
 }

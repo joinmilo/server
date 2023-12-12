@@ -68,7 +68,7 @@ databaseChangeLog:
         - sql:
             comment: Add page attribute references for existing plugin page embeddings
             splitStatements: true
-            sql: insert into page_attribute_references(id, attribute_id, reference_id)
+            sql: insert into page_attribute_references(id, attribute_id, plugin_id)
                  select uuid(), a.id, e.plugin_id
                  from page_attributes a
                  left join page_embeddings e on a.embedding_id = e.id;

@@ -31,9 +31,10 @@ databaseChangeLog:
                   name: attribute_id
                   type: CHAR(36)
               - column:
-                  constraints:
-                    nullable: false
-                  name: reference_id
+                  name: media_id
+                  type: CHAR(36)
+              - column:
+                  name: plugin_id
                   type: CHAR(36)
             tableName: page_attribute_references
         - sql:
@@ -67,4 +68,56 @@ databaseChangeLog:
             onDelete: CASCADE
             referencedColumnNames: id
             referencedTableName: page_attributes
+            validate: true
+            
+  - changeSet:
+      id: 0160.create_table_page_attribute_references.4
+      author: codeschluss
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: media_id
+            indexName: idx_fk_page_attribute_references_media_id
+            tableName: page_attribute_references
+  - changeSet:
+      id: 0160.create_table_page_attribute_references.5
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: media_id
+            baseTableName: page_attribute_references
+            constraintName: fk_page_attribute_references_media_id
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: media
+            validate: true
+            
+  - changeSet:
+      id: 0160.create_table_page_attribute_references.6
+      author: codeschluss
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: plugin_id
+            indexName: idx_fk_page_attribute_references_plugin_id
+            tableName: page_attribute_references
+  - changeSet:
+      id: 0160.create_table_page_attribute_references.7
+      author: codeschluss
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: plugin_id
+            baseTableName: page_attribute_references
+            constraintName: fk_page_attribute_references_plugin_id
+            deferrable: false
+            initiallyDeferred: false
+            onUpdate: CASCADE
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: plugins
             validate: true
