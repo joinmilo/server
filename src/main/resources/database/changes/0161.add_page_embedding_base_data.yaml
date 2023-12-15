@@ -12,7 +12,9 @@ databaseChangeLog:
               ('96d0aecb-d0da-44ac-8ce0-c9af368df210', 'text'),
               ('9d0c13a1-9309-42a6-a538-7cb79aa774dc', 'title'),
               ('09aa5167-adf5-4130-988c-122b52206fc7', 'button'),
-              ('2ee51b66-33e4-4ba0-887d-b597bac3f40f', 'reference');
+              ('2ee51b66-33e4-4ba0-887d-b597bac3f40f', 'plugin'),
+              ('fc457379-cc65-4505-bd84-1f53e371fffd', 'media'),
+              ('edb4add2-35ee-48d2-8053-c86f53f4ee47', 'multimedia');
 
   - changeSet:
       id: 0161.add_page_embedding_types.2
@@ -92,29 +94,28 @@ databaseChangeLog:
         - sql:
             comment: Add data page_attribute_types
             splitStatements: true
-            sql: insert into page_embedding_types_attribute_types(`id`, `embedding_type_id`, `attribute_type_id`) values
+            sql: insert into page_embedding_types_attribute_types(`id`, `embedding_type_id`, `attribute_type_id`) values              
             
               /* PLUGIN */
-              (uuid(), '447eea1a-c2e3-4423-a9f3-eaf1560ac6c0', '2ee51b66-33e4-4ba0-887d-b597bac3f40f'),
+              (uuid(), '447eea1a-c2e3-4423-a9f3-eaf1560ac6c0', '2ee51b66-33e4-4ba0-887d-b597bac3f40f'), /* plugin */
               
               /* TEXT_MEDIA */
-              (uuid(), '25a08271-e328-42b2-a701-2bca56b8d526', '96d0aecb-d0da-44ac-8ce0-c9af368df210'),
-              (uuid(), '25a08271-e328-42b2-a701-2bca56b8d526', '2ee51b66-33e4-4ba0-887d-b597bac3f40f'),
-              (uuid(), '25a08271-e328-42b2-a701-2bca56b8d526', '9d0c13a1-9309-42a6-a538-7cb79aa774dc'),
-              (uuid(), '25a08271-e328-42b2-a701-2bca56b8d526', '09aa5167-adf5-4130-988c-122b52206fc7'),
+              (uuid(), '25a08271-e328-42b2-a701-2bca56b8d526', '96d0aecb-d0da-44ac-8ce0-c9af368df210'), /* text */
+              (uuid(), '25a08271-e328-42b2-a701-2bca56b8d526', '9d0c13a1-9309-42a6-a538-7cb79aa774dc'), /* title */
+              (uuid(), '25a08271-e328-42b2-a701-2bca56b8d526', '09aa5167-adf5-4130-988c-122b52206fc7'), /* button */
+              (uuid(), '25a08271-e328-42b2-a701-2bca56b8d526', 'fc457379-cc65-4505-bd84-1f53e371fffd'), /* media */
               
               /* EXPANSION */
-              (uuid(), '320321fd-dcf0-4f6e-a61b-504fb0606018', '96d0aecb-d0da-44ac-8ce0-c9af368df210'),
-              (uuid(), '320321fd-dcf0-4f6e-a61b-504fb0606018', '2ee51b66-33e4-4ba0-887d-b597bac3f40f'),
-              (uuid(), '320321fd-dcf0-4f6e-a61b-504fb0606018', '9d0c13a1-9309-42a6-a538-7cb79aa774dc'),
-              (uuid(), '320321fd-dcf0-4f6e-a61b-504fb0606018', '09aa5167-adf5-4130-988c-122b52206fc7'),
+              (uuid(), '320321fd-dcf0-4f6e-a61b-504fb0606018', '96d0aecb-d0da-44ac-8ce0-c9af368df210'), /* text */
+              (uuid(), '320321fd-dcf0-4f6e-a61b-504fb0606018', '9d0c13a1-9309-42a6-a538-7cb79aa774dc'), /* title */
+              (uuid(), '320321fd-dcf0-4f6e-a61b-504fb0606018', '09aa5167-adf5-4130-988c-122b52206fc7'), /* button */
 
               /* MEDIA_SLIDER */
-              (uuid(), 'b2cbc52b-11d3-47aa-827c-8a88b1747c7f', '2ee51b66-33e4-4ba0-887d-b597bac3f40f'),
-              (uuid(), 'b2cbc52b-11d3-47aa-827c-8a88b1747c7f', '9d0c13a1-9309-42a6-a538-7cb79aa774dc'),
-              (uuid(), 'b2cbc52b-11d3-47aa-827c-8a88b1747c7f', '09aa5167-adf5-4130-988c-122b52206fc7'),
+              (uuid(), 'b2cbc52b-11d3-47aa-827c-8a88b1747c7f', '9d0c13a1-9309-42a6-a538-7cb79aa774dc'), /* title */
+              (uuid(), 'b2cbc52b-11d3-47aa-827c-8a88b1747c7f', '09aa5167-adf5-4130-988c-122b52206fc7'), /* button */
+              (uuid(), 'b2cbc52b-11d3-47aa-827c-8a88b1747c7f', 'edb4add2-35ee-48d2-8053-c86f53f4ee47'), /* multimedia */
               
               /* TEXT_BANNER */              
-              (uuid(), '42a9b716-c7da-48f1-a661-51bc7d86c6bc', '96d0aecb-d0da-44ac-8ce0-c9af368df210'),
-              (uuid(), '42a9b716-c7da-48f1-a661-51bc7d86c6bc', '9d0c13a1-9309-42a6-a538-7cb79aa774dc'),
-              (uuid(), '42a9b716-c7da-48f1-a661-51bc7d86c6bc', '09aa5167-adf5-4130-988c-122b52206fc7');
+              (uuid(), '42a9b716-c7da-48f1-a661-51bc7d86c6bc', '96d0aecb-d0da-44ac-8ce0-c9af368df210'), /* text */
+              (uuid(), '42a9b716-c7da-48f1-a661-51bc7d86c6bc', '9d0c13a1-9309-42a6-a538-7cb79aa774dc'), /* title */
+              (uuid(), '42a9b716-c7da-48f1-a661-51bc7d86c6bc', '09aa5167-adf5-4130-988c-122b52206fc7'); /* button */
