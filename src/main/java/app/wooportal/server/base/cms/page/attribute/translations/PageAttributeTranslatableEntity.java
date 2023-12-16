@@ -1,6 +1,5 @@
 package app.wooportal.server.base.cms.page.attribute.translations;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import app.wooportal.server.base.cms.page.attribute.PageAttributeEntity;
@@ -21,7 +20,6 @@ public class PageAttributeTranslatableEntity extends TranslatableEntity<PageAttr
 
   private static final long serialVersionUID = 1L;
 
-  @Column(nullable = false)
   private String content;
 
 }

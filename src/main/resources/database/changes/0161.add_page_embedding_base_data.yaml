@@ -28,7 +28,9 @@ databaseChangeLog:
               ('25a08271-e328-42b2-a701-2bca56b8d526', 'text_media'),
               ('320321fd-dcf0-4f6e-a61b-504fb0606018', 'expansion'),
               ('b2cbc52b-11d3-47aa-827c-8a88b1747c7f', 'media_slider'),
-              ('42a9b716-c7da-48f1-a661-51bc7d86c6bc', 'text_banner');
+              ('42a9b716-c7da-48f1-a661-51bc7d86c6bc', 'text_banner'),
+              ('b7aa1c05-0de4-4940-a3b8-8920ac22a0e0', 'box'),
+              ('6eec1fa6-29ce-4060-93f6-400386d80872', 'hero_section');
               
   - changeSet:
       id: 0161.add_page_embedding_types.3
@@ -87,6 +89,26 @@ databaseChangeLog:
                  from languages l
                  WHERE l.locale = 'en';
                  
+                 insert into page_embedding_type_translatables (id, parent_id, language_id, name, description)
+                 select uuid(), 'b7aa1c05-0de4-4940-a3b8-8920ac22a0e0', l.id, 'Box', 'Eine Kastendarstellung mit Medientitel, Überschrift und Text.'
+                 from languages l
+                 WHERE l.locale = 'de';
+                 
+                 insert into page_embedding_type_translatables (id, parent_id, language_id, name, description)
+                 select uuid(), 'b7aa1c05-0de4-4940-a3b8-8920ac22a0e0', l.id, 'Box', 'A box representation with media title, heading and text.'
+                 from languages l
+                 WHERE l.locale = 'en';
+                 
+                 insert into page_embedding_type_translatables (id, parent_id, language_id, name, description)
+                 select uuid(), '6eec1fa6-29ce-4060-93f6-400386d80872', l.id, 'Hero Section', 'Auffälliges Bild oder Video, begleitet von prägnantem Text und Call-to-Action-Elementen.'
+                 from languages l
+                 WHERE l.locale = 'de';
+                 
+                 insert into page_embedding_type_translatables (id, parent_id, language_id, name, description)
+                 select uuid(), '6eec1fa6-29ce-4060-93f6-400386d80872', l.id, 'Hero Section', 'Eye-catching image or video accompanied by concise text and call-to-action elements.'
+                 from languages l
+                 WHERE l.locale = 'en';
+                 
   - changeSet:
       id: 0161.add_page_embedding_types.4
       author: codeschluss
@@ -118,4 +140,15 @@ databaseChangeLog:
               /* TEXT_BANNER */              
               (uuid(), '42a9b716-c7da-48f1-a661-51bc7d86c6bc', '96d0aecb-d0da-44ac-8ce0-c9af368df210'), /* text */
               (uuid(), '42a9b716-c7da-48f1-a661-51bc7d86c6bc', '9d0c13a1-9309-42a6-a538-7cb79aa774dc'), /* title */
-              (uuid(), '42a9b716-c7da-48f1-a661-51bc7d86c6bc', '09aa5167-adf5-4130-988c-122b52206fc7'); /* button */
+              (uuid(), '42a9b716-c7da-48f1-a661-51bc7d86c6bc', '09aa5167-adf5-4130-988c-122b52206fc7'), /* button */
+              
+              /* BOX */
+              (uuid(), 'b7aa1c05-0de4-4940-a3b8-8920ac22a0e0', '96d0aecb-d0da-44ac-8ce0-c9af368df210'), /* text */
+              (uuid(), 'b7aa1c05-0de4-4940-a3b8-8920ac22a0e0', '9d0c13a1-9309-42a6-a538-7cb79aa774dc'), /* title */
+              (uuid(), 'b7aa1c05-0de4-4940-a3b8-8920ac22a0e0', 'fc457379-cc65-4505-bd84-1f53e371fffd'), /* media */
+              
+              /* HERO_SECTION */
+              (uuid(), '6eec1fa6-29ce-4060-93f6-400386d80872', '96d0aecb-d0da-44ac-8ce0-c9af368df210'), /* text */
+              (uuid(), '6eec1fa6-29ce-4060-93f6-400386d80872', '9d0c13a1-9309-42a6-a538-7cb79aa774dc'), /* title */
+              (uuid(), '6eec1fa6-29ce-4060-93f6-400386d80872', 'fc457379-cc65-4505-bd84-1f53e371fffd'), /* media */
+              (uuid(), '6eec1fa6-29ce-4060-93f6-400386d80872', '09aa5167-adf5-4130-988c-122b52206fc7'); /* button */
