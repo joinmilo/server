@@ -48,7 +48,25 @@ databaseChangeLog:
         - sql:
             comment: Set every existing page embedding as plugin
             splitStatements: true
-            sql: update page_embeddings set type_id = '447eea1a-c2e3-4423-a9f3-eaf1560ac6c0';
+            sql: update page_embeddings pe
+                 inner join plugins p on p.id = pe.plugin_id
+                 set type_id = '447eea1a-c2e3-4423-a9f3-eaf1560ac6c0',
+                     label = CASE  
+                        when p.code = 'articles' then 'Artikel'
+                        when p.code = 'authors' then 'Autoren'
+                        when p.code = 'calendar' then 'Kalender'
+                        when p.code = 'contests' then 'Wettbewerbe'
+                        when p.code = 'deals' then 'Kleinanzeigen'
+                        when p.code = 'events' then 'Events'
+                        when p.code = 'forms' then 'Formulare'
+                        when p.code = 'guestarticle' then 'Gastbeitrag'
+                        when p.code = 'map' then 'Karte'
+                        when p.code = 'media' then 'Mediathek'
+                        when p.code = 'organisations' then 'Einrichtungen'
+                        when p.code = 'reports' then 'Feedback'
+                        when p.code = 'surveys' then 'Umfragen'
+                        else ''
+                     END 
  
   - changeSet:
       id: 0162.migrate_page_embeddings.5
