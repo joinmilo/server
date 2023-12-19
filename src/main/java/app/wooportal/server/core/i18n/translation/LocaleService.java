@@ -40,9 +40,11 @@ public class LocaleService {
     if (request != null) {
       var requestHeader = request.getHeader(HttpHeaders.ACCEPT_LANGUAGE);
       
-      var extractedLanguages = requestHeader.trim().split(",");
-      for (var unprepared : extractedLanguages) {
-        headers.add(new LanguageHeader(unprepared));
+      if (requestHeader != null && !requestHeader.isBlank()) {        
+        var extractedLanguages = requestHeader.trim().split(",");
+        for (var unprepared : extractedLanguages) {
+          headers.add(new LanguageHeader(unprepared));
+        }
       }
     }
     
