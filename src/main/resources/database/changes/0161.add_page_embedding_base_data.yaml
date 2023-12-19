@@ -9,12 +9,13 @@ databaseChangeLog:
             comment: Add page attribute types
             splitStatements: true
             sql: insert into page_attribute_types(`id`, `code`) values
+              ('09aa5167-adf5-4130-988c-122b52206fc7', 'button'),
               ('96d0aecb-d0da-44ac-8ce0-c9af368df210', 'text'),
               ('9d0c13a1-9309-42a6-a538-7cb79aa774dc', 'title'),
-              ('09aa5167-adf5-4130-988c-122b52206fc7', 'button'),
               ('2ee51b66-33e4-4ba0-887d-b597bac3f40f', 'plugin'),
               ('fc457379-cc65-4505-bd84-1f53e371fffd', 'media'),
-              ('edb4add2-35ee-48d2-8053-c86f53f4ee47', 'multimedia');
+              ('edb4add2-35ee-48d2-8053-c86f53f4ee47', 'multimedia'),
+              ('3464bf79-727f-4121-abdb-732fd620eb6e', 'url');
 
   - changeSet:
       id: 0161.add_page_embedding_types.2
@@ -125,22 +126,26 @@ databaseChangeLog:
               (uuid(), '25a08271-e328-42b2-a701-2bca56b8d526', '96d0aecb-d0da-44ac-8ce0-c9af368df210'), /* text */
               (uuid(), '25a08271-e328-42b2-a701-2bca56b8d526', '9d0c13a1-9309-42a6-a538-7cb79aa774dc'), /* title */
               (uuid(), '25a08271-e328-42b2-a701-2bca56b8d526', '09aa5167-adf5-4130-988c-122b52206fc7'), /* button */
+              (uuid(), '25a08271-e328-42b2-a701-2bca56b8d526', '3464bf79-727f-4121-abdb-732fd620eb6e'), /* url */
               (uuid(), '25a08271-e328-42b2-a701-2bca56b8d526', 'fc457379-cc65-4505-bd84-1f53e371fffd'), /* media */
               
               /* EXPANSION */
               (uuid(), '320321fd-dcf0-4f6e-a61b-504fb0606018', '96d0aecb-d0da-44ac-8ce0-c9af368df210'), /* text */
               (uuid(), '320321fd-dcf0-4f6e-a61b-504fb0606018', '9d0c13a1-9309-42a6-a538-7cb79aa774dc'), /* title */
               (uuid(), '320321fd-dcf0-4f6e-a61b-504fb0606018', '09aa5167-adf5-4130-988c-122b52206fc7'), /* button */
+              (uuid(), '320321fd-dcf0-4f6e-a61b-504fb0606018', '3464bf79-727f-4121-abdb-732fd620eb6e'), /* url */
 
               /* MEDIA_SLIDER */
               (uuid(), 'b2cbc52b-11d3-47aa-827c-8a88b1747c7f', '9d0c13a1-9309-42a6-a538-7cb79aa774dc'), /* title */
               (uuid(), 'b2cbc52b-11d3-47aa-827c-8a88b1747c7f', '09aa5167-adf5-4130-988c-122b52206fc7'), /* button */
               (uuid(), 'b2cbc52b-11d3-47aa-827c-8a88b1747c7f', 'edb4add2-35ee-48d2-8053-c86f53f4ee47'), /* multimedia */
+              (uuid(), 'b2cbc52b-11d3-47aa-827c-8a88b1747c7f', '3464bf79-727f-4121-abdb-732fd620eb6e'), /* url */
               
               /* TEXT_BANNER */              
               (uuid(), '42a9b716-c7da-48f1-a661-51bc7d86c6bc', '96d0aecb-d0da-44ac-8ce0-c9af368df210'), /* text */
               (uuid(), '42a9b716-c7da-48f1-a661-51bc7d86c6bc', '9d0c13a1-9309-42a6-a538-7cb79aa774dc'), /* title */
               (uuid(), '42a9b716-c7da-48f1-a661-51bc7d86c6bc', '09aa5167-adf5-4130-988c-122b52206fc7'), /* button */
+              (uuid(), '42a9b716-c7da-48f1-a661-51bc7d86c6bc', '3464bf79-727f-4121-abdb-732fd620eb6e'), /* url */
               
               /* BOX */
               (uuid(), 'b7aa1c05-0de4-4940-a3b8-8920ac22a0e0', '96d0aecb-d0da-44ac-8ce0-c9af368df210'), /* text */
@@ -151,4 +156,5 @@ databaseChangeLog:
               (uuid(), '6eec1fa6-29ce-4060-93f6-400386d80872', '96d0aecb-d0da-44ac-8ce0-c9af368df210'), /* text */
               (uuid(), '6eec1fa6-29ce-4060-93f6-400386d80872', '9d0c13a1-9309-42a6-a538-7cb79aa774dc'), /* title */
               (uuid(), '6eec1fa6-29ce-4060-93f6-400386d80872', 'fc457379-cc65-4505-bd84-1f53e371fffd'), /* media */
-              (uuid(), '6eec1fa6-29ce-4060-93f6-400386d80872', '09aa5167-adf5-4130-988c-122b52206fc7'); /* button */
+              (uuid(), '6eec1fa6-29ce-4060-93f6-400386d80872', '09aa5167-adf5-4130-988c-122b52206fc7'), /* button */
+              (uuid(), '6eec1fa6-29ce-4060-93f6-400386d80872', '3464bf79-727f-4121-abdb-732fd620eb6e'); /* url */

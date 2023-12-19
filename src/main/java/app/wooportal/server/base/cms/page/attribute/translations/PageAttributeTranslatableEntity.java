@@ -20,6 +20,6 @@ public class PageAttributeTranslatableEntity extends TranslatableEntity<PageAttr
 
   private static final long serialVersionUID = 1L;
 
-  private String content;
+  private String translatable;
 
 }

@@ -26,6 +26,9 @@ databaseChangeLog:
                   name: modified
                   type: datetime
               - column:
+                  name: value
+                  type: TEXT
+              - column:
                   constraints:
                     nullable: false
                   name: type_id

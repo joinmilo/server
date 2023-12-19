@@ -7,7 +7,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import org.hibernate.annotations.GenericGenerator;
 import app.wooportal.server.base.cms.page.attribute.translations.PageAttributeTranslatableEntity;
 import app.wooportal.server.base.cms.page.attributeReference.PageAttributeReferenceEntity;
 import app.wooportal.server.base.cms.page.attributeType.PageAttributeTypeEntity;
@@ -26,13 +25,14 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Table(name = "page_attributes")
-@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
 public class PageAttributeEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
   
   @Translatable
-  private String content;
+  private String translatable;
+  
+  private String value;
   
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(nullable = false)

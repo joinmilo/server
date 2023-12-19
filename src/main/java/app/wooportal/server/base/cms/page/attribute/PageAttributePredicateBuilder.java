@@ -14,7 +14,7 @@ public class PageAttributePredicateBuilder
 
   @Override
   public BooleanExpression freeSearch(String term) {
-    return query.translatables.any().content.likeIgnoreCase(term);
+    return query.translatables.any().translatable.likeIgnoreCase(term);
   }
 
 }
