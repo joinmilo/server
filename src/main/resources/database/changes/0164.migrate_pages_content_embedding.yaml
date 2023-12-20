@@ -1,0 +1,91 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+ 
+  - changeSet:
+      id: 0164.migrate_pages_content_embedding.1
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Increase all exisiting embeddings order 
+            splitStatements: true
+            sql: update page_embeddings pe
+                 inner join pages p on p.id = pe.page_id
+                 set pe.`order` = case 
+                    when pe.`order` > 0 then pe.`order` + 1
+                    else 1
+                 end
+                 where p.is_landing <> true;
+                 
+  - changeSet:
+      id: 0164.migrate_pages_content_embedding.2
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Create box embedding for every other page
+            splitStatements: true
+            sql: insert into page_embeddings(`id`, `order`, `label`, `page_id`, `type_id`)
+                 select uuid(), 0, 'Inhalt', p.id, 'b7aa1c05-0de4-4940-a3b8-8920ac22a0e0'
+                 from pages p where p.is_landing <> true;
+                 
+  - changeSet:
+      id: 0164.migrate_pages_content_embedding.3
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Create text attribute for content box
+            splitStatements: true
+            sql: insert into page_attributes(`id`, `type_id`, `embedding_id`)
+                 select uuid(), '96d0aecb-d0da-44ac-8ce0-c9af368df210', pe.id
+                 from pages p
+                 inner join page_embeddings pe on pe.page_id = p.id
+                 where p.is_landing <> true;
+                 
+                 insert into page_attribute_translatables(`id`, `parent_id`, `translatable`, `language_id`)
+                 select uuid(), pa.id, pt.content, pt.language_id 
+                 from page_attributes pa
+                 inner join page_embeddings pe on pe.id = pa.embedding_id
+                 inner join pages p on p.id = pe.page_id
+                 inner join page_translatables pt on pt.parent_id = p.id
+                 where p.is_landing <> true and pa.type_id = '96d0aecb-d0da-44ac-8ce0-c9af368df210';
+ 
+  - changeSet:
+      id: 0164.migrate_pages_content_embedding.4
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Create title attribute for content box
+            splitStatements: true
+            sql: insert into page_attributes(`id`, `type_id`, `embedding_id`)
+                 select uuid(), '9d0c13a1-9309-42a6-a538-7cb79aa774dc', pe.id
+                 from pages p
+                 inner join page_embeddings pe on pe.page_id = p.id
+                 where p.is_landing <> true;
+                 
+                 insert into page_attribute_translatables(`id`, `parent_id`, `translatable`, `language_id`)
+                 select uuid(), pa.id, pt.name, pt.language_id 
+                 from page_attributes pa
+                 inner join page_embeddings pe on pe.id = pa.embedding_id
+                 inner join pages p on p.id = pe.page_id
+                 inner join page_translatables pt on pt.parent_id = p.id
+                 where p.is_landing <> true and pa.type_id = '9d0c13a1-9309-42a6-a538-7cb79aa774dc';
+                 
+  - changeSet:
+      id: 0164.migrate_pages_content_embedding.5
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Create media attribute for content box
+            splitStatements: true
+            sql: insert into page_attributes(`id`, `type_id`, `embedding_id`)
+                 select uuid(), 'fc457379-cc65-4505-bd84-1f53e371fffd', pe.id
+                 from pages p
+                 inner join page_embeddings pe on pe.page_id = p.id
+                 where p.is_landing <> true;
+                 
+                 insert into page_attribute_references(`id`, `attribute_id`, `media_id`)
+                 select uuid(), pa.id, pm.media_id
+                 from page_attributes pa
+                 inner join page_embeddings pe on pe.id = pa.embedding_id
+                 inner join pages p on p.id = pe.page_id
+                 inner join page_media pm on pm.page_id = p.id
+                 where pm.title = true and p.is_landing <> true and pa.type_id = 'fc457379-cc65-4505-bd84-1f53e371fffd';

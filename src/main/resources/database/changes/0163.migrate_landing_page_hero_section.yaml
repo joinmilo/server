@@ -1,0 +1,114 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+ 
+  - changeSet:
+      id: 0163.migrate_landing_page_hero_section.1
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Increase all exisiting embeddings order 
+            splitStatements: true
+            sql: update page_embeddings pe
+                 inner join pages p on p.id = pe.page_id
+                 set pe.`order` = case 
+                    when pe.`order` > 0 then pe.`order` + 1
+                    else 1
+                 end
+                 where p.is_landing = true;
+                 
+  - changeSet:
+      id: 0163.migrate_landing_page_hero_section.2
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Create hero section embedding
+            splitStatements: true
+            sql: insert into page_embeddings(`id`, `order`, `label`, `page_id`, `type_id`)
+                 select 'ab6f567b-b84b-4239-8a1f-c1ef07f53074', 0, 'Hero Section', p.id, '6eec1fa6-29ce-4060-93f6-400386d80872'
+                 from pages p where p.is_landing = true;
+                 
+  - changeSet:
+      id: 0163.migrate_landing_page_hero_section.3
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Create text attribute for hero section
+            splitStatements: true
+            sql: insert into page_attributes(`id`, `type_id`, `embedding_id`) values
+                 ('98f1cc81-0a87-406e-9839-bc828fd0379e', '96d0aecb-d0da-44ac-8ce0-c9af368df210', 'ab6f567b-b84b-4239-8a1f-c1ef07f53074');
+                 
+                 insert into page_attribute_translatables(`id`, `parent_id`, `translatable`, `language_id`)
+                 select uuid(), pa.id, pt.short_description, pt.language_id 
+                 from page_attributes pa
+                 inner join page_embeddings pe on pe.id = pa.embedding_id
+                 inner join pages p on p.id = pe.page_id
+                 inner join page_translatables pt on pt.parent_id = p.id
+                 where pa.id = '98f1cc81-0a87-406e-9839-bc828fd0379e';
+ 
+  - changeSet:
+      id: 0163.migrate_landing_page_hero_section.4
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Create title attribute for hero section
+            splitStatements: true
+            sql: insert into page_attributes(`id`, `type_id`, `embedding_id`) values
+                 ('709c2d44-aa48-47cf-a7e9-ab5f5c358e3c', '9d0c13a1-9309-42a6-a538-7cb79aa774dc', 'ab6f567b-b84b-4239-8a1f-c1ef07f53074');
+                 
+                 insert into page_attribute_translatables(`id`, `parent_id`, `translatable`, `language_id`)
+                 select uuid(), pa.id, pt.name, pt.language_id 
+                 from page_attributes pa
+                 inner join page_embeddings pe on pe.id = pa.embedding_id
+                 inner join pages p on p.id = pe.page_id
+                 inner join page_translatables pt on pt.parent_id = p.id
+                 where pa.id = '709c2d44-aa48-47cf-a7e9-ab5f5c358e3c';
+                 
+  - changeSet:
+      id: 0163.migrate_landing_page_hero_section.5
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Create button attribute for hero section
+            splitStatements: true
+            sql: insert into page_attributes(`id`, `type_id`, `embedding_id`) values
+                 ('4e37cc94-ea29-4a0b-8c55-8a9ab8d8105a', '09aa5167-adf5-4130-988c-122b52206fc7', 'ab6f567b-b84b-4239-8a1f-c1ef07f53074');
+                 
+                 insert into page_attribute_translatables(`id`, `parent_id`, `translatable`, `language_id`)
+                 select uuid(), pa.id, pt.call_text, pt.language_id 
+                 from page_attributes pa
+                 inner join page_embeddings pe on pe.id = pa.embedding_id
+                 inner join pages p on p.id = pe.page_id
+                 inner join page_translatables pt on pt.parent_id = p.id
+                 where pa.id = '4e37cc94-ea29-4a0b-8c55-8a9ab8d8105a';
+                 
+  - changeSet:
+      id: 0163.migrate_landing_page_hero_section.6
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Create url attribute for hero section
+            splitStatements: true
+            sql: insert into page_attributes(`id`, `type_id`, `embedding_id`, `value`)
+                 select '1aacd674-3057-4ba2-9962-bf7f032cc087', '3464bf79-727f-4121-abdb-732fd620eb6e', pe.id, p.call_url
+                 from page_embeddings pe
+                 inner join pages p on p.id = pe.page_id
+                 where pe.id = 'ab6f567b-b84b-4239-8a1f-c1ef07f53074';
+                 
+  - changeSet:
+      id: 0163.migrate_landing_page_hero_section.7
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Create media attribute for hero section
+            splitStatements: true
+            sql: insert into page_attributes(`id`, `type_id`, `embedding_id`) values
+                 ('97c8d28f-94a2-4361-891e-69f40e2265eb', 'fc457379-cc65-4505-bd84-1f53e371fffd', 'ab6f567b-b84b-4239-8a1f-c1ef07f53074');
+                 
+                 insert into page_attribute_references(`id`, `attribute_id`, `media_id`)
+                 select uuid(), pa.id, pm.media_id
+                 from page_attributes pa
+                 inner join page_embeddings pe on pe.id = pa.embedding_id
+                 inner join pages p on p.id = pe.page_id
+                 inner join page_media pm on pm.page_id = p.id
+                 where pm.title = true and pa.id = '97c8d28f-94a2-4361-891e-69f40e2265eb';
+

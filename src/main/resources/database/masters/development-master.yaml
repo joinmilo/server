@@ -304,6 +304,10 @@ databaseChangeLog:
         file: database/changes/0161.add_page_embedding_base_data.yaml
     - include:
         file: database/changes/0162.migrate_page_embeddings.yaml
+    - include:
+        file: database/changes/0163.migrate_landing_page_hero_section.yaml
+    - include:
+        file: database/changes/0164.migrate_pages_content_embedding.yaml
 
     #Data section
     - include:
