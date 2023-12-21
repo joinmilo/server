@@ -1,17 +1,13 @@
 package app.wooportal.server.base.cms.page.base;
 
 import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 import org.hibernate.annotations.GenericGenerator;
 import app.wooportal.server.base.cms.components.menuItem.MenuItemEntity;
-import app.wooportal.server.base.cms.page.base.media.PageMediaEntity;
-import app.wooportal.server.base.cms.page.base.translations.PageTranslatableEntity;
 import app.wooportal.server.base.cms.page.base.visitors.PageVisitorEntity;
 import app.wooportal.server.base.cms.page.embedding.PageEmbeddingEntity;
 import app.wooportal.server.core.base.BaseEntity;
@@ -35,22 +31,13 @@ public class PageEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
   
-  @Translatable
-  private String callText;
-    
-  private String callUrl;
-  
-  @Translatable
-  private String content;
+  @SlugSource
+  private String label;
   
   @Column(nullable = false)
   private Boolean isLanding;
 
   private String metaDescription;
-  
-  @Translatable
-  @SlugSource
-  private String name;
 
   @Column(unique = true, nullable = false)
   @SlugTarget
@@ -66,11 +53,6 @@ public class PageEntity extends BaseEntity {
   private Set<MenuItemEntity> menuItems;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
-  private Set<PageTranslatableEntity> translatables;
-
-  @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
   private Set<PageVisitorEntity> visitors;
 
-  @OneToMany(fetch = FetchType.LAZY, mappedBy = "page")
-  private Set<PageMediaEntity> uploads;
 }

@@ -1,0 +1,50 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+  
+  - changeSet:
+      id: 0165.migrate_pages.1
+      author: codeschluss
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: label
+                  type: TEXT
+            tableName: pages
+
+  - changeSet:
+      id: 0165.migrate_pages.2
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Increase all exisiting embeddings order 
+            splitStatements: true
+            sql: update pages p
+                 inner join page_translatables pt on pt.parent_id = p.id
+                 inner join languages l on l.id = pt.language_id
+                 set p.label = pt.name
+                 where l.locale = 'de';
+                 
+  - changeSet:
+      id: 0165.migrate_pages.3
+      author: codeschluss
+      changes:
+        - dropColumn:
+            columnName: call_url
+            tableName: pages
+
+  - changeSet:
+      id: 0165.migrate_pages.4
+      author: codeschluss
+      changes:                 
+        - dropTable:
+            cascadeConstraints: true
+            tableName: page_translatables
+            
+  - changeSet:
+      id: 0165.migrate_pages.5
+      author: codeschluss
+      changes:                 
+        - dropTable:
+            cascadeConstraints: true
+            tableName: page_media

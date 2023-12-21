@@ -308,6 +308,8 @@ databaseChangeLog:
         file: database/changes/0163.migrate_landing_page_hero_section.yaml
     - include:
         file: database/changes/0164.migrate_pages_content_embedding.yaml
+    - include:
+        file: database/changes/0165.migrate_pages.yaml
 
     #Data section
     - include:
