@@ -336,6 +336,8 @@ databaseChangeLog:
         file: database/datasets/0010.add_organisation_configuration.yaml
     - include:
         file: database/datasets/0011.add_labels_page_embeddings.yaml
+    - include:
+        file: database/datasets/0012.add_labels_pages.yaml
         
      #Cleanups
     - include:
