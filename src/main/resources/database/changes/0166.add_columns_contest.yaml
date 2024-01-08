@@ -1,7 +1,7 @@
 databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
-      id: 0151.add_columns_contest.1
+      id: 0166.add_columns_contest.1
       author: codeschluss
       changes:
         - addColumn:
@@ -18,7 +18,7 @@ databaseChangeLog:
             tableName: contests
 
   - changeSet:
-      id: 0151.add_columns_contest.2
+      id: 0166.add_columns_contest.2
       author: codeschluss
       changes:
         - addColumn:
