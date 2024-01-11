@@ -23,6 +23,7 @@ import app.wooportal.server.core.i18n.translation.LocaleService;
 import app.wooportal.server.core.push.subscription.SubscriptionService;
 import app.wooportal.server.core.repository.DataRepository;
 import app.wooportal.server.core.security.components.role.application.PrivilegeApplicationService;
+import app.wooportal.server.core.security.components.role.base.RoleService;
 import app.wooportal.server.core.security.components.user.emailVerification.VerificationEntity;
 import app.wooportal.server.core.security.components.user.emailVerification.VerificationService;
 import app.wooportal.server.core.security.components.user.passwordReset.PasswordResetEntity;
@@ -36,26 +37,36 @@ public class UserService extends DataService<UserEntity, UserPredicateBuilder> {
   private final AuthenticationService authService;
 
   private final BCryptPasswordEncoder bcryptPasswordEncoder;
-
-  private final UserDeletionService userDeletionService;
   
   private final LocaleService localeService;
   
   private final LanguageService languageService;
+  
+  private final RoleService roleService;
+  
+  private final UserDeletionService userDeletionService;
 
-  public UserService(DataRepository<UserEntity> repo, UserPredicateBuilder predicate,
-      AuthenticationService authService, BCryptPasswordEncoder bcryptPasswordEncoder,
+  public UserService(
+      DataRepository<UserEntity> repo,
+      UserPredicateBuilder predicate,
+      AuthenticationService authService,
+      BCryptPasswordEncoder bcryptPasswordEncoder,
+      LocaleService localeService,
+      LanguageService languageService,
+      PrivilegeApplicationService privilegeApplicationService,
       PasswordResetService passwordResetService,
-      SubscriptionService subscriptionService, VerificationService verificationService,
-      PrivilegeApplicationService privilegeApplicationService, UserDeletionService userDeletionService,
-      LocaleService localeService, LanguageService languageService) {
+      RoleService roleService,
+      SubscriptionService subscriptionService,
+      UserDeletionService userDeletionService,
+      VerificationService verificationService) {
     super(repo, predicate);
 
     this.authService = authService;
     this.bcryptPasswordEncoder = bcryptPasswordEncoder;
-    this.userDeletionService = userDeletionService;
     this.localeService = localeService;
     this.languageService = languageService;
+    this.roleService = roleService;
+    this.userDeletionService = userDeletionService;
 
     addService("passwordResets", passwordResetService);
     addService("subscriptions", subscriptionService);
@@ -99,6 +110,20 @@ public class UserService extends DataService<UserEntity, UserPredicateBuilder> {
       newEntity.setLanguage(result.get());
       addContext("language", context);
     }
+  }
+  
+  public Boolean addRole(
+      String userId,
+      String roleId) {
+    var user = getById(userId);
+    var role = roleService.getById(roleId);
+    if (user.isPresent() && role.isPresent()
+        && !user.get().getRoles().contains(role.get())) {
+      user.get().getRoles().add(role.get());
+      repo.save(user.get());
+      return true;
+    }
+    return false;
   }
 
   public Boolean createPasswordReset(String email) {
@@ -207,5 +232,6 @@ public class UserService extends DataService<UserEntity, UserPredicateBuilder> {
     return characterSpaceSize;
 
   }
+
 }
 

@@ -2,9 +2,7 @@ package app.wooportal.server.core.security.components.user;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.stereotype.Component;
-
 import app.wooportal.server.base.userDeletion.base.UserDeletionEntity;
 import app.wooportal.server.core.base.CrudApi;
 import app.wooportal.server.core.base.dto.listing.FilterSortPaginate;
@@ -71,6 +69,14 @@ public class UserApi extends CrudApi<UserEntity, UserService> {
   @Authenticated
   public Boolean deleteMe(String password, UserDeletionEntity userDeletion ) {
     return service.deleteMe(password, userDeletion);
+  }
+  
+  @GraphQLMutation(name = "addUserRole")
+  @UserAdminPermission
+  public Boolean addUserRole(
+      String userId,
+      String roleId) {
+    return service.addRole(userId, roleId);
   }
 
   @GraphQLMutation(name = "sendPasswordReset")
