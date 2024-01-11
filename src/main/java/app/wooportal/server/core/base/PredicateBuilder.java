@@ -53,6 +53,19 @@ public abstract class PredicateBuilder<T extends EntityPathBase<?>, E extends Ba
     return result.get();
   }
   
+  public BooleanExpression withoutId(String id) {
+    if (id == null || id.isBlank()) {
+      return null;
+    }
+    
+    var result = ReflectionUtils.get("id", query).map(value -> ((StringPath) value).ne(id));
+    if (result.isEmpty()) {
+      throw new RuntimeException("Entity has no field id");
+    }
+    
+    return result.get();
+  }
+  
   public Predicate withExample(E entity) {
     var builder = new BooleanBuilder();
     matchEntity(entity, query, builder);

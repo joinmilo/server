@@ -19,4 +19,28 @@ public class PageService
     addService("embeddings", embeddingService);
     addService("menuItems", menuItemService);
   }
+
+  public Boolean assignLanding(String pageId) {
+    var page = getById(pageId);
+    
+    if (page.isPresent()) {
+      page.get().setIsLanding(true);
+      repo.save(page.get());
+      
+      unassignLandingOthers(pageId);
+      
+      return true;
+    }
+    return false;
+  }
+
+  private void unassignLandingOthers(String pageId) {
+    var others = readAll(collectionQuery(predicate.withLandingTrue().and(predicate.withoutId(pageId))));
+    if (others != null && !others.isEmpty()) {
+      others.getList().stream().forEach(event -> {
+        event.setIsLanding(false);
+        repo.save(event);
+      });
+    }
+  }  
 }

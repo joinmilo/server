@@ -9,6 +9,7 @@ import app.wooportal.server.base.cms.authorization.permissions.CmsAdminPermissio
 import app.wooportal.server.core.base.CrudApi;
 import app.wooportal.server.core.base.dto.listing.FilterSortPaginate;
 import app.wooportal.server.core.base.dto.listing.PageableList;
+import app.wooportal.server.features.event.authorization.permissions.EventAdminPermission;
 import io.leangen.graphql.annotations.GraphQLArgument;
 import io.leangen.graphql.annotations.GraphQLMutation;
 import io.leangen.graphql.annotations.GraphQLQuery;
@@ -63,5 +64,11 @@ public class PageApi extends CrudApi<PageEntity, PageService> {
   @CmsAdminPermission
   public Boolean deleteOne(@GraphQLArgument(name = CrudApi.id) String id) {
     return super.deleteOne(id);
+  }
+  
+  @GraphQLMutation(name = "assignLandingPage")
+  @EventAdminPermission
+  public Boolean assignLanding(String pageId) {
+    return service.assignLanding(pageId);
   }
 }

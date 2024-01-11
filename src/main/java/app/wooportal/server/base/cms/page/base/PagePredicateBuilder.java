@@ -16,4 +16,8 @@ public class PagePredicateBuilder
   public BooleanExpression freeSearch(String term) {
     return query.slug.likeIgnoreCase(term).or(query.label.likeIgnoreCase(term));
   }
+
+  public BooleanExpression withLandingTrue() {
+    return query.isLanding.isTrue();
+  }
 }
