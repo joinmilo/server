@@ -16,6 +16,14 @@ public class ContestParticipationPredicateBuilder
 
   @Override
   public BooleanExpression freeSearch(String term) {
-    return null;
+    return query.contest.id.likeIgnoreCase(term);
+  }
+  
+  public BooleanExpression withContest(String contestId) {
+    return query.contest.id.eq(contestId);
+  }
+  
+  public BooleanExpression withUserContext(String userContextId) {
+    return query.userContext.id.eq(userContextId);
   }
 }

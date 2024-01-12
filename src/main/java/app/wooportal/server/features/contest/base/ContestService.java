@@ -22,6 +22,12 @@ public class ContestService extends DataService<ContestEntity, ContestPredicateB
   public void preCreate(ContestEntity entity, ContestEntity newEntity, JsonNode context) {
     newEntity.setSponsored(false);
     addContext("sponsored", context);
+
+    
+    if (newEntity.getParticipationApproval() == null) {
+    newEntity.setParticipationApproval(false);
+    addContext("participationApproval", context);
+    }
   }
   
   public Boolean sponsorContest(String contestId) {
