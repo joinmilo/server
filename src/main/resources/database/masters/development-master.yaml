@@ -340,6 +340,8 @@ databaseChangeLog:
         file: database/datasets/0011.add_labels_page_embeddings.yaml
     - include:
         file: database/datasets/0012.add_labels_pages.yaml
+    - include:
+        file: database/datasets/0013.add_labels_privilege_approval.yaml
         
      #Cleanups
     - include:

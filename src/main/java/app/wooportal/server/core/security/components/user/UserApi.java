@@ -75,8 +75,9 @@ public class UserApi extends CrudApi<UserEntity, UserService> {
   @UserAdminPermission
   public Boolean addUserRole(
       String userId,
-      String roleId) {
-    return service.addRole(userId, roleId);
+      String roleId,
+      String privilegeApplicationId) {
+    return service.addRole(userId, roleId, privilegeApplicationId);
   }
 
   @GraphQLMutation(name = "sendPasswordReset")
