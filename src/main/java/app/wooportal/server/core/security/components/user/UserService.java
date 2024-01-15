@@ -45,6 +45,8 @@ public class UserService extends DataService<UserEntity, UserPredicateBuilder> {
   private final RoleService roleService;
   
   private final UserDeletionService userDeletionService;
+  
+  private final PrivilegeApplicationService privilegeApplicationService;
 
   public UserService(
       DataRepository<UserEntity> repo,
@@ -67,6 +69,7 @@ public class UserService extends DataService<UserEntity, UserPredicateBuilder> {
     this.languageService = languageService;
     this.roleService = roleService;
     this.userDeletionService = userDeletionService;
+    this.privilegeApplicationService = privilegeApplicationService;
 
     addService("passwordResets", passwordResetService);
     addService("subscriptions", subscriptionService);
@@ -114,7 +117,9 @@ public class UserService extends DataService<UserEntity, UserPredicateBuilder> {
   
   public Boolean addRole(
       String userId,
-      String roleId) {
+      String roleId,
+      String privilegeApplicationId) {
+    privilegeApplicationService.deleteById(privilegeApplicationId);
     var user = getById(userId);
     var role = roleService.getById(roleId);
     if (user.isPresent() && role.isPresent()
