@@ -3,7 +3,7 @@ package app.wooportal.server.core.security.components.role.privilege;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
-
+import app.wooportal.server.base.userContext.base.media.UserContextMediaEntity;
 import app.wooportal.server.core.base.DataService;
 import app.wooportal.server.core.repository.DataRepository;
 
