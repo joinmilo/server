@@ -2,7 +2,6 @@ package app.wooportal.server.base.cms.components.page.embedding;
 
 import org.springframework.stereotype.Service;
 import com.querydsl.core.types.dsl.BooleanExpression;
-import app.wooportal.server.base.cms.page.embedding.QPageEmbeddingEntity;
 import app.wooportal.server.core.base.PredicateBuilder;
 
 @Service

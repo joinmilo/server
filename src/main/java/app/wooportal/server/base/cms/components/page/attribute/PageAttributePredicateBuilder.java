@@ -2,7 +2,6 @@ package app.wooportal.server.base.cms.components.page.attribute;
 
 import org.springframework.stereotype.Service;
 import com.querydsl.core.types.dsl.BooleanExpression;
-import app.wooportal.server.base.cms.page.attribute.QPageAttributeEntity;
 import app.wooportal.server.core.base.PredicateBuilder;
 
 @Service
