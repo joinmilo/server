@@ -1,0 +1,164 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+
+  - changeSet:
+      id: 0166.modify_type_descriptions.1
+      author: codeschluss
+      changes:
+        - modifyDataType:
+            columnName: content
+            newDataType: TEXT
+            tableName: article_comment_translatables
+            
+  - changeSet:
+      id: 0166.modify_type_descriptions.2
+      author: codeschluss
+      changes:
+        - modifyDataType:
+            columnName: content
+            newDataType: TEXT
+            tableName: contest_comment_translatables
+            
+  - changeSet:
+      id: 0166.modify_type_descriptions.3
+      author: codeschluss
+      changes:
+        - modifyDataType:
+            columnName: content
+            newDataType: TEXT
+            tableName: deal_translatables
+
+  - changeSet:
+      id: 0166.modify_type_descriptions.4
+      author: codeschluss
+      changes:
+        - modifyDataType:
+            columnName: content
+            newDataType: TEXT
+            tableName: event_comment_translatables
+
+  - changeSet:
+      id: 0166.modify_type_descriptions.5
+      author: codeschluss
+      changes:
+        - modifyDataType:
+            columnName: content
+            newDataType: TEXT
+            tableName: event_translatables
+            
+  - changeSet:
+      id: 0166.modify_type_descriptions.6
+      author: codeschluss
+      changes:
+        - modifyDataType:
+            columnName: content
+            newDataType: TEXT
+            tableName: form_template_translatables
+
+  - changeSet:
+      id: 0166.modify_type_descriptions.7
+      author: codeschluss
+      changes:
+        - modifyDataType:
+            columnName: content
+            newDataType: TEXT
+            tableName: message_template_translatables
+
+  - changeSet:
+      id: 0166.modify_type_descriptions.8
+      author: codeschluss
+      changes:
+        - modifyDataType:
+            columnName: description
+            newDataType: TEXT
+            tableName: milestone_element_translatables
+            
+  - changeSet:
+      id: 0166.modify_type_descriptions.9
+      author: codeschluss
+      changes:
+        - modifyDataType:
+            columnName: content
+            newDataType: TEXT
+            tableName: organisation_comment_translatables
+            
+  - changeSet:
+      id: 0166.modify_type_descriptions.10
+      author: codeschluss
+      changes:
+        - modifyDataType:
+            columnName: description
+            newDataType: TEXT
+            tableName: organisation_translatables
+            
+  - changeSet:
+      id: 0166.modify_type_descriptions.11
+      author: codeschluss
+      changes:
+        - modifyDataType:
+            columnName: translatable
+            newDataType: TEXT
+            tableName: page_attribute_translatables
+            
+  - changeSet:
+      id: 0166.modify_type_descriptions.12
+      author: codeschluss
+      changes:
+        - modifyDataType:
+            columnName: content
+            newDataType: TEXT
+            tableName: privilege_application_translatables
+            
+  - changeSet:
+      id: 0166.modify_type_descriptions.13
+      author: codeschluss
+      changes:
+        - modifyDataType:
+            columnName: content
+            newDataType: TEXT
+            tableName: report_translatables
+            
+  - changeSet:
+      id: 0166.modify_type_descriptions.14
+      author: codeschluss
+      changes:
+        - modifyDataType:
+            columnName: content
+            newDataType: TEXT
+            tableName: survey_answer_translatables
+            
+  - changeSet:
+      id: 0166.modify_type_descriptions.15
+      author: codeschluss
+      changes:
+        - modifyDataType:
+            columnName: comment
+            newDataType: TEXT
+            tableName: survey_result_translatables
+            
+  - changeSet:
+      id: 0166.modify_type_descriptions.16
+      author: codeschluss
+      changes:
+        - modifyDataType:
+            columnName: description
+            newDataType: TEXT
+            tableName: survey_translatables
+            
+  - changeSet:
+      id: 0166.modify_type_descriptions.17
+      author: codeschluss
+      changes:
+        - modifyDataType:
+            columnName: description
+            newDataType: TEXT
+            tableName: user_context_translatables
+            
+  - changeSet:
+      id: 0166.modify_type_descriptions.18
+      author: codeschluss
+      changes:
+        - modifyDataType:
+            columnName: content
+            newDataType: TEXT
+            tableName: user_deletion_translatables
