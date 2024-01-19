@@ -348,7 +348,9 @@ databaseChangeLog:
     - include:
         file: database/datasets/0014.add_data_labels_4.yaml        
      - include:       
-        file: database/datasets/0015.add_labels_contests.yaml        
+        file: database/datasets/0015.add_labels_contests.yaml         
+    - include:
+        file: database/datasets/0016.seed-data-contests.yaml              
         
      #Cleanups
     - include:
