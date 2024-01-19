@@ -71,7 +71,6 @@ public class UserService extends DataService<UserEntity, UserPredicateBuilder> {
     addService("passwordResets", passwordResetService);
     addService("subscriptions", subscriptionService);
     addService("verifications", verificationService);
-    addService("privilegeApplications", privilegeApplicationService);
   }
 
   public Optional<UserEntity> getByMail(String name) {
