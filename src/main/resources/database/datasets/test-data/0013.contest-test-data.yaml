@@ -1,44 +1,8 @@
 databaseChangeLog:
   - logicalFilePath: path_independent
-                              
-  - changeSet:
-      id: 0013.contest-test-data.2
-      author: codeschluss
-      changes:
-        - sql:
-            comment: Add data contest_type_translatables
-            splitStatements: true
-            sql: insert into contest_type_translatables (id, parent_id, language_id, name)
-                 select uuid(), "112a561f-5d96-42dd-b851-62365e79147b", l.id, "Schreiben"
-                 from languages l
-                 WHERE l.locale = "de";
-                 
-  - changeSet:
-      id: 0013.contest-test-data.3
-      author: codeschluss
-      changes:
-        - sql:
-            comment: Add data contest_type_translatables
-            splitStatements: true
-            sql: insert into contest_type_translatables (id, parent_id, language_id, name)
-                 select uuid(), "8a0cdf4d-8815-42a7-bf80-b5e41af10ee0", l.id, "Film"
-                 from languages l
-                 WHERE l.locale = "de";
 
   - changeSet:
-      id: 0013.contest-test-data.4
-      author: codeschluss
-      changes:
-        - sql:
-            comment: Add data contest_type_translatables
-            splitStatements: true
-            sql: insert into contest_type_translatables (id, parent_id, language_id, name)
-                 select uuid(), "90d71a8a-43f0-4abb-be65-0bb4d7d4d48d", l.id, "Bild"
-                 from languages l
-                 WHERE l.locale = "de";
-
-  - changeSet:
-      id: 0013.contest-test-data.5
+      id: 0013.contest-test-data.1
       author: codeschluss
       changes:
         - sql:
@@ -48,7 +12,7 @@ databaseChangeLog:
               ('5dc59462-91f6-402d-82ae-a8fd65fbfa42', '90d71a8a-43f0-4abb-be65-0bb4d7d4d48d', 'slug-cfxx4', '2023-12-31 12:00:00', '2023-12-31 12:00:00','3916b414-c2bf-4808-a401-284ac62df73d');
               
   - changeSet:
-      id: 0013.contest-test-data.6
+      id: 0013.contest-test-data.2
       author: codeschluss
       changes:
         - sql:
@@ -60,7 +24,7 @@ databaseChangeLog:
                  WHERE l.locale = "de";
                  
   - changeSet:
-      id: 0013.contest-test-data.7
+      id: 0013.contest-test-data.3
       author: codeschluss
       changes:
         - sql:
@@ -71,7 +35,7 @@ databaseChangeLog:
                ('ca079a47-9620-460a-bb42-192bab274df1', '112a561f-5d96-42dd-b851-62365e79147b', 'contest-sponsored', true, '2023-07-31 12:00:00', '2023-08-31 12:00:00');
                
   - changeSet:
-      id: 0013.contest-test-data.8
+      id: 0013.contest-test-data.4
       author: codeschluss
       changes:
         - sql:
@@ -83,7 +47,7 @@ databaseChangeLog:
                  WHERE l.locale = "de";
                  
   - changeSet:
-      id: 0013.contest-test-data.9
+      id: 0013.contest-test-data.5
       author: codeschluss
       changes:
         - sql:
@@ -93,7 +57,7 @@ databaseChangeLog:
               ('0f7ea0c4-a3c8-4d23-bc05-e8f5394fb232', '8a0cdf4d-8815-42a7-bf80-b5e41af10ee0', 'video-contest', '2023-06-30 12:00:00', '2023-07-31 12:00:00', '3916b414-c2bf-4808-a401-284ac62df73d');
               
   - changeSet:
-      id: 0013.contest-test-data.10
+      id: 0013.contest-test-data.6
       author: codeschluss
       changes:
         - sql:
@@ -105,7 +69,7 @@ databaseChangeLog:
                  WHERE l.locale = "de";
                  
   - changeSet:
-      id: 0013.contest-test-data.11
+      id: 0013.contest-test-data.7
       author: codeschluss
       changes:
         - sql:
@@ -115,7 +79,7 @@ databaseChangeLog:
               ('629c6c88-9e9e-4202-ad08-cd73858922c0', '8a0cdf4d-8815-42a7-bf80-b5e41af10ee0', 'finished-contest', '2023-04-30 12:00:00', '2023-05-31 12:00:00', '3916b414-c2bf-4808-a401-284ac62df73d');
               
   - changeSet:
-      id: 0013.contest-test-data.12
+      id: 0013.contest-test-data.8
       author: codeschluss
       changes:
         - sql:
@@ -127,7 +91,7 @@ databaseChangeLog:
                  WHERE l.locale = "de";
                  
   - changeSet:
-      id: 0013.contest-test-data.13
+      id: 0013.contest-test-data.9
       author: codeschluss
       changes:
         - sql:
@@ -138,7 +102,7 @@ databaseChangeLog:
                ('f97059d4-f357-42f2-bc0e-4e940a386137', '629c6c88-9e9e-4202-ad08-cd73858922c0', '5737ee58-9f88-43d1-baf4-a34dd85f0219');
                
   - changeSet:
-      id: 0013.contest-test-data.14
+      id: 0013.contest-test-data.10
       author: codeschluss
       changes:
         - sql:
@@ -150,7 +114,7 @@ databaseChangeLog:
                  WHERE l.locale = "de";
                  
   - changeSet:
-      id: 0013.contest-test-data.15
+      id: 0013.contest-test-data.11
       author: codeschluss
       changes:
         - sql:
@@ -162,7 +126,7 @@ databaseChangeLog:
                  WHERE l.locale = "en";
                  
   - changeSet:
-      id: 0013.test-data.16
+      id: 0013.test-data.12
       author: codeschluss
       changes:
         - sql:
@@ -180,7 +144,7 @@ databaseChangeLog:
                ('f7500fa4-fdf8-4db2-a6bb-c502f4867788', '88bd9809-b153-4de8-9158-d740a10ab810', '629c6c88-9e9e-4202-ad08-cd73858922c0', false, false); 
                
   - changeSet:
-      id: 0013.contest-test-data.17
+      id: 0013.contest-test-data.13
       author: codeschluss
       changes:
         - sql:
@@ -190,7 +154,7 @@ databaseChangeLog:
               ('84dba90c-2f3d-41e6-a51d-8227c52fee31', false, '5dc59462-91f6-402d-82ae-a8fd65fbfa42', 'ece550e8-bc2b-43c4-8aaf-48a30e82080f');
               
   - changeSet:
-      id: 0013.contest-test-data.18
+      id: 0013.contest-test-data.14
       author: codeschluss
       changes:
         - sql:
@@ -202,7 +166,7 @@ databaseChangeLog:
                  WHERE l.locale = "en";      
                  
   - changeSet:
-      id: 0013.contest-test-data.19
+      id: 0013.contest-test-data.15
       author: codeschluss
       changes:
         - sql:
