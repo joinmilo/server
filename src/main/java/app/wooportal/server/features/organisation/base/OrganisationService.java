@@ -1,12 +1,16 @@
 package app.wooportal.server.features.organisation.base;
 
+import java.util.Map;
 import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.JsonNode;
 import app.wooportal.server.base.address.base.AddressService;
 import app.wooportal.server.base.contact.ContactService;
 import app.wooportal.server.base.userContext.security.UserContextAuthorizationService;
 import app.wooportal.server.core.base.DataService;
+import app.wooportal.server.core.config.GeneralConfiguration;
+import app.wooportal.server.core.messaging.MailService;
 import app.wooportal.server.core.repository.DataRepository;
+import app.wooportal.server.core.security.components.user.UserService;
 import app.wooportal.server.features.organisation.media.OrganisationMediaService;
 import app.wooportal.server.features.organisation.member.OrganisationMemberEntity;
 import app.wooportal.server.features.organisation.member.OrganisationMemberService;
@@ -15,6 +19,9 @@ import app.wooportal.server.features.organisation.member.OrganisationMemberServi
 public class OrganisationService extends DataService<OrganisationEntity, OrganisationPredicateBuilder> {
   
   private final UserContextAuthorizationService authService;
+  private final MailService mailService;
+  private final GeneralConfiguration config;
+  private final UserService userService;
 
   public OrganisationService(
       DataRepository<OrganisationEntity> repo,
@@ -23,10 +30,16 @@ public class OrganisationService extends DataService<OrganisationEntity, Organis
       AddressService addressService,
       ContactService contactService,
       OrganisationMediaService uploadService,
-      OrganisationMemberService memberService) {
+      OrganisationMemberService memberService,
+      MailService mailService,
+      GeneralConfiguration config,
+      UserService userService) {
     super(repo, predicate);
     
     this.authService = authService;
+    this.mailService = mailService;
+    this.config = config;
+    this.userService = userService;
     
     addService("members", memberService);
     addService("address", addressService);
@@ -49,25 +62,32 @@ public class OrganisationService extends DataService<OrganisationEntity, Organis
   }  
   
   @Override
-  public void postCreate(
-      OrganisationEntity entity,
-      OrganisationEntity newEntity,
-      OrganisationEntity saved,
-      JsonNode context) {
+  public void postCreate(OrganisationEntity entity, OrganisationEntity newEntity,
+      OrganisationEntity saved, JsonNode context) {
     var currentUser = authService.getAuthenticatedUserContext();
-    
+
     if (currentUser.isPresent()) {
       var firstMember = new OrganisationMemberEntity();
       firstMember.setApproved(true);
       firstMember.setUserContext(currentUser.get());
-      
+
       firstMember.setIsPublic(true);
       firstMember.setUserContext(currentUser.get());
-      
+
       firstMember.setOrganisation(saved);
-      
+
       getService(OrganisationMemberService.class).persist(firstMember);
     }
+
+    this.userService.getOrganisationAdmins().getList().stream().forEach(user -> {
+      try {
+        mailService.sendEmail("Neue Organisation", "newOrga.ftl",
+            Map.of("portalName", config.getPortalName(), "name", newEntity.getName()),
+            user.getEmail());
+      } catch (Throwable e) {
+        e.printStackTrace();
+      }
+    });
   }
   
   public Boolean sponsor(String rganisationId) {
