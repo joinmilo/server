@@ -23,12 +23,6 @@ public class UserPredicateBuilder extends PredicateBuilder<QUserEntity, UserEnti
         : null;
   }
 
-  public BooleanExpression withRole(String name) {
-    return name != null && !name.isBlank()
-        ? query.roles.any().translatables.any().name.equalsIgnoreCase(name)
-        : null;
-  }
-
   public BooleanExpression createdBefore(OffsetDateTime date) {
     return date != null ? query.created.before(date) : null;
   }
@@ -39,6 +33,10 @@ public class UserPredicateBuilder extends PredicateBuilder<QUserEntity, UserEnti
 
   public BooleanExpression withUserAndPrivilege(String userId, String code) {
     return query.id.eq(userId).and(query.roles.any().privileges.any().code.eq(code));
+  }
+  
+  public BooleanExpression withPrivilege(String code) {
+    return query.roles.any().privileges.any().code.eq(code);
   }
   
   public BooleanExpression hasAnyAdminPrivilege(String userId) {

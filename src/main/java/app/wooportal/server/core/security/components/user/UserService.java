@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import app.wooportal.server.base.userDeletion.base.UserDeletionEntity;
 import app.wooportal.server.base.userDeletion.base.UserDeletionService;
 import app.wooportal.server.core.base.DataService;
+import app.wooportal.server.core.base.dto.listing.PageableList;
 import app.wooportal.server.core.error.exception.AlreadyVerifiedException;
 import app.wooportal.server.core.error.exception.BadParamsException;
 import app.wooportal.server.core.error.exception.InvalidPasswordResetException;
@@ -231,6 +232,10 @@ public class UserService extends DataService<UserEntity, UserPredicateBuilder> {
     return characterSpaceSize;
 
   }
-
+  
+  public PageableList<UserEntity> getOrganisationAdmins() {
+    return repo.findAll(collectionQuery(predicate.withPrivilege("organisations_admin")));
+  }
+  
 }
 
