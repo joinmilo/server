@@ -33,4 +33,5 @@ public class UserContextPredicateBuilder
         ? query.user.email.equalsIgnoreCase(email)
         : null;
   }
+  
 }

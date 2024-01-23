@@ -17,7 +17,7 @@
         <p>Hallo "${userName}",</p>
 		
 		<p>so eben wurde eine neue Organisation mit dem Namen "${name}" angelegt.<br>
-		Bitte melde dich im ${portalName} an und bestätige oder lehne die Organisation ab.</p>
+			Diese wurde von einem Admin angelegt und muss nicht mehr genehmigt werden.</p>			
 		
 		<div style="margin-top: 2rem; padding: 1rem;">
 			<a href="${link}" style="text-decoration: none; color: white; text-align: center; padding: 1rem 2rem; background-color: #247294; border-radius: 1.5rem; width: max-content;">

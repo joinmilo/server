@@ -19,4 +19,8 @@ public class OrganisationMemberPredicateBuilder extends PredicateBuilder<QOrgani
   public BooleanExpression withOrganisationId(String organisationId) {
     return query.organisation.id.eq(organisationId);
   }
+  
+  public BooleanExpression withApprovedTrue() {
+    return query.approved.isTrue();
+  }
 }

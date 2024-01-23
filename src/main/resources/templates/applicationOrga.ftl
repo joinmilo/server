@@ -14,10 +14,10 @@
     <div style="background-color: white; border-radius: 16px 16px 16px 16px; box-shadow: 0px 2px 8px 0px #00000026;">
       <div style="padding: 1rem; background-color: white; border-radius: 16px 16px 16px 16px;">
         <!-- <div style="background: radial-gradient(#D16C40, #934524) ; height: 16rem; width: 100%; border-radius: 16px 16px 0 0;"></div> -->
-        <p>Hallo "${userName}",</p>
+		<p>Hallo ${userName},</p>
 		
-		<p>so eben wurde eine neue Organisation mit dem Namen "${name}" angelegt.<br>
-		Bitte melde dich im ${portalName} an und bestätige oder lehne die Organisation ab.</p>
+		<p>der Benutzer mit der Email Adresse ${newMemberEmail} möchte Mitglied der Organisation "${orgaName}" werden.<br>
+		Melde dich bitte im ${portalName} an und bestätigen oder lösche die Anfrage.</p>
 		
 		<div style="margin-top: 2rem; padding: 1rem;">
 			<a href="${link}" style="text-decoration: none; color: white; text-align: center; padding: 1rem 2rem; background-color: #247294; border-radius: 1.5rem; width: max-content;">
@@ -25,10 +25,9 @@
 					Hier gehts zum Portal
           		</span>
         	</a>
-      	</div>		
+      	</div>
 		
 		<p>Dies ist eine automatisch generierte Mail. Bitte antworte nicht darauf.</p>
-
       <div style="padding: 2rem 1rem">
         <span>
           Dein ${portalName}-Team

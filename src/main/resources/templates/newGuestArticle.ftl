@@ -16,8 +16,8 @@
         <!-- <div style="background: radial-gradient(#D16C40, #934524) ; height: 16rem; width: 100%; border-radius: 16px 16px 0 0;"></div> -->
         <p>Hallo "${userName}",</p>
 		
-		<p>so eben wurde eine neue Organisation mit dem Namen "${name}" angelegt.<br>
-		Bitte melde dich im ${portalName} an und bestätige oder lehne die Organisation ab.</p>
+		<p>so eben wurde eine neuer Artikel mit dem Titel "${name}" angelegt.<br>
+		Bitte melde dich im ${portalName} an und bestätige oder lehne den Artikel ab.</p>
 		
 		<div style="margin-top: 2rem; padding: 1rem;">
 			<a href="${link}" style="text-decoration: none; color: white; text-align: center; padding: 1rem 2rem; background-color: #247294; border-radius: 1.5rem; width: max-content;">

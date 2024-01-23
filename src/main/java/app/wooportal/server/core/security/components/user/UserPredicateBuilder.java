@@ -35,12 +35,12 @@ public class UserPredicateBuilder extends PredicateBuilder<QUserEntity, UserEnti
     return query.id.eq(userId).and(query.roles.any().privileges.any().code.eq(code));
   }
   
-  public BooleanExpression withPrivilege(String code) {
-    return query.roles.any().privileges.any().code.eq(code);
+  public BooleanExpression withPrivilege(String... code) {
+    return query.roles.any().privileges.any().code.in(code);
   }
   
   public BooleanExpression hasAnyAdminPrivilege(String userId) {
     return query.id.eq(userId).and(query.roles.any().privileges.any().code.contains("admin"));
   }
-
+  
 }

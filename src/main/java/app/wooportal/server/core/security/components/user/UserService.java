@@ -10,7 +10,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import app.wooportal.server.base.userDeletion.base.UserDeletionEntity;
 import app.wooportal.server.base.userDeletion.base.UserDeletionService;
 import app.wooportal.server.core.base.DataService;
-import app.wooportal.server.core.base.dto.listing.PageableList;
 import app.wooportal.server.core.error.exception.AlreadyVerifiedException;
 import app.wooportal.server.core.error.exception.BadParamsException;
 import app.wooportal.server.core.error.exception.InvalidPasswordResetException;
@@ -38,27 +37,21 @@ public class UserService extends DataService<UserEntity, UserPredicateBuilder> {
   private final AuthenticationService authService;
 
   private final BCryptPasswordEncoder bcryptPasswordEncoder;
-  
+
   private final LocaleService localeService;
-  
+
   private final LanguageService languageService;
-  
+
   private final RoleService roleService;
-  
+
   private final UserDeletionService userDeletionService;
 
-  public UserService(
-      DataRepository<UserEntity> repo,
-      UserPredicateBuilder predicate,
-      AuthenticationService authService,
-      BCryptPasswordEncoder bcryptPasswordEncoder,
-      LocaleService localeService,
-      LanguageService languageService,
+  public UserService(DataRepository<UserEntity> repo, UserPredicateBuilder predicate,
+      AuthenticationService authService, BCryptPasswordEncoder bcryptPasswordEncoder,
+      LocaleService localeService, LanguageService languageService,
       PrivilegeApplicationService privilegeApplicationService,
-      PasswordResetService passwordResetService,
-      RoleService roleService,
-      SubscriptionService subscriptionService,
-      UserDeletionService userDeletionService,
+      PasswordResetService passwordResetService, RoleService roleService,
+      SubscriptionService subscriptionService, UserDeletionService userDeletionService,
       VerificationService verificationService) {
     super(repo, predicate);
 
@@ -102,23 +95,20 @@ public class UserService extends DataService<UserEntity, UserPredicateBuilder> {
       newEntity.setVerified(false);
       addContext("verified", context);
     }
-    
+
     var language = new LanguageEntity();
     language.setLocale(localeService.getDefaultLocale());
-    var result = languageService.getByExample(language); 
-    if (result.isPresent()) {      
+    var result = languageService.getByExample(language);
+    if (result.isPresent()) {
       newEntity.setLanguage(result.get());
       addContext("language", context);
     }
   }
-  
-  public Boolean addRole(
-      String userId,
-      String roleId) {
+
+  public Boolean addRole(String userId, String roleId) {
     var user = getById(userId);
     var role = roleService.getById(roleId);
-    if (user.isPresent() && role.isPresent()
-        && !user.get().getRoles().contains(role.get())) {
+    if (user.isPresent() && role.isPresent() && !user.get().getRoles().contains(role.get())) {
       user.get().getRoles().add(role.get());
       repo.save(user.get());
       return true;
@@ -230,12 +220,10 @@ public class UserService extends DataService<UserEntity, UserPredicateBuilder> {
       characterSpaceSize += 40;
     }
     return characterSpaceSize;
+  }
 
+  public List<UserEntity> getUsersWithPrivileges(String... privileges) {
+    return repo.findAll(collectionQuery(predicate.withPrivilege(privileges))).getList();
   }
-  
-  public PageableList<UserEntity> getOrganisationAdmins() {
-    return repo.findAll(collectionQuery(predicate.withPrivilege("organisations_admin")));
-  }
-  
 }
 
