@@ -79,10 +79,15 @@ public class OrganisationService extends DataService<OrganisationEntity, Organis
       getService(OrganisationMemberService.class).persist(firstMember);
     }
 
-    this.userService.getOrganisationAdmins().getList().stream().forEach(user -> {
+    this.userService.getUsersWithPrivileges("organisations_admin", "admin").stream().forEach(user -> {
       try {
-        mailService.sendEmail("Neue Organisation", "newOrga.ftl",
-            Map.of("portalName", config.getPortalName(), "name", newEntity.getName()),
+        mailService.sendEmail("Neue Organisation", 
+            newEntity.getApproved() ? "newApprovedOrga.ftl" : "newOrga.ftl",
+            Map.of(
+                "userName" , user.getFirstName(),
+                "portalName", config.getPortalName(),
+                "name", newEntity.getName(),
+                "link", createApproveOrganisationLink(newEntity.getApproved())),
             user.getEmail());
       } catch (Throwable e) {
         e.printStackTrace();
@@ -124,9 +129,13 @@ public class OrganisationService extends DataService<OrganisationEntity, Organis
       if (organisation.get().getApproved()) {        
         getService(OrganisationMemberService.class).addRoleForMembers(organisation.get().getId());
       }
-      
       return true;
     }
     return false;
+  }
+  
+  private String createApproveOrganisationLink(Boolean approved) {
+    var linkPiece = approved ? "/admin/organisations" : "/admin/organisations/approval";
+    return config.getHost() + linkPiece;
   }
 }

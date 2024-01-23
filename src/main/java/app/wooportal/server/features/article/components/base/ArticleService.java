@@ -1,14 +1,16 @@
 package app.wooportal.server.features.article.components.base;
 
+import java.util.Map;
 import org.springframework.stereotype.Service;
-
 import com.fasterxml.jackson.databind.JsonNode;
-
 import app.wooportal.server.base.userContext.security.UserContextAuthorizationService;
 import app.wooportal.server.core.base.DataService;
 import app.wooportal.server.core.captcha.CaptchaService;
+import app.wooportal.server.core.config.GeneralConfiguration;
 import app.wooportal.server.core.error.exception.BadParamsException;
+import app.wooportal.server.core.messaging.MailService;
 import app.wooportal.server.core.repository.DataRepository;
+import app.wooportal.server.core.security.components.user.UserService;
 import app.wooportal.server.features.article.components.media.ArticleMediaService;
 import app.wooportal.server.features.article.components.publicAuthor.ArticlePublicAuthorService;
 
@@ -17,16 +19,25 @@ public class ArticleService extends DataService<ArticleEntity, ArticlePredicateB
 
   private final CaptchaService captchaService;
   private final UserContextAuthorizationService authService;
+  private final MailService mailService;
+  private final GeneralConfiguration config;
+  private final UserService userService;
 
   public ArticleService(DataRepository<ArticleEntity> repo,
       ArticlePredicateBuilder predicate,
       CaptchaService captchaService,
       ArticleMediaService articleMediaService,
       ArticlePublicAuthorService publicAuthorService,
-      UserContextAuthorizationService authService) {
+      UserContextAuthorizationService authService,
+      MailService mailService,
+      GeneralConfiguration config,
+      UserService userService) {
     super(repo, predicate);
     this.captchaService = captchaService;
     this.authService = authService;
+    this.mailService = mailService;
+    this.userService = userService;
+    this.config = config;
     
     addService("publicAuthor", publicAuthorService);
     addService("uploads", articleMediaService);
@@ -65,6 +76,20 @@ public class ArticleService extends DataService<ArticleEntity, ArticlePredicateB
       newEntity.setSponsored(false);
       
       persist(newEntity, newEntity, null);
+      
+      this.userService.getUsersWithPrivileges("articles_admin", "admin").stream().forEach(user -> {
+        try {
+          mailService.sendEmail("Neuer Gastartikel", "newGuestArticle.ftl",
+              Map.of(
+                  "userName" , user.getFirstName(),
+                  "portalName", config.getPortalName(),
+                  "name", entity.getName(),
+                  "link", createApproveGuestArticleLink()),
+              user.getEmail());
+        } catch (Throwable e) {
+          e.printStackTrace();
+        }
+      });
     }
     return null;
   }
@@ -87,6 +112,18 @@ public class ArticleService extends DataService<ArticleEntity, ArticlePredicateB
       article.get().setApproved(!article.get().getApproved());
       repo.save(article.get());
       
+      try {
+        System.out.println(article.get().getPublicAuthor().getEmail());
+        mailService.sendEmail("Artikel freigegeben", "approvedArticle.ftl", Map.of(
+                  "author", article.get().getPublicAuthor().getName(),
+                  "title", article.get().getName(),
+                  "link", createArtikelDetailsLink(article.get().getSlug()),
+                  "portalName", config.getPortalName()),
+            article.get().getPublicAuthor().getEmail());
+      } catch (Throwable e) {
+        e.printStackTrace();
+      } ;
+
       return true;
     }
     return false;
@@ -94,15 +131,13 @@ public class ArticleService extends DataService<ArticleEntity, ArticlePredicateB
 
   public Boolean sponsor(String articleId) {
     var article = getById(articleId);
-    
+
     if (article.isPresent()) {
       article.get().setSponsored(true);
       repo.save(article.get());
-      
+
       unsponsorOther(articleId);
-      
-      //TODO: Send notifications
-      
+
       return true;
     }
     return false;
@@ -119,4 +154,12 @@ public class ArticleService extends DataService<ArticleEntity, ArticlePredicateB
       });
     }
   }
+  
+  private String createArtikelDetailsLink(String slug) {
+    return config.getHost() + "/portal/articles/" + slug;
+  }
+  
+  private String createApproveGuestArticleLink() {
+    return config.getHost() + "/admin/guestarticle";
+  }  
 }
