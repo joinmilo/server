@@ -20,7 +20,7 @@ public class ReportService extends DataService<ReportEntity, ReportPredicateBuil
 
   private final MailService mailService;
 
-  private GeneralConfiguration config;
+  private final GeneralConfiguration config;
 
   public ReportService(DataRepository<ReportEntity> repo, ReportPredicateBuilder predicate,
       CaptchaService captchaService, UserService userService, MailService mailService,
@@ -46,8 +46,7 @@ public class ReportService extends DataService<ReportEntity, ReportPredicateBuil
 
   @Override
   public void postCreate(ReportEntity entity, ReportEntity newEntity,
-      ReportEntity saved, JsonNode context) {     
-        
+      ReportEntity saved, JsonNode context) {
         this.userService.getUsersWithPrivileges("report_admin", "admin").stream().forEach(user -> {
       try {
         mailService.sendEmail("Neues Feedback", "newReport.ftl",
