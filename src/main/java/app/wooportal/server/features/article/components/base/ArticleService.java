@@ -17,27 +17,28 @@ import app.wooportal.server.features.article.components.publicAuthor.ArticlePubl
 @Service
 public class ArticleService extends DataService<ArticleEntity, ArticlePredicateBuilder> {
 
-  private final CaptchaService captchaService;
   private final UserContextAuthorizationService authService;
-  private final MailService mailService;
+  private final CaptchaService captchaService;
   private final GeneralConfiguration config;
+  private final MailService mailService;
   private final UserService userService;
 
   public ArticleService(DataRepository<ArticleEntity> repo,
       ArticlePredicateBuilder predicate,
-      CaptchaService captchaService,
       ArticleMediaService articleMediaService,
-      ArticlePublicAuthorService publicAuthorService,
       UserContextAuthorizationService authService,
-      MailService mailService,
+      CaptchaService captchaService,
       GeneralConfiguration config,
+      ArticlePublicAuthorService publicAuthorService,
+      MailService mailService,
       UserService userService) {
     super(repo, predicate);
-    this.captchaService = captchaService;
+    
     this.authService = authService;
+    this.captchaService = captchaService;
+    this.config = config;
     this.mailService = mailService;
     this.userService = userService;
-    this.config = config;
     
     addService("publicAuthor", publicAuthorService);
     addService("uploads", articleMediaService);
@@ -81,7 +82,7 @@ public class ArticleService extends DataService<ArticleEntity, ArticlePredicateB
         try {
           mailService.sendEmail("Neuer Gastartikel", "newGuestArticle.ftl",
               Map.of(
-                  "userName" , user.getFirstName(),
+                  "userName" , user.getFirstName() != null ? " " + user.getFirstName() : "",
                   "portalName", config.getPortalName(),
                   "name", entity.getName(),
                   "link", createApproveGuestArticleLink()),

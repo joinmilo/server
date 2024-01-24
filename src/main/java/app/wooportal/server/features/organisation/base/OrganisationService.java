@@ -19,8 +19,8 @@ import app.wooportal.server.features.organisation.member.OrganisationMemberServi
 public class OrganisationService extends DataService<OrganisationEntity, OrganisationPredicateBuilder> {
   
   private final UserContextAuthorizationService authService;
-  private final MailService mailService;
   private final GeneralConfiguration config;
+  private final MailService mailService;
   private final UserService userService;
 
   public OrganisationService(
@@ -29,21 +29,21 @@ public class OrganisationService extends DataService<OrganisationEntity, Organis
       UserContextAuthorizationService authService,
       AddressService addressService,
       ContactService contactService,
-      OrganisationMediaService uploadService,
+      GeneralConfiguration config,
       OrganisationMemberService memberService,
       MailService mailService,
-      GeneralConfiguration config,
+      OrganisationMediaService uploadService,
       UserService userService) {
     super(repo, predicate);
     
     this.authService = authService;
-    this.mailService = mailService;
     this.config = config;
+    this.mailService = mailService;
     this.userService = userService;
     
-    addService("members", memberService);
     addService("address", addressService);
     addService("contact", contactService);
+    addService("members", memberService);
     addService("uploads", uploadService);
   }
   
@@ -84,10 +84,10 @@ public class OrganisationService extends DataService<OrganisationEntity, Organis
         mailService.sendEmail("Neue Organisation", 
             newEntity.getApproved() ? "newApprovedOrga.ftl" : "newOrga.ftl",
             Map.of(
-                "userName" , user.getFirstName(),
+                "userName" , user.getFirstName() != null ? " " + user.getFirstName() : "",
                 "portalName", config.getPortalName(),
-                "name", newEntity.getName(),
-                "link", createApproveOrganisationLink(newEntity.getApproved())),
+                "name", saved.getName(),
+                "link", createApproveOrganisationLink(saved.getApproved())),
             user.getEmail());
       } catch (Throwable e) {
         e.printStackTrace();

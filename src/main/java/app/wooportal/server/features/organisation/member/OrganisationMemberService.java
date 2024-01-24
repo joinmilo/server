@@ -67,14 +67,15 @@ public class OrganisationMemberService
               .and(predicate.withApprovedTrue()))
           .getList().forEach(member -> {
             try {
+              var user = member.getUserContext().getUser();
               mailService.sendEmail("Neue Mitgliedsanfrage", "applicationOrga.ftl",
                   Map.of(
-                      "userName", member.getUserContext().getUser().getFirstName(),
+                      "userName", user.getFirstName() != null ? " " + user.getFirstName() : "",
                       "newMemberEmail", currentUser.get().getEmail(),
                       "orgaName", organisation.getName(),
                       "link", createOrganisationAddMemberLink(organisation.getSlug()),
                       "portalName", config.getPortalName()),
-                  member.getUserContext().getUser().getEmail());
+                    user.getEmail());
             } catch (Throwable e) {
               e.printStackTrace();
             }
