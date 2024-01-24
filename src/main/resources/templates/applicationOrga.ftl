@@ -14,7 +14,7 @@
     <div style="background-color: white; border-radius: 16px 16px 16px 16px; box-shadow: 0px 2px 8px 0px #00000026;">
       <div style="padding: 1rem; background-color: white; border-radius: 16px 16px 16px 16px;">
         <!-- <div style="background: radial-gradient(#D16C40, #934524) ; height: 16rem; width: 100%; border-radius: 16px 16px 0 0;"></div> -->
-		<p>Hallo ${userName},</p>
+		<p>Hallo${userName},</p>
 		
 		<p>der Benutzer mit der Email Adresse ${newMemberEmail} möchte Mitglied der Organisation "${orgaName}" werden.<br>
 		Melde dich bitte im ${portalName} an und bestätigen oder lösche die Anfrage.</p>

@@ -14,7 +14,7 @@
     <div style="background-color: white; border-radius: 16px 16px 16px 16px; box-shadow: 0px 2px 8px 0px #00000026;">
       <div style="padding: 1rem; background-color: white; border-radius: 16px 16px 16px 16px;">
         <!-- <div style="background: radial-gradient(#D16C40, #934524) ; height: 16rem; width: 100%; border-radius: 16px 16px 0 0;"></div> -->
-        <p>Hallo "${userName}",</p>
+        <p>Hallo${userName},</p>
 		
 		<p>so eben wurde eine neuer Artikel mit dem Titel "${name}" angelegt.<br>
 		Bitte melde dich im ${portalName} an und bestätige oder lehne den Artikel ab.</p>

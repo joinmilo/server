@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import app.wooportal.server.core.base.CrudApi;
 import app.wooportal.server.core.base.dto.listing.FilterSortPaginate;
 import app.wooportal.server.core.base.dto.listing.PageableList;
+import app.wooportal.server.core.security.components.user.authorization.permissions.UserAdminPermission;
 import app.wooportal.server.core.security.permissions.AdminPermission;
 import io.leangen.graphql.annotations.GraphQLArgument;
 import io.leangen.graphql.annotations.GraphQLMutation;
@@ -68,5 +69,12 @@ public class RoleApi extends CrudApi<RoleEntity, RoleService> {
   public Boolean deleteOne(@GraphQLArgument(name = CrudApi.id) String id) {
     return super.deleteOne(id);
   }
-
+  
+  @GraphQLMutation(name = "addUser")
+  @UserAdminPermission
+  public Boolean addUser(
+      String userId,
+      String roleId) {
+    return service.addUser(userId, roleId);
+  }
 }

@@ -70,14 +70,6 @@ public class UserApi extends CrudApi<UserEntity, UserService> {
   public Boolean deleteMe(String password, UserDeletionEntity userDeletion ) {
     return service.deleteMe(password, userDeletion);
   }
-  
-  @GraphQLMutation(name = "addRole")
-  @UserAdminPermission
-  public Boolean addRole(
-      String userId,
-      String roleId) {
-    return service.addRole(userId, roleId);
-  }
 
   @GraphQLMutation(name = "sendPasswordReset")
   public Boolean forgetPassword(String email) {

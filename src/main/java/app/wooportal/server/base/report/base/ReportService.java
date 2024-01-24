@@ -52,7 +52,7 @@ public class ReportService extends DataService<ReportEntity, ReportPredicateBuil
       try {
         mailService.sendEmail("Neues Feedback", "newReport.ftl",
             Map.of(
-                "userName" , user.getFirstName(),
+                "userName" , user.getFirstName() != null ? " " + user.getFirstName() : "",
                 "portalName", config.getPortalName(),
                 "link", createGuestArticleLink()),
             user.getEmail());
