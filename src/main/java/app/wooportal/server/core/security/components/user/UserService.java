@@ -22,7 +22,6 @@ import app.wooportal.server.core.i18n.components.language.LanguageService;
 import app.wooportal.server.core.i18n.translation.LocaleService;
 import app.wooportal.server.core.push.subscription.SubscriptionService;
 import app.wooportal.server.core.repository.DataRepository;
-import app.wooportal.server.core.security.components.role.base.RoleService;
 import app.wooportal.server.core.security.components.user.emailVerification.VerificationEntity;
 import app.wooportal.server.core.security.components.user.emailVerification.VerificationService;
 import app.wooportal.server.core.security.components.user.passwordReset.PasswordResetEntity;
@@ -43,11 +42,15 @@ public class UserService extends DataService<UserEntity, UserPredicateBuilder> {
 
   private final UserDeletionService userDeletionService;
 
-  public UserService(DataRepository<UserEntity> repo, UserPredicateBuilder predicate,
-      AuthenticationService authService, BCryptPasswordEncoder bcryptPasswordEncoder,
-      LocaleService localeService, LanguageService languageService,
+  public UserService(DataRepository<UserEntity> repo,
+      UserPredicateBuilder predicate,
+      AuthenticationService authService,
+      BCryptPasswordEncoder bcryptPasswordEncoder,
+      LocaleService localeService,
+      LanguageService languageService,
       PasswordResetService passwordResetService, 
-      SubscriptionService subscriptionService, UserDeletionService userDeletionService,
+      SubscriptionService subscriptionService,
+      UserDeletionService userDeletionService,
       VerificationService verificationService) {
     super(repo, predicate);
 

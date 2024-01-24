@@ -22,8 +22,11 @@ public class ReportService extends DataService<ReportEntity, ReportPredicateBuil
 
   private final GeneralConfiguration config;
 
-  public ReportService(DataRepository<ReportEntity> repo, ReportPredicateBuilder predicate,
-      CaptchaService captchaService, UserService userService, MailService mailService,
+  public ReportService(DataRepository<ReportEntity> repo,
+      ReportPredicateBuilder predicate,
+      CaptchaService captchaService,
+      UserService userService,
+      MailService mailService,
       GeneralConfiguration config) {
     super(repo, predicate);
 
@@ -53,7 +56,7 @@ public class ReportService extends DataService<ReportEntity, ReportPredicateBuil
             Map.of(
                 "userName" , user.getFirstName() != null ? " " + user.getFirstName() : "",
                 "portalName", config.getPortalName(),
-                "link", createGuestArticleLink()),
+                "link", createLink()),
             user.getEmail());
       } catch (Throwable e) {
         e.printStackTrace();
@@ -61,7 +64,7 @@ public class ReportService extends DataService<ReportEntity, ReportPredicateBuil
     });
   }
 
-  private String createGuestArticleLink() {
+  private String createLink() {
     return config.getHost() + "/admin/reports";
   }
 }
