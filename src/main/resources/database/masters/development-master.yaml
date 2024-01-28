@@ -314,6 +314,8 @@ databaseChangeLog:
         file: database/changes/0166.modify_type_descriptions.yaml
     - include:                 
         file: database/changes/0167.add_columns_contest.yaml 
+    - include:                 
+        file: database/changes/0168.change_column_type_contests.yaml          
              
                                    
     #Data section
