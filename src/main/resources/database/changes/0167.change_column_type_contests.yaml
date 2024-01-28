@@ -1,0 +1,12 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+  - changeSet:
+      id: 0167.change_column_type_contests.1
+      author: codeschluss
+      changes:
+        - modifyDataType:
+            columnName: text_submission
+            newDataType: longtext
+            tableName: contest_participation_translatables
+            
+                                    
