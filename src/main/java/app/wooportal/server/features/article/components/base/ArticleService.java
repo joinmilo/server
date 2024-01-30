@@ -11,6 +11,7 @@ import app.wooportal.server.core.error.exception.BadParamsException;
 import app.wooportal.server.core.messaging.MailService;
 import app.wooportal.server.core.repository.DataRepository;
 import app.wooportal.server.core.security.components.user.UserService;
+import app.wooportal.server.features.article.components.category.ArticleCategoryEntity;
 import app.wooportal.server.features.article.components.media.ArticleMediaService;
 import app.wooportal.server.features.article.components.publicAuthor.ArticlePublicAuthorService;
 
@@ -75,7 +76,7 @@ public class ArticleService extends DataService<ArticleEntity, ArticlePredicateB
       newEntity.setUploads(entity.getUploads());
       newEntity.setApproved(false);
       newEntity.setSponsored(false);
-      
+      newEntity.setCategory(entity.getCategory());
       persist(newEntity, newEntity, null);
       
       this.userService.getUsersWithPrivileges("articles_admin", "admin").stream().forEach(user -> {
