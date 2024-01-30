@@ -76,7 +76,6 @@ public class ArticleService extends DataService<ArticleEntity, ArticlePredicateB
       newEntity.setUploads(entity.getUploads());
       newEntity.setApproved(false);
       newEntity.setSponsored(false);
-      newEntity.setCategory(entity.getCategory());
       persist(newEntity, newEntity, null);
       
       this.userService.getUsersWithPrivileges("articles_admin", "admin").stream().forEach(user -> {
