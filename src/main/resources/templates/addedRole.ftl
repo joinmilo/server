@@ -16,7 +16,7 @@
         <!-- <div style="background: radial-gradient(#D16C40, #934524) ; height: 16rem; width: 100%; border-radius: 16px 16px 0 0;"></div> -->
         <p>Hallo${userName},</p>
 		
-		<p>so eben wurde dir die Rolle "${name}" zugeteilt.<br>
+		<p>soeben wurde dir die Rolle "${name}" zugeteilt.<br>
 		Melde dich im ${portalName} an und nutze deine neuen Möglichkeiten.</p>
 		
 		<div style="margin-top: 2rem; padding: 1rem;">
