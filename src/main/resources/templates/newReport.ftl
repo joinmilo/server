@@ -16,7 +16,7 @@
         <!-- <div style="background: radial-gradient(#D16C40, #934524) ; height: 16rem; width: 100%; border-radius: 16px 16px 0 0;"></div> -->
         <p>Hallo${userName},</p>
 		
-		<p>so eben wurde ein Feedback angelegt.<br>
+		<p>soeben wurde ein Feedback angelegt.<br>
 		Bitte melde dich im ${portalName} an, um dir den Inhalt anzuschauen.</p>
 		
 		<div style="margin-top: 2rem; padding: 1rem;">

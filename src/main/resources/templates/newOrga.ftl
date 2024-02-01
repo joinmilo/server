@@ -16,7 +16,7 @@
         <!-- <div style="background: radial-gradient(#D16C40, #934524) ; height: 16rem; width: 100%; border-radius: 16px 16px 0 0;"></div> -->
         <p>Hallo${userName},</p>
 		
-		<p>so eben wurde eine neue Organisation mit dem Namen "${name}" angelegt.<br>
+		<p>soeben wurde eine neue Organisation mit dem Namen "${name}" angelegt.<br>
 		Bitte melde dich im ${portalName} an und bestätige oder lehne die Organisation ab.</p>
 		
 		<div style="margin-top: 2rem; padding: 1rem;">

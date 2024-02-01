@@ -16,7 +16,7 @@
         <!-- <div style="background: radial-gradient(#D16C40, #934524) ; height: 16rem; width: 100%; border-radius: 16px 16px 0 0;"></div> -->
     		<p>Hallo ${author},</p>
     
-    		<p>so eben wurde dein Beitrag "${title}" freigegeben!<br>
+    		<p>soeben wurde dein Beitrag "${title}" freigegeben!<br>
     		Besuche die Seite ${portalName} und bestaune deinen ersten Eintrag.</p>
     		
 			<div style="margin-top: 2rem; padding: 1rem;">
