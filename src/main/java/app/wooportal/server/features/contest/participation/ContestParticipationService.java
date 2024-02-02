@@ -2,7 +2,6 @@ package app.wooportal.server.features.contest.participation;
 
 import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.JsonNode;
-import app.wooportal.server.base.userContext.base.UserContextService;
 import app.wooportal.server.base.userContext.security.UserContextAuthorizationService;
 import app.wooportal.server.core.base.DataService;
 import app.wooportal.server.core.error.exception.BadParamsException;
@@ -32,8 +31,6 @@ public class ContestParticipationService
   @Override
   public void preCreate(ContestParticipationEntity entity, ContestParticipationEntity newEntity,
       JsonNode context) {
-
-
     var currentUser = authService.getAuthenticatedUserContext();
 
     if (currentUser.isPresent()) {

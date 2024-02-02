@@ -1,13 +1,10 @@
 package app.wooportal.server.features.event.attendeeConfiguration;
 
 import java.util.Set;
-
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.features.event.attendee.EventAttendeeEntity;
 import app.wooportal.server.features.event.base.EventEntity;

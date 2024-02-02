@@ -11,7 +11,6 @@ import app.wooportal.server.core.error.exception.BadParamsException;
 import app.wooportal.server.core.messaging.MailService;
 import app.wooportal.server.core.repository.DataRepository;
 import app.wooportal.server.core.security.components.user.UserService;
-import app.wooportal.server.features.article.components.category.ArticleCategoryEntity;
 import app.wooportal.server.features.article.components.media.ArticleMediaService;
 import app.wooportal.server.features.article.components.publicAuthor.ArticlePublicAuthorService;
 
