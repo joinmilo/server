@@ -54,15 +54,11 @@ public class ArticleService extends DataService<ArticleEntity, ArticlePredicateB
 
     var currentUser = authService.getAuthenticatedUserContext();
     
-    if (currentUser.isPresent()) {      
-      newEntity.setAuthor(currentUser.get());
-      addContext("author", context);
-      
-    }
-    
-    if (authService.authenticatedUserHasPrivilege("articles_manage", "articles_admin")) {
+    if (authService.authenticatedUserHasPrivilege("articles_manage", "articles_admin") && currentUser.isPresent()) {
       newEntity.setApproved(true);
       addContext("approved", context);
+      newEntity.setAuthor(currentUser.get());
+      addContext("author", context);
     }
   }
 
