@@ -1,7 +1,6 @@
 package app.wooportal.server.base.cms.components.plugin;
 
 import java.util.Optional;
-
 import org.springframework.stereotype.Service;
 import app.wooportal.server.base.cms.components.menuItem.MenuItemService;
 import app.wooportal.server.core.base.DataService;
@@ -44,7 +43,10 @@ public class PluginService extends DataService<PluginEntity, PluginPredicateBuil
       newPlugin.setActive(active);
       
       if (active == null || !active) {
-        newPlugin.setMenuItems(null);
+        newPlugin.getMenuItems().stream().forEach(menuItem -> {
+          menuItem.setParent(null);
+          menuItem.setHeader(false);
+        });
       }
 
       save(newPlugin);
