@@ -352,7 +352,9 @@ databaseChangeLog:
     - include:       
         file: database/datasets/0015.add_labels_contests.yaml         
     - include:
-        file: database/datasets/0016.seed-data-contests.yaml              
+        file: database/datasets/0016.seed-data-contests.yaml  
+    - include:
+        file: database/datasets/0017.add_labels_plugins.yaml                
         
      #Cleanups
     - include:
