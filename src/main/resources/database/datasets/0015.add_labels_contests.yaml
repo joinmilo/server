@@ -2,7 +2,7 @@ databaseChangeLog:
   - logicalFilePath: path_independent                
   
   - changeSet:
-      id: 0013.add_labels_contests.1
+      id: 0015.add_labels_contests.1
       author: codeschluss
       changes:
         - sql:
@@ -32,7 +32,7 @@ databaseChangeLog:
                AND l.locale = "en";                       
                
   - changeSet:
-      id: 0013.add_labels_contests.2
+      id: 0015.add_labels_contests.2
       author: codeschluss
       changes:
         - sql:
@@ -62,7 +62,7 @@ databaseChangeLog:
                AND l.locale = "en"; 
                
   - changeSet:
-      id: 0013.add_labels_contests.3
+      id: 0015.add_labels_contests.3
       author: codeschluss
       changes:
         - sql:
@@ -71,7 +71,7 @@ databaseChangeLog:
             sql:
                /*!40101 SET character_set_client = utf8 */;
                /* Set variables */
-               SET @tagId   = "lastParticipations";
+               SET @tagId   = "lastParticipation";
                SET @german  = "Es stehen dir danach keine weiteren Teilnahmen zur Verfügung";
                SET @english = "No further participation will be available to you after this";
 
@@ -92,7 +92,7 @@ databaseChangeLog:
                AND l.locale = "en";         
 
   - changeSet:
-      id: 0013.add_labels_contests.4
+      id: 0015.add_labels_contests.4
       author: codeschluss
       changes:
         - sql:
@@ -122,7 +122,7 @@ databaseChangeLog:
                AND l.locale = "en"; 
 
   - changeSet:
-      id: 0013.add_labels_contests.5
+      id: 0015.add_labels_contests.5
       author: codeschluss
       changes:
         - sql:
@@ -152,7 +152,7 @@ databaseChangeLog:
                AND l.locale = "en";  
                
   - changeSet:
-      id: 0013.add_labels_contests.6
+      id: 0015.add_labels_contests.6
       author: codeschluss
       changes:
         - sql:
@@ -182,7 +182,7 @@ databaseChangeLog:
                AND l.locale = "en";         
                
   - changeSet:
-      id: 0013.add_labels_contests.7
+      id: 0015.add_labels_contests.7
       author: codeschluss
       changes:
         - sql:
@@ -212,7 +212,7 @@ databaseChangeLog:
                AND l.locale = "en";                     
                
   - changeSet:
-      id: 0013.add_labels_contests.8
+      id: 0015.add_labels_contests.8
       author: codeschluss
       changes:
         - sql:
@@ -242,7 +242,7 @@ databaseChangeLog:
                AND l.locale = "en";                                                                                                                     
 
   - changeSet:
-      id: 0013.add_labels_contests.9
+      id: 0015.add_labels_contests.9
       author: codeschluss
       changes:
         - sql:
@@ -272,7 +272,7 @@ databaseChangeLog:
                AND l.locale = "en";  
                
   - changeSet:
-      id: 0013.add_labels_contests.10
+      id: 0015.add_labels_contests.10
       author: codeschluss
       changes:
         - sql:
@@ -302,7 +302,7 @@ databaseChangeLog:
                AND l.locale = "en";   
                
   - changeSet:
-      id: 0013.add_labels_contests.11
+      id: 0015.add_labels_contests.11
       author: codeschluss
       changes:
         - sql:
@@ -332,7 +332,7 @@ databaseChangeLog:
                AND l.locale = "en";       
                
   - changeSet:
-      id: 0013.add_labels_contests.12
+      id: 0015.add_labels_contests.12
       author: codeschluss
       changes:
         - sql:
@@ -362,7 +362,7 @@ databaseChangeLog:
                AND l.locale = "en";                                                    
                
   - changeSet:
-      id: 0013.add_labels_contests.13
+      id: 0015.add_labels_contests.13
       author: codeschluss
       changes:
         - sql:
@@ -392,7 +392,7 @@ databaseChangeLog:
                AND l.locale = "en";   
                
   - changeSet:
-      id: 0013.add_labels_contests.14
+      id: 0015.add_labels_contests.14
       author: codeschluss
       changes:
         - sql:
@@ -422,7 +422,7 @@ databaseChangeLog:
                AND l.locale = "en";     
                
   - changeSet:
-      id: 0013.add_labels_contests.15
+      id: 0015.add_labels_contests.15
       author: codeschluss
       changes:
         - sql:
@@ -452,7 +452,7 @@ databaseChangeLog:
                AND l.locale = "en";     
                
   - changeSet:
-      id: 0013.add_labels_contests.16
+      id: 0015.add_labels_contests.16
       author: codeschluss
       changes:
         - sql:
@@ -462,7 +462,7 @@ databaseChangeLog:
                /*!40101 SET character_set_client = utf8 */;
                /* Set variables */
                SET @tagId   = "voteAndParticipation";
-               SET @german  = "Abstimmug und Teilnahme";
+               SET @german  = "Teilnahme und Abstimmug";
                SET @english = "Voting and participation";
 
                /* Insert */
@@ -482,7 +482,7 @@ databaseChangeLog:
                AND l.locale = "en";   
                
   - changeSet:
-      id: 0013.add_labels_contests.17
+      id: 0015.add_labels_contests.17
       author: codeschluss
       changes:
         - sql:
@@ -492,7 +492,7 @@ databaseChangeLog:
                /*!40101 SET character_set_client = utf8 */;
                /* Set variables */
                SET @tagId   = "maxParticipations";
-               SET @german  = "Teilnahmmen (p.P.)";
+               SET @german  = "Teilnahmen (p.P.)";
                SET @english = "Participations (pp)";
 
                /* Insert */
@@ -512,7 +512,7 @@ databaseChangeLog:
                AND l.locale = "en";       
                
   - changeSet:
-      id: 0013.add_labels_contests.18
+      id: 0015.add_labels_contests.18
       author: codeschluss
       changes:
         - sql:
@@ -542,7 +542,7 @@ databaseChangeLog:
                AND l.locale = "en";            
                
   - changeSet:
-      id: 0013.add_labels_contests.19
+      id: 0015.add_labels_contests.19
       author: codeschluss
       changes:
         - sql:
@@ -572,7 +572,7 @@ databaseChangeLog:
                AND l.locale = "en";      
                
   - changeSet:
-      id: 0013.add_labels_contests.20
+      id: 0015.add_labels_contests.20
       author: codeschluss
       changes:
         - sql:
@@ -602,7 +602,7 @@ databaseChangeLog:
                AND l.locale = "en";         
                
   - changeSet:
-      id: 0013.add_labels_contests.21
+      id: 0015.add_labels_contests.21
       author: codeschluss
       changes:
         - sql:
@@ -632,7 +632,7 @@ databaseChangeLog:
                AND l.locale = "en";     
                
   - changeSet:
-      id: 0013.add_labels_contests.22
+      id: 0015.add_labels_contests.22
       author: codeschluss
       changes:
         - sql:
@@ -662,7 +662,7 @@ databaseChangeLog:
                AND l.locale = "en";  
                
   - changeSet:
-      id: 0013.add_labels_contests.23
+      id: 0015.add_labels_contests.23
       author: codeschluss
       changes:
         - sql:
@@ -692,7 +692,7 @@ databaseChangeLog:
                AND l.locale = "en";        
                
   - changeSet:
-      id: 0013.add_labels_contests.24
+      id: 0015.add_labels_contests.24
       author: codeschluss
       changes:
         - sql:
@@ -722,7 +722,7 @@ databaseChangeLog:
                AND l.locale = "en";  
                
   - changeSet:
-      id: 0013.add_labels_contests.25
+      id: 0015.add_labels_contests.25
       author: codeschluss
       changes:
         - sql:
@@ -752,7 +752,7 @@ databaseChangeLog:
                AND l.locale = "en";     
                
   - changeSet:
-      id: 0013.add_labels_contests.26
+      id: 0015.add_labels_contests.26
       author: codeschluss
       changes:
         - sql:
@@ -782,7 +782,7 @@ databaseChangeLog:
                AND l.locale = "en";                                                                                                                                                                                                            
                
   - changeSet:
-      id: 0013.add_labels_contests.27
+      id: 0015.add_labels_contests.27
       author: codeschluss
       changes:
         - sql:
@@ -812,7 +812,7 @@ databaseChangeLog:
                AND l.locale = "en";   
                
   - changeSet:
-      id: 0013.add_labels_contests.28
+      id: 0015.add_labels_contests.28
       author: codeschluss
       changes:
         - sql:
@@ -842,7 +842,7 @@ databaseChangeLog:
                AND l.locale = "en";     
 
   - changeSet:
-      id: 0013.add_labels_contests.29
+      id: 0015.add_labels_contests.29
       author: codeschluss
       changes:
         - sql:
@@ -851,7 +851,7 @@ databaseChangeLog:
             sql:
                /*!40101 SET character_set_client = utf8 */;
                /* Set variables */
-               SET @tagId   = "votedSaved";
+               SET @tagId   = "voteSaved";
                SET @german  = "Stimme erfolgreich gespeichert";
                SET @english = "Vote successfully saved";
 
@@ -872,7 +872,7 @@ databaseChangeLog:
                AND l.locale = "en";      
                
   - changeSet:
-      id: 0013.add_labels_contests.30
+      id: 0015.add_labels_contests.30
       author: codeschluss
       changes:
         - sql:
@@ -901,38 +901,9 @@ databaseChangeLog:
                WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
                AND l.locale = "en";    
                
-  - changeSet:
-      id: 0013.add_labels_contests.31
-      author: codeschluss
-      changes:
-        - sql:
-            comment: Add labels
-            splitStatements: true
-            sql:
-               /*!40101 SET character_set_client = utf8 */;
-               /* Set variables */
-               SET @tagId   = "votedSaved";
-               SET @german  = "Stimme erfolgreich gespeichert";
-               SET @english = "Vote successfully saved";
-
-               /* Insert */
-               insert into labels (`id`, `tag_id`) values
-               (uuid(), @tagId COLLATE utf8mb4_unicode_ci);
-                
-               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
-               select uuid(), p.id, l.id, @german COLLATE utf8mb4_unicode_ci
-               from labels p, languages l
-               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
-               AND l.locale = "de";
-
-               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
-               select uuid(), p.id, l.id, @english COLLATE utf8mb4_unicode_ci
-               from labels p, languages l
-               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
-               AND l.locale = "en";   
                
   - changeSet:
-      id: 0013.add_labels_contests.32
+      id: 0015.add_labels_contests.32
       author: codeschluss
       changes:
         - sql:
@@ -962,7 +933,7 @@ databaseChangeLog:
                AND l.locale = "en";     
                
   - changeSet:
-      id: 0013.add_labels_contests.33
+      id: 0015.add_labels_contests.33
       author: codeschluss
       changes:
         - sql:
@@ -992,7 +963,7 @@ databaseChangeLog:
                AND l.locale = "en"; 
                
   - changeSet:
-      id: 0013.add_labels_contests.34
+      id: 0015.add_labels_contests.34
       author: codeschluss
       changes:
         - sql:
@@ -1019,4 +990,305 @@ databaseChangeLog:
                select uuid(), p.id, l.id, @english COLLATE utf8mb4_unicode_ci
                from labels p, languages l
                WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
-               AND l.locale = "en";                                                                                          
+               AND l.locale = "en";      
+               
+  - changeSet:
+      id: 0015.add_labels_contests.35
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add labels
+            splitStatements: true
+            sql:
+               /*!40101 SET character_set_client = utf8 */;
+               /* Set variables */
+               SET @tagId   = "votes";
+               SET @german  = "Abstimmungen";
+               SET @english = "Votes";
+
+               /* Insert */
+               insert into labels (`id`, `tag_id`) values
+               (uuid(), @tagId COLLATE utf8mb4_unicode_ci);
+                
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @german COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "de";
+
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @english COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "en";    
+               
+  - changeSet:
+      id: 0015.add_labels_contests.36
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add labels
+            splitStatements: true
+            sql:
+               /*!40101 SET character_set_client = utf8 */;
+               /* Set variables */
+               SET @tagId   = "placement";
+               SET @german  = "Platzierung";
+               SET @english = "Placement";
+
+               /* Insert */
+               insert into labels (`id`, `tag_id`) values
+               (uuid(), @tagId COLLATE utf8mb4_unicode_ci);
+                
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @german COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "de";
+
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @english COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "en";       
+               
+  - changeSet:
+      id: 0015.add_labels_contests.37
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add labels
+            splitStatements: true
+            sql:
+               /*!40101 SET character_set_client = utf8 */;
+               /* Set variables */
+               SET @tagId   = "votingDateAfterParticipation";
+               SET @german  = "Das Enddatum der Abstimmung muss nach dem der Teilnahme liegen";
+               SET @english = "The voting date must be after participation";
+
+               /* Insert */
+               insert into labels (`id`, `tag_id`) values
+               (uuid(), @tagId COLLATE utf8mb4_unicode_ci);
+                
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @german COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "de";
+
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @english COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "en";  
+               
+  - changeSet:
+      id: 0015.add_labels_contests.38
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add labels
+            splitStatements: true
+            sql:
+               /*!40101 SET character_set_client = utf8 */;
+               /* Set variables */
+               SET @tagId   = "confirmParticipation";
+               SET @german  = "Teilnahme bestätigen";
+               SET @english = "Confirm Participation";
+
+               /* Insert */
+               insert into labels (`id`, `tag_id`) values
+               (uuid(), @tagId COLLATE utf8mb4_unicode_ci);
+                
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @german COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "de";
+
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @english COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "en";          
+               
+  - changeSet:
+      id: 0015.add_labels_contests.39
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add labels
+            splitStatements: true
+            sql:
+               /*!40101 SET character_set_client = utf8 */;
+               /* Set variables */
+               SET @tagId   = "areYouSureToParticipate";
+               SET @german  = "Bist du sicher, dass du teilnehmen willst?";
+               SET @english = "Are you sure you want to participate?";
+
+               /* Insert */
+               insert into labels (`id`, `tag_id`) values
+               (uuid(), @tagId COLLATE utf8mb4_unicode_ci);
+                
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @german COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "de";
+
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @english COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "en";  
+               
+  - changeSet:
+      id: 0015.add_labels_contests.40
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add labels
+            splitStatements: true
+            sql:
+               /*!40101 SET character_set_client = utf8 */;
+               /* Set variables */
+               SET @tagId   = "confirmParticipation";
+               SET @german  = "Teilnahme bestätigen";
+               SET @english = "Confirm Participation";
+
+               /* Insert */
+               insert into labels (`id`, `tag_id`) values
+               (uuid(), @tagId COLLATE utf8mb4_unicode_ci);
+                
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @german COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "de";
+
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @english COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "en";          
+               
+  - changeSet:
+      id: 0015.add_labels_contests.41
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add labels
+            splitStatements: true
+            sql:
+               /*!40101 SET character_set_client = utf8 */;
+               /* Set variables */
+               SET @tagId   = "areYouSureToParticipate";
+               SET @german  = "Bist du sicher, dass du teilnehmen willst?";
+               SET @english = "Are you sure you want to participate?";
+
+               /* Insert */
+               insert into labels (`id`, `tag_id`) values
+               (uuid(), @tagId COLLATE utf8mb4_unicode_ci);
+                
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @german COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "de";
+
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @english COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "en";    
+               
+  - changeSet:
+      id: 0015.add_labels_contests.42
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add labels
+            splitStatements: true
+            sql:
+               /*!40101 SET character_set_client = utf8 */;
+               /* Set variables */
+               SET @tagId   = "confirmVote";
+               SET @german  = "Wahl bestätigen";
+               SET @english = "Confirm Vote";
+
+               /* Insert */
+               insert into labels (`id`, `tag_id`) values
+               (uuid(), @tagId COLLATE utf8mb4_unicode_ci);
+                
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @german COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "de";
+
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @english COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "en";          
+               
+  - changeSet:
+      id: 0015.add_labels_contests.43
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add labels
+            splitStatements: true
+            sql:
+               /*!40101 SET character_set_client = utf8 */;
+               /* Set variables */
+               SET @tagId   = "areYouSureToVote";
+               SET @german  = "Bist du sicher, dass du abstimmen willst?";
+               SET @english = "Are you sure you want to vote?";
+
+               /* Insert */
+               insert into labels (`id`, `tag_id`) values
+               (uuid(), @tagId COLLATE utf8mb4_unicode_ci);
+                
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @german COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "de";
+
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @english COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "en";  
+               
+  - changeSet:
+      id: 0015.add_labels_contests.44
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add labels
+            splitStatements: true
+            sql:
+               /*!40101 SET character_set_client = utf8 */;
+               /* Set variables */
+               SET @tagId   = "showWholeText";
+               SET @german  = "Ganzen Beitrag anzeigen";
+               SET @english = "Show whole contribution";
+
+               /* Insert */
+               insert into labels (`id`, `tag_id`) values
+               (uuid(), @tagId COLLATE utf8mb4_unicode_ci);
+                
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @german COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "de";
+
+               insert into label_translatables (`id`, `parent_id`, `language_id`, `content`)
+               select uuid(), p.id, l.id, @english COLLATE utf8mb4_unicode_ci
+               from labels p, languages l
+               WHERE p.tag_id = @tagId COLLATE utf8mb4_unicode_ci
+               AND l.locale = "en";                                                                                                                                                                           
+                                                                                                                                                                                        

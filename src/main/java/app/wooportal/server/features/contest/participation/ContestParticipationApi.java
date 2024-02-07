@@ -32,7 +32,7 @@ public class ContestParticipationApi
   }
 
   @Override
-  @GraphQLQuery(name = "getContesParticipationt")
+  @GraphQLQuery(name = "getContesParticipation")
   public Optional<ContestParticipationEntity> readOne(
       @GraphQLArgument(name = CrudApi.entity) ContestParticipationEntity entity) {
     return super.readOne(entity);

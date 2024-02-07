@@ -11,6 +11,78 @@ databaseChangeLog:
             sql: insert into contest_types (id, `code`) values
               ('112a561f-5d96-42dd-b851-62365e79147b', 'text'),
               ('8a0cdf4d-8815-42a7-bf80-b5e41af10ee0', 'video'),
-              ('90d71a8a-43f0-4abb-be65-0bb4d7d4d48d', 'image');                 
+              ('90d71a8a-43f0-4abb-be65-0bb4d7d4d48d', 'image'); 
+              
+  - changeSet:
+      id: 0000.seed-data-contests.2
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add data contest_type_translatables
+            splitStatements: true
+            sql: insert into contest_type_translatables (id, parent_id, language_id, name)
+                 select uuid(), "112a561f-5d96-42dd-b851-62365e79147b", l.id, "Text"
+                 from languages l
+                 WHERE l.locale = "de";
+                 
+  - changeSet:
+      id: 0000.seed-data-contests.3
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add data contest_type_translatables
+            splitStatements: true
+            sql: insert into contest_type_translatables (id, parent_id, language_id, name)
+                 select uuid(), "112a561f-5d96-42dd-b851-62365e79147b", l.id, "Text"
+                 from languages l
+                 WHERE l.locale = "en";                 
+                 
+  - changeSet:
+      id: 0000.seed-data-contests.4
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add data contest_type_translatables
+            splitStatements: true
+            sql: insert into contest_type_translatables (id, parent_id, language_id, name)
+                 select uuid(), "8a0cdf4d-8815-42a7-bf80-b5e41af10ee0", l.id, "Film"
+                 from languages l
+                 WHERE l.locale = "de";
+                 
+  - changeSet:
+      id: 0000.seed-data-contests.5
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add data contest_type_translatables
+            splitStatements: true
+            sql: insert into contest_type_translatables (id, parent_id, language_id, name)
+                 select uuid(), "8a0cdf4d-8815-42a7-bf80-b5e41af10ee0", l.id, "Video"
+                 from languages l
+                 WHERE l.locale = "en";                 
+
+  - changeSet:
+      id: 0000.seed-data-contests.6
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add data contest_type_translatables
+            splitStatements: true
+            sql: insert into contest_type_translatables (id, parent_id, language_id, name)
+                 select uuid(), "90d71a8a-43f0-4abb-be65-0bb4d7d4d48d", l.id, "Bild"
+                 from languages l
+                 WHERE l.locale = "de";    
+                 
+  - changeSet:
+      id: 0000.seed-data-contests.7
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add data contest_type_translatables
+            splitStatements: true
+            sql: insert into contest_type_translatables (id, parent_id, language_id, name)
+                 select uuid(), "90d71a8a-43f0-4abb-be65-0bb4d7d4d48d", l.id, "Image"
+                 from languages l
+                 WHERE l.locale = "en";                                             
                                                                                 
                  
