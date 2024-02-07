@@ -18,4 +18,12 @@ public class ContestVotePredicateBuilder
   public BooleanExpression freeSearch(String term) {
     return null;
   }
+  
+  public BooleanExpression withContest(String contestId) {
+    return query.contestParticipation.contest.id.eq(contestId);
+  }
+  
+  public BooleanExpression withUserContext(String userContextId) {
+    return query.userContext.id.eq(userContextId);
+  }
 }

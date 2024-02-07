@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import org.hibernate.annotations.Formula;
 import org.hibernate.annotations.GenericGenerator;
 import app.wooportal.server.base.userContext.base.UserContextEntity;
 import app.wooportal.server.core.base.BaseEntity;
@@ -57,4 +58,11 @@ public class ContestParticipationEntity extends BaseEntity {
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "contestParticipation")
   private List<ContestParticipationMediaEntity> mediaSubmissions = new ArrayList<>();
+  
+  @Formula("""
+      (SELECT COUNT(cv.id)
+      FROM contest_votes cv
+      WHERE cv.contest_participation_id = id)
+    """)
+  private Integer voteAmount;
 }

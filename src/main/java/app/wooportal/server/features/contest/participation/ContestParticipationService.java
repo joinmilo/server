@@ -37,8 +37,10 @@ public class ContestParticipationService
       newEntity.setUserContext(currentUser.get());
       addContext("userContext", context);
 
-      if (newEntity.getContest().getMaxParticipations() > readAll(collectionQuery(
-          predicate.withContest(newEntity.getContest().getId())
+      var contest = contestService.getById(newEntity.getContest().getId()).get(); 
+      if (contest.getMaxParticipations() == null ||
+          contest.getMaxParticipations() > readAll(collectionQuery(
+          predicate.withContest(contest.getId())
           .and(predicate.withUserContext(currentUser.get().getId())))).getTotal()) {
         
         newEntity.setApproved(false);
