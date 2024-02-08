@@ -186,6 +186,7 @@ public class UserService extends DataService<UserEntity, UserPredicateBuilder> {
     throw new InvalidTokenException("Token is invalid");
   }
 
+  //TODO: Remove once migrated to lib
   public double calculatePasswordEntropy(String password) {
     var possibleCombinations = Math.pow(getCharacterSpaceSize(password), password.length());
     return (Math.log(possibleCombinations) / Math.log(2) + 1e-10);

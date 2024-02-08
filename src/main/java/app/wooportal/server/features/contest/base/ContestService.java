@@ -25,8 +25,8 @@ public class ContestService extends DataService<ContestEntity, ContestPredicateB
 
     
     if (newEntity.getParticipationApproval() == null) {
-    newEntity.setParticipationApproval(false);
-    addContext("participationApproval", context);
+      newEntity.setParticipationApproval(false);
+      addContext("participationApproval", context);
     }
   }
   
