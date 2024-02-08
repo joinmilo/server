@@ -32,16 +32,3 @@ databaseChangeLog:
                   name: approved
                   type: boolean                                                  
             tableName: contest_participations   
-            
-  - changeSet:
-      id: 0166.add_columns_contest.3
-      author: codeschluss
-      changes:
-        - addColumn:
-            columns:
-              - column:               
-                  name: vote_amount
-                  type: INTEGER                                               
-            tableName: contest_participations                  
-            
-                                    
