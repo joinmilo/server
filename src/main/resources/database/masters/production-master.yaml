@@ -322,8 +322,9 @@ databaseChangeLog:
         file: database/changes/0175.create_table_navigator_result_link_translatables.yaml      
     - include:                 
         file: database/changes/0176.change_column_type_page_attribute.yaml                                                 
-             
-                                   
+    - include:
+        file: database/changes/0177.add_column_plugin_translatables.yaml
+
     #Data section
     - include:
         file: database/datasets/0000.seed-data.yaml
@@ -371,7 +372,9 @@ databaseChangeLog:
         file: database/datasets/0021.add_labels_navigator.yaml
     - include:
         file: database/datasets/0022.add_labels_export.yaml
-        
+    - include:
+        file: database/datasets/0023.add_short_description_plugins.yaml
+
     #Cleanups
     - include:
         file: database/cleanups/0000.drops.yaml

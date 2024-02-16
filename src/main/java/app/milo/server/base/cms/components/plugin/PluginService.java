@@ -43,9 +43,7 @@ public class PluginService extends DataService<PluginEntity, PluginPredicateBuil
       newPlugin.setActive(active);
       
       if (active == null || !active) {
-        newPlugin.getMenuItems().stream().forEach(menuItem -> {
-          menuItem.setParent(null);
-        });
+        newPlugin.setMenuItems(null);
       }
 
       save(newPlugin);
