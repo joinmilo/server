@@ -318,6 +318,18 @@ databaseChangeLog:
         file: database/changes/0168.change_column_type_contests.yaml 
     - include:                 
         file: database/changes/0169.modify_type_short_description.yaml                   
+    - include:
+        file: database/changes/0168.change_column_type_contests.yaml
+    - include:                 
+        file: database/changes/0169.create_table_navigator_nodes.yaml  
+    - include:                 
+        file: database/changes/0170.create_table_navigator_node_translatables.yaml   
+    - include:                 
+        file: database/changes/0171.create_table_navigator_connections.yaml   
+    - include:                 
+        file: database/changes/0172.create_table_navigator_result_pages.yaml  
+    - include:                 
+        file: database/changes/0173.create_table_navigator_result_page_translatables.yaml                                              
              
                                    
     #Data section
@@ -407,4 +419,6 @@ databaseChangeLog:
         file: database/datasets/test-data/0018.plugin_test-data.yaml
     #- include:
     #    file: database/datasets/test-data/0019.menu_test-data.yaml
+    - include:
+        file: database/datasets/test-data/0020.navigator_test-data.yaml    
                                                               

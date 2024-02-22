@@ -1,0 +1,60 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+
+  - changeSet:
+      id: 0020.navigator_test-data.1
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add Menu Data
+            splitStatements: true
+            sql: insert into navigator_nodes (id, slug) values
+
+              ('52ef4f20-2d13-4060-a139-13073bf12c85', 'sport'),
+              ('41bc9654-ec11-4b98-8584-76a036f606c6', 'musik'),
+              ('0dde13b1-3b06-404d-9b73-f0c93bf3aded', 'e-Sports'),
+              ('58138932-3c6f-4555-9860-b647165a656f', 'kunst'),
+              ('499d63a2-1243-4607-8918-2153e8b96b62', 'fussball'),
+              ('f8c68993-0e6a-4355-b936-972e50418475', 'klettern'),
+              ('945626cd-9af0-4e89-9d3d-9f033bd96d9f', 'zeichnen'),
+              ('91bbb80d-cee8-4dfb-a475-d8a69f332753', 'verein'),
+              ('87b3e02d-0ae6-45f3-b996-ec4d78e68527', 'hobby')                                                      
+                                                                
+  - changeSet:
+      id: 0020.navigator_test-data.2
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add menu translatables
+            splitStatements: true
+            sql:
+                insert into navigator_node_translatables (id, `name`, parent_id, language_id, content)
+                select uuid(), "Sport", "52ef4f20-2d13-4060-a139-13073bf12c85", l.id, null
+                from languages l
+                WHERE l.locale = "de";
+                
+                insert into navigator_node_translatables (id, `name`, parent_id, language_id, content)
+                select uuid(), "Musik", "41bc9654-ec11-4b98-8584-76a036f606c6", l.id, null
+                from languages l
+                WHERE l.locale = "de";        
+                
+  - changeSet:
+      id: 0020.navigator_test-data.3
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add Menu Data
+            splitStatements: true
+            sql: insert into navigator_connections (id, parent_id, child_id, `order`) values
+
+              ('3499eb64-1aac-4c5c-8c26-925141ee702a', '52ef4f20-2d13-4060-a139-13073bf12c85', '499d63a2-1243-4607-8918-2153e8b96b62', 1),
+              ('382627c6-4c9f-4c96-b36a-15cf18f0790e', '52ef4f20-2d13-4060-a139-13073bf12c85', 'f8c68993-0e6a-4355-b936-972e50418475', 2),
+              ('3f4995b5-2804-400b-b504-763baa2cab2d', '499d63a2-1243-4607-8918-2153e8b96b62', '91bbb80d-cee8-4dfb-a475-d8a69f332753', 1),
+              ('8b28fdb2-74ae-4ba8-a55e-e3ccdc3aab90', '499d63a2-1243-4607-8918-2153e8b96b62', '87b3e02d-0ae6-45f3-b996-ec4d78e68527', 2);                                                       
+
+
+
+               
+                
+
+

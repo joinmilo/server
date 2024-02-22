@@ -315,7 +315,13 @@ databaseChangeLog:
     - include:                 
         file: database/changes/0167.add_columns_contest.yaml     
     - include:                 
-        file: database/changes/0168.change_column_type_contests.yaml                    
+        file: database/changes/0168.change_column_type_contests.yaml       
+    - include:                 
+        file: database/changes/0169.create_table_navigator_nodes.yaml  
+    - include:                 
+        file: database/changes/0170.create_table_navigator_node_translatables.yaml  
+    - include:                 
+        file: database/changes/0171.create_table_navigator_connections.yaml                              
                 
     #Data section        
     - include:
