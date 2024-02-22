@@ -1,0 +1,48 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+
+  - changeSet:
+      id: 0169.modify_type_short_descriptions.1
+      author: codeschluss
+      changes:
+        - modifyDataType:
+            columnName: short_description
+            newDataType: TEXT
+            tableName: menu_item_translatables
+            
+  - changeSet:
+      id: 0169.modify_type_short_descriptions.2
+      author: codeschluss
+      changes:
+        - modifyDataType:
+            columnName: short_description
+            newDataType: TEXT
+            tableName: article_translatables
+            
+  - changeSet:
+      id: 0169.modify_type_short_descriptions.3
+      author: codeschluss
+      changes:
+        - modifyDataType:
+            columnName: short_description
+            newDataType: TEXT
+            tableName: contest_translatables
+
+  - changeSet:
+      id: 0169.modify_type_short_descriptions.4
+      author: codeschluss
+      changes:
+        - modifyDataType:
+            columnName: short_description
+            newDataType: TEXT
+            tableName: deal_translatables
+
+  - changeSet:
+      id: 0169.modify_type_short_descriptions.5
+      author: codeschluss
+      changes:
+        - modifyDataType:
+            columnName: short_description
+            newDataType: TEXT
+            tableName: event_translatables
+  

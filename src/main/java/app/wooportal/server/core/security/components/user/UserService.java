@@ -169,8 +169,8 @@ public class UserService extends DataService<UserEntity, UserPredicateBuilder> {
   public Boolean deleteMe(String password, UserDeletionEntity userDeletion) {
     var currentUser = authService.authenticateCurrentUser(password);
     if (currentUser.isPresent()) {
-      deleteById(currentUser.get().getUser().getId());
       userDeletionService.save(userDeletion);
+      deleteById(currentUser.get().getUser().getId());
       return true;
     }
     return false;
