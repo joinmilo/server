@@ -1,0 +1,46 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+  - changeSet:
+      id: 0172.create_table_navigator_result_pages.1
+      author: codeschlus
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: navigator_result_pages_primary_key
+                  name: id
+                  type: CHAR(36)
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  name: created
+                  type: datetime                  
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  name: modified
+                  type: datetime
+              - column:
+                  name: content
+                  type: TEXT
+              - column:
+                  name: title
+                  type: TEXT                                   
+              - column:
+                  name: slug
+                  type: VARCHAR(255)
+              - column:
+                  name: url
+                  type: VARCHAR(255)                                
+            tableName: navigator_result_pages
+        - sql:
+            comment: set char set for mysql
+            dbms: mysql
+            endDelimiter: \nGO
+            splitStatements: true
+            sql: ALTER TABLE navigator_result_pages CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci; 
