@@ -7,10 +7,7 @@ import app.wooportal.server.core.base.CrudApi;
 import app.wooportal.server.core.base.dto.listing.FilterSortPaginate;
 import app.wooportal.server.core.base.dto.listing.PageableList;
 import app.wooportal.server.core.security.permissions.AdminPermission;
-import app.wooportal.server.features.event.base.EventEntity;
-import app.wooportal.server.features.event.comment.EventCommentEntity;
 import io.leangen.graphql.annotations.GraphQLArgument;
-import io.leangen.graphql.annotations.GraphQLContext;
 import io.leangen.graphql.annotations.GraphQLMutation;
 import io.leangen.graphql.annotations.GraphQLQuery;
 import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
@@ -24,21 +21,21 @@ public class NavigatorPageApi extends CrudApi<NavigatorPageEntity, NavigatorPage
   }
 
   @Override
-  @GraphQLQuery(name = "getNavigatorNodes")
+  @GraphQLQuery(name = "getNavigatorPages")
   public PageableList<NavigatorPageEntity> readAll(
       @GraphQLArgument(name = CrudApi.params) FilterSortPaginate params) {
     return super.readAll(params);
   }
 
   @Override
-  @GraphQLQuery(name = "getNavigatorNode")
+  @GraphQLQuery(name = "getNavigatorPage")
   public Optional<NavigatorPageEntity> readOne(
       @GraphQLArgument(name = CrudApi.entity) NavigatorPageEntity entity) {
     return super.readOne(entity);
   }
 
   @Override
-  @GraphQLMutation(name = "saveNavigatorNodes")
+  @GraphQLMutation(name = "saveNavigatorPages")
   @AdminPermission
   public List<NavigatorPageEntity> saveAll(
       @GraphQLArgument(name = CrudApi.entities) List<NavigatorPageEntity> entities) {
@@ -46,7 +43,7 @@ public class NavigatorPageApi extends CrudApi<NavigatorPageEntity, NavigatorPage
   }
 
   @Override
-  @GraphQLMutation(name = "saveNavigatorNode")
+  @GraphQLMutation(name = "saveNavigatorPage")
   @AdminPermission
   public NavigatorPageEntity saveOne(
       @GraphQLArgument(name = CrudApi.entity) NavigatorPageEntity entity) {
@@ -54,22 +51,27 @@ public class NavigatorPageApi extends CrudApi<NavigatorPageEntity, NavigatorPage
   }
 
   @Override
-  @GraphQLMutation(name = "deleteNavigatorNodes")
+  @GraphQLMutation(name = "deleteNavigatorPages")
   @AdminPermission
   public Boolean deleteAll(@GraphQLArgument(name = CrudApi.ids) List<String> ids) {
     return super.deleteAll(ids);
   }
 
   @Override
-  @GraphQLMutation(name = "deleteNavigatorNode")
+  @GraphQLMutation(name = "deleteNavigatorPage")
   @AdminPermission
   public Boolean deleteOne(@GraphQLArgument(name = CrudApi.id) String id) {
     return super.deleteOne(id);
   }
 
-//  @GraphQLQuery(name = "possibleChildNodes")
-//  public List<NavigatorPageEntity> possibleChildNodes(
+//  @GraphQLQuery(name = "possibleChildPages")
+//  public List<NavigatorPageEntity> possibleChildPages(
 //      @GraphQLContext NavigatorPageEntity page) {
 //    return service.getPossiblePages(page);
 //  }
+  
+  @GraphQLQuery(name = "getNavigatorStartPage")
+  public NavigatorPageEntity getNavigatorStartPage() {
+    return service.getStartPage();
+  }
 }

@@ -75,5 +75,4 @@ public class UserContextApi extends CrudApi<UserContextEntity, UserContextServic
   public Optional<UserContextEntity> me() {
     return service.me();
   }
-
 }

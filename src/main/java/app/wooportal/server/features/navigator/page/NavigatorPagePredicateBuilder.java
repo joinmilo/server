@@ -18,8 +18,8 @@ public class NavigatorPagePredicateBuilder extends PredicateBuilder<QNavigatorPa
         .or(query.slug.likeIgnoreCase(term))
         .or(query.id.likeIgnoreCase(term));
   }
-//  
-//  public BooleanExpression withChildId(String childId) {
-//    return query.parents.any().child.id.eq(childId);
-//  }
+  
+  public BooleanExpression withoutParentChoice() {
+    return query.parentChoices.isEmpty();
+  }
 }

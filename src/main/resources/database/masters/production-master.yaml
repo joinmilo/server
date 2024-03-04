@@ -317,11 +317,17 @@ databaseChangeLog:
     - include:                 
         file: database/changes/0168.change_column_type_contests.yaml       
     - include:                 
-        file: database/changes/0169.create_table_navigator_nodes.yaml  
+        file: database/changes/0169.create_table_navigator_pages.yaml  
     - include:                 
-        file: database/changes/0170.create_table_navigator_node_translatables.yaml  
+        file: database/changes/0170.create_table_navigator_page_translatables.yaml   
     - include:                 
-        file: database/changes/0171.create_table_navigator_connections.yaml                              
+        file: database/changes/0171.create_table_navigator_choices.yaml  
+    - include:                 
+        file: database/changes/0172.create_table_navigator_choice_translatables.yaml           
+    - include:                 
+        file: database/changes/0173.create_table_navigator_result_links.yaml  
+    - include:                 
+        file: database/changes/0174.create_table_navigator_result_link_translatables.yaml                         
                 
     #Data section        
     - include:
