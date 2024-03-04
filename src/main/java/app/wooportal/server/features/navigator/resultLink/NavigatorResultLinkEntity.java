@@ -1,7 +1,6 @@
-package app.wooportal.server.features.navigator.base;
+package app.wooportal.server.features.navigator.resultLink;
 
 import java.util.Set;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
@@ -9,10 +8,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.i18n.annotations.Translatable;
-import app.wooportal.server.core.seo.annotations.SlugSource;
-import app.wooportal.server.core.seo.annotations.SlugTarget;
-import app.wooportal.server.features.navigator.base.translations.NavigatorChoiceTranslatableEntity;
 import app.wooportal.server.features.navigator.page.NavigatorPageEntity;
+import app.wooportal.server.features.navigator.resultLink.translations.NavigatorResultLinkTranslatableEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,28 +21,20 @@ import lombok.Setter;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @AllArgsConstructor
 @Entity
-@Table(name = "navigator_choices")
-public class NavigatorChoiceEntity extends BaseEntity {
+@Table(name = "navigator_result_links")
+public class NavigatorResultLinkEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
   
   @Translatable
-  private String description;
-  
-  @Translatable
-  @SlugSource
   private String name;
   
-  @Column(nullable = false, unique = true)
-  @SlugTarget
-  private String slug;
+  private String url;
   
   @ManyToOne(fetch = FetchType.LAZY)
-  private NavigatorPageEntity parent;
-  
-  @ManyToOne(fetch = FetchType.LAZY)
-  private NavigatorPageEntity nextPage;
+  protected NavigatorPageEntity page;
   
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
-  protected Set<NavigatorChoiceTranslatableEntity> translatables;
+  protected Set<NavigatorResultLinkTranslatableEntity> translatables;
+  
 }

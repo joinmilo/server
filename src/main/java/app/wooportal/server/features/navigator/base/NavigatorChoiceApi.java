@@ -24,21 +24,21 @@ public class NavigatorChoiceApi extends CrudApi<NavigatorChoiceEntity, Navigator
   }
 
   @Override
-  @GraphQLQuery(name = "getNavigatorNodes")
+  @GraphQLQuery(name = "getNavigatorChoices")
   public PageableList<NavigatorChoiceEntity> readAll(
       @GraphQLArgument(name = CrudApi.params) FilterSortPaginate params) {
     return super.readAll(params);
   }
 
   @Override
-  @GraphQLQuery(name = "getNavigatorNode")
+  @GraphQLQuery(name = "getNavigatorChoice")
   public Optional<NavigatorChoiceEntity> readOne(
       @GraphQLArgument(name = CrudApi.entity) NavigatorChoiceEntity entity) {
     return super.readOne(entity);
   }
 
   @Override
-  @GraphQLMutation(name = "saveNavigatorNodes")
+  @GraphQLMutation(name = "saveNavigatorChoices")
   @AdminPermission
   public List<NavigatorChoiceEntity> saveAll(
       @GraphQLArgument(name = CrudApi.entities) List<NavigatorChoiceEntity> entities) {
@@ -46,7 +46,7 @@ public class NavigatorChoiceApi extends CrudApi<NavigatorChoiceEntity, Navigator
   }
 
   @Override
-  @GraphQLMutation(name = "saveNavigatorNode")
+  @GraphQLMutation(name = "saveNavigatorChoice")
   @AdminPermission
   public NavigatorChoiceEntity saveOne(
       @GraphQLArgument(name = CrudApi.entity) NavigatorChoiceEntity entity) {
@@ -54,22 +54,22 @@ public class NavigatorChoiceApi extends CrudApi<NavigatorChoiceEntity, Navigator
   }
 
   @Override
-  @GraphQLMutation(name = "deleteNavigatorNodes")
+  @GraphQLMutation(name = "deleteNavigatorChoices")
   @AdminPermission
   public Boolean deleteAll(@GraphQLArgument(name = CrudApi.ids) List<String> ids) {
     return super.deleteAll(ids);
   }
 
   @Override
-  @GraphQLMutation(name = "deleteNavigatorNode")
+  @GraphQLMutation(name = "deleteNavigatorChoice")
   @AdminPermission
   public Boolean deleteOne(@GraphQLArgument(name = CrudApi.id) String id) {
     return super.deleteOne(id);
   }
 //  
-//  @GraphQLQuery(name = "possibleChildNodes")
-//  public List<NavigatorChoiceEntity> possibleChildNodes(
-//      @GraphQLContext NavigatorChoiceEntity node) {
-//    return service.getPossibleNodes(node);
+//  @GraphQLQuery(name = "possibleChildChoices")
+//  public List<NavigatorChoiceEntity> possibleChildChoices(
+//      @GraphQLContext NavigatorChoiceEntity Choice) {
+//    return service.getPossibleChoices(Choice);
 //  }
 }

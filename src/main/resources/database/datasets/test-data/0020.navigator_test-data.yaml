@@ -1,6 +1,6 @@
 databaseChangeLog:
-  - logicalFilePath: path_independent
-
+  - logicalFilePath: path_independent        
+                
   - changeSet:
       id: 0020.navigator_test-data.1
       author: codeschluss
@@ -8,18 +8,14 @@ databaseChangeLog:
         - sql:
             comment: Add Menu Data
             splitStatements: true
-            sql: insert into navigator_nodes (id, slug) values
+            sql: insert into navigator_pages (id, slug, is_result_page) values
 
-              ('52ef4f20-2d13-4060-a139-13073bf12c85', 'sport'),
-              ('41bc9654-ec11-4b98-8584-76a036f606c6', 'musik'),
-              ('0dde13b1-3b06-404d-9b73-f0c93bf3aded', 'e-Sports'),
-              ('58138932-3c6f-4555-9860-b647165a656f', 'kunst'),
-              ('499d63a2-1243-4607-8918-2153e8b96b62', 'fussball'),
-              ('f8c68993-0e6a-4355-b936-972e50418475', 'klettern'),
-              ('945626cd-9af0-4e89-9d3d-9f033bd96d9f', 'zeichnen'),
-              ('91bbb80d-cee8-4dfb-a475-d8a69f332753', 'verein'),
-              ('87b3e02d-0ae6-45f3-b996-ec4d78e68527', 'hobby')                                                      
-                                                                
+              ('3ac7053e-aa25-4131-bf4e-f8cdfac96f8d', 'wofuerinteressierstdudich', false),
+              ('8fa62e66-0028-49e9-9f65-ecbda383e0da', 'welchesportartgefaelltdirambesten', false),
+              ('b1d03f09-04a5-4e30-8674-33e5fd25939c', 'welchesmusikinstrument', false),
+              ('fcad2826-07e6-49fb-9111-78bffca67215', 'hobbyoderverein', false),
+              ('5f6171b1-f487-4008-abbf-c76f3f236053', 'deineergebnisse', true);              
+              
   - changeSet:
       id: 0020.navigator_test-data.2
       author: codeschluss
@@ -28,15 +24,30 @@ databaseChangeLog:
             comment: Add menu translatables
             splitStatements: true
             sql:
-                insert into navigator_node_translatables (id, `name`, parent_id, language_id, content)
-                select uuid(), "Sport", "52ef4f20-2d13-4060-a139-13073bf12c85", l.id, null
+                insert into navigator_page_translatables (id, `title`, parent_id, language_id, additional_information)
+                select uuid(), "Wofür interessiert du dich am meisten?", "3ac7053e-aa25-4131-bf4e-f8cdfac96f8d", l.id, "Das Przewalski-Pferd (Equus przewalskii), auch Tachi, Asiati­sches Wild­pferd oder Mongo­lisches Wild­pferd genannt, ist eine Art aus der Gattung der Pferde. Benannt ist es nach dem russi­schen Expedi­tions­reisen­den Nikolai Michailowitsch Przewalski, der 1878 von einer seiner Expe­ditio­nen nach Zentral­asien Haut und Schädel der in der west­lichen Welt weit­gehend unbekann­ten Pferde­art nach Sankt Peters­burg mit­brachte. Wissen­schaft­lich einge­führt wurde sie dann drei Jahre später"
                 from languages l
                 WHERE l.locale = "de";
                 
-                insert into navigator_node_translatables (id, `name`, parent_id, language_id, content)
-                select uuid(), "Musik", "41bc9654-ec11-4b98-8584-76a036f606c6", l.id, null
+                insert into navigator_page_translatables (id, `title`, parent_id, language_id)
+                select uuid(), "Welche Sportart gefällt dir am besten?", "8fa62e66-0028-49e9-9f65-ecbda383e0da", l.id
                 from languages l
-                WHERE l.locale = "de";        
+                WHERE l.locale = "de";   
+                
+                insert into navigator_page_translatables (id, `title`, parent_id, language_id)
+                select uuid(), "Welche Musikinstrument?", "b1d03f09-04a5-4e30-8674-33e5fd25939c", l.id
+                from languages l
+                WHERE l.locale = "de";   
+                
+                insert into navigator_page_translatables (id, `title`, parent_id, language_id)
+                select uuid(), "Hobby oder Verein?", "fcad2826-07e6-49fb-9111-78bffca67215", l.id
+                from languages l
+                WHERE l.locale = "de"; 
+                
+                insert into navigator_page_translatables (id, `title`, parent_id, language_id)
+                select uuid(), "Deine Ergebnisse!", "5f6171b1-f487-4008-abbf-c76f3f236053", l.id
+                from languages l
+                WHERE l.locale = "de";
                 
   - changeSet:
       id: 0020.navigator_test-data.3
@@ -45,15 +56,108 @@ databaseChangeLog:
         - sql:
             comment: Add Menu Data
             splitStatements: true
-            sql: insert into navigator_connections (id, parent_id, child_id, `order`) values
+            sql: insert into navigator_result_links (id, url, page_id) values
 
-              ('3499eb64-1aac-4c5c-8c26-925141ee702a', '52ef4f20-2d13-4060-a139-13073bf12c85', '499d63a2-1243-4607-8918-2153e8b96b62', 1),
-              ('382627c6-4c9f-4c96-b36a-15cf18f0790e', '52ef4f20-2d13-4060-a139-13073bf12c85', 'f8c68993-0e6a-4355-b936-972e50418475', 2),
-              ('3f4995b5-2804-400b-b504-763baa2cab2d', '499d63a2-1243-4607-8918-2153e8b96b62', '91bbb80d-cee8-4dfb-a475-d8a69f332753', 1),
-              ('8b28fdb2-74ae-4ba8-a55e-e3ccdc3aab90', '499d63a2-1243-4607-8918-2153e8b96b62', '87b3e02d-0ae6-45f3-b996-ec4d78e68527', 2);                                                       
+              ('cebc6727-b1b7-4f30-a069-7302cef67a8c', 'https://google.de', '5f6171b1-f487-4008-abbf-c76f3f236053');              
+              
+  - changeSet:
+      id: 0020.navigator_test-data.4
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add menu translatables
+            splitStatements: true
+            sql:
+                insert into navigator_result_link_translatables (id, `name`, parent_id, language_id)
+                select uuid(), "GOOGLE DIR EINEN!", "cebc6727-b1b7-4f30-a069-7302cef67a8c", l.id
+                from languages l
+                WHERE l.locale = "de";              
+                
+  - changeSet:
+      id: 0020.navigator_test-data.5
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add Menu Data
+            splitStatements: true
+            sql: insert into navigator_choices (id, slug, parent_id, next_page_id) values
 
-
-
+              ('52ef4f20-2d13-4060-a139-13073bf12c85', 'sport', "3ac7053e-aa25-4131-bf4e-f8cdfac96f8d", '8fa62e66-0028-49e9-9f65-ecbda383e0da'),
+              ('41bc9654-ec11-4b98-8584-76a036f606c6', 'musik', '3ac7053e-aa25-4131-bf4e-f8cdfac96f8d', 'b1d03f09-04a5-4e30-8674-33e5fd25939c'),
+              ('0dde13b1-3b06-404d-9b73-f0c93bf3aded', 'e-Sports', '3ac7053e-aa25-4131-bf4e-f8cdfac96f8d', null),
+              ('58138932-3c6f-4555-9860-b647165a656f', 'kunst', '3ac7053e-aa25-4131-bf4e-f8cdfac96f8d', null),
+              ('499d63a2-1243-4607-8918-2153e8b96b62', 'fussball', '8fa62e66-0028-49e9-9f65-ecbda383e0da', 'fcad2826-07e6-49fb-9111-78bffca67215'),
+              ('f8c68993-0e6a-4355-b936-972e50418475', 'posaune', 'b1d03f09-04a5-4e30-8674-33e5fd25939c', null),
+              ('08ff7e9d-ab86-4773-9c06-6f4358e4104c', 'hobby', 'fcad2826-07e6-49fb-9111-78bffca67215', '5f6171b1-f487-4008-abbf-c76f3f236053');
+                                                                 
+                                                                
+  - changeSet:
+      id: 0020.navigator_test-data.6
+      author: codeschluss
+      changes:
+        - sql:
+            comment: Add menu translatables
+            splitStatements: true
+            sql:
+                insert into navigator_choice_translatables (id, `name`, parent_id, language_id, description)
+                select uuid(), "Sport", "52ef4f20-2d13-4060-a139-13073bf12c85", l.id, "Machs einfach..."
+                from languages l
+                WHERE l.locale = "de";
+                
+                insert into navigator_choice_translatables (id, `name`, parent_id, language_id, description)
+                select uuid(), "Sport", "52ef4f20-2d13-4060-a139-13073bf12c85", l.id, "just fucking do it"
+                from languages l
+                WHERE l.locale = "en";                
+                
+                insert into navigator_choice_translatables (id, `name`, parent_id, language_id, description)
+                select uuid(), "Musik", "41bc9654-ec11-4b98-8584-76a036f606c6", l.id, null
+                from languages l
+                WHERE l.locale = "de";
+                
+                insert into navigator_choice_translatables (id, `name`, parent_id, language_id, description)
+                select uuid(), "Music", "41bc9654-ec11-4b98-8584-76a036f606c6", l.id, null
+                from languages l
+                WHERE l.locale = "en";   
+                
+                insert into navigator_choice_translatables (id, `name`, parent_id, language_id, description)
+                select uuid(), "Im Internet Sport machen", "0dde13b1-3b06-404d-9b73-f0c93bf3aded", l.id, null
+                from languages l
+                WHERE l.locale = "de";
+                
+                insert into navigator_choice_translatables (id, `name`, parent_id, language_id, description)
+                select uuid(), "Doing the sport in the internet", "0dde13b1-3b06-404d-9b73-f0c93bf3aded", l.id, null
+                from languages l
+                WHERE l.locale = "en";   
+                
+                insert into navigator_choice_translatables (id, `name`, parent_id, language_id, description)
+                select uuid(), "Kunst ist nicht nur ein Fach, es ist eine Lebenseinstellung", "58138932-3c6f-4555-9860-b647165a656f", l.id, null
+                from languages l
+                WHERE l.locale = "de";
+                
+                insert into navigator_choice_translatables (id, `name`, parent_id, language_id, description)
+                select uuid(), "The same shait the german guy said. Germans... it takes one to know one", "58138932-3c6f-4555-9860-b647165a656f", l.id, null
+                from languages l
+                WHERE l.locale = "en";     
+                
+                insert into navigator_choice_translatables (id, `name`, parent_id, language_id, description)
+                select uuid(), "Fussball", "499d63a2-1243-4607-8918-2153e8b96b62", l.id, null
+                from languages l
+                WHERE l.locale = "de";      
+                
+                insert into navigator_choice_translatables (id, `name`, parent_id, language_id, description)
+                select uuid(), "Possaune", "f8c68993-0e6a-4355-b936-972e50418475", l.id, null
+                from languages l
+                WHERE l.locale = "de";
+                
+                insert into navigator_choice_translatables (id, `name`, parent_id, language_id, description)
+                select uuid(), "Hobby", "08ff7e9d-ab86-4773-9c06-6f4358e4104c", l.id, null
+                from languages l
+                WHERE l.locale = "de";                                                                           
+                
+                
+                       
+                
+                                   
                
                 
 

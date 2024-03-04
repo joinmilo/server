@@ -1,7 +1,5 @@
 package app.wooportal.server.features.navigator.page;
 
-import java.util.ArrayList;
-import java.util.List;
 import org.springframework.stereotype.Service;
 import app.wooportal.server.core.base.DataService;
 import app.wooportal.server.core.repository.DataRepository;
@@ -14,6 +12,10 @@ public class NavigatorPageService
   public NavigatorPageService(DataRepository<NavigatorPageEntity> repo,
       NavigatorPagePredicateBuilder predicate) {
     super(repo, predicate);
+  }
+
+  public NavigatorPageEntity getStartPage() {
+    return repo.findAll(collectionQuery(predicate.withoutParentChoice())).get(0);
   }
 
 //  public List<NavigatorPageEntity> getPossiblePages(NavigatorPageEntity page) {

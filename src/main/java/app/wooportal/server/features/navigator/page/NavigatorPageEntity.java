@@ -12,6 +12,7 @@ import app.wooportal.server.core.seo.annotations.SlugSource;
 import app.wooportal.server.core.seo.annotations.SlugTarget;
 import app.wooportal.server.features.navigator.base.NavigatorChoiceEntity;
 import app.wooportal.server.features.navigator.page.translations.NavigatorPageTranslatableEntity;
+import app.wooportal.server.features.navigator.resultLink.NavigatorResultLinkEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -31,6 +32,8 @@ public class NavigatorPageEntity extends BaseEntity {
   @Translatable
   private String additionalInformation;
   
+  private Boolean isResultPage;
+  
   @Column(nullable = false, unique = true)
   @SlugTarget
   private String slug;
@@ -41,6 +44,9 @@ public class NavigatorPageEntity extends BaseEntity {
   
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
   protected Set<NavigatorChoiceEntity> choices;
+  
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "page")
+  protected Set<NavigatorResultLinkEntity> links;
   
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "nextPage")
   protected Set<NavigatorChoiceEntity> parentChoices;  
