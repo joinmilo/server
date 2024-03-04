@@ -1,10 +1,8 @@
-package app.wooportal.server.base.userDeletion.base;
+package app.wooportal.server.core.security.components.userDeletion.base;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.stereotype.Component;
-
 import app.wooportal.server.core.base.CrudApi;
 import app.wooportal.server.core.base.dto.listing.FilterSortPaginate;
 import app.wooportal.server.core.base.dto.listing.PageableList;

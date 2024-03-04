@@ -1,4 +1,4 @@
-package app.wooportal.server.base.userDeletion.base;
+package app.wooportal.server.core.security.components.userDeletion.base;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,11 +17,10 @@ import javax.persistence.UniqueConstraint;
 import org.hibernate.annotations.CollectionId;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
-
-import app.wooportal.server.base.userDeletion.base.translations.UserDeletionTranslatableEntity;
-import app.wooportal.server.base.userDeletion.type.UserDeletionTypeEntity;
 import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.i18n.annotations.Translatable;
+import app.wooportal.server.core.security.components.userDeletion.base.translations.UserDeletionTranslatableEntity;
+import app.wooportal.server.core.security.components.userDeletion.type.UserDeletionTypeEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

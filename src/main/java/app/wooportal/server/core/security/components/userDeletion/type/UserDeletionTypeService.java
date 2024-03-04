@@ -1,4 +1,4 @@
-package app.wooportal.server.base.userDeletion.type;
+package app.wooportal.server.core.security.components.userDeletion.type;
 
 import org.springframework.stereotype.Service;
 

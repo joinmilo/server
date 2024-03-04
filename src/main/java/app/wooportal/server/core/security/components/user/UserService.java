@@ -7,8 +7,6 @@ import java.util.regex.Pattern;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.JsonNode;
-import app.wooportal.server.base.userDeletion.base.UserDeletionEntity;
-import app.wooportal.server.base.userDeletion.base.UserDeletionService;
 import app.wooportal.server.core.base.DataService;
 import app.wooportal.server.core.error.exception.AlreadyVerifiedException;
 import app.wooportal.server.core.error.exception.BadParamsException;
@@ -26,6 +24,8 @@ import app.wooportal.server.core.security.components.user.emailVerification.Veri
 import app.wooportal.server.core.security.components.user.emailVerification.VerificationService;
 import app.wooportal.server.core.security.components.user.passwordReset.PasswordResetEntity;
 import app.wooportal.server.core.security.components.user.passwordReset.PasswordResetService;
+import app.wooportal.server.core.security.components.userDeletion.base.UserDeletionEntity;
+import app.wooportal.server.core.security.components.userDeletion.base.UserDeletionService;
 import app.wooportal.server.core.security.services.AuthenticationService;
 import app.wooportal.server.core.utils.ReflectionUtils;
 

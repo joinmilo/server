@@ -1,4 +1,4 @@
-package app.wooportal.server.base.userDeletion.type.translations;
+package app.wooportal.server.core.security.components.userDeletion.type.translations;
 
 
 import org.springframework.stereotype.Repository;

@@ -1,28 +1,29 @@
-package app.wooportal.server.base.userDeletion.type.translations;
+package app.wooportal.server.core.security.components.userDeletion.base.translations;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-
-import app.wooportal.server.base.userDeletion.type.UserDeletionTypeEntity;
 import app.wooportal.server.core.i18n.entities.TranslatableEntity;
+import app.wooportal.server.core.security.components.userDeletion.base.UserDeletionEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Setter
+@Getter
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @AllArgsConstructor
 @Entity
-@Table(name = "user_deletion_type_translatables")
-public class UserDeletionTypeTranslatableEntity extends TranslatableEntity<UserDeletionTypeEntity> {
+@Table(name = "user_deletion_translatables")
+public class UserDeletionTranslatableEntity extends TranslatableEntity<UserDeletionEntity> {
 
   private static final long serialVersionUID = 1L;
 
   @Column(nullable = false)
-  private String name;
+  private String content;
 
 }
