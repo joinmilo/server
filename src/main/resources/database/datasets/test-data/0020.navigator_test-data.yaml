@@ -44,8 +44,8 @@ databaseChangeLog:
                 from languages l
                 WHERE l.locale = "de"; 
                 
-                insert into navigator_page_translatables (id, `title`, parent_id, language_id)
-                select uuid(), "Deine Ergebnisse!", "5f6171b1-f487-4008-abbf-c76f3f236053", l.id
+                insert into navigator_page_translatables (id, `title`, parent_id, language_id, additional_information)
+                select uuid(), "Deine Ergebnisse!", "5f6171b1-f487-4008-abbf-c76f3f236053", l.id, "Wenn du genauere Informationen zum Thema erhalten möchstest, empfehlen wir den oben stehenden Link. Der gewährt dir Zugriff auf unser Wissenskompendium. Viel Spaß!"
                 from languages l
                 WHERE l.locale = "de";
                 
@@ -110,7 +110,7 @@ databaseChangeLog:
                 WHERE l.locale = "en";                
                 
                 insert into navigator_choice_translatables (id, `name`, parent_id, language_id, description)
-                select uuid(), "Musik", "41bc9654-ec11-4b98-8584-76a036f606c6", l.id, null
+                select uuid(), "Musik", "41bc9654-ec11-4b98-8584-76a036f606c6", l.id, "Musik ist eine Kunstgattung, deren Werke aus organisierten Klängen[1] bestehen, die Empfindungen oder Assoziationen hervorrufen können.[2] Als Ausgangsmaterial dienen Töne, Klänge und Geräusche, sowie deren akustische Eigenschaften, wie Lautstärke, Klangfarbe, Tonhöhe und Tondauer."
                 from languages l
                 WHERE l.locale = "de";
                 

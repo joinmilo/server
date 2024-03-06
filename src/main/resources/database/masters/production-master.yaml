@@ -370,6 +370,12 @@ databaseChangeLog:
         file: database/datasets/0018.add_labels_analytics_rating.yaml
     - include:
         file: database/datasets/0019.add_data_labels_4.yaml
+    - include:
+        file: database/datasets/0017.add_labels_plugins.yaml  
+    - include:
+        file: database/datasets/0018.add_data_plugin_navigator.yaml
+    - include:
+        file: database/datasets/0019.add_labels_navigator.yaml                  
         
     #Cleanups
     - include:
