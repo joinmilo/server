@@ -1,18 +1,18 @@
   databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
-      id: 0018.add_data_plugin_navigator.1
+      id: 0020.add_data_plugin_navigator.1
       author: codeschluss
       changes:
         - sql:
             comment: Add Plugins
             splitStatements: true
             sql: insert into plugins (id, `code`, `icon`, `released`) values
-              ('cd77d180-0414-4050-8b09-d1e5b7e3642e', 'navigator', 'compass', true);             
+              ('cd77d190-0414-4050-8b09-d1e5b7e3642e', 'navigator', 'compass', true);             
                 
                      
   - changeSet:
-      id: 0018.add_data_plugin_navigator.2
+      id: 0020.add_data_plugin_navigator.2
       author: codeschluss
       changes:
         - sql:
