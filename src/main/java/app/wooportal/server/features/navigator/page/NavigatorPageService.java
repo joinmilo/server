@@ -17,7 +17,7 @@ public class NavigatorPageService
   public NavigatorPageEntity getStartPage() {
     return repo.findAll(collectionQuery(predicate.withoutParentChoice())).get(0);
   }
-
+//TODO implement Copy Function
 //  public List<NavigatorPageEntity> getPossiblePages(NavigatorPageEntity page) {
 //    var pages = repo.findAll();
 //    List<NavigatorPageEntity> parentpages = new ArrayList<>();
