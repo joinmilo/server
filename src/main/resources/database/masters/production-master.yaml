@@ -265,19 +265,19 @@ databaseChangeLog:
     - include:                 
         file: database/changes/0142.create_table_user_deletion_translatables.yaml
     - include:                 
-        file: database/changes/0143.create_table_milestones.yaml
+        file: database/changes/0143.create_table_milestones.yaml   
     - include:                 
-        file: database/changes/0144.create_table_milestone_translatables.yaml
+        file: database/changes/0144.create_table_milestone_translatables.yaml   
     - include:                 
-        file: database/changes/0145.create_table_milestone_media.yaml
+        file: database/changes/0145.create_table_milestone_media.yaml    
     - include:                 
-        file: database/changes/0146.create_table_milestone_element.yaml
+        file: database/changes/0146.create_table_milestone_element.yaml 
     - include:                 
-        file: database/changes/0147.create_table_milestone_element_translatables.yaml
+        file: database/changes/0147.create_table_milestone_element_translatables.yaml   
     - include:                 
-        file: database/changes/0148.update_name_constraints.yaml 
+        file: database/changes/0148.update_name_constraints.yaml    
     - include:                 
-        file: database/changes/0149.change_null_and_unique_constraints.yaml  
+        file: database/changes/0149.change_null_and_unique_constraints.yaml
     - include:                 
         file: database/changes/0150.add_columns_comments_allowed.yaml
     - include:
@@ -313,9 +313,13 @@ databaseChangeLog:
     - include:
         file: database/changes/0166.modify_type_descriptions.yaml
     - include:                 
-        file: database/changes/0167.add_columns_contest.yaml     
+        file: database/changes/0167.add_columns_contest.yaml 
     - include:                 
-        file: database/changes/0168.change_column_type_contests.yaml       
+        file: database/changes/0168.change_column_type_contests.yaml 
+    - include:                 
+        file: database/changes/0169.modify_type_short_description.yaml                   
+    - include:
+        file: database/changes/0168.change_column_type_contests.yaml
     - include:                 
         file: database/changes/0170.create_table_navigator_pages.yaml  
     - include:                 
@@ -327,9 +331,10 @@ databaseChangeLog:
     - include:                 
         file: database/changes/0174.create_table_navigator_result_links.yaml  
     - include:                 
-        file: database/changes/0175.create_table_navigator_result_link_translatables.yaml
-                
-    #Data section        
+        file: database/changes/0175.create_table_navigator_result_link_translatables.yaml                                              
+             
+                                   
+    #Data section
     - include:
         file: database/datasets/0000.seed-data.yaml
     - include:
@@ -359,9 +364,9 @@ databaseChangeLog:
     - include:
         file: database/datasets/0013.add_labels_privilege_approval.yaml
     - include:
-        file: database/datasets/0014.add_data_labels_4.yaml         
-    - include:
-        file: database/datasets/0015.add_labels_contests.yaml        
+        file: database/datasets/0014.add_data_labels_4.yaml        
+    - include:       
+        file: database/datasets/0015.add_labels_contests.yaml         
     - include:
         file: database/datasets/0016.seed-data-contests.yaml  
     - include:
@@ -371,11 +376,9 @@ databaseChangeLog:
     - include:
         file: database/datasets/0019.add_data_labels_4.yaml
     - include:
-        file: database/datasets/0017.add_labels_plugins.yaml  
+        file: database/datasets/0020.add_data_plugin_navigator.yaml   
     - include:
-        file: database/datasets/0018.add_data_plugin_navigator.yaml
-    - include:
-        file: database/datasets/0019.add_labels_navigator.yaml                  
+        file: database/datasets/0021.add_labels_navigator.yaml                  
         
     #Cleanups
     - include:

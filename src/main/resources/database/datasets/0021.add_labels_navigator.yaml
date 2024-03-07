@@ -2,7 +2,7 @@ databaseChangeLog:
   - logicalFilePath: path_independent                
   
   - changeSet:
-      id: 0019.add_labels_navigator.1
+      id: 0021.add_labels_navigator.1
       author: codeschluss
       changes:
         - sql:
@@ -32,7 +32,7 @@ databaseChangeLog:
                AND l.locale = "en";
                
   - changeSet:
-      id: 0019.add_labels_navigator.2
+      id: 0021.add_labels_navigator.2
       author: codeschluss
       changes:
         - sql:
@@ -62,7 +62,7 @@ databaseChangeLog:
                AND l.locale = "en";  
                
   - changeSet:
-      id: 0019.add_labels_navigator.3
+      id: 0021.add_labels_navigator.3
       author: codeschluss
       changes:
         - sql:
