@@ -1,7 +1,7 @@
 databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
-      id: 0169.create_table_navigator_pages.1
+      id: 0170.create_table_navigator_pages.1
       author: codeschlus
       changes:
         - createTable:

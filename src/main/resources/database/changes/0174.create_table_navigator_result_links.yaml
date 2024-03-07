@@ -1,7 +1,7 @@
 databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
-      id: 0173.create_table_navigator_result_links.1
+      id: 0174.create_table_navigator_result_links.1
       author: codeschlus
       changes:
         - createTable:
@@ -40,7 +40,7 @@ databaseChangeLog:
             sql: ALTER TABLE navigator_result_links CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci; 
             
   - changeSet:
-      id: 0173.create_table_navigator_result_links.2
+      id: 0174.create_table_navigator_result_links.2
       author: codeschluss
       changes:
         - createIndex:
@@ -50,7 +50,7 @@ databaseChangeLog:
             indexName: idx_fk_navigator_page_result_link_id
             tableName: navigator_result_links
   - changeSet:
-      id: 0173.create_table_navigator_result_links.3
+      id: 0174.create_table_navigator_result_links.3
       author: codeschluss
       changes:
         - addForeignKeyConstraint:

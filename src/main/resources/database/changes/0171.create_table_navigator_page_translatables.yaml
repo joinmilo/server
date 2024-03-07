@@ -1,7 +1,7 @@
 databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
-      id: 0170.create_table_navigator_page_translatables.1
+      id: 0171.create_table_navigator_page_translatables.1
       author: codeschluss
       changes:
         - createTable:
@@ -50,7 +50,7 @@ databaseChangeLog:
             sql: ALTER TABLE navigator_page_translatables CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
   - changeSet:
-      id: 0170.create_table_navigator_page_translatables.2
+      id: 0171.create_table_navigator_page_translatables.2
       author: codeschluss
       changes:
         - createIndex:
@@ -60,7 +60,7 @@ databaseChangeLog:
             indexName: idx_fk_navigator_page_translatables_parent_id
             tableName: navigator_page_translatables
   - changeSet:
-      id: 0170.create_table_navigator_page_translatables.3
+      id: 0171.create_table_navigator_page_translatables.3
       author: codeschluss
       changes:
         - addForeignKeyConstraint:
@@ -76,7 +76,7 @@ databaseChangeLog:
             validate: true  
             
   - changeSet:
-      id: 0170.create_table_navigator_page_translatables.4
+      id: 0171.create_table_navigator_page_translatables.4
       author: codeschluss
       changes:
         - createIndex:
@@ -86,7 +86,7 @@ databaseChangeLog:
             indexName: idx_fk_navigator_page_translatables_language_id
             tableName: navigator_page_translatables
   - changeSet:
-      id: 0170.create_table_navigator_page_translatables.5
+      id: 0171.create_table_navigator_page_translatables.5
       author: codeschluss
       changes:
         - addForeignKeyConstraint:
