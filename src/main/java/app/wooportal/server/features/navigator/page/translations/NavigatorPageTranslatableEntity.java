@@ -4,7 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import app.wooportal.server.core.i18n.entities.TranslatableEntity;
-import app.wooportal.server.features.navigator.base.NavigatorChoiceEntity;
+import app.wooportal.server.features.navigator.choice.NavigatorChoiceEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;

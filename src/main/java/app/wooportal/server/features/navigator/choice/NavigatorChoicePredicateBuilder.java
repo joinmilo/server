@@ -1,4 +1,4 @@
-package app.wooportal.server.features.navigator.base;
+package app.wooportal.server.features.navigator.choice;
 
 import org.springframework.stereotype.Service;
 import com.querydsl.core.types.dsl.BooleanExpression;
