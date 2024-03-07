@@ -13,21 +13,4 @@ public class NavigatorChoiceService
       NavigatorChoicePredicateBuilder predicate) {
     super(repo, predicate);
   }
-
-//  public List<NavigatorChoiceEntity> getPossibleNodes(NavigatorChoiceEntity node) { 
-//    var nodes = repo.findAll();
-//    List<NavigatorChoiceEntity> parentNodes = new ArrayList<>();
-//    getParentNodes(node, parentNodes);
-//    nodes.removeAll(parentNodes);
-//    return nodes;
-//  }
-
-//  public void getParentNodes(NavigatorChoiceEntity node, List<NavigatorChoiceEntity> parentNodes) {
-//    if (node.getParents() != null && !node.getParents().isEmpty()) {
-//      node.getParents().forEach(connection -> {
-//        parentNodes.add(connection.getParent());
-//        getParentNodes(connection.getParent(), parentNodes);
-//      });
-//    }
-//  }
 }
