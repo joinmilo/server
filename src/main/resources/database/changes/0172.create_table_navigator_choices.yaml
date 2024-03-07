@@ -1,7 +1,7 @@
 databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
-      id: 0171.create_table_navigator_choices.1
+      id: 0172.create_table_navigator_choices.1
       author: codeschlus
       changes:
         - createTable:
@@ -52,7 +52,7 @@ databaseChangeLog:
             
             
   - changeSet:
-      id: 0171.create_table_navigator_choices.2
+      id: 0172.create_table_navigator_choices.2
       author: codeschluss
       changes:
         - createIndex:
@@ -62,7 +62,7 @@ databaseChangeLog:
             indexName: idx_fk_navigator_choice_parent_id
             tableName: navigator_choices
   - changeSet:
-      id: 0171.create_table_navigator_choices.3
+      id: 0172.create_table_navigator_choices.3
       author: codeschluss
       changes:
         - addForeignKeyConstraint:
@@ -78,7 +78,7 @@ databaseChangeLog:
             validate: true  
             
   - changeSet:
-      id: 0171.create_table_navigator_choices.4
+      id: 0172.create_table_navigator_choices.4
       author: codeschluss
       changes:
         - createIndex:
@@ -88,7 +88,7 @@ databaseChangeLog:
             indexName: idx_fk_navigator_choice_next_page_id
             tableName: navigator_choices
   - changeSet:
-      id: 0171.create_table_navigator_choices.5
+      id: 0172.create_table_navigator_choices.5
       author: codeschluss
       changes:
         - addForeignKeyConstraint:

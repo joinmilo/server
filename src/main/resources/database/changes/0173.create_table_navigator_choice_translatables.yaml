@@ -1,7 +1,7 @@
 databaseChangeLog:
   - logicalFilePath: path_independent
   - changeSet:
-      id: 0174.create_table_navigator_result_link_translatables.1
+      id: 0173.create_table_navigator_choice_translatables.1
       author: codeschluss
       changes:
         - createTable:
@@ -10,7 +10,7 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                     primaryKey: true
-                    primaryKeyName: navigator_result_link_translatables_primary_key
+                    primaryKeyName: navigator_choice_translatables_primary_key
                   name: id
                   type: CHAR(36)
               - column:
@@ -26,8 +26,13 @@ databaseChangeLog:
                   name: modified
                   type: datetime
               - column:
+                  constraints:
+                    nullable: false              
                   name: name
-                  type: TEXT                                 
+                  type: VARCHAR(255)
+              - column:
+                  name: description
+                  type: TEXT                                   
               - column:
                   constraints:
                     nullable: false
@@ -38,58 +43,58 @@ databaseChangeLog:
                     nullable: false
                   name: language_id
                   type: CHAR(36)
-            tableName: navigator_result_link_translatables
+            tableName: navigator_choice_translatables
         - sql:
             comment: set char set for mysql
             dbms: mysql
             endDelimiter: \nGO
             splitStatements: true
-            sql: ALTER TABLE navigator_result_link_translatables CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+            sql: ALTER TABLE navigator_choice_translatables CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
   - changeSet:
-      id: 0174.create_table_navigator_result_link_translatables.2
+      id: 0172.create_table_navigator_choice_translatables.2
       author: codeschluss
       changes:
         - createIndex:
             columns:
               - column:
                   name: parent_id
-            indexName: idx_fk_navigator_result_link_translatables_parent_id
-            tableName: navigator_result_link_translatables
+            indexName: idx_fk_navigator_choice_translatables_parent_id
+            tableName: navigator_choice_translatables
   - changeSet:
-      id: 0174.create_table_navigator_result_link_translatables.3
+      id: 0172.create_table_navigator_choice_translatables.3
       author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: parent_id
-            baseTableName: navigator_result_link_translatables
-            constraintName: fk_navigator_result_link_translatables_parent_id
+            baseTableName: navigator_choice_translatables
+            constraintName: fk_navigator_choice_translatables_parent_id
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE
             onDelete: CASCADE
             referencedColumnNames: id
-            referencedTableName: navigator_result_links
+            referencedTableName: navigator_choices
             validate: true  
             
   - changeSet:
-      id: 0174.create_table_navigator_result_link_translatables.4
+      id: 0172.create_table_navigator_choice_translatables.4
       author: codeschluss
       changes:
         - createIndex:
             columns:
               - column:
                   name: language_id
-            indexName: idx_fk_navigator_result_link_translatables_language_id
-            tableName: navigator_result_link_translatables
+            indexName: idx_fk_navigator_choice_translatables_language_id
+            tableName: navigator_choice_translatables
   - changeSet:
-      id: 0174.create_table_navigator_result_link_translatables.5
+      id: 0172.create_table_navigator_choice_translatables.5
       author: codeschluss
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: language_id
-            baseTableName: navigator_result_link_translatables
-            constraintName: fk_navigator_result_link_translatables_language_id
+            baseTableName: navigator_choice_translatables
+            constraintName: fk_navigator_choice_translatables_language_id
             deferrable: false
             initiallyDeferred: false
             onUpdate: CASCADE
