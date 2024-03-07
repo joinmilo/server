@@ -1,4 +1,4 @@
-package app.wooportal.server.features.navigator.base.translations;
+package app.wooportal.server.features.navigator.choice.translations;
 
 
 import org.springframework.stereotype.Repository;

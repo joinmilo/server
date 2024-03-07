@@ -10,7 +10,7 @@ import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.i18n.annotations.Translatable;
 import app.wooportal.server.core.seo.annotations.SlugSource;
 import app.wooportal.server.core.seo.annotations.SlugTarget;
-import app.wooportal.server.features.navigator.base.NavigatorChoiceEntity;
+import app.wooportal.server.features.navigator.choice.NavigatorChoiceEntity;
 import app.wooportal.server.features.navigator.page.translations.NavigatorPageTranslatableEntity;
 import app.wooportal.server.features.navigator.resultLink.NavigatorResultLinkEntity;
 import lombok.AccessLevel;

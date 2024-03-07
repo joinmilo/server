@@ -1,7 +1,5 @@
-package app.wooportal.server.features.navigator.base;
+package app.wooportal.server.features.navigator.choice;
 
-import java.util.ArrayList;
-import java.util.List;
 import org.springframework.stereotype.Service;
 import app.wooportal.server.core.base.DataService;
 import app.wooportal.server.core.repository.DataRepository;

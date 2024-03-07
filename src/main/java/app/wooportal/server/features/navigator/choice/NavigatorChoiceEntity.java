@@ -1,4 +1,4 @@
-package app.wooportal.server.features.navigator.base;
+package app.wooportal.server.features.navigator.choice;
 
 import java.util.Set;
 import javax.persistence.Column;
@@ -11,7 +11,7 @@ import app.wooportal.server.core.base.BaseEntity;
 import app.wooportal.server.core.i18n.annotations.Translatable;
 import app.wooportal.server.core.seo.annotations.SlugSource;
 import app.wooportal.server.core.seo.annotations.SlugTarget;
-import app.wooportal.server.features.navigator.base.translations.NavigatorChoiceTranslatableEntity;
+import app.wooportal.server.features.navigator.choice.translations.NavigatorChoiceTranslatableEntity;
 import app.wooportal.server.features.navigator.page.NavigatorPageEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

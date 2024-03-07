@@ -1,4 +1,4 @@
-package app.wooportal.server.features.navigator.base;
+package app.wooportal.server.features.navigator.choice;
 
 import org.springframework.stereotype.Repository;
 
