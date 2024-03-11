@@ -331,7 +331,9 @@ databaseChangeLog:
     - include:                 
         file: database/changes/0174.create_table_navigator_result_links.yaml  
     - include:                 
-        file: database/changes/0175.create_table_navigator_result_link_translatables.yaml                                              
+        file: database/changes/0175.create_table_navigator_result_link_translatables.yaml      
+    - include:                 
+        file: database/changes/0176.change_column_type_page_attribute.yaml                                                 
              
                                    
     #Data section

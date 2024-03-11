@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+  - changeSet:
+      id: 0176.change_column_type_page_attributes.1
+      author: codeschluss
+      changes:
+        - modifyDataType:
+            columnName: translatable
+            newDataType: longtext
+            tableName: page_attribute_translatables
+              
+            
+                                    
