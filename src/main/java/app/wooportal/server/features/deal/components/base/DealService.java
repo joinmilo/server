@@ -1,9 +1,8 @@
 package app.wooportal.server.features.deal.components.base;
 
 import org.springframework.stereotype.Service;
-
 import com.fasterxml.jackson.databind.JsonNode;
-
+import app.wooportal.server.base.address.base.AddressService;
 import app.wooportal.server.base.contact.ContactService;
 import app.wooportal.server.core.base.DataService;
 import app.wooportal.server.core.repository.DataRepository;
@@ -12,10 +11,15 @@ import app.wooportal.server.features.deal.components.base.media.DealMediaService
 @Service
 public class DealService extends DataService<DealEntity, DealPredicateBuilder> {
 
-  public DealService(DataRepository<DealEntity> repo, DealPredicateBuilder predicate,
-      ContactService contactService, DealMediaService mediaService) {
+  public DealService(
+      DataRepository<DealEntity> repo,
+      DealPredicateBuilder predicate,
+      AddressService addressService,
+      ContactService contactService,
+      DealMediaService mediaService) {
     super(repo, predicate);
 
+    addService("address", addressService);
     addService("contact", contactService);
     addService("uploads", mediaService);
   }
