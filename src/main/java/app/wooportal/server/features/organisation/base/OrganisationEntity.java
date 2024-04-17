@@ -58,7 +58,10 @@ public class OrganisationEntity extends BaseEntity {
   @Translatable
   private String description;
 
-  @Column(nullable = false)
+  @Column(
+      nullable = false,
+      unique = true
+  )
   @SlugSource
   private String name;
 
