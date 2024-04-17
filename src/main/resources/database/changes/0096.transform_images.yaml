@@ -1,8 +1,0 @@
-databaseChangeLog:
-  - logicalFilePath: path_independent
-  - changeSet:
-      id: 0096.transform_images
-      author: codeschluss
-      changes:
-        - customChange:
-            { "class": "app.wooportal.server.base.db.ImageStorageMigration" }

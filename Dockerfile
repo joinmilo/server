@@ -1,6 +1,6 @@
 FROM alpine:latest
 LABEL maintainer info@codeschluss.de
-COPY / /tmp/wooportal.server
+COPY / /tmp/milo.server
 RUN \
   #
   # packages
@@ -10,20 +10,20 @@ RUN \
   maven \
   openjdk17 && \
   #
-  # wooportal.server
-  cd /tmp/wooportal.server && \
+  # milo.server
+  cd /tmp/milo.server && \
   mvn -B install -DskipTests=true \
   -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn && \
   mkdir -p /data/media && \
-  mkdir -p /usr/share/webapps/wooportal.server && \
-  mv /tmp/wooportal.server/target/*.jar /usr/share/webapps/wooportal.server/server.jar && \
+  mkdir -p /usr/share/webapps/milo.server && \
+  mv /tmp/milo.server/target/*.jar /usr/share/webapps/milo.server/server.jar && \
   #
   # cleanup
   apk del --purge build && \
   find /root /tmp -mindepth 1 -delete
 #
 # runtime
-WORKDIR /usr/share/webapps/wooportal.server
+WORKDIR /usr/share/webapps/milo.server
 CMD java \
   -XX:+ExitOnOutOfMemoryError \
   -Dserver.port=80 \

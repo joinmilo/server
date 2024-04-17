@@ -169,15 +169,9 @@ databaseChangeLog:
     - include:
         file: database/changes/0092.create_table_apps.yaml
     - include:
-        file: database/changes/0093.transform_short_descriptions.yaml
-    - include:
         file: database/changes/0094.create_table_media_attribution.yaml
     - include:
         file: database/changes/0095.migrate_table_images.yaml
-    - include:
-        file: database/changes/0096.transform_images.yaml
-    - include:
-        file: database/changes/0097.migrate_data_videos.yaml
     - include:
         file: database/changes/0098.add_constraint_media-extension.yaml
     - include:
@@ -204,10 +198,6 @@ databaseChangeLog:
         file: database/changes/0110.migrate_data_article_translatables.yaml     
     - include:
         file: database/changes/0111.add_data_user_contexts.yaml
-    - include:
-        file: database/changes/0112.transform_slugs.yaml
-    - include:
-        file: database/changes/0113.transform_meta_description.yaml
     - include:
         file: database/changes/0114.add_constraint_slugs.yaml
     - include:
@@ -246,8 +236,6 @@ databaseChangeLog:
         file: database/changes/0131.create_table_privilege_application_translatables.yaml   
     - include:
         file: database/changes/0132.migrate_data_providers.yaml
-    - include:
-        file: database/changes/0133.migrate_suburbs.yaml
     - include:
         file: database/changes/0134.create_table_admin_footer_parents.yaml
     - include:

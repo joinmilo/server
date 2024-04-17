@@ -1,0 +1,19 @@
+package app.milo.server.core.messaging.notifications.base;
+
+import org.springframework.stereotype.Service;
+import com.querydsl.core.types.dsl.BooleanExpression;
+import app.milo.server.core.base.PredicateBuilder;
+
+@Service
+public class NotificationPredicateBuilder
+    extends PredicateBuilder<QNotificationEntity, NotificationEntity> {
+
+  public NotificationPredicateBuilder() {
+    super(QNotificationEntity.notificationEntity);
+  }
+
+  @Override
+  public BooleanExpression freeSearch(String term) {
+    return null;
+  }
+}

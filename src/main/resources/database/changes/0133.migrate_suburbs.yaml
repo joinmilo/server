@@ -1,8 +1,0 @@
-databaseChangeLog:
-  - logicalFilePath: path_independent
-  - changeSet:
-      id: 0133.migrate_suburbs
-      author: codeschluss
-      changes:
-        - customChange:
-            { "class": "app.wooportal.server.base.db.SuburbMigration" }

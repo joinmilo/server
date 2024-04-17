@@ -11,11 +11,11 @@
 		<relativePath />
 	</parent>
 
-	<groupId>app.wooportal.next</groupId>
-	<artifactId>server-next</artifactId>
+	<groupId>app.milo</groupId>
+	<artifactId>server</artifactId>
 	<version>1.4.2</version>
-	<name>Wooportal Server next</name>
-	<description>Server for Wooportal platform</description>
+	<name>Milo Server</name>
+	<description>Server for Milo platform</description>
 
 	<organization>
 		<name>Codeschluss</name>
@@ -24,12 +24,12 @@
 
 	<scm>
 		<tag>master</tag>
-		<url>https://github.com/wooportal/server-next</url>
+		<url>https://github.com/joinmilo/server</url>
 	</scm>
 
 	<issueManagement>
 		<system>GitHub</system>
-		<url>https://github.com/wooportal/server-next/issues</url>
+		<url>https://github.com/joinmilo/server/issues</url>
 	</issueManagement>
 
 	<properties>

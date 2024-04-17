@@ -1,8 +1,0 @@
-databaseChangeLog:
-  - logicalFilePath: path_independent
-  - changeSet:
-      id: 0113.transform_metaDescription
-      author: codeschluss
-      changes:
-        - customChange:
-            { "class": "app.wooportal.server.base.db.MetaDescriptionMigration" }
