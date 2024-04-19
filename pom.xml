@@ -13,13 +13,13 @@
 
 	<groupId>app.milo</groupId>
 	<artifactId>server</artifactId>
-	<version>1.4.2</version>
+	<version>1.4.3-RC1</version>
 	<name>Milo Server</name>
 	<description>Server for Milo platform</description>
 
 	<organization>
-		<name>Codeschluss</name>
-		<url>https://www.codeschluss.de</url>
+		<name>Milo - mitamchen und lokal</name>
+		<url>https://www.joinmilo.de</url>
 	</organization>
 
 	<scm>
