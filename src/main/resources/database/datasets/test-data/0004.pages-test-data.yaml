@@ -20,13 +20,13 @@ databaseChangeLog:
                 (uuid(), "8ce57895-53c6-4af2-95eb-69dc8a4ee658", "5e3ba845-01c1-43ef-969f-640ba23ee765", false);
                        
                 insert into page_translatables (id, `name`, short_description, call_text, parent_id, language_id)
-                select uuid(), "Wooportal", "Here you will find all event and news from your city", "Discover more", p.id, l.id
+                select uuid(), "Milo", "Here you will find all event and news from your city", "Discover more", p.id, l.id
                 from pages p, languages l
                 WHERE p.slug = "landing" AND
                 l.locale = "en";
                 
                 insert into page_translatables (id, `name`, short_description, call_text, parent_id, language_id)
-                select uuid(), "Wooportal", "Hier findest du alle Events und Neuigkeiten aus deiner Stadt", "Entdecke mehr", p.id, l.id
+                select uuid(), "Milo", "Hier findest du alle Events und Neuigkeiten aus deiner Stadt", "Entdecke mehr", p.id, l.id
                 from pages p, languages l
                 WHERE p.slug = "landing" AND
                 l.locale = "de";
