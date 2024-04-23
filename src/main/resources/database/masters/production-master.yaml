@@ -368,7 +368,9 @@ databaseChangeLog:
     - include:
         file: database/datasets/0020.add_data_plugin_navigator.yaml   
     - include:
-        file: database/datasets/0021.add_labels_navigator.yaml                  
+        file: database/datasets/0021.add_labels_navigator.yaml
+    - include:
+        file: database/datasets/0022.add_labels_export.yaml
         
     #Cleanups
     - include:
