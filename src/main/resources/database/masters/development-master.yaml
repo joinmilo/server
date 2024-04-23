@@ -373,7 +373,9 @@ databaseChangeLog:
     - include:
         file: database/datasets/0022.add_labels_export.yaml
     - include:
-        file: database/datasets/0023.add_short_description_plugins.yaml  
+        file: database/datasets/0023.add_short_description_plugins.yaml
+    - include:
+        file: database/datasets/0024.update_labels.yaml
         
      #Cleanups
     - include:

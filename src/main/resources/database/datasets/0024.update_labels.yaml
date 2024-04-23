@@ -1,0 +1,39 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+  - changeSet:
+      id: 0024.update_labels.1
+      author: codeschluss
+      changes:
+        - sql:
+            comment: upddate plugins
+            splitStatements: true
+            sql:
+                /*!40101 SET character_set_client = utf8 */;
+                    
+                UPDATE label_translatables lt
+                join labels p ON lt.parent_id = p.id 
+                join languages l ON lt.language_id = l.id
+                SET lt.content = "Vielen Dank für das Erstellen einer Einrichtung. Sobald wir diese genehmigt haben, kannst du deine Einrichtung im Adminbereich verwalten, neue Events erstellen und vieles mehr."
+                WHERE l.locale = "de" AND
+                p.tag_id = "createOrganisationSuccessText";
+                
+                UPDATE label_translatables lt
+                join labels p ON lt.parent_id = p.id 
+                join languages l ON lt.language_id = l.id
+                SET lt.content = "Thank you for creating an organisation. Once we approve it, you can manage your organisation in the admin area, create new events, and more."
+                WHERE l.locale = "en" AND
+                p.tag_id = "createOrganisationSuccessText";
+                
+                UPDATE label_translatables lt
+                join labels p ON lt.parent_id = p.id 
+                join languages l ON lt.language_id = l.id
+                SET lt.content = "Vielen Dank für deine Anfrage. Sobald diese genehmigt wurde, hast du Zugriff auf die Organisation im Adminbereich."
+                WHERE l.locale = "de" AND
+                p.tag_id = "joinOrganisationSuccessText";
+                
+                UPDATE label_translatables lt
+                join labels p ON lt.parent_id = p.id 
+                join languages l ON lt.language_id = l.id
+                SET lt.content = "Thank you for your inquiry. Once approved, you will have access to the organization in the admin area."
+                WHERE l.locale = "en" AND
+                p.tag_id = "joinOrganisationSuccessText";
