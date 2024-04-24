@@ -13,11 +13,16 @@ public class ArticlePredicateBuilder extends PredicateBuilder<QArticleEntity, Ar
 
   @Override
   public BooleanExpression freeSearch(String term) {
-    return  query.publicAuthor.name.likeIgnoreCase(term)
-        .or(query.author.id.likeIgnoreCase(term))
-        .or(query.publicAuthor.phone.likeIgnoreCase(term))
-        .or(query.metaDescription.likeIgnoreCase(term))
-        .or(query.slug.likeIgnoreCase(term));
+//    return query.publicAuthor.name.likeIgnoreCase(term)
+//        .or(query.author.id.likeIgnoreCase(term))
+//        .or(query.publicAuthor.phone.likeIgnoreCase(term))
+//        .or(query.metaDescription.likeIgnoreCase(term))
+//        .or(query.slug.likeIgnoreCase(term))
+//        .or(query.translatables.any().name.likeIgnoreCase(term));
+    
+    return query.translatables.any().name.likeIgnoreCase(term)
+        .or(query.author.user.firstName.likeIgnoreCase(term))
+        .or(query.author.user.lastName.likeIgnoreCase(term));
   }
 
   public BooleanExpression withoutId(String articleId) {
@@ -28,7 +33,7 @@ public class ArticlePredicateBuilder extends PredicateBuilder<QArticleEntity, Ar
     return query.author.id.eq(authorId);
   }
   
-	public BooleanExpression withSponsoredTrue() {
-		return query.sponsored.isTrue();
-	}
+  public BooleanExpression withSponsoredTrue() {
+    return query.sponsored.isTrue();
+  }
 }

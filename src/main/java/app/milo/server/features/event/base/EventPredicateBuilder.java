@@ -13,7 +13,8 @@ public class EventPredicateBuilder extends PredicateBuilder<QEventEntity, EventE
 
   @Override
   public BooleanExpression freeSearch(String term) {
-    return query.videoChatLink.likeIgnoreCase(term).or(query.metaDescription.likeIgnoreCase(term))
+    return query.videoChatLink.likeIgnoreCase(term)
+        .or(query.metaDescription.likeIgnoreCase(term))
         .or(query.slug.likeIgnoreCase(term))
         .or(query.translatables.any().content.likeIgnoreCase(term))
         .or(query.translatables.any().name.likeIgnoreCase(term))
