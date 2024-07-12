@@ -1,7 +1,7 @@
 package app.milo.server.base.cms.components.page.base.visitors;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import app.milo.server.base.cms.components.page.base.PageEntity;
 import app.milo.server.core.visit.visitable.VisitableEntity;
 import lombok.AccessLevel;

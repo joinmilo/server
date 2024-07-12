@@ -3,15 +3,15 @@ package app.milo.server.base.cms.components.page.attributeType;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import org.hibernate.annotations.CollectionId;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
@@ -46,7 +46,7 @@ public class PageAttributeTypeEntity extends BaseEntity {
     joinColumns = @JoinColumn(name = "attribute_type_id"),
     inverseJoinColumns = @JoinColumn(name = "embedding_type_id"),
     uniqueConstraints = {@UniqueConstraint(columnNames = {"attribute_type_id", "embedding_type_id"})})
-  @CollectionId(column = @Column(name = "id"), type = @Type(type = "uuid-char"), generator = "UUID")
+  
   private List<PageEmbeddingTypeEntity> embeddingTypes = new ArrayList<>();
 
 }

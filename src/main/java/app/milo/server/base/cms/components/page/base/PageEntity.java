@@ -1,11 +1,11 @@
 package app.milo.server.base.cms.components.page.base;
 
 import java.util.Set;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import app.milo.server.base.cms.components.menuItem.MenuItemEntity;
 import app.milo.server.base.cms.components.page.base.visitors.PageVisitorEntity;

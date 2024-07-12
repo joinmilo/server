@@ -2,16 +2,16 @@ package app.milo.server.core.messaging.definitions;
 
 import java.util.List;
 import java.util.Set;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import org.hibernate.annotations.CollectionId;
 import org.hibernate.annotations.Type;
 import app.milo.server.core.base.BaseEntity;
@@ -48,7 +48,7 @@ public class MessageDefinitionEntity extends BaseEntity {
       inverseJoinColumns = @JoinColumn(name = "channel_id"),
       uniqueConstraints = {
           @UniqueConstraint(columnNames = {"message_definition_id", "channel_id"})})
-  @CollectionId(column = @Column(name = "id"), type = @Type(type = "uuid-char"), generator = "UUID")
+  
   private List<ChannelEntity> channels;
   
   @ManyToMany(fetch = FetchType.LAZY)
@@ -57,6 +57,6 @@ public class MessageDefinitionEntity extends BaseEntity {
       inverseJoinColumns = @JoinColumn(name = "user_id"),
       uniqueConstraints = {
           @UniqueConstraint(columnNames = {"message_definition_id", "user_id"})})
-  @CollectionId(column = @Column(name = "id"), type = @Type(type = "uuid-char"), generator = "UUID")
+  
   private List<UserEntity> users;
 }

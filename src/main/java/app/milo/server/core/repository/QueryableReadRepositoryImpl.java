@@ -3,8 +3,8 @@ package app.milo.server.core.repository;
 import java.util.List;
 import java.util.Optional;
 
-import javax.persistence.EntityGraph;
-import javax.persistence.EntityManager;
+import jakarta.persistence.EntityGraph;
+import jakarta.persistence.EntityManager;
 
 import org.hibernate.annotations.QueryHints;
 import org.hibernate.graph.GraphSemantic;
@@ -89,9 +89,6 @@ public class QueryableReadRepositoryImpl<T extends BaseEntity> extends QuerydslJ
         .distinct()
         .select(path));
     
-    ((AbstractJPAQuery<?, ?>) query).setHint(QueryHints.PASS_DISTINCT_THROUGH, false);
-    ((AbstractJPAQuery<?, ?>) countQuery).setHint(QueryHints.PASS_DISTINCT_THROUGH, false);
-    
     if (graph != null) {
       ((AbstractJPAQuery<?, ?>) query).setHint(GraphSemantic.FETCH.getJpaHintName(), graph); 
     }
@@ -107,7 +104,6 @@ public class QueryableReadRepositoryImpl<T extends BaseEntity> extends QuerydslJ
       Pageable pageable,
       StringPath id) {
     var idQuery = createQuery(predicate).select(id).distinct();
-    ((AbstractJPAQuery<?, ?>) idQuery).setHint(QueryHints.PASS_DISTINCT_THROUGH, false);
     return querydsl.applyPagination(pageable, idQuery).fetch();
   }
 
@@ -131,15 +127,13 @@ public class QueryableReadRepositoryImpl<T extends BaseEntity> extends QuerydslJ
             .select(idPath.get())
             .distinct()
             .limit(limit);
-        
-        ((AbstractJPAQuery<?, ?>) idQuery).setHint(QueryHints.PASS_DISTINCT_THROUGH, false);
+       
         query = (JPQLQuery<T>) createQuery(idPath.get().in(idQuery));
       } else {
         query.limit(limit);
       }
     }
     
-    ((AbstractJPAQuery<?, ?>) query).setHint(QueryHints.PASS_DISTINCT_THROUGH, false);
     if (graph != null) {
       ((AbstractJPAQuery<?, ?>) query).setHint(GraphSemantic.FETCH.getJpaHintName(), graph);
     }

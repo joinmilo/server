@@ -1,8 +1,8 @@
 package app.milo.server.features.event.rating;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import app.milo.server.base.analytics.rating.RatableEntity;
 import app.milo.server.features.event.base.EventEntity;
 import lombok.Getter;

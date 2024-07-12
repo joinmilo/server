@@ -5,12 +5,12 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
-import javax.persistence.EntityGraph;
-import javax.persistence.EntityManager;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Transient;
+import jakarta.persistence.EntityGraph;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Transient;
 
 import org.hibernate.engine.spi.SessionImplementor;
 import org.hibernate.graph.EntityGraphs;
