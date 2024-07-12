@@ -26,7 +26,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Table(name = "pages")
-@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
 public class PageEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;

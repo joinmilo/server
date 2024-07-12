@@ -3,19 +3,7 @@ package app.milo.server.features.event.base;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
-import org.hibernate.annotations.CollectionId;
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Type;
 import app.milo.server.base.address.base.AddressEntity;
 import app.milo.server.base.contact.ContactEntity;
 import app.milo.server.base.userContext.base.UserContextEntity;
@@ -33,6 +21,16 @@ import app.milo.server.features.event.rating.EventRatingEntity;
 import app.milo.server.features.event.schedule.EventScheduleEntity;
 import app.milo.server.features.event.targetGroup.EventTargetGroupEntity;
 import app.milo.server.features.organisation.base.OrganisationEntity;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -115,13 +113,11 @@ public class EventEntity extends BaseEntity {
   @JoinTable(name = "event_event_target_groups", joinColumns = @JoinColumn(name = "event_id"),
       inverseJoinColumns = @JoinColumn(name = "target_group_id"),
       uniqueConstraints = {@UniqueConstraint(columnNames = {"event_id", "target_group_id"})})
-  
   private List<EventTargetGroupEntity> targetGroups = new ArrayList<>();
   
   @ManyToMany(fetch = FetchType.LAZY)
   @JoinTable(name = "favorite_events", joinColumns = @JoinColumn(name = "event_id"),
       inverseJoinColumns = @JoinColumn(name = "user_context_id"),
       uniqueConstraints = {@UniqueConstraint(columnNames = {"user_context_id", "event_id"})})
-  
   private List<UserContextEntity> favoritingUsers = new ArrayList<>();
 }

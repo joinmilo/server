@@ -3,19 +3,6 @@ package app.milo.server.base.userContext.base;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
-import org.hibernate.annotations.CollectionId;
-import org.hibernate.annotations.Type;
 import app.milo.server.base.address.base.AddressEntity;
 import app.milo.server.base.contact.ContactEntity;
 import app.milo.server.base.userContext.base.media.UserContextMediaEntity;
@@ -39,6 +26,16 @@ import app.milo.server.features.organisation.member.OrganisationMemberEntity;
 import app.milo.server.features.organisation.rating.OrganisationRatingEntity;
 import app.milo.server.features.survey.assignment.SurveyAssignmentEntity;
 import app.milo.server.features.survey.result.SurveyResultEntity;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -125,49 +122,42 @@ public class UserContextEntity extends BaseEntity {
   @JoinTable(name = "user_context_contacts", joinColumns = @JoinColumn(name = "user_context_id"),
       inverseJoinColumns = @JoinColumn(name = "contact_id"),
       uniqueConstraints = {@UniqueConstraint(columnNames = {"user_context_id", "contact_id"})})
-  
   private List<ContactEntity> contacts = new ArrayList<>();
   
   @ManyToMany(fetch = FetchType.LAZY)
   @JoinTable(name = "favorite_articles", joinColumns = @JoinColumn(name = "user_context_id"),
       inverseJoinColumns = @JoinColumn(name = "article_id"),
       uniqueConstraints = {@UniqueConstraint(columnNames = {"user_context_id", "article_id"})})
-  
   private List<ArticleEntity> favoriteArticles = new ArrayList<>();
   
   @ManyToMany(fetch = FetchType.LAZY)
   @JoinTable(name = "favorite_authors", joinColumns = @JoinColumn(name = "user_context_id"),
       inverseJoinColumns = @JoinColumn(name = "author_id"),
       uniqueConstraints = {@UniqueConstraint(columnNames = {"user_context_id", "author_id"})})
-  
   private List<UserContextEntity> favoriteAuthors = new ArrayList<>();
   
   @ManyToMany(fetch = FetchType.LAZY)
   @JoinTable(name = "favorite_authors", joinColumns = @JoinColumn(name = "author_id"),
       inverseJoinColumns = @JoinColumn(name = "user_context_id"),
       uniqueConstraints = {@UniqueConstraint(columnNames = {"user_context_id", "author_id"})})
-  
   private List<UserContextEntity> favoritingUsers = new ArrayList<>();
   
   @ManyToMany(fetch = FetchType.LAZY)
   @JoinTable(name = "favorite_events", joinColumns = @JoinColumn(name = "user_context_id"),
 	  inverseJoinColumns = @JoinColumn(name = "event_id"),
 	  uniqueConstraints = {@UniqueConstraint(columnNames = {"user_context_id", "event_id"})})
-  
   private List<EventEntity> favoriteEvents = new ArrayList<>();
   
   @ManyToMany(fetch = FetchType.LAZY)
   @JoinTable(name = "favorite_deals", joinColumns = @JoinColumn(name = "user_context_id"),
       inverseJoinColumns = @JoinColumn(name = "deal_id"),
       uniqueConstraints = {@UniqueConstraint(columnNames = {"user_context_id", "deal_id"})})
-  
   private List<DealEntity> favoriteDeals = new ArrayList<>();
   
   @ManyToMany(fetch = FetchType.LAZY)
   @JoinTable(name = "favorite_organisations", joinColumns = @JoinColumn(name = "user_context_id"),
       inverseJoinColumns = @JoinColumn(name = "organisation_id"),
       uniqueConstraints = {@UniqueConstraint(columnNames = {"user_context_id", "organisation_id"})})
-  
   private List<OrganisationEntity> favoriteOrganisations = new ArrayList<>();
 
 }

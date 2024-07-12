@@ -2,11 +2,6 @@ package app.milo.server.core.repository;
 
 import java.util.List;
 import java.util.Optional;
-
-import jakarta.persistence.EntityGraph;
-import jakarta.persistence.EntityManager;
-
-import org.hibernate.annotations.QueryHints;
 import org.hibernate.graph.GraphSemantic;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.data.domain.Page;
@@ -19,7 +14,6 @@ import org.springframework.data.querydsl.EntityPathResolver;
 import org.springframework.data.querydsl.SimpleEntityPathResolver;
 import org.springframework.data.support.PageableExecutionUtils;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.querydsl.core.NonUniqueResultException;
 import com.querydsl.core.types.EntityPath;
 import com.querydsl.core.types.Predicate;
@@ -30,11 +24,12 @@ import com.querydsl.jpa.impl.AbstractJPAQuery;
 import app.milo.server.core.base.BaseEntity;
 import app.milo.server.core.base.dto.listing.PageableList;
 import app.milo.server.core.utils.ReflectionUtils;
+import jakarta.persistence.EntityGraph;
+import jakarta.persistence.EntityManager;
 
 @Transactional
 public class QueryableReadRepositoryImpl<T extends BaseEntity> extends QuerydslJpaPredicateExecutor<T>
     implements QueryableReadRepository<T> {
-
   private static final EntityPathResolver resolver = SimpleEntityPathResolver.INSTANCE;
 
   private final EntityPath<T> path;
@@ -59,7 +54,7 @@ public class QueryableReadRepositoryImpl<T extends BaseEntity> extends QuerydslJ
       
       var query = createQuery(repoQuery.getPredicate()).select(path);
       if (repoQuery.getGraph() != null) {
-        ((AbstractJPAQuery<?, ?>) query).setHint(GraphSemantic.FETCH.getJpaHintName(),
+        ((AbstractJPAQuery<?, ?>) query).setHint(GraphSemantic.FETCH.getJakartaHintName(),
             repoQuery.getGraph());
       }
       return Optional.ofNullable(query.fetchOne());
@@ -82,19 +77,19 @@ public class QueryableReadRepositoryImpl<T extends BaseEntity> extends QuerydslJ
       throw new RuntimeException(path.getType().getName() + " has no id property");
     }
     
-    final JPQLQuery<?> countQuery = createCountQuery(predicate).distinct();
+    final JPQLQuery<?> countQuery = createCountQuery(predicate);
     JPQLQuery<T> query = querydsl
         .applySorting(pageable.getSort(), createQuery(
             idPath.get().in(fetchIds(predicate, pageable, idPath.get())))
-        .distinct()
+//        .
         .select(path));
     
     if (graph != null) {
-      ((AbstractJPAQuery<?, ?>) query).setHint(GraphSemantic.FETCH.getJpaHintName(), graph); 
+      ((AbstractJPAQuery<?, ?>) query).setHint(GraphSemantic.FETCH.getJakartaHintName(), graph); 
     }
     
     return PageableExecutionUtils.getPage(
-        query.distinct().fetch(), 
+        query.fetch(), 
         pageable, 
         countQuery::fetchCount);
   }
@@ -103,7 +98,7 @@ public class QueryableReadRepositoryImpl<T extends BaseEntity> extends QuerydslJ
       Predicate predicate, 
       Pageable pageable,
       StringPath id) {
-    var idQuery = createQuery(predicate).select(id).distinct();
+    var idQuery = createQuery(predicate).select(id);
     return querydsl.applyPagination(pageable, idQuery).fetch();
   }
 
@@ -125,22 +120,21 @@ public class QueryableReadRepositoryImpl<T extends BaseEntity> extends QuerydslJ
         
         var idQuery = createQuery(predicate)
             .select(idPath.get())
-            .distinct()
             .limit(limit);
+        
        
         query = (JPQLQuery<T>) createQuery(idPath.get().in(idQuery));
       } else {
         query.limit(limit);
       }
     }
-    
+
     if (graph != null) {
-      ((AbstractJPAQuery<?, ?>) query).setHint(GraphSemantic.FETCH.getJpaHintName(), graph);
+      ((AbstractJPAQuery<?, ?>) query).setHint(GraphSemantic.FETCH.getJakartaHintName(), graph);
     }
     
     return sort != null && sort.isSorted()
-        ? querydsl.applySorting(sort, query).distinct().fetch()
+        ? querydsl.applySorting(sort, query).fetch()
         : query.fetch();
   }
-  
 }
