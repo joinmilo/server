@@ -179,23 +179,25 @@ public class SearchConsoleService {
           .setAllowNull(false);
       
       var rows = apiService.execute(query);
-      for (var row : rows) {
-        var key = interval != null
-            ? DateUtils.formatLocalDate(row.getKeys().get(0), SearchConsoleQuery.formatter, interval)
-            : row.getKeys().get(0);
+      if (rows != null && !rows.isEmpty()) {        
+        for (var row : rows) {
+          var key = interval != null
+              ? DateUtils.formatLocalDate(row.getKeys().get(0), SearchConsoleQuery.formatter, interval)
+                  : row.getKeys().get(0);
+          
+          clicksEntry.add(key, row.getClicks());
+          impressionsEntry.add(key, row.getImpressions());
+          ctrEntry.add(key, row.getCtr());
+          positionEntry.add(key, row.getPosition());
+        }
         
-        clicksEntry.add(key, row.getClicks());
-        impressionsEntry.add(key, row.getImpressions());
-        ctrEntry.add(key, row.getCtr());
-        positionEntry.add(key, row.getPosition());
-      }
-
-      return Set.of(
-          clicksEntry,
-          impressionsEntry,
-          positionEntry,
-          ctrEntry
+        return Set.of(
+            clicksEntry,
+            impressionsEntry,
+            positionEntry,
+            ctrEntry
             .setAverage(clicksEntry.getSum() / impressionsEntry.getSum() * 100));
+      }
     }
     return null;
   }
