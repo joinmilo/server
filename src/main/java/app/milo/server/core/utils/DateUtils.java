@@ -105,6 +105,6 @@ public class DateUtils {
       return LocalDate.parse(value.toString());
     }
     
-    return value;
+    return null;
   }
 }
