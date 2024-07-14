@@ -224,8 +224,8 @@ public abstract class PredicateBuilder<T extends EntityPathBase<?>, E extends Ba
   }
 
   @SuppressWarnings("unchecked")
-  protected BooleanExpression createExpression(Expression<?> queryPath, QueryOperator operator, Object value) {
-    value = DateUtils.parseToDateType(value, queryPath.getType());
+  protected BooleanExpression createExpression(Expression<?> queryPath, QueryOperator operator, Object rawValue) {
+    var value = parseValue(rawValue, queryPath);
     switch (operator) {
       case GREATER_THAN:
         return ((ComparableExpression<Comparable<?>>) queryPath).gt((Comparable<?>) value);
@@ -256,15 +256,35 @@ public abstract class PredicateBuilder<T extends EntityPathBase<?>, E extends Ba
         }
         
         if (queryPath instanceof BooleanPath) {
-          return ((BooleanPath) queryPath).eq(value instanceof Boolean 
-              ? (Boolean) value
-              : Boolean.parseBoolean((String) value));
+          return ((BooleanPath) queryPath).eq((Boolean) value);
         }
         
         return ((SimpleExpression<Object>) queryPath).eq(value);
     }
   }
 
+  protected Object parseValue(Object rawValue, Expression<?> queryPath) {
+    var dateValue = DateUtils.parseToDateType(rawValue, queryPath.getType());
+    if (dateValue != null) {
+      return dateValue;
+    }
+    
+    var booleanValue = ReflectionUtils.parseToBoolean(rawValue);
+    if (booleanValue != null) {
+      return booleanValue;
+    }
+    
+    var doubleValue = ReflectionUtils.parseToDouble(rawValue, queryPath.getType());
+    if (doubleValue != null) {
+      return doubleValue;
+    }
+    
+    var integerValue = ReflectionUtils.parseToInteger(rawValue, queryPath.getType());
+    if (integerValue != null) {
+      return integerValue;
+    }
+    
+    return rawValue;
+  }
 
-  
 }

@@ -282,4 +282,61 @@ public class ReflectionUtils {
     types.add(Void.class);
     return types;
   }
+  
+  public static Object parseToBoolean(Object rawValue) {
+    if (rawValue == null) {
+      return null;
+    }
+    
+    if (rawValue instanceof Boolean) {
+      return rawValue;
+    } else if (rawValue instanceof String) {
+      String strValue = (String) rawValue;
+      if (strValue.equalsIgnoreCase("true") || strValue.equalsIgnoreCase("false")) {
+        return Boolean.parseBoolean(strValue);
+      }
+    }
+    
+    return null;
+  }
+  
+  public static Double parseToDouble(Object rawValue, Class<?> type) {
+    if (rawValue == null || type == null || !type.equals(Double.class)) {
+      return null;
+    }
+    
+    if (rawValue instanceof Double) {
+      return (Double) rawValue;
+    }
+    
+    if (rawValue instanceof String) {
+      try {
+        return Double.parseDouble((String) rawValue);
+      } catch (NumberFormatException e) {
+        return null;
+      }
+    }
+
+    return null;
+  }
+  
+  public static Integer parseToInteger(Object rawValue, Class<?> type) {
+    if (rawValue == null || type == null || !type.equals(Integer.class)) {
+      return null;
+    }
+    
+    if (rawValue instanceof Integer) {
+      return (Integer) rawValue;
+    }
+    
+    if (rawValue instanceof String) {
+      try {
+        return Integer.parseInt((String) rawValue);
+      } catch (NumberFormatException e) {
+        return null;
+      }
+    }
+
+    return null;
+  }
 }
