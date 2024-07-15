@@ -29,9 +29,8 @@ databaseChangeLog:
             dbms: mysql
             endDelimiter: \nGO
             splitStatements: true
-            sql: ALTER TABLE user_roles CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;              
-            
-            
+            sql: ALTER TABLE user_roles CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;                   
+                      
   - changeSet:
       id: 0004.add_data_user_roles.4
       author: codeschluss

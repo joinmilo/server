@@ -1,0 +1,129 @@
+databaseChangeLog:
+  - logicalFilePath: path_independent
+  - changeSet:
+      id: 0178.add_default_uuids.1
+      author: milo
+      changes:
+        - addDefaultValue:
+            columnName: id
+            tableName: user_roles
+            defaultValueComputed: (UUID())
+            
+  - changeSet:
+      id: 0178.add_default_uuids.2
+      author: milo
+      changes:
+        - addDefaultValue:
+            columnName: id
+            tableName: role_role_privileges
+            defaultValueComputed: (UUID())      
+            
+  - changeSet:
+      id: 0178.add_default_uuids.3
+      author: milo
+      changes:
+        - addDefaultValue:
+            columnName: id
+            tableName: page_embedding_types_attribute_types
+            defaultValueComputed: (UUID()) 
+            
+  - changeSet:
+      id: 0178.add_default_uuids.4
+      author: milo
+      changes:
+        - addDefaultValue:
+            columnName: id
+            tableName: user_context_contacts
+            defaultValueComputed: (UUID())                     
+            
+  - changeSet:
+      id: 0178.add_default_uuids.5
+      author: milo
+      changes:
+        - addDefaultValue:
+            columnName: id
+            tableName: favorite_articles
+            defaultValueComputed: (UUID())    
+            
+  - changeSet:
+      id: 0178.add_default_uuids.6
+      author: milo
+      changes:
+        - addDefaultValue:
+            columnName: id
+            tableName: favorite_authors
+            defaultValueComputed: (UUID())    
+            
+  - changeSet:
+      id: 0178.add_default_uuids.7
+      author: milo
+      changes:
+        - addDefaultValue:
+            columnName: id
+            tableName: favorite_events
+            defaultValueComputed: (UUID())          
+            
+  - changeSet:
+      id: 0178.add_default_uuids.8
+      author: milo
+      changes:
+        - addDefaultValue:
+            columnName: id
+            tableName: favorite_deals
+            defaultValueComputed: (UUID())  
+            
+  - changeSet:
+      id: 0178.add_default_uuids.9
+      author: milo
+      changes:
+        - addDefaultValue:
+            columnName: id
+            tableName: favorite_organisations
+            defaultValueComputed: (UUID())  
+            
+  - changeSet:
+      id: 0178.add_default_uuids.10
+      author: milo
+      changes:
+        - addDefaultValue:
+            columnName: id
+            tableName: message_definition_channels
+            defaultValueComputed: (UUID()) 
+            
+  - changeSet:
+      id: 0178.add_default_uuids.11
+      author: milo
+      changes:
+        - addDefaultValue:
+            columnName: id
+            tableName: message_definition_users
+            defaultValueComputed: (UUID())             
+            
+  - changeSet:
+      id: 0178.add_default_uuids.12
+      author: milo
+      changes:
+        - addDefaultValue:
+            columnName: id
+            tableName: user_deletion_user_deletion_types
+            defaultValueComputed: (UUID())                                                      
+            
+  - changeSet:
+      id: 0178.add_default_uuids.13
+      author: milo
+      changes:
+        - addDefaultValue:
+            columnName: id
+            tableName: event_event_target_groups
+            defaultValueComputed: (UUID())     
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+                                                  

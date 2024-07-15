@@ -4,6 +4,14 @@ import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import app.milo.server.core.base.BaseEntity;
+import app.milo.server.core.i18n.components.language.LanguageEntity;
+import app.milo.server.core.messaging.notifications.base.NotificationEntity;
+import app.milo.server.core.push.subscription.SubscriptionEntity;
+import app.milo.server.core.security.components.role.application.PrivilegeApplicationEntity;
+import app.milo.server.core.security.components.role.base.RoleEntity;
+import app.milo.server.core.security.components.user.emailVerification.VerificationEntity;
+import app.milo.server.core.security.components.user.passwordReset.PasswordResetEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -15,17 +23,6 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 import jakarta.persistence.UniqueConstraint;
-import org.hibernate.annotations.CollectionId;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Type;
-import app.milo.server.core.base.BaseEntity;
-import app.milo.server.core.i18n.components.language.LanguageEntity;
-import app.milo.server.core.messaging.notifications.base.NotificationEntity;
-import app.milo.server.core.push.subscription.SubscriptionEntity;
-import app.milo.server.core.security.components.role.application.PrivilegeApplicationEntity;
-import app.milo.server.core.security.components.role.base.RoleEntity;
-import app.milo.server.core.security.components.user.emailVerification.VerificationEntity;
-import app.milo.server.core.security.components.user.passwordReset.PasswordResetEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -38,7 +35,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Table(name = "users")
-@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
 public class UserEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
@@ -75,7 +71,6 @@ public class UserEntity extends BaseEntity {
   @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),
       inverseJoinColumns = @JoinColumn(name = "role_id"),
       uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "role_id"})})
-  
   private List<RoleEntity> roles = new ArrayList<>();
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")

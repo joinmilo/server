@@ -3,7 +3,12 @@ package app.milo.server.features.survey.answer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import jakarta.persistence.Column;
+import app.milo.server.core.base.BaseEntity;
+import app.milo.server.core.i18n.annotations.Translatable;
+import app.milo.server.features.survey.answer.translations.SurveyAnswerTranslatableEntity;
+import app.milo.server.features.survey.question.SurveyQuestionEntity;
+import app.milo.server.features.survey.questionOption.SurveyQuestionOptionEntity;
+import app.milo.server.features.survey.result.SurveyResultEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
@@ -13,15 +18,6 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
-import org.hibernate.annotations.CollectionId;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Type;
-import app.milo.server.core.base.BaseEntity;
-import app.milo.server.core.i18n.annotations.Translatable;
-import app.milo.server.features.survey.answer.translations.SurveyAnswerTranslatableEntity;
-import app.milo.server.features.survey.question.SurveyQuestionEntity;
-import app.milo.server.features.survey.questionOption.SurveyQuestionOptionEntity;
-import app.milo.server.features.survey.result.SurveyResultEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -34,7 +30,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Table(name = "survey_answers")
-@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
 public class SurveyAnswerEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
