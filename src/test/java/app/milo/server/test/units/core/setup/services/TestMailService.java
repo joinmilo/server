@@ -5,8 +5,8 @@ import static org.mockito.Mockito.when;
 
 import java.util.Properties;
 
-import javax.mail.Session;
-import javax.mail.internet.MimeMessage;
+import jakarta.mail.Session;
+import jakarta.mail.internet.MimeMessage;
 
 import org.springframework.mail.javamail.JavaMailSender;
 import app.milo.server.core.config.GeneralConfiguration;

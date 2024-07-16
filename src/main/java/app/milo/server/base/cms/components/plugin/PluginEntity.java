@@ -1,10 +1,10 @@
 package app.milo.server.base.cms.components.plugin;
 
 import java.util.Set;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import app.milo.server.base.cms.components.menuItem.MenuItemEntity;
 import app.milo.server.base.cms.components.plugin.translations.PluginTranslatableEntity;
 import app.milo.server.core.base.BaseEntity;

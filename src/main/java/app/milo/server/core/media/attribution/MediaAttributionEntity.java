@@ -1,9 +1,9 @@
 package app.milo.server.core.media.attribution;
 
 import java.io.Serial;
-import javax.persistence.Entity;
-import javax.persistence.Table;
 import app.milo.server.core.base.BaseEntity;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

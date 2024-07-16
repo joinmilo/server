@@ -1,7 +1,7 @@
 package app.milo.server.features.contest.participation.translations;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import app.milo.server.core.i18n.entities.TranslatableEntity;
 import app.milo.server.features.contest.participation.ContestParticipationEntity;
 import lombok.AccessLevel;

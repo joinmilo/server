@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.catchThrowable;
 
 import java.util.ArrayList;
 
-import javax.persistence.Transient;
+import jakarta.persistence.Transient;
 
 import org.junit.jupiter.api.Test;
 import app.milo.server.core.utils.ReflectionUtils;

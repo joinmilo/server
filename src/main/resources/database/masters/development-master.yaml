@@ -306,8 +306,6 @@ databaseChangeLog:
         file: database/changes/0168.change_column_type_contests.yaml 
     - include:                 
         file: database/changes/0169.modify_type_short_description.yaml                   
-    - include:
-        file: database/changes/0168.change_column_type_contests.yaml
     - include:                 
         file: database/changes/0170.create_table_navigator_pages.yaml  
     - include:                 
@@ -324,6 +322,8 @@ databaseChangeLog:
         file: database/changes/0176.change_column_type_page_attribute.yaml                                          
     - include:
         file: database/changes/0177.add_column_plugin_translatables.yaml   
+    - include:
+        file: database/changes/0178.add_default_uuids.yaml        
                                    
     #Data section
     - include:

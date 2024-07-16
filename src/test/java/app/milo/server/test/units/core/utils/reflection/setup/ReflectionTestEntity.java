@@ -1,8 +1,8 @@
 package app.milo.server.test.units.core.utils.reflection.setup;
 
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import app.milo.server.core.base.BaseEntity;
 import app.milo.server.core.config.DefaultSort;
 import lombok.AccessLevel;

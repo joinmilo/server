@@ -3,10 +3,7 @@ package app.milo.server.core.visit.visitable;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.UUID;
-
 import javax.naming.ServiceUnavailableException;
-import javax.servlet.http.HttpServletRequest;
-
 import org.hibernate.Hibernate;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
@@ -18,6 +15,7 @@ import app.milo.server.core.repository.RepositoryService;
 import app.milo.server.core.visit.VisitHelper;
 import app.milo.server.core.visit.visitor.VisitorEntity;
 import app.milo.server.core.visit.visitor.VisitorService;
+import jakarta.servlet.http.HttpServletRequest;
 
 //TODO: Figure out how to unify DataService approach with the current save and repository approach
 @Service

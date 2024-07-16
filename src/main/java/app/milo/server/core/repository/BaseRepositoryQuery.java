@@ -1,6 +1,6 @@
 package app.milo.server.core.repository;
 
-import javax.persistence.EntityGraph;
+import jakarta.persistence.EntityGraph;
 
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Predicate;

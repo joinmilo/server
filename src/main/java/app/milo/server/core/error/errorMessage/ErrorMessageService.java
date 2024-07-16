@@ -35,70 +35,70 @@ public class ErrorMessageService
   }
 
   // TODO: Get messages from DB
-  public String getLocalizedMessageByException(Exception e) throws Throwable {
+  public String getLocalizedMessageByException(Throwable exception) {
 
-    if (e instanceof AccessDeniedException) {
+    if (exception instanceof AccessDeniedException) {
       return "Benutzer ist nicht authentifiziert. Logge dich ein.";
     }
 
-    if (e instanceof AlreadyVerifiedException) {
+    if (exception instanceof AlreadyVerifiedException) {
       return "Benutzer bereits verfiziert. Logge dich ein.";
     }
 
-    if (e instanceof BadParamsException) {
+    if (exception instanceof BadParamsException) {
       return "Eingaben fehlerhaft. Probiere es mit anderen Eingaben.";
     }
 
-    if (e instanceof DuplicateException) {
+    if (exception instanceof DuplicateException) {
       return "Ein Datensatz mit den Eingaben existiert bereits. Probiere es mit anderen Eingaben.";
     }
 
-    if (e instanceof InvalidPasswordResetException) {
+    if (exception instanceof InvalidPasswordResetException) {
       return "Passwort nicht zurück gesetzt. Generieren Sie eine neue Mail.";
     }
 
-    if (e instanceof InvalidTokenException) {
+    if (exception instanceof InvalidTokenException) {
       return "Sicherheitstoken ungültig. Bitte neu einloggen.";
     }
     
-    if (e instanceof TokenExpiredException) {
+    if (exception instanceof TokenExpiredException) {
       return "Sitzung abgelaufen. Bitte neu einloggen.";
     }
 
-    if (e instanceof BadCredentialsException
-        || e instanceof InternalAuthenticationServiceException) {
+    if (exception instanceof BadCredentialsException
+        || exception instanceof InternalAuthenticationServiceException) {
       return "Benutzername und Passwort falsch";
     }
 
-    if (e instanceof InvalidCaptchaException) {
+    if (exception instanceof InvalidCaptchaException) {
       return "Captcha-Verifikation fehlgeschlagen. Bitte probieren Sie es erneut.";
     }
 
-    if (e instanceof VerificationInvalidException) {
+    if (exception instanceof VerificationInvalidException) {
       return "Verifizierung ungültig. Entweder ist Verifizierung abgelaufen oder bereits verifiziert.";
     }
     
-    if (e instanceof VerificationPendingException) {
+    if (exception instanceof VerificationPendingException) {
       return "Email noch nicht verifiziert.";
     }
     
-    if (e instanceof VerificationUserNotFoundException) {
+    if (exception instanceof VerificationUserNotFoundException) {
       return "Email existiert nicht. Bitte korrekte Email angeben oder registrieren.";
     }
 
-    if (e instanceof NotDeletableException) {
+    if (exception instanceof NotDeletableException) {
       return "Inhalt konnte nicht gelöscht werden, da Referenz auf andere Inhalte existiert. Lösche bitte zunächst die Referenz und probiere es erneut.";
     }
 
-    if (e instanceof NotFoundException) {
+    if (exception instanceof NotFoundException) {
       return "Inhalt(e) konnte(n) nicht gefunden werden. Probiere es mit anderen Eingaben.";
     }
 
-    if (e instanceof NotNullableException) {
+    if (exception instanceof NotNullableException) {
       return "Felder sind leer, die nicht leer sein dürfen.";
     }
 
-    this.errorMailService.sendErrorMail(e);
+    this.errorMailService.sendErrorMail(exception);
     return "Unbekannter Fehler. Wende dich bitte an den Support.";
   }
 

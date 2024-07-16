@@ -1,10 +1,10 @@
 package app.milo.server.base.cms.components.page.attributeReference;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import app.milo.server.base.cms.components.page.attribute.PageAttributeEntity;
 import app.milo.server.base.cms.components.plugin.PluginEntity;
 import app.milo.server.core.base.BaseEntity;

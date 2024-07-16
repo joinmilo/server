@@ -2,8 +2,8 @@ package app.milo.server.core.i18n;
 
 import java.io.IOException;
 
-import javax.persistence.Entity;
-import javax.persistence.Transient;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Transient;
 
 import org.reflections.Reflections;
 import org.reflections.util.ClasspathHelper;

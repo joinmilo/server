@@ -3,7 +3,6 @@ package app.milo.server.base.db;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.sql.SQLException;
-
 import javax.naming.ServiceUnavailableException;
 import app.milo.server.base.address.base.AddressEntity;
 import app.milo.server.base.address.suburb.SuburbEntity;

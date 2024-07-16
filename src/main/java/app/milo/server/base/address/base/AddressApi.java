@@ -2,9 +2,7 @@ package app.milo.server.base.address.base;
 
 import java.util.List;
 import java.util.Optional;
-
 import javax.naming.ServiceUnavailableException;
-
 import org.springframework.stereotype.Component;
 import app.milo.server.base.address.authorization.permissions.AddressAdminPermission;
 import app.milo.server.core.base.CrudApi;

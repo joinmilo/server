@@ -1,9 +1,10 @@
 package app.milo.server.features.contest.type.translations;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
 import app.milo.server.core.i18n.entities.TranslatableEntity;
+import app.milo.server.features.contest.type.ContestTypeEntity;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,7 +17,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table(name = "contest_type_translatables")
-public class ContestTypeTranslatableEntity extends TranslatableEntity<ContestTypeTranslatableEntity> {
+public class ContestTypeTranslatableEntity extends TranslatableEntity<ContestTypeEntity> {
 
   private static final long serialVersionUID = 1L;
 

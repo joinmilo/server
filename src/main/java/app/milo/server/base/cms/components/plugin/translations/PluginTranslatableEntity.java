@@ -1,7 +1,7 @@
 package app.milo.server.base.cms.components.plugin.translations;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import app.milo.server.base.cms.components.plugin.PluginEntity;
 import app.milo.server.core.i18n.entities.TranslatableEntity;
 import lombok.AccessLevel;

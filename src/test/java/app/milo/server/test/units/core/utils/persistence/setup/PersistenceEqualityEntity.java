@@ -1,11 +1,11 @@
 package app.milo.server.test.units.core.utils.persistence.setup;
 
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+import jakarta.persistence.Column;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import app.milo.server.core.base.BaseEntity;
 import app.milo.server.core.config.SetNullOnRemoval;
 import lombok.AccessLevel;

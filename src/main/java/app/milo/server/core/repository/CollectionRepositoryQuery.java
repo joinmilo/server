@@ -1,6 +1,6 @@
 package app.milo.server.core.repository;
 
-import javax.persistence.EntityGraph;
+import jakarta.persistence.EntityGraph;
 
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;

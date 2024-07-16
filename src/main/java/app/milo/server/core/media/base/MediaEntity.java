@@ -1,12 +1,12 @@
 package app.milo.server.core.media.base;
 
 import java.io.Serial;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import app.milo.server.core.base.BaseEntity;
 import app.milo.server.core.context.ApplicationContextAdapter;
 import app.milo.server.core.media.attribution.MediaAttributionEntity;
