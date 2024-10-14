@@ -60,25 +60,25 @@ public class BingMapService implements MapService {
     if(newAddress != null) {
     
     if (newAddress.getPlace() != null) {            
-      builder.pathSegment(StringUtils.replaceUmlauts(newAddress.getPlace()));
+      builder.pathSegment(newAddress.getPlace());
     }
     
     if (newAddress.getSuburb() != null && newAddress.getSuburb().getName() != null) {            
-      builder.pathSegment(StringUtils.replaceUmlauts(newAddress.getSuburb().getName()));
+      builder.pathSegment(newAddress.getSuburb().getName());
     } 
         
     if (newAddress.getStreet() != null) {
-      var addressLine = StringUtils.replaceUmlauts(newAddress.getStreet());
+      var addressLine = newAddress.getStreet();
       
       if (newAddress.getHouseNumber() != null) {
-        addressLine += " " + StringUtils.replaceUmlauts(newAddress.getHouseNumber());
+        addressLine += " " + newAddress.getHouseNumber();
       }
       
       builder.pathSegment(addressLine);
     }
     
     if (newAddress.getPostalCode() != null) {
-      builder.pathSegment(StringUtils.replaceUmlauts(newAddress.getPostalCode()));
+      builder.pathSegment(newAddress.getPostalCode());
     } 
    }
 
@@ -102,7 +102,7 @@ public class BingMapService implements MapService {
   }
 
   private boolean isValid(AddressResource resource) {
-    return (resource.getConfidence().equals("High") || resource.getConfidence().equals("high"))
+    return (!resource.getConfidence().toLowerCase().equals("low"))
         && resource.getAddress().getStreet() != null && !resource.getAddress().getStreet().isBlank()
         && resource.getAddress().getHouseNumber() != null && !resource.getAddress().getHouseNumber().isBlank();
   }

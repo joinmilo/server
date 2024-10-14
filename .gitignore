@@ -59,3 +59,4 @@ Thumbs.db
 **/google-storage-credentials.json
 **/firebase-credentials.json
 **/search-console-credentials.json
+/.factorypath
