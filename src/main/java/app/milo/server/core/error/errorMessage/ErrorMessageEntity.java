@@ -1,9 +1,9 @@
 package app.milo.server.core.error.errorMessage;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.Table;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Table;
 import app.milo.server.core.base.BaseEntity;
 import app.milo.server.core.i18n.components.language.LanguageEntity;
 import lombok.AccessLevel;

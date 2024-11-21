@@ -3,23 +3,20 @@ package app.milo.server.base.cms.components.page.embeddingType;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
-import org.hibernate.annotations.CollectionId;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Type;
 import app.milo.server.base.cms.components.page.attributeType.PageAttributeTypeEntity;
 import app.milo.server.base.cms.components.page.embedding.PageEmbeddingEntity;
 import app.milo.server.base.cms.components.page.embeddingType.translations.PageEmbeddingTypeTranslatableEntity;
 import app.milo.server.core.base.BaseEntity;
 import app.milo.server.core.i18n.annotations.Translatable;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -32,7 +29,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Table(name = "page_embedding_types")
-@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
 public class PageEmbeddingTypeEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
@@ -57,7 +53,6 @@ public class PageEmbeddingTypeEntity extends BaseEntity {
     joinColumns = @JoinColumn(name = "embedding_type_id"),
     inverseJoinColumns = @JoinColumn(name = "attribute_type_id"),
     uniqueConstraints = {@UniqueConstraint(columnNames = {"embedding_type_id", "attribute_type_id"})})
-  @CollectionId(column = @Column(name = "id"), type = @Type(type = "uuid-char"), generator = "UUID")
   private List<PageAttributeTypeEntity> attributes = new ArrayList<>();
 
 }

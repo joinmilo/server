@@ -1,8 +1,8 @@
 package app.milo.server.features.article.components.base.translations;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import app.milo.server.core.i18n.entities.TranslatableEntity;
 import app.milo.server.features.article.components.base.ArticleEntity;
 import lombok.AccessLevel;

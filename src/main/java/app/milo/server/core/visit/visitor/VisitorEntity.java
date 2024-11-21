@@ -1,8 +1,8 @@
 package app.milo.server.core.visit.visitor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import app.milo.server.core.base.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

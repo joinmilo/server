@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.7.18</version>
+		<version>3.3.1</version>
 		<relativePath />
 	</parent>
 
@@ -35,13 +35,11 @@
 	<properties>
 		<apt-maven.version>1.1.3</apt-maven.version>
 		<docx4j.version>11.4.6</docx4j.version>
-		<firebase.version>8.1.0</firebase.version>
-		<graphql-starter.version>0.0.7</graphql-starter.version>
+		<firebase.version>9.2.0</firebase.version>
+		<graphql-starter.version>1.0.1</graphql-starter.version>
 		<google-search.version>v1-rev20230701-2.0.0</google-search.version>
 		<imgscalr.version>4.2</imgscalr.version>
 		<jacoco.version>0.8.7</jacoco.version>
-		<jakarta.activation>2.1.0</jakarta.activation>
-		<jakarta.xml>4.0.0</jakarta.xml>
 		<java.version>17</java.version>
 		<javassist.version>3.29.2-GA</javassist.version>
 		<jsoup.version>1.15.4</jsoup.version>
@@ -49,7 +47,8 @@
 		<openhtmltopdf.version>1.0.10</openhtmltopdf.version>
 		<reflection.version>0.10.2</reflection.version>
 		<slugify.version>3.0.4</slugify.version>
-		<twelvemonkeys.imageio>3.5</twelvemonkeys.imageio>
+		<twelvemonkeys.imageio>3.10.1</twelvemonkeys.imageio>
+		<querydsl.version>5.1.0</querydsl.version>
 	</properties>
 
 	<dependencies>
@@ -99,15 +98,19 @@
 			<artifactId>openhtmltopdf-pdfbox</artifactId>
 			<version>${openhtmltopdf.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>com.querydsl</groupId>
-			<artifactId>querydsl-apt</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.querydsl</groupId>
-			<artifactId>querydsl-jpa</artifactId>
-		</dependency>
+        <dependency>
+            <groupId>com.querydsl</groupId>
+            <artifactId>querydsl-apt</artifactId>
+            <version>${querydsl.version}</version>
+            <classifier>jakarta</classifier>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.querydsl</groupId>
+            <artifactId>querydsl-jpa</artifactId>
+            <version>${querydsl.version}</version>
+            <classifier>jakarta</classifier>
+        </dependency>
 		<dependency>
 			<groupId>com.twelvemonkeys.imageio</groupId>
 			<artifactId>imageio-core</artifactId>
@@ -127,6 +130,7 @@
 			<groupId>com.twelvemonkeys.servlet</groupId>
 			<artifactId>servlet</artifactId>
 			<version>${twelvemonkeys.imageio}</version>
+			<classifier>jakarta</classifier>			
 		</dependency>
 		<dependency>
 			<groupId>io.leangen.graphql</groupId>
@@ -156,7 +160,7 @@
 			<groupId>org.liquibase</groupId>
 			<artifactId>liquibase-core</artifactId>
 		</dependency>
-		<!-- <dependency>
+<!--	    <dependency>
 			<groupId>org.postgresql</groupId>
 		<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
@@ -234,22 +238,19 @@
 			It will throw
 		an error because of different XML bind usages.
 			See:
-		https://stackoverflow.com/questions/52502189/java-11-package-javax-xml-bind-does-not-exist
+		https://stackoverflow.com/questions/52502189/java-11-package-jakarta-xml-bind-does-not-exist
 		-->
 		<dependency>
 			<groupId>jakarta.activation</groupId>
 			<artifactId>jakarta.activation-api</artifactId>
-			<version>${jakarta.activation}</version>
 		</dependency>
 		<dependency>
 			<groupId>jakarta.xml.bind</groupId>
 			<artifactId>jakarta.xml.bind-api</artifactId>
-			<version>${jakarta.xml}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.sun.xml.bind</groupId>
 			<artifactId>jaxb-impl</artifactId>
-			<version>${jakarta.xml}</version>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
@@ -327,7 +328,7 @@
 						<version>2.6.0</version>
 					</dependency>
 					<dependency>
-						<groupId>javax.validation</groupId>
+						<groupId>jakarta.validation</groupId>
 						<artifactId>validation-api</artifactId>
 						<version>2.0.1.Final</version>
 					</dependency>

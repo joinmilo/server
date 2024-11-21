@@ -1,11 +1,11 @@
 package app.milo.server.features.deal.components.category;
 
 import java.util.Set;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import app.milo.server.core.base.BaseEntity;
 import app.milo.server.core.i18n.annotations.Translatable;
 import app.milo.server.features.deal.components.base.DealEntity;

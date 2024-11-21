@@ -4,20 +4,6 @@ import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Transient;
-import javax.persistence.UniqueConstraint;
-import org.hibernate.annotations.CollectionId;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Type;
 import app.milo.server.core.base.BaseEntity;
 import app.milo.server.core.i18n.components.language.LanguageEntity;
 import app.milo.server.core.messaging.notifications.base.NotificationEntity;
@@ -26,6 +12,17 @@ import app.milo.server.core.security.components.role.application.PrivilegeApplic
 import app.milo.server.core.security.components.role.base.RoleEntity;
 import app.milo.server.core.security.components.user.emailVerification.VerificationEntity;
 import app.milo.server.core.security.components.user.passwordReset.PasswordResetEntity;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
+import jakarta.persistence.UniqueConstraint;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -38,7 +35,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Table(name = "users")
-@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
 public class UserEntity extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
@@ -75,7 +71,6 @@ public class UserEntity extends BaseEntity {
   @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),
       inverseJoinColumns = @JoinColumn(name = "role_id"),
       uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "role_id"})})
-  @CollectionId(column = @Column(name = "id"), type = @Type(type = "uuid-char"), generator = "UUID")
   private List<RoleEntity> roles = new ArrayList<>();
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")

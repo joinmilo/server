@@ -6,7 +6,7 @@ import static org.assertj.core.api.Assertions.catchThrowable;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
-import javax.persistence.OneToMany;
+import jakarta.persistence.OneToMany;
 
 import org.assertj.core.api.Condition;
 import org.junit.jupiter.api.Test;

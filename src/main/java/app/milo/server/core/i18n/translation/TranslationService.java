@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
-import javax.transaction.Transactional;
+import jakarta.transaction.Transactional;
 import org.hibernate.Hibernate;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;

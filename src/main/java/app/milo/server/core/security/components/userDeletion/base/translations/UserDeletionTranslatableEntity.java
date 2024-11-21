@@ -1,8 +1,8 @@
 package app.milo.server.core.security.components.userDeletion.base.translations;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import app.milo.server.core.i18n.entities.TranslatableEntity;
 import app.milo.server.core.security.components.userDeletion.base.UserDeletionEntity;
 import lombok.AccessLevel;
